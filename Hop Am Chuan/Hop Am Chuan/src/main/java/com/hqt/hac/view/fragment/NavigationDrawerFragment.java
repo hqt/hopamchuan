@@ -1,4 +1,4 @@
-package com.hqt.hac.fragment;
+package com.hqt.hac.view.fragment;
 
 import android.support.v7.app.ActionBarActivity;;
 import android.app.Activity;
@@ -20,7 +20,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.hqt.hac.view.R;
 
@@ -95,15 +94,14 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
+
+        String[] categories = getResources().getStringArray(R.array.navigation_drawer_default_items);
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_1,
                 android.R.id.text1,
-                new String[]{
-                        getString(R.string.title_section1),
-                        getString(R.string.title_section2),
-                        getString(R.string.title_section3),
-                }));
+                categories
+                ));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
@@ -194,6 +192,10 @@ public class NavigationDrawerFragment extends Fragment {
         if (mDrawerLayout != null) {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
+
+        // mCallbacks : in fact. is MainActivity
+        // Main Activity will implement this interface
+        // and render appropriate view
         if (mCallbacks != null) {
             mCallbacks.onNavigationDrawerItemSelected(position);
         }
@@ -246,9 +248,7 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         switch (item.getItemId()) {
-            case R.id.action_example:
-                Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
-                return true;
+
         }
 
         return super.onOptionsItemSelected(item);

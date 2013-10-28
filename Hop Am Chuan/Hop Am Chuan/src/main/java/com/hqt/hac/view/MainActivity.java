@@ -4,31 +4,43 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Build;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
-import android.widget.SearchView;
 import android.widget.TextView;
 
-import com.hqt.hac.fragment.NavigationDrawerFragment;
+import com.hqt.hac.view.fragment.NavigationDrawerFragment;
+import com.hqt.hac.view.fragment.SongListFragment;
+
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+    public static enum NAVIGATION_DRAWER_ITEMS {
+        HOMEPAGE,
+        MY__PLAYLIST,
+        FAVORITE,
+        FIND_CHORD,
+        LOOKUP_CHORD
+    }
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
+
+    private SearchView mSearchView;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -50,13 +62,24 @@ public class MainActivity extends ActionBarActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
+    /**
+     *  Activity that using navigation drawer will implement this interface
+     *  base on position that return suitable view
+     */
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+
+        switch (position) {
+            case 0 :
+                SongListFragment fragment = new SongListFragment();
+                fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+                break;
+            default:
+            fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(position+1)).commit();
+                break;
+        }
     }
 
     public void onSectionAttached(int number) {
@@ -98,7 +121,6 @@ public class MainActivity extends ActionBarActivity
 
         // Only show items in the action bar relevant to this screen
         // if the drawer is not showing.
-        // getMenuInflater().inflate(R.menu.main, menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
 
@@ -110,14 +132,16 @@ public class MainActivity extends ActionBarActivity
 
             // Get the SearchView and set the Search Configuration
             SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-            SearchView searchView = (SearchView) menu.findItem(R.id.search_bar).getActionView();
+            MenuItem searchItem = menu.findItem(R.id.search_bar);
+            mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
-            // Assumes current activity is the searchable activity
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+            if (mSearchView != null) {
+                // Assumes current activity is the searchable activity
+                mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
-            // Do not icon the widget. expand it.
-            searchView.setIconifiedByDefault(false);
-
+                // Do not icon the widget. expand it.
+                mSearchView.setIconifiedByDefault(false);
+            }
         }
 
         restoreActionBar();

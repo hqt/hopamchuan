@@ -13,5 +13,24 @@
     <string name="search_hint">Search songs and artists</string>
     <string name="title_activity_search_view">Search</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_song_list_fragment">Hợp Âm Chuẩn</string>
+
+    <!-- default items for navigation drawer -->
+    <string-array name="navigation_drawer_default_items">
+        <item>Trang Chu</item>
+        <item>Playlist cua toi</item>
+        <item>Yeu thich</item>
+        <item>Tim theo hop am</item>
+        <item>Tra cuu hop am</item>
+    </string-array>
+
+    <!-- list all method to view songs -->
+    <string-array name="song_list_method">
+        <item>Moi xem gan day</item>
+        <item>Moi cap nhat</item>
+        <item>Xem nhieu hom nay</item>
+        <item>Xem nhieu trong tuan</item>
+        <item>Bai hat ngau nhien</item>
+    </string-array>
 
 </resources>
