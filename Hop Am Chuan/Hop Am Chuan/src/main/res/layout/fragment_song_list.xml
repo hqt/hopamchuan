@@ -10,24 +10,23 @@
     android:orientation="vertical"
     tools:context=".SongListFragment$PlaceholderFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:orientation="horizontal">
+        android:layout_width="match_parent">
 
         <Spinner
             android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:layout_alignParentTop="true"
-            android:id="@+id/spinner_method_list"></Spinner>
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/spinner_method_list"/>
 
         <ImageButton
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_weight="0"
-            android:background="@drawable/ic_menu_refresh"/>
+            android:background="@drawable/ic_menu_refresh"
+            android:layout_alignParentRight="true"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <ListView
         android:layout_height="fill_parent"

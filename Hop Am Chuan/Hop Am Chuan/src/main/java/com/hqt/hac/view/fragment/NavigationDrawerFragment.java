@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
 import com.hqt.hac.view.R;
 
 /**
@@ -88,6 +89,10 @@ public class NavigationDrawerFragment extends Fragment {
             Bundle savedInstanceState) {
         mDrawerListView = (ListView) inflater.inflate(
                 R.layout.fragment_navigation_drawer, container, false);
+
+        NavigationDrawerAdapter adapter = new NavigationDrawerAdapter(getActivity().getApplicationContext());
+        mDrawerListView.setAdapter(adapter);
+
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

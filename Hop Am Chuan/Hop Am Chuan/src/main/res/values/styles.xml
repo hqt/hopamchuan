@@ -5,4 +5,10 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!-- List item text -->
+    <style name="ListItemTitle">
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textColor">#ff000000</item>
+    </style>
+
 </resources>

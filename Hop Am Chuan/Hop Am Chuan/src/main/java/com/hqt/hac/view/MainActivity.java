@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.hqt.hac.Utils.UIUtils;
 import com.hqt.hac.view.fragment.NavigationDrawerFragment;
+import com.hqt.hac.view.fragment.SongListFragment;
 
 import static com.hqt.hac.Utils.LogUtils.makeLogTag;
 
@@ -77,9 +78,9 @@ public class MainActivity extends ActionBarActivity
 
         switch (position) {
             case 0 :
-                /*SongListFragment fragment = new SongListFragment();
-                fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();*/
-                fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(position+1)).commit();
+                SongListFragment fragment = new SongListFragment();
+                fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+                // fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(position+1)).commit();
                 break;
             default:
             fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(position+1)).commit();
