@@ -3,7 +3,6 @@ package com.hqt.hac.view;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,12 +19,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.hqt.hac.Utils.UIUtils;
 import com.hqt.hac.view.fragment.NavigationDrawerFragment;
-import com.hqt.hac.view.fragment.SongListFragment;
+
+import static com.hqt.hac.Utils.LogUtils.makeLogTag;
 
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+    private static final String TAG = makeLogTag(MainActivity.class);
 
     public static enum NAVIGATION_DRAWER_ITEMS {
         HOMEPAGE,
@@ -35,12 +38,13 @@ public class MainActivity extends ActionBarActivity
         LOOKUP_CHORD
     }
 
+
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-    private SearchView mSearchView;
+    SearchView mSearchView;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -73,8 +77,9 @@ public class MainActivity extends ActionBarActivity
 
         switch (position) {
             case 0 :
-                SongListFragment fragment = new SongListFragment();
-                fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+                /*SongListFragment fragment = new SongListFragment();
+                fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();*/
+                fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(position+1)).commit();
                 break;
             default:
             fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(position+1)).commit();
@@ -128,20 +133,15 @@ public class MainActivity extends ActionBarActivity
         // we should check version of users here
         // if version is lower. We use SearchDialog instead
         // TODO: search google. Find SearchWidget library for API Lower than 11
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-
+        MenuItem searchItem = menu.findItem(R.id.search_bar);
+        if (searchItem != null && UIUtils.hasHoneycomb()) {
             // Get the SearchView and set the Search Configuration
             SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-            MenuItem searchItem = menu.findItem(R.id.search_bar);
             mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-
-            if (mSearchView != null) {
-                // Assumes current activity is the searchable activity
-                mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
-                // Do not icon the widget. expand it.
-                mSearchView.setIconifiedByDefault(false);
-            }
+            // Assumes current activity is the searchable activity
+            mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+            // Do not icon the widget. expand it.
+            mSearchView.setIconifiedByDefault(false);
         }
 
         restoreActionBar();
@@ -154,7 +154,7 @@ public class MainActivity extends ActionBarActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            case R.id.action_bar:
                 return true;
         }
         return super.onOptionsItemSelected(item);

@@ -16,7 +16,8 @@ import android.view.ViewGroup;
  * System will call when receive Search Intent
  * See this link for more Detail:
  *
- * @link{http://developer.android.com/guide/topics/search/search-dialog.html#UsingSearchWidget}
+ * @see <a href="http://developer.android.com/guide/topics/search/search-dialog.html#UsingSearchWidget">
+        * // Using Search Widget</a>
  */
 public class SearchViewActivity extends ActionBarActivity {
 
