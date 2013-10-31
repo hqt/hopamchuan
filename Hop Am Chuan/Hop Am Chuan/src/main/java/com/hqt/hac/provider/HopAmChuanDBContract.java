@@ -41,6 +41,14 @@ public class HopAmChuanDBContract {
         String SONG_DATE = "song_date";
     }
 
+    interface FavoritesColumns {
+        String FAVORITE_ID = "favorite_id";
+        String FAVORITE_NAME = "favorite_name";
+        String FAVORITE_DESCRIPTION = "favorite_description";
+        String FAVORITE_DATE = "favorite_date";
+        String FAVORITE_PUBLIC = "favorite_public";
+    }
+
     public static final String CONTENT_AUTHORITY = "com.hqt.hac.provider";
 
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
@@ -55,6 +63,8 @@ public class HopAmChuanDBContract {
     private static final String PATH_SONGS_AUTHORS = "songs_authors";
     private static final String PATH_SONGS_SINGERS = "songs_singers";
     private static final String PATH_SONGS_CHORDS = "songs_chords";
+    private static final String PATH_FAVORITES = "favorites";
+    private static final String PATH_FAVORITES_SONGS = "favorites_songs";
 
     private static final String PATH_AT = "at";
     private static final String PATH_AFTER = "after";
@@ -64,6 +74,22 @@ public class HopAmChuanDBContract {
     private static final String PATH_SEARCH_INDEX = "search_index";
 
 
+    /**
+     * Following is the inner class that describe tables in database
+     * includes :
+     *      Table columns name (by using implements columns keyword)
+     *      CONTENT_URI (use for content provider using later)
+     *      MIME-TYPE (CONTENT_TYPE and CONTENT_ITEM_TYPE)
+     *      Some helper method for each class to process URI such as :
+     *          a) Get Id from URI (for example : content://com.hqt.hac.provider/songs/10)
+     *          b) Building URI link from Id (for example : return content://com.hqt.hac.provider/songs/10)
+     *
+     * @author Huynh Quang Thao
+     */
+
+    /**
+     * Artist class
+     */
     public static final class Artists implements ArtistsColumns,BaseColumns {
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_ARTISTS).build();
@@ -84,6 +110,9 @@ public class HopAmChuanDBContract {
         }
     }
 
+    /**
+     * Songs class
+     */
     public static final class Songs implements SongsColumns, BaseColumns {
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_SONGS).build();
@@ -105,6 +134,9 @@ public class HopAmChuanDBContract {
 
     }
 
+    /**
+     * Chords Class
+     */
     public static final class Chords implements ChordsColumns, BaseColumns {
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_CHORDS).build();
@@ -125,6 +157,9 @@ public class HopAmChuanDBContract {
         }
     }
 
+    /**
+     * SongsChords class : class that list all chords of a song
+     */
     public static final class SongsChords implements SongsColumns, ChordsColumns, BaseColumns {
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_SONGS_CHORDS).build();
@@ -141,6 +176,9 @@ public class HopAmChuanDBContract {
 
     }
 
+    /**
+     * SongsAuthors class
+     */
     public static final class SongsAuthors implements SongsColumns, ArtistsColumns, BaseColumns {
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_SONGS_AUTHORS).build();
@@ -157,6 +195,9 @@ public class HopAmChuanDBContract {
 
     }
 
+    /**
+     * SongsSingers class
+     */
     public static final class SongsSingers implements SongsColumns, ArtistsColumns, BaseColumns {
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_SONGS_SINGERS).build();
@@ -170,7 +211,36 @@ public class HopAmChuanDBContract {
         public static Uri buildSongsSingersUri(String SongSingerId) {
             return CONTENT_URI.buildUpon().appendPath(SongSingerId).build();
         }
+    }
 
+    public static final class Favorites implements BaseColumns, FavoritesColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_FAVORITES).build();
+
+        public static final String CONTENT_TYPE =
+                "vnd.android.cursor.dir/vnd.com.hqt.hac.favorites";
+        public static final String CONTENT_ITEM_TYPE =
+                "vnd.android.cursor.item/vnd.com.hqt.hac.favorites";
+
+        /** Build {@link Uri} for requested {@link #FAVORITE_ID}. */
+        public static Uri buildSongsSingersUri(String FavoriteId) {
+            return CONTENT_URI.buildUpon().appendPath(FavoriteId).build();
+        }
+    }
+
+    public static final class FavoritesSongs implements BaseColumns, FavoritesColumns, SongsColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_FAVORITES_SONGS).build();
+
+        public static final String CONTENT_TYPE =
+                "vnd.android.cursor.dir/vnd.com.hqt.hac.songs_favorites_songs";
+        public static final String CONTENT_ITEM_TYPE =
+                "vnd.android.cursor.item/vnd.com.hqt.hac.songs_favorites_songs";
+
+        /** Build {@link Uri} for requested {@link #SONG_ID}. */
+        public static Uri buildSongsSingersUri(String FavoriteSongId) {
+            return CONTENT_URI.buildUpon().appendPath(FavoriteSongId).build();
+        }
     }
 
     public static Uri addCallerIsSyncAdapterParameter(Uri uri) {

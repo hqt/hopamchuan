@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_alignParentLeft="true"
+            android:textColor="#0e0e0e"
             android:id="@+id/spinner_method_list"/>
 
         <ImageButton

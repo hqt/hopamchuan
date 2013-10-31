@@ -1,0 +1,21 @@
+<resources>
+    <!-- Backward-compatibility values -->
+    <dimen name="compat_list_preferred_item_padding_left">8dp</dimen>
+    <dimen name="compat_list_preferred_item_padding_right">8dp</dimen>
+    <dimen name="compat_list_preferred_item_height_small">48dp</dimen>
+
+    <!-- Polyfill for ?android:buttonBarStyle -->
+    <style name="Compat.ButtonBar" parent="@style/NoParent">
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:background">@android:drawable/bottom_bar</item>
+    </style>
+
+    <!-- Polyfill for ?android:buttonBarButtonStyle -->
+    <style name="Compat.ButtonBarButton" parent="@style/NoParent" />
+
+    <!-- Polyfill for ?android:indeterminateProgressStyle -->
+    <style name="Compat.IndeterminateProgress" parent="@android:style/Widget.ProgressBar.Small" />
+</resources>

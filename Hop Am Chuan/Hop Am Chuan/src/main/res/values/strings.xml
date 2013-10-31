@@ -33,4 +33,8 @@
         <item>Bai hat ngau nhien</item>
     </string-array>
 
+    <string name="title_activity_test">Test Activity</string>
+    <string name="example_text">Example Text</string>
+    <string name="example_number">10</string>
+
 </resources>

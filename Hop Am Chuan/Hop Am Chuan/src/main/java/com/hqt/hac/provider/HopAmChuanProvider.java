@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 
-import com.hqt.hac.Utils.SelectionBuilder;
+import com.hqt.hac.provider.helper.SelectionBuilder;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -23,6 +23,8 @@ import static com.hqt.hac.provider.HopAmChuanDBContract.Songs;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsAuthors;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsSingers;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsChords;
+import static com.hqt.hac.provider.HopAmChuanDBContract.Favorites;
+import static com.hqt.hac.provider.HopAmChuanDBContract.FavoritesSongs;
 
 import static com.hqt.hac.Utils.LogUtils.LOGV;
 import static com.hqt.hac.Utils.LogUtils.makeLogTag;
@@ -34,8 +36,15 @@ public class HopAmChuanProvider extends ContentProvider {
 
     private static final String TAG = makeLogTag(HopAmChuanDatabase.class);
 
+    /**
+     * ContentProvider will heavily use SQLiteHelper for modifying database
+     */
     private HopAmChuanDatabase mOpenHelper;
 
+    /**
+     * Setup URIs
+     * Provide a mechanism to identify all incoming uri patterns
+     */
     private static final UriMatcher sUriMatcher = buildUriMatcher();
 
     private static final int SONGS = 100;
@@ -56,8 +65,13 @@ public class HopAmChuanProvider extends ContentProvider {
     private static final int SONGS_CHORDS = 600;
     private static final int SONGS_CHORDS_ID = 601;
 
-    private static final int SEARCH_SUGGEST = 800;
-    private static final int SEARCH_INDEX = 801;
+    private static final int FAVORITES = 700;
+    private static final int FAVORITES_ID = 701;
+
+    private static final int FAVORITES_SONGS = 800;
+    private static final int FAVORITES_SONGS_ID = 801;
+
+    private static final int SEARCH_INDEX = 901;
 
     private static UriMatcher buildUriMatcher() {
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -69,39 +83,51 @@ public class HopAmChuanProvider extends ContentProvider {
          * Songs table
          */
         matcher.addURI(authority, "songs", SONGS);
-        matcher.addURI(authority, "songs/*", SONGS_ID);
+        matcher.addURI(authority, "songs/#", SONGS_ID);
 
         /**
          * Artists table
          */
         matcher.addURI(authority, "artists", ARTISTS);
-        matcher.addURI(authority, "artists/*", ARTISTS_ID);
+        matcher.addURI(authority, "artists/#", ARTISTS_ID);
 
         /**
          * chords table
          */
         matcher.addURI(authority, "chords", CHORDS);
-        matcher.addURI(authority, "chords/*", CHORDS_ID);
+        matcher.addURI(authority, "chords/#", CHORDS_ID);
 
         /**
          * SongsSingers table
          */
         matcher.addURI(authority, "songs_singers", SONGS_SINGERS);
-        matcher.addURI(authority, "songs_singers/*", SONGS_SINGERS_ID);
+        matcher.addURI(authority, "songs_singers/#", SONGS_SINGERS_ID);
 
         /**
          * SongsAuthors table
          */
         matcher.addURI(authority, "songs_authors", SONGS_AUTHORS);
-        matcher.addURI(authority, "songs_authors/*", SONGS_AUTHORS_ID);
+        matcher.addURI(authority, "songs_authors/#", SONGS_AUTHORS_ID);
 
         /**
          * SongsChords table
          */
         matcher.addURI(authority, "songs_chords", SONGS_CHORDS);
-        matcher.addURI(authority, "songs_chords/*", SONGS_CHORDS_ID);
+        matcher.addURI(authority, "songs_chords/#", SONGS_CHORDS_ID);
 
-        return null;
+        /**
+         * Favorites Table
+         */
+        matcher.addURI(authority, "favorites", FAVORITES);
+        matcher.addURI(authority, "favorites/#", FAVORITES_ID);
+
+        /**
+         * FavoritesSongs table
+         */
+        matcher.addURI(authority, "favorites_songs", FAVORITES_SONGS);
+        matcher.addURI(authority, "favorites_songs/#", FAVORITES_SONGS_ID);
+
+        return matcher;
     }
 
     @Override
@@ -146,6 +172,14 @@ public class HopAmChuanProvider extends ContentProvider {
                 return HopAmChuanDBContract.SongsChords.CONTENT_TYPE;
             case SONGS_CHORDS_ID:
                 return HopAmChuanDBContract.SongsChords.CONTENT_ITEM_TYPE;
+            case FAVORITES:
+                return HopAmChuanDBContract.Favorites.CONTENT_TYPE;
+            case FAVORITES_ID:
+                return HopAmChuanDBContract.Favorites.CONTENT_ITEM_TYPE;
+            case FAVORITES_SONGS:
+                return HopAmChuanDBContract.FavoritesSongs.CONTENT_TYPE;
+            case FAVORITES_SONGS_ID:
+                return HopAmChuanDBContract.FavoritesSongs.CONTENT_ITEM_TYPE;
 
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
@@ -158,12 +192,28 @@ public class HopAmChuanProvider extends ContentProvider {
         return null;
     }
 
+    /**
+     * insert to database using Uri
+     * so that we should process Uri before doing some stuff with them
+     */
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         LOGV(TAG, "insert(uri=" + uri + ", values=" + values.toString() + ")");
+
+        /**
+         * Calling getWritableDatabase() make sure the database is always in a sensible state.
+         * does not need to call db.beginTransaction() and db.endTransaction() --> mess up many things
+         */
         final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         if (db == null) throw new NullPointerException("db object is null");
 
+        /**
+         * can handle empty fields or validates data here
+         */
+
+        /**
+         * process URI using UriMatcher for recognize Uri link
+         */
         final int match = sUriMatcher.match(uri);
         boolean syncToNetwork = !HopAmChuanDBContract.hasCallerIsSyncAdapterParameter(uri);
         switch(match) {
@@ -198,6 +248,11 @@ public class HopAmChuanProvider extends ContentProvider {
         }
     }
 
+    /**
+     * @param uri   can known table and id
+     * @param selection     can known parameter list
+     * @param selectionArgs can known parameter values
+     */
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         LOGV(TAG, "delete(uri=" + uri + ")");
@@ -214,6 +269,12 @@ public class HopAmChuanProvider extends ContentProvider {
         return retVal;
     }
 
+    /**
+     * @param uri   can known table and id
+     * @param values    object (column value) for update
+     * @param selection     can known parameter list
+     * @param selectionArgs can known parameter values
+     */
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         LOGV(TAG, "update(uri=" + uri + ", values=" + values.toString() + ")");
@@ -313,19 +374,16 @@ public class HopAmChuanProvider extends ContentProvider {
             case SONGS_AUTHORS: {
                 return builder.table(HopAmChuanDatabase.Tables.SONGS_AUTHORS);
             }
+            case FAVORITES: {
+                return builder.table(HopAmChuanDatabase.Tables.FAVORITES);
+            }
+            case FAVORITES_SONGS: {
+                return builder.table(HopAmChuanDatabase.Tables.FAVORITES_SONGS);
+            }
+
             default: {
                 throw new UnsupportedOperationException("Unknown uri for " + match + ": " + uri);
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
 }

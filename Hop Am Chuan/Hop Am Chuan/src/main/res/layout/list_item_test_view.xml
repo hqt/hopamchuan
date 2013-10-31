@@ -1,0 +1,65 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:baselineAligned="false">
+
+   <!-- <LinearLayout android:id="@+id/block_time_container"
+        android:orientation="vertical"
+        android:layout_width="@dimen/schedule_block_time_width"
+        android:layout_height="match_parent"
+        android:background="@drawable/transparent_background_pattern"
+        android:padding="8dp">
+
+        <TextView android:id="@+id/block_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_small"
+            android:textColor="@color/body_text_2"
+            android:paddingTop="@dimen/text_size_diff_large_small" />
+
+        <TextView android:id="@+id/block_endtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_small"
+            android:textColor="@color/body_text_3"
+            android:paddingTop="4dp"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/list_item_middle_container"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?activatableItemBackground"
+        android:orientation="vertical">
+
+        <TextView android:id="@+id/block_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="?listPreferredItemPaddingLeft"
+            android:layout_marginRight="?listPreferredItemPaddingRight"
+            android:paddingTop="8dp"
+            android:duplicateParentState="true"
+            style="@style/ListItemTitle" />
+
+        <TextView android:id="@+id/block_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="?listPreferredItemPaddingLeft"
+            android:layout_marginRight="?listPreferredItemPaddingRight"
+            android:paddingBottom="8dp"
+            android:duplicateParentState="true"
+            style="@style/ListItemSubtitle" />
+    </LinearLayout>
+
+    <ImageButton android:id="@+id/extra_button"
+        android:layout_width="@dimen/list_extra_button_width"
+        android:layout_height="match_parent"
+        android:background="@drawable/list_extra_button_background"
+        android:scaleType="center"
+        android:src="@drawable/schedule_button_more"
+        android:contentDescription="@string/more_sessions" />-->
+
+</LinearLayout>

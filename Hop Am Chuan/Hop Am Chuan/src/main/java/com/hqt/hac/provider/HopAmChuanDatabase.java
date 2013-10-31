@@ -10,6 +10,7 @@ import static com.hqt.hac.Utils.LogUtils.makeLogTag;
 import static com.hqt.hac.provider.HopAmChuanDBContract.ArtistsColumns;
 import static com.hqt.hac.provider.HopAmChuanDBContract.ChordsColumns;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsColumns;
+import static com.hqt.hac.provider.HopAmChuanDBContract.FavoritesColumns;
 
 /**
  * Helper for managing {@link SQLiteDatabase} that stores data for
@@ -37,6 +38,8 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
         String SONGS_AUTHORS = "Songs_Authors_Tbl";
         String SONGS_CHORDS = "Songs_Chords_Tbl";
         String SONGS_SINGERS = "Songs_Singers_Tbl";
+        String FAVORITES = "Favorites_Tbl";
+        String FAVORITES_SONGS = "Favorites_Songs_Tbl";
     }
 
     /** {@code REFERENCES} clauses. */
@@ -44,6 +47,7 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
         String ARTIST_ID = "REFERENCES " + Tables.ARTISTS + "(" + HopAmChuanDBContract.Artists.ARTIST_ID + ")";
         String CHORD_ID = "REFERENCES " + Tables.CHORDS + "(" + HopAmChuanDBContract.Chords.CHORD_ID + ")";
         String SONG_ID = "REFERENCES " + Tables.SONGS + "(" + HopAmChuanDBContract.Songs.SONG_ID + ")";
+        String FAVORITE_ID = "REFERENCES " + Tables.FAVORITES + "(" + HopAmChuanDBContract.Favorites.FAVORITE_ID + ")";
     }
 
     public HopAmChuanDatabase(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -83,7 +87,7 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
      * create all suitable tables here
      */
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public synchronized void  onCreate(SQLiteDatabase db) {
 
         /**
          * base table :
@@ -138,6 +142,25 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
                 + "UNIQUE (" + SongsColumns.SONG_ID + ","
                         + ChordsColumns.CHORD_ID + ") ON CONFLICT REPLACE)");
 
+        /**
+         * Favorites table and Favorites-Songs table
+         */
+        db.execSQL("CREATE TABLE " + Tables.FAVORITES + " ("
+                + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + FavoritesColumns.FAVORITE_ID + " INTEGER,"
+                + FavoritesColumns.FAVORITE_NAME + " TEXT,"
+                + FavoritesColumns.FAVORITE_DESCRIPTION + " TEXT,"
+                + FavoritesColumns.FAVORITE_DATE + " TEXT,"
+                + FavoritesColumns.FAVORITE_PUBLIC + " INTEGER,"
+                + "UNIQUE (" + FavoritesColumns.FAVORITE_ID + ") ON CONFLICT REPLACE)");
+
+        db.execSQL("CREATE TABLE " + Tables.FAVORITES_SONGS + " ("
+                + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + FavoritesColumns.FAVORITE_ID + " INTEGER " + References.FAVORITE_ID + ","
+                + SongsColumns.SONG_ID + " INTEGER " + References.SONG_ID + ","
+                + "UNIQUE (" + FavoritesColumns.FAVORITE_ID + ","
+                + SongsColumns.SONG_ID + ") ON CONFLICT REPLACE)");
+
 
         // Full-text search index. Update using updateSessionSearchIndex method.
         // Use the porter tokenizer for simple stemming, so that "frustration" matches "frustrated."
@@ -154,6 +177,10 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         LOGD(TAG, "onUpgrade() from " + oldVersion + " to " + newVersion);
+
+        // drop all tables
+
+        // create new tables
     }
 
     public static void deleteDatabase(Context context) {
