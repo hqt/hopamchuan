@@ -1,5 +1,7 @@
 package com.hqt.hac.model;
 
+import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,6 +13,7 @@ public class Playlist implements Serializable {
     public String playlistDescription;
     public Date date;
     public boolean isPublic;
+    public int numberOfSongs;
 
     public Playlist(int id, int playlistId, String playlistName, String playlistDescription, Date date, boolean isPublic) {
         this.id = id;
@@ -19,6 +22,7 @@ public class Playlist implements Serializable {
         this.playlistDescription = playlistDescription;
         this.date = date;
         this.isPublic = isPublic;
+        //numberOfSongs = PlaylistDataAccessLayer.getNumberOfSongsByPlaylist(id);
     }
 
     public Playlist(int playlistId, String playlistName, String playlistDescription, Date date, boolean isPublic) {
@@ -40,4 +44,6 @@ public class Playlist implements Serializable {
                 ", isPublic=" + isPublic +
                 '}';
     }
+
+
 }

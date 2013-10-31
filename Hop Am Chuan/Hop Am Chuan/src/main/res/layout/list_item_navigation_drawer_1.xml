@@ -1,25 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:baselineAligned="false">
 
-    <ImageView
-        android:id="@android:id/icon"
+    <ImageView android:id="@+id/icon"
         android:layout_margin="@dimen/track_icon_padding"
         android:layout_width="@dimen/track_icon_size"
         android:layout_height="@dimen/track_icon_size"
         android:layout_gravity="end|center_vertical"
+        android:src="@drawable/ic_menu_search"
         android:contentDescription="@null" />
 
     <TextView
-        android:id="@+id/textview"
-        style="@style/ListItemTitle"
-        android:textStyle="normal"
+        android:id="@+id/text"
+        android:textStyle="bold"
         android:layout_width="0dp"
         android:layout_weight="1"
+        android:text="@string/example_text"
         android:layout_height="wrap_content"
         android:layout_gravity="start|center_vertical" />
 

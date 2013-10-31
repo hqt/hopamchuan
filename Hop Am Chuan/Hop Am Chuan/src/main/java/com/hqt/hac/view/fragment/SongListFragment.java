@@ -53,7 +53,6 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         spinner.setAdapter(adapter);    // Apply the adapter to the spinner
         spinner.setOnItemSelectedListener(this);    // because this fragment has implemented method
 
-        mListView = (ListView) rootView.findViewById(R.id.list_view);
         return rootView;
     }
 

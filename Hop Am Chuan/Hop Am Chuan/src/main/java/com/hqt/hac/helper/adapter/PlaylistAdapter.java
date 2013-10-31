@@ -6,14 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
+import com.hqt.hac.view.R;
 
 import java.util.List;
 
 public class PlaylistAdapter extends BaseAdapter {
-
 
     Context mContext;
     List<Playlist> playLists;
@@ -40,17 +41,32 @@ public class PlaylistAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        //ViewHolder holder = null;
+        ViewHolder holder = null;
         View row = convertView;
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (row == null) {
-
+            row = inflater.inflate(R.layout.list_item_playlist, null);
+            holder = new ViewHolder();
+            holder.numberOfSongTxt = (TextView) row.findViewById(R.id.countSongText);
+            holder.playListNameTxt = (TextView) row.findViewById(R.id.playlist);
+            holder.descriptionTxt = (TextView) row.findViewById(R.id.description);
         }
         else {
-          //  holder = (ViewHolder) row.getTag();
+            holder = (ViewHolder) row.getTag();
         }
 
-        return null;
+        Playlist rowItem = (Playlist) getItem(position);
+        //   holder.numberOfSongTxt.setText(rowItem.);
+        holder.playListNameTxt.setText(rowItem.playlistName);
+        holder.descriptionTxt.setText(rowItem.playlistDescription);
+
+        return row;
+    }
+
+    private class ViewHolder {
+        TextView numberOfSongTxt;
+        TextView playListNameTxt;
+        TextView descriptionTxt;
     }
 }

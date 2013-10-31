@@ -100,7 +100,7 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
 
-        String[] categories = getResources().getStringArray(R.array.navigation_drawer_default_items);
+        /*String[] categories = getResources().getStringArray(R.array.navigation_drawer_default_items);
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_1,
@@ -108,6 +108,8 @@ public class NavigationDrawerFragment extends Fragment {
                 categories
                 ));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
+        */
+
         return mDrawerListView;
     }
 

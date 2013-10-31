@@ -5,6 +5,8 @@ import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 
+import static com.hqt.hac.provider.HopAmChuanDatabase.Tables;
+
 public class HopAmChuanDBContract {
 
     interface ArtistsColumns {
@@ -41,12 +43,12 @@ public class HopAmChuanDBContract {
         String SONG_DATE = "song_date";
     }
 
-    interface FavoritesColumns {
-        String FAVORITE_ID = "favorite_id";
-        String FAVORITE_NAME = "favorite_name";
-        String FAVORITE_DESCRIPTION = "favorite_description";
-        String FAVORITE_DATE = "favorite_date";
-        String FAVORITE_PUBLIC = "favorite_public";
+    interface PlaylistColumns {
+        String PLAYLIST_ID = "playlist_id";
+        String PLAYLIST_NAME = "playlist_name";
+        String PLAYLIST_DESCRIPTION = "playlist_description";
+        String PLAYLIST_DATE = "playlist_date";
+        String PLAYLIST_PUBLIC = "playlist_public";
     }
 
     public static final String CONTENT_AUTHORITY = "com.hqt.hac.provider";
@@ -63,8 +65,8 @@ public class HopAmChuanDBContract {
     private static final String PATH_SONGS_AUTHORS = "songs_authors";
     private static final String PATH_SONGS_SINGERS = "songs_singers";
     private static final String PATH_SONGS_CHORDS = "songs_chords";
-    private static final String PATH_FAVORITES = "favorites";
-    private static final String PATH_FAVORITES_SONGS = "favorites_songs";
+    private static final String PATH_PLAYLIST = "playlist";
+    private static final String PATH_PLAYLIST_SONGS = "playlist_songs";
 
     private static final String PATH_AT = "at";
     private static final String PATH_AFTER = "after";
@@ -213,33 +215,33 @@ public class HopAmChuanDBContract {
         }
     }
 
-    public static final class Favorites implements BaseColumns, FavoritesColumns {
+    public static final class Playlist implements BaseColumns, PlaylistColumns {
         public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_FAVORITES).build();
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_PLAYLIST).build();
 
         public static final String CONTENT_TYPE =
-                "vnd.android.cursor.dir/vnd.com.hqt.hac.favorites";
+                "vnd.android.cursor.dir/vnd.com.hqt.hac.playlist";
         public static final String CONTENT_ITEM_TYPE =
-                "vnd.android.cursor.item/vnd.com.hqt.hac.favorites";
+                "vnd.android.cursor.item/vnd.com.hqt.hac.playlist";
 
-        /** Build {@link Uri} for requested {@link #FAVORITE_ID}. */
-        public static Uri buildSongsSingersUri(String FavoriteId) {
-            return CONTENT_URI.buildUpon().appendPath(FavoriteId).build();
+        /** Build {@link Uri} for requested {@link #PLAYLIST_ID}. */
+        public static Uri buildSongsSingersUri(String PlaylistId) {
+            return CONTENT_URI.buildUpon().appendPath(PlaylistId).build();
         }
     }
 
-    public static final class FavoritesSongs implements BaseColumns, FavoritesColumns, SongsColumns {
+    public static final class PlaylistSongs implements BaseColumns, PlaylistColumns, SongsColumns {
         public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_FAVORITES_SONGS).build();
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_PLAYLIST_SONGS).build();
 
         public static final String CONTENT_TYPE =
-                "vnd.android.cursor.dir/vnd.com.hqt.hac.songs_favorites_songs";
+                "vnd.android.cursor.dir/vnd.com.hqt.hac.songs_playlist_songs";
         public static final String CONTENT_ITEM_TYPE =
-                "vnd.android.cursor.item/vnd.com.hqt.hac.songs_favorites_songs";
+                "vnd.android.cursor.item/vnd.com.hqt.hac.songs_playlist_songs";
 
         /** Build {@link Uri} for requested {@link #SONG_ID}. */
-        public static Uri buildSongsSingersUri(String FavoriteSongId) {
-            return CONTENT_URI.buildUpon().appendPath(FavoriteSongId).build();
+        public static Uri buildSongsSingersUri(String PlaylistId) {
+            return CONTENT_URI.buildUpon().appendPath(PlaylistId).build();
         }
     }
 
@@ -253,6 +255,13 @@ public class HopAmChuanDBContract {
                 uri.getQueryParameter(ContactsContract.CALLER_IS_SYNCADAPTER));
     }
 
+    /**
+     * Qualified when join table
+     */
+    public interface Qualified {
+        String SONGS_ID = Tables.SONGS+ "." + Songs.SONG_ID;
+        String SONG_TITLE = Tables.SONGS + "." + Songs.SONG_TITLE;
+    }
 
     // prevent create objet
     private HopAmChuanDBContract(){}

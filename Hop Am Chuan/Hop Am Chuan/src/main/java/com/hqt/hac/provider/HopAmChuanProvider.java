@@ -23,8 +23,6 @@ import static com.hqt.hac.provider.HopAmChuanDBContract.Songs;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsAuthors;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsSingers;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsChords;
-import static com.hqt.hac.provider.HopAmChuanDBContract.Favorites;
-import static com.hqt.hac.provider.HopAmChuanDBContract.FavoritesSongs;
 
 import static com.hqt.hac.Utils.LogUtils.LOGV;
 import static com.hqt.hac.Utils.LogUtils.makeLogTag;
@@ -65,11 +63,11 @@ public class HopAmChuanProvider extends ContentProvider {
     private static final int SONGS_CHORDS = 600;
     private static final int SONGS_CHORDS_ID = 601;
 
-    private static final int FAVORITES = 700;
-    private static final int FAVORITES_ID = 701;
+    private static final int PLAYLIST = 700;
+    private static final int PLAYLIST_ID = 701;
 
-    private static final int FAVORITES_SONGS = 800;
-    private static final int FAVORITES_SONGS_ID = 801;
+    private static final int PLAYLIST_SONGS = 800;
+    private static final int PLAYLIST_SONGS_ID = 801;
 
     private static final int SEARCH_INDEX = 901;
 
@@ -116,16 +114,16 @@ public class HopAmChuanProvider extends ContentProvider {
         matcher.addURI(authority, "songs_chords/#", SONGS_CHORDS_ID);
 
         /**
-         * Favorites Table
+         * Playlist Table
          */
-        matcher.addURI(authority, "favorites", FAVORITES);
-        matcher.addURI(authority, "favorites/#", FAVORITES_ID);
+        matcher.addURI(authority, "playlist", PLAYLIST);
+        matcher.addURI(authority, "playlist/#", PLAYLIST_ID);
 
         /**
-         * FavoritesSongs table
+         * PlaylistSongs table
          */
-        matcher.addURI(authority, "favorites_songs", FAVORITES_SONGS);
-        matcher.addURI(authority, "favorites_songs/#", FAVORITES_SONGS_ID);
+        matcher.addURI(authority, "playlist_songs", PLAYLIST_SONGS);
+        matcher.addURI(authority, "playlist_songs/#", PLAYLIST_SONGS_ID);
 
         return matcher;
     }
@@ -172,14 +170,14 @@ public class HopAmChuanProvider extends ContentProvider {
                 return HopAmChuanDBContract.SongsChords.CONTENT_TYPE;
             case SONGS_CHORDS_ID:
                 return HopAmChuanDBContract.SongsChords.CONTENT_ITEM_TYPE;
-            case FAVORITES:
-                return HopAmChuanDBContract.Favorites.CONTENT_TYPE;
-            case FAVORITES_ID:
-                return HopAmChuanDBContract.Favorites.CONTENT_ITEM_TYPE;
-            case FAVORITES_SONGS:
-                return HopAmChuanDBContract.FavoritesSongs.CONTENT_TYPE;
-            case FAVORITES_SONGS_ID:
-                return HopAmChuanDBContract.FavoritesSongs.CONTENT_ITEM_TYPE;
+            case PLAYLIST:
+                return HopAmChuanDBContract.Playlist.CONTENT_TYPE;
+            case PLAYLIST_ID:
+                return HopAmChuanDBContract.Playlist.CONTENT_ITEM_TYPE;
+            case PLAYLIST_SONGS:
+                return HopAmChuanDBContract.PlaylistSongs.CONTENT_TYPE;
+            case PLAYLIST_SONGS_ID:
+                return HopAmChuanDBContract.PlaylistSongs.CONTENT_ITEM_TYPE;
 
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
@@ -189,6 +187,29 @@ public class HopAmChuanProvider extends ContentProvider {
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+
+        /*final SQLiteDatabase db = mOpenHelper.getReadableDatabase();
+
+        String uriFilter = uri.getQueryParameter(Sessions.QUERY_PARAMETER_FILTER);
+        final int match = sUriMatcher.match(uri);
+
+        switch(match) {
+            default: {
+                // Most cases are handled with simple SelectionBuilder
+                final SelectionBuilder builder = buildExpandedSelection(uri, match);
+
+                // If a special filter was specified, try to apply it
+                if (!TextUtils.isEmpty(uriFilter)) {
+                    //
+
+                }
+
+                return builder.where(selection, selectionArgs).query(db, projection, sortOrder);
+            }
+
+        }*/
+
+
         return null;
     }
 
@@ -374,11 +395,11 @@ public class HopAmChuanProvider extends ContentProvider {
             case SONGS_AUTHORS: {
                 return builder.table(HopAmChuanDatabase.Tables.SONGS_AUTHORS);
             }
-            case FAVORITES: {
-                return builder.table(HopAmChuanDatabase.Tables.FAVORITES);
+            case PLAYLIST: {
+                return builder.table(HopAmChuanDatabase.Tables.PLAYLIST);
             }
-            case FAVORITES_SONGS: {
-                return builder.table(HopAmChuanDatabase.Tables.FAVORITES_SONGS);
+            case PLAYLIST_SONGS: {
+                return builder.table(HopAmChuanDatabase.Tables.PLAYLIST_SONGS);
             }
 
             default: {

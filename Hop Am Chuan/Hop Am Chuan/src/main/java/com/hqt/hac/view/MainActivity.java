@@ -81,7 +81,14 @@ public class MainActivity extends ActionBarActivity
             case 0 :
                 SongListFragment fragment = new SongListFragment();
                 fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
-                // fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(position+1)).commit();
+                break;
+            case 1 :
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
                 break;
             default:
             fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(position+1)).commit();
