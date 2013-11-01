@@ -67,6 +67,7 @@ public class HopAmChuanDBContract {
     private static final String PATH_SONGS_CHORDS = "songs_chords";
     private static final String PATH_PLAYLIST = "playlist";
     private static final String PATH_PLAYLIST_SONGS = "playlist_songs";
+    private static final String PATH_FAVORITES = "favorites";
 
     private static final String PATH_AT = "at";
     private static final String PATH_AFTER = "after";
@@ -194,7 +195,6 @@ public class HopAmChuanDBContract {
         public static Uri buildSongsAuthorsUri(String SongAuthorId) {
             return CONTENT_URI.buildUpon().appendPath(SongAuthorId).build();
         }
-
     }
 
     /**
@@ -242,6 +242,21 @@ public class HopAmChuanDBContract {
         /** Build {@link Uri} for requested {@link #SONG_ID}. */
         public static Uri buildSongsSingersUri(String PlaylistId) {
             return CONTENT_URI.buildUpon().appendPath(PlaylistId).build();
+        }
+    }
+
+    public static final class Favorites implements BaseColumns, SongsColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_FAVORITES).build();
+
+        public static final String CONTENT_TYPE =
+                "vnd.android.cursor.dir/vnd.com.hqt.hac.favorites";
+        public static final String CONTENT_ITEM_TYPE =
+                "vnd.android.cursor.item/vnd.com.hqt.hac.favorites";
+
+        /** Build {@link Uri} for requested. */
+        public static Uri buildSongsSingersUri(String FavoritesId) {
+            return CONTENT_URI.buildUpon().appendPath(FavoritesId).build();
         }
     }
 

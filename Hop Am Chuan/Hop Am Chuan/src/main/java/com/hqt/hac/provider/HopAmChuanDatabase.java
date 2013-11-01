@@ -39,6 +39,7 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
         String SONGS_SINGERS = "Songs_Singers_Tbl";
         String PLAYLIST = "Playlist_Tbl";
         String PLAYLIST_SONGS = "Playlist_Songs_Tbl";
+        String FAVORITES = "Favorites_Tbl";
     }
 
     /** {@code REFERENCES} clauses. */
@@ -160,6 +161,10 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
                 + "UNIQUE (" + HopAmChuanDBContract.PlaylistColumns.PLAYLIST_ID + ","
                 + SongsColumns.SONG_ID + ") ON CONFLICT REPLACE)");
 
+
+        db.execSQL("CREATE TABLE " + Tables.FAVORITES + " ("
+                + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + SongsColumns.SONG_ID + " INTEGER " + References.SONG_ID + ")");
 
         // Full-text search index. Update using updateSessionSearchIndex method.
         // Use the porter tokenizer for simple stemming, so that "frustration" matches "frustrated."

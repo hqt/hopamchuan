@@ -69,7 +69,9 @@ public class HopAmChuanProvider extends ContentProvider {
     private static final int PLAYLIST_SONGS = 800;
     private static final int PLAYLIST_SONGS_ID = 801;
 
-    private static final int SEARCH_INDEX = 901;
+    private static final int FAVORITES = 900;
+
+    private static final int SEARCH_INDEX =10;
 
     private static UriMatcher buildUriMatcher() {
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -124,6 +126,11 @@ public class HopAmChuanProvider extends ContentProvider {
          */
         matcher.addURI(authority, "playlist_songs", PLAYLIST_SONGS);
         matcher.addURI(authority, "playlist_songs/#", PLAYLIST_SONGS_ID);
+
+        /**
+         * Favorite table
+         */
+        matcher.addURI(authority, "favorite", FAVORITES);
 
         return matcher;
     }
@@ -188,28 +195,16 @@ public class HopAmChuanProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
 
-        /*final SQLiteDatabase db = mOpenHelper.getReadableDatabase();
+        final SQLiteDatabase db = mOpenHelper.getReadableDatabase();
 
-        String uriFilter = uri.getQueryParameter(Sessions.QUERY_PARAMETER_FILTER);
         final int match = sUriMatcher.match(uri);
 
         switch(match) {
-            default: {
-                // Most cases are handled with simple SelectionBuilder
-                final SelectionBuilder builder = buildExpandedSelection(uri, match);
-
-                // If a special filter was specified, try to apply it
-                if (!TextUtils.isEmpty(uriFilter)) {
-                    //
-
-                }
-
-                return builder.where(selection, selectionArgs).query(db, projection, sortOrder);
-            }
-
-        }*/
-
-
+            case SONGS:
+            case CHORDS:
+            case ARTISTS:
+            case PLAYLIST:
+        }
         return null;
     }
 
