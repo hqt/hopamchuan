@@ -11,7 +11,6 @@ import com.hqt.hac.model.Chord;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.view.R;
 
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -28,7 +27,12 @@ public class ParserUtils {
 
     private static String TAG = makeLogTag(ParserUtils.class);
 
-    public static List<Artist> getAllArtistsFromFRescource(Context context) {
+    /**
+     * Test purpose (use artist.json)
+     * @param context
+     * @return
+     */
+    public static List<Artist> getAllArtistsFromRescource(Context context) {
         Reader reader;
         InputStream stream = context.getResources()
                 .openRawResource(R.raw.artist);
@@ -44,22 +48,37 @@ public class ParserUtils {
         return null;
     }
 
+    /**
+     * Get all song object from resourse, contains authors, singers and chords.
+     * TODO: add a JSON string as a parameter (or stream)
+     * @param context
+     * @return
+     */
     public static List<Song> getAllSongsFromResource(Context context) {
         Reader reader;
+
+        // TODO: Change this, the R.raw.update is just for test purpose.
         InputStream stream = context.getResources()
-                .openRawResource(R.raw.song);
+                .openRawResource(R.raw.update);
+
         reader = new BufferedReader(new InputStreamReader(stream), 8092);
 
         JsonParser parser = new JsonParser();
         JsonArray jsonArray = parser.parse(reader).getAsJsonArray();
 
-        return parseSongsFromJSonArray(jsonArray);
+        return parseSongsFromJsonArray(jsonArray);
     }
+
 
     public static List<Song> downloadAllChordsFromNetwork() {
         return null;
     }
 
+    /**
+     * Test purpose (use chord.json)
+     * @param context
+     * @return
+     */
     public static List<Chord> getAllChordsFromResource(Context context) {
         Reader reader;
         InputStream stream = context.getResources()
@@ -95,7 +114,7 @@ public class ParserUtils {
         return songs;
     }
 
-    private static List<Song> parseSongsFromJSonArray(JsonArray jsonArray) {
+    private static List<Song> parseSongsFromJsonArray(JsonArray jsonArray) {
         List<Song> songs = new ArrayList<Song>();
         for (JsonElement element : jsonArray) {
             try{
@@ -107,6 +126,21 @@ public class ParserUtils {
                 String lyric = object.get("firstlyric").getAsString();
                 Date date = new SimpleDateFormat().parse(object.get("date").getAsString());
                 Song song = new Song(songId, title, link, content, lyric, date);
+
+                // TrungDQ: just a little more work to get it right.
+                JsonArray authorArray = object.get("authors").getAsJsonArray();
+                List<Artist> authors = parseArtistsFromJsonArray(authorArray);
+
+                JsonArray singerArray = object.get("singers").getAsJsonArray();
+                List<Artist> singers = parseArtistsFromJsonArray(singerArray);
+
+                JsonArray chordArray = object.get("chords").getAsJsonArray();
+                List<Chord> chords = parseChordsFromJsonArray(chordArray);
+
+                song.authors = authors;
+                song.singers = singers;
+                song.chords = chords;
+
                 songs.add(song);
             }
             catch (Exception e) {

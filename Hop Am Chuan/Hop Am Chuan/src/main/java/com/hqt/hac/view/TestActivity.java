@@ -40,7 +40,7 @@ public class TestActivity extends ActionBarActivity {
 
         //// Testing database
 
-        List<Artist> arr = ParserUtils.getAllArtistsFromFRescource(getApplicationContext());
+        List<Artist> arr = ParserUtils.getAllArtistsFromRescource(getApplicationContext());
 
         String uri = ArtistDataAcessLayer.insertArtist(getApplicationContext(), arr.get(0));
         textView.setText("inserted: " + uri);

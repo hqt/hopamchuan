@@ -24,7 +24,7 @@ public class Helper {
         SongDataAccessLayer.insertListOfSongs(context, songs);
 
         // create artist database
-        List<Artist> artists = ParserUtils.getAllArtistsFromFRescource(context);
+        List<Artist> artists = ParserUtils.getAllArtistsFromRescource(context);
         ArtistDataAcessLayer.insertListOfArtists(context, artists);
 
         // create chord database
