@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.provider.BaseColumns;
 
 import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Song;
@@ -15,8 +16,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.hqt.hac.provider.helper.Query.Projections;
 import static com.hqt.hac.utils.LogUtils.LOGD;
-import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Songs;
 
@@ -57,23 +58,23 @@ public class ArtistDataAcessLayer {
 
     public static Artist getArtistById(Context context, int artistId) {
         LOGD(TAG, "Get Artist By Id");
-
+        // TODO: NOT TEST YET
         ContentResolver resolver = context.getContentResolver();
         Uri uri = HopAmChuanDBContract.Artists.CONTENT_URI;
         Uri artistUri = Uri.withAppendedPath(uri, artistId + "");
 
         Cursor c = resolver.query(artistUri,
-                                null,    // projection
-                                null,    // selection string
-                                null,    // selection args of strings
-                                null);   //  sort order
+                                Projections.ARTIST_PROJECTION,    // projection
+                                null,                             // selection string
+                                null,                             // selection args of strings
+                                null);                            //  sort order
 
         int idCol = c.getColumnIndex(HopAmChuanDBContract.Artists._ID);
         int artistidCol = c.getColumnIndex(HopAmChuanDBContract.Artists.ARTIST_ID);
         int nameCol = c.getColumnIndex(HopAmChuanDBContract.Artists.ARTIST_NAME);
         int asciiCol = c.getColumnIndex(HopAmChuanDBContract.Artists.ARTIST_ASCII);
 
-        for (c.moveToFirst(); !c.moveToLast(); c.moveToNext()) {
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
             int id = c.getInt(idCol);
             int ArtistId = c.getInt(artistidCol);
             String name = c.getString(nameCol);
@@ -90,10 +91,10 @@ public class ArtistDataAcessLayer {
         Uri uri = HopAmChuanDBContract.Artists.CONTENT_URI;
         Uri artistUri = Uri.withAppendedPath(uri, "author/songs/" + ArtistId + "");
         Cursor c = resolver.query(artistUri,
-                null,    // projection
-                null,    // selection string
-                null,    // selection args of strings
-                null);   //  sort order
+                Projections.SONG_PROJECTION,    // projection
+                null,                           // selection string
+                null,                           // selection args of strings
+                null);                          //  sort order
 
        return parseSongsFromCursor(c);
     }
@@ -105,10 +106,11 @@ public class ArtistDataAcessLayer {
         Uri uri = HopAmChuanDBContract.Artists.CONTENT_URI;
         Uri artistUri = Uri.withAppendedPath(uri, "singer/songs/" + ArtistId + "");
         Cursor c = resolver.query(artistUri,
-                null,    // projection
-                null,    // selection string
-                null,    // selection args of strings
-                null);   //  sort order
+                Projections.SONG_PROJECTION,    // projection
+                null,                           // selection string
+                null,                           // selection args of strings
+                null);                          //  sort order
+
 
         return parseSongsFromCursor(c);
 
@@ -133,7 +135,17 @@ public class ArtistDataAcessLayer {
     private static List<Song> parseSongsFromCursor(Cursor c) {
         List<Song> songs = new ArrayList<Song>();
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-            try {
+            // TODO: Error when parsing date. see more detail later
+            int id = c.getInt(c.getColumnIndex(Songs._ID));
+            int songId = c.getInt(c.getColumnIndex(Songs.SONG_ID));
+            String title = c.getString(c.getColumnIndex(Songs.SONG_TITLE));
+            String link = c.getString(c.getColumnIndex(Songs.SONG_LINK));
+            String content = c.getString(c.getColumnIndex(Songs.SONG_CONTENT));
+            String lyrics = c.getString(c.getColumnIndex(Songs.SONG_FIRST_LYRIC));
+            Date date = new Date();
+            Song song = new Song(id, songId, title, link, content, lyrics, date);
+            songs.add(song);
+           /* try {
                 int id = c.getInt(c.getColumnIndex(Songs._ID));
                 int songId = c.getInt(c.getColumnIndex(Songs.SONG_ID));
                 String title = c.getString(c.getColumnIndex(Songs.SONG_TITLE));
@@ -147,7 +159,7 @@ public class ArtistDataAcessLayer {
             }
             catch(Exception e) {
                 LOGE(TAG, "error when parse song " + e.getMessage());
-            }
+            }*/
         }
         return songs;
     }

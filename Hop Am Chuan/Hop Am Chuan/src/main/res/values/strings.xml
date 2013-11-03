@@ -13,6 +13,7 @@
     <string name="search_hint">Search songs and artists</string>
     <string name="title_activity_search_view">Search</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_test_database">Activity Test</string>
     <string name="title_activity_song_list_fragment">Hợp Âm Chuẩn</string>
 
     <!-- default items for navigation drawer -->

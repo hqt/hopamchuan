@@ -181,7 +181,7 @@ public class SelectionBuilder {
     }
 
     /**
-     * /**
+     *
      * Perform an inner join.
      *
      * <p>Map columns from a secondary table onto the current result set. References to the column
@@ -198,13 +198,14 @@ public class SelectionBuilder {
     }
 
     /**
-     * /**
+     *
      * Create a new column based on custom criteria (such as aggregate functions).
      *
      * <p>This adds a new column to the result set, based upon custom criteria in SQL format. This
      * is equivalent to the SQL statement: {@code SELECT toClause AS fromColumn}
      *
      * <p>This method is useful for executing SQL sub-queries.
+     * and when sub-query just returns a single column
      *
      * @param fromColumn Name of column for mapping
      * @param toClause SQL string representing data to be mapped
@@ -310,8 +311,6 @@ public class SelectionBuilder {
         return db.query(mTable, columns, getSelection(), getSelectionArgs(), groupBy, having,
                 orderBy, limit);
     }
-
-
 
     /**
      * Execute an {@code UPDATE} against database.

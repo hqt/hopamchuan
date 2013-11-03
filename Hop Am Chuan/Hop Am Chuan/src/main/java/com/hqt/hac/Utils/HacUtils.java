@@ -19,12 +19,8 @@ import static android.graphics.Color.GREEN;
 import static android.graphics.Color.RED;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-/**
- * Created by Quang Trung on 11/3/13.
- */
 public class HacUtils {
-    private static String TAG = makeLogTag(ParserUtils.class);
-//    LOGE(TAG, element.toString() + "cannot parse to Artist");
+    private static String TAG = makeLogTag(HacUtils.class);
 
     /**
      * TODO: do this for song format

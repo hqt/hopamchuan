@@ -11,7 +11,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
-import android.widget.Toast;
 
 import com.hqt.hac.provider.helper.Query;
 import com.hqt.hac.provider.helper.SelectionBuilder;
@@ -29,6 +28,7 @@ import static com.hqt.hac.provider.HopAmChuanDBContract.SongsChords;
 
 import static com.hqt.hac.utils.LogUtils.LOGV;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
+import static com.hqt.hac.provider.HopAmChuanDatabase.Tables;
 
 /**
  *
@@ -95,8 +95,8 @@ public class HopAmChuanProvider extends ContentProvider {
          */
         matcher.addURI(authority, "artists", ARTISTS);
         matcher.addURI(authority, "artists/#", ARTISTS_ID);
-        matcher.addURI(authority, "artists/singer/songs/*", SINGER_TO_SONGS);
-        matcher.addURI(authority, "artists/author/songs/*", AUTHOR_TO_SONGS);
+        matcher.addURI(authority, "artists/singer/songs/#", SINGER_TO_SONGS);
+        matcher.addURI(authority, "artists/author/songs/#", AUTHOR_TO_SONGS);
 
         /**
          * chords table
@@ -421,18 +421,43 @@ public class HopAmChuanProvider extends ContentProvider {
             case SINGER_TO_SONGS: {
                 final List<String> segments = uri.getPathSegments();
                 final String singerId = segments.get(3);
-                return builder.table(HopAmChuanDatabase.Tables.SONGS)
-                        .map(Songs.SONG_ID, Query.Subquery.SINGER_SONG_ID)
-                        .where(SongsSingers.ARTIST_ID + "=?", singerId);
+                return builder.table(Query.Subquery.SONG_SINGER_JOIN_SINGER_SONG)   // join 3 different tables
+                        // mapToTable for Projections not return ambiguous
+                        .mapToTable(Songs._ID, Tables.SONGS)
+                        .mapToTable(Songs.SONG_ID, Tables.SONGS)
+                        .mapToTable(Songs.SONG_TITLE, Tables.SONGS)
+                        .mapToTable(Songs.SONG_CONTENT, Tables.SONGS)
+                        .mapToTable(Songs.SONG_LINK, Tables.SONGS)
+                        .mapToTable(Songs.SONG_FIRST_LYRIC, Tables.SONGS)
+                        .mapToTable(Songs.SONG_DATE, Tables.SONGS)
+                        .where(Query.Qualified.SONGSINGER_ARTIST_ID + "=?", singerId);
             }
 
-            // get all songs from author id
-            case AUTHOR_TO_SONGS: {
+            /**
+             * Get all songs from author Id
+             * Using Map_to_Table to avoid conflict when client use PROJECTION_COLUMN
+             * Raw query should be
+             * SELECT
+             *      SongTbl._id, SongTbl.song_id, SongTbl.song_title, SongTbl.song_content,
+             *      SongTbl.song_date, SongTbl.song_link, SongTbl.song_first_lyric
+             * FROM Songs_Authors_Tbl
+             * INNER JOIN ArtistTbl ON Songs_Authors_Tbl.artist_id=ArtistTbl.artist_id
+             * INNER JOIN SongTbl ON Songs_Authors_Tbl.song_id=SongTbl.song_id
+             * WHERE (Songs_Authors_Tbl.artist_id=?)
+             */
+             case AUTHOR_TO_SONGS: {
                 final List<String> segments = uri.getPathSegments();
                 final String authorId = segments.get(3);
-                return builder.table(HopAmChuanDatabase.Tables.SONGS)
-                        .map(Songs.SONG_ID, Query.Subquery.AUTHOR_SONG_ID)
-                        .map(Query.Qualified.SONGAUTHOR_ARTIST_ID, authorId);
+                return builder.table(Query.Subquery.SONG_AUTHOR_JOIN_AUTHOR_SONG)   // join 3 different tables
+                        // mapToTable for Projections not return ambiguous
+                        .mapToTable(Songs._ID, Tables.SONGS)
+                        .mapToTable(Songs.SONG_ID, Tables.SONGS)
+                        .mapToTable(Songs.SONG_TITLE, Tables.SONGS)
+                        .mapToTable(Songs.SONG_CONTENT, Tables.SONGS)
+                        .mapToTable(Songs.SONG_LINK, Tables.SONGS)
+                        .mapToTable(Songs.SONG_FIRST_LYRIC, Tables.SONGS)
+                        .mapToTable(Songs.SONG_DATE, Tables.SONGS)
+                        .where(Query.Qualified.SONGAUTHOR_ARTIST_ID + "=?", authorId);
             }
 
             case SONGS: {
