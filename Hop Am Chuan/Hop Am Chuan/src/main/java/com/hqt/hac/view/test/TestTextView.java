@@ -3,6 +3,7 @@ package com.hqt.hac.view.test;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,24 +17,24 @@ import com.hqt.hac.view.R;
 public class TestTextView extends ActionBarActivity {
 
     TextView testTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.testtextview_activity_main);
+        setContentView(R.layout.testtextview_fragment_main);
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
         testTextView = (TextView) findViewById(R.id.testTextView);
-        HacUtils.setSongFormatted(getApplicationContext(), testTextView);
+        if (testTextView != null) {
+            HacUtils.setSongFormatted(getApplicationContext(), testTextView, "Lorem ipsum dolor sit amet đây là tiếng việt\nVà\n đây\n là\n xuống \ndòng.");
+        } else {
+            Log.i("Debug", "testTextView is null!");
+        }
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.test_text_view, menu);
         return true;
@@ -61,7 +62,7 @@ public class TestTextView extends ActionBarActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+                                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.testtextview_fragment_main, container, false);
             return rootView;
         }
