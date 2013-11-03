@@ -72,6 +72,9 @@ public class Song implements Serializable {
                 ", content='" + content + '\'' +
                 ", firstLyric='" + firstLyric + '\'' +
                 ", date=" + date +
+                ", authors=" + authors +
+                ", chords=" + chords +
+                ", singers=" + singers +
                 '}';
     }
 }
