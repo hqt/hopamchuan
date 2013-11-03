@@ -30,7 +30,7 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
     /**
      * List All Tables in this database
      */
-    interface Tables {
+    public static interface Tables {
         String ARTISTS = "ArtistTbl";
         String CHORDS = "ChordTbl";
         String SONGS = "SongTbl";

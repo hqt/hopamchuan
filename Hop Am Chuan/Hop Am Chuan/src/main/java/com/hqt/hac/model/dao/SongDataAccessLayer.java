@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.net.Uri;
 
+import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.HopAmChuanDBContract;
 
@@ -40,4 +41,15 @@ public class SongDataAccessLayer {
         }
     }
 
+    public static void getSongById(Context context, int songId) {
+        throw new UnsupportedOperationException();
+    }
+
+    public static List<Artist> findAllAuthorsOfSong(Context context, int id) {
+        throw new UnsupportedOperationException();
+    }
+
+    public static List<Artist> findAllSingersOfSong(Context context, int id) {
+        throw new UnsupportedOperationException();
+    }
 }

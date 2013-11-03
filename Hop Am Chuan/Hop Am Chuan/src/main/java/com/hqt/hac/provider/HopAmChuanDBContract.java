@@ -270,14 +270,6 @@ public class HopAmChuanDBContract {
                 uri.getQueryParameter(ContactsContract.CALLER_IS_SYNCADAPTER));
     }
 
-    /**
-     * Qualified when join table
-     */
-    public interface Qualified {
-        String SONGS_ID = Tables.SONGS+ "." + Songs.SONG_ID;
-        String SONG_TITLE = Tables.SONGS + "." + Songs.SONG_TITLE;
-    }
-
     // prevent create objet
     private HopAmChuanDBContract(){}
 }

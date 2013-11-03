@@ -12,10 +12,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 
+import com.hqt.hac.model.Artist;
 import com.hqt.hac.provider.helper.SelectionBuilder;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.hqt.hac.provider.HopAmChuanDBContract.Artists;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Chords;
@@ -50,6 +52,7 @@ public class HopAmChuanProvider extends ContentProvider {
 
     private static final int ARTISTS = 200;
     private static final int ARTISTS_ID = 201;
+    private static final int ARTIST_TO_SONGS = 202; // get all song from one artist id
 
     private static final int CHORDS = 300;
     private static final int CHORDS_ID = 301;
@@ -90,6 +93,7 @@ public class HopAmChuanProvider extends ContentProvider {
          */
         matcher.addURI(authority, "artists", ARTISTS);
         matcher.addURI(authority, "artists/#", ARTISTS_ID);
+        matcher.addURI(authority, "artists/songs/*", ARTIST_TO_SONGS);
 
         /**
          * chords table
@@ -161,6 +165,8 @@ public class HopAmChuanProvider extends ContentProvider {
                 return HopAmChuanDBContract.Artists.CONTENT_TYPE;
             case ARTISTS_ID:
                 return HopAmChuanDBContract.Artists.CONTENT_ITEM_TYPE;
+            case ARTIST_TO_SONGS:
+                return Artists.CONTENT_ITEM_TYPE;
             case CHORDS:
                 return HopAmChuanDBContract.Chords.CONTENT_TYPE;
             case CHORDS_ID:
@@ -196,16 +202,9 @@ public class HopAmChuanProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
 
         final SQLiteDatabase db = mOpenHelper.getReadableDatabase();
-
         final int match = sUriMatcher.match(uri);
-
-        switch(match) {
-            case SONGS:
-            case CHORDS:
-            case ARTISTS:
-            case PLAYLIST:
-        }
-        return null;
+        SelectionBuilder builder = buildExpandedSelection(uri, match);
+        return builder.where(selection, selectionArgs).query(db, projection, sortOrder);
     }
 
     /**
@@ -402,4 +401,60 @@ public class HopAmChuanProvider extends ContentProvider {
             }
         }
     }
+
+    private SelectionBuilder buildExpandedSelection(Uri uri, int match) {
+        final SelectionBuilder builder = new SelectionBuilder();
+        switch (match) {
+            case ARTISTS: {
+                return builder.table(HopAmChuanDatabase.Tables.ARTISTS);
+            }
+            case ARTISTS_ID: {
+                final String artistId = Artists.getArtistId(uri);
+                return builder.table(HopAmChuanDatabase.Tables.ARTISTS)
+                        .where(Artists.ARTIST_ID + "=?", artistId);
+            }
+            case ARTIST_TO_SONGS: {
+                final List<String> segments = uri.getPathSegments();
+                final String artistId = segments.get(2);
+                return builder.table(HopAmChuanDatabase.Tables.SONGS_SINGERS)
+                        .where(SongsSingers.ARTIST_ID + "=?", artistId);
+            }
+            case SONGS: {
+                return builder.table(HopAmChuanDatabase.Tables.SONGS);
+            }
+            case SONGS_ID: {
+                final String songId = Songs.getSongId(uri);
+                return builder.table(HopAmChuanDatabase.Tables.SONGS)
+                        .where(Songs.SONG_ID + "=?", songId);
+            }
+            case CHORDS: {
+                return builder.table(HopAmChuanDatabase.Tables.CHORDS);
+            }
+            case CHORDS_ID: {
+                final String chordId = Chords.getChordId(uri);
+                return builder.table(HopAmChuanDatabase.Tables.CHORDS)
+                        .where(Chords.CHORD_ID + "=?", chordId);
+            }
+            case SONGS_CHORDS: {
+                return builder.table(HopAmChuanDatabase.Tables.SONGS_CHORDS);
+            }
+            case SONGS_SINGERS: {
+                return builder.table(HopAmChuanDatabase.Tables.SONGS_SINGERS);
+            }
+            case SONGS_AUTHORS: {
+                return builder.table(HopAmChuanDatabase.Tables.SONGS_AUTHORS);
+            }
+            case PLAYLIST: {
+                return builder.table(HopAmChuanDatabase.Tables.PLAYLIST);
+            }
+            case PLAYLIST_SONGS: {
+                return builder.table(HopAmChuanDatabase.Tables.PLAYLIST_SONGS);
+            }
+
+            default: {
+                throw new UnsupportedOperationException("Unknown uri for " + match + ": " + uri);
+            }
+        }
+    }
+
 }
