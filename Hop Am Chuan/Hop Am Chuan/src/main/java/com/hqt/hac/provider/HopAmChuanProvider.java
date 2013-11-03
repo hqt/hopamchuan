@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 
+import com.hqt.hac.provider.helper.Query;
 import com.hqt.hac.provider.helper.SelectionBuilder;
 
 import java.io.FileNotFoundException;
@@ -51,7 +52,8 @@ public class HopAmChuanProvider extends ContentProvider {
 
     private static final int ARTISTS = 200;
     private static final int ARTISTS_ID = 201;
-    private static final int ARTIST_TO_SONGS = 202; // get all song from one artist id
+    private static final int SINGER_TO_SONGS = 202; // get all song from one singer id
+    private static final int AUTHOR_TO_SONGS = 203; // get all song form one author id
 
     private static final int CHORDS = 300;
     private static final int CHORDS_ID = 301;
@@ -92,7 +94,8 @@ public class HopAmChuanProvider extends ContentProvider {
          */
         matcher.addURI(authority, "artists", ARTISTS);
         matcher.addURI(authority, "artists/#", ARTISTS_ID);
-        matcher.addURI(authority, "artists/songs/*", ARTIST_TO_SONGS);
+        matcher.addURI(authority, "artists/singer/songs/*", SINGER_TO_SONGS);
+        matcher.addURI(authority, "artists/author/songs/*", AUTHOR_TO_SONGS);
 
         /**
          * chords table
@@ -164,7 +167,7 @@ public class HopAmChuanProvider extends ContentProvider {
                 return HopAmChuanDBContract.Artists.CONTENT_TYPE;
             case ARTISTS_ID:
                 return HopAmChuanDBContract.Artists.CONTENT_ITEM_TYPE;
-            case ARTIST_TO_SONGS:
+            case SINGER_TO_SONGS:
                 return Artists.CONTENT_ITEM_TYPE;
             case CHORDS:
                 return HopAmChuanDBContract.Chords.CONTENT_TYPE;
@@ -201,8 +204,7 @@ public class HopAmChuanProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
 
         final SQLiteDatabase db = mOpenHelper.getReadableDatabase();
-        final int match = sUriMatcher.match(uri);
-        SelectionBuilder builder = buildExpandedSelection(uri, match);
+        SelectionBuilder builder = buildExpandedSelection(uri);
         return builder.where(selection, selectionArgs).query(db, projection, sortOrder);
     }
 
@@ -351,7 +353,7 @@ public class HopAmChuanProvider extends ContentProvider {
      * {@link Uri}. This is usually enough to support {@link #insert},
      * {@link #update}, and {@link #delete} operations.
      */
-    private SelectionBuilder buildSimpleSelection(Uri uri) {
+    public static SelectionBuilder buildSimpleSelection(Uri uri) {
         final SelectionBuilder builder = new SelectionBuilder();
         final int match = sUriMatcher.match(uri);
         switch (match) {
@@ -401,8 +403,9 @@ public class HopAmChuanProvider extends ContentProvider {
         }
     }
 
-    private SelectionBuilder buildExpandedSelection(Uri uri, int match) {
+    public static SelectionBuilder buildExpandedSelection(Uri uri) {
         final SelectionBuilder builder = new SelectionBuilder();
+        final int match = sUriMatcher.match(uri);
         switch (match) {
             case ARTISTS: {
                 return builder.table(HopAmChuanDatabase.Tables.ARTISTS);
@@ -412,11 +415,17 @@ public class HopAmChuanProvider extends ContentProvider {
                 return builder.table(HopAmChuanDatabase.Tables.ARTISTS)
                         .where(Artists.ARTIST_ID + "=?", artistId);
             }
-            case ARTIST_TO_SONGS: {
+
+            // get all songs from singer id
+            case SINGER_TO_SONGS: {
                 final List<String> segments = uri.getPathSegments();
-                final String artistId = segments.get(2);
-                return builder.table(HopAmChuanDatabase.Tables.SONGS_SINGERS)
-                        .where(SongsSingers.ARTIST_ID + "=?", artistId);
+                final String singerId = segments.get(3);
+                return builder.table(HopAmChuanDatabase.Tables.SONGS)
+                        .map(Songs.SONG_ID, Query.Subquery.SINGER_SONG_ID)
+                        .where(SongsSingers.ARTIST_ID + "=?", singerId);
+            }
+            case AUTHOR_TO_SONGS: {
+
             }
             case SONGS: {
                 return builder.table(HopAmChuanDatabase.Tables.SONGS);

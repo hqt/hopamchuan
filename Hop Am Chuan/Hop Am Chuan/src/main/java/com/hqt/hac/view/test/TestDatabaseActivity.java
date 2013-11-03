@@ -1,5 +1,6 @@
 package com.hqt.hac.view.test;
 
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.TextView;
+
+import com.hqt.hac.model.Song;
+import com.hqt.hac.model.dao.ArtistDataAcessLayer;
+import com.hqt.hac.provider.HopAmChuanDBContract;
+import com.hqt.hac.provider.HopAmChuanProvider;
+import com.hqt.hac.utils.HacUtils;
+import com.hqt.hac.view.R;
+
+import java.util.List;
 
 public class TestDatabaseActivity extends ActionBarActivity {
 
@@ -18,11 +29,22 @@ public class TestDatabaseActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_database_test);
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
+        TextView textView = (TextView) findViewById(R.id.textview);
+        Uri uri = HopAmChuanDBContract.Artists.CONTENT_URI;
+        String res = "";
+        uri = Uri.withAppendedPath(uri, "singer/songs/" + 100 + "");
+
+        res += uri.toString() + "\n";
+
+        res += HopAmChuanProvider.buildExpandedSelection(uri).toString();
+
+        List<Song> songs = ArtistDataAcessLayer.findAllSongsByArtist(getApplicationContext(), 5);
+
+        for (Song song : songs) {
+            res += song.toString() + "\n";
         }
+
+        textView.setText(res);
     }
 
 
@@ -61,5 +83,4 @@ public class TestDatabaseActivity extends ActionBarActivity {
             return rootView;
         }
     }
-
 }

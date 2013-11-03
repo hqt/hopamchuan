@@ -63,8 +63,12 @@
             android:label="@string/title_activity_test" >
         </activity>
         <activity
-            android:name="com.hqt.hac.view.TestTextView"
+            android:name="com.hqt.hac.view.test.TestTextView"
             android:label="@string/title_activity_test_text_view" >
+        </activity>
+        <activity
+            android:name="com.hqt.hac.view.test.TestDatabaseActivity"
+            android:label="@string/title_activity_test_database" >
         </activity>
     </application>
 

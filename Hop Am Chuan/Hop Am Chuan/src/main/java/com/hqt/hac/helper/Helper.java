@@ -32,6 +32,10 @@ public class Helper {
         ChordDataAccessLayer.insertListOfChords(context, chords);
     }
 
+    public static void prepareLocalDatabaseByHand(Context context) {
+        // create two artist
+    }
+
     public static Drawable getDrawableFromResId(Context context, int id) {
         return context.getResources().getDrawable(id);
     }

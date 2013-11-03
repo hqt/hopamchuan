@@ -117,7 +117,8 @@ public class SelectionBuilder {
     @Override
     public String toString() {
         return "SelectionBuilder[table=" + mTable + ", selection=" + getSelection()
-                + ", selectionArgs=" + Arrays.toString(getSelectionArgs()) + "]";
+                + ", selectionArgs=" + Arrays.toString(getSelectionArgs()) + "]"
+                + "Projection: " + mProjectionMap;
     }
 
     /**

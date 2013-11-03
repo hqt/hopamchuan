@@ -24,7 +24,12 @@ public class Query {
         String SONGS_SONG_DATE = HopAmChuanDatabase.Tables.SONGS + "." + Songs.SONG_DATE;
         String SONGS_SONG_LINK = HopAmChuanDatabase.Tables.SONGS + "." + Songs.SONG_LINK;
         String SONGS_SONG_CONTENT = HopAmChuanDatabase.Tables.SONGS + "." + Songs.SONG_CONTENT;
-        String SONGS_SONG_FIRST_LYRIC = HopAmChuanDatabase.Tables.SONGS + "." + HopAmChuanDBContract.Songs.SONG_FIRST_LYRIC;
+        String SONGS_SONG_FIRST_LYRIC = HopAmChuanDatabase.Tables.SONGS + "." + Songs.SONG_FIRST_LYRIC;
+
+        String ARTIST_ARTIST_ID = Tables.ARTISTS + "." + Artists.ARTIST_ID;
+
+        String SONGSINGER_ARTIST_ID = Tables.SONGS_SINGERS + "." + SongsSingers.ARTIST_ID;
+        String SONGSINGER_SONG_ID = Tables.SONGS_SINGERS + "." + SongsSingers.SONG_ID;
     }
     /**
      * subquery : using for module
@@ -33,10 +38,8 @@ public class Query {
         /**
          * get all songs from artist id
          */
+        String SINGER_SONG_ID = "(SELECT " + Qualified.SONGSINGER_SONG_ID
+                + " FROM " + Tables.SONGS_SINGERS + " INNER JOIN " + Tables.ARTISTS + " ON "
+                + Qualified.SONGSINGER_ARTIST_ID + "=" + Qualified.ARTIST_ARTIST_ID + ")";
     }
-
-   /* String BLOCK_SESSIONS_COUNT = "(SELECT COUNT(" + Qualified.SESSIONS_SESSION_ID + ") FROM "
-            + Tables.SESSIONS + " WHERE " + Qualified.SESSIONS_BLOCK_ID + "="
-            + Qualified.BLOCKS_BLOCK_ID + ")";*/
-
 }
