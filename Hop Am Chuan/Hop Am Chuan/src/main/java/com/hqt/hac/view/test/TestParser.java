@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.hqt.hac.Utils.ParserUtils;
+import com.hqt.hac.utils.ParserUtils;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.view.R;
 

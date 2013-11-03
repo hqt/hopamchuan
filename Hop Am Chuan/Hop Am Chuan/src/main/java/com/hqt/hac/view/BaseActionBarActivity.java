@@ -1,14 +1,11 @@
 package com.hqt.hac.view;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
-import com.hqt.hac.Utils.UIUtils;
-
-import static com.hqt.hac.Utils.LogUtils.makeLogTag;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 
 /**

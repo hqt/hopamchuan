@@ -1,4 +1,4 @@
-package com.hqt.hac.Utils;
+package com.hqt.hac.utils;
 
 import android.content.Context;
 import android.text.SpannableString;
@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import static android.graphics.Color.GREEN;
 import static android.graphics.Color.RED;
-import static com.hqt.hac.Utils.LogUtils.makeLogTag;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 /**
  * Created by Quang Trung on 11/3/13.

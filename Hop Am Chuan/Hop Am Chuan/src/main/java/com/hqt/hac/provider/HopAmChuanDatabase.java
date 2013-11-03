@@ -5,14 +5,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
-import static com.hqt.hac.Utils.LogUtils.LOGD;
-import static com.hqt.hac.Utils.LogUtils.makeLogTag;
+import static com.hqt.hac.utils.LogUtils.LOGD;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
 import static com.hqt.hac.provider.HopAmChuanDBContract.ArtistsColumns;
 import static com.hqt.hac.provider.HopAmChuanDBContract.ChordsColumns;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsColumns;
 
 /**
- * Helper for managing {@link SQLiteDatabase} that stores data for
+ * helper for managing {@link SQLiteDatabase} that stores data for
  * {@link com.hqt.hac.provider.HopAmChuanProvider}.
  */
 public class HopAmChuanDatabase extends SQLiteOpenHelper {

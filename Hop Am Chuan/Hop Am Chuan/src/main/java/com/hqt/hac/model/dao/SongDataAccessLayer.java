@@ -11,8 +11,8 @@ import com.hqt.hac.provider.HopAmChuanDBContract;
 
 import java.util.List;
 
-import static com.hqt.hac.Utils.LogUtils.LOGD;
-import static com.hqt.hac.Utils.LogUtils.makeLogTag;
+import static com.hqt.hac.utils.LogUtils.LOGD;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 public class SongDataAccessLayer {
     private static final String TAG = makeLogTag(SongDataAccessLayer.class);

@@ -19,11 +19,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.hqt.hac.Utils.UIUtils;
+import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.fragment.NavigationDrawerFragment;
 import com.hqt.hac.view.fragment.SongListFragment;
 
-import static com.hqt.hac.Utils.LogUtils.makeLogTag;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 
 public class MainActivity extends ActionBarActivity

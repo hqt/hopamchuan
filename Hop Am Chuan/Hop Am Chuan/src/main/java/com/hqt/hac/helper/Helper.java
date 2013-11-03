@@ -3,7 +3,7 @@ package com.hqt.hac.helper;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
-import com.hqt.hac.Utils.ParserUtils;
+import com.hqt.hac.utils.ParserUtils;
 import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Chord;
 import com.hqt.hac.model.Song;

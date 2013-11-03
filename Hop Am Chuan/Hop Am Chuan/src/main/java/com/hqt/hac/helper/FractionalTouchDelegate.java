@@ -44,7 +44,7 @@ public class FractionalTouchDelegate extends TouchDelegate {
     }
 
     /**
-     * Helper to create and setup a {@link FractionalTouchDelegate} between the
+     * helper to create and setup a {@link FractionalTouchDelegate} between the
      * given {@link View}.
      *
      * @param source Larger source {@link View}, usually a parent, that will be

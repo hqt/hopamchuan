@@ -1,6 +1,5 @@
 package com.hqt.hac.model.dao;
 
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,16 +9,13 @@ import android.net.Uri;
 import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.HopAmChuanDBContract;
-import com.hqt.hac.provider.HopAmChuanDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.hqt.hac.Utils.LogUtils.LOGD;
-import static com.hqt.hac.Utils.LogUtils.makeLogTag;
-import static com.hqt.hac.provider.HopAmChuanDBContract.Chords;
+import static com.hqt.hac.utils.LogUtils.LOGD;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Songs;
-import static com.hqt.hac.provider.HopAmChuanDBContract.Artists;
 
 public class ArtistDataAcessLayer {
 

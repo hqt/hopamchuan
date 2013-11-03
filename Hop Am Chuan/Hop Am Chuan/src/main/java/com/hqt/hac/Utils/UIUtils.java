@@ -1,4 +1,4 @@
-package com.hqt.hac.Utils;
+package com.hqt.hac.utils;
 
 import android.annotation.TargetApi;
 import android.content.ComponentName;
@@ -28,8 +28,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.regex.Pattern;
 
-import static com.hqt.hac.Utils.LogUtils.LOGE;
-import static com.hqt.hac.Utils.LogUtils.makeLogTag;
+import static com.hqt.hac.utils.LogUtils.LOGE;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 
 public class UIUtils {

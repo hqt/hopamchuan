@@ -1,4 +1,4 @@
-package com.hqt.hac.Utils;
+package com.hqt.hac.utils;
 
 import android.content.Context;
 
@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static com.hqt.hac.Utils.LogUtils.LOGE;
-import static com.hqt.hac.Utils.LogUtils.makeLogTag;
+import static com.hqt.hac.utils.LogUtils.LOGE;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 public class ParserUtils {
 

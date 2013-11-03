@@ -2,7 +2,6 @@ package com.hqt.hac.helper.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hqt.hac.model.Playlist;
 import com.hqt.hac.view.R;
 
-import static com.hqt.hac.Utils.LogUtils.makeLogTag;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 public class NavigationDrawerAdapter extends BaseAdapter {
 

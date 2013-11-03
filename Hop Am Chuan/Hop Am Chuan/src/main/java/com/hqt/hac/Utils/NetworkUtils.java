@@ -1,4 +1,4 @@
-package com.hqt.hac.Utils;
+package com.hqt.hac.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

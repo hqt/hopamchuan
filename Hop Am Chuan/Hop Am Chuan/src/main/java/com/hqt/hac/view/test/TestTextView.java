@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.hqt.hac.Utils.HacUtils;
+import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.view.R;
 
 public class TestTextView extends ActionBarActivity {

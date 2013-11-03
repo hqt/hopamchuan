@@ -12,7 +12,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 
-import com.hqt.hac.model.Artist;
 import com.hqt.hac.provider.helper.SelectionBuilder;
 
 import java.io.FileNotFoundException;
@@ -26,8 +25,8 @@ import static com.hqt.hac.provider.HopAmChuanDBContract.SongsAuthors;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsSingers;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsChords;
 
-import static com.hqt.hac.Utils.LogUtils.LOGV;
-import static com.hqt.hac.Utils.LogUtils.makeLogTag;
+import static com.hqt.hac.utils.LogUtils.LOGV;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 /**
  *

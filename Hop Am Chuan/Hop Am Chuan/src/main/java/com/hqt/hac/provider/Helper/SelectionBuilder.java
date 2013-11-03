@@ -13,12 +13,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
 
-import static com.hqt.hac.Utils.LogUtils.LOGV;
-import static com.hqt.hac.Utils.LogUtils.makeLogTag;
+import static com.hqt.hac.utils.LogUtils.LOGV;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 
 /**
- * Helper for building selection clauses for {@link SQLiteDatabase}. Each
+ * helper for building selection clauses for {@link SQLiteDatabase}. Each
  * appended clause is combined using {@code AND}. This class is not thread-safe
  */
 public class SelectionBuilder {
