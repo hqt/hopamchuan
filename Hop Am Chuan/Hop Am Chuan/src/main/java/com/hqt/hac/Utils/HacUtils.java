@@ -1,7 +1,10 @@
 package com.hqt.hac.utils;
 
 import android.content.Context;
+import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
@@ -23,10 +26,15 @@ public class HacUtils {
     private static String TAG = makeLogTag(ParserUtils.class);
 //    LOGE(TAG, element.toString() + "cannot parse to Artist");
 
-    public static void setSongFormatted(final Context context, TextView richTextView) {
+    /**
+     * TODO: do this for song format
+     * @param context
+     * @param richTextView
+     */
+    public static void setSongFormatted(final Context context, TextView richTextView, String songContent) {
 
         // this is the text we'll be operating on
-        SpannableString text = new SpannableString("Lorem ipsum dolor sit amet");
+        SpannableString text = new SpannableString(songContent);
 
         // make "Lorem" (characters 0 to 5) red
         text.setSpan(new ForegroundColorSpan(RED), 0, 5, 0);
@@ -38,9 +46,18 @@ public class HacUtils {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "dolor", Toast.LENGTH_LONG).show();
+                // TODO add check if widget instanceof TextView
+                TextView tv = (TextView) view;
+                // TODO add check if tv.getText() instanceof Spanned
+                Spanned s = (Spanned) tv.getText();
+                int start = s.getSpanStart(this);
+                int end = s.getSpanEnd(this);
+
+                String text = "-" + s.subSequence(start, end).toString() + "-";
+                Toast.makeText(context, text, Toast.LENGTH_LONG).show();
             }
         };
+
         text.setSpan(clickableSpan, 12, 17, 0);
 
         // make "sit" (characters 18 to 21) struck through

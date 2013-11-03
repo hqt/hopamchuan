@@ -66,6 +66,10 @@
             android:name="com.hqt.hac.view.test.TestTextView"
             android:label="@string/title_activity_test_text_view" >
         </activity>
+        <activity
+            android:name="com.hqt.hac.view.test.TestSurfaceView"
+            android:label="@string/title_activity_test_surface_view" >
+        </activity>
     </application>
 
 </manifest>
