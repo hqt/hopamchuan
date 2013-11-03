@@ -37,4 +37,8 @@ public class ChordDataAccessLayer {
             insertChord(context, chord);
         }
     }
+
+    public static int getChordIdByName(String chordName) {
+        throw new UnsupportedOperationException();
+    }
 }
