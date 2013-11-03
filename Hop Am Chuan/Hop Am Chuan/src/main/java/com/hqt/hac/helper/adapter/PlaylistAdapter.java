@@ -21,7 +21,11 @@ public class PlaylistAdapter extends BaseAdapter {
 
     public PlaylistAdapter(Context context) {
         this.mContext = context;
+<<<<<<< HEAD
         this.playLists = PlaylistDataAccessLayer.getAllPlayLists(mContext);
+=======
+        this.playLists = PlaylistDataAccessLayer.getAllPlayLists(context);
+>>>>>>> ffe60c4cfa796abc9d635a2bbb3d384b8008b00d
     }
 
     @Override

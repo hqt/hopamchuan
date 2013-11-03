@@ -124,7 +124,7 @@ public class ParserUtils {
                 String link = object.get("link").getAsString();
                 String content = object.get("content").getAsString();
                 String lyric = object.get("firstlyric").getAsString();
-                Date date = new SimpleDateFormat().parse(object.get("date").getAsString());
+                Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(object.get("date").getAsString());
                 Song song = new Song(songId, title, link, content, lyric, date);
 
                 // TrungDQ: just a little more work to get it right.
@@ -144,7 +144,7 @@ public class ParserUtils {
                 songs.add(song);
             }
             catch (Exception e) {
-                LOGE(TAG, element + " cannot parse to Song");
+                LOGE(TAG, element + " cannot parse to Song: " + e.toString());
             }
         }
         return songs;
