@@ -36,5 +36,6 @@
     <string name="title_activity_test">Test Activity</string>
     <string name="example_text">Example Text</string>
     <string name="example_number">10</string>
+    <string name="title_activity_test_text_view">Test TextView</string>
 
 </resources>
