@@ -33,4 +33,7 @@ public class PlaylistDataAccessLayer {
         throw new UnsupportedOperationException();
     }
 
+    public static void removeSongFromPlaylist(Context context, int playlistId, int songId) {
+        throw new UnsupportedOperationException();
+    }
 }

@@ -8,11 +8,11 @@ import java.util.List;
 
 public class FavoriteDataAccessLayer {
 
-    public static void deleteSongFromPlaylist(Context context, int songId) {
+    public static void deleteSongFromFavorite(Context context, int songId) {
         throw new UnsupportedOperationException();
     }
 
-    public static void addSongToPlaylist(Context context, int songId) {
+    public static void addSongToFavorite(Context context, int songId) {
         throw new UnsupportedOperationException();
     }
 

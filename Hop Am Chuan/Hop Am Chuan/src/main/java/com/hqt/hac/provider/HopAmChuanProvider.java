@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
+import android.widget.Toast;
 
 import com.hqt.hac.provider.helper.Query;
 import com.hqt.hac.provider.helper.SelectionBuilder;
@@ -213,7 +214,7 @@ public class HopAmChuanProvider extends ContentProvider {
      * so that we should process Uri before doing some stuff with them
      */
     @Override
-    public Uri insert(Uri uri, ContentValues values) {
+    public synchronized Uri insert(Uri uri, ContentValues values) {
         LOGV(TAG, "insert(uri=" + uri + ", values=" + values.toString() + ")");
 
         /**
@@ -270,7 +271,7 @@ public class HopAmChuanProvider extends ContentProvider {
      * @param selectionArgs can known parameter values
      */
     @Override
-    public int delete(Uri uri, String selection, String[] selectionArgs) {
+    public synchronized int delete(Uri uri, String selection, String[] selectionArgs) {
         LOGV(TAG, "delete(uri=" + uri + ")");
         if (uri == HopAmChuanDBContract.BASE_CONTENT_URI) {
             // Handle whole database deletes (e.g. when signing out)
@@ -292,7 +293,7 @@ public class HopAmChuanProvider extends ContentProvider {
      * @param selectionArgs can known parameter values
      */
     @Override
-    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+    public synchronized int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         LOGV(TAG, "update(uri=" + uri + ", values=" + values.toString() + ")");
         final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         final int match = sUriMatcher.match(uri);
@@ -424,9 +425,16 @@ public class HopAmChuanProvider extends ContentProvider {
                         .map(Songs.SONG_ID, Query.Subquery.SINGER_SONG_ID)
                         .where(SongsSingers.ARTIST_ID + "=?", singerId);
             }
-            case AUTHOR_TO_SONGS: {
 
+            // get all songs from author id
+            case AUTHOR_TO_SONGS: {
+                final List<String> segments = uri.getPathSegments();
+                final String authorId = segments.get(3);
+                return builder.table(HopAmChuanDatabase.Tables.SONGS)
+                        .map(Songs.SONG_ID, Query.Subquery.AUTHOR_SONG_ID)
+                        .map(Query.Qualified.SONGAUTHOR_ARTIST_ID, authorId);
             }
+
             case SONGS: {
                 return builder.table(HopAmChuanDatabase.Tables.SONGS);
             }

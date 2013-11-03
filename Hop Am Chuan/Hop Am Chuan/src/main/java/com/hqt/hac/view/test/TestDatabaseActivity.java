@@ -2,7 +2,6 @@ package com.hqt.hac.view.test;
 
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,14 +9,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.TextView;
 
+import com.hqt.hac.helper.Helper;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dao.ArtistDataAcessLayer;
 import com.hqt.hac.provider.HopAmChuanDBContract;
+import com.hqt.hac.provider.HopAmChuanDatabase;
 import com.hqt.hac.provider.HopAmChuanProvider;
-import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.view.R;
 
 import java.util.List;
@@ -30,21 +29,27 @@ public class TestDatabaseActivity extends ActionBarActivity {
         setContentView(R.layout.activity_database_test);
 
         TextView textView = (TextView) findViewById(R.id.textview);
-        Uri uri = HopAmChuanDBContract.Artists.CONTENT_URI;
+
+
+        HopAmChuanDatabase.deleteDatabase(getApplicationContext());
+
+        // database
+        Helper.prepareLocalDatabaseByHand(getApplicationContext());
+
         String res = "";
-        uri = Uri.withAppendedPath(uri, "singer/songs/" + 100 + "");
 
-        res += uri.toString() + "\n";
+        // test
+        res += "All Songs By Author Huynh Quang Thao (should be 2):\n";
+        List<Song> songs = ArtistDataAcessLayer.findAllSongsByAuthor(getApplicationContext(), 1);
 
-        res += HopAmChuanProvider.buildExpandedSelection(uri).toString();
-
-        List<Song> songs = ArtistDataAcessLayer.findAllSongsByArtist(getApplicationContext(), 5);
+        res += String.format("Size of Songs: %d\n", songs.size());
 
         for (Song song : songs) {
             res += song.toString() + "\n";
         }
 
         textView.setText(res);
+
     }
 
 
@@ -66,21 +71,5 @@ public class TestDatabaseActivity extends ActionBarActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_database_test, container, false);
-            return rootView;
-        }
     }
 }

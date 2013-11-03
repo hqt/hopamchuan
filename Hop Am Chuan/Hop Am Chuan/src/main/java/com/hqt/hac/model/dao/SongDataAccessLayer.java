@@ -41,7 +41,15 @@ public class SongDataAccessLayer {
         }
     }
 
-    public static void getSongById(Context context, int songId) {
+    public static Song getSongById(Context context, int songId) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * for testing purpose
+     * Note : limit = 0 : No limit
+     */
+    public static Song getAllSongs(Context context, int limit) {
         throw new UnsupportedOperationException();
     }
 
@@ -52,4 +60,5 @@ public class SongDataAccessLayer {
     public static List<Artist> findAllSingersOfSong(Context context, int id) {
         throw new UnsupportedOperationException();
     }
+
 }

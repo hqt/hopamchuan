@@ -10,10 +10,13 @@ import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.HopAmChuanDBContract;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
+import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Songs;
 
@@ -80,30 +83,78 @@ public class ArtistDataAcessLayer {
         return null;
     }
 
-    public static List<Song> findAllSongsByArtist(Context context, int ArtistId) {
-        LOGD(TAG, "Get All Songs by Artist");
+    public static List<Song> findAllSongsByAuthor(Context context, int ArtistId) {
+        LOGD(TAG, "Get All Songs by Author");
 
         ContentResolver resolver = context.getContentResolver();
         Uri uri = HopAmChuanDBContract.Artists.CONTENT_URI;
-        Uri artistUri = Uri.withAppendedPath(uri, "songs/" + ArtistId + "");
+        Uri artistUri = Uri.withAppendedPath(uri, "author/songs/" + ArtistId + "");
         Cursor c = resolver.query(artistUri,
                 null,    // projection
                 null,    // selection string
                 null,    // selection args of strings
                 null);   //  sort order
 
-        List<Song> songs = new ArrayList<Song>();
-        for (c.moveToFirst(); !c.moveToNext(); c.moveToNext()) {
-            int id = c.getInt(c.getColumnIndex(Songs.SONG_ID));
-        }
+       return parseSongsFromCursor(c);
+    }
 
+    public static List<Song> findAllSongsBySinger(Context context, int ArtistId) {
+        LOGD(TAG, "Get All Songs by Singer");
 
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Artists.CONTENT_URI;
+        Uri artistUri = Uri.withAppendedPath(uri, "singer/songs/" + ArtistId + "");
+        Cursor c = resolver.query(artistUri,
+                null,    // projection
+                null,    // selection string
+                null,    // selection args of strings
+                null);   //  sort order
 
+        return parseSongsFromCursor(c);
+
+    }
+
+    public static List<Song> getRandomSongsByAuthor(Context context, int artistId, int limit) {
+        throw new UnsupportedOperationException();
+    }
+
+    public static List<Song> getRandomSongsBySinger(Context context, int artistId, int limit) {
         throw new UnsupportedOperationException();
     }
 
     /**
+     * Get all songs, can be authors or singers
+     * TODO : Later
+     */
+    public static List<Song> getRandomSongsByArtist(Context context, int artistId, int limit) {
+        throw new UnsupportedOperationException();
+    }
+
+    private static List<Song> parseSongsFromCursor(Cursor c) {
+        List<Song> songs = new ArrayList<Song>();
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            try {
+                int id = c.getInt(c.getColumnIndex(Songs._ID));
+                int songId = c.getInt(c.getColumnIndex(Songs.SONG_ID));
+                String title = c.getString(c.getColumnIndex(Songs.SONG_TITLE));
+                String link = c.getString(c.getColumnIndex(Songs.SONG_LINK));
+                String content = c.getString(c.getColumnIndex(Songs.SONG_CONTENT));
+                String lyrics = c.getString(c.getColumnIndex(Songs.SONG_FIRST_LYRIC));
+                Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").
+                        parse(c.getString(c.getColumnIndex(Songs.SONG_DATE)));
+                Song song = new Song(id, songId, title, link, content, lyrics, date);
+                songs.add(song);
+            }
+            catch(Exception e) {
+                LOGE(TAG, "error when parse song " + e.getMessage());
+            }
+        }
+        return songs;
+    }
+
+    /**
      * Just query all AuthorsSongs Table
+     * TODO: in future
      */
     public static List<Artist> getAllAuthors(Context context, int authorId) {
         throw new UnsupportedOperationException();
@@ -111,6 +162,7 @@ public class ArtistDataAcessLayer {
 
     /**
      * Just query all SingersSongs Table
+     * TODO: in future
      */
     public static List<Artist> getAllSingers(Context context, int singerId) {
         throw new UnsupportedOperationException();

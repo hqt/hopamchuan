@@ -6,6 +6,7 @@ import android.content.Context;
 import android.net.Uri;
 
 import com.hqt.hac.model.Chord;
+import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.HopAmChuanDBContract;
 
 import java.util.List;
@@ -39,6 +40,14 @@ public class ChordDataAccessLayer {
     }
 
     public static int getChordIdByName(String chordName) {
+        throw new UnsupportedOperationException();
+    }
+
+    public static List<Song> getAllSongsByChordArrays(Context context, List<Chord> chords) {
+        throw new UnsupportedOperationException();
+    }
+
+    public static boolean isExistChordName(Context context, String chordName) {
         throw new UnsupportedOperationException();
     }
 }
