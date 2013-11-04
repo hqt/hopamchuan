@@ -11,15 +11,15 @@ public class HopAmChuanDBContract {
      * List All Tables in this database
      */
     public static interface Tables {
-        String ARTISTS = "ArtistTbl";
-        String CHORDS = "ChordTbl";
-        String SONGS = "SongTbl";
-        String SONGS_AUTHORS = "Songs_Authors_Tbl";
-        String SONGS_CHORDS = "Songs_Chords_Tbl";
-        String SONGS_SINGERS = "Songs_Singers_Tbl";
+        String ARTIST = "ArtistTbl";
+        String CHORD = "ChordTbl";
+        String SONG = "SongTbl";
+        String SONG_AUTHOR = "Song_Author_Tbl";
+        String SONG_CHORD = "Song_Chord_Tbl";
+        String SONG_SINGER = "Song_Singer_Tbl";
         String PLAYLIST = "Playlist_Tbl";
-        String PLAYLIST_SONGS = "Playlist_Songs_Tbl";
-        String FAVORITES = "Favorites_Tbl";
+        String PLAYLIST_SONG = "Playlist_Song_Tbl";
+        String FAVORITE = "Favorite_Tbl";
     }
 
     interface ArtistsColumns {

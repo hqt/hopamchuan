@@ -74,21 +74,21 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
          * base table :
          * Artist Chords Songs
          */
-        db.execSQL("CREATE TABLE " + Tables.ARTISTS + " ("
+        db.execSQL("CREATE TABLE " + Tables.ARTIST + " ("
                 + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + ArtistsColumns.ARTIST_ID + " INTEGER,"
                 + ArtistsColumns.ARTIST_NAME + " TEXT NOT NULL,"
                 + ArtistsColumns.ARTIST_ASCII + " TEXT NOT NULL,"
                 + "UNIQUE (" + ArtistsColumns.ARTIST_ID + ") ON CONFLICT REPLACE)");
 
-        db.execSQL("CREATE TABLE " + Tables.CHORDS + " ("
+        db.execSQL("CREATE TABLE " + Tables.CHORD + " ("
                 + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + ChordsColumns.CHORD_ID + " INTEGER,"
                 + ChordsColumns.CHORD_NAME + " TEXT NOT NULL,"
                 + ChordsColumns.CHORD_RELATION + " TEXT,"
                 + "UNIQUE (" + ChordsColumns.CHORD_ID + ") ON CONFLICT REPLACE)");
 
-        db.execSQL("CREATE TABLE " + Tables.SONGS + " ("
+        db.execSQL("CREATE TABLE " + Tables.SONG + " ("
                 + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + SongsColumns.SONG_ID + " INTEGER,"
                 + SongsColumns.SONG_TITLE + " TEXT NOT NULL,"
@@ -102,21 +102,21 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
          * Derivative tables :
          * Songs - Authors   ||    Songs - Chords  ||   Songs - Singers
          */
-        db.execSQL("CREATE TABLE " + Tables.SONGS_AUTHORS + " ("
+        db.execSQL("CREATE TABLE " + Tables.SONG_AUTHOR + " ("
                 + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + SongsColumns.SONG_ID + " INTEGER " + References.SONG_ID + ","
                 + ArtistsColumns.ARTIST_ID + " INTEGER " + References.ARTIST_ID + ","
                 + "UNIQUE (" + SongsColumns.SONG_ID + ","
                         + ArtistsColumns.ARTIST_ID + ") ON CONFLICT REPLACE)");
 
-        db.execSQL("CREATE TABLE " + Tables.SONGS_SINGERS + " ("
+        db.execSQL("CREATE TABLE " + Tables.SONG_SINGER + " ("
                 + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + SongsColumns.SONG_ID + " INTEGER " + References.SONG_ID + ","
                 + ArtistsColumns.ARTIST_ID + " INTEGER " + References.ARTIST_ID + ","
                 + "UNIQUE (" + SongsColumns.SONG_ID + ","
                         + ArtistsColumns.ARTIST_ID + ") ON CONFLICT REPLACE)");
 
-        db.execSQL("CREATE TABLE " + Tables.SONGS_CHORDS + " ("
+        db.execSQL("CREATE TABLE " + Tables.SONG_CHORD + " ("
                 + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + SongsColumns.SONG_ID + " INTEGER " + References.SONG_ID + ","
                 + ChordsColumns.CHORD_ID + " INTEGER " + References.CHORD_ID + ","
@@ -135,7 +135,7 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
                 + HopAmChuanDBContract.PlaylistColumns.PLAYLIST_PUBLIC + " INTEGER,"
                 + "UNIQUE (" + HopAmChuanDBContract.PlaylistColumns.PLAYLIST_ID + ") ON CONFLICT REPLACE)");
 
-        db.execSQL("CREATE TABLE " + Tables.PLAYLIST_SONGS + " ("
+        db.execSQL("CREATE TABLE " + Tables.PLAYLIST_SONG + " ("
                 + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + HopAmChuanDBContract.PlaylistColumns.PLAYLIST_ID + " INTEGER " + References.PLAYLIST_ID + ","
                 + SongsColumns.SONG_ID + " INTEGER " + Query.References.SONG_ID + ","
@@ -143,7 +143,7 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
                 + SongsColumns.SONG_ID + ") ON CONFLICT REPLACE)");
 
 
-        db.execSQL("CREATE TABLE " + Tables.FAVORITES + " ("
+        db.execSQL("CREATE TABLE " + Tables.FAVORITE + " ("
                 + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + SongsColumns.SONG_ID + " INTEGER " + References.SONG_ID + ")");
 

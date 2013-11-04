@@ -244,15 +244,15 @@ public class HopAmChuanProvider extends ContentProvider {
         boolean syncToNetwork = !HopAmChuanDBContract.hasCallerIsSyncAdapterParameter(uri);
         switch(match) {
             case ARTISTS:
-                db.insertOrThrow(Tables.ARTISTS, null, values);
+                db.insertOrThrow(Tables.ARTIST, null, values);
                 notifyChange(uri, syncToNetwork);
                 return Artists.buildArtistUri(values.getAsString(HopAmChuanDBContract.ArtistsColumns.ARTIST_ID));
             case SONGS:
-                db.insertOrThrow(Tables.SONGS, null, values);
+                db.insertOrThrow(Tables.SONG, null, values);
                 notifyChange(uri, syncToNetwork);
                 return Songs.buildSongUri(values.getAsString(HopAmChuanDBContract.SongsColumns.SONG_ID));
             case CHORDS:
-                db.insertOrThrow(Tables.CHORDS, null, values);
+                db.insertOrThrow(Tables.CHORD, null, values);
                 notifyChange(uri, syncToNetwork);
                 return Chords.buildChordUri(values.getAsString(HopAmChuanDBContract.ChordsColumns.CHORD_ID));
             case PLAYLIST:
@@ -260,15 +260,15 @@ public class HopAmChuanProvider extends ContentProvider {
                 notifyChange(uri, syncToNetwork);
                 return Playlist.buildPlaylistUri(values.getAsString(HopAmChuanDBContract.PlaylistColumns.PLAYLIST_ID));
             case SONGS_AUTHORS:
-                db.insertOrThrow(Tables.SONGS_AUTHORS, null, values);
+                db.insertOrThrow(Tables.SONG_AUTHOR, null, values);
                 notifyChange(uri, syncToNetwork);
                 return SongsAuthors.buildSongsAuthorsUri(values.getAsString(HopAmChuanDBContract.ArtistsColumns.ARTIST_ID));
             case SONGS_SINGERS:
-                db.insertOrThrow(Tables.SONGS_SINGERS, null, values);
+                db.insertOrThrow(Tables.SONG_SINGER, null, values);
                 notifyChange(uri, syncToNetwork);
                 return SongsSingers.buildSongsSingersUri(values.getAsString(HopAmChuanDBContract.ArtistsColumns.ARTIST_ID));
             case SONGS_CHORDS:
-                db.insertOrThrow(Tables.SONGS_CHORDS, null, values);
+                db.insertOrThrow(Tables.SONG_CHORD, null, values);
                 notifyChange(uri, syncToNetwork);
                 return SongsChords.buildSongsChordsUri(values.getAsString(HopAmChuanDBContract.SongsColumns.SONG_ID));
 
@@ -373,37 +373,37 @@ public class HopAmChuanProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         switch (match) {
             case ARTISTS: {
-                return builder.table(Tables.ARTISTS);
+                return builder.table(Tables.ARTIST);
             }
             case ARTISTS_ID: {
                 final String artistId = Artists.getArtistId(uri);
-                return builder.table(Tables.ARTISTS)
+                return builder.table(Tables.ARTIST)
                         .where(Artists.ARTIST_ID + "=?", artistId);
             }
             case SONGS: {
-                return builder.table(Tables.SONGS);
+                return builder.table(Tables.SONG);
             }
             case SONGS_ID: {
                 final String songId = Songs.getSongId(uri);
-                return builder.table(Tables.SONGS)
+                return builder.table(Tables.SONG)
                         .where(Songs.SONG_ID + "=?", songId);
             }
             case CHORDS: {
-                return builder.table(Tables.CHORDS);
+                return builder.table(Tables.CHORD);
             }
             case CHORDS_ID: {
                 final String chordId = Chords.getChordId(uri);
-                return builder.table(Tables.CHORDS)
+                return builder.table(Tables.CHORD)
                         .where(Chords.CHORD_ID + "=?", chordId);
             }
             case SONGS_CHORDS: {
-                return builder.table(Tables.SONGS_CHORDS);
+                return builder.table(Tables.SONG_CHORD);
             }
             case SONGS_SINGERS: {
-                return builder.table(Tables.SONGS_SINGERS);
+                return builder.table(Tables.SONG_SINGER);
             }
             case SONGS_AUTHORS: {
-                return builder.table(Tables.SONGS_AUTHORS);
+                return builder.table(Tables.SONG_AUTHOR);
             }
             case PLAYLIST: {
                 return builder.table(Tables.PLAYLIST);
@@ -414,7 +414,7 @@ public class HopAmChuanProvider extends ContentProvider {
                         .where(Playlist.PLAYLIST_ID + "=?", playlistId);
             }
             case PLAYLIST_SONGS: {
-                return builder.table(Tables.PLAYLIST_SONGS);
+                return builder.table(Tables.PLAYLIST_SONG);
             }
 
             default: {
@@ -428,11 +428,11 @@ public class HopAmChuanProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         switch (match) {
             case ARTISTS: {
-                return builder.table(Tables.ARTISTS);
+                return builder.table(Tables.ARTIST);
             }
             case ARTISTS_ID: {
                 final String artistId = Artists.getArtistId(uri);
-                return builder.table(Tables.ARTISTS)
+                return builder.table(Tables.ARTIST)
                         .where(Artists.ARTIST_ID + "=?", artistId);
             }
 
@@ -442,13 +442,13 @@ public class HopAmChuanProvider extends ContentProvider {
                 final String singerId = segments.get(3);
                 return builder.table(Query.Subquery.SONG_SINGER_JOIN_SINGER_SONG)   // join 3 different tables
                         // mapToTable for Projections not return ambiguous
-                        .mapToTable(Songs._ID, Tables.SONGS)
-                        .mapToTable(Songs.SONG_ID, Tables.SONGS)
-                        .mapToTable(Songs.SONG_TITLE, Tables.SONGS)
-                        .mapToTable(Songs.SONG_CONTENT, Tables.SONGS)
-                        .mapToTable(Songs.SONG_LINK, Tables.SONGS)
-                        .mapToTable(Songs.SONG_FIRST_LYRIC, Tables.SONGS)
-                        .mapToTable(Songs.SONG_DATE, Tables.SONGS)
+                        .mapToTable(Songs._ID, Tables.SONG)
+                        .mapToTable(Songs.SONG_ID, Tables.SONG)
+                        .mapToTable(Songs.SONG_TITLE, Tables.SONG)
+                        .mapToTable(Songs.SONG_CONTENT, Tables.SONG)
+                        .mapToTable(Songs.SONG_LINK, Tables.SONG)
+                        .mapToTable(Songs.SONG_FIRST_LYRIC, Tables.SONG)
+                        .mapToTable(Songs.SONG_DATE, Tables.SONG)
                         .where(Query.Qualified.SONGSINGER_ARTIST_ID + "=?", singerId);
             }
 
@@ -469,50 +469,51 @@ public class HopAmChuanProvider extends ContentProvider {
                 final String authorId = segments.get(3);
                 return builder.table(Query.Subquery.SONG_AUTHOR_JOIN_AUTHOR_SONG)   // join 3 different tables
                         // mapToTable for Projections not return ambiguous
-                        .mapToTable(Songs._ID, Tables.SONGS)
-                        .mapToTable(Songs.SONG_ID, Tables.SONGS)
-                        .mapToTable(Songs.SONG_TITLE, Tables.SONGS)
-                        .mapToTable(Songs.SONG_CONTENT, Tables.SONGS)
-                        .mapToTable(Songs.SONG_LINK, Tables.SONGS)
-                        .mapToTable(Songs.SONG_FIRST_LYRIC, Tables.SONGS)
-                        .mapToTable(Songs.SONG_DATE, Tables.SONGS)
+                        .mapToTable(Songs._ID, Tables.SONG)
+                        .mapToTable(Songs.SONG_ID, Tables.SONG)
+                        .mapToTable(Songs.SONG_TITLE, Tables.SONG)
+                        .mapToTable(Songs.SONG_CONTENT, Tables.SONG)
+                        .mapToTable(Songs.SONG_LINK, Tables.SONG)
+                        .mapToTable(Songs.SONG_FIRST_LYRIC, Tables.SONG)
+                        .mapToTable(Songs.SONG_DATE, Tables.SONG)
                         .where(Query.Qualified.SONGAUTHOR_ARTIST_ID + "=?", authorId);
             }
 
             case SONGS: {
-                return builder.table(Tables.SONGS);
+                return builder.table(Tables.SONG);
             }
             case SONGS_ID: {
                 final String songId = Songs.getSongId(uri);
-                return builder.table(Tables.SONGS)
+                return builder.table(Tables.SONG)
                         .where(Songs.SONG_ID + "=?", songId);
             }
             case CHORDS: {
-                return builder.table(Tables.CHORDS);
+                return builder.table(Tables.CHORD);
             }
             case CHORDS_ID: {
                 final String chordId = Chords.getChordId(uri);
-                return builder.table(Tables.CHORDS)
+                return builder.table(Tables.CHORD)
                         .where(Chords.CHORD_ID + "=?", chordId);
             }
             case SONGS_CHORDS: {
-                return builder.table(Tables.SONGS_CHORDS);
+                return builder.table(Tables.SONG_CHORD);
             }
             case SONGS_SINGERS: {
-                return builder.table(Tables.SONGS_SINGERS);
+                return builder.table(Tables.SONG_SINGER);
             }
             case SONGS_AUTHORS: {
-                return builder.table(Tables.SONGS_AUTHORS);
+                return builder.table(Tables.SONG_AUTHOR);
             }
             case PLAYLIST: {
                 return builder.table(Tables.PLAYLIST);
             }
             case PLAYLIST_SONGS: {
-                return builder.table(Tables.PLAYLIST_SONGS);
+                return builder.table(Tables.PLAYLIST_SONG);
             }
 
             /**
-             * SELECT Playlist_Tbl._id, Playlist_Tbl.playlist_id, Playlist_Tbl.playlist_name,
+             * SELECT
+             * Playlist_Tbl._id, Playlist_Tbl.playlist_id, Playlist_Tbl.playlist_name,
              * Playlist_Tbl.playlist_description, Playlist_Tbl.playlist_date,
              * Playlist_Tbl.playlist_public, Playlist_Count_Tbl.countcolumn
              * FROM Playlist_Tbl LEFT JOIN (SELECT Playlist_Songs_Tbl.playlist_id,

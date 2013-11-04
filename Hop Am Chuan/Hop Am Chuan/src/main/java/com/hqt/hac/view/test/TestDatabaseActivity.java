@@ -58,8 +58,9 @@ public class TestDatabaseActivity extends ActionBarActivity {
         res += artist + "\n";
 
         List<Playlist> playlists = PlaylistDataAccessLayer.getAllPlayLists(getApplicationContext());
+        res += Helper.arrayToString(playlists);
 
-        textView.setText(Helper.arrayToString(playlists));
+        textView.setText(res);
 
     }
 
