@@ -513,12 +513,15 @@ public class HopAmChuanProvider extends ContentProvider {
 
             /**
              * SELECT
-             * Playlist_Tbl._id, Playlist_Tbl.playlist_id, Playlist_Tbl.playlist_name,
-             * Playlist_Tbl.playlist_description, Playlist_Tbl.playlist_date,
-             * Playlist_Tbl.playlist_public, Playlist_Count_Tbl.countcolumn
-             * FROM Playlist_Tbl LEFT JOIN (SELECT Playlist_Songs_Tbl.playlist_id,
-             * COUNT(IFNULL(Playlist_Songs_Tbl.song_id, 0)) AS countcolumn FROM Playlist_Songs_Tbl
-             * GROUP BY Playlist_Songs_Tbl.playlist_id)  AS Playlist_Count_Tbl
+             *      Playlist_Tbl._id, Playlist_Tbl.playlist_id, Playlist_Tbl.playlist_name,
+             *      Playlist_Tbl.playlist_description, Playlist_Tbl.playlist_date,
+             *      Playlist_Tbl.playlist_public, Playlist_Count_Tbl.countcolumn
+             * FROM Playlist_Tbl
+             * LEFT JOIN
+             *      (SELECT Playlist_Songs_Tbl.playlist_id,
+             *      COUNT(IFNULL(Playlist_Songs_Tbl.song_id, 0)) AS countcolumn FROM Playlist_Songs_Tbl
+             *      GROUP BY Playlist_Songs_Tbl.playlist_id)
+             *      AS Playlist_Count_Tbl
              * ON Playlist_Count_Tbl.playlist_id = Playlist_Tbl.playlist_id
              *
              */

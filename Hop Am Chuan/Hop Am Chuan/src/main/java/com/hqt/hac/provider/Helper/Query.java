@@ -123,14 +123,4 @@ public class Query {
                 + " LEFT JOIN " + ALL_PLAYLIST_ID_AND_COUNT
                 + " ON " + Qualified.PLAYLIST_SONG_COUNT_PLAYLIST_ID + " = " + Qualified.PLAYLIST_PLAYLIST_ID;
     }
-
-    /*
-    (SELECT ps.playlist_id, COUNT(ps.song_id) AS c
-    FROM Playlist_Song ps
-    GROUP BY ps.playlist_id) p2 /// moi cai playlist se co duoc cai count    bang phu : playlistId COunt
-
-SELECT p1.*, p2.c FROM Playlist p1 INNER JOIN
-    XXXX
-ON p1.playlist_id = p2.playlist_id;
-     */
 }
