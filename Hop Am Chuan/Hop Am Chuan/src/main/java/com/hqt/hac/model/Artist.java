@@ -31,4 +31,26 @@ public class Artist implements Serializable {
                 ", artistAscii='" + artistAscii + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Artist artist = (Artist) o;
+
+        if (artistId != artist.artistId) return false;
+        if (id != artist.id) return false;
+        if (!artistAscii.equals(artist.artistAscii)) return false;
+        if (!artistName.equals(artist.artistName)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = artistName.hashCode();
+        result = 31 * result + artistAscii.hashCode();
+        return result;
+    }
 }

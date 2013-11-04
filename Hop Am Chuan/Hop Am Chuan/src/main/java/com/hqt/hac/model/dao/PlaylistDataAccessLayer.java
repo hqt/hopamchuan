@@ -11,13 +11,9 @@ import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.HopAmChuanDBContract;
 import com.hqt.hac.provider.helper.Query;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
@@ -45,6 +41,7 @@ public class PlaylistDataAccessLayer {
                 int playlistId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_ID));
                 String playlistName = c.getString(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_NAME));
                 String playlistDescription = c.getString(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_DESCRIPTION));
+                // TODO: check date parsing data
                 // Date playlistDate = (new SimpleDateFormat()).parse(c.getString(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_DATE)));
                 Date playlistDate = new Date();
                 int playlistIsPublic = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_PUBLIC));
@@ -57,7 +54,7 @@ public class PlaylistDataAccessLayer {
                 e.printStackTrace();
             }
         }
-
+        c.close();
         return playlists;
     }
 

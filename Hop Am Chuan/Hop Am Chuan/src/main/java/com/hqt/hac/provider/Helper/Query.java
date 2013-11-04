@@ -6,8 +6,10 @@ import com.hqt.hac.provider.HopAmChuanDBContract;
 
 import static com.hqt.hac.provider.HopAmChuanDBContract.Songs;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Artists;
+import static com.hqt.hac.provider.HopAmChuanDBContract.Chords;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsAuthors;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsSingers;
+import static com.hqt.hac.provider.HopAmChuanDBContract.SongsChords;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Playlist;
 import static com.hqt.hac.provider.HopAmChuanDBContract.PlaylistSongs;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Tables;
@@ -53,6 +55,11 @@ public class Query {
                 Playlist.PLAYLIST_PUBLIC,
                 Playlist.PLAYLIST_NUMOFSONGS,
         };
+        String[] CHORD_PROJECTION = {
+                BaseColumns._ID,
+                Chords.CHORD_ID,
+                Chords.CHORD_NAME,
+        };
     }
 
 
@@ -93,6 +100,9 @@ public class Query {
         String SONGAUTHOR_ARTIST_ID = Tables.SONG_AUTHOR + "." + SongsAuthors.ARTIST_ID;
         String SONGAUTHOR_SONG_ID = Tables.SONG_AUTHOR + "." + SongsAuthors.SONG_ID;
 
+        Object SONGCHORD_CHORD_ID = Tables.SONG_CHORD + "." + SongsChords.CHORD_ID;
+        Object SONGCHORD_SONG_ID =  Tables.SONG_CHORD + "." + SongsChords.SONG_ID;;
+        Object CHORD_CHORD_ID = Tables.CHORD + "." + Chords.CHORD_ID;
     }
     /**
      * sub query : using for module
@@ -122,5 +132,22 @@ public class Query {
         String PLAYLIST_JOIN_PLAYLIST_SONG_COUNT = Tables.PLAYLIST
                 + " LEFT JOIN " + ALL_PLAYLIST_ID_AND_COUNT
                 + " ON " + Qualified.PLAYLIST_SONG_COUNT_PLAYLIST_ID + " = " + Qualified.PLAYLIST_PLAYLIST_ID;
+
+        /**
+         * Artist LEFT JOIN Song_Author ON Artist.ArtistId = Song_Author.ArtistId
+         */
+        String AUTHOR_JOIN_SONG_AUTHOR = Tables.ARTIST
+                + " LEFT JOIN " + Tables.SONG_AUTHOR
+                + " ON " + Qualified.ARTIST_ARTIST_ID + " = " + Qualified.SONGAUTHOR_ARTIST_ID;
+        /**
+         * Artist LEFT JOIN Song_Singer ON Artist.ArtistId = Song_Author.ArtistId
+         */
+        String AUTHOR_JOIN_SONG_SINGER = Tables.ARTIST
+                + " LEFT JOIN " + Tables.SONG_SINGER
+                + " ON " + Qualified.ARTIST_ARTIST_ID + " = " + Qualified.SONGSINGER_ARTIST_ID;
+
+        String CHORD_JOIN_SONG_CHORD = Tables.CHORD
+                + " LEFT JOIN " + Tables.SONG_CHORD
+                + " ON " + Qualified.CHORD_CHORD_ID + " = " + Qualified.SONGCHORD_CHORD_ID;
     }
 }

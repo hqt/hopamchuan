@@ -19,12 +19,11 @@ public class ChordDataAccessLayer {
     private static final String TAG = makeLogTag(ChordDataAccessLayer.class);
 
     public static String insertChord(Context context, Chord chord) {
-        LOGD(TAG, "Adding an artist");
+        LOGD(TAG, "Adding a Chord");
 
         ContentValues cv = new ContentValues();
         cv.put(HopAmChuanDBContract.Chords.CHORD_ID, chord.chordId);
         cv.put(HopAmChuanDBContract.Chords.CHORD_NAME, chord.name);
-        cv.put(HopAmChuanDBContract.Chords.CHORD_RELATION, chord.relations);
 
         ContentResolver resolver = context.getContentResolver();
         Uri uri = HopAmChuanDBContract.Chords.CONTENT_URI;
@@ -49,5 +48,14 @@ public class ChordDataAccessLayer {
 
     public static boolean isExistChordName(Context context, String chordName) {
         throw new UnsupportedOperationException();
+    }
+
+    public static void removeChord(Context context, int chordId){
+        LOGD(TAG, "Delete Chord");
+
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Chords.CONTENT_URI;
+        Uri deleteUri = Uri.withAppendedPath(uri, chordId + "");
+        resolver.delete(deleteUri, null, null);
     }
 }

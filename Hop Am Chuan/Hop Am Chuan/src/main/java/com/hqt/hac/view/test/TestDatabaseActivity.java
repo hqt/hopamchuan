@@ -21,6 +21,7 @@ import com.hqt.hac.provider.HopAmChuanDBContract;
 import com.hqt.hac.provider.HopAmChuanDatabase;
 import com.hqt.hac.provider.HopAmChuanProvider;
 import com.hqt.hac.view.R;
+import com.unittest.DatabaseTest;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,30 +36,35 @@ public class TestDatabaseActivity extends ActionBarActivity {
         TextView textView = (TextView) findViewById(R.id.textview);
 
         // delete database for consistency
-        HopAmChuanDatabase.deleteDatabase(getApplicationContext());
 
         // create new database here
-        Helper.prepareLocalDatabaseByHand(getApplicationContext());
+        DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());
 
         String res = "";
 
-        // test 1 : Get Songs By Author
-        res += "All Songs By Author Huynh Quang Thao (should be 2):\n";
-        List<Song> songs = ArtistDataAcessLayer.findAllSongsByAuthor(getApplicationContext(), 1);
-        res += String.format("Size of Songs: %d\n", songs.size());
-        res += Helper.arrayToString(songs) + "\n";
+//        // test 1 : Get Songs By Author
+//        res += "All Songs By Author Huynh Quang Thao (should be 2):\n";
+//        List<Song> songs = ArtistDataAcessLayer.findAllSongsByAuthor(getApplicationContext(), 1);
+//        res += String.format("Size of Songs: %d\n", songs.size());
+//        res += Helper.arrayToString(songs) + "\n";
+//
+//        // test 2 : Get Songs By Singer
+//        res += "All Songs By Singer Pham Thi Thu Hoa (should be 2) and different from above:\n";
+//        songs = ArtistDataAcessLayer.findAllSongsBySinger(getApplicationContext(), 3);
+//        res += Helper.arrayToString(songs) + "\n";
+//
+//        // test 3 : test get artist by id
+//        Artist artist = ArtistDataAcessLayer.getArtistById(getApplicationContext(), 2);
+//        res += artist + "\n";
+//
+//        List<Playlist> playlists = PlaylistDataAccessLayer.getAllPlayLists(getApplicationContext());
+//        res += Helper.arrayToString(playlists);
 
-        // test 2 : Get Songs By Singer
-        res += "All Songs By Singer Pham Thi Thu Hoa (should be 2) and different from above:\n";
-        songs = ArtistDataAcessLayer.findAllSongsBySinger(getApplicationContext(), 3);
-        res += Helper.arrayToString(songs) + "\n";
-
-        // test 3 : test get artist by id
-        Artist artist = ArtistDataAcessLayer.getArtistById(getApplicationContext(), 2);
-        res += artist + "\n";
-
-        List<Playlist> playlists = PlaylistDataAccessLayer.getAllPlayLists(getApplicationContext());
-        res += Helper.arrayToString(playlists);
+        res += DatabaseTest.TestInsertSong_Chord(getApplicationContext()) + "\n";
+        res += DatabaseTest.TestGetAuthorsBySongId(getApplicationContext()) + "\n";
+        res += DatabaseTest.TestGetSingersBySongId(getApplicationContext()) + "\n";
+        res += DatabaseTest.TestGetChordsBySongId(getApplicationContext()) + "\n";
+        res += DatabaseTest.TestGetSongById(getApplicationContext()) + "\n";
 
         textView.setText(res);
 
