@@ -11,6 +11,7 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.URLSpan;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -28,7 +29,12 @@ public class HacUtils {
      * @param context
      * @param richTextView
      */
-    public static void setSongFormatted(final Context context, TextView richTextView, String songContent) {
+    public static void setSongFormatted(final Context context, TextView richTextView, String songContent, DisplayMetrics displayMetrics) {
+
+
+        Log.i("TextViewDebug", "-------------");
+        Log.i("TextViewDebug", "heightxx: " + displayMetrics.heightPixels + " | width: " + displayMetrics.widthPixels);
+        Log.i("TextViewDebug", "font sizexx: " + richTextView.getTextSize());
 
         // this is the text we'll be operating on
         SpannableString text = new SpannableString(songContent);
@@ -72,10 +78,5 @@ public class HacUtils {
 
         // shove our styled text into the TextView
         richTextView.setText(text, TextView.BufferType.SPANNABLE);
-
-
-        Log.i("TextViewDebug", "Width: ");
-        Log.i("TextViewDebug", "Text Size: " + richTextView.getTextSize());
-        Log.i("TextViewDebug", "f: " + (richTextView.getWidth() / richTextView.getTextSize()));
     }
 }
