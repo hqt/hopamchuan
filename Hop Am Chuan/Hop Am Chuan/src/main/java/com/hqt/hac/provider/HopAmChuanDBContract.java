@@ -5,9 +5,22 @@ import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 
-import static com.hqt.hac.provider.HopAmChuanDatabase.Tables;
-
 public class HopAmChuanDBContract {
+
+    /**
+     * List All Tables in this database
+     */
+    public static interface Tables {
+        String ARTISTS = "ArtistTbl";
+        String CHORDS = "ChordTbl";
+        String SONGS = "SongTbl";
+        String SONGS_AUTHORS = "Songs_Authors_Tbl";
+        String SONGS_CHORDS = "Songs_Chords_Tbl";
+        String SONGS_SINGERS = "Songs_Singers_Tbl";
+        String PLAYLIST = "Playlist_Tbl";
+        String PLAYLIST_SONGS = "Playlist_Songs_Tbl";
+        String FAVORITES = "Favorites_Tbl";
+    }
 
     interface ArtistsColumns {
         /** unique number identifying artist
@@ -223,10 +236,15 @@ public class HopAmChuanDBContract {
                 "vnd.android.cursor.dir/vnd.com.hqt.hac.playlist";
         public static final String CONTENT_ITEM_TYPE =
                 "vnd.android.cursor.item/vnd.com.hqt.hac.playlist";
+        public static final String PLAYLIST_NUMOFSONGS = "countcolumn";
 
         /** Build {@link Uri} for requested {@link #PLAYLIST_ID}. */
-        public static Uri buildSongsSingersUri(String PlaylistId) {
+        public static Uri buildPlaylistUri(String PlaylistId) {
             return CONTENT_URI.buildUpon().appendPath(PlaylistId).build();
+        }
+        /** Read {@link #PLAYLIST_ID} from {@link com.hqt.hac.provider.HopAmChuanDBContract.Playlist} {@link Uri}. */
+        public static String getPlaylistId(Uri uri) {
+            return uri.getPathSegments().get(1);
         }
     }
 

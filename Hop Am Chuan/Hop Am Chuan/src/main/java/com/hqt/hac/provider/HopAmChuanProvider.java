@@ -22,13 +22,14 @@ import java.util.List;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Artists;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Chords;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Songs;
+import static com.hqt.hac.provider.HopAmChuanDBContract.Playlist;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsAuthors;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsSingers;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsChords;
 
 import static com.hqt.hac.utils.LogUtils.LOGV;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
-import static com.hqt.hac.provider.HopAmChuanDatabase.Tables;
+import static com.hqt.hac.provider.HopAmChuanDBContract.Tables;
 
 /**
  *
@@ -70,11 +71,13 @@ public class HopAmChuanProvider extends ContentProvider {
 
     private static final int PLAYLIST = 700;
     private static final int PLAYLIST_ID = 701;
+    private static final int PLAYLIST_ALL = 702;
 
     private static final int PLAYLIST_SONGS = 800;
     private static final int PLAYLIST_SONGS_ID = 801;
 
     private static final int FAVORITES = 900;
+    private static final int FAVORITES_SONG_ID = 901;
 
     private static final int SEARCH_INDEX =10;
 
@@ -126,6 +129,7 @@ public class HopAmChuanProvider extends ContentProvider {
          * Playlist Table
          */
         matcher.addURI(authority, "playlist", PLAYLIST);
+        matcher.addURI(authority, "playlist/all", PLAYLIST_ALL);
         matcher.addURI(authority, "playlist/#", PLAYLIST_ID);
 
         /**
@@ -137,7 +141,8 @@ public class HopAmChuanProvider extends ContentProvider {
         /**
          * Favorite table
          */
-        matcher.addURI(authority, "favorite", FAVORITES);
+        matcher.addURI(authority, "favorites", FAVORITES);
+        matcher.addURI(authority, "favorites/#", FAVORITES_SONG_ID);
 
         return matcher;
     }
@@ -194,6 +199,10 @@ public class HopAmChuanProvider extends ContentProvider {
                 return HopAmChuanDBContract.PlaylistSongs.CONTENT_TYPE;
             case PLAYLIST_SONGS_ID:
                 return HopAmChuanDBContract.PlaylistSongs.CONTENT_ITEM_TYPE;
+            case FAVORITES:
+                return HopAmChuanDBContract.Favorites.CONTENT_TYPE;
+            case FAVORITES_SONG_ID:
+                return HopAmChuanDBContract.Favorites.CONTENT_ITEM_TYPE;
 
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
@@ -235,27 +244,31 @@ public class HopAmChuanProvider extends ContentProvider {
         boolean syncToNetwork = !HopAmChuanDBContract.hasCallerIsSyncAdapterParameter(uri);
         switch(match) {
             case ARTISTS:
-                db.insertOrThrow(HopAmChuanDatabase.Tables.ARTISTS, null, values);
+                db.insertOrThrow(Tables.ARTISTS, null, values);
                 notifyChange(uri, syncToNetwork);
                 return Artists.buildArtistUri(values.getAsString(HopAmChuanDBContract.ArtistsColumns.ARTIST_ID));
             case SONGS:
-                db.insertOrThrow(HopAmChuanDatabase.Tables.SONGS, null, values);
+                db.insertOrThrow(Tables.SONGS, null, values);
                 notifyChange(uri, syncToNetwork);
                 return Songs.buildSongUri(values.getAsString(HopAmChuanDBContract.SongsColumns.SONG_ID));
             case CHORDS:
-                db.insertOrThrow(HopAmChuanDatabase.Tables.CHORDS, null, values);
+                db.insertOrThrow(Tables.CHORDS, null, values);
                 notifyChange(uri, syncToNetwork);
                 return Chords.buildChordUri(values.getAsString(HopAmChuanDBContract.ChordsColumns.CHORD_ID));
+            case PLAYLIST:
+                db.insertOrThrow(Tables.PLAYLIST, null, values);
+                notifyChange(uri, syncToNetwork);
+                return Playlist.buildPlaylistUri(values.getAsString(HopAmChuanDBContract.PlaylistColumns.PLAYLIST_ID));
             case SONGS_AUTHORS:
-                db.insertOrThrow(HopAmChuanDatabase.Tables.SONGS_AUTHORS, null, values);
+                db.insertOrThrow(Tables.SONGS_AUTHORS, null, values);
                 notifyChange(uri, syncToNetwork);
                 return SongsAuthors.buildSongsAuthorsUri(values.getAsString(HopAmChuanDBContract.ArtistsColumns.ARTIST_ID));
             case SONGS_SINGERS:
-                db.insertOrThrow(HopAmChuanDatabase.Tables.SONGS_SINGERS, null, values);
+                db.insertOrThrow(Tables.SONGS_SINGERS, null, values);
                 notifyChange(uri, syncToNetwork);
                 return SongsSingers.buildSongsSingersUri(values.getAsString(HopAmChuanDBContract.ArtistsColumns.ARTIST_ID));
             case SONGS_CHORDS:
-                db.insertOrThrow(HopAmChuanDatabase.Tables.SONGS_CHORDS, null, values);
+                db.insertOrThrow(Tables.SONGS_CHORDS, null, values);
                 notifyChange(uri, syncToNetwork);
                 return SongsChords.buildSongsChordsUri(values.getAsString(HopAmChuanDBContract.SongsColumns.SONG_ID));
 
@@ -279,6 +292,7 @@ public class HopAmChuanProvider extends ContentProvider {
             notifyChange(uri, false);
             return 1;
         }
+
         final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         final SelectionBuilder builder = buildSimpleSelection(uri);
         int retVal = builder.where(selection, selectionArgs).delete(db);
@@ -359,43 +373,48 @@ public class HopAmChuanProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         switch (match) {
             case ARTISTS: {
-                return builder.table(HopAmChuanDatabase.Tables.ARTISTS);
+                return builder.table(Tables.ARTISTS);
             }
             case ARTISTS_ID: {
                 final String artistId = Artists.getArtistId(uri);
-                return builder.table(HopAmChuanDatabase.Tables.ARTISTS)
+                return builder.table(Tables.ARTISTS)
                         .where(Artists.ARTIST_ID + "=?", artistId);
             }
             case SONGS: {
-                return builder.table(HopAmChuanDatabase.Tables.SONGS);
+                return builder.table(Tables.SONGS);
             }
             case SONGS_ID: {
                 final String songId = Songs.getSongId(uri);
-                return builder.table(HopAmChuanDatabase.Tables.SONGS)
+                return builder.table(Tables.SONGS)
                         .where(Songs.SONG_ID + "=?", songId);
             }
             case CHORDS: {
-                return builder.table(HopAmChuanDatabase.Tables.CHORDS);
+                return builder.table(Tables.CHORDS);
             }
             case CHORDS_ID: {
                 final String chordId = Chords.getChordId(uri);
-                return builder.table(HopAmChuanDatabase.Tables.CHORDS)
+                return builder.table(Tables.CHORDS)
                         .where(Chords.CHORD_ID + "=?", chordId);
             }
             case SONGS_CHORDS: {
-                return builder.table(HopAmChuanDatabase.Tables.SONGS_CHORDS);
+                return builder.table(Tables.SONGS_CHORDS);
             }
             case SONGS_SINGERS: {
-                return builder.table(HopAmChuanDatabase.Tables.SONGS_SINGERS);
+                return builder.table(Tables.SONGS_SINGERS);
             }
             case SONGS_AUTHORS: {
-                return builder.table(HopAmChuanDatabase.Tables.SONGS_AUTHORS);
+                return builder.table(Tables.SONGS_AUTHORS);
             }
             case PLAYLIST: {
-                return builder.table(HopAmChuanDatabase.Tables.PLAYLIST);
+                return builder.table(Tables.PLAYLIST);
+            }
+            case PLAYLIST_ID: {
+                final String playlistId = Playlist.getPlaylistId(uri);
+                return builder.table(Tables.PLAYLIST)
+                        .where(Playlist.PLAYLIST_ID + "=?", playlistId);
             }
             case PLAYLIST_SONGS: {
-                return builder.table(HopAmChuanDatabase.Tables.PLAYLIST_SONGS);
+                return builder.table(Tables.PLAYLIST_SONGS);
             }
 
             default: {
@@ -409,11 +428,11 @@ public class HopAmChuanProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         switch (match) {
             case ARTISTS: {
-                return builder.table(HopAmChuanDatabase.Tables.ARTISTS);
+                return builder.table(Tables.ARTISTS);
             }
             case ARTISTS_ID: {
                 final String artistId = Artists.getArtistId(uri);
-                return builder.table(HopAmChuanDatabase.Tables.ARTISTS)
+                return builder.table(Tables.ARTISTS)
                         .where(Artists.ARTIST_ID + "=?", artistId);
             }
 
@@ -461,37 +480,57 @@ public class HopAmChuanProvider extends ContentProvider {
             }
 
             case SONGS: {
-                return builder.table(HopAmChuanDatabase.Tables.SONGS);
+                return builder.table(Tables.SONGS);
             }
             case SONGS_ID: {
                 final String songId = Songs.getSongId(uri);
-                return builder.table(HopAmChuanDatabase.Tables.SONGS)
+                return builder.table(Tables.SONGS)
                         .where(Songs.SONG_ID + "=?", songId);
             }
             case CHORDS: {
-                return builder.table(HopAmChuanDatabase.Tables.CHORDS);
+                return builder.table(Tables.CHORDS);
             }
             case CHORDS_ID: {
                 final String chordId = Chords.getChordId(uri);
-                return builder.table(HopAmChuanDatabase.Tables.CHORDS)
+                return builder.table(Tables.CHORDS)
                         .where(Chords.CHORD_ID + "=?", chordId);
             }
             case SONGS_CHORDS: {
-                return builder.table(HopAmChuanDatabase.Tables.SONGS_CHORDS);
+                return builder.table(Tables.SONGS_CHORDS);
             }
             case SONGS_SINGERS: {
-                return builder.table(HopAmChuanDatabase.Tables.SONGS_SINGERS);
+                return builder.table(Tables.SONGS_SINGERS);
             }
             case SONGS_AUTHORS: {
-                return builder.table(HopAmChuanDatabase.Tables.SONGS_AUTHORS);
+                return builder.table(Tables.SONGS_AUTHORS);
             }
             case PLAYLIST: {
-                return builder.table(HopAmChuanDatabase.Tables.PLAYLIST);
+                return builder.table(Tables.PLAYLIST);
             }
             case PLAYLIST_SONGS: {
-                return builder.table(HopAmChuanDatabase.Tables.PLAYLIST_SONGS);
+                return builder.table(Tables.PLAYLIST_SONGS);
             }
 
+            /**
+             * SELECT Playlist_Tbl._id, Playlist_Tbl.playlist_id, Playlist_Tbl.playlist_name,
+             * Playlist_Tbl.playlist_description, Playlist_Tbl.playlist_date,
+             * Playlist_Tbl.playlist_public, Playlist_Count_Tbl.countcolumn
+             * FROM Playlist_Tbl LEFT JOIN (SELECT Playlist_Songs_Tbl.playlist_id,
+             * COUNT(IFNULL(Playlist_Songs_Tbl.song_id, 0)) AS countcolumn FROM Playlist_Songs_Tbl
+             * GROUP BY Playlist_Songs_Tbl.playlist_id)  AS Playlist_Count_Tbl
+             * ON Playlist_Count_Tbl.playlist_id = Playlist_Tbl.playlist_id
+             *
+             */
+            case PLAYLIST_ALL: {
+                return  builder.table(Query.Subquery.PLAYLIST_JOIN_PLAYLIST_SONG_COUNT)
+                        .mapToTable(Playlist._ID, Tables.PLAYLIST)
+                        .mapToTable(Playlist.PLAYLIST_ID, Tables.PLAYLIST)
+                        .mapToTable(Playlist.PLAYLIST_NAME, Tables.PLAYLIST)
+                        .mapToTable(Playlist.PLAYLIST_DESCRIPTION, Tables.PLAYLIST)
+                        .mapToTable(Playlist.PLAYLIST_DATE, Tables.PLAYLIST)
+                        .mapToTable(Playlist.PLAYLIST_NUMOFSONGS, Query.Qualified.PLAYLIST_SONG_COUNT)
+                        .mapToTable(Playlist.PLAYLIST_PUBLIC, Tables.PLAYLIST);
+            }
             default: {
                 throw new UnsupportedOperationException("Unknown uri for " + match + ": " + uri);
             }

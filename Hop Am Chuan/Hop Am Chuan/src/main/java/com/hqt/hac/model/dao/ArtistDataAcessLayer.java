@@ -46,7 +46,7 @@ public class ArtistDataAcessLayer {
         }
     }
 
-    public static void deleteArtistByid(Context context, int artistId) {
+    public static void removeArtistByid(Context context, int artistId) {
         LOGD(TAG, "Delete Artist");
 
         ContentResolver resolver = context.getContentResolver();
@@ -58,7 +58,6 @@ public class ArtistDataAcessLayer {
 
     public static Artist getArtistById(Context context, int artistId) {
         LOGD(TAG, "Get Artist By Id");
-        // TODO: NOT TEST YET
         ContentResolver resolver = context.getContentResolver();
         Uri uri = HopAmChuanDBContract.Artists.CONTENT_URI;
         Uri artistUri = Uri.withAppendedPath(uri, artistId + "");

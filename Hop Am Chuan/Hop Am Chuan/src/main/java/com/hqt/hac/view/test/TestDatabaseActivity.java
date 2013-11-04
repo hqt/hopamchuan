@@ -13,13 +13,16 @@ import android.widget.TextView;
 
 import com.hqt.hac.helper.Helper;
 import com.hqt.hac.model.Artist;
+import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dao.ArtistDataAcessLayer;
+import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 import com.hqt.hac.provider.HopAmChuanDBContract;
 import com.hqt.hac.provider.HopAmChuanDatabase;
 import com.hqt.hac.provider.HopAmChuanProvider;
 import com.hqt.hac.view.R;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class TestDatabaseActivity extends ActionBarActivity {
@@ -54,7 +57,9 @@ public class TestDatabaseActivity extends ActionBarActivity {
         Artist artist = ArtistDataAcessLayer.getArtistById(getApplicationContext(), 2);
         res += artist + "\n";
 
-        textView.setText(res);
+        List<Playlist> playlists = PlaylistDataAccessLayer.getAllPlayLists(getApplicationContext());
+
+        textView.setText(Helper.arrayToString(playlists));
 
     }
 

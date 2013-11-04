@@ -3,14 +3,17 @@ package com.hqt.hac.helper;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
-import com.hqt.hac.model.dao.SongArtistDataAccessLayer;
-import com.hqt.hac.utils.ParserUtils;
 import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Chord;
+import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dao.ArtistDataAcessLayer;
 import com.hqt.hac.model.dao.ChordDataAccessLayer;
+import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
+import com.hqt.hac.model.dao.SongArtistDataAccessLayer;
 import com.hqt.hac.model.dao.SongDataAccessLayer;
+import com.hqt.hac.provider.HopAmChuanDBContract;
+import com.hqt.hac.utils.ParserUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -62,6 +65,22 @@ public class Helper {
         SongArtistDataAccessLayer.insertSong_Singer(context, 1, 1);
         SongArtistDataAccessLayer.insertSong_Singer(context, 1, 3);
         SongArtistDataAccessLayer.insertSong_Singer(context, 3, 3);
+
+        /*// create favorite includes two songs
+        FavoriteDataAccessLayer.addSongToFavorite(context, 1);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 2);*/
+
+        // Create sample playlists
+        Playlist playlist1 = new Playlist(1, "Playlist 1", "Mot", new Date(), 1);
+        Playlist playlist2 = new Playlist(2, "Playlist 2", "Hai", new Date(), 0);
+        Playlist playlist3 = new Playlist(3, "Playlist 3", "Ba", new Date(), 1);
+        PlaylistDataAccessLayer.addNewPlaylist(context, playlist1);
+        PlaylistDataAccessLayer.addNewPlaylist(context, playlist2);
+        PlaylistDataAccessLayer.addNewPlaylist(context, playlist3);
+
+        PlaylistDataAccessLayer.removePlaylistById(context, 2);
+
+
     }
 
     public static Drawable getDrawableFromResId(Context context, int id) {

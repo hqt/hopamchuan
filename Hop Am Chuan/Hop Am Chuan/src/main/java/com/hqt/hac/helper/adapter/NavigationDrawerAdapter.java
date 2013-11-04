@@ -35,7 +35,7 @@ public class NavigationDrawerAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return categories.length;
+        return 1 + categories.length + 1;
     }
 
     @Override
@@ -71,19 +71,19 @@ public class NavigationDrawerAdapter extends BaseAdapter {
 
         switch(type) {
             case TYPE_HEADER:
-                break;
+                return getViewHeader(position, convertView, parent);
             case TYPE_CATEGORY:
-                getViewTypeOne(position, convertView, parent);
-                break;
+                return getViewItemTypeOne(position, convertView, parent);
             case TYPE_HEADER_PLAYLIST:
-                break;
+                return getViewPlaylistHeader(position, convertView, parent);
             case TYPE_PLAYLIST:
-                getViewTypeTwo(position, convertView, parent);
+                //getViewItemTypeTwo(position, convertView, parent);
                 break;
         }
 
         return null;
     }
+
 
 
     private View getViewHeader(int position, View convertView, ViewGroup parent){
@@ -103,7 +103,9 @@ public class NavigationDrawerAdapter extends BaseAdapter {
         }
 
         // assign value to view
-
+        holder.txtName.setText("huynh quang thao");
+        holder.txtMail.setText("huynhquangthao@gmail.com");
+        holder.imgAvatar.setImageResource(R.drawable.ic_menu_search);
 
         return row;
     }
@@ -123,45 +125,46 @@ public class NavigationDrawerAdapter extends BaseAdapter {
         }
 
         // assign value to view
+        holder.txtHeader.setText("PLAYLIST CUA TOI");
 
         return row;
     }
 
-    private View getViewTypeOne(int position, View convertView, ViewGroup parent) {
-        ViewHolderTypeOne holder = null;
+    private View getViewItemTypeOne(int position, View convertView, ViewGroup parent) {
+        ViewHolderItemTypeOne holder = null;
         View row = convertView;
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (row == null) {
             row = inflater.inflate(R.layout.list_item_navigation_drawer_1, null);
-            holder = new ViewHolderTypeOne();
+            holder = new ViewHolderItemTypeOne();
             holder.txtView = (TextView) row.findViewById(R.id.text);
             holder.imageView = (ImageView) row.findViewById(R.id.icon);
         }
         else {
-            holder = (ViewHolderTypeOne) row.getTag();
+            holder = (ViewHolderItemTypeOne) row.getTag();
         }
 
         // assign value to holder
-        holder.txtView.setText(categories[position]);
+        holder.txtView.setText(categories[position-1]);
         switch(position) {
-            case 0:
+            case 1:
                 // Trang chu
                 holder.imageView.setImageResource(R.drawable.ic_menu_search);
                 break;
-            case 1:
+            case 2:
                 // Playlist cua toi
                 holder.imageView.setImageResource(R.drawable.ic_menu_search);
                 break;
-            case 2:
+            case 3:
                 // Yeu Thich
                 holder.imageView.setImageResource(R.drawable.ic_action_not_important);
                 break;
-            case 3:
+            case 4:
                 // Tim Theo Hop Am
                 holder.imageView.setImageResource(R.drawable.ic_menu_search);
                 break;
-            case 4:
+            case 5:
                 // Tra cuu hop am
                 holder.imageView.setImageResource(R.drawable.ic_action_settings);
                 break;
@@ -170,20 +173,20 @@ public class NavigationDrawerAdapter extends BaseAdapter {
         return row;
     }
 
-    private View getViewTypeTwo(int position, View convertView, ViewGroup parent) {
-        ViewHolderTypeTwo holder = null;
+    private View getViewItemTypeTwo(int position, View convertView, ViewGroup parent) {
+        ViewHolderItemTypeTwo holder = null;
         View row = convertView;
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (row == null) {
             row = inflater.inflate(R.layout.list_item_navigation_drawer_2, null);
-            holder = new ViewHolderTypeTwo();
+            holder = new ViewHolderItemTypeTwo();
             holder.txtTitle = (TextView) row.findViewById(R.id.title);
             holder.txtDescription = (TextView) row.findViewById(R.id.description);
             holder.txtNumberOfSong = (TextView) row.findViewById(R.id.countSongText);
         }
         else {
-            holder = (ViewHolderTypeTwo) row.getTag();
+            holder = (ViewHolderItemTypeTwo) row.getTag();
         }
 
         // assign value to view
@@ -193,12 +196,12 @@ public class NavigationDrawerAdapter extends BaseAdapter {
 
 
 
-    private class ViewHolderTypeOne {
+    private class ViewHolderItemTypeOne {
         ImageView imageView;
         TextView txtView;
     }
 
-    private class ViewHolderTypeTwo {
+    private class ViewHolderItemTypeTwo {
         TextView txtTitle;
         TextView txtDescription;
         TextView txtNumberOfSong;

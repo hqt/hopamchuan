@@ -12,26 +12,45 @@ public class Playlist implements Serializable {
     public String playlistName;
     public String playlistDescription;
     public Date date;
-    public boolean isPublic;
-    public int numberOfSongs;
+    public int isPublic;
+    public int numberOfSongs = 0;
 
-    public Playlist(int id, int playlistId, String playlistName, String playlistDescription, Date date, boolean isPublic) {
+    public Playlist(int id, int playlistId, String playlistName, String playlistDescription, Date date, int isPublic) {
         this.id = id;
         this.playlistId = playlistId;
         this.playlistName = playlistName;
         this.playlistDescription = playlistDescription;
         this.date = date;
         this.isPublic = isPublic;
-        //numberOfSongs = PlaylistDataAccessLayer.getNumberOfSongsByPlaylist(id);
     }
 
-    public Playlist(int playlistId, String playlistName, String playlistDescription, Date date, boolean isPublic) {
+    public Playlist(int playlistId, String playlistName, String playlistDescription, Date date, int isPublic) {
         this.playlistId = playlistId;
         this.playlistName = playlistName;
         this.playlistDescription = playlistDescription;
         this.date = date;
         this.isPublic = isPublic;
     }
+
+    public Playlist(int id, int playlistId, String playlistName, String playlistDescription, Date date, int isPublic, int numberOfSongs) {
+        this.id = id;
+        this.playlistId = playlistId;
+        this.playlistName = playlistName;
+        this.playlistDescription = playlistDescription;
+        this.date = date;
+        this.isPublic = isPublic;
+        this.numberOfSongs = numberOfSongs;
+    }
+
+    public Playlist(int playlistId, String playlistName, String playlistDescription, Date date, int isPublic, int numberOfSongs) {
+        this.playlistId = playlistId;
+        this.playlistName = playlistName;
+        this.playlistDescription = playlistDescription;
+        this.date = date;
+        this.isPublic = isPublic;
+        this.numberOfSongs = numberOfSongs;
+    }
+
 
     @Override
     public String toString() {
@@ -42,8 +61,7 @@ public class Playlist implements Serializable {
                 ", playlistDescription='" + playlistDescription + '\'' +
                 ", date=" + date +
                 ", isPublic=" + isPublic +
+                ", numberOfSongs=" + numberOfSongs +
                 '}';
     }
-
-
 }

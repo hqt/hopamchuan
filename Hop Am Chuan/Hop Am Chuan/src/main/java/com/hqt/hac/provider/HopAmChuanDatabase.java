@@ -5,11 +5,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
+import com.hqt.hac.provider.helper.Query;
+
 import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 import static com.hqt.hac.provider.HopAmChuanDBContract.ArtistsColumns;
 import static com.hqt.hac.provider.HopAmChuanDBContract.ChordsColumns;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsColumns;
+import static com.hqt.hac.provider.HopAmChuanDBContract.Tables;
+import static com.hqt.hac.provider.helper.Query.References;
 
 /**
  * helper for managing {@link SQLiteDatabase} that stores data for
@@ -26,29 +30,6 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
 
     // NOTE: carefully update onUpgrade() when bumping database versions
     // to make sure user data is saved
-
-    /**
-     * List All Tables in this database
-     */
-    public static interface Tables {
-        String ARTISTS = "ArtistTbl";
-        String CHORDS = "ChordTbl";
-        String SONGS = "SongTbl";
-        String SONGS_AUTHORS = "Songs_Authors_Tbl";
-        String SONGS_CHORDS = "Songs_Chords_Tbl";
-        String SONGS_SINGERS = "Songs_Singers_Tbl";
-        String PLAYLIST = "Playlist_Tbl";
-        String PLAYLIST_SONGS = "Playlist_Songs_Tbl";
-        String FAVORITES = "Favorites_Tbl";
-    }
-
-    /** {@code REFERENCES} clauses. */
-    private interface References {
-        String ARTIST_ID = "REFERENCES " + Tables.ARTISTS + "(" + HopAmChuanDBContract.Artists.ARTIST_ID + ")";
-        String CHORD_ID = "REFERENCES " + Tables.CHORDS + "(" + HopAmChuanDBContract.Chords.CHORD_ID + ")";
-        String SONG_ID = "REFERENCES " + Tables.SONGS + "(" + HopAmChuanDBContract.Songs.SONG_ID + ")";
-        String PLAYLIST_ID = "REFERENCES " + Tables.PLAYLIST + "(" + HopAmChuanDBContract.Playlist.PLAYLIST_ID + ")";
-    }
 
     public HopAmChuanDatabase(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -157,7 +138,7 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + Tables.PLAYLIST_SONGS + " ("
                 + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + HopAmChuanDBContract.PlaylistColumns.PLAYLIST_ID + " INTEGER " + References.PLAYLIST_ID + ","
-                + SongsColumns.SONG_ID + " INTEGER " + References.SONG_ID + ","
+                + SongsColumns.SONG_ID + " INTEGER " + Query.References.SONG_ID + ","
                 + "UNIQUE (" + HopAmChuanDBContract.PlaylistColumns.PLAYLIST_ID + ","
                 + SongsColumns.SONG_ID + ") ON CONFLICT REPLACE)");
 
