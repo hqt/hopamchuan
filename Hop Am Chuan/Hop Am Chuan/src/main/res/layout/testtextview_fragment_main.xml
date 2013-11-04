@@ -16,6 +16,7 @@
         android:text="tiếng việt"
         android:id="@+id/testTextView"
         android:typeface="monospace"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>
