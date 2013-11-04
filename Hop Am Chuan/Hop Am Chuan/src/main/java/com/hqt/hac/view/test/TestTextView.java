@@ -11,8 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.hqt.hac.model.Song;
 import com.hqt.hac.utils.HacUtils;
+import com.hqt.hac.utils.ParserUtils;
 import com.hqt.hac.view.R;
+
+import java.util.List;
 
 public class TestTextView extends ActionBarActivity {
 
@@ -25,7 +29,9 @@ public class TestTextView extends ActionBarActivity {
 
         testTextView = (TextView) findViewById(R.id.testTextView);
         if (testTextView != null) {
-            HacUtils.setSongFormatted(getApplicationContext(), testTextView, "Lorem ipsum dolor sit amet đây là tiếng việt\nVà\n đây\n là\n xuống \ndòng.");
+            List<Song> songs = ParserUtils.getAllSongsFromResource(getApplicationContext());
+            String songContent = songs.get(1).content;
+            HacUtils.setSongFormatted(getApplicationContext(), testTextView, songContent);
         } else {
             Log.i("Debug", "testTextView is null!");
         }
