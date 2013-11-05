@@ -40,7 +40,6 @@ public class Artist implements Serializable {
         Artist artist = (Artist) o;
 
         if (artistId != artist.artistId) return false;
-        if (id != artist.id) return false;
         if (!artistAscii.equals(artist.artistAscii)) return false;
         if (!artistName.equals(artist.artistName)) return false;
 
