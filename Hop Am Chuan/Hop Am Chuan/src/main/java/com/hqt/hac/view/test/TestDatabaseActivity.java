@@ -60,11 +60,13 @@ public class TestDatabaseActivity extends ActionBarActivity {
 //        List<Playlist> playlists = PlaylistDataAccessLayer.getAllPlayLists(getApplicationContext());
 //        res += Helper.arrayToString(playlists);
 
+        res += DatabaseTest.TestGetArtistById(getApplicationContext()) + "\n";
         res += DatabaseTest.TestInsertSong_Chord(getApplicationContext()) + "\n";
         res += DatabaseTest.TestGetAuthorsBySongId(getApplicationContext()) + "\n";
         res += DatabaseTest.TestGetSingersBySongId(getApplicationContext()) + "\n";
         res += DatabaseTest.TestGetChordsBySongId(getApplicationContext()) + "\n";
         res += DatabaseTest.TestGetSongById(getApplicationContext()) + "\n";
+        res += DatabaseTest.TestFindAllSongsByAuthor(getApplicationContext()) + "\n";
 
         textView.setText(res);
 
