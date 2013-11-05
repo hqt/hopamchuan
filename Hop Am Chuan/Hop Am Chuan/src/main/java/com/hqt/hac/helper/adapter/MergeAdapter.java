@@ -1,17 +1,17 @@
-/*
 package com.hqt.hac.helper.adapter;
 
-        import android.database.DataSetObserver;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.BaseAdapter;
-        import android.widget.ListAdapter;
-        import android.widget.SectionIndexer;
-        import java.util.ArrayList;
-        import java.util.Collections;
-        import java.util.List;
 
-*/
+import android.database.DataSetObserver;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
+import android.widget.SectionIndexer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import com.commonsware.cwac.sacklist.SackOfViewsAdapter;
+
 /**
  * Adapter that merges multiple child adapters and views
  * into a single contiguous whole.
@@ -21,49 +21,41 @@ package com.hqt.hac.helper.adapter;
  * adapters also have distinct ranges for their row ids, as
  * returned by getItemId().
  *
- *//*
-
+ */
 public class MergeAdapter extends BaseAdapter implements SectionIndexer {
     protected PieceStateRoster pieces=new PieceStateRoster();
 
-    */
-/**
+    /**
      * Stock constructor, simply chaining to the superclass.
-     *//*
-
+     */
     public MergeAdapter() {
         super();
     }
 
-    */
-/**
+    /**
      * Adds a new adapter to the roster of things to appear in
      * the aggregate list.
      *
      * @param adapter
      *          Source for row views for this section
-     *//*
-
+     */
     public void addAdapter(ListAdapter adapter) {
         pieces.add(adapter);
         adapter.registerDataSetObserver(new CascadeDataSetObserver());
     }
 
-    */
-/**
+    /**
      * Adds a new View to the roster of things to appear in
      * the aggregate list.
      *
      * @param view
      *          Single view to add
-     *//*
-
+     */
     public void addView(View view) {
         addView(view, false);
     }
 
-    */
-/**
+    /**
      * Adds a new View to the roster of things to appear in
      * the aggregate list.
      *
@@ -71,8 +63,7 @@ public class MergeAdapter extends BaseAdapter implements SectionIndexer {
      *          Single view to add
      * @param enabled
      *          false if views are disabled, true if enabled
-     *//*
-
+     */
     public void addView(View view, boolean enabled) {
         ArrayList<View> list=new ArrayList<View>(1);
 
@@ -81,21 +72,18 @@ public class MergeAdapter extends BaseAdapter implements SectionIndexer {
         addViews(list, enabled);
     }
 
-    */
-/**
+    /**
      * Adds a list of views to the roster of things to appear
      * in the aggregate list.
      *
      * @param views
      *          List of views to add
-     *//*
-
+     */
     public void addViews(List<View> views) {
         addViews(views, false);
     }
 
-    */
-/**
+    /**
      * Adds a list of views to the roster of things to appear
      * in the aggregate list.
      *
@@ -103,8 +91,7 @@ public class MergeAdapter extends BaseAdapter implements SectionIndexer {
      *          List of views to add
      * @param enabled
      *          false if views are disabled, true if enabled
-     *//*
-
+     */
     public void addViews(List<View> views, boolean enabled) {
         if (enabled) {
             addAdapter(new EnabledSackAdapter(views));
@@ -114,15 +101,13 @@ public class MergeAdapter extends BaseAdapter implements SectionIndexer {
         }
     }
 
-    */
-/**
+    /**
      * Get the data item associated with the specified
      * position in the data set.
      *
      * @param position
      *          Position of the item whose data we want
-     *//*
-
+     */
     @Override
     public Object getItem(int position) {
         for (ListAdapter piece : getPieces()) {
@@ -138,15 +123,13 @@ public class MergeAdapter extends BaseAdapter implements SectionIndexer {
         return(null);
     }
 
-    */
-/**
+    /**
      * Get the adapter associated with the specified position
      * in the data set.
      *
      * @param position
      *          Position of the item whose adapter we want
-     *//*
-
+     */
     public ListAdapter getAdapter(int position) {
         for (ListAdapter piece : getPieces()) {
             int size=piece.getCount();
@@ -161,12 +144,10 @@ public class MergeAdapter extends BaseAdapter implements SectionIndexer {
         return(null);
     }
 
-    */
-/**
+    /**
      * How many items are in the data set represented by this
      * Adapter.
-     *//*
-
+     */
     @Override
     public int getCount() {
         int total=0;
@@ -178,12 +159,10 @@ public class MergeAdapter extends BaseAdapter implements SectionIndexer {
         return(total);
     }
 
-    */
-/**
+    /**
      * Returns the number of types of Views that will be
      * created by getView().
-     *//*
-
+     */
     @Override
     public int getViewTypeCount() {
         int total=0;
@@ -197,15 +176,13 @@ public class MergeAdapter extends BaseAdapter implements SectionIndexer {
         // content add'
     }
 
-    */
-/**
+    /**
      * Get the type of View that will be created by getView()
      * for the specified item.
      *
      * @param position
      *          Position of the item whose data we want
-     *//*
-
+     */
     @Override
     public int getItemViewType(int position) {
         int typeOffset=0;
@@ -229,26 +206,22 @@ public class MergeAdapter extends BaseAdapter implements SectionIndexer {
         return(result);
     }
 
-    */
-/**
+    /**
      * Are all items in this ListAdapter enabled? If yes it
      * means all items are selectable and clickable.
-     *//*
-
+     */
     @Override
     public boolean areAllItemsEnabled() {
         return(false);
     }
 
-    */
-/**
+    /**
      * Returns true if the item at the specified position is
      * not a separator.
      *
      * @param position
      *          Position of the item whose data we want
-     *//*
-
+     */
     @Override
     public boolean isEnabled(int position) {
         for (ListAdapter piece : getPieces()) {
@@ -264,8 +237,7 @@ public class MergeAdapter extends BaseAdapter implements SectionIndexer {
         return(false);
     }
 
-    */
-/**
+    /**
      * Get a View that displays the data at the specified
      * position in the data set.
      *
@@ -275,8 +247,7 @@ public class MergeAdapter extends BaseAdapter implements SectionIndexer {
      *          View to recycle, if not null
      * @param parent
      *          ViewGroup containing the returned View
-     *//*
-
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         for (ListAdapter piece : getPieces()) {
@@ -293,15 +264,13 @@ public class MergeAdapter extends BaseAdapter implements SectionIndexer {
         return(null);
     }
 
-    */
-/**
+    /**
      * Get the row id associated with the specified position
      * in the list.
      *
      * @param position
      *          Position of the item whose data we want
-     *//*
-
+     */
     @Override
     public long getItemId(int position) {
         for (ListAdapter piece : getPieces()) {
@@ -494,4 +463,4 @@ public class MergeAdapter extends BaseAdapter implements SectionIndexer {
             notifyDataSetInvalidated();
         }
     }
-}*/
+}

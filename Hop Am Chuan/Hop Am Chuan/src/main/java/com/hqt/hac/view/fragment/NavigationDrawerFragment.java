@@ -22,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
 import com.hqt.hac.view.R;
 
@@ -103,6 +104,13 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
+
+        /**
+         * Using MergeAdapter for complex view
+         */
+        MergeAdapter mergeAdapter = new MergeAdapter();
+
+
 
         /*String[] categories = getResources().getStringArray(R.array.navigation_drawer_default_items);
         mDrawerListView.setAdapter(new ArrayAdapter<String>(

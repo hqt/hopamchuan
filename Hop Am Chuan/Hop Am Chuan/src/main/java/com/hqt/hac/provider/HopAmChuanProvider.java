@@ -28,6 +28,8 @@ import static com.hqt.hac.provider.HopAmChuanDBContract.SongsAuthors;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsSingers;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsChords;
 
+import static com.hqt.hac.provider.helper.Query.URI.*;
+
 import static com.hqt.hac.utils.LogUtils.LOGV;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Tables;
@@ -94,62 +96,62 @@ public class HopAmChuanProvider extends ContentProvider {
         /**
          * Songs table
          */
-        matcher.addURI(authority, "songs", SONGS);
-        matcher.addURI(authority, "songs/author/#", AUTHORS_BY_SONG_ID);
-        matcher.addURI(authority, "songs/singer/#", SINGERS_BY_SONG_ID);
-        matcher.addURI(authority, "songs/chord/#", CHORDS_BY_SONG_ID);
-        matcher.addURI(authority, "songs/#", SONGS_ID);
+        matcher.addURI(authority, PATH_SONGS, SONGS);
+        matcher.addURI(authority, PATH_SONGS + "/author/#", AUTHORS_BY_SONG_ID);
+        matcher.addURI(authority, PATH_SONGS + "/singer/#", SINGERS_BY_SONG_ID);
+        matcher.addURI(authority, PATH_SONGS + "/chord/#", CHORDS_BY_SONG_ID);
+        matcher.addURI(authority, PATH_SONGS + "/#", SONGS_ID);
 
         /**
          * Artists table
          */
-        matcher.addURI(authority, "artists", ARTISTS);
-        matcher.addURI(authority, "artists/#", ARTISTS_ID);
-        matcher.addURI(authority, "artists/singer/songs/#", SINGER_TO_SONGS);
-        matcher.addURI(authority, "artists/author/songs/#", AUTHOR_TO_SONGS);
+        matcher.addURI(authority, PATH_ARTISTS, ARTISTS);
+        matcher.addURI(authority, PATH_ARTISTS + "/#", ARTISTS_ID);
+        matcher.addURI(authority, PATH_ARTISTS + "/singer/songs/#", SINGER_TO_SONGS);
+        matcher.addURI(authority, PATH_ARTISTS + "/author/songs/#", AUTHOR_TO_SONGS);
 
         /**
          * chords table
          */
-        matcher.addURI(authority, "chords", CHORDS);
-        matcher.addURI(authority, "chords/#", CHORDS_ID);
+        matcher.addURI(authority, PATH_CHORDS, CHORDS);
+        matcher.addURI(authority, PATH_CHORDS + "/#", CHORDS_ID);
 
         /**
          * SongsSingers table
          */
-        matcher.addURI(authority, "songs_singers", SONGS_SINGERS);
-        matcher.addURI(authority, "songs_singers/#", SONGS_SINGERS_ID);
+        matcher.addURI(authority, PATH_SONGS_SINGERS, SONGS_SINGERS);
+        matcher.addURI(authority, PATH_SONGS_SINGERS + "/#", SONGS_SINGERS_ID);
 
         /**
          * SongsAuthors table
          */
-        matcher.addURI(authority, "songs_authors", SONGS_AUTHORS);
-        matcher.addURI(authority, "songs_authors/#", SONGS_AUTHORS_ID);
+        matcher.addURI(authority, PATH_SONGS_AUTHORS, SONGS_AUTHORS);
+        matcher.addURI(authority, PATH_SONGS_AUTHORS + "/#", SONGS_AUTHORS_ID);
 
         /**
          * SongsChords table
          */
-        matcher.addURI(authority, "songs_chords", SONGS_CHORDS);
-        matcher.addURI(authority, "songs_chords/#", SONGS_CHORDS_ID);
+        matcher.addURI(authority, PATH_SONGS_CHORDS, SONGS_CHORDS);
+        matcher.addURI(authority, PATH_SONGS_CHORDS + "/#", SONGS_CHORDS_ID);
 
         /**
          * Playlist Table
          */
-        matcher.addURI(authority, "playlist", PLAYLIST);
-        matcher.addURI(authority, "playlist/all", PLAYLIST_ALL);
-        matcher.addURI(authority, "playlist/#", PLAYLIST_ID);
+        matcher.addURI(authority, PATH_PLAYLIST, PLAYLIST);
+        matcher.addURI(authority, PATH_PLAYLIST + "/all", PLAYLIST_ALL);
+        matcher.addURI(authority, PATH_PLAYLIST + "/#", PLAYLIST_ID);
 
         /**
          * PlaylistSongs table
          */
-        matcher.addURI(authority, "playlist_songs", PLAYLIST_SONGS);
-        matcher.addURI(authority, "playlist_songs/#", PLAYLIST_SONGS_ID);
+        matcher.addURI(authority, PATH_PLAYLIST_SONGS, PLAYLIST_SONGS);
+        matcher.addURI(authority, PATH_PLAYLIST_SONGS + "/#", PLAYLIST_SONGS_ID);
 
         /**
          * Favorite table
          */
-        matcher.addURI(authority, "favorites", FAVORITES);
-        matcher.addURI(authority, "favorites/#", FAVORITES_SONG_ID);
+        matcher.addURI(authority, PATH_FAVORITES, FAVORITES);
+        matcher.addURI(authority, PATH_FAVORITES + "/#", FAVORITES_SONG_ID);
 
         return matcher;
     }
@@ -301,7 +303,7 @@ public class HopAmChuanProvider extends ContentProvider {
         }
 
         final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
-        final SelectionBuilder builder = buildSimpleSelection(uri);
+        final SelectionBuilder builder = buildExpandedSelection(uri);
         int retVal = builder.where(selection, selectionArgs).delete(db);
         notifyChange(uri, !HopAmChuanDBContract.hasCallerIsSyncAdapterParameter(uri));
         return retVal;
@@ -324,7 +326,7 @@ public class HopAmChuanProvider extends ContentProvider {
             return 1;
         }
 
-        final SelectionBuilder builder = buildSimpleSelection(uri);
+        final SelectionBuilder builder = buildExpandedSelection(uri);
         int retVal = builder.where(selection, selectionArgs).update(db, values);
         boolean syncToNetwork = !HopAmChuanDBContract.hasCallerIsSyncAdapterParameter(uri);
         notifyChange(uri, syncToNetwork);
@@ -367,68 +369,6 @@ public class HopAmChuanProvider extends ContentProvider {
     private void notifyChange(Uri uri, boolean syncToNetwork) {
         Context context = getContext();
         context.getContentResolver().notifyChange(uri, null, syncToNetwork);
-    }
-
-
-    /**
-     * Build a simple {@link SelectionBuilder} to match the requested
-     * {@link Uri}. This is usually enough to support {@link #insert},
-     * {@link #update}, and {@link #delete} operations.
-     */
-    public static SelectionBuilder buildSimpleSelection(Uri uri) {
-        final SelectionBuilder builder = new SelectionBuilder();
-        final int match = sUriMatcher.match(uri);
-        switch (match) {
-            case ARTISTS: {
-                return builder.table(Tables.ARTIST);
-            }
-            case ARTISTS_ID: {
-                final String artistId = Artists.getArtistId(uri);
-                return builder.table(Tables.ARTIST)
-                        .where(Artists.ARTIST_ID + "=?", artistId);
-            }
-            case SONGS: {
-                return builder.table(Tables.SONG);
-            }
-            case SONGS_ID: {
-                final String songId = Songs.getSongId(uri);
-                return builder.table(Tables.SONG)
-                        .where(Songs.SONG_ID + "=?", songId);
-            }
-
-            case CHORDS: {
-                return builder.table(Tables.CHORD);
-            }
-            case CHORDS_ID: {
-                final String chordId = Chords.getChordId(uri);
-                return builder.table(Tables.CHORD)
-                        .where(Chords.CHORD_ID + "=?", chordId);
-            }
-            case SONGS_CHORDS: {
-                return builder.table(Tables.SONG_CHORD);
-            }
-            case SONGS_SINGERS: {
-                return builder.table(Tables.SONG_SINGER);
-            }
-            case SONGS_AUTHORS: {
-                return builder.table(Tables.SONG_AUTHOR);
-            }
-            case PLAYLIST: {
-                return builder.table(Tables.PLAYLIST);
-            }
-            case PLAYLIST_ID: {
-                final String playlistId = Playlist.getPlaylistId(uri);
-                return builder.table(Tables.PLAYLIST)
-                        .where(Playlist.PLAYLIST_ID + "=?", playlistId);
-            }
-            case PLAYLIST_SONGS: {
-                return builder.table(Tables.PLAYLIST_SONG);
-            }
-
-            default: {
-                throw new UnsupportedOperationException("Unknown uri for " + match + ": " + uri);
-            }
-        }
     }
 
     public static SelectionBuilder buildExpandedSelection(Uri uri) {

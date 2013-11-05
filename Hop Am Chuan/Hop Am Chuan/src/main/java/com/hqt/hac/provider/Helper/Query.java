@@ -17,9 +17,34 @@ import static com.hqt.hac.provider.HopAmChuanDBContract.Tables;
 public class Query {
 
     /**
+     * this constant string is used for building URI
+     * constants that append to Database URI
+     * for example : content://com.hqt.hac.provider/artists
+     */
+    public static interface URI {
+        final String PATH_ARTISTS = "artists";
+        final String PATH_SONGS = "songs";
+        final String PATH_CHORDS = "chords";
+        final String PATH_SONGS_AUTHORS = "songs_authors";
+        final String PATH_SONGS_SINGERS = "songs_singers";
+        final String PATH_SONGS_CHORDS = "songs_chords";
+        final String PATH_PLAYLIST = "playlist";
+        final String PATH_PLAYLIST_SONGS = "playlist_songs";
+        final String PATH_FAVORITES = "favorites";
+
+        final String PATH_AT = "at";
+        final String PATH_AFTER = "after";
+        final String PATH_BETWEEN = "between";
+        final String PATH_SEARCH = "search";
+        final String PATH_SEARCH_SUGGEST = "search_suggest_query";
+        final String PATH_SEARCH_INDEX = "search_index";
+    }
+
+
+    /**
      * Use this interface to get Projection columns
      * when to use query method to query a table
-     *
+     * <p/>
      * Trick : When programmer wants to debug sql query
      * can add a dummy column.
      * Locat will throws exception, and print out that query.
@@ -66,7 +91,7 @@ public class Query {
     /**
      * {@code REFERENCES} clauses.
      * Using when create database
-     * */
+     */
     public interface References {
         String ARTIST_ID = "REFERENCES " + Tables.ARTIST + "(" + HopAmChuanDBContract.Artists.ARTIST_ID + ")";
         String CHORD_ID = "REFERENCES " + Tables.CHORD + "(" + HopAmChuanDBContract.Chords.CHORD_ID + ")";
@@ -101,9 +126,11 @@ public class Query {
         String SONGAUTHOR_SONG_ID = Tables.SONG_AUTHOR + "." + SongsAuthors.SONG_ID;
 
         Object SONGCHORD_CHORD_ID = Tables.SONG_CHORD + "." + SongsChords.CHORD_ID;
-        Object SONGCHORD_SONG_ID =  Tables.SONG_CHORD + "." + SongsChords.SONG_ID;;
+        Object SONGCHORD_SONG_ID = Tables.SONG_CHORD + "." + SongsChords.SONG_ID;
+        ;
         Object CHORD_CHORD_ID = Tables.CHORD + "." + Chords.CHORD_ID;
     }
+
     /**
      * sub query : using for module
      */

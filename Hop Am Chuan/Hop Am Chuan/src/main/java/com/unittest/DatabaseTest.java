@@ -20,9 +20,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Quang Trung on 11/4/13.
- */
 public class DatabaseTest {
     /**
      * Use this method for easier development phrase
@@ -426,6 +423,4 @@ public class DatabaseTest {
         SongChordDataAccessLayer.removeSong_Chord(context, 4, 2);
         return res;
     }
-
-
 }

@@ -36,9 +36,7 @@ public class TestDatabaseActivity extends ActionBarActivity {
         TextView textView = (TextView) findViewById(R.id.textview);
 
         // delete database for consistency
-
-        // create new database here
-        DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());
+        HopAmChuanDatabase.deleteDatabase(getApplicationContext());
 
         String res = "";
 

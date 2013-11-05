@@ -5,6 +5,9 @@ import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 
+
+import static com.hqt.hac.provider.helper.Query.URI.*;
+
 public class HopAmChuanDBContract {
 
     /**
@@ -67,28 +70,6 @@ public class HopAmChuanDBContract {
     public static final String CONTENT_AUTHORITY = "com.hqt.hac.provider";
 
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
-
-    /**
-     * constants that append to Database URI
-     * for example : content://com.hqt.hac.provider/artists
-     */
-    private static final String PATH_ARTISTS = "artists";
-    private static final String PATH_SONGS = "songs";
-    private static final String PATH_CHORDS = "chords";
-    private static final String PATH_SONGS_AUTHORS = "songs_authors";
-    private static final String PATH_SONGS_SINGERS = "songs_singers";
-    private static final String PATH_SONGS_CHORDS = "songs_chords";
-    private static final String PATH_PLAYLIST = "playlist";
-    private static final String PATH_PLAYLIST_SONGS = "playlist_songs";
-    private static final String PATH_FAVORITES = "favorites";
-
-    private static final String PATH_AT = "at";
-    private static final String PATH_AFTER = "after";
-    private static final String PATH_BETWEEN = "between";
-    private static final String PATH_SEARCH = "search";
-    private static final String PATH_SEARCH_SUGGEST = "search_suggest_query";
-    private static final String PATH_SEARCH_INDEX = "search_index";
-
 
     /**
      * Following is the inner class that describe tables in database
