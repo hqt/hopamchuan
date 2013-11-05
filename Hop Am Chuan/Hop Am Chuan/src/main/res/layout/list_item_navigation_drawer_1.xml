@@ -14,10 +14,10 @@
 
     <TextView
         android:id="@+id/text"
-        android:textStyle="bold"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:text="@string/example_text"
+        android:textColor="#e7ecf0"
         android:layout_height="wrap_content"
         android:layout_gravity="start|center_vertical" />
 

@@ -39,5 +39,9 @@
     <string name="example_number">10</string>
     <string name="title_activity_test_text_view">Test TextView</string>
     <string name="title_activity_test_surface_view">MainActivity</string>
+    <string name="title_activity_welcome_fragment">MainActivity</string>
+    <string name="title_activity_my_playlist_fragment">Playlist cua toi</string>
+    <string name="title_activity_my_favorite_fragment">My Favorite</string>
+    <string name="title_activity_playlist_detail_fragment">MainActivity</string>
 
 </resources>

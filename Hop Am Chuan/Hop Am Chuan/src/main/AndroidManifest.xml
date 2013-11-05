@@ -32,6 +32,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -67,8 +68,25 @@
             android:label="@string/title_activity_test_database" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.hqt.hac.view.WelcomeFragment"
+            android:label="@string/title_activity_welcome_fragment" >
+        </activity>
+        <activity
+            android:name="com.hqt.hac.view.MyPlaylistFragment"
+            android:label="@string/title_activity_my_playlist_fragment" >
+        </activity>
+        <activity
+            android:name="com.hqt.hac.view.MyFavoriteFragment"
+            android:label="@string/title_activity_my_favorite_fragment" >
+        </activity>
+        <activity
+            android:name="com.hqt.hac.view.PlaylistDetailFragment"
+            android:label="@string/title_activity_playlist_detail_fragment" >
         </activity>
     </application>
 

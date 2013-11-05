@@ -1,12 +1,21 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="32dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:gravity="center_vertical"
-    android:textColor="@color/body_text_2"
-    android:textAllCaps="true"
-    android:id="@+id/playlist_header"
-    android:textStyle="bold"
-    android:text="@string/example_text"
-    android:textAppearance="?android:attr/textAppearanceLarge" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:baselineAligned="false">
+
+    <TextView
+        android:id="@+id/playlist_header"
+        style="@style/ListItemTitle"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:textColor="#bec1ca"
+        android:layout_gravity="start|center_vertical" />
+
+    <View android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#e0e0e0" />
+
+</LinearLayout>

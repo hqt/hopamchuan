@@ -80,7 +80,6 @@ public class Helper {
 
         PlaylistDataAccessLayer.removePlaylistById(context, 2);
 
-
     }
 
     public static Drawable getDrawableFromResId(Context context, int id) {

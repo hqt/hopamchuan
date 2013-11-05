@@ -1,5 +1,6 @@
 package com.hqt.hac.view.fragment;
 
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -89,6 +90,9 @@ public class NavigationDrawerFragment extends Fragment {
             Bundle savedInstanceState) {
         mDrawerListView = (ListView) inflater.inflate(
                 R.layout.fragment_navigation_drawer, container, false);
+
+        mDrawerListView.setSelector(android.R.color.transparent);
+        mDrawerListView.setCacheColorHint(Color.WHITE);
 
         NavigationDrawerAdapter adapter = new NavigationDrawerAdapter(getActivity().getApplicationContext());
         mDrawerListView.setAdapter(adapter);

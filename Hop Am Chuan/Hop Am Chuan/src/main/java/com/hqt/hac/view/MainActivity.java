@@ -20,6 +20,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hqt.hac.utils.UIUtils;
+import com.hqt.hac.view.fragment.MyFavoriteFragment;
+import com.hqt.hac.view.fragment.MyPlaylistFragment;
 import com.hqt.hac.view.fragment.NavigationDrawerFragment;
 import com.hqt.hac.view.fragment.SongListFragment;
 
@@ -30,15 +32,6 @@ public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private static final String TAG = makeLogTag(MainActivity.class);
-
-    public static enum NAVIGATION_DRAWER_ITEMS {
-        HOMEPAGE,
-        MY__PLAYLIST,
-        FAVORITE,
-        FIND_CHORD,
-        LOOKUP_CHORD
-    }
-
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -78,17 +71,21 @@ public class MainActivity extends ActionBarActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         switch (position) {
-            case 0 :
+            case 1 :
                 SongListFragment fragment = new SongListFragment();
                 fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
                 break;
-            case 1 :
-                break;
-            case 2:
+            case 2 :
+                MyPlaylistFragment myPlaylistFragment = new MyPlaylistFragment();
+                fragmentManager.beginTransaction().replace(R.id.container, myPlaylistFragment).commit();
                 break;
             case 3:
+                MyFavoriteFragment myFavoriteFragment = new MyFavoriteFragment();
+                fragmentManager.beginTransaction().replace(R.id.container, myFavoriteFragment);
                 break;
             case 4:
+                break;
+            case 5:
                 break;
             default:
             fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(position+1)).commit();
@@ -96,19 +93,6 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
-    public void onSectionAttached(int number) {
-        switch (number) {
-            case 1:
-                mTitle = getString(R.string.title_section1);
-                break;
-            case 2:
-                mTitle = getString(R.string.title_section2);
-                break;
-            case 3:
-                mTitle = getString(R.string.title_section3);
-                break;
-        }
-    }
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
@@ -215,12 +199,6 @@ public class MainActivity extends ActionBarActivity
             return rootView;
         }
 
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
-        }
     }
 
 }
