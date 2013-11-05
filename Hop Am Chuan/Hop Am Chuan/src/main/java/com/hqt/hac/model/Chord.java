@@ -9,17 +9,15 @@ public class Chord implements Serializable {
     public String name;
     public String relations;
 
-    public Chord(int id, int chordId, String name, String relations) {
+    public Chord(int id, int chordId, String name) {
         this.id = id;
         this.chordId = chordId;
         this.name = name;
-        this.relations = relations;
     }
 
-    public Chord(int chordId, String name, String relations) {
+    public Chord(int chordId, String name) {
         this.chordId = chordId;
         this.name = name;
-        this.relations = relations;
     }
 
     @Override
@@ -30,5 +28,23 @@ public class Chord implements Serializable {
                 ", name='" + name + '\'' +
                 ", relations='" + relations + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Chord chord = (Chord) o;
+
+        if (chordId != chord.chordId) return false;
+        if (!name.equals(chord.name)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 }

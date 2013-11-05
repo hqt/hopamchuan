@@ -5,21 +5,19 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.provider.BaseColumns;
 
 import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.HopAmChuanDBContract;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.hqt.hac.provider.HopAmChuanDBContract.Songs;
 import static com.hqt.hac.provider.helper.Query.Projections;
 import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
-import static com.hqt.hac.provider.HopAmChuanDBContract.Songs;
 
 public class ArtistDataAcessLayer {
 
@@ -78,7 +76,13 @@ public class ArtistDataAcessLayer {
             int ArtistId = c.getInt(artistidCol);
             String name = c.getString(nameCol);
             String ascii = c.getString(asciiCol);
+            if (c != null) {
+                c.close();
+            }
             return new Artist(id, ArtistId, name, ascii);
+        }
+        if (c != null) {
+            c.close();
         }
         return null;
     }
@@ -160,6 +164,7 @@ public class ArtistDataAcessLayer {
                 LOGE(TAG, "error when parse song " + e.getMessage());
             }*/
         }
+        c.close();
         return songs;
     }
 

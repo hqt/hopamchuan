@@ -3,7 +3,9 @@ package com.hqt.hac.view.test;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,7 +33,12 @@ public class TestTextView extends ActionBarActivity {
         if (testTextView != null) {
             List<Song> songs = ParserUtils.getAllSongsFromResource(getApplicationContext());
             String songContent = songs.get(1).content;
-            HacUtils.setSongFormatted(getApplicationContext(), testTextView, songContent);
+            DisplayMetrics displaymetrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+            testTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, 22);
+
+            HacUtils.setSongFormatted(getApplicationContext(), testTextView, songContent, displaymetrics);
+
         } else {
             Log.i("Debug", "testTextView is null!");
         }

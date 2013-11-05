@@ -157,8 +157,7 @@ public class ParserUtils {
                 JsonObject object = element.getAsJsonObject();
                 int chordId = object.get("chord_id").getAsInt();
                 String name = object.get("name").getAsString();
-                String relations = object.get("relations").getAsString();
-                Chord chord = new Chord(chordId, name, relations);
+                Chord chord = new Chord(chordId, name);
                 chords.add(chord);
             }
             catch (Exception e) {

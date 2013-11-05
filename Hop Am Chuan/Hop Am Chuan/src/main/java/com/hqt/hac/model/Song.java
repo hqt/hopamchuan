@@ -77,4 +77,33 @@ public class Song implements Serializable {
                 ", singers=" + singers +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Song song = (Song) o;
+
+        if (songId != song.songId) return false;
+        if (!authors.equals(song.authors)) return false;
+        if (!chords.equals(song.chords)) return false;
+        if (!content.equals(song.content)) return false;
+        if (!firstLyric.equals(song.firstLyric)) return false;
+        if (!link.equals(song.link)) return false;
+        if (!singers.equals(song.singers)) return false;
+        if (!title.equals(song.title)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = songId;
+        result = 31 * result + title.hashCode();
+        result = 31 * result + link.hashCode();
+        result = 31 * result + content.hashCode();
+        result = 31 * result + firstLyric.hashCode();
+        return result;
+    }
 }
