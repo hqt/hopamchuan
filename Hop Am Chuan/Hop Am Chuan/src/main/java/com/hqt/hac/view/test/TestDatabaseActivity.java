@@ -65,6 +65,11 @@ public class TestDatabaseActivity extends ActionBarActivity {
         res += DatabaseTest.TestGetChordsBySongId(getApplicationContext()) + "\n";
         res += DatabaseTest.TestGetSongById(getApplicationContext()) + "\n";
         res += DatabaseTest.TestFindAllSongsByAuthor(getApplicationContext()) + "\n";
+        res += DatabaseTest.TestFindAllSongsBySinger(getApplicationContext()) + "\n";
+        res += DatabaseTest.TestGetAllFavoriteSongs(getApplicationContext()) + "\n";
+        res += DatabaseTest.TestInFavorite(getApplicationContext()) + "\n";
+        res += DatabaseTest.TestGetPlaylistById(getApplicationContext()) + "\n";
+        res += DatabaseTest.TestGetAllSongsFromPlaylist(getApplicationContext()) + "\n";
 
         textView.setText(res);
 

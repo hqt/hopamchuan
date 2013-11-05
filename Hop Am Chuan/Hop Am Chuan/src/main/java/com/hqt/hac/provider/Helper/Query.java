@@ -4,14 +4,15 @@ import android.provider.BaseColumns;
 
 import com.hqt.hac.provider.HopAmChuanDBContract;
 
-import static com.hqt.hac.provider.HopAmChuanDBContract.Songs;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Artists;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Chords;
-import static com.hqt.hac.provider.HopAmChuanDBContract.SongsAuthors;
-import static com.hqt.hac.provider.HopAmChuanDBContract.SongsSingers;
-import static com.hqt.hac.provider.HopAmChuanDBContract.SongsChords;
+import static com.hqt.hac.provider.HopAmChuanDBContract.Favorites;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Playlist;
 import static com.hqt.hac.provider.HopAmChuanDBContract.PlaylistSongs;
+import static com.hqt.hac.provider.HopAmChuanDBContract.Songs;
+import static com.hqt.hac.provider.HopAmChuanDBContract.SongsAuthors;
+import static com.hqt.hac.provider.HopAmChuanDBContract.SongsChords;
+import static com.hqt.hac.provider.HopAmChuanDBContract.SongsSingers;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Tables;
 
 public class Query {
@@ -85,6 +86,25 @@ public class Query {
                 Chords.CHORD_ID,
                 Chords.CHORD_NAME,
         };
+        String[] SONGAUTHOR_PROJECTION = {
+                BaseColumns._ID,
+                SongsAuthors.SONG_ID,
+                SongsAuthors.ARTIST_ID,
+        };
+        String[] SONGSINGER_PROJECTION = {
+                BaseColumns._ID,
+                SongsSingers.SONG_ID,
+                SongsSingers.ARTIST_ID,
+        };
+        String[] FAVORITE_PROJECTION = {
+                BaseColumns._ID,
+                Favorites.SONG_ID,
+        };
+        String[] PLAYLISTSONG_PROJECTION = {
+                BaseColumns._ID,
+                PlaylistSongs.PLAYLIST_ID,
+                PlaylistSongs.SONG_ID,
+        };
     }
 
 
@@ -135,20 +155,6 @@ public class Query {
      * sub query : using for module
      */
     public interface Subquery {
-        /**
-         * join three different tables
-         */
-        String SONG_AUTHOR_JOIN_AUTHOR_SONG = Tables.SONG
-                + " INNER JOIN " + Tables.SONG_AUTHOR + " ON " + Qualified.SONGAUTHOR_SONG_ID + "=" + Qualified.SONGS_SONG_ID
-                + " INNER JOIN " + Tables.ARTIST + " ON " + Qualified.SONGAUTHOR_ARTIST_ID + "=" + Qualified.ARTIST_ARTIST_ID;
-
-
-        /**
-         * join three different tables
-         */
-        String SONG_SINGER_JOIN_SINGER_SONG = Tables.SONG
-                + " INNER JOIN " + Tables.SONG_SINGER + " ON " + Qualified.SONGSINGER_SONG_ID + "=" + Qualified.SONGS_SONG_ID
-                + " INNER JOIN " + Tables.ARTIST + " ON " + Qualified.SONGSINGER_ARTIST_ID + "=" + Qualified.ARTIST_ARTIST_ID;
 
         String ALL_PLAYLIST_ID_AND_COUNT = "(SELECT " + Qualified.PLAYLIST_SONG_PLAYLIST_ID + ","
                 + " COUNT(IFNULL(" + Qualified.PLAYLIST_SONG_SONG_ID + ", 0)) AS " + Playlist.PLAYLIST_NUMOFSONGS

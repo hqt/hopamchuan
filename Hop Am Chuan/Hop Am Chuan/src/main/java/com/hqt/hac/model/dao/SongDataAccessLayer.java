@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
+import com.hqt.hac.config.Config;
 import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Chord;
 import com.hqt.hac.model.Song;
@@ -39,7 +40,7 @@ public class SongDataAccessLayer {
         cv.put(HopAmChuanDBContract.Songs.SONG_CONTENT, song.content);
         cv.put(HopAmChuanDBContract.Songs.SONG_LINK, song.link);
         cv.put(HopAmChuanDBContract.Songs.SONG_FIRST_LYRIC, song.firstLyric);
-        cv.put(HopAmChuanDBContract.Songs.SONG_DATE,(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(song.date));
+        cv.put(HopAmChuanDBContract.Songs.SONG_DATE,(new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT)).format(song.date));
 
         ContentResolver resolver = context.getContentResolver();
         Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
@@ -89,7 +90,7 @@ public class SongDataAccessLayer {
                 String content = c.getString(contentCol);
                 String firstLyric = c.getString(firstlyricCol);
                 String link = c.getString(linkCol);
-                Date date = (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).parse(c.getString(dateCol));
+                Date date = (new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT)).parse(c.getString(dateCol));
                 List<Artist> authors = getAuthorsBySongId(context, id);
                 List<Artist> singers = getSingersBySongId(context, id);
                 List<Chord> chords = getChordsBySongId(context, id);

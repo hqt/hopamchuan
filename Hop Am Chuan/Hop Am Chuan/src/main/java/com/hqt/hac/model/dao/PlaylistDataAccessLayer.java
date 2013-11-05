@@ -6,11 +6,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
+import com.hqt.hac.config.Config;
+import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.HopAmChuanDBContract;
 import com.hqt.hac.provider.helper.Query;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +24,7 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 public class PlaylistDataAccessLayer {
     private static final String TAG = makeLogTag(PlaylistDataAccessLayer.class);
+
     public static List<Playlist> getAllPlayLists(Context context) {
         LOGD(TAG, "Get All Playlists");
         List<Playlist> playlists = new ArrayList<Playlist>();
@@ -41,9 +45,7 @@ public class PlaylistDataAccessLayer {
                 int playlistId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_ID));
                 String playlistName = c.getString(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_NAME));
                 String playlistDescription = c.getString(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_DESCRIPTION));
-                // TODO: check date parsing data
-                // Date playlistDate = (new SimpleDateFormat()).parse(c.getString(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_DATE)));
-                Date playlistDate = new Date();
+                Date playlistDate = (new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT)).parse(c.getString(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_DATE)));
                 int playlistIsPublic = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_PUBLIC));
                 int playlistNumOfSongs = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_NUMOFSONGS));
 
@@ -58,25 +60,80 @@ public class PlaylistDataAccessLayer {
         return playlists;
     }
 
-    public static List<Song> getAllSongsInPlaylist(Context context, int playlistId) {
-        throw new UnsupportedOperationException();
-    }
+    public static List<Song> getAllSongsFromPlaylist(Context context, int playlistId) {
+        LOGD(TAG, "Get All Songs from playlist " + playlistId);
 
-    public static int getNumberOfSongsInPlaylist(Context context, int id) {
-        throw new UnsupportedOperationException();
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Playlist.CONTENT_URI;
+        Uri playlistUri = Uri.withAppendedPath(uri, "songs/" + playlistId + "");
+        Cursor c = resolver.query(playlistUri,
+                Query.Projections.PLAYLISTSONG_PROJECTION,    // projection
+                null,                           // selection string
+                null,                           // selection args of strings
+                null);                          //  sort order
+
+        List<Song> songs = new ArrayList<Song>();
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            try {
+                // int id = c.getInt(c.getColumnIndex(HopAmChuanDBContract.PlaylistSongs._ID));
+                int songId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.PlaylistSongs.SONG_ID));
+                // int _playlistId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.PlaylistSongs.PLAYLIST_ID));
+
+                songs.add(SongDataAccessLayer.getSongById(context, songId));
+            }
+            catch(Exception e) {
+                LOGE(TAG, "error when parse song " + e.getMessage());
+            }
+        }
+        c.close();
+        return songs;
     }
 
     public static Playlist getPlaylistById(Context context, int playlistId) {
-        throw new UnsupportedOperationException();
+        LOGD(TAG, "Get Playist By Id");
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Playlist.CONTENT_URI;
+        Uri playlistUri = Uri.withAppendedPath(uri, "get/" + playlistId + "");
+
+        Cursor c = resolver.query(playlistUri,
+                Query.Projections.PLAYLIST_PROJECTION,    // projection
+                null,                             // selection string
+                null,                             // selection args of strings
+                null);                            //  sort order
+
+
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            try {
+                int id = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Playlist._ID));
+                int _playlistId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_ID));
+                String playlistName = c.getString(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_NAME));
+                String playlistDescription = c.getString(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_DESCRIPTION));
+                Date playlistDate = (new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT)).parse(c.getString(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_DATE)));
+                int playlistIsPublic = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_PUBLIC));
+                int playlistNumOfSongs = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_NUMOFSONGS));
+
+                if (c != null) {
+                    c.close();
+                }
+                return new Playlist(_playlistId, playlistName, playlistDescription, playlistDate, playlistIsPublic, playlistNumOfSongs);
+            } catch (Exception e) {
+                LOGE(TAG, "Fail to parse: " + c.toString());
+                e.printStackTrace();
+            }
+        }
+        if (c != null) {
+            c.close();
+        }
+        return null;
     }
 
-    public static String addNewPlaylist(Context context, Playlist playlist) {
+    public static String insertPlaylist(Context context, Playlist playlist) {
         LOGD(TAG, "Adding an playlist");
 
         ContentValues cv = new ContentValues();
         cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_ID, playlist.playlistId);
         cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_NAME, playlist.playlistName);
-        cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_DATE, playlist.date.toString());
+        cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_DATE, (new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT)).format(playlist.date));
         cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_DESCRIPTION, playlist.playlistDescription);
         cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_PUBLIC, playlist.isPublic);
 
@@ -94,14 +151,6 @@ public class PlaylistDataAccessLayer {
         Uri uri = HopAmChuanDBContract.Playlist.CONTENT_URI;
         Uri deleteUri = Uri.withAppendedPath(uri, playlistId + "");
         resolver.delete(deleteUri, null, null);
-    }
-
-    public static String addSongToPlaylist(Context context, int playlistId, int songId) {
-        throw new UnsupportedOperationException();
-    }
-
-    public static void removeSongFromPlaylist(Context context, int playlistId, int songId) {
-        throw new UnsupportedOperationException();
     }
 
 

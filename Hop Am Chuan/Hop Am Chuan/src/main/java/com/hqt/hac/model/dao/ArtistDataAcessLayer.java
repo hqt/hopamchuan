@@ -9,13 +9,12 @@ import android.net.Uri;
 import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.HopAmChuanDBContract;
+import com.hqt.hac.provider.HopAmChuanDBContract.SongsAuthors;
+import com.hqt.hac.provider.HopAmChuanDBContract.SongsSingers;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import static com.hqt.hac.provider.HopAmChuanDBContract.Songs;
 import static com.hqt.hac.provider.helper.Query.Projections;
 import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
@@ -96,12 +95,26 @@ public class ArtistDataAcessLayer {
         Uri uri = HopAmChuanDBContract.Artists.CONTENT_URI;
         Uri artistUri = Uri.withAppendedPath(uri, "author/songs/" + ArtistId + "");
         Cursor c = resolver.query(artistUri,
-                Projections.SONG_PROJECTION,    // projection
+                Projections.SONGAUTHOR_PROJECTION,    // projection
                 null,                           // selection string
                 null,                           // selection args of strings
                 null);                          //  sort order
 
-       return parseSongsFromCursor(c);
+        List<Song> songs = new ArrayList<Song>();
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            try {
+                int id = c.getInt(c.getColumnIndex(SongsAuthors._ID));
+                int songId = c.getInt(c.getColumnIndex(SongsAuthors.SONG_ID));
+                int artistId = c.getInt(c.getColumnIndex(SongsAuthors.ARTIST_ID));
+
+                songs.add(SongDataAccessLayer.getSongById(context, songId));
+            }
+            catch(Exception e) {
+                LOGE(TAG, "error when parse song " + e.getMessage());
+            }
+        }
+        c.close();
+        return songs;
     }
 
     public static List<Song> findAllSongsBySinger(Context context, int ArtistId) {
@@ -111,13 +124,27 @@ public class ArtistDataAcessLayer {
         Uri uri = HopAmChuanDBContract.Artists.CONTENT_URI;
         Uri artistUri = Uri.withAppendedPath(uri, "singer/songs/" + ArtistId + "");
         Cursor c = resolver.query(artistUri,
-                Projections.SONG_PROJECTION,    // projection
+                Projections.SONGSINGER_PROJECTION,    // projection
                 null,                           // selection string
                 null,                           // selection args of strings
                 null);                          //  sort order
 
 
-        return parseSongsFromCursor(c);
+        List<Song> songs = new ArrayList<Song>();
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            try {
+                int id = c.getInt(c.getColumnIndex(SongsSingers._ID));
+                int songId = c.getInt(c.getColumnIndex(SongsSingers.SONG_ID));
+                int artistId = c.getInt(c.getColumnIndex(SongsSingers.ARTIST_ID));
+
+                songs.add(SongDataAccessLayer.getSongById(context, songId));
+            }
+            catch(Exception e) {
+                LOGE(TAG, "error when parse song " + e.getMessage());
+            }
+        }
+        c.close();
+        return songs;
 
     }
 
@@ -135,29 +162,6 @@ public class ArtistDataAcessLayer {
      */
     public static List<Song> getRandomSongsByArtist(Context context, int artistId, int limit) {
         throw new UnsupportedOperationException();
-    }
-
-    private static List<Song> parseSongsFromCursor(Cursor c) {
-        List<Song> songs = new ArrayList<Song>();
-        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-           try {
-                int id = c.getInt(c.getColumnIndex(Songs._ID));
-                int songId = c.getInt(c.getColumnIndex(Songs.SONG_ID));
-                String title = c.getString(c.getColumnIndex(Songs.SONG_TITLE));
-                String link = c.getString(c.getColumnIndex(Songs.SONG_LINK));
-                String content = c.getString(c.getColumnIndex(Songs.SONG_CONTENT));
-                String lyrics = c.getString(c.getColumnIndex(Songs.SONG_FIRST_LYRIC));
-                Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").
-                        parse(c.getString(c.getColumnIndex(Songs.SONG_DATE)));
-                Song song = new Song(id, songId, title, link, content, lyrics, date);
-                songs.add(song);
-            }
-            catch(Exception e) {
-                LOGE(TAG, "error when parse song " + e.getMessage());
-            }
-        }
-        c.close();
-        return songs;
     }
 
     /**
