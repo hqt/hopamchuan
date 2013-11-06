@@ -31,7 +31,6 @@ public class SongDataAccessLayer {
      * @param song
      * @return
      */
-
     public static boolean insertFullSongSync(Context context, Song song) {
         LOGD(TAG, "Adding a full song");
         try {
@@ -53,6 +52,12 @@ public class SongDataAccessLayer {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static void insertFullSongListSync(Context context, List<Song> songs) {
+        for (Song song : songs) {
+            insertFullSongSync(context, song);
+        }
     }
 
     public static String insertSong(Context context, Song song) {
