@@ -32,4 +32,16 @@ public class PlaylistSongDataAccessLayer {
         LOGD(TAG, "inserted uri: " + insertedUri);
         return insertedUri.toString();
     }
+    public static int removePlaylist_Song(Context context, int playlistId, int songId) {
+        LOGD(TAG, "Remove an Playlist_Song: playlist " + playlistId + " , song " + songId);
+
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.PlaylistSongs.CONTENT_URI;
+        int deleteUri = resolver.delete(uri, HopAmChuanDBContract.PlaylistSongs.PLAYLIST_ID + "=? AND " +
+                HopAmChuanDBContract.PlaylistSongs.SONG_ID + "=?",
+                new String[]{String.valueOf(playlistId), String.valueOf(songId)});
+        LOGD(TAG, "deleted Playlist_Song: " + deleteUri);
+        return deleteUri;
+    }
+
 }

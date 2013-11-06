@@ -6,6 +6,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.hqt.hac.config.Config;
 import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Chord;
 import com.hqt.hac.model.Song;
@@ -124,7 +125,7 @@ public class ParserUtils {
                 String link = object.get("link").getAsString();
                 String content = object.get("content").getAsString();
                 String lyric = object.get("firstlyric").getAsString();
-                Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(object.get("date").getAsString());
+                Date date = new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT).parse(object.get("date").getAsString());
                 Song song = new Song(songId, title, link, content, lyric, date);
 
                 // TrungDQ: just a little more work to get it right.

@@ -64,4 +64,27 @@ public class Playlist implements Serializable {
                 ", numberOfSongs=" + numberOfSongs +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Playlist playlist = (Playlist) o;
+
+        if (isPublic != playlist.isPublic) return false;
+        if (playlistId != playlist.playlistId) return false;
+        if (!playlistDescription.equals(playlist.playlistDescription)) return false;
+        if (!playlistName.equals(playlist.playlistName)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = playlistName.hashCode();
+        result = 31 * result + playlistDescription.hashCode();
+        result = 31 * result + isPublic;
+        return result;
+    }
 }

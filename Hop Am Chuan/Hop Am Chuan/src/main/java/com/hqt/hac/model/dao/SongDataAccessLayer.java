@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
+import com.hqt.hac.config.Config;
 import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Chord;
 import com.hqt.hac.model.Song;
@@ -30,6 +31,30 @@ public class SongDataAccessLayer {
      * @param song
      * @return
      */
+
+    public static boolean insertFullSongSync(Context context, Song song) {
+        LOGD(TAG, "Adding a full song");
+        try {
+            insertSong(context, song);
+            ArtistDataAcessLayer.insertListOfArtists(context, song.authors);
+            for (Artist author : song.authors) {
+                SongArtistDataAccessLayer.insertSong_Author(context, song.songId, author.artistId);
+            }
+            ArtistDataAcessLayer.insertListOfArtists(context, song.singers);
+            for (Artist author : song.singers) {
+                SongArtistDataAccessLayer.insertSong_Singer(context, song.songId, author.artistId);
+            }
+            ChordDataAccessLayer.insertListOfChords(context, song.chords);
+            for (Chord chord : song.chords) {
+                SongChordDataAccessLayer.insertSong_Chord(context, song.songId, chord.chordId);
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static String insertSong(Context context, Song song) {
         LOGD(TAG, "Adding a song");
 
@@ -39,7 +64,7 @@ public class SongDataAccessLayer {
         cv.put(HopAmChuanDBContract.Songs.SONG_CONTENT, song.content);
         cv.put(HopAmChuanDBContract.Songs.SONG_LINK, song.link);
         cv.put(HopAmChuanDBContract.Songs.SONG_FIRST_LYRIC, song.firstLyric);
-        cv.put(HopAmChuanDBContract.Songs.SONG_DATE,(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(song.date));
+        cv.put(HopAmChuanDBContract.Songs.SONG_DATE,(new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT)).format(song.date));
 
         ContentResolver resolver = context.getContentResolver();
         Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
@@ -89,7 +114,7 @@ public class SongDataAccessLayer {
                 String content = c.getString(contentCol);
                 String firstLyric = c.getString(firstlyricCol);
                 String link = c.getString(linkCol);
-                Date date = (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).parse(c.getString(dateCol));
+                Date date = (new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT)).parse(c.getString(dateCol));
                 List<Artist> authors = getAuthorsBySongId(context, id);
                 List<Artist> singers = getSingersBySongId(context, id);
                 List<Chord> chords = getChordsBySongId(context, id);
@@ -108,14 +133,6 @@ public class SongDataAccessLayer {
             c.close();
         }
         return null;
-    }
-
-    /**
-     * for testing purpose
-     * Note : limit = 0 : No limit
-     */
-    public static Song getAllSongs(Context context, int limit) {
-        throw new UnsupportedOperationException();
     }
 
     public static List<Artist> getAuthorsBySongId(Context context, int id) {
@@ -209,4 +226,14 @@ public class SongDataAccessLayer {
         LOGD(TAG, "deleted removeSongById: " + deleteUri);
         return deleteUri;
     }
+
+
+    /**
+     * for testing purpose
+     * Note : limit = 0 : No limit
+     */
+    public static Song getAllSongs(Context context, int limit) {
+        throw new UnsupportedOperationException();
+    }
+
 }

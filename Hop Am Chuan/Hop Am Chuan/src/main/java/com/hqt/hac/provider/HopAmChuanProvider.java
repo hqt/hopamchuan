@@ -22,17 +22,25 @@ import java.util.List;
 
 import static com.hqt.hac.provider.HopAmChuanDBContract.Artists;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Chords;
-import static com.hqt.hac.provider.HopAmChuanDBContract.Songs;
+import static com.hqt.hac.provider.HopAmChuanDBContract.Favorites;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Playlist;
+import static com.hqt.hac.provider.HopAmChuanDBContract.Songs;
+import static com.hqt.hac.provider.HopAmChuanDBContract.PlaylistSongs;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsAuthors;
-import static com.hqt.hac.provider.HopAmChuanDBContract.SongsSingers;
 import static com.hqt.hac.provider.HopAmChuanDBContract.SongsChords;
-
-import static com.hqt.hac.provider.helper.Query.URI.*;
-
+import static com.hqt.hac.provider.HopAmChuanDBContract.SongsSingers;
+import static com.hqt.hac.provider.HopAmChuanDBContract.Tables;
+import static com.hqt.hac.provider.helper.Query.URI.PATH_ARTISTS;
+import static com.hqt.hac.provider.helper.Query.URI.PATH_CHORDS;
+import static com.hqt.hac.provider.helper.Query.URI.PATH_FAVORITES;
+import static com.hqt.hac.provider.helper.Query.URI.PATH_PLAYLIST;
+import static com.hqt.hac.provider.helper.Query.URI.PATH_PLAYLIST_SONGS;
+import static com.hqt.hac.provider.helper.Query.URI.PATH_SONGS;
+import static com.hqt.hac.provider.helper.Query.URI.PATH_SONGS_AUTHORS;
+import static com.hqt.hac.provider.helper.Query.URI.PATH_SONGS_CHORDS;
+import static com.hqt.hac.provider.helper.Query.URI.PATH_SONGS_SINGERS;
 import static com.hqt.hac.utils.LogUtils.LOGV;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
-import static com.hqt.hac.provider.HopAmChuanDBContract.Tables;
 
 /**
  *
@@ -60,11 +68,14 @@ public class HopAmChuanProvider extends ContentProvider {
 
     private static final int ARTISTS = 200;
     private static final int ARTISTS_ID = 201;
-    private static final int SINGER_TO_SONGS = 202; // get all song from one singer id
-    private static final int AUTHOR_TO_SONGS = 203; // get all song form one author id
+    private static final int SINGER_ID_TO_SONG_IDS = 202; // get all song from one singer id
+    private static final int AUTHOR_ID_TO_SONG_IDS = 203; // get all song form one author id
+    private static final int SINGER_ID_TO_RAND_SONG_IDS = 204; // get random @limit song from a singer
+    private static final int AUTHOR_ID_TO_RAND_SONG_IDS = 205; // get random @limit song from a author
 
     private static final int CHORDS = 300;
     private static final int CHORDS_ID = 301;
+    private static final int CHORDS_NAME = 302;
 
     private static final int SONGS_AUTHORS = 400;
     private static final int SONGS_AUTHORS_ID = 401;
@@ -78,6 +89,8 @@ public class HopAmChuanProvider extends ContentProvider {
     private static final int PLAYLIST = 700;
     private static final int PLAYLIST_ID = 701;
     private static final int PLAYLIST_ALL = 702;
+    private static final int PLAYLIST_GET_ID = 703;
+    private static final int PLAYLIST_GET_SONGS = 704;
 
     private static final int PLAYLIST_SONGS = 800;
     private static final int PLAYLIST_SONGS_ID = 801;
@@ -107,14 +120,17 @@ public class HopAmChuanProvider extends ContentProvider {
          */
         matcher.addURI(authority, PATH_ARTISTS, ARTISTS);
         matcher.addURI(authority, PATH_ARTISTS + "/#", ARTISTS_ID);
-        matcher.addURI(authority, PATH_ARTISTS + "/singer/songs/#", SINGER_TO_SONGS);
-        matcher.addURI(authority, PATH_ARTISTS + "/author/songs/#", AUTHOR_TO_SONGS);
+        matcher.addURI(authority, PATH_ARTISTS + "/singer/songs/#", SINGER_ID_TO_SONG_IDS);
+        matcher.addURI(authority, PATH_ARTISTS + "/author/songs/#", AUTHOR_ID_TO_SONG_IDS);
+        matcher.addURI(authority, PATH_ARTISTS + "/singer/randsongs/#/#", SINGER_ID_TO_RAND_SONG_IDS);
+        matcher.addURI(authority, PATH_ARTISTS + "/author/randsongs/#/#", AUTHOR_ID_TO_RAND_SONG_IDS);
 
         /**
          * chords table
          */
         matcher.addURI(authority, PATH_CHORDS, CHORDS);
         matcher.addURI(authority, PATH_CHORDS + "/#", CHORDS_ID);
+        matcher.addURI(authority, PATH_CHORDS + "/name/*", CHORDS_NAME);
 
         /**
          * SongsSingers table
@@ -140,6 +156,8 @@ public class HopAmChuanProvider extends ContentProvider {
         matcher.addURI(authority, PATH_PLAYLIST, PLAYLIST);
         matcher.addURI(authority, PATH_PLAYLIST + "/all", PLAYLIST_ALL);
         matcher.addURI(authority, PATH_PLAYLIST + "/#", PLAYLIST_ID);
+        matcher.addURI(authority, PATH_PLAYLIST + "/get/#", PLAYLIST_GET_ID);
+        matcher.addURI(authority, PATH_PLAYLIST + "/songs/#", PLAYLIST_GET_SONGS);
 
         /**
          * PlaylistSongs table
@@ -182,7 +200,7 @@ public class HopAmChuanProvider extends ContentProvider {
                 return HopAmChuanDBContract.Artists.CONTENT_TYPE;
             case ARTISTS_ID:
                 return HopAmChuanDBContract.Artists.CONTENT_ITEM_TYPE;
-            case SINGER_TO_SONGS:
+            case SINGER_ID_TO_SONG_IDS:
                 return Artists.CONTENT_ITEM_TYPE;
             case CHORDS:
                 return HopAmChuanDBContract.Chords.CONTENT_TYPE;
@@ -268,6 +286,10 @@ public class HopAmChuanProvider extends ContentProvider {
                 db.insertOrThrow(Tables.PLAYLIST, null, values);
                 notifyChange(uri, syncToNetwork);
                 return Playlist.buildPlaylistUri(values.getAsString(HopAmChuanDBContract.PlaylistColumns.PLAYLIST_ID));
+            case FAVORITES:
+                db.insertOrThrow(Tables.FAVORITE, null, values);
+                notifyChange(uri, syncToNetwork);
+                return Favorites.buildFavoriteUri(values.getAsString(HopAmChuanDBContract.SongsColumns.SONG_ID));
             case SONGS_AUTHORS:
                 db.insertOrThrow(Tables.SONG_AUTHOR, null, values);
                 notifyChange(uri, syncToNetwork);
@@ -280,7 +302,10 @@ public class HopAmChuanProvider extends ContentProvider {
                 db.insertOrThrow(Tables.SONG_CHORD, null, values);
                 notifyChange(uri, syncToNetwork);
                 return SongsChords.buildSongsChordsUri(values.getAsString(HopAmChuanDBContract.SongsColumns.SONG_ID));
-
+            case PLAYLIST_SONGS:
+                db.insertOrThrow(Tables.PLAYLIST_SONG, null, values);
+                notifyChange(uri, syncToNetwork);
+                return PlaylistSongs.buildPlaylistSongsUri(values.getAsString(HopAmChuanDBContract.PlaylistSongs.PLAYLIST_ID));
             default: {
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
             }
@@ -384,47 +409,50 @@ public class HopAmChuanProvider extends ContentProvider {
                         .where(Artists.ARTIST_ID + "=?", artistId);
             }
 
-            // get all songs from singer id
-            case SINGER_TO_SONGS: {
+            /**
+             * Get all song_id by singer Id
+             * SELECT * FROM Song_Author WHERE ArtistId = @artistId
+             *
+             * [ ] Option 1: join table
+             * [x] Option 2: no join table and use multi query
+             */
+            case SINGER_ID_TO_SONG_IDS: {
                 final List<String> segments = uri.getPathSegments();
+                // provider/authors(0)/singer(1)/songs(2)/#(3)
                 final String singerId = segments.get(3);
-                return builder.table(Query.Subquery.SONG_SINGER_JOIN_SINGER_SONG)   // join 3 different tables
-                        // mapToTable for Projections not return ambiguous
-                        .mapToTable(Songs._ID, Tables.SONG)
-                        .mapToTable(Songs.SONG_ID, Tables.SONG)
-                        .mapToTable(Songs.SONG_TITLE, Tables.SONG)
-                        .mapToTable(Songs.SONG_CONTENT, Tables.SONG)
-                        .mapToTable(Songs.SONG_LINK, Tables.SONG)
-                        .mapToTable(Songs.SONG_FIRST_LYRIC, Tables.SONG)
-                        .mapToTable(Songs.SONG_DATE, Tables.SONG)
-                        .where(Query.Qualified.SONGSINGER_ARTIST_ID + "=?", singerId);
+                return builder.table(Tables.SONG_SINGER)
+                        .where(SongsSingers.ARTIST_ID + "=?", singerId);
             }
 
             /**
-             * Get all songs from author Id
-             * Using Map_to_Table to avoid conflict when client use PROJECTION_COLUMN
-             * Raw query should be
-             * SELECT
-             *      SongTbl._id, SongTbl.song_id, SongTbl.song_title, SongTbl.song_content,
-             *      SongTbl.song_date, SongTbl.song_link, SongTbl.song_first_lyric
-             * FROM Songs_Authors_Tbl
-             * INNER JOIN ArtistTbl ON Songs_Authors_Tbl.artist_id=ArtistTbl.artist_id
-             * INNER JOIN SongTbl ON Songs_Authors_Tbl.song_id=SongTbl.song_id
-             * WHERE (Songs_Authors_Tbl.artist_id=?)
+             * Get all song_id by author Id
+             * SELECT * FROM Song_Author WHERE ArtistId = @artistId
+             *
+             * [ ] Option 1: join table
+             * [x] Option 2: no join table and use multi query
              */
-            case AUTHOR_TO_SONGS: {
+            case AUTHOR_ID_TO_SONG_IDS: {
                 final List<String> segments = uri.getPathSegments();
+                // provider/authors(0)/author(1)/songs(2)/#(3)
                 final String authorId = segments.get(3);
-                return builder.table(Query.Subquery.SONG_AUTHOR_JOIN_AUTHOR_SONG)   // join 3 different tables
-                        // mapToTable for Projections not return ambiguous
-                        .mapToTable(Songs._ID, Tables.SONG)
-                        .mapToTable(Songs.SONG_ID, Tables.SONG)
-                        .mapToTable(Songs.SONG_TITLE, Tables.SONG)
-                        .mapToTable(Songs.SONG_CONTENT, Tables.SONG)
-                        .mapToTable(Songs.SONG_LINK, Tables.SONG)
-                        .mapToTable(Songs.SONG_FIRST_LYRIC, Tables.SONG)
-                        .mapToTable(Songs.SONG_DATE, Tables.SONG)
-                        .where(Query.Qualified.SONGAUTHOR_ARTIST_ID + "=?", authorId);
+                return builder.table(Tables.SONG_AUTHOR)
+                        .where(SongsAuthors.ARTIST_ID + "=?", authorId);
+            }
+            case SINGER_ID_TO_RAND_SONG_IDS: {
+                final List<String> segments = uri.getPathSegments();
+                // provider/artists(0)/singer(1)/randsongs(2)/#(3)/#(4)
+                final String singerId = segments.get(3);
+                final String limit = segments.get(4);
+                return builder.table(Tables.SONG_AUTHOR)
+                        .where(SongsAuthors.ARTIST_ID + "=?", singerId);
+            }
+            case AUTHOR_ID_TO_RAND_SONG_IDS: {
+                final List<String> segments = uri.getPathSegments();
+                // provider/artists(0)/author(1)/randsongs(2)/#(3)/#(4)
+                final String authorId = segments.get(3);
+                final String limit = segments.get(4);
+                return builder.table(Tables.SONG_AUTHOR)
+                        .where(SongsAuthors.ARTIST_ID + "=?", authorId);
             }
 
             case SONGS: {
@@ -435,6 +463,10 @@ public class HopAmChuanProvider extends ContentProvider {
                 return builder.table(Tables.SONG)
                         .where(Songs.SONG_ID + "=?", songId);
             }
+            /**
+             * [x] Option 1: join table
+             * [ ] Option 2: no join table and use multi query
+             */
             case AUTHORS_BY_SONG_ID: {
                 final List<String> segments = uri.getPathSegments();
                 final String songId = segments.get(2); // provider/song/author/#
@@ -446,6 +478,10 @@ public class HopAmChuanProvider extends ContentProvider {
                         .mapToTable(Artists.ARTIST_ASCII, Tables.ARTIST)
                         .where(Query.Qualified.SONGAUTHOR_SONG_ID + "=?", songId);
             }
+            /**
+             * [x] Option 1: join table
+             * [ ] Option 2: no join table and use multi query
+             */
             case SINGERS_BY_SONG_ID: {
                 final List<String> segments = uri.getPathSegments();
                 final String songId = segments.get(2); // provider/song/singer/#
@@ -457,10 +493,14 @@ public class HopAmChuanProvider extends ContentProvider {
                         .mapToTable(Artists.ARTIST_ASCII, Tables.ARTIST)
                         .where(Query.Qualified.SONGSINGER_SONG_ID + "=?", songId);
             }
+            /**
+             * [x] Option 1: join table
+             * [ ] Option 2: no join table and use multi query
+             */
             case CHORDS_BY_SONG_ID: {
                 final List<String> segments = uri.getPathSegments();
                 final String songId = segments.get(2); // provider/song/chord/#
-                return builder.table(Query.Subquery.CHORD_JOIN_SONG_CHORD)   // join Artist & Song_Singer
+                return builder.table(Query.Subquery.CHORD_JOIN_SONG_CHORD)
                         // mapToTable for Projections not return ambiguous
                         .mapToTable(Chords._ID, Tables.CHORD)
                         .mapToTable(Chords.CHORD_ID, Tables.CHORD)
@@ -475,6 +515,11 @@ public class HopAmChuanProvider extends ContentProvider {
                 final String chordId = Chords.getChordId(uri);
                 return builder.table(Tables.CHORD)
                         .where(Chords.CHORD_ID + "=?", chordId);
+            }
+            case CHORDS_NAME: {
+                final String chordName = Chords.getChordName(uri);
+                return builder.table(Tables.CHORD)
+                        .where(Chords.CHORD_NAME + "=?", chordName);
             }
             case SONGS_CHORDS: {
                 return builder.table(Tables.SONG_CHORD);
@@ -491,8 +536,16 @@ public class HopAmChuanProvider extends ContentProvider {
             case PLAYLIST_SONGS: {
                 return builder.table(Tables.PLAYLIST_SONG);
             }
-
+            case FAVORITES: {
+                return builder.table(Tables.FAVORITE);
+            }
+            case FAVORITES_SONG_ID: {
+                final String songId = Favorites.getSongId(uri);
+                return builder.table(Tables.FAVORITE)
+                        .where(Favorites.SONG_ID + "=?", songId);
+            }
             /**
+             *
              * SELECT
              *      Playlist_Tbl._id, Playlist_Tbl.playlist_id, Playlist_Tbl.playlist_name,
              *      Playlist_Tbl.playlist_description, Playlist_Tbl.playlist_date,
@@ -515,6 +568,34 @@ public class HopAmChuanProvider extends ContentProvider {
                         .mapToTable(Playlist.PLAYLIST_DATE, Tables.PLAYLIST)
                         .mapToTable(Playlist.PLAYLIST_NUMOFSONGS, Query.Qualified.PLAYLIST_SONG_COUNT)
                         .mapToTable(Playlist.PLAYLIST_PUBLIC, Tables.PLAYLIST);
+            }
+            case PLAYLIST_ID: {
+                final String playlistId = Playlist.getPlaylistId(uri);
+                return builder.table(Tables.PLAYLIST)
+                        .where(Playlist.PLAYLIST_ID + "=?", playlistId);
+            }
+            case PLAYLIST_GET_ID: {
+                final List<String> segments = uri.getPathSegments();
+                final String playlistId =  segments.get(2); // provider/playlist(0)/get(1)/#(2)
+                return builder.table(Query.Subquery.PLAYLIST_JOIN_PLAYLIST_SONG_COUNT)
+                        .mapToTable(Playlist._ID, Tables.PLAYLIST)
+                        .mapToTable(Playlist.PLAYLIST_ID, Tables.PLAYLIST)
+                        .mapToTable(Playlist.PLAYLIST_NAME, Tables.PLAYLIST)
+                        .mapToTable(Playlist.PLAYLIST_DESCRIPTION, Tables.PLAYLIST)
+                        .mapToTable(Playlist.PLAYLIST_DATE, Tables.PLAYLIST)
+                        .mapToTable(Playlist.PLAYLIST_NUMOFSONGS, Query.Qualified.PLAYLIST_SONG_COUNT)
+                        .mapToTable(Playlist.PLAYLIST_PUBLIC, Tables.PLAYLIST)
+                        .where(Query.Qualified.PLAYLIST_PLAYLIST_ID + "=?", playlistId);
+            }
+            /**
+             * [ ] Option 1: join table
+             * [x] Option 2: no join table and use multi query
+             */
+            case PLAYLIST_GET_SONGS: {
+                final List<String> segments = uri.getPathSegments();
+                final String playlistId =  segments.get(2); // provider/playlist(0)/songs(1)/#(2)
+                return builder.table(Tables.PLAYLIST_SONG)
+                        .where(PlaylistSongs.PLAYLIST_ID + "=?", playlistId);
             }
             default: {
                 throw new UnsupportedOperationException("Unknown uri for " + match + ": " + uri);

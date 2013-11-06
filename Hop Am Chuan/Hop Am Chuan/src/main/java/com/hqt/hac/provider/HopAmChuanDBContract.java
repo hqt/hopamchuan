@@ -67,9 +67,11 @@ public class HopAmChuanDBContract {
         String PLAYLIST_PUBLIC = "playlist_public";
     }
 
+
     public static final String CONTENT_AUTHORITY = "com.hqt.hac.provider";
 
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
+
 
     /**
      * Following is the inner class that describe tables in database
@@ -151,6 +153,10 @@ public class HopAmChuanDBContract {
         /** Read {@link #CHORD_ID} from {@link com.hqt.hac.provider.HopAmChuanDBContract.Chords} {@link Uri}. */
         public static String getChordId(Uri uri) {
             return uri.getPathSegments().get(1);
+        }
+
+        public static String getChordName(Uri uri) {
+            return uri.getPathSegments().get(2); //provider(0)/chords(1)/#(2)
         }
     }
 
@@ -238,9 +244,8 @@ public class HopAmChuanDBContract {
         public static final String CONTENT_ITEM_TYPE =
                 "vnd.android.cursor.item/vnd.com.hqt.hac.songs_playlist_songs";
 
-        /** Build {@link Uri} for requested {@link #SONG_ID}. */
-        public static Uri buildSongsSingersUri(String PlaylistId) {
-            return CONTENT_URI.buildUpon().appendPath(PlaylistId).build();
+        public static Uri buildPlaylistSongsUri(String playlistSongsId) {
+            return CONTENT_URI.buildUpon().appendPath(playlistSongsId).build();
         }
     }
 
@@ -253,9 +258,13 @@ public class HopAmChuanDBContract {
         public static final String CONTENT_ITEM_TYPE =
                 "vnd.android.cursor.item/vnd.com.hqt.hac.favorites";
 
-        /** Build {@link Uri} for requested. */
-        public static Uri buildSongsSingersUri(String FavoritesId) {
-            return CONTENT_URI.buildUpon().appendPath(FavoritesId).build();
+        /** Build {@link Uri} for requested {@link }. */
+        public static Uri buildFavoriteUri(String songId) {
+            return CONTENT_URI.buildUpon().appendPath(songId).build();
+        }
+        /** Read {@link #SONG_ID} from {@link com.hqt.hac.provider.HopAmChuanDBContract.Chords} {@link Uri}. */
+        public static String getSongId(Uri uri) {
+            return uri.getPathSegments().get(1);
         }
     }
 
