@@ -13,25 +13,25 @@
     <string name="search_hint">Search songs and artists</string>
     <string name="title_activity_search_view">Search</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_test_database">Activity Test</string>
+    <string name="title_activity_test_database">Database Access Layer Test</string>
     <string name="title_activity_song_list_fragment">Hợp Âm Chuẩn</string>
 
     <!-- default items for navigation drawer -->
     <string-array name="navigation_drawer_default_items">
-        <item>Trang Chu</item>
-        <item>Playlist cua toi</item>
-        <item>Yeu thich</item>
-        <item>Tim theo hop am</item>
-        <item>Tra cuu hop am</item>
+        <item>Trang chủ</item>
+        <item>Playlist của tôi</item>
+        <item>Yêu thích</item>
+        <item>Tìm theo hợp âm</item>
+        <item>Tra cứu hợp âm</item>
     </string-array>
 
     <!-- list all method to view songs -->
     <string-array name="song_list_method">
-        <item>Moi xem gan day</item>
-        <item>Moi cap nhat</item>
-        <item>Xem nhieu hom nay</item>
-        <item>Xem nhieu trong tuan</item>
-        <item>Bai hat ngau nhien</item>
+        <item>Mới xem gần đây</item>
+        <item>Mới cập nhật</item>
+        <item>Xem nhiều hôm nay</item>
+        <item>Xem nhiều trong tuần</item>
+        <item>Bài hát ngẫu nhiên</item>
     </string-array>
 
     <string name="title_activity_test">Test Activity</string>

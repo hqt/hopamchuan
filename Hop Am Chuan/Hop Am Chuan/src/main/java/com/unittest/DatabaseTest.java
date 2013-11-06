@@ -183,6 +183,77 @@ public class DatabaseTest {
         return res;
     }
 
+    public static String TestInsertFullSongSync(Context context) {
+        String res = "TestInsertFullSongSync: ";
+        try {
+            // Create
+            Artist a1 = new Artist(1, "Huynh Quang Thao", "Huynh Quang Thao");
+            Artist a2 = new Artist(2, "Dinh Quang Trung", "Dinh Quang Trung");
+            List<Artist> inputA = new ArrayList<Artist>();
+            inputA.add(a1);
+            inputA.add(a2);
+
+            Artist s1 = new Artist(3, "Singer 1", "Singer 1");
+            Artist s2 = new Artist(4, "Singer 2", "Singer 2");
+            List<Artist> inputS = new ArrayList<Artist>();
+            inputS.add(s1);
+            inputS.add(s2);
+
+            Chord c1 = new Chord(1, "Am");
+            Chord c2 = new Chord(2, "E");
+            List<Chord> inputC = new ArrayList<Chord>();
+            inputC.add(c1);
+            inputC.add(c2);
+
+            Song song = new Song(4, "Chau Len bon", "www.4444444.com", "chau len bon chau vo mau giao", "chau len bon", new Date(), inputA, inputC, inputS);
+
+
+            // Insert
+            SongDataAccessLayer.insertFullSongSync(context, song);
+
+
+            // Get
+            Song result = SongDataAccessLayer.getSongById(context, 4);
+
+            // Compare
+            if (result.equals(song)
+                    && a1.equals(result.authors.get(0))
+                    && a2.equals(result.authors.get(1))
+                    && s1.equals(result.singers.get(0))
+                    && s2.equals(result.singers.get(1))
+                    && c1.equals(result.chords.get(0))
+                    && c2.equals(result.chords.get(1))) {
+                res += " OK";
+            } else {
+                res += " FAIL: result: " + result.toString() + " expected: " + song.toString();
+            }
+        } catch (Exception e) {
+            res += "Exception: " + e.toString();
+            e.printStackTrace();
+        }
+
+        // Delete
+        SongDataAccessLayer.removeSongById(context, 4);
+
+        ArtistDataAcessLayer.removeArtistByid(context, 1);
+        ArtistDataAcessLayer.removeArtistByid(context, 2);
+        ArtistDataAcessLayer.removeArtistByid(context, 3);
+        ArtistDataAcessLayer.removeArtistByid(context, 4);
+
+        ChordDataAccessLayer.removeChord(context, 1);
+        ChordDataAccessLayer.removeChord(context, 2);
+
+        SongArtistDataAccessLayer.removeSong_Author(context, 4, 1);
+        SongArtistDataAccessLayer.removeSong_Author(context, 4, 2);
+
+        SongArtistDataAccessLayer.removeSong_Singer(context, 4, 3);
+        SongArtistDataAccessLayer.removeSong_Singer(context, 4, 4);
+
+        SongChordDataAccessLayer.removeSong_Chord(context, 4, 1);
+        SongChordDataAccessLayer.removeSong_Chord(context, 4, 2);
+        return res;
+    }
+
     public static String TestGetAuthorsBySongId(Context context) {
         String res = "TestGetAuthorsBySongId: ";
         try {

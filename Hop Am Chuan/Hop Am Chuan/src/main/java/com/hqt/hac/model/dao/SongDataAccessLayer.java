@@ -31,6 +31,30 @@ public class SongDataAccessLayer {
      * @param song
      * @return
      */
+
+    public static boolean insertFullSongSync(Context context, Song song) {
+        LOGD(TAG, "Adding a full song");
+        try {
+            insertSong(context, song);
+            ArtistDataAcessLayer.insertListOfArtists(context, song.authors);
+            for (Artist author : song.authors) {
+                SongArtistDataAccessLayer.insertSong_Author(context, song.songId, author.artistId);
+            }
+            ArtistDataAcessLayer.insertListOfArtists(context, song.singers);
+            for (Artist author : song.singers) {
+                SongArtistDataAccessLayer.insertSong_Singer(context, song.songId, author.artistId);
+            }
+            ChordDataAccessLayer.insertListOfChords(context, song.chords);
+            for (Chord chord : song.chords) {
+                SongChordDataAccessLayer.insertSong_Chord(context, song.songId, chord.chordId);
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static String insertSong(Context context, Song song) {
         LOGD(TAG, "Adding a song");
 

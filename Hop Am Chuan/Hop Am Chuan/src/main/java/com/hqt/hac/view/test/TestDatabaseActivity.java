@@ -73,6 +73,7 @@ public class TestDatabaseActivity extends ActionBarActivity {
         res += DatabaseTest.TestGetChordByName(getApplicationContext()) + "\n";
         res += DatabaseTest.TestGetRandomSongsByAuthor(getApplicationContext()) + "\n";
         res += DatabaseTest.TestGetRandomSongsBySinger(getApplicationContext()) + "\n";
+        res += DatabaseTest.TestInsertFullSongSync(getApplicationContext()) + "\n";
 
         textView.setText(res);
 
