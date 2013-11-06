@@ -154,6 +154,10 @@ public class HopAmChuanDBContract {
         public static String getChordId(Uri uri) {
             return uri.getPathSegments().get(1);
         }
+
+        public static String getChordName(Uri uri) {
+            return uri.getPathSegments().get(2); //provider(0)/chords(1)/#(2)
+        }
     }
 
     /**

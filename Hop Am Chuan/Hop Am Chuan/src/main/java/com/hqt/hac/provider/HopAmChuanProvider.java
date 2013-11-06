@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
+import android.util.Log;
 
 import com.hqt.hac.provider.helper.Query;
 import com.hqt.hac.provider.helper.SelectionBuilder;
@@ -69,9 +70,12 @@ public class HopAmChuanProvider extends ContentProvider {
     private static final int ARTISTS_ID = 201;
     private static final int SINGER_ID_TO_SONG_IDS = 202; // get all song from one singer id
     private static final int AUTHOR_ID_TO_SONG_IDS = 203; // get all song form one author id
+    private static final int SINGER_ID_TO_RAND_SONG_IDS = 204; // get random @limit song from a singer
+    private static final int AUTHOR_ID_TO_RAND_SONG_IDS = 205; // get random @limit song from a author
 
     private static final int CHORDS = 300;
     private static final int CHORDS_ID = 301;
+    private static final int CHORDS_NAME = 302;
 
     private static final int SONGS_AUTHORS = 400;
     private static final int SONGS_AUTHORS_ID = 401;
@@ -118,12 +122,15 @@ public class HopAmChuanProvider extends ContentProvider {
         matcher.addURI(authority, PATH_ARTISTS + "/#", ARTISTS_ID);
         matcher.addURI(authority, PATH_ARTISTS + "/singer/songs/#", SINGER_ID_TO_SONG_IDS);
         matcher.addURI(authority, PATH_ARTISTS + "/author/songs/#", AUTHOR_ID_TO_SONG_IDS);
+        matcher.addURI(authority, PATH_ARTISTS + "/singer/randsongs/#/#", SINGER_ID_TO_RAND_SONG_IDS);
+        matcher.addURI(authority, PATH_ARTISTS + "/author/randsongs/#/#", AUTHOR_ID_TO_RAND_SONG_IDS);
 
         /**
          * chords table
          */
         matcher.addURI(authority, PATH_CHORDS, CHORDS);
         matcher.addURI(authority, PATH_CHORDS + "/#", CHORDS_ID);
+        matcher.addURI(authority, PATH_CHORDS + "/name/*", CHORDS_NAME);
 
         /**
          * SongsSingers table
@@ -431,6 +438,22 @@ public class HopAmChuanProvider extends ContentProvider {
                 return builder.table(Tables.SONG_AUTHOR)
                         .where(SongsAuthors.ARTIST_ID + "=?", authorId);
             }
+            case SINGER_ID_TO_RAND_SONG_IDS: {
+                final List<String> segments = uri.getPathSegments();
+                // provider/artists(0)/singer(1)/randsongs(2)/#(3)/#(4)
+                final String singerId = segments.get(3);
+                final String limit = segments.get(4);
+                return builder.table(Tables.SONG_AUTHOR)
+                        .where(SongsAuthors.ARTIST_ID + "=?", singerId);
+            }
+            case AUTHOR_ID_TO_RAND_SONG_IDS: {
+                final List<String> segments = uri.getPathSegments();
+                // provider/artists(0)/author(1)/randsongs(2)/#(3)/#(4)
+                final String authorId = segments.get(3);
+                final String limit = segments.get(4);
+                return builder.table(Tables.SONG_AUTHOR)
+                        .where(SongsAuthors.ARTIST_ID + "=?", authorId);
+            }
 
             case SONGS: {
                 return builder.table(Tables.SONG);
@@ -492,6 +515,11 @@ public class HopAmChuanProvider extends ContentProvider {
                 final String chordId = Chords.getChordId(uri);
                 return builder.table(Tables.CHORD)
                         .where(Chords.CHORD_ID + "=?", chordId);
+            }
+            case CHORDS_NAME: {
+                final String chordName = Chords.getChordName(uri);
+                return builder.table(Tables.CHORD)
+                        .where(Chords.CHORD_NAME + "=?", chordName);
             }
             case SONGS_CHORDS: {
                 return builder.table(Tables.SONG_CHORD);

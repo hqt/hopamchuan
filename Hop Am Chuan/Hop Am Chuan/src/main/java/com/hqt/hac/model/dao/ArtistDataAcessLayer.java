@@ -149,11 +149,56 @@ public class ArtistDataAcessLayer {
     }
 
     public static List<Song> getRandomSongsByAuthor(Context context, int artistId, int limit) {
-        throw new UnsupportedOperationException();
+        LOGD(TAG, "get Random Songs By Author");
+
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Artists.CONTENT_URI;
+        Uri artistUri = Uri.withAppendedPath(uri, "author/songs/" + artistId + "");
+        Cursor c = resolver.query(artistUri,
+                Projections.SONGAUTHOR_PROJECTION,    // projection
+                null,                           // selection string
+                null,                           // selection args of strings
+                "RANDOM() LIMIT " + limit);         //  sort order
+
+        List<Song> songs = new ArrayList<Song>();
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            try {
+                int songId = c.getInt(c.getColumnIndex(SongsAuthors.SONG_ID));
+                songs.add(SongDataAccessLayer.getSongById(context, songId));
+            }
+            catch(Exception e) {
+                LOGE(TAG, "error when parse song " + e.getMessage());
+            }
+        }
+        c.close();
+        return songs;
     }
 
     public static List<Song> getRandomSongsBySinger(Context context, int artistId, int limit) {
-        throw new UnsupportedOperationException();
+        LOGD(TAG, "Get All Songs by Singer");
+
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Artists.CONTENT_URI;
+        Uri artistUri = Uri.withAppendedPath(uri, "singer/songs/" + artistId + "");
+        Cursor c = resolver.query(artistUri,
+                Projections.SONGSINGER_PROJECTION,    // projection
+                null,                           // selection string
+                null,                           // selection args of strings
+                "RANDOM() LIMIT " + limit);         //  sort order
+
+        List<Song> songs = new ArrayList<Song>();
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            try {
+                int songId = c.getInt(c.getColumnIndex(SongsSingers.SONG_ID));
+
+                songs.add(SongDataAccessLayer.getSongById(context, songId));
+            }
+            catch(Exception e) {
+                LOGE(TAG, "error when parse song " + e.getMessage());
+            }
+        }
+        c.close();
+        return songs;
     }
 
     /**

@@ -111,14 +111,6 @@ public class SongDataAccessLayer {
         return null;
     }
 
-    /**
-     * for testing purpose
-     * Note : limit = 0 : No limit
-     */
-    public static Song getAllSongs(Context context, int limit) {
-        throw new UnsupportedOperationException();
-    }
-
     public static List<Artist> getAuthorsBySongId(Context context, int id) {
         LOGD(TAG, "Get Author by song id");
 
@@ -210,4 +202,14 @@ public class SongDataAccessLayer {
         LOGD(TAG, "deleted removeSongById: " + deleteUri);
         return deleteUri;
     }
+
+
+    /**
+     * for testing purpose
+     * Note : limit = 0 : No limit
+     */
+    public static Song getAllSongs(Context context, int limit) {
+        throw new UnsupportedOperationException();
+    }
+
 }

@@ -61,6 +61,7 @@ public class FavoriteDataAccessLayer {
         }
         return null;
     }
+
     public static List<Song> getAllFavoriteSongs(Context context) {
         LOGD(TAG, "Get All favorite songs");
 
@@ -86,10 +87,6 @@ public class FavoriteDataAccessLayer {
         }
         c.close();
         return songs;
-    }
-
-    public static int getNumberOfSongs(Context context) {
-        throw new UnsupportedOperationException();
     }
 
     public static void removeSongFromFavorite(Context context, int songId) {

@@ -3,11 +3,14 @@ package com.hqt.hac.model.dao;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
 
+import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Chord;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.HopAmChuanDBContract;
+import com.hqt.hac.provider.helper.Query;
 
 import java.util.List;
 
@@ -38,15 +41,39 @@ public class ChordDataAccessLayer {
         }
     }
 
-    public static int getChordIdByName(String chordName) {
-        throw new UnsupportedOperationException();
+    public static Chord getChordByName(Context context, String chordName) {
+        LOGD(TAG, "Get Chord by Name");
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Chords.CONTENT_URI;
+        Uri chordUri = Uri.withAppendedPath(uri, "name/" + chordName + "");
+
+        Cursor c = resolver.query(chordUri,
+                Query.Projections.CHORD_PROJECTION,    // projection
+                null,                             // selection string
+                null,                             // selection args of strings
+                null);                            //  sort order
+
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            int chordId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Chords.CHORD_ID));
+            String _chordName = c.getString(c.getColumnIndex(HopAmChuanDBContract.Chords.CHORD_NAME));
+            if (c != null) {
+                c.close();
+            }
+            return new Chord(chordId, _chordName);
+        }
+        if (c != null) {
+            c.close();
+        }
+        return null;
     }
 
+    /**
+     * TODO: re-used query from web version
+     * @param context
+     * @param chords
+     * @return
+     */
     public static List<Song> getAllSongsByChordArrays(Context context, List<Chord> chords) {
-        throw new UnsupportedOperationException();
-    }
-
-    public static boolean isExistChordName(Context context, String chordName) {
         throw new UnsupportedOperationException();
     }
 
