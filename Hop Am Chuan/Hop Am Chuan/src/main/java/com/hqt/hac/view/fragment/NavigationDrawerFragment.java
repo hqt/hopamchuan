@@ -12,26 +12,33 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
+import com.hqt.hac.helper.adapter.PlaylistAdapter;
 import com.hqt.hac.view.R;
+
+import static com.hqt.hac.helper.adapter.NavigationDrawerAdapter.ItemAdapter.TYPE;
+import static com.hqt.hac.helper.adapter.NavigationDrawerAdapter.IHeaderDelegate;
+import static com.hqt.hac.helper.adapter.NavigationDrawerAdapter.IItemDelegate;
+import static com.hqt.hac.helper.adapter.NavigationDrawerAdapter.IPlaylistHeaderDelegate;
+import static com.hqt.hac.helper.adapter.NavigationDrawerAdapter.IPlaylistItemDelegate;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
-public class NavigationDrawerFragment extends Fragment {
+public class NavigationDrawerFragment extends Fragment
+        implements IHeaderDelegate,IItemDelegate, IPlaylistHeaderDelegate, IPlaylistItemDelegate {
 
     /**
      * Remember the position of the selected item.
@@ -62,6 +69,15 @@ public class NavigationDrawerFragment extends Fragment {
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
 
+    /**
+     * All adapter type for this view
+     */
+    MergeAdapter mergeAdapter;
+    NavigationDrawerAdapter.HeaderAdapter headerAdapter;
+    NavigationDrawerAdapter.ItemAdapter itemAdapter;
+    NavigationDrawerAdapter.PlaylistHeaderAdapter playlistHeaderAdapter;
+    NavigationDrawerAdapter.PlaylistItemAdapter playlistItemAdapter;
+
     public NavigationDrawerFragment() {
     }
 
@@ -80,7 +96,7 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         // Select either the default item (0) or the last selected item.
-        selectItem(mCurrentSelectedPosition);
+       // mCallbacks.onNavigationDrawerItemSelected(null);
 
         // Indicate that this fragment would like to influence the set of actions in the action bar.
         setHasOptionsMenu(true);
@@ -95,23 +111,9 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerListView.setSelector(android.R.color.transparent);
         mDrawerListView.setCacheColorHint(Color.WHITE);
 
-        NavigationDrawerAdapter adapter = new NavigationDrawerAdapter(getActivity().getApplicationContext());
-        mDrawerListView.setAdapter(adapter);
 
-        mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItem(position);
-            }
-        });
-
-        /**
-         * Using MergeAdapter for complex view
-         */
-        MergeAdapter mergeAdapter = new MergeAdapter();
-
-
-
+        // Simple view for drawer listview
+        // can use this code for testing purpose
         /*String[] categories = getResources().getStringArray(R.array.navigation_drawer_default_items);
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActionBar().getThemedContext(),
@@ -122,7 +124,63 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         */
 
+        // Old way to use Adapter
+        // Not stability. Need framework to work on this
+        // NavigationDrawerAdapterDraft adapter = new NavigationDrawerAdapterDraft(getActivity().getApplicationContext());
+        // mDrawerListView.setAdapter(adapter);
+
+
+        // TODO need modify and watch carefully here
+        /*mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectItem(position);
+            }
+        });*/
+
+        /**
+         * Using MergeAdapter for complex view
+         * just create as many type of view in list as we want and Add to this Adapter
+         */
+        mergeAdapter = new MergeAdapter();
+
+        // create all adapters as we want
+         headerAdapter = new NavigationDrawerAdapter.HeaderAdapter(getActivity().getApplicationContext());
+         itemAdapter = new NavigationDrawerAdapter.ItemAdapter(getActivity().getApplicationContext());
+         playlistHeaderAdapter = new NavigationDrawerAdapter.PlaylistHeaderAdapter(getActivity().getApplicationContext());
+         //playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(getActivity().getApplicationContext());
+
+        // assign each adapters to this composite adapter
+        mergeAdapter.addAdapter(headerAdapter);
+        mergeAdapter.addAdapter(itemAdapter);
+        mergeAdapter.addAdapter(playlistHeaderAdapter);
+
+        // assign this complex adapter to navigation drawer list
+        mDrawerListView.setAdapter(mergeAdapter);
+
         return mDrawerListView;
+    }
+
+    /**
+     * managed code : onResume and onPause
+     * add and remove delegate in those method
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        headerAdapter.setDelegate(this);
+        itemAdapter.setDelegate(this);
+        playlistHeaderAdapter.setDelegate(this);
+        //playlistItemAdapter.setDelegate(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        headerAdapter.setDelegate(null);
+        itemAdapter.setDelegate(null);
+        playlistHeaderAdapter.setDelegate(null);
+        //playlistItemAdapter.setDelegate(null);
     }
 
     public boolean isDrawerOpen() {
@@ -203,7 +261,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    private void selectItem(int position) {
+    /*private void selectItem(int position) {
         mCurrentSelectedPosition = position;
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked(position, true);
@@ -218,7 +276,7 @@ public class NavigationDrawerFragment extends Fragment {
         if (mCallbacks != null) {
             mCallbacks.onNavigationDrawerItemSelected(position);
         }
-    }
+    }*/
 
     @Override
     public void onAttach(Activity activity) {
@@ -289,16 +347,55 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     /**
+     * When user click a category in listview
+     */
+    @Override
+    public void gotoCategoryPage(TYPE pageType) {
+        Log.e("DEBUG", "category: " + pageType);
+        Fragment fragment = null;
+        switch (pageType) {
+            case HOME:
+                fragment = new SongListFragment();
+                break;
+            case MYPLAYLIST:
+                fragment = new MyPlaylistFragment();
+                break;
+            case FAVORITE:
+                fragment = new MyFavoriteFragment();
+                break;
+            case FIND_BY_CHORD:
+                break;
+            case SEARCH_CHORD:
+                break;
+        }
+        mCallbacks.onNavigationDrawerItemSelected(fragment);
+    }
+
+    /**
+     * When user click to a playlist row and want to show detail
+     */
+    @Override
+    public void gotoPlayList(int playlistId) {
+
+    }
+
+    /**
      * Callbacks interface that send data back from fragment to activity
      * Activity will use this function to determine what should to do
      * All activities using this fragment must implement this interface.
      * See this link for more detail:
      * @link{http://stackoverflow.com/questions/14213947/onattach-callback-from-fragment-to-activity}
+     *
+     * STEP :
+     *  1. create interface
+     *  2. assign activity to mCallback on onAttach() method
+     *      (can do this because activity must be implements this method)
+     *  on NavigationDrawer, when event arises. use mCallback
      */
     public static interface NavigationDrawerCallbacks {
         /**
          * Called when an item in the navigation drawer is selected.
          */
-        void onNavigationDrawerItemSelected(int position);
+        void onNavigationDrawerItemSelected(Fragment fragment);
     }
 }

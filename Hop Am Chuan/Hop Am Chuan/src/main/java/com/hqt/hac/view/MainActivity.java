@@ -18,12 +18,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.fragment.MyFavoriteFragment;
 import com.hqt.hac.view.fragment.MyPlaylistFragment;
 import com.hqt.hac.view.fragment.NavigationDrawerFragment;
 import com.hqt.hac.view.fragment.SongListFragment;
+import com.hqt.hac.view.fragment.WelcomeFragment;
 
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
@@ -66,30 +68,20 @@ public class MainActivity extends ActionBarActivity
      *  base on position that return suitable view
      */
     @Override
-    public void onNavigationDrawerItemSelected(int position) {
+    public void onNavigationDrawerItemSelected(Fragment fragment) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-
-        switch (position) {
-            case 1 :
-                SongListFragment fragment = new SongListFragment();
-                fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
-                break;
-            case 2 :
-                MyPlaylistFragment myPlaylistFragment = new MyPlaylistFragment();
-                fragmentManager.beginTransaction().replace(R.id.container, myPlaylistFragment).commit();
-                break;
-            case 3:
-                MyFavoriteFragment myFavoriteFragment = new MyFavoriteFragment();
-                fragmentManager.beginTransaction().replace(R.id.container, myFavoriteFragment);
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            default:
-            fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(position+1)).commit();
-                break;
+        Bundle arguments = new Bundle();
+        if (fragment != null) {
+            fragment.setArguments(arguments);
+            fragmentManager.beginTransaction().replace(R.id.container, fragment);
+        }
+        else {
+            //Toast.makeText(getBaseContext(), "NULL POINT", Toast.LENGTH_LONG);
+            // default to Welcome Fragment
+            Fragment welcomeFragment = new WelcomeFragment();
+            fragment.setArguments(arguments);
+            fragmentManager.beginTransaction().replace(R.id.container, fragment);
         }
     }
 

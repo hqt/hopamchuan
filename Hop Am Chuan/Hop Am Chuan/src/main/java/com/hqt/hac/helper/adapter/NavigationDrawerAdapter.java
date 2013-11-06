@@ -17,11 +17,13 @@ public class NavigationDrawerAdapter {
 
     private static String TAG = makeLogTag(NavigationDrawerAdapter.class);
 
+
     public static class HeaderAdapter extends BaseAdapter {
 
         private static String TAG = makeLogTag(HeaderAdapter.class);
 
         Context mContext;
+        IHeaderDelegate delegate;
 
         public HeaderAdapter(Context context) {
             this.mContext = context;
@@ -65,14 +67,27 @@ public class NavigationDrawerAdapter {
             holder.imgAvatar.setImageResource(R.drawable.ic_menu_search);
             return row;
         }
+
+        public void setDelegate(IHeaderDelegate delegate) {
+            this.delegate = delegate;
+        }
     }
 
     public static class ItemAdapter extends BaseAdapter {
 
         private static String TAG = makeLogTag(ItemAdapter.class);
 
+        public enum TYPE {
+            HOME,
+            MYPLAYLIST,
+            FAVORITE,
+            FIND_BY_CHORD,
+            SEARCH_CHORD
+        }
+
         Context mContext;
         String[] categories;
+        IItemDelegate mDelegate;
 
         public ItemAdapter(Context context) {
             this.mContext = context;
@@ -111,31 +126,48 @@ public class NavigationDrawerAdapter {
             }
 
             // assign value to holder
+            TYPE type = null;
             holder.txtView.setText(categories[position]);
             switch(position) {
                 case 0:
                     // Trang chu
                     holder.imageView.setImageResource(R.drawable.ic_menu_search);
+                    type = TYPE.HOME;
                     break;
                 case 1:
                     // Playlist cua toi
                     holder.imageView.setImageResource(R.drawable.ic_menu_search);
+                    type = TYPE.MYPLAYLIST;
                     break;
                 case 2:
                     // Yeu Thich
                     holder.imageView.setImageResource(R.drawable.ic_action_not_important);
+                    type = TYPE.FAVORITE;
                     break;
                 case 3:
                     // Tim Theo Hop Am
                     holder.imageView.setImageResource(R.drawable.ic_menu_search);
+                    type = TYPE.FIND_BY_CHORD;
                     break;
                 case 4:
                     // Tra cuu hop am
                     holder.imageView.setImageResource(R.drawable.ic_action_settings);
+                    type = TYPE.SEARCH_CHORD;
                     break;
             }
-            return row;
 
+            final TYPE finalType = type;
+            row.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mDelegate.gotoCategoryPage(finalType);
+                }
+            });
+            return row;
+        }
+
+        public void setDelegate(IItemDelegate mDelegate) {
+            this.mDelegate = mDelegate;
         }
     }
 
@@ -144,6 +176,7 @@ public class NavigationDrawerAdapter {
         private static String TAG = makeLogTag(PlaylistHeaderAdapter.class);
 
         private Context mContext;
+        IPlaylistHeaderDelegate delegate;
 
         public PlaylistHeaderAdapter(Context context) {
             this.mContext = context;
@@ -184,6 +217,10 @@ public class NavigationDrawerAdapter {
 
             return row;
         }
+
+        public void setDelegate(IPlaylistHeaderDelegate delegate) {
+            this.delegate = delegate;
+        }
     }
 
     public static class PlaylistItemAdapter extends BaseAdapter {
@@ -191,6 +228,7 @@ public class NavigationDrawerAdapter {
         private static String TAG = makeLogTag(PlaylistItemAdapter.class);
 
         private Context mContext;
+        IPlaylistItemDelegate delegate;
 
         @Override
         public int getCount() {
@@ -228,36 +266,11 @@ public class NavigationDrawerAdapter {
 
             return row;
         }
+
+        public void setDelegate(IPlaylistItemDelegate delegate) {
+            this.delegate = delegate;
+        }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     private static class ViewHolderItemTypeOne {
         ImageView imageView;
@@ -280,5 +293,30 @@ public class NavigationDrawerAdapter {
         TextView txtHeader;
     }
 
+    /**
+     * Interface acts as Callback
+     * for NavigationDrawer decide actions
+     * this stimulate Delegate Design Pattern often use in C#
+     * @author Huynh Quang Thao
+     */
+
+    public static interface IHeaderDelegate {
+
+    }
+
+    public static interface IItemDelegate {
+        void gotoCategoryPage(ItemAdapter.TYPE type);
+
+    }
+
+    public static interface IPlaylistHeaderDelegate {
+
+    }
+
+    public static interface IPlaylistItemDelegate {
+        void gotoPlayList(int playlistId);
+    }
+
 
 }
+

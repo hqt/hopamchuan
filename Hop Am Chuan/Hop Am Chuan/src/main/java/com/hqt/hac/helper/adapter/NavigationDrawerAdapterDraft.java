@@ -13,6 +13,14 @@ import com.hqt.hac.view.R;
 
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
+/**
+ * This is old way to use Adapter for NavigationDrawer
+ * this adapter is just on simple Adapter. hard to divide into categories
+ * and easy to prone error and extend later
+ * @version Keep this class as reference for later because render part is almost stability
+ * @author Huynh Quang Thao
+ */
+
 public class NavigationDrawerAdapterDraft extends BaseAdapter {
 
     private static final String TAG = makeLogTag(NavigationDrawerAdapterDraft.class);
