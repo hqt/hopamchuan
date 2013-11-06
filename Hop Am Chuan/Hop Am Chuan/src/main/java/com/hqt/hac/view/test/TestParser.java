@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.hqt.hac.model.dao.SongDataAccessLayer;
 import com.hqt.hac.utils.ParserUtils;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.view.R;
@@ -42,9 +43,12 @@ public class TestParser extends ActionBarActivity {
 //        List<Artist> arr = ParserUtils.getAllArtistsFromRescource(getApplicationContext());
 //
 //        String uri = ArtistDataAcessLayer.insertArtist(getApplicationContext(), arr.get(0));
-//        textView.setText("inserted: " + uri);
+
         List<Song> songs = ParserUtils.getAllSongsFromResource(getApplicationContext());
-        Log.i("Debug", songs.toString());
+//        SongDataAccessLayer.insertFullSongListSync(getApplicationContext(), songs);
+        SongDataAccessLayer.insertFullSongSync(getApplicationContext(), songs.get(1));
+        Song song = SongDataAccessLayer.getSongById(getApplicationContext(), 2);
+        textView.setText(song.toString());
     }
 
 
