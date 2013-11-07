@@ -2,6 +2,7 @@ package com.hqt.hac.helper.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hqt.hac.model.Playlist;
+import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 import com.hqt.hac.view.R;
+
+import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
@@ -56,6 +61,7 @@ public class NavigationDrawerAdapter {
                 holder.txtName = (TextView) row.findViewById(R.id.name);
                 holder.txtMail = (TextView) row.findViewById(R.id.mail);
                 holder.imgAvatar = (ImageView) row.findViewById(R.id.imageView);
+                row.setTag(holder);
             }
             else {
                 holder = (ViewHolderHeader) row.getTag();
@@ -111,23 +117,31 @@ public class NavigationDrawerAdapter {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolderItemTypeOne holder = null;
+            ViewHolderItem holder = null;
             View row = convertView;
 
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             if (row == null) {
                 row = inflater.inflate(R.layout.list_item_navigation_drawer_1, null);
-                holder = new ViewHolderItemTypeOne();
+                holder = new ViewHolderItem();
                 holder.txtView = (TextView) row.findViewById(R.id.text);
                 holder.imageView = (ImageView) row.findViewById(R.id.icon);
+
+                row.setTag(holder);
             }
             else {
-                holder = (ViewHolderItemTypeOne) row.getTag();
+                holder = (ViewHolderItem) row.getTag();
             }
 
             // assign value to holder
             TYPE type = null;
-            holder.txtView.setText(categories[position]);
+            try {
+                holder.txtView.setText(categories[position]);
+            }
+            catch (Exception e) {
+                if (holder == null) Log.e("Huynh Quang Thao", "Silly Error");
+            }
+
             switch(position) {
                 case 0:
                     // Trang chu
@@ -207,6 +221,7 @@ public class NavigationDrawerAdapter {
                 row = inflater.inflate(R.layout.list_item_header_2, null);
                 holder = new ViewHolderPlaylistHeader();
                 holder.txtHeader = (TextView) row.findViewById(R.id.playlist_header);
+                row.setTag(holder);
             }
             else {
                 holder = (ViewHolderPlaylistHeader) row.getTag();
@@ -229,41 +244,52 @@ public class NavigationDrawerAdapter {
 
         private Context mContext;
         IPlaylistItemDelegate delegate;
+        List<Playlist> playlists;
+
+        public PlaylistItemAdapter(Context context) {
+            this.mContext = context;
+            // load all playlist
+            playlists = PlaylistDataAccessLayer.getAllPlayLists(context);
+        }
 
         @Override
         public int getCount() {
-            return 0;
+            return playlists.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return null;
+            return playlists.get(position);
         }
 
         @Override
         public long getItemId(int position) {
-            return 0;
+            return position;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolderItemTypeTwo holder = null;
+            ViewHolderPlaylistItem holder = null;
             View row = convertView;
 
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             if (row == null) {
                 row = inflater.inflate(R.layout.list_item_navigation_drawer_2, null);
-                holder = new ViewHolderItemTypeTwo();
+                holder = new ViewHolderPlaylistItem();
                 holder.txtTitle = (TextView) row.findViewById(R.id.title);
                 holder.txtDescription = (TextView) row.findViewById(R.id.description);
                 holder.txtNumberOfSong = (TextView) row.findViewById(R.id.countSongText);
+                row.setTag(holder);
             }
             else {
-                holder = (ViewHolderItemTypeTwo) row.getTag();
+                holder = (ViewHolderPlaylistItem) row.getTag();
             }
 
             // assign value to view
-
+            Playlist p = playlists.get(position);
+            holder.txtTitle.setText(p.playlistName);
+            holder.txtDescription.setText(p.playlistDescription);
+            holder.txtNumberOfSong.setText(p.numberOfSongs + "");
             return row;
         }
 
@@ -272,12 +298,12 @@ public class NavigationDrawerAdapter {
         }
     }
 
-    private static class ViewHolderItemTypeOne {
+    private static class ViewHolderItem {
         ImageView imageView;
         TextView txtView;
     }
 
-    private static class ViewHolderItemTypeTwo {
+    private static class ViewHolderPlaylistItem {
         TextView txtTitle;
         TextView txtDescription;
         TextView txtNumberOfSong;

@@ -14,14 +14,14 @@ import com.hqt.hac.view.R;
 
 import java.util.List;
 
-public class PlaylistAdapter extends BaseAdapter {
+public class PlaylistManagerAdapter extends BaseAdapter {
 
     Context mContext;
     List<Playlist> playLists;
 
-    public PlaylistAdapter(Context context) {
+    public PlaylistManagerAdapter(Context context, List<Playlist> playlists) {
         this.mContext = context;
-        this.playLists = PlaylistDataAccessLayer.getAllPlayLists(mContext);
+        this.playLists = playlists;
     }
 
     @Override
@@ -51,13 +51,14 @@ public class PlaylistAdapter extends BaseAdapter {
             holder.numberOfSongTxt = (TextView) row.findViewById(R.id.countSongText);
             holder.playListNameTxt = (TextView) row.findViewById(R.id.playlist);
             holder.descriptionTxt = (TextView) row.findViewById(R.id.description);
+            row.setTag(holder);
         }
         else {
             holder = (ViewHolder) row.getTag();
         }
 
         Playlist rowItem = (Playlist) getItem(position);
-        //   holder.numberOfSongTxt.setText(rowItem.);
+        holder.numberOfSongTxt.setText(rowItem.numberOfSongs + ""); // carefully when set text is number
         holder.playListNameTxt.setText(rowItem.playlistName);
         holder.descriptionTxt.setText(rowItem.playlistDescription);
 
@@ -68,5 +69,11 @@ public class PlaylistAdapter extends BaseAdapter {
         TextView numberOfSongTxt;
         TextView playListNameTxt;
         TextView descriptionTxt;
+    }
+
+    public static interface IPlaylistManagerAdapter {
+        public void sharePlaylist();
+        public void renamePlaylist();
+        public void deletePlaylist();
     }
 }

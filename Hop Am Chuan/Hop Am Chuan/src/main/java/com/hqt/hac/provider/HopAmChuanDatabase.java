@@ -33,6 +33,7 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
 
     public HopAmChuanDatabase(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
+        // super(context, "hopamchuan", factory, version);
         mContext = context;
     }
 

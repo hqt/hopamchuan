@@ -50,7 +50,8 @@ public class DatabaseTest {
         ArtistDataAcessLayer.insertArtist(context, a2);
         ArtistDataAcessLayer.insertArtist(context, a3);
 
-        // create two songs
+
+        // create songs
         Song s1 = new Song(1, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
         Song s2 = new Song(2, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
         Song s3 = new Song(3, "Quoc Ca", "www.echip.com.vn", "doan quan Viet Nam di", "doan quan Viet Nam", new Date());
@@ -75,14 +76,24 @@ public class DatabaseTest {
         FavoriteDataAccessLayer.addSongToFavorite(context, 2);*/
 
         // Create sample playlists
-        Playlist playlist1 = new Playlist(1, "Playlist 1", "Mot", new Date(), 1);
-        Playlist playlist2 = new Playlist(2, "Playlist 2", "Hai", new Date(), 0);
-        Playlist playlist3 = new Playlist(3, "Playlist 3", "Ba", new Date(), 1);
+        Playlist playlist1 = new Playlist(1, "Nhac Trinh Cong Son", "Trinh Cong Son", new Date(), 1);
+        Playlist playlist2 = new Playlist(2, "Nhac Pham Duy", "Pham Duy", new Date(), 0);
+        Playlist playlist3 = new Playlist(3, "Nhac Tien Chien", "Tien Chien", new Date(), 1);
         PlaylistDataAccessLayer.insertPlaylist(context, playlist1);
         PlaylistDataAccessLayer.insertPlaylist(context, playlist2);
         PlaylistDataAccessLayer.insertPlaylist(context, playlist3);
 
-        PlaylistDataAccessLayer.removePlaylistById(context, 2);
+        // create songs in playlists
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context,1, 1);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context,1, 2);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context,1, 3);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context,2, 3);
+
+        // create favorites
+        FavoriteDataAccessLayer.addSongToFavorite(context, 1);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 2);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 3);
+
     }
 
     public static String TestInsertSong_Chord(Context context) {

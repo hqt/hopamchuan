@@ -43,5 +43,6 @@
     <string name="title_activity_my_playlist_fragment">Playlist cua toi</string>
     <string name="title_activity_my_favorite_fragment">My Favorite</string>
     <string name="title_activity_playlist_detail_fragment">MainActivity</string>
+    <string name="title_activity_playlist_manager_fragment">Playlist Manager</string>
 
 </resources>

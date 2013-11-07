@@ -23,7 +23,6 @@ import android.widget.ListView;
 
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
-import com.hqt.hac.helper.adapter.PlaylistAdapter;
 import com.hqt.hac.view.R;
 
 import static com.hqt.hac.helper.adapter.NavigationDrawerAdapter.ItemAdapter.TYPE;
@@ -108,8 +107,11 @@ public class NavigationDrawerFragment extends Fragment
         mDrawerListView = (ListView) inflater.inflate(
                 R.layout.fragment_navigation_drawer, container, false);
 
+        /**
+         * setCacheColorHint : color background when scroll
+         */
         mDrawerListView.setSelector(android.R.color.transparent);
-        mDrawerListView.setCacheColorHint(Color.WHITE);
+        mDrawerListView.setCacheColorHint(Color.TRANSPARENT);
 
 
         // Simple view for drawer listview
@@ -148,12 +150,13 @@ public class NavigationDrawerFragment extends Fragment
          headerAdapter = new NavigationDrawerAdapter.HeaderAdapter(getActivity().getApplicationContext());
          itemAdapter = new NavigationDrawerAdapter.ItemAdapter(getActivity().getApplicationContext());
          playlistHeaderAdapter = new NavigationDrawerAdapter.PlaylistHeaderAdapter(getActivity().getApplicationContext());
-         //playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(getActivity().getApplicationContext());
+         playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(getActivity().getApplicationContext());
 
         // assign each adapters to this composite adapter
         mergeAdapter.addAdapter(headerAdapter);
         mergeAdapter.addAdapter(itemAdapter);
         mergeAdapter.addAdapter(playlistHeaderAdapter);
+        mergeAdapter.addAdapter(playlistItemAdapter);
 
         // assign this complex adapter to navigation drawer list
         mDrawerListView.setAdapter(mergeAdapter);
@@ -171,7 +174,7 @@ public class NavigationDrawerFragment extends Fragment
         headerAdapter.setDelegate(this);
         itemAdapter.setDelegate(this);
         playlistHeaderAdapter.setDelegate(this);
-        //playlistItemAdapter.setDelegate(this);
+        playlistItemAdapter.setDelegate(this);
     }
 
     @Override
@@ -180,7 +183,7 @@ public class NavigationDrawerFragment extends Fragment
         headerAdapter.setDelegate(null);
         itemAdapter.setDelegate(null);
         playlistHeaderAdapter.setDelegate(null);
-        //playlistItemAdapter.setDelegate(null);
+        playlistItemAdapter.setDelegate(null);
     }
 
     public boolean isDrawerOpen() {
@@ -358,7 +361,7 @@ public class NavigationDrawerFragment extends Fragment
                 fragment = new SongListFragment();
                 break;
             case MYPLAYLIST:
-                fragment = new MyPlaylistFragment();
+                fragment = new PlaylistManagerFragment();
                 break;
             case FAVORITE:
                 fragment = new MyFavoriteFragment();
@@ -368,7 +371,15 @@ public class NavigationDrawerFragment extends Fragment
             case SEARCH_CHORD:
                 break;
         }
-        mCallbacks.onNavigationDrawerItemSelected(fragment);
+        if (mDrawerListView != null) {
+            //mDrawerListView.setItemChecked(position, true);
+        }
+        if (mDrawerLayout != null) {
+            mDrawerLayout.closeDrawer(mFragmentContainerView);
+        }
+        if (mCallbacks != null) {
+            mCallbacks.onNavigationDrawerItemSelected(fragment);
+        }
     }
 
     /**

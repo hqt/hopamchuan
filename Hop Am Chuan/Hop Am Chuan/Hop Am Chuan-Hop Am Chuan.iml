@@ -74,6 +74,8 @@
     <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="SackOfViewsAdapter" level="project" />
     <orderEntry type="library" name="CWAC-SackOfViewsAdapter" level="project" />
+    <orderEntry type="library" name="gson-2.2.4-javadoc (2)" level="project" />
+    <orderEntry type="library" name="gson-2.2.4-sources (2)" level="project" />
   </component>
 </module>
 
