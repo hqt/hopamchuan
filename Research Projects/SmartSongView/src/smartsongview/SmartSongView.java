@@ -4,7 +4,10 @@
  */
 package smartsongview;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import sampleinput.InputData;
 
 /**
@@ -17,7 +20,7 @@ public class SmartSongView {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        PrintSmartSongView(InputData.song2,30);
+        PrintSmartSongView(InputData.song2, 20);
     }
 
 //    Process:
@@ -35,21 +38,26 @@ public class SmartSongView {
 //    420 - 35px - 20 chars (12 * 1.7143 + 0.5)
 //    740 - 22px - 57 chars 
 //    (screenWidth - 60) / textSize * 1.7143
-    
-    
     public static void PrintSmartSongView(String content, int maxLineChar) {
-        // 2. Remove all chord mark [..] from B
+        // Remove all chord mark [..] from B
         String contentB = content.replaceAll("\\[.*?\\]", "");
-        // Use this in android instead;
-        // String contentC = android.text.TextUtils.join("\n", contentB.split(".*", maxLineChar));
-//        String contentC = "";
-//        String[] contentCs = StringUtils.splitIntoLine(contentB, maxLineChar);
-//        for (String line : contentCs) {
-//            contentC += line + "\n";
-//        }
-        String contentC = StringUtils.wrap(contentB, maxLineChar);
-        
-        System.out.println(contentB);
+
+        // Smart wrap
+        String contentC = StringUtils.wrap(content, maxLineChar);
+
+        // Line - Offset - Char
+        Map<Integer, Map<Integer, String>> pos = new HashMap<>();
+
+        Pattern pattern = Pattern.compile("\\[.*?\\]");
+        Matcher matcher = pattern.matcher(content);
+        // Check all occurrences
+        while (matcher.find()) {
+            System.out.print("Start index: " + matcher.start());
+            System.out.print(" End index: " + matcher.end());
+            System.out.println(" Found: " + matcher.group());
+        }
+
+        System.out.println(content);
         System.out.println("");
         System.out.println("============");
         System.out.println("");

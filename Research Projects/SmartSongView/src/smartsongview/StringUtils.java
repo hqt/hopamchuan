@@ -48,22 +48,30 @@ public class StringUtils {
             // Capture the last space character position
             if (curChar.equals(" ")) {
                 lastSpacePos = i;
+//                try {
+//                    System.out.println(inputString.substring(i - 5, i) + "[" + inputString.substring(i, i + 1) + "]" + inputString.substring(i + 1, i + 6));
+//                } catch (Exception e) {
+//                }
             }
 
+//            System.out.println("lastlast: " + lastLastSpacePost + " | last: " + lastSpacePos + " | count = " + count + " | char = " + curChar);
             // If the cursor is in new line then reset the counter.
             if (curChar.equals("\n")) {
                 count = 0;
             } else if (count >= maxLength && !inputString.substring(i + 1, i + 2).equals("\n")) {
                 // If the counter have excessed the max line char number and the next char is not a newline char
-                // TODO: here [ Trong ------------------------------------------------- cơn mưa đêm nhẹ như gió ]
+
                 // Insert a newline char to the last space character position, plus the stack
                 if (lastLastSpacePost != lastSpacePos) {
+//                    System.out.println("Insert!");
                     sb.insert(lastSpacePos + 1 + stackPos, "\n");
-                    lastLastSpacePost = lastSpacePos;
+
+                    // Reduce count by the last position
+                    count -= (lastSpacePos - lastLastSpacePost);
 
                     // Increase stack by 1
                     stackPos++;
-                    count = 0;
+                    lastLastSpacePost = lastSpacePos;
                 }
 
             }

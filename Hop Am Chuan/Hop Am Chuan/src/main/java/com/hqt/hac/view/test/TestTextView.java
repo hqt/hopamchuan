@@ -3,6 +3,7 @@ package com.hqt.hac.view.test;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Layout;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -11,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
 import com.hqt.hac.model.Song;
@@ -38,7 +40,18 @@ public class TestTextView extends ActionBarActivity {
             testTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, 22);
 
             HacUtils.setSongFormatted(getApplicationContext(), testTextView, songContent, displaymetrics);
+            ViewTreeObserver vto = testTextView.getViewTreeObserver();
+            vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    Layout layout = testTextView.getLayout();
+                    int curLine = layout.getLineStart(1);
+                    int nextLine = layout.getLineStart(2);
+                    int numLine = layout.getLineCount();
 
+                    Log.i("TextViewDebug", "curLine: " + curLine + " | nextLine: " + nextLine + " | count: " + numLine);
+                }
+            });
         } else {
             Log.i("Debug", "testTextView is null!");
         }
