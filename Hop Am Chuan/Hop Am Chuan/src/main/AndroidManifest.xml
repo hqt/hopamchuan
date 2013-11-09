@@ -66,10 +66,17 @@
         </activity>
         <activity
             android:name="com.hqt.hac.view.test.TestTextView"
+            android:exported="true"
+            android:label="@string/title_activity_test_text_view" >
+        </activity>
+        <activity
+            android:name="com.hqt.hac.view.test.TestSurfaceView"
+            android:exported="true"
             android:label="@string/title_activity_test_text_view" >
         </activity>
         <activity
             android:name="com.hqt.hac.view.test.TestDatabaseActivity"
+            android:exported="true"
             android:label="@string/title_activity_test_database" >
         </activity>
     </application>

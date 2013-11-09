@@ -12,6 +12,7 @@ import com.hqt.hac.model.Chord;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.HopAmChuanDBContract;
 import com.hqt.hac.provider.helper.Query;
+import com.hqt.hac.utils.StringUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -70,6 +71,10 @@ public class SongDataAccessLayer {
         cv.put(HopAmChuanDBContract.Songs.SONG_LINK, song.link);
         cv.put(HopAmChuanDBContract.Songs.SONG_FIRST_LYRIC, song.firstLyric);
         cv.put(HopAmChuanDBContract.Songs.SONG_DATE,(new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT)).format(song.date));
+        cv.put(HopAmChuanDBContract.Songs.SONG_TITLE_ASCII, StringUtils.removeAccients(song.title));
+        cv.put(HopAmChuanDBContract.Songs.SONG_RHYTHM, song.rhythm);
+        cv.put(HopAmChuanDBContract.Songs.SONG_LASTVIEW, song.lastView);
+        cv.put(HopAmChuanDBContract.Songs.SONG_ISFAVORITE, song.isFavorite);
 
         ContentResolver resolver = context.getContentResolver();
         Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
@@ -111,7 +116,10 @@ public class SongDataAccessLayer {
         int firstlyricCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_FIRST_LYRIC);
         int linkCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_LINK);
         int dateCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_DATE);
-
+        int titleAsciiCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_TITLE_ASCII);
+        int rhythmCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_RHYTHM);
+        int isFavoriteCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ISFAVORITE);
+        int lastViewCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_LASTVIEW);
         try {
             for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
                 int id = c.getInt(songidCol);
@@ -123,12 +131,17 @@ public class SongDataAccessLayer {
                 List<Artist> authors = getAuthorsBySongId(context, id);
                 List<Artist> singers = getSingersBySongId(context, id);
                 List<Chord> chords = getChordsBySongId(context, id);
+                String titleAscii = c.getString(titleAsciiCol);
+                String rhythm = c.getString(rhythmCol);
+                int isFavorite = c.getInt(isFavoriteCol);
+                int lastView = c.getInt(lastViewCol);
+
 
                 if (c != null) {
                     c.close();
                 }
-                return new Song(id, title, link, content, firstLyric, date, authors, chords, singers);
-                //return new Song(id, title, link, content, firstLyric, date);
+                return new Song(id, title, link, content, firstLyric, date,
+                        authors, chords, singers, titleAscii, lastView, isFavorite, rhythm);
             }
         } catch (Exception e) {
             LOGE(TAG, "Parse song fail!");

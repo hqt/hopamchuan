@@ -97,6 +97,10 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
                 + SongsColumns.SONG_CONTENT + " TEXT,"
                 + SongsColumns.SONG_FIRST_LYRIC + " TEXT,"
                 + SongsColumns.SONG_DATE + " TEXT,"
+                + SongsColumns.SONG_TITLE_ASCII + " TEXT,"
+                + SongsColumns.SONG_LASTVIEW + " INTEGER,"
+                + SongsColumns.SONG_ISFAVORITE + " INTEGER,"
+                + SongsColumns.SONG_RHYTHM + " TEXT,"
                 + "UNIQUE (" + SongsColumns.SONG_ID + ") ON CONFLICT REPLACE)");
 
         /**
@@ -143,10 +147,6 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
                 + "UNIQUE (" + HopAmChuanDBContract.PlaylistColumns.PLAYLIST_ID + ","
                 + SongsColumns.SONG_ID + ") ON CONFLICT REPLACE)");
 
-
-        db.execSQL("CREATE TABLE " + Tables.FAVORITE + " ("
-                + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + SongsColumns.SONG_ID + " INTEGER " + References.SONG_ID + ")");
 
         // Full-text search index. Update using updateSessionSearchIndex method.
         // Use the porter tokenizer for simple stemming, so that "frustration" matches "frustrated."

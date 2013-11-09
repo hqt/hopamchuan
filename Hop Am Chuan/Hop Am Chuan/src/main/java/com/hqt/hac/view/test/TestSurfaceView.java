@@ -28,56 +28,56 @@ public class TestSurfaceView extends ActionBarActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                final Toast toast = new Toast(getApplicationContext());
-//                LayoutInflater inflater = getLayoutInflater();
-//
-//                View layout = inflater.inflate(R.layout.chordsurfaceview_toast,
-//                        (ViewGroup) findViewById(R.id.toast_layout_root));
-//
-////                TextView text = (TextView) layout.findViewById(R.id.customToastTextView);
-////                text.setText("This is a custom toast");
-//                ChordSurfaceView chord = (ChordSurfaceView) layout.findViewById(R.id.chordViewA);
-//                chord.drawChord("Am");
-//
-//                Button btnDismiss = (Button)layout.findViewById(R.id.close);
-//                btnDismiss.setText("X!");
-//                btnDismiss.setOnClickListener(new Button.OnClickListener(){
-//                    @Override
-//                    public void onClick(View v) {
-//                        Log.i("Debug", "Cancel this toast.");
-//                        toast.cancel();
-//                    }
-//                });
-//
-//                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-//                toast.setDuration(Toast.LENGTH_LONG);
-//                toast.setView(layout);
-//                toast.show();
-
-////////////////////////////////////////
+                final Toast toast = new Toast(getApplicationContext());
                 LayoutInflater inflater = getLayoutInflater();
-                final View popupView = inflater.inflate(R.layout.chordsurfaceview_toast,
+
+                View layout = inflater.inflate(R.layout.chordsurfaceview_toast,
                         (ViewGroup) findViewById(R.id.toast_layout_root));
 
+//                TextView text = (TextView) layout.findViewById(R.id.customToastTextView);
+//                text.setText("This is a custom toast");
+                final ChordSurfaceView chord = (ChordSurfaceView) layout.findViewById(R.id.chordViewA);
+                chord.drawChord("Am");
 
-                PopupWindow popupWindow = new PopupWindow(
-                        popupView,
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
-
-
-                Button btnDismiss = (Button) popupView.findViewById(R.id.close);
-                btnDismiss.setText("Clickme!");
-                btnDismiss.setOnClickListener(new Button.OnClickListener() {
-
+                Button btnDismiss = (Button)layout.findViewById(R.id.close);
+                btnDismiss.setText("X!");
+                btnDismiss.setOnClickListener(new Button.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        ChordSurfaceView chord = (ChordSurfaceView) popupView.findViewById(R.id.chordViewA);
-                        chord.drawChord("Am");
-                        Log.i("Debug", "New chord drawed!");
+                        Log.i("Debug", "Cancel this toast.");
+                        chord.nextPosition();
                     }
                 });
-                popupWindow.showAsDropDown(btn, 50, -30);
+
+                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.setView(layout);
+                toast.show();
+
+////////////////////////////////////////
+//                LayoutInflater inflater = getLayoutInflater();
+//                final View popupView = inflater.inflate(R.layout.chordsurfaceview_toast,
+//                        (ViewGroup) findViewById(R.id.toast_layout_root));
+//
+//
+//                PopupWindow popupWindow = new PopupWindow(
+//                        popupView,
+//                        ViewGroup.LayoutParams.WRAP_CONTENT,
+//                        ViewGroup.LayoutParams.WRAP_CONTENT);
+//
+//
+//                Button btnDismiss = (Button) popupView.findViewById(R.id.close);
+//                btnDismiss.setText("Clickme!");
+//                btnDismiss.setOnClickListener(new Button.OnClickListener() {
+//
+//                    @Override
+//                    public void onClick(View v) {
+//                        ChordSurfaceView chord = (ChordSurfaceView) popupView.findViewById(R.id.chordViewA);
+//                        chord.drawChord("Am");
+//                        Log.i("Debug", "New chord drawed!");
+//                    }
+//                });
+//                popupWindow.showAsDropDown(btn, 50, -30);
             }
         });
     }
