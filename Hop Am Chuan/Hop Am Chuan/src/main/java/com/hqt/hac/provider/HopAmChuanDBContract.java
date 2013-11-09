@@ -22,7 +22,6 @@ public class HopAmChuanDBContract {
         String SONG_SINGER = "Song_Singer_Tbl";
         String PLAYLIST = "Playlist_Tbl";
         String PLAYLIST_SONG = "Playlist_Song_Tbl";
-        String FAVORITE = "Favorite_Tbl";
     }
 
     interface ArtistsColumns {
@@ -57,6 +56,10 @@ public class HopAmChuanDBContract {
         String SONG_CONTENT = "song_content";
         String SONG_FIRST_LYRIC = "song_first_lyric";
         String SONG_DATE = "song_date";
+        String SONG_TITLE_ASCII = "song_title_ascii";
+        String SONG_LASTVIEW = "song_lastview";
+        String SONG_RHYTHM = "song_rhythm";
+        String SONG_ISFAVORITE = "song_isfavorite";
     }
 
     interface PlaylistColumns {
@@ -249,24 +252,6 @@ public class HopAmChuanDBContract {
         }
     }
 
-    public static final class Favorites implements BaseColumns, SongsColumns {
-        public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_FAVORITES).build();
-
-        public static final String CONTENT_TYPE =
-                "vnd.android.cursor.dir/vnd.com.hqt.hac.favorites";
-        public static final String CONTENT_ITEM_TYPE =
-                "vnd.android.cursor.item/vnd.com.hqt.hac.favorites";
-
-        /** Build {@link Uri} for requested {@link }. */
-        public static Uri buildFavoriteUri(String songId) {
-            return CONTENT_URI.buildUpon().appendPath(songId).build();
-        }
-        /** Read {@link #SONG_ID} from {@link com.hqt.hac.provider.HopAmChuanDBContract.Chords} {@link Uri}. */
-        public static String getSongId(Uri uri) {
-            return uri.getPathSegments().get(1);
-        }
-    }
 
     public static Uri addCallerIsSyncAdapterParameter(Uri uri) {
         return uri.buildUpon().appendQueryParameter(

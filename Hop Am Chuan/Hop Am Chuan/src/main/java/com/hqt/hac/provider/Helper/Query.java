@@ -6,7 +6,6 @@ import com.hqt.hac.provider.HopAmChuanDBContract;
 
 import static com.hqt.hac.provider.HopAmChuanDBContract.Artists;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Chords;
-import static com.hqt.hac.provider.HopAmChuanDBContract.Favorites;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Playlist;
 import static com.hqt.hac.provider.HopAmChuanDBContract.PlaylistSongs;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Songs;
@@ -60,6 +59,10 @@ public class Query {
                 Songs.SONG_DATE,
                 Songs.SONG_LINK,
                 Songs.SONG_FIRST_LYRIC,
+                Songs.SONG_LASTVIEW,
+                Songs.SONG_ISFAVORITE,
+                Songs.SONG_TITLE_ASCII,
+                Songs.SONG_RHYTHM,
                 // "Fucking Column"     :
                 // Add this temporary column for debug purpose
                 // logcat will print out query and we can easily trace it.
@@ -95,10 +98,6 @@ public class Query {
                 BaseColumns._ID,
                 SongsSingers.SONG_ID,
                 SongsSingers.ARTIST_ID,
-        };
-        String[] FAVORITE_PROJECTION = {
-                BaseColumns._ID,
-                Favorites.SONG_ID,
         };
         String[] PLAYLISTSONG_PROJECTION = {
                 BaseColumns._ID,

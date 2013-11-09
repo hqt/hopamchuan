@@ -779,7 +779,7 @@ public class DatabaseTest {
     }
 
     public static String TestGetAllFavoriteSongs(Context context) {
-        String res = "TestAddSongToFavorite: ";
+        String res = "TestGetAllFavoriteSongs: ";
         try {
             // Create
             Song s1 = new Song(1, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
@@ -812,23 +812,23 @@ public class DatabaseTest {
         String res = "TestInFavorite: ";
         try {
             // Create
-            Song s1 = new Song(1, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
-            Song s2 = new Song(2, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
+            Song s1 = new Song(5, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
+            Song s2 = new Song(7, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
 
             // Insert
             SongDataAccessLayer.insertSong(context, s1);
             SongDataAccessLayer.insertSong(context, s2);
-            FavoriteDataAccessLayer.addSongToFavorite(context, 1);
+            FavoriteDataAccessLayer.addSongToFavorite(context, 7);
 
             // Get
-            Song result1 = FavoriteDataAccessLayer.inFavorite(context, 1); // Should be exists
-            Song result2 = FavoriteDataAccessLayer.inFavorite(context, 2); // Should be null
+            int result1 = FavoriteDataAccessLayer.inFavorite(context, 5); // Should be 0
+            int result2 = FavoriteDataAccessLayer.inFavorite(context, 7); // Should be 7
 
             // Compare
-            if (result1.equals(s1) && result2 == null) {
+            if (result1 == 0 && result2 == 7) {
                 res += " OK";
             } else {
-                res += " FAIL: result: " + result1 + "|" + result2 + " Expected: " + s1 + "|null";
+                res += " FAIL: result: " + result1 + "|" + result2 + " Expected: " + 0 + "|7" ;
             }
         } catch (Exception e) {
             res += "Exception: " + e.toString();

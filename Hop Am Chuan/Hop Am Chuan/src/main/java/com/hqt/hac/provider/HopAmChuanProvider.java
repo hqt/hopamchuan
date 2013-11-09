@@ -22,7 +22,6 @@ import java.util.List;
 
 import static com.hqt.hac.provider.HopAmChuanDBContract.Artists;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Chords;
-import static com.hqt.hac.provider.HopAmChuanDBContract.Favorites;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Playlist;
 import static com.hqt.hac.provider.HopAmChuanDBContract.Songs;
 import static com.hqt.hac.provider.HopAmChuanDBContract.PlaylistSongs;
@@ -65,6 +64,8 @@ public class HopAmChuanProvider extends ContentProvider {
     private static final int AUTHORS_BY_SONG_ID = 102;
     private static final int SINGERS_BY_SONG_ID = 103;
     private static final int CHORDS_BY_SONG_ID = 104;
+    private static final int SONG_IS_FAVORITE = 105;
+    private static final int SONG_ALL_FAVORITE = 106;
 
     private static final int ARTISTS = 200;
     private static final int ARTISTS_ID = 201;
@@ -95,9 +96,6 @@ public class HopAmChuanProvider extends ContentProvider {
     private static final int PLAYLIST_SONGS = 800;
     private static final int PLAYLIST_SONGS_ID = 801;
 
-    private static final int FAVORITES = 900;
-    private static final int FAVORITES_SONG_ID = 901;
-
     private static final int SEARCH_INDEX = 10;
 
     private static UriMatcher buildUriMatcher() {
@@ -113,6 +111,8 @@ public class HopAmChuanProvider extends ContentProvider {
         matcher.addURI(authority, PATH_SONGS + "/author/#", AUTHORS_BY_SONG_ID);
         matcher.addURI(authority, PATH_SONGS + "/singer/#", SINGERS_BY_SONG_ID);
         matcher.addURI(authority, PATH_SONGS + "/chord/#", CHORDS_BY_SONG_ID);
+        matcher.addURI(authority, PATH_SONGS + "/isfavorite/#", SONG_IS_FAVORITE);
+        matcher.addURI(authority, PATH_SONGS + "/isfavorite/all", SONG_ALL_FAVORITE);
         matcher.addURI(authority, PATH_SONGS + "/#", SONGS_ID);
 
         /**
@@ -164,12 +164,6 @@ public class HopAmChuanProvider extends ContentProvider {
          */
         matcher.addURI(authority, PATH_PLAYLIST_SONGS, PLAYLIST_SONGS);
         matcher.addURI(authority, PATH_PLAYLIST_SONGS + "/#", PLAYLIST_SONGS_ID);
-
-        /**
-         * Favorite table
-         */
-        matcher.addURI(authority, PATH_FAVORITES, FAVORITES);
-        matcher.addURI(authority, PATH_FAVORITES + "/#", FAVORITES_SONG_ID);
 
         return matcher;
     }
@@ -226,11 +220,6 @@ public class HopAmChuanProvider extends ContentProvider {
                 return HopAmChuanDBContract.PlaylistSongs.CONTENT_TYPE;
             case PLAYLIST_SONGS_ID:
                 return HopAmChuanDBContract.PlaylistSongs.CONTENT_ITEM_TYPE;
-            case FAVORITES:
-                return HopAmChuanDBContract.Favorites.CONTENT_TYPE;
-            case FAVORITES_SONG_ID:
-                return HopAmChuanDBContract.Favorites.CONTENT_ITEM_TYPE;
-
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
 
@@ -286,10 +275,6 @@ public class HopAmChuanProvider extends ContentProvider {
                 db.insertOrThrow(Tables.PLAYLIST, null, values);
                 notifyChange(uri, syncToNetwork);
                 return Playlist.buildPlaylistUri(values.getAsString(HopAmChuanDBContract.PlaylistColumns.PLAYLIST_ID));
-            case FAVORITES:
-                db.insertOrThrow(Tables.FAVORITE, null, values);
-                notifyChange(uri, syncToNetwork);
-                return Favorites.buildFavoriteUri(values.getAsString(HopAmChuanDBContract.SongsColumns.SONG_ID));
             case SONGS_AUTHORS:
                 db.insertOrThrow(Tables.SONG_AUTHOR, null, values);
                 notifyChange(uri, syncToNetwork);
@@ -463,6 +448,16 @@ public class HopAmChuanProvider extends ContentProvider {
                 return builder.table(Tables.SONG)
                         .where(Songs.SONG_ID + "=?", songId);
             }
+            case SONG_IS_FAVORITE: {
+                final String songId = uri.getPathSegments().get(2);
+                return builder.table(Tables.SONG)
+                        .where(Songs.SONG_ID + "=? AND " + Songs.SONG_ISFAVORITE + "=1", songId);
+            }
+            case SONG_ALL_FAVORITE: {
+                return builder.table(Tables.SONG)
+                        .where(Songs.SONG_ISFAVORITE + "=1");
+            }
+
             /**
              * [x] Option 1: join table
              * [ ] Option 2: no join table and use multi query
@@ -535,14 +530,6 @@ public class HopAmChuanProvider extends ContentProvider {
             }
             case PLAYLIST_SONGS: {
                 return builder.table(Tables.PLAYLIST_SONG);
-            }
-            case FAVORITES: {
-                return builder.table(Tables.FAVORITE);
-            }
-            case FAVORITES_SONG_ID: {
-                final String songId = Favorites.getSongId(uri);
-                return builder.table(Tables.FAVORITE)
-                        .where(Favorites.SONG_ID + "=?", songId);
             }
             /**
              *
