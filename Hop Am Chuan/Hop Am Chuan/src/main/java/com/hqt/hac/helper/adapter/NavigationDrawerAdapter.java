@@ -252,6 +252,12 @@ public class NavigationDrawerAdapter {
             playlists = PlaylistDataAccessLayer.getAllPlayLists(context);
         }
 
+        /** use this constructor for performance */
+        public PlaylistItemAdapter(Context context, List<Playlist> playlists) {
+            this.mContext = context;
+            this.playlists = playlists;
+        }
+
         @Override
         public int getCount() {
             return playlists.size();
@@ -268,7 +274,7 @@ public class NavigationDrawerAdapter {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             ViewHolderPlaylistItem holder = null;
             View row = convertView;
 
@@ -290,6 +296,13 @@ public class NavigationDrawerAdapter {
             holder.txtTitle.setText(p.playlistName);
             holder.txtDescription.setText(p.playlistDescription);
             holder.txtNumberOfSong.setText(p.numberOfSongs + "");
+
+            row.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    delegate.gotoPlayList(position);
+                }
+            });
             return row;
         }
 

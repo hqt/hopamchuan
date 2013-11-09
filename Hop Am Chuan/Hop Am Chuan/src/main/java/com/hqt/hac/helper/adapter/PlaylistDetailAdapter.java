@@ -75,7 +75,7 @@ public class PlaylistDetailAdapter extends BaseAdapter {
         Song song = songs.get(position);
         holder.txtSongName.setText(song.title);
         holder.txtLyrics.setText(song.firstLyric);
-        holder.txtChord.setText("All Chord");
+        holder.txtChord.setText(song.chordsStr);
 
         return row;
     }
@@ -86,5 +86,4 @@ public class PlaylistDetailAdapter extends BaseAdapter {
         TextView txtChord;
         ImageView imgFavorite;
     }
-
 }

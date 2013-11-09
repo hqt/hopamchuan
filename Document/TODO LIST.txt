@@ -1,0 +1,19 @@
+1. implements stars on favorite fragment (need song attribute in DAL Of TrungDQ)
+
+2. implement sort function at favorite fragment (by abc/times)
+
+3. implement Search Activity (need change in database)
+
+4. implement 'Search Theo Hop Am' (Add Trung for requirement)
+
+5. implement SearchList (moixemganday, moicapnhat, xemnhieuhomnay ...)
+Ask trung more for DAL. Might need to use CursorAdapter
+
+6. implement fragment myplaylist : add action for icon (chiase/doiten/xoaplaylist)
+
+7. implement PlaylistDetail : view all chords (still cannot)
+
+8. implement PlaylistDetail : view all chords (still cannot)
+
+
+7. implement PlaylistDetail : view all chords (still cannot)s

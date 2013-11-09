@@ -45,13 +45,12 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
 
         // delete all database
-        HopAmChuanDatabase.deleteDatabase(getApplicationContext());
+        // HopAmChuanDatabase.deleteDatabase(getApplicationContext());
 
         // create sample database
-        DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());
+        // DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());
 
         setContentView(R.layout.activity_main);
-
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -72,9 +71,7 @@ public class MainActivity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(Fragment fragment) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Bundle arguments = new Bundle();
         if (fragment != null) {
-            fragment.setArguments(arguments);
             fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
         }
         else {

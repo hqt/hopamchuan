@@ -26,7 +26,12 @@ import com.hqt.hac.view.R;
 
 import java.util.List;
 
+import static com.hqt.hac.utils.LogUtils.LOGE;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
+
 public class PlaylistDetailFragment extends  Fragment {
+
+    private static String TAG = makeLogTag(PlaylistDetailFragment.class);
 
     /** Main Activity for reference */
     MainActivity activity;
@@ -40,14 +45,35 @@ public class PlaylistDetailFragment extends  Fragment {
     Playlist playlist;
     List<Song> songs;
 
-    public PlaylistDetailFragment(Playlist playlist) {
-        this.playlist = playlist;
+    /** empty constructor
+     * must have for fragment
+     */
+    public PlaylistDetailFragment() {
+
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         this.activity = (MainActivity) activity;
+
+        // get arguments from main activity
+        Bundle arguments = getArguments();
+        if ((arguments.get("playlistId") != null)) {
+            int playlistId = arguments.getInt("playlistId");
+            this.playlist = PlaylistDataAccessLayer.getPlaylistById(getActivity().getApplicationContext(), playlistId);
+        }
+
+        /** more optimize */
+        else if (arguments.get("playlist") != null) {
+            this.playlist = (Playlist) arguments.get("playlist");
+        }
+
+        else {
+            LOGE(TAG, "no suitable arguments to continues");
+            return;
+        }
+
         songs = PlaylistDataAccessLayer.getAllSongsFromPlaylist(activity.getApplicationContext(),
                 playlist.playlistId);
     }

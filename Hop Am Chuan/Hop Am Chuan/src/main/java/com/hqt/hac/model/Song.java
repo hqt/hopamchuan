@@ -1,5 +1,8 @@
 package com.hqt.hac.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +20,9 @@ public class Song implements Serializable {
     public List<Artist> authors = new ArrayList<Artist>();
     public List<Chord> chords = new ArrayList<Chord>();
     public List<Artist> singers = new ArrayList<Artist>();
+    public String authorsStr = "";
+    public String chordsStr = "";
+    public String singersStr = "";
 
     public Song(int id, int songId, String title, String link, String content, String firstLyric, Date date) {
         this.id = id;
@@ -48,6 +54,22 @@ public class Song implements Serializable {
         this.authors = authors;
         this.chords = chords;
         this.singers = singers;
+
+        // assign list of authors/chords/singers to string
+        for (Artist author : authors) {
+            authorsStr += author.artistName +",";
+        }
+        authorsStr = authorsStr.substring(0, authorsStr.length());
+
+        for (Artist singer : singers) {
+            singersStr += singer.artistName +",";
+        }
+        singersStr = singersStr.substring(0, singersStr.length());
+
+        for (Chord chord : chords) {
+            chordsStr += chord.name;
+        }
+        chordsStr = chordsStr.substring(0, chordsStr.length());
     }
 
     public Song(int songId, String title, String link, String content, String firstLyric, Date date, List<Artist> authors, List<Chord> chords, List<Artist> singers) {
@@ -81,7 +103,7 @@ public class Song implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null) return false;
 
         Song song = (Song) o;
 

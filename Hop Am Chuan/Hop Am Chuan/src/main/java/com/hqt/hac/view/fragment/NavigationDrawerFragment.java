@@ -23,7 +23,11 @@ import android.widget.ListView;
 
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
+import com.hqt.hac.model.Playlist;
+import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 import com.hqt.hac.view.R;
+
+import java.util.List;
 
 import static com.hqt.hac.helper.adapter.NavigationDrawerAdapter.ItemAdapter.TYPE;
 import static com.hqt.hac.helper.adapter.NavigationDrawerAdapter.IHeaderDelegate;
@@ -77,12 +81,21 @@ public class NavigationDrawerFragment extends Fragment
     NavigationDrawerAdapter.PlaylistHeaderAdapter playlistHeaderAdapter;
     NavigationDrawerAdapter.PlaylistItemAdapter playlistItemAdapter;
 
+    /**
+     * load all playlist in system
+     * use this playlist list assign to ListViewAdapter for performance
+     */
+    List<Playlist> playlistList;
+
     public NavigationDrawerFragment() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /** load all playlist here */
+        playlistList = PlaylistDataAccessLayer.getAllPlayLists(getActivity().getApplicationContext());
 
         // Read in the flag indicating whether or not the user has demonstrated awareness of the
         // drawer. See PREF_USER_LEARNED_DRAWER for details.
@@ -150,7 +163,8 @@ public class NavigationDrawerFragment extends Fragment
          headerAdapter = new NavigationDrawerAdapter.HeaderAdapter(getActivity().getApplicationContext());
          itemAdapter = new NavigationDrawerAdapter.ItemAdapter(getActivity().getApplicationContext());
          playlistHeaderAdapter = new NavigationDrawerAdapter.PlaylistHeaderAdapter(getActivity().getApplicationContext());
-         playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(getActivity().getApplicationContext());
+         playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(getActivity().getApplicationContext(),
+                 playlistList);
 
         // assign each adapters to this composite adapter
         mergeAdapter.addAdapter(headerAdapter);
@@ -356,6 +370,7 @@ public class NavigationDrawerFragment extends Fragment
     public void gotoCategoryPage(TYPE pageType) {
         Log.e("DEBUG", "category: " + pageType);
         Fragment fragment = null;
+        Bundle arguments = new Bundle();
         switch (pageType) {
             case HOME:
                 fragment = new SongListFragment();
@@ -371,12 +386,19 @@ public class NavigationDrawerFragment extends Fragment
             case SEARCH_CHORD:
                 break;
         }
+
+        // assign parameters to fragment
+        fragment.setArguments(arguments);
+
+        // close Drawer List View
         if (mDrawerListView != null) {
             //mDrawerListView.setItemChecked(position, true);
         }
         if (mDrawerLayout != null) {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
+
+        // assign this work to main activity
         if (mCallbacks != null) {
             mCallbacks.onNavigationDrawerItemSelected(fragment);
         }
@@ -387,7 +409,25 @@ public class NavigationDrawerFragment extends Fragment
      */
     @Override
     public void gotoPlayList(int playlistId) {
+        Playlist playlist = playlistList.get(playlistId);
+        PlaylistDetailFragment fragment = new PlaylistDetailFragment();
+        // setting parameters
+        Bundle arguments = new Bundle();
+        arguments.putSerializable("playlist", playlist);
+        fragment.setArguments(arguments);
 
+        // setting for Drawer List View
+        if (mDrawerListView != null) {
+            //mDrawerListView.setItemChecked(position, true);
+        }
+        if (mDrawerLayout != null) {
+            mDrawerLayout.closeDrawer(mFragmentContainerView);
+        }
+
+        // assign this work to main activity
+        if (mCallbacks != null) {
+            mCallbacks.onNavigationDrawerItemSelected(fragment);
+        }
     }
 
     /**

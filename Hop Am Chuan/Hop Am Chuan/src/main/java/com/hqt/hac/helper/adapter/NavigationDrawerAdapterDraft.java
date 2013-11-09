@@ -224,4 +224,5 @@ public class NavigationDrawerAdapterDraft extends BaseAdapter {
     private class ViewHolderPlaylistHeader {
         TextView txtHeader;
     }
+
 }
