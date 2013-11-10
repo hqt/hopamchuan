@@ -13,7 +13,6 @@ public class Song implements Serializable {
     public int songId;
     public String title;
     public String link;
-    public String content;
     public String firstLyric;
     public Date date;
     public String titleAscii;
@@ -21,50 +20,16 @@ public class Song implements Serializable {
     public int isFavorite;
     public String rhythm;
 
-    public List<Artist> authors = new ArrayList<Artist>();
-    public List<Chord> chords = new ArrayList<Chord>();
-    public List<Artist> singers = new ArrayList<Artist>();
+    // private modifier for lazy loading
+    private String content;
+    private List<Artist> authors = new ArrayList<Artist>();
+    private List<Chord> chords = new ArrayList<Chord>();
+    private List<Artist> singers = new ArrayList<Artist>();
 
-    public Song(int id, int songId, String title, String link, String content, String firstLyric, Date date, String titleAscii, int lastView, int isFavorite, String rhythm) {
-        this.id = id;
-        this.songId = songId;
-        this.title = title;
-        this.link = link;
-        this.content = content;
-        this.firstLyric = firstLyric;
-        this.date = date;
-        this.titleAscii = titleAscii;
-        this.lastView = lastView;
-        this.isFavorite = isFavorite;
-        this.rhythm = rhythm;
-    }
-
-    public Song(int songId, String title, String link, String content, String firstLyric, Date date) {
-        this.songId = songId;
-        this.title = title;
-        this.link = link;
-        this.content = content;
-        this.firstLyric = firstLyric;
-        this.date = date;
-        this.titleAscii = StringUtils.removeAccients(title);
-        this.lastView = 0;
-        this.isFavorite = 0;
-    }
-
-    public Song(int songId, String title, String link, String content, String firstLyric, Date date,
-                String titleAscii, int lastView, int isFavorite, String rhythm) {
-        this.songId = songId;
-        this.title = title;
-        this.link = link;
-        this.content = content;
-        this.firstLyric = firstLyric;
-        this.date = date;
-        this.titleAscii = titleAscii;
-        this.lastView = lastView;
-        this.isFavorite = isFavorite;
-        this.rhythm = rhythm;
-    }
-
+    /**
+     * Constructor with full information.
+     * info - array - manual
+     */
     public Song(int id, int songId, String title, String link, String content, String firstLyric, Date date,
                 List<Artist> authors, List<Chord> chords, List<Artist> singers,
                 String titleAscii, int lastView, int isFavorite, String rhythm) {
@@ -84,26 +49,13 @@ public class Song implements Serializable {
         this.rhythm = rhythm;
     }
 
-    public Song(int songId, String title, String link, String content, String firstLyric, Date date,
-                List<Artist> authors, List<Chord> chords, List<Artist> singers,
-                String titleAscii, int lastView, int isFavorite, String rhythm) {
-        this.songId = songId;
-        this.title = title;
-        this.link = link;
-        this.content = content;
-        this.firstLyric = firstLyric;
-        this.date = date;
-        this.authors = authors;
-        this.chords = chords;
-        this.singers = singers;
-        this.titleAscii = titleAscii;
-        this.lastView = lastView;
-        this.isFavorite = isFavorite;
-        this.rhythm = rhythm;
-    }
-
-    public Song(int songId, String title, String link, String content, String firstLyric, Date date,
+    /**
+     * Constructor with arrays and additional fields (default lastView, not in favorite, auto-generate titleAscii, null rhythm)
+     * info - array - auto
+     */
+    public Song(int id, int songId, String title, String link, String content, String firstLyric, Date date,
                 List<Artist> authors, List<Chord> chords, List<Artist> singers) {
+        this.id = id;
         this.songId = songId;
         this.title = title;
         this.link = link;
@@ -118,6 +70,116 @@ public class Song implements Serializable {
         this.isFavorite = 0;
     }
 
+    /**
+     * Constructor with no arrays and manual-set additional fields.
+     * info - no - manual
+     */
+    public Song(int id, int songId, String title, String link, String content, String firstLyric, Date date, String titleAscii, int lastView, int isFavorite, String rhythm) {
+        this.id = id;
+        this.songId = songId;
+        this.title = title;
+        this.link = link;
+        this.content = content;
+        this.firstLyric = firstLyric;
+        this.date = date;
+        this.titleAscii = titleAscii;
+        this.lastView = lastView;
+        this.isFavorite = isFavorite;
+        this.rhythm = rhythm;
+    }
+
+    /**
+     * Constructor with no arrays and default additional fields
+     * info - no - auto
+     */
+    public Song(int id, int songId, String title, String link, String content, String firstLyric, Date date) {
+        this.id = id;
+        this.songId = songId;
+        this.title = title;
+        this.link = link;
+        this.content = content;
+        this.firstLyric = firstLyric;
+        this.date = date;
+        this.titleAscii = StringUtils.removeAccients(title);
+        this.lastView = 0;
+        this.isFavorite = 0;
+    }
+
+    /**
+     * Constructor with no private fields, manual set additional fields
+     */
+    public Song(int id, int songId, String title, String link, String firstLyric, Date date,
+                String titleAscii, int lastView, int isFavorite, String rhythm) {
+        this.id = id;
+        this.songId = songId;
+        this.title = title;
+        this.link = link;
+        this.firstLyric = firstLyric;
+        this.date = date;
+        this.titleAscii = titleAscii;
+        this.lastView = lastView;
+        this.isFavorite = isFavorite;
+        this.rhythm = rhythm;
+    }
+
+    /**
+     * Constructor with no private fields, auto-generate additional fields
+     */
+    public Song(int id, int songId, String title, String link, String firstLyric, Date date) {
+        this.id = id;
+        this.songId = songId;
+        this.title = title;
+        this.link = link;
+        this.firstLyric = firstLyric;
+        this.date = date;
+        this.titleAscii = StringUtils.removeAccients(title);
+        this.lastView = 0;
+        this.isFavorite = 0;
+    }
+
+    /**
+     * Lazy loading getters
+     */
+    public String getContent() {
+        // TODO:
+        return content;
+    }
+
+    public List<Artist> getAuthors() {
+        // TODO:
+        return authors;
+    }
+
+    public List<Chord> getChords() {
+        // TODO:
+        return chords;
+    }
+
+    public List<Artist> getSingers() {
+        // TODO:
+        return singers;
+    }
+
+    /**
+     * Setters
+     */
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setAuthors(List<Artist> authors) {
+        this.authors = authors;
+    }
+
+    public void setChords(List<Chord> chords) {
+        this.chords = chords;
+    }
+
+    public void setSingers(List<Artist> singers) {
+        this.singers = singers;
+    }
+
+
     @Override
     public String toString() {
         return "Song{" +
@@ -125,13 +187,13 @@ public class Song implements Serializable {
                 ", songId=" + songId +
                 ", title='" + title + '\'' +
                 ", link='" + link + '\'' +
-                ", content='" + content + '\'' +
                 ", firstLyric='" + firstLyric + '\'' +
                 ", date=" + date +
                 ", titleAscii='" + titleAscii + '\'' +
                 ", lastView=" + lastView +
                 ", isFavorite=" + isFavorite +
                 ", rhythm='" + rhythm + '\'' +
+                ", content='" + content + '\'' +
                 ", authors=" + authors +
                 ", chords=" + chords +
                 ", singers=" + singers +
@@ -141,15 +203,13 @@ public class Song implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || ((Object) this).getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         Song song = (Song) o;
 
         if (songId != song.songId) return false;
-        if (!content.equals(song.content)) return false;
         if (!firstLyric.equals(song.firstLyric)) return false;
         if (!link.equals(song.link)) return false;
-        if (rhythm != null ? !rhythm.equals(song.rhythm) : song.rhythm != null) return false;
         if (!title.equals(song.title)) return false;
         if (!titleAscii.equals(song.titleAscii)) return false;
 
@@ -160,10 +220,8 @@ public class Song implements Serializable {
     public int hashCode() {
         int result = title.hashCode();
         result = 31 * result + link.hashCode();
-        result = 31 * result + content.hashCode();
         result = 31 * result + firstLyric.hashCode();
         result = 31 * result + titleAscii.hashCode();
-        result = 31 * result + (rhythm != null ? rhythm.hashCode() : 0);
         return result;
     }
 }

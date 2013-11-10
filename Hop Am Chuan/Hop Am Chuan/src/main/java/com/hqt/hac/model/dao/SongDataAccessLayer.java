@@ -31,16 +31,16 @@ public class SongDataAccessLayer {
         LOGD(TAG, "Adding a full song");
         try {
             insertSong(context, song);
-            ArtistDataAcessLayer.insertListOfArtists(context, song.authors);
-            for (Artist author : song.authors) {
+            ArtistDataAcessLayer.insertListOfArtists(context, song.getAuthors());
+            for (Artist author : song.getAuthors()) {
                 SongArtistDataAccessLayer.insertSong_Author(context, song.songId, author.artistId);
             }
-            ArtistDataAcessLayer.insertListOfArtists(context, song.singers);
-            for (Artist author : song.singers) {
+            ArtistDataAcessLayer.insertListOfArtists(context, song.getSingers());
+            for (Artist author : song.getSingers()) {
                 SongArtistDataAccessLayer.insertSong_Singer(context, song.songId, author.artistId);
             }
-            ChordDataAccessLayer.insertListOfChords(context, song.chords);
-            for (Chord chord : song.chords) {
+            ChordDataAccessLayer.insertListOfChords(context, song.getChords());
+            for (Chord chord : song.getChords()) {
                 SongChordDataAccessLayer.insertSong_Chord(context, song.songId, chord.chordId);
             }
             return true;
@@ -62,7 +62,7 @@ public class SongDataAccessLayer {
         ContentValues cv = new ContentValues();
         cv.put(HopAmChuanDBContract.Songs.SONG_ID, song.songId);
         cv.put(HopAmChuanDBContract.Songs.SONG_TITLE, song.title);
-        cv.put(HopAmChuanDBContract.Songs.SONG_CONTENT, song.content);
+        cv.put(HopAmChuanDBContract.Songs.SONG_CONTENT, song.getContent());
         cv.put(HopAmChuanDBContract.Songs.SONG_LINK, song.link);
         cv.put(HopAmChuanDBContract.Songs.SONG_FIRST_LYRIC, song.firstLyric);
         cv.put(HopAmChuanDBContract.Songs.SONG_DATE,(new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT)).format(song.date));
@@ -135,7 +135,7 @@ public class SongDataAccessLayer {
                 if (c != null) {
                     c.close();
                 }
-                return new Song(id, title, link, content, firstLyric, date,
+                return new Song(Config.DEFAULT_ID, id, title, link, content, firstLyric, date,
                         authors, chords, singers, titleAscii, lastView, isFavorite, rhythm);
             }
         } catch (Exception e) {

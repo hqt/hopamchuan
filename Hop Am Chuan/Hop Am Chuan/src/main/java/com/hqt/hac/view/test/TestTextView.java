@@ -37,7 +37,7 @@ public class TestTextView extends ActionBarActivity {
 
         testTextView = (TextView) findViewById(R.id.testTextView);
         List<Song> songs = ParserUtils.getAllSongsFromResource(getApplicationContext());
-        final String songContent = songs.get(1).content;
+        final String songContent = songs.get(1).getContent();
         if (testTextView != null) {
             HacUtils.setSongFormatted(getApplicationContext(), testTextView, songContent);
 //            ViewTreeObserver vto = testTextView.getViewTreeObserver();
