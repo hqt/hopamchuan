@@ -1,5 +1,6 @@
 package com.hqt.hac.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -13,9 +14,20 @@ import android.text.style.StrikethroughSpan;
 import android.text.style.URLSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.hac_library.components.ChordSurfaceView;
+import com.hac_library.helper.ChordHelper;
+import com.hqt.hac.view.R;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static android.graphics.Color.GREEN;
 import static android.graphics.Color.RED;
@@ -29,54 +41,90 @@ public class HacUtils {
      * @param context
      * @param richTextView
      */
-    public static void setSongFormatted(final Context context, TextView richTextView, String songContent, DisplayMetrics displayMetrics) {
+    public static void setSongFormatted(final Context context, TextView richTextView, String songContent) {
 
 
-        Log.i("TextViewDebug", "-------------");
-        Log.i("TextViewDebug", "heightxx: " + displayMetrics.heightPixels + " | width: " + displayMetrics.widthPixels);
-        Log.i("TextViewDebug", "font sizexx: " + richTextView.getTextSize());
+//        Log.i("TextViewDebug", "-------------");
+//        Log.i("TextViewDebug", "heightxx: " + displayMetrics.heightPixels + " | width: " + displayMetrics.widthPixels);
+//        Log.i("TextViewDebug", "font sizexx: " + richTextView.getTextSize());
 
         // this is the text we'll be operating on
         SpannableString text = new SpannableString(songContent);
 
-        // make "Lorem" (characters 0 to 5) red
-//        text.setSpan(new ForegroundColorSpan(RED), 0, 5, 0);
+        Pattern pattern = Pattern.compile("\\[.*?\\]");
+        Matcher matcher = pattern.matcher(songContent);
+        // Check all occurrences
+        while (matcher.find()) {
+            System.out.print("Start index: " + matcher.start());
+            System.out.print(" End index: " + matcher.end());
+            System.out.println(" Found: " + matcher.group());
 
-        // make "ipsum" (characters 6 to 11) one and a half time bigger than the textbox
-//        text.setSpan(new RelativeSizeSpan(1.5f), 6, 11, 0);
+            ClickableSpan clickableSpan = new ClickableSpan() {
+                @Override
+                public void onClick(View view) {
+                    // Get text
 
-        // make "dolor" (characters 12 to 17) display a toast message when touched
-        ClickableSpan clickableSpan = new ClickableSpan() {
-            @Override
-            public void onClick(View view) {
-                // TODO add check if widget instanceof TextView
-                TextView tv = (TextView) view;
-                // TODO add check if tv.getText() instanceof Spanned
-                Spanned s = (Spanned) tv.getText();
-                int start = s.getSpanStart(this);
-                int end = s.getSpanEnd(this);
+                    // TODO add check if widget instanceof TextView
+                    TextView tv = (TextView) view;
+                    // TODO add check if tv.getText() instanceof Spanned
+                    Spanned s = (Spanned) tv.getText();
+                    int start = s.getSpanStart(this);
+                    int end = s.getSpanEnd(this);
 
-                String text = "-" + s.subSequence(start, end).toString() + "-";
-                Toast.makeText(context, text, Toast.LENGTH_LONG).show();
-            }
-        };
+                    String chordName = s.subSequence(start, end).toString().replace("[","").replace("]", "");
 
-        text.setSpan(clickableSpan, 12, 17, 0);
+                    // Show toast
 
-        // make "sit" (characters 18 to 21) struck through
-//        text.setSpan(new StrikethroughSpan(), 18, 21, 0);
+                    //Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+                    final Toast toast = new Toast(context);
+                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE );
 
-        // make "amet" (characters 22 to 26) twice as big, green and a link to this site.
-        // it's important to set the color after the URLSpan or the standard
-        // link color will override it.
-//        text.setSpan(new RelativeSizeSpan(2f), 22, 26, 0);
-//        text.setSpan(new URLSpan("http://www.chrisumbel.com"), 22, 26, 0);
-//        text.setSpan(new ForegroundColorSpan(GREEN), 22, 26, 0);
+                    View layout = inflater.inflate(R.layout.chordsurfaceview_toast, null);
+
+//                  TextView text = (TextView) layout.findViewById(R.id.customToastTextView);
+//                  text.setText("This is a custom toast");
+                    final ChordSurfaceView chord = (ChordSurfaceView) layout.findViewById(R.id.chordViewA);
+                    chord.drawChord(chordName);
+
+                    Button btnDismiss = (Button)layout.findViewById(R.id.close);
+                    btnDismiss.setText("X!");
+                    btnDismiss.setOnClickListener(new Button.OnClickListener(){
+                        @Override
+                        public void onClick(View v) {
+                            chord.nextPosition();
+                        }
+                    });
+
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    toast.setDuration(Toast.LENGTH_LONG);
+                    toast.setView(layout);
+                    toast.show();
+                }
+            };
+            text.setSpan(clickableSpan, matcher.start(), matcher.end(), 0);
+        }
 
         // make our ClickableSpans and URLSpans work
         richTextView.setMovementMethod(LinkMovementMethod.getInstance());
 
         // shove our styled text into the TextView
         richTextView.setText(text, TextView.BufferType.SPANNABLE);
+    }
+
+    public static void transposeTextView(Context context, TextView textView, int distance) {
+        String content = textView.getText().toString();
+        Pattern pattern = Pattern.compile("\\[.*?\\]");
+        Matcher matcher = pattern.matcher(content);
+        // Check all occurrences
+        int stackChange = 0;
+        while (matcher.find()) {
+            int start = matcher.start();
+            int end = matcher.end();
+            String chordName = matcher.group().replace("[", "").replace("]", "");
+            String newChordName = ChordHelper.transpose(chordName, distance);
+            content = content.substring(0, start + stackChange) + "[" + newChordName + "]" + content.substring(end + stackChange);
+            stackChange += newChordName.length() - chordName.length();
+        }
+        HacUtils.setSongFormatted(context, textView, content);
     }
 }
