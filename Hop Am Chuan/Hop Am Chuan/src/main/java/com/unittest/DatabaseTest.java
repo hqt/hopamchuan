@@ -52,9 +52,9 @@ public class DatabaseTest {
 
 
         // create songs
-        Song s1 = new Song(1, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
+        Song s1 = new Song(1, "Quoc Ca", "www.echip.com.vn", "doan quan Viet Nam di", "doan quan Viet Nam", new Date());
         Song s2 = new Song(2, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
-        Song s3 = new Song(3, "Quoc Ca", "www.echip.com.vn", "doan quan Viet Nam di", "doan quan Viet Nam", new Date());
+        Song s3 = new Song(3, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
         Song s4 = new Song(4, "Dem Dong", "www.echip.com.vn", "nguoi co lu dem dong khong nha", "dem dong khong nha", new Date());
         Song s5 = new Song(5, "Suoi mo", "www.echip.com.vn", "dong nuoc troi lung lo ngoai nang", "dong nuoc troi", new Date());
 
@@ -69,6 +69,26 @@ public class DatabaseTest {
         SongArtistDataAccessLayer.insertSong_Author(context, 1, 1);
         SongArtistDataAccessLayer.insertSong_Author(context, 2, 1);
 
+        // create chords
+        Chord c1 = new Chord(1, "Am");
+        Chord c2 = new Chord(2, "E");
+        Chord c3 = new Chord(3, "C");
+        Chord c4 = new Chord(4, "G");
+        ChordDataAccessLayer.insertChord(context, c1);
+        ChordDataAccessLayer.insertChord(context, c2);
+        ChordDataAccessLayer.insertChord(context, c3);
+        ChordDataAccessLayer.insertChord(context, c4);
+
+        // assign chords to songs
+        // 1 "Quoc Ca" will be Am E C
+        // 4 "Dem Dong" will be Am C G
+        SongChordDataAccessLayer.insertSong_Chord(context, 1, 1);
+        SongChordDataAccessLayer.insertSong_Chord(context, 1, 2);
+        SongChordDataAccessLayer.insertSong_Chord(context, 1, 3);
+        SongChordDataAccessLayer.insertSong_Chord(context, 4, 1);
+        SongChordDataAccessLayer.insertSong_Chord(context, 4, 3);
+        SongChordDataAccessLayer.insertSong_Chord(context, 4, 4);
+
         // create singer
         //  Trung and Hoa sing Chau Len Ba (1)
         // Hoa sings Quoc Ca (3)
@@ -76,9 +96,6 @@ public class DatabaseTest {
         SongArtistDataAccessLayer.insertSong_Singer(context, 1, 3);
         SongArtistDataAccessLayer.insertSong_Singer(context, 3, 3);
 
-        /*// create favorite includes two songs
-        FavoriteDataAccessLayer.addSongToFavorite(context, 1);
-        FavoriteDataAccessLayer.addSongToFavorite(context, 2);*/
 
         // Create sample playlists
         Playlist playlist1 = new Playlist(1, "Nhac Trinh Cong Son", "Trinh Cong Son", new Date(), 1);

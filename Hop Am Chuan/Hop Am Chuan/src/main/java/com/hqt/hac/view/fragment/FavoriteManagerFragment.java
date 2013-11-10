@@ -84,7 +84,7 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
         /** ListView Configure */
         mListView = (ListView) rootView.findViewById(R.id.list_view);
         adapter = new FavoriteManagerAdapter(getActivity().getApplicationContext(), songs);
-        mListView.setAdapter(choices);
+        mListView.setAdapter(adapter);
 
         return rootView;
     }
@@ -105,6 +105,7 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
                 // do nothing
         }
         // refresh ListView
+        adapter.notifyDataSetChanged();
 
     }
 

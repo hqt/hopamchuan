@@ -87,6 +87,5 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
 
     @Override
     public void deletePlaylist() {
-
     }
 }

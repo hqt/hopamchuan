@@ -50,5 +50,7 @@
     <string name="title_activity_my_favorite_fragment">My Favorite</string>
     <string name="title_activity_playlist_detail_fragment">MainActivity</string>
     <string name="title_activity_playlist_manager_fragment">Playlist Manager</string>
+    <string name="title_activity_find_by_chord">Tìm theo hợp âm</string>
+    <string name="chord_search_button_text">Search</string>
 
 </resources>

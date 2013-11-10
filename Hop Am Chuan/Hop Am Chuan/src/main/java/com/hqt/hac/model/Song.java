@@ -25,6 +25,9 @@ public class Song implements Serializable {
     public List<Chord> chords = new ArrayList<Chord>();
     public List<Artist> singers = new ArrayList<Artist>();
 
+    // custom fields - ThaoHQ
+    public String chordStr = "";
+
     public Song(int id, int songId, String title, String link, String content, String firstLyric, Date date, String titleAscii, int lastView, int isFavorite, String rhythm) {
         this.id = id;
         this.songId = songId;
@@ -116,6 +119,16 @@ public class Song implements Serializable {
         this.titleAscii = StringUtils.removeAccients(title);
         this.lastView = 0;
         this.isFavorite = 0;
+    }
+
+    public String getChordString() {
+        if (chordStr != null && chordStr.length() > 0) return chordStr;
+        for (Chord chord : chords) {
+            chordStr += chord.name + ", ";
+        }
+
+        chordStr = chordStr.substring(0, chordStr.length()-2);
+        return chordStr;
     }
 
     @Override

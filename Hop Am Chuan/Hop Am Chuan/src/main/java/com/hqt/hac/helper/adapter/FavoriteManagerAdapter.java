@@ -71,7 +71,7 @@ public class FavoriteManagerAdapter extends BaseAdapter {
         Song song = songs.get(position);
         holder.txtSongName.setText(song.title);
         holder.txtLyrics.setText(song.firstLyric);
-        holder.txtChord.setText("chords");
+        holder.txtChord.setText(song.getChordString());
 
         return row;
     }
