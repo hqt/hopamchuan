@@ -11,31 +11,27 @@ import android.widget.TextView;
 
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
-import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
+import com.hqt.hac.model.dao.FavoriteDataAccessLayer;
 import com.hqt.hac.view.R;
 
 import java.util.List;
 
-
-
-public class PlaylistDetailAdapter extends BaseAdapter {
+public class FavoriteManagerAdapter extends BaseAdapter {
 
     Context mContext;
 
     /**
-     * Playlist of this adapter
-     */
-    Playlist playlist;
-
-    /**
-     * List all Songs of this playlist that adapter should be display
+     * List all Songs of this favorite that adapter should be display
      */
     List<Song> songs;
 
-    public PlaylistDetailAdapter(Context context, Playlist playlist, List<Song> songs) {
-        this.mContext = context;
-        this.playlist = playlist;
+    /** cache this image */
+    public static ImageView favoriteStar;
+
+    public FavoriteManagerAdapter(Context mContext, List<Song> songs) {
+        this.mContext = mContext;
         this.songs = songs;
+        //favoriteStar = mContext.getResources().getResourceName(R.id.search_button);
     }
 
     @Override
@@ -50,7 +46,7 @@ public class PlaylistDetailAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return position;
+        return songs.get(position).songId;
     }
 
     @Override
@@ -60,7 +56,7 @@ public class PlaylistDetailAdapter extends BaseAdapter {
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (row == null) {
-            row = inflater.inflate(R.layout.list_item_song_detail, null);
+            row = inflater.inflate(R.layout.list_item_song_favorite, null);
             holder = new ViewHolder();
             holder.txtSongName = (TextView) row.findViewById(R.id.txtSongName);
             holder.txtLyrics = (TextView) row.findViewById(R.id.txtLyrics);
@@ -80,6 +76,9 @@ public class PlaylistDetailAdapter extends BaseAdapter {
         return row;
     }
 
+    /**
+     * ViewHolder pattern
+     */
     private class ViewHolder {
         TextView txtSongName;
         TextView txtLyrics;

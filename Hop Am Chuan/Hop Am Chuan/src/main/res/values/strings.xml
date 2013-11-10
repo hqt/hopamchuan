@@ -34,6 +34,12 @@
         <item>Bài hát ngẫu nhiên</item>
     </string-array>
 
+    <!-- list all method to view songs in favorite -->
+    <string-array name="favorite_sort_method">
+        <item>Sắp xếp ABC</item>
+        <item>Thời gian</item>
+    </string-array>
+
     <string name="title_activity_test">Test Activity</string>
     <string name="example_text">Example Text</string>
     <string name="example_number">10</string>

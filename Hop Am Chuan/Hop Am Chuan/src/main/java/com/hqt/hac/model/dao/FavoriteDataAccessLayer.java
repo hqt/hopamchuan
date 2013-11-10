@@ -41,7 +41,7 @@ public class FavoriteDataAccessLayer {
      * @param songId
      * @return song id (return zero if the song is not in favorite list)
      */
-    public static int inFavorite(Context context, int songId) {
+    public static int isInFavorite(Context context, int songId) {
         LOGD(TAG, "Check song " + songId + " if is in favorite");
         ContentResolver resolver = context.getContentResolver();
         Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
