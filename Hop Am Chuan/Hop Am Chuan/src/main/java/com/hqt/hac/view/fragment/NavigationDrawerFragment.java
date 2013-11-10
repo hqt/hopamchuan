@@ -366,26 +366,26 @@ public class NavigationDrawerFragment extends Fragment
     /**
      * When user click a category in listview
      */
-    @Override
-    public void gotoCategoryPage(TYPE pageType) {
-        Log.e("DEBUG", "category: " + pageType);
-        Fragment fragment = null;
-        Bundle arguments = new Bundle();
-        switch (pageType) {
-            case HOME:
-                fragment = new SongListFragment();
-                break;
-            case MYPLAYLIST:
-                fragment = new PlaylistManagerFragment();
-                break;
-            case FAVORITE:
-                fragment = new MyFavoriteFragment();
-                break;
-            case FIND_BY_CHORD:
-                break;
-            case SEARCH_CHORD:
-                break;
-        }
+        @Override
+        public void gotoCategoryPage(TYPE pageType) {
+            Log.e("DEBUG", "category: " + pageType);
+            Fragment fragment = null;
+            Bundle arguments = new Bundle();
+            switch (pageType) {
+                case HOME:
+                    fragment = new SongListFragment();
+                    break;
+                case MYPLAYLIST:
+                    fragment = new PlaylistManagerFragment();
+                    break;
+                case FAVORITE:
+                    fragment = new FavoriteManagerFragment();
+                    break;
+                case FIND_BY_CHORD:
+                    break;
+                case SEARCH_CHORD:
+                    break;
+            }
 
         // assign parameters to fragment
         fragment.setArguments(arguments);

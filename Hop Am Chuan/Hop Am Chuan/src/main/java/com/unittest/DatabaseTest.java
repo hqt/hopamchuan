@@ -55,9 +55,14 @@ public class DatabaseTest {
         Song s1 = new Song(1, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
         Song s2 = new Song(2, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
         Song s3 = new Song(3, "Quoc Ca", "www.echip.com.vn", "doan quan Viet Nam di", "doan quan Viet Nam", new Date());
+        Song s4 = new Song(4, "Dem Dong", "www.echip.com.vn", "nguoi co lu dem dong khong nha", "dem dong khong nha", new Date());
+        Song s5 = new Song(5, "Suoi mo", "www.echip.com.vn", "dong nuoc troi lung lo ngoai nang", "dong nuoc troi", new Date());
+
         SongDataAccessLayer.insertSong(context, s1);
         SongDataAccessLayer.insertSong(context, s2);
         SongDataAccessLayer.insertSong(context, s3);
+        SongDataAccessLayer.insertSong(context, s4);
+        SongDataAccessLayer.insertSong(context, s5);
 
         // create author
         // thao : author of two songs
@@ -821,8 +826,8 @@ public class DatabaseTest {
             FavoriteDataAccessLayer.addSongToFavorite(context, 7);
 
             // Get
-            int result1 = FavoriteDataAccessLayer.inFavorite(context, 5); // Should be 0
-            int result2 = FavoriteDataAccessLayer.inFavorite(context, 7); // Should be 7
+            int result1 = FavoriteDataAccessLayer.isInFavorite(context, 5); // Should be 0
+            int result2 = FavoriteDataAccessLayer.isInFavorite(context, 7); // Should be 7
 
             // Compare
             if (result1 == 0 && result2 == 7) {

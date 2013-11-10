@@ -13,7 +13,6 @@ Ask trung more for DAL. Might need to use CursorAdapter
 
 7. implement PlaylistDetail : view all chords (still cannot)
 
-8. implement PlaylistDetail : view all chords (still cannot)
+8. implement PlaylistDetail : add action for icon
 
 
-7. implement PlaylistDetail : view all chords (still cannot)s
