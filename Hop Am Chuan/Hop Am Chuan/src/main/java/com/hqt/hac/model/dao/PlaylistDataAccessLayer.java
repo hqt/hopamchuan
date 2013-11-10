@@ -151,6 +151,8 @@ public class PlaylistDataAccessLayer {
         Uri uri = HopAmChuanDBContract.Playlist.CONTENT_URI;
         Uri deleteUri = Uri.withAppendedPath(uri, playlistId + "");
         resolver.delete(deleteUri, null, null);
+
+        // TODO: delete song_playlist
     }
 
 
