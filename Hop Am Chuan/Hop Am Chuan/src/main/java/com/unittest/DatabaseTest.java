@@ -89,10 +89,10 @@ public class DatabaseTest {
         PlaylistDataAccessLayer.insertPlaylist(context, playlist3);
 
         // create songs in playlists
-        PlaylistSongDataAccessLayer.insertPlaylist_Song(context,1, 1);
-        PlaylistSongDataAccessLayer.insertPlaylist_Song(context,1, 2);
-        PlaylistSongDataAccessLayer.insertPlaylist_Song(context,1, 3);
-        PlaylistSongDataAccessLayer.insertPlaylist_Song(context,2, 3);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 1);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 2);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 3);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 2, 3);
 
         // create favorites
         FavoriteDataAccessLayer.addSongToFavorite(context, 1);
@@ -833,7 +833,7 @@ public class DatabaseTest {
             if (result1 == 0 && result2 == 7) {
                 res += " OK";
             } else {
-                res += " FAIL: result: " + result1 + "|" + result2 + " Expected: " + 0 + "|7" ;
+                res += " FAIL: result: " + result1 + "|" + result2 + " Expected: " + 0 + "|7";
             }
         } catch (Exception e) {
             res += "Exception: " + e.toString();
@@ -872,7 +872,7 @@ public class DatabaseTest {
             if (result != null && result.equals(playlist1)) {
                 res += " OK ";
             } else {
-                res += " FAIL: result: " + result  + " Expected: " + playlist1 ;
+                res += " FAIL: result: " + result + " Expected: " + playlist1;
             }
         } catch (Exception e) {
             res += "Exception: " + e.toString();
@@ -884,9 +884,7 @@ public class DatabaseTest {
         SongDataAccessLayer.removeSongById(context, 3);
         SongDataAccessLayer.removeSongById(context, 2);
         SongDataAccessLayer.removeSongById(context, 1);
-        PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1, 1);
-        PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1, 2);
-        PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1, 3);
+        PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1);
 
         return res;
     }
@@ -913,7 +911,7 @@ public class DatabaseTest {
             if (result.size() == 2 && result.get(0).equals(s1) && result.get(1).equals(s2)) {
                 res += " OK ";
             } else {
-                res += " FAIL: result: " + result  + " Expected: " + s1.toString() + "|" + s2.toString() ;
+                res += " FAIL: result: " + result + " Expected: " + s1.toString() + "|" + s2.toString();
             }
         } catch (Exception e) {
             res += "Exception: " + e.toString();
@@ -924,8 +922,100 @@ public class DatabaseTest {
         PlaylistDataAccessLayer.removePlaylistById(context, 1);
         SongDataAccessLayer.removeSongById(context, 2);
         SongDataAccessLayer.removeSongById(context, 1);
-        PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1, 1);
-        PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1, 2);
+        PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1);
+
+        return res;
+    }
+
+    public static String TestRemovePlaylistSong(Context context) {
+        String res = "TestRemovePlaylistSong: ";
+        try {
+            // Create
+            Playlist playlist1 = new Playlist(1, "Playlist 1", "Mot", new Date(), 1);
+            Song s1 = new Song(1, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
+            Song s2 = new Song(2, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
+            Song s3 = new Song(3, "Lang toi 3", "www.33333.com", "lang 333 xanh bong tre", "333 toi", new Date());
+
+            // Insert
+            SongDataAccessLayer.insertSong(context, s1);
+            SongDataAccessLayer.insertSong(context, s2);
+            SongDataAccessLayer.insertSong(context, s3);
+            PlaylistDataAccessLayer.insertPlaylist(context, playlist1);
+            PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 1);
+            PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 2);
+            PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 3);
+
+            // Test 1
+            // Get
+            List<Song> result = PlaylistDataAccessLayer.getAllSongsFromPlaylist(context, 1);
+            // Compare
+            if (result.size() == 3 && result.get(0).equals(s1) && result.get(1).equals(s2) && result.get(2).equals(s3)) {
+                res += " OK ";
+            } else {
+                res += " FAIL: result: " + result + " Expected: " + s1.toString() + "|" + s2.toString() + "|" + s3.toString();
+            }
+
+
+            // Test 2 Delete song 2 from playlist
+            PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1, 2);
+            // Get
+            List<Song> result2 = PlaylistDataAccessLayer.getAllSongsFromPlaylist(context, 1);
+            // Compare
+            if (result2.size() == 2 && result2.get(0).equals(s1) && result2.get(1).equals(s3)) {
+                res += " OK ";
+            } else {
+                res += " FAIL: result: " + result2 + " Expected: " + s1.toString() + "|" + s3.toString();
+            }
+
+            // Test 3 Delete all song from playlist
+            PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1);
+            // Get
+            List<Song> result3 = PlaylistDataAccessLayer.getAllSongsFromPlaylist(context, 1);
+            // Compare
+            if (result3.size() == 0) {
+                res += " OK ";
+            } else {
+                res += " FAIL: result: " + result3 + " Expected: {}";
+            }
+        } catch (Exception e) {
+            res += "Exception: " + e.toString();
+            e.printStackTrace();
+        }
+
+        // Delete
+        PlaylistDataAccessLayer.removePlaylistById(context, 1);
+        SongDataAccessLayer.removeSongById(context, 2);
+        SongDataAccessLayer.removeSongById(context, 1);
+        PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1);
+
+        return res;
+    }
+
+    public static String TestRenamePlaylist(Context context) {
+        String res = "TestRenamePlaylist: ";
+        try {
+            // Create
+            Playlist playlist1 = new Playlist(1, "Playlist 1", "Mot", new Date(), 1);
+
+            // Insert
+            PlaylistDataAccessLayer.insertPlaylist(context, playlist1);
+
+            // Do rename & get
+            PlaylistDataAccessLayer.renamePlaylist(context, 1, "New Name Playlist", "New Description here");
+            Playlist result = PlaylistDataAccessLayer.getPlaylistById(context, 1);
+
+            // Compare
+            if (result != null && result.playlistName.equals("New Name Playlist") && result.playlistDescription.equals("New Description here")) {
+                res += " OK";
+            } else {
+                res += " FAIL: result: " + result.toString() + " Expected: New Name Playlist | New Description here";
+            }
+        } catch (Exception e) {
+            res += "Exception: " + e.toString();
+            e.printStackTrace();
+        }
+
+        // Delete
 
         return res;
     }

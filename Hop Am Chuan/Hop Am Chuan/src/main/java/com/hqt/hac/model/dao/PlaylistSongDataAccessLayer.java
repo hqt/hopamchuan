@@ -44,4 +44,15 @@ public class PlaylistSongDataAccessLayer {
         return deleteUri;
     }
 
+    public static int removePlaylist_Song(Context context, int playlistId) {
+        LOGD(TAG, "Remove all Playlist_Song: playlist " + playlistId);
+
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.PlaylistSongs.CONTENT_URI;
+        int deleteUri = resolver.delete(uri, HopAmChuanDBContract.PlaylistSongs.PLAYLIST_ID + "=?",
+                new String[]{String.valueOf(playlistId)});
+        LOGD(TAG, "deleted all Playlist_Song: " + deleteUri);
+        return deleteUri;
+    }
+
 }

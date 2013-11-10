@@ -26,12 +26,7 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
 public class SongDataAccessLayer {
     private static final String TAG = makeLogTag(SongDataAccessLayer.class);
 
-    /**
-     * TODO: insert related authors, singers, chords, synchronize
-     * @param context
-     * @param song
-     * @return
-     */
+
     public static boolean insertFullSongSync(Context context, Song song) {
         LOGD(TAG, "Adding a full song");
         try {
