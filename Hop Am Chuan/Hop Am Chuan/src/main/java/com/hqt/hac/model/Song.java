@@ -1,11 +1,19 @@
 package com.hqt.hac.model;
 
+import android.content.Context;
+import android.util.Log;
+
 import com.hqt.hac.utils.StringUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static com.hqt.hac.model.dao.SongDataAccessLayer.getAuthorsBySongId;
+import static com.hqt.hac.model.dao.SongDataAccessLayer.getChordsBySongId;
+import static com.hqt.hac.model.dao.SongDataAccessLayer.getSingersBySongId;
+import static com.hqt.hac.model.dao.SongDataAccessLayer.getSongContent;
 
 public class Song implements Serializable {
 
@@ -22,9 +30,9 @@ public class Song implements Serializable {
 
     // private modifier for lazy loading
     private String content;
-    private List<Artist> authors = new ArrayList<Artist>();
-    private List<Chord> chords = new ArrayList<Chord>();
-    private List<Artist> singers = new ArrayList<Artist>();
+    private List<Artist> authors;
+    private List<Chord> chords;
+    private List<Artist> singers;
 
     /**
      * Constructor with full information.
@@ -140,23 +148,31 @@ public class Song implements Serializable {
     /**
      * Lazy loading getters
      */
-    public String getContent() {
-        // TODO:
+    public String getContent(Context context) {
+        if (this.content == null || this.content.isEmpty()) {
+            this.content = getSongContent(context, songId);
+        }
         return content;
     }
 
-    public List<Artist> getAuthors() {
-        // TODO:
+    public List<Artist> getAuthors(Context context) {
+        if (this.authors == null) {
+            this.authors = getAuthorsBySongId(context, songId);
+        }
         return authors;
     }
 
-    public List<Chord> getChords() {
-        // TODO:
+    public List<Chord> getChords(Context context) {
+        if (this.chords == null) {
+            this.chords = getChordsBySongId(context, songId);
+        }
         return chords;
     }
 
-    public List<Artist> getSingers() {
-        // TODO:
+    public List<Artist> getSingers(Context context) {
+        if (this.singers == null) {
+            this.singers = getSingersBySongId(context, songId);
+        }
         return singers;
     }
 

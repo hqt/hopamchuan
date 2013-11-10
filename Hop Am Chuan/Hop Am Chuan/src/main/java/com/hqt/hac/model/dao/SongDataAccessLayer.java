@@ -31,16 +31,16 @@ public class SongDataAccessLayer {
         LOGD(TAG, "Adding a full song");
         try {
             insertSong(context, song);
-            ArtistDataAcessLayer.insertListOfArtists(context, song.getAuthors());
-            for (Artist author : song.getAuthors()) {
+            ArtistDataAcessLayer.insertListOfArtists(context, song.getAuthors(context));
+            for (Artist author : song.getAuthors(context)) {
                 SongArtistDataAccessLayer.insertSong_Author(context, song.songId, author.artistId);
             }
-            ArtistDataAcessLayer.insertListOfArtists(context, song.getSingers());
-            for (Artist author : song.getSingers()) {
+            ArtistDataAcessLayer.insertListOfArtists(context, song.getSingers(context));
+            for (Artist author : song.getSingers(context)) {
                 SongArtistDataAccessLayer.insertSong_Singer(context, song.songId, author.artistId);
             }
-            ChordDataAccessLayer.insertListOfChords(context, song.getChords());
-            for (Chord chord : song.getChords()) {
+            ChordDataAccessLayer.insertListOfChords(context, song.getChords(context));
+            for (Chord chord : song.getChords(context)) {
                 SongChordDataAccessLayer.insertSong_Chord(context, song.songId, chord.chordId);
             }
             return true;
@@ -62,7 +62,7 @@ public class SongDataAccessLayer {
         ContentValues cv = new ContentValues();
         cv.put(HopAmChuanDBContract.Songs.SONG_ID, song.songId);
         cv.put(HopAmChuanDBContract.Songs.SONG_TITLE, song.title);
-        cv.put(HopAmChuanDBContract.Songs.SONG_CONTENT, song.getContent());
+        cv.put(HopAmChuanDBContract.Songs.SONG_CONTENT, song.getContent(context));
         cv.put(HopAmChuanDBContract.Songs.SONG_LINK, song.link);
         cv.put(HopAmChuanDBContract.Songs.SONG_FIRST_LYRIC, song.firstLyric);
         cv.put(HopAmChuanDBContract.Songs.SONG_DATE,(new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT)).format(song.date));
@@ -107,7 +107,7 @@ public class SongDataAccessLayer {
         int idCol = c.getColumnIndex(HopAmChuanDBContract.Songs._ID);
         int songidCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID);
         int titleCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_TITLE);
-        int contentCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_CONTENT);
+//        int contentCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_CONTENT);
         int firstlyricCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_FIRST_LYRIC);
         int linkCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_LINK);
         int dateCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_DATE);
@@ -117,15 +117,16 @@ public class SongDataAccessLayer {
         int lastViewCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_LASTVIEW);
         try {
             for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+                int _id = c.getInt(idCol);
                 int id = c.getInt(songidCol);
                 String title = c.getString(titleCol);
-                String content = c.getString(contentCol);
+//                String content = c.getString(contentCol);
                 String firstLyric = c.getString(firstlyricCol);
                 String link = c.getString(linkCol);
                 Date date = (new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT)).parse(c.getString(dateCol));
-                List<Artist> authors = getAuthorsBySongId(context, id);
-                List<Artist> singers = getSingersBySongId(context, id);
-                List<Chord> chords = getChordsBySongId(context, id);
+//                List<Artist> authors = getAuthorsBySongId(context, id);
+//                List<Artist> singers = getSingersBySongId(context, id);
+//                List<Chord> chords = getChordsBySongId(context, id);
                 String titleAscii = c.getString(titleAsciiCol);
                 String rhythm = c.getString(rhythmCol);
                 int isFavorite = c.getInt(isFavoriteCol);
@@ -135,8 +136,8 @@ public class SongDataAccessLayer {
                 if (c != null) {
                     c.close();
                 }
-                return new Song(Config.DEFAULT_ID, id, title, link, content, firstLyric, date,
-                        authors, chords, singers, titleAscii, lastView, isFavorite, rhythm);
+                return new Song(_id, id, title, link, firstLyric, date,
+                        titleAscii, lastView, isFavorite, rhythm);
             }
         } catch (Exception e) {
             LOGE(TAG, "Parse song fail!");
@@ -203,6 +204,7 @@ public class SongDataAccessLayer {
         c.close();
         return result;
     }
+
     public static List<Chord> getChordsBySongId(Context context, int id) {
         LOGD(TAG, "Get chords by song id");
 
@@ -240,6 +242,32 @@ public class SongDataAccessLayer {
         return deleteUri;
     }
 
+    /**
+     * Get content for lazy load
+     * @param context
+     * @param songId
+     * @return
+     */
+    public static String getSongContent(Context context, int songId) {
+        LOGD(TAG, "Get Song Content");
+
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
+        Cursor c = resolver.query(uri,
+                Query.Projections.SONG_CONTENT_PROJECTION,    // projection
+                HopAmChuanDBContract.Songs.SONG_ID + "=?",                           // selection string
+                new String[]{String.valueOf(songId)},                           // selection args of strings
+                null);                          //  sort order
+
+        int contentCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_CONTENT);
+
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            String content = c.getString(contentCol);
+            return content;
+        }
+        c.close();
+        return "Error: could not get song content (songId=" + songId + ")";
+    }
 
     /**
      * for testing purpose

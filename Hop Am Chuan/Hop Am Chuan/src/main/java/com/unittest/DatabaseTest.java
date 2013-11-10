@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.hqt.hac.model.dao.SongDataAccessLayer.getAuthorsBySongId;
+
 public class DatabaseTest {
     /**
      * Use this method for easier development phrase
@@ -232,14 +234,21 @@ public class DatabaseTest {
             // Get
             Song result = SongDataAccessLayer.getSongById(context, 4);
 
+            Log.i("SongInsertDebug", "Before get:" + result.toString());
+            result.getAuthors(context);
+            result.getSingers(context);
+            result.getChords(context);
+            result.getContent(context);
+            Log.i("SongInsertDebug", "After get:" + result.toString());
+
             // Compare
             if (result.equals(song)
-                    && a1.equals(result.getAuthors().get(0))
-                    && a2.equals(result.getAuthors().get(1))
-                    && s1.equals(result.getSingers().get(0))
-                    && s2.equals(result.getSingers().get(1))
-                    && c1.equals(result.getChords().get(0))
-                    && c2.equals(result.getChords().get(1))) {
+                    && a1.equals(result.getAuthors(context).get(0))
+                    && a2.equals(result.getAuthors(context).get(1))
+                    && s1.equals(result.getSingers(context).get(0))
+                    && s2.equals(result.getSingers(context).get(1))
+                    && c1.equals(result.getChords(context).get(0))
+                    && c2.equals(result.getChords(context).get(1))) {
                 res += " OK";
             } else {
                 res += " FAIL: result: " + result.toString() + " expected: " + song.toString();
