@@ -126,7 +126,7 @@ public class ParserUtils {
                 String content = object.get("content").getAsString();
                 String lyric = object.get("firstlyric").getAsString();
                 Date date = new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT).parse(object.get("date").getAsString());
-                Song song = new Song(Config.DEFAULT_ID, songId, title, link, content, lyric, date);
+                Song song = new Song(Config.DEFAULT_SONG_ID, songId, title, link, content, lyric, date);
 
                 // TrungDQ: just a little more work to get it right.
                 JsonArray authorArray = object.get("authors").getAsJsonArray();

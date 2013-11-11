@@ -106,6 +106,9 @@ public class Query {
         String[] SONG_CONTENT_PROJECTION = {
                 Songs.SONG_CONTENT
         };
+        String[] SONG_ID_PROJECTION = {
+                Songs.SONG_ID
+        };
     }
 
 

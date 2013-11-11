@@ -1,5 +1,7 @@
 package com.hqt.hac.model;
 
+import com.hqt.hac.utils.StringUtils;
+
 import java.io.Serializable;
 
 public class Artist implements Serializable {
@@ -21,6 +23,7 @@ public class Artist implements Serializable {
         this.artistName = artistName;
         this.artistAscii = artistAscii;
     }
+
 
     @Override
     public String toString() {
