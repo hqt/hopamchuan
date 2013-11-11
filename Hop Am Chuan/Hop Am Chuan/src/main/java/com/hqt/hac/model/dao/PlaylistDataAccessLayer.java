@@ -144,6 +144,21 @@ public class PlaylistDataAccessLayer {
         return insertedUri.toString();
     }
 
+    public static int renamePlaylist(Context context, int playlistId, String newName, String newDesc) {
+        LOGD(TAG, "Renaming playlist " + playlistId);
+
+        ContentValues cv = new ContentValues();
+        cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_NAME, newName);
+        cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_DESCRIPTION, newDesc);
+
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Playlist.CONTENT_URI;
+        Uri updateUri = Uri.withAppendedPath(uri, playlistId + "");
+        int updatedUriResult = resolver.update(updateUri, cv, HopAmChuanDBContract.Playlist.PLAYLIST_ID + "=" + playlistId, null);
+        LOGD(TAG, "Updated uri: " + updatedUriResult);
+        return updatedUriResult;
+    }
+
     public static void removePlaylistById(Context context, int playlistId) {
         LOGD(TAG, "Delete playlist");
 
@@ -151,6 +166,8 @@ public class PlaylistDataAccessLayer {
         Uri uri = HopAmChuanDBContract.Playlist.CONTENT_URI;
         Uri deleteUri = Uri.withAppendedPath(uri, playlistId + "");
         resolver.delete(deleteUri, null, null);
+
+        // TODO: delete song_playlist
     }
 
 

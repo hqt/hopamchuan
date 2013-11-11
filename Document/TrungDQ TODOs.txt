@@ -1,0 +1,22 @@
+Song view:
+- Song view split into 2 lines
+- Chord view use popup windows
+- Convert to easy mode.
+- Auto scroll.
+
+DAL:
+X Playlist rename (name & description)
+X Playlist delete > delete playlist_song
+- Search: by song title, author, singer >> pagination?
+- Search by chord.
+
+Synchronizer:
+- 
+
+Design:
+- Update & Synchronize
+- Setting
+- Update icons
+
+Server side:
+- Implemenet APIs

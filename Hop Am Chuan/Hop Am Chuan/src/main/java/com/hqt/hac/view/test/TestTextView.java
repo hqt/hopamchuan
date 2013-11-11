@@ -13,14 +13,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.hac_library.helper.ChordHelper;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.utils.ParserUtils;
 import com.hqt.hac.view.R;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TestTextView extends ActionBarActivity {
 
@@ -32,29 +36,59 @@ public class TestTextView extends ActionBarActivity {
         setContentView(R.layout.testtextview_fragment_main);
 
         testTextView = (TextView) findViewById(R.id.testTextView);
+        List<Song> songs = ParserUtils.getAllSongsFromResource(getApplicationContext());
+        final String songContent = songs.get(1).getContent(getApplicationContext());
         if (testTextView != null) {
-            List<Song> songs = ParserUtils.getAllSongsFromResource(getApplicationContext());
-            String songContent = songs.get(1).content;
-            DisplayMetrics displaymetrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-            testTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, 22);
-
-            HacUtils.setSongFormatted(getApplicationContext(), testTextView, songContent, displaymetrics);
-            ViewTreeObserver vto = testTextView.getViewTreeObserver();
-            vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    Layout layout = testTextView.getLayout();
-                    int curLine = layout.getLineStart(1);
-                    int nextLine = layout.getLineStart(2);
-                    int numLine = layout.getLineCount();
-
-                    Log.i("TextViewDebug", "curLine: " + curLine + " | nextLine: " + nextLine + " | count: " + numLine);
-                }
-            });
+            HacUtils.setSongFormatted(getApplicationContext(), testTextView, songContent);
+//            ViewTreeObserver vto = testTextView.getViewTreeObserver();
+//            vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//                @Override
+//                public void onGlobalLayout() {
+//                    Layout layout = testTextView.getLayout();
+//                    int curLine = layout.getLineStart(1);
+//                    int nextLine = layout.getLineStart(2);
+//                    int numLine = layout.getLineCount();
+//
+//                    Log.i("TextViewDebug", "curLine: " + curLine + " | nextLine: " + nextLine + " | count: " + numLine);
+//                }
+//            });
         } else {
             Log.i("Debug", "testTextView is null!");
         }
+
+        // Increase font size
+        ((Button) findViewById(R.id.btnFUp)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                testTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, testTextView.getTextSize() + 1);
+            }
+        });
+
+        // Decrease font size
+        ((Button) findViewById(R.id.btnFDo)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                testTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, testTextView.getTextSize() - 1);
+            }
+        });
+
+        // Increase transpose
+        ((Button) findViewById(R.id.btnTUp)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HacUtils.transposeTextView(getApplicationContext(), testTextView, 1);
+            }
+        });
+
+        // Decrease transpose
+        ((Button) findViewById(R.id.btnTDo)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HacUtils.transposeTextView(getApplicationContext(), testTextView, -1);
+            }
+        });
+
+
     }
 
 

@@ -40,6 +40,12 @@
         <item>Thời gian</item>
     </string-array>
 
+    <!-- list all base chords in search chord activity -->
+    <string-array name="chords_base_chord">
+        <item>Am, Dm, E</item>
+        <item>Am, F, C, G</item>
+    </string-array>
+
     <string name="title_activity_test">Test Activity</string>
     <string name="example_text">Example Text</string>
     <string name="example_number">10</string>
@@ -51,6 +57,7 @@
     <string name="title_activity_playlist_detail_fragment">MainActivity</string>
     <string name="title_activity_playlist_manager_fragment">Playlist Manager</string>
     <string name="title_activity_find_by_chord">Tìm theo hợp âm</string>
-    <string name="chord_search_button_text">Search</string>
+    <string name="chord_search_search_button_text">Search</string>
+    <string name="chord_search_add_chord_text">Thêm</string>
 
 </resources>

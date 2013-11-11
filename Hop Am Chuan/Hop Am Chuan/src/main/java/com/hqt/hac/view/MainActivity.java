@@ -45,7 +45,7 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
 
         // delete all database
-         //HopAmChuanDatabase.deleteDatabase(getApplicationContext());
+        HopAmChuanDatabase.deleteDatabase(getApplicationContext());
 
         // create sample database
         DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());

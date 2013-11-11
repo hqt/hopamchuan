@@ -85,13 +85,13 @@ public class ChordSurfaceView extends SurfaceView implements Callback {
 
     public void drawChord(String chordName, int position, int transpose) {
         String name = ChordHelper.simplifyName(chordName);
-        if (ChordLibrary.baseChords.get(name) != null) {
+        try {
             this.chordName = name;
             this.position = position;
             this.transpose = transpose;
             onDrawing(holder);
-        } else {
-            Log.i("Debug", "Unsupported chord: " + name);
+        } catch (Exception e) {
+            Log.i("Debug", "Unable to draw chord: " + chordName + " (" + name + ")");
         }
     }
 

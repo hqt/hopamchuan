@@ -3,6 +3,7 @@ package com.unittest;
 import android.content.Context;
 import android.util.Log;
 
+import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.Helper;
 import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Chord;
@@ -21,6 +22,8 @@ import com.hqt.hac.utils.ParserUtils;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static com.hqt.hac.model.dao.SongDataAccessLayer.getAuthorsBySongId;
 
 public class DatabaseTest {
     /**
@@ -52,11 +55,11 @@ public class DatabaseTest {
 
 
         // create songs
-        Song s1 = new Song(1, "Quoc Ca", "www.echip.com.vn", "doan quan Viet Nam di", "doan quan Viet Nam", new Date());
-        Song s2 = new Song(2, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
-        Song s3 = new Song(3, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
-        Song s4 = new Song(4, "Dem Dong", "www.echip.com.vn", "nguoi co lu dem dong khong nha", "dem dong khong nha", new Date());
-        Song s5 = new Song(5, "Suoi mo", "www.echip.com.vn", "dong nuoc troi lung lo ngoai nang", "dong nuoc troi", new Date());
+        Song s1 = new Song(Config.DEFAULT_ID, 1, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
+        Song s2 = new Song(Config.DEFAULT_ID, 2, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
+        Song s3 = new Song(Config.DEFAULT_ID, 3, "Quoc Ca", "www.echip.com.vn", "doan quan Viet Nam di", "doan quan Viet Nam", new Date());
+        Song s4 = new Song(Config.DEFAULT_ID, 4, "Dem Dong", "www.echip.com.vn", "nguoi co lu dem dong khong nha", "dem dong khong nha", new Date());
+        Song s5 = new Song(Config.DEFAULT_ID, 5, "Suoi mo", "www.echip.com.vn", "dong nuoc troi lung lo ngoai nang", "dong nuoc troi", new Date());
 
         SongDataAccessLayer.insertSong(context, s1);
         SongDataAccessLayer.insertSong(context, s2);
@@ -96,6 +99,9 @@ public class DatabaseTest {
         SongArtistDataAccessLayer.insertSong_Singer(context, 1, 3);
         SongArtistDataAccessLayer.insertSong_Singer(context, 3, 3);
 
+        /*// create favorite includes two songs
+        FavoriteDataAccessLayer.addSongToFavorite(context, 1);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 2);*/
 
         // Create sample playlists
         Playlist playlist1 = new Playlist(1, "Nhac Trinh Cong Son", "Trinh Cong Son", new Date(), 1);
@@ -106,10 +112,10 @@ public class DatabaseTest {
         PlaylistDataAccessLayer.insertPlaylist(context, playlist3);
 
         // create songs in playlists
-        PlaylistSongDataAccessLayer.insertPlaylist_Song(context,1, 1);
-        PlaylistSongDataAccessLayer.insertPlaylist_Song(context,1, 2);
-        PlaylistSongDataAccessLayer.insertPlaylist_Song(context,1, 3);
-        PlaylistSongDataAccessLayer.insertPlaylist_Song(context,2, 3);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 1);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 2);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 3);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 2, 3);
 
         // create favorites
         FavoriteDataAccessLayer.addSongToFavorite(context, 1);
@@ -159,7 +165,7 @@ public class DatabaseTest {
             inputC.add(c1);
             inputC.add(c2);
 
-            Song song = new Song(4, "Chau Len bon", "www.4444444.com", "chau len bon chau vo mau giao", "chau len bon", new Date(), inputA, inputC, inputS);
+            Song song = new Song(Config.DEFAULT_ID, 4, "Chau Len bon", "www.4444444.com", "chau len bon chau vo mau giao", "chau len bon", new Date(), inputA, inputC, inputS);
 
 
             // Insert
@@ -238,7 +244,7 @@ public class DatabaseTest {
             inputC.add(c1);
             inputC.add(c2);
 
-            Song song = new Song(4, "Chau Len bon", "www.4444444.com", "chau len bon chau vo mau giao", "chau len bon", new Date(), inputA, inputC, inputS);
+            Song song = new Song(Config.DEFAULT_ID, 4, "Chau Len bon", "www.4444444.com", "chau len bon chau vo mau giao", "chau len bon", new Date(), inputA, inputC, inputS);
 
 
             // Insert
@@ -248,14 +254,21 @@ public class DatabaseTest {
             // Get
             Song result = SongDataAccessLayer.getSongById(context, 4);
 
+            Log.i("SongInsertDebug", "Before get:" + result.toString());
+            result.getAuthors(context);
+            result.getSingers(context);
+            result.getChords(context);
+            result.getContent(context);
+            Log.i("SongInsertDebug", "After get:" + result.toString());
+
             // Compare
             if (result.equals(song)
-                    && a1.equals(result.authors.get(0))
-                    && a2.equals(result.authors.get(1))
-                    && s1.equals(result.singers.get(0))
-                    && s2.equals(result.singers.get(1))
-                    && c1.equals(result.chords.get(0))
-                    && c2.equals(result.chords.get(1))) {
+                    && a1.equals(result.getAuthors(context).get(0))
+                    && a2.equals(result.getAuthors(context).get(1))
+                    && s1.equals(result.getSingers(context).get(0))
+                    && s2.equals(result.getSingers(context).get(1))
+                    && c1.equals(result.getChords(context).get(0))
+                    && c2.equals(result.getChords(context).get(1))) {
                 res += " OK";
             } else {
                 res += " FAIL: result: " + result.toString() + " expected: " + song.toString();
@@ -291,7 +304,7 @@ public class DatabaseTest {
         String res = "TestGetAuthorsBySongId: ";
         try {
             // Create
-            Song s2 = new Song(2, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
+            Song s2 = new Song(Config.DEFAULT_ID, 2, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
             Artist a1 = new Artist(1, "Huynh Quang Thao", "Huynh Quang Thao");
             Artist a2 = new Artist(2, "Dinh Quang Trung", "Dinh Quang Trung");
 
@@ -334,7 +347,7 @@ public class DatabaseTest {
         String res = "TestGetSingersBySongId: ";
         try {
             // Create
-            Song s2 = new Song(2, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
+            Song s2 = new Song(Config.DEFAULT_ID, 2, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
             Artist a1 = new Artist(1, "Huynh Quang Thao", "Huynh Quang Thao");
             Artist a2 = new Artist(2, "Dinh Quang Trung", "Dinh Quang Trung");
 
@@ -382,7 +395,7 @@ public class DatabaseTest {
             input.add(c1);
             input.add(c2);
 
-            Song s3 = new Song(3, "Quoc Ca", "www.echip.com.vn", "doan quan Viet Nam di", "doan quan Viet Nam", new Date());
+            Song s3 = new Song(Config.DEFAULT_ID, 3, "Quoc Ca", "www.echip.com.vn", "doan quan Viet Nam di", "doan quan Viet Nam", new Date());
 
             // Insert (set Am & E is the chords of Quoc Ca)
             SongDataAccessLayer.insertSong(context, s3);
@@ -464,8 +477,8 @@ public class DatabaseTest {
             inputC.add(c1);
             inputC.add(c2);
 
-            Song song1 = new Song(4, "Chau Len bon", "www.4444444.com", "chau len bon chau vo mau giao", "chau len bon", new Date(), inputA, inputC, inputS);
-            Song song2 = new Song(5, "Chau Len nam", "www.55555.com", "chau len nam chau vo mau giao", "chau len nam", new Date(), inputA, inputC, inputS);
+            Song song1 = new Song(Config.DEFAULT_ID, 4, "Chau Len bon", "www.4444444.com", "chau len bon chau vo mau giao", "chau len bon", new Date(), inputA, inputC, inputS);
+            Song song2 = new Song(Config.DEFAULT_ID, 5, "Chau Len nam", "www.55555.com", "chau len nam chau vo mau giao", "chau len nam", new Date(), inputA, inputC, inputS);
 
 
             // Insert
@@ -552,8 +565,8 @@ public class DatabaseTest {
             inputC.add(c1);
             inputC.add(c2);
 
-            Song song1 = new Song(4, "Chau Len bon", "www.4444444.com", "chau len bon chau vo mau giao", "chau len bon", new Date(), inputA, inputC, inputS);
-            Song song2 = new Song(5, "Chau Len nam", "www.55555.com", "chau len nam chau vo mau giao", "chau len nam", new Date(), inputA, inputC, inputS);
+            Song song1 = new Song(Config.DEFAULT_ID, 4, "Chau Len bon", "www.4444444.com", "chau len bon chau vo mau giao", "chau len bon", new Date(), inputA, inputC, inputS);
+            Song song2 = new Song(Config.DEFAULT_ID, 5, "Chau Len nam", "www.55555.com", "chau len nam chau vo mau giao", "chau len nam", new Date(), inputA, inputC, inputS);
 
 
             // Insert
@@ -639,8 +652,8 @@ public class DatabaseTest {
             inputC.add(c1);
             inputC.add(c2);
 
-            Song song1 = new Song(4, "Chau Len bon", "www.4444444.com", "chau len bon chau vo mau giao", "chau len bon", new Date(), inputA, inputC, inputS);
-            Song song2 = new Song(5, "Chau Len nam", "www.55555.com", "chau len nam chau vo mau giao", "chau len nam", new Date(), inputA, inputC, inputS);
+            Song song1 = new Song(Config.DEFAULT_ID, 4, "Chau Len bon", "www.4444444.com", "chau len bon chau vo mau giao", "chau len bon", new Date(), inputA, inputC, inputS);
+            Song song2 = new Song(Config.DEFAULT_ID, 5, "Chau Len nam", "www.55555.com", "chau len nam chau vo mau giao", "chau len nam", new Date(), inputA, inputC, inputS);
 
 
             // Insert
@@ -730,8 +743,8 @@ public class DatabaseTest {
             inputC.add(c1);
             inputC.add(c2);
 
-            Song song1 = new Song(4, "Chau Len bon", "www.4444444.com", "chau len bon chau vo mau giao", "chau len bon", new Date(), inputA, inputC, inputS);
-            Song song2 = new Song(5, "Chau Len nam", "www.55555.com", "chau len nam chau vo mau giao", "chau len nam", new Date(), inputA, inputC, inputS);
+            Song song1 = new Song(Config.DEFAULT_ID, 4, "Chau Len bon", "www.4444444.com", "chau len bon chau vo mau giao", "chau len bon", new Date(), inputA, inputC, inputS);
+            Song song2 = new Song(Config.DEFAULT_ID, 5, "Chau Len nam", "www.55555.com", "chau len nam chau vo mau giao", "chau len nam", new Date(), inputA, inputC, inputS);
 
 
             // Insert
@@ -804,7 +817,7 @@ public class DatabaseTest {
         String res = "TestGetAllFavoriteSongs: ";
         try {
             // Create
-            Song s1 = new Song(1, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
+            Song s1 = new Song(Config.DEFAULT_ID, 1, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
 
             // Insert
             SongDataAccessLayer.insertSong(context, s1);
@@ -834,8 +847,8 @@ public class DatabaseTest {
         String res = "TestInFavorite: ";
         try {
             // Create
-            Song s1 = new Song(5, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
-            Song s2 = new Song(7, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
+            Song s1 = new Song(Config.DEFAULT_ID, 5, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
+            Song s2 = new Song(Config.DEFAULT_ID, 7, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
 
             // Insert
             SongDataAccessLayer.insertSong(context, s1);
@@ -850,7 +863,7 @@ public class DatabaseTest {
             if (result1 == 0 && result2 == 7) {
                 res += " OK";
             } else {
-                res += " FAIL: result: " + result1 + "|" + result2 + " Expected: " + 0 + "|7" ;
+                res += " FAIL: result: " + result1 + "|" + result2 + " Expected: " + 0 + "|7";
             }
         } catch (Exception e) {
             res += "Exception: " + e.toString();
@@ -869,9 +882,9 @@ public class DatabaseTest {
         try {
             // Create
             Playlist playlist1 = new Playlist(1, "Playlist 1", "Mot", new Date(), 1);
-            Song s1 = new Song(1, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
-            Song s2 = new Song(2, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
-            Song s3 = new Song(3, "Quoc Ca", "www.echip.com.vn", "doan quan Viet Nam di", "doan quan Viet Nam", new Date());
+            Song s1 = new Song(Config.DEFAULT_ID, 1, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
+            Song s2 = new Song(Config.DEFAULT_ID, 2, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
+            Song s3 = new Song(Config.DEFAULT_ID, 3, "Quoc Ca", "www.echip.com.vn", "doan quan Viet Nam di", "doan quan Viet Nam", new Date());
 
             // Insert
             SongDataAccessLayer.insertSong(context, s1);
@@ -889,7 +902,7 @@ public class DatabaseTest {
             if (result != null && result.equals(playlist1)) {
                 res += " OK ";
             } else {
-                res += " FAIL: result: " + result  + " Expected: " + playlist1 ;
+                res += " FAIL: result: " + result + " Expected: " + playlist1;
             }
         } catch (Exception e) {
             res += "Exception: " + e.toString();
@@ -901,9 +914,7 @@ public class DatabaseTest {
         SongDataAccessLayer.removeSongById(context, 3);
         SongDataAccessLayer.removeSongById(context, 2);
         SongDataAccessLayer.removeSongById(context, 1);
-        PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1, 1);
-        PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1, 2);
-        PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1, 3);
+        PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1);
 
         return res;
     }
@@ -913,8 +924,8 @@ public class DatabaseTest {
         try {
             // Create
             Playlist playlist1 = new Playlist(1, "Playlist 1", "Mot", new Date(), 1);
-            Song s1 = new Song(1, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
-            Song s2 = new Song(2, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
+            Song s1 = new Song(Config.DEFAULT_ID, 1, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
+            Song s2 = new Song(Config.DEFAULT_ID, 2, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
 
             // Insert
             SongDataAccessLayer.insertSong(context, s1);
@@ -930,7 +941,7 @@ public class DatabaseTest {
             if (result.size() == 2 && result.get(0).equals(s1) && result.get(1).equals(s2)) {
                 res += " OK ";
             } else {
-                res += " FAIL: result: " + result  + " Expected: " + s1.toString() + "|" + s2.toString() ;
+                res += " FAIL: result: " + result + " Expected: " + s1.toString() + "|" + s2.toString();
             }
         } catch (Exception e) {
             res += "Exception: " + e.toString();
@@ -941,8 +952,100 @@ public class DatabaseTest {
         PlaylistDataAccessLayer.removePlaylistById(context, 1);
         SongDataAccessLayer.removeSongById(context, 2);
         SongDataAccessLayer.removeSongById(context, 1);
-        PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1, 1);
-        PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1, 2);
+        PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1);
+
+        return res;
+    }
+
+    public static String TestRemovePlaylistSong(Context context) {
+        String res = "TestRemovePlaylistSong: ";
+        try {
+            // Create
+            Playlist playlist1 = new Playlist(1, "Playlist 1", "Mot", new Date(), 1);
+            Song s1 = new Song(Config.DEFAULT_ID, 1, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
+            Song s2 = new Song(Config.DEFAULT_ID, 2, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
+            Song s3 = new Song(Config.DEFAULT_ID, 3, "Lang toi 3", "www.33333.com", "lang 333 xanh bong tre", "333 toi", new Date());
+
+            // Insert
+            SongDataAccessLayer.insertSong(context, s1);
+            SongDataAccessLayer.insertSong(context, s2);
+            SongDataAccessLayer.insertSong(context, s3);
+            PlaylistDataAccessLayer.insertPlaylist(context, playlist1);
+            PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 1);
+            PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 2);
+            PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 3);
+
+            // Test 1
+            // Get
+            List<Song> result = PlaylistDataAccessLayer.getAllSongsFromPlaylist(context, 1);
+            // Compare
+            if (result.size() == 3 && result.get(0).equals(s1) && result.get(1).equals(s2) && result.get(2).equals(s3)) {
+                res += " OK ";
+            } else {
+                res += " FAIL: result: " + result + " Expected: " + s1.toString() + "|" + s2.toString() + "|" + s3.toString();
+            }
+
+
+            // Test 2 Delete song 2 from playlist
+            PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1, 2);
+            // Get
+            List<Song> result2 = PlaylistDataAccessLayer.getAllSongsFromPlaylist(context, 1);
+            // Compare
+            if (result2.size() == 2 && result2.get(0).equals(s1) && result2.get(1).equals(s3)) {
+                res += " OK ";
+            } else {
+                res += " FAIL: result: " + result2 + " Expected: " + s1.toString() + "|" + s3.toString();
+            }
+
+            // Test 3 Delete all song from playlist
+            PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1);
+            // Get
+            List<Song> result3 = PlaylistDataAccessLayer.getAllSongsFromPlaylist(context, 1);
+            // Compare
+            if (result3.size() == 0) {
+                res += " OK ";
+            } else {
+                res += " FAIL: result: " + result3 + " Expected: {}";
+            }
+        } catch (Exception e) {
+            res += "Exception: " + e.toString();
+            e.printStackTrace();
+        }
+
+        // Delete
+        PlaylistDataAccessLayer.removePlaylistById(context, 1);
+        SongDataAccessLayer.removeSongById(context, 2);
+        SongDataAccessLayer.removeSongById(context, 1);
+        PlaylistSongDataAccessLayer.removePlaylist_Song(context, 1);
+
+        return res;
+    }
+
+    public static String TestRenamePlaylist(Context context) {
+        String res = "TestRenamePlaylist: ";
+        try {
+            // Create
+            Playlist playlist1 = new Playlist(1, "Playlist 1", "Mot", new Date(), 1);
+
+            // Insert
+            PlaylistDataAccessLayer.insertPlaylist(context, playlist1);
+
+            // Do rename & get
+            PlaylistDataAccessLayer.renamePlaylist(context, 1, "New Name Playlist", "New Description here");
+            Playlist result = PlaylistDataAccessLayer.getPlaylistById(context, 1);
+
+            // Compare
+            if (result != null && result.playlistName.equals("New Name Playlist") && result.playlistDescription.equals("New Description here")) {
+                res += " OK";
+            } else {
+                res += " FAIL: result: " + result.toString() + " Expected: New Name Playlist | New Description here";
+            }
+        } catch (Exception e) {
+            res += "Exception: " + e.toString();
+            e.printStackTrace();
+        }
+
+        // Delete
 
         return res;
     }

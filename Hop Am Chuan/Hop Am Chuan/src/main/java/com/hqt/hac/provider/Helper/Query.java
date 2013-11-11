@@ -55,7 +55,6 @@ public class Query {
                 BaseColumns._ID,
                 Songs.SONG_ID,
                 Songs.SONG_TITLE,
-                Songs.SONG_CONTENT,
                 Songs.SONG_DATE,
                 Songs.SONG_LINK,
                 Songs.SONG_FIRST_LYRIC,
@@ -103,6 +102,9 @@ public class Query {
                 BaseColumns._ID,
                 PlaylistSongs.PLAYLIST_ID,
                 PlaylistSongs.SONG_ID,
+        };
+        String[] SONG_CONTENT_PROJECTION = {
+                Songs.SONG_CONTENT
         };
     }
 

@@ -70,6 +70,8 @@ public class TestDatabaseActivity extends ActionBarActivity {
         res += DatabaseTest.TestInFavorite(getApplicationContext()) + "\n";
         res += DatabaseTest.TestGetPlaylistById(getApplicationContext()) + "\n";
         res += DatabaseTest.TestGetAllSongsFromPlaylist(getApplicationContext()) + "\n";
+        res += DatabaseTest.TestRemovePlaylistSong(getApplicationContext()) + "\n";
+        res += DatabaseTest.TestRenamePlaylist(getApplicationContext()) + "\n";
         res += DatabaseTest.TestGetChordByName(getApplicationContext()) + "\n";
         res += DatabaseTest.TestGetRandomSongsByAuthor(getApplicationContext()) + "\n";
         res += DatabaseTest.TestGetRandomSongsBySinger(getApplicationContext()) + "\n";

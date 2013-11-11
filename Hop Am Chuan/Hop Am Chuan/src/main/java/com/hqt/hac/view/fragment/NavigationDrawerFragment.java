@@ -382,6 +382,7 @@ public class NavigationDrawerFragment extends Fragment
                     fragment = new FavoriteManagerFragment();
                     break;
                 case FIND_BY_CHORD:
+                    fragment = new FindByChordFragment();
                     break;
                 case SEARCH_CHORD:
                     break;
