@@ -4,11 +4,16 @@ Song view:
 - Convert to easy mode.
 - Auto scroll.
 
+ChordDroid:
+- Draw base grid for default constructor.
+
 DAL:
 X Playlist rename (name & description)
 X Playlist delete > delete playlist_song
-- Search: by song title, author, singer >> pagination?
+X Search: by song title, author, singer >> pagination?
 - Search by chord.
+- Update Last View
+- Artist autocomplete
 
 Synchronizer:
 - 

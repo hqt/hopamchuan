@@ -277,4 +277,26 @@ public class SongDataAccessLayer {
         throw new UnsupportedOperationException();
     }
 
+    public static List<Song> searchSongByTitle(Context context, String title, int limit) {
+        LOGD(TAG, "search Song Title");
+        String keyword = StringUtils.removeAccients(title);
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
+        Cursor c = resolver.query(uri,
+                Query.Projections.SONG_ID_PROJECTION,                      // projection
+                HopAmChuanDBContract.Songs.SONG_TITLE_ASCII + " LIKE ?", // selection string
+                new String[]{keyword + "%"},                   // selection args of strings
+                "LENGTH(" + HopAmChuanDBContract.Songs.SONG_TITLE_ASCII + ") LIMIT " + limit);                                                  //  sort order
+
+        int songIdCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID);
+        List<Song> songs = new ArrayList<Song>();
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            int songId = c.getInt(songIdCol);
+            songs.add(getSongById(context, songId));
+        }
+        c.close();
+        return songs;
+    }
+
+
 }

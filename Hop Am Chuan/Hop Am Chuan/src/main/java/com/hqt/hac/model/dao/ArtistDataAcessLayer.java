@@ -11,6 +11,8 @@ import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.HopAmChuanDBContract;
 import com.hqt.hac.provider.HopAmChuanDBContract.SongsAuthors;
 import com.hqt.hac.provider.HopAmChuanDBContract.SongsSingers;
+import com.hqt.hac.provider.helper.Query;
+import com.hqt.hac.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +56,38 @@ public class ArtistDataAcessLayer {
         resolver.delete(deleteUri, null, null);
     }
 
+    public static Artist getArtistByName(Context context, String name) {
+        LOGD(TAG, "Get Artist By Id");
+        String artistName = StringUtils.removeAccients(name);
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Artists.CONTENT_URI;
+
+        Cursor c = resolver.query(uri,
+                Projections.ARTIST_PROJECTION,                      // projection
+                HopAmChuanDBContract.Artists.ARTIST_ASCII + " LIKE ?",   // selection string
+                new String[]{artistName},                             // selection args of strings
+                null);                            //  sort order
+
+        int idCol = c.getColumnIndex(HopAmChuanDBContract.Artists._ID);
+        int artistidCol = c.getColumnIndex(HopAmChuanDBContract.Artists.ARTIST_ID);
+        int nameCol = c.getColumnIndex(HopAmChuanDBContract.Artists.ARTIST_NAME);
+        int asciiCol = c.getColumnIndex(HopAmChuanDBContract.Artists.ARTIST_ASCII);
+
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            int _id = c.getInt(idCol);
+            int _artistId = c.getInt(artistidCol);
+            String _name = c.getString(nameCol);
+            String _ascii = c.getString(asciiCol);
+            if (c != null) {
+                c.close();
+            }
+            return new Artist(_id, _artistId, _name, _ascii);
+        }
+        if (c != null) {
+            c.close();
+        }
+        return null;
+    }
 
     public static Artist getArtistById(Context context, int artistId) {
         LOGD(TAG, "Get Artist By Id");
@@ -73,14 +107,14 @@ public class ArtistDataAcessLayer {
         int asciiCol = c.getColumnIndex(HopAmChuanDBContract.Artists.ARTIST_ASCII);
 
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-            int id = c.getInt(idCol);
-            int ArtistId = c.getInt(artistidCol);
-            String name = c.getString(nameCol);
-            String ascii = c.getString(asciiCol);
+            int _id = c.getInt(idCol);
+            int _artistId = c.getInt(artistidCol);
+            String _name = c.getString(nameCol);
+            String _ascii = c.getString(asciiCol);
             if (c != null) {
                 c.close();
             }
-            return new Artist(id, ArtistId, name, ascii);
+            return new Artist(_id, _artistId, _name, _ascii);
         }
         if (c != null) {
             c.close();
@@ -201,28 +235,58 @@ public class ArtistDataAcessLayer {
         return songs;
     }
 
-    /**
-     * Get all songs, can be authors or singers
-     * TODO : Later
-     */
-    public static List<Song> getRandomSongsByArtist(Context context, int artistId, int limit) {
-        throw new UnsupportedOperationException();
+
+    public static List<Song> searchSongByAuthor(Context context, String name, int limit) {
+        LOGD(TAG, "search Song By Author");
+
+        Artist artist = ArtistDataAcessLayer.getArtistByName(context, name);
+
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = SongsAuthors.CONTENT_URI;
+        Cursor c = resolver.query(uri,
+                Query.Projections.SONGAUTHOR_PROJECTION,                 // projection
+                SongsAuthors.ARTIST_ID + "=?",                           // selection string
+                new String[]{String.valueOf(artist.artistId)},           // selection args of strings
+                "RANDOM()  LIMIT " + limit);                             //  sort order
+
+        int songIdCol = c.getColumnIndex(SongsAuthors.SONG_ID);
+        List<Song> songs = new ArrayList<Song>();
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            int songId = c.getInt(songIdCol);
+            songs.add(SongDataAccessLayer.getSongById(context, songId));
+        }
+        c.close();
+        return songs;
     }
 
-    /**
-     * Just query all AuthorsSongs Table
-     * TODO: in future
-     */
-    public static List<Artist> getAllAuthors(Context context, int authorId) {
-        throw new UnsupportedOperationException();
+    public static List<Song> searchSongBySinger(Context context, String name, int limit) {
+        LOGD(TAG, "search Song By Singer");
+
+        Artist artist = ArtistDataAcessLayer.getArtistByName(context, name);
+
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = SongsSingers.CONTENT_URI;
+        Cursor c = resolver.query(uri,
+                Query.Projections.SONGAUTHOR_PROJECTION,                 // projection
+                SongsSingers.ARTIST_ID + "=?",                           // selection string
+                new String[]{String.valueOf(artist.artistId)},           // selection args of strings
+                "RANDOM()  LIMIT " + limit);                             //  sort order
+
+        int songIdCol = c.getColumnIndex(SongsSingers.SONG_ID);
+        List<Song> songs = new ArrayList<Song>();
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            int songId = c.getInt(songIdCol);
+            songs.add(SongDataAccessLayer.getSongById(context, songId));
+        }
+        c.close();
+        return songs;
     }
 
-    /**
-     * Just query all SingersSongs Table
-     * TODO: in future
-     */
-    public static List<Artist> getAllSingers(Context context, int singerId) {
-        throw new UnsupportedOperationException();
+    public static List<Song> searchSongByArtist(Context context, String name, int limit) {
+        List<Song> songs = new ArrayList<Song>();
+        songs.addAll(searchSongByAuthor(context, name, limit / 2));
+        songs.addAll(searchSongBySinger(context, name, limit / 2));
+        return songs;
     }
 
 }

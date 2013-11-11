@@ -1,30 +1,14 @@
 package com.hqt.hac.view.test;
 
-import android.net.Uri;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.hqt.hac.helper.Helper;
-import com.hqt.hac.model.Artist;
-import com.hqt.hac.model.Playlist;
-import com.hqt.hac.model.Song;
-import com.hqt.hac.model.dao.ArtistDataAcessLayer;
-import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
-import com.hqt.hac.provider.HopAmChuanDBContract;
 import com.hqt.hac.provider.HopAmChuanDatabase;
-import com.hqt.hac.provider.HopAmChuanProvider;
 import com.hqt.hac.view.R;
 import com.unittest.DatabaseTest;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class TestDatabaseActivity extends ActionBarActivity {
 
@@ -76,6 +60,9 @@ public class TestDatabaseActivity extends ActionBarActivity {
         res += DatabaseTest.TestGetRandomSongsByAuthor(getApplicationContext()) + "\n";
         res += DatabaseTest.TestGetRandomSongsBySinger(getApplicationContext()) + "\n";
         res += DatabaseTest.TestInsertFullSongSync(getApplicationContext()) + "\n";
+        res += DatabaseTest.TestSearchSongByTitle(getApplicationContext()) + "\n";
+        res += DatabaseTest.TestGetArtistByName(getApplicationContext()) + "\n";
+        res += DatabaseTest.TestSearchSongByArtist(getApplicationContext()) + "\n";
 
         textView.setText(res);
 
