@@ -83,6 +83,10 @@
             android:name="com.hqt.hac.view.FindByChord"
             android:label="@string/title_activity_find_by_chord" >
         </activity>
+        <activity
+            android:name="com.hqt.hac.view.ChordView"
+            android:label="@string/title_activity_chord_view" >
+        </activity>
     </application>
 
 </manifest>

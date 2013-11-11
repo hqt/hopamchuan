@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hqt.hac.view.R;
+import com.hqt.hac.view.fragment.FindByChordFragment;
 
 import java.util.List;
 
@@ -18,10 +19,14 @@ public class FindByChordAdapter extends BaseAdapter {
 
     Context mContext;
 
-    List<String> chords;
+    /** delegate is the callback to fragment / activity */
+    IFindByChordAdapter delegate;
 
-    public FindByChordAdapter(Context context, List<String> chords) {
+    public List<String> chords;
+
+    public FindByChordAdapter(Context context, IFindByChordAdapter delegate, List<String> chords) {
         this.mContext = context;
+        this.delegate = delegate;
         this.chords = chords;
     }
 
@@ -61,10 +66,7 @@ public class FindByChordAdapter extends BaseAdapter {
         holder.removeImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // remove current position of chords
-                chords.remove(position);
-                // refresh ListView
-                notifyDataSetChanged();
+                delegate.removeChordFromList(position);
             }
         });
 
@@ -74,5 +76,9 @@ public class FindByChordAdapter extends BaseAdapter {
     public static class ViewHolder {
         public TextView chordTextView;
         public ImageView removeImageView;
+    }
+
+    public static interface IFindByChordAdapter {
+        public void removeChordFromList(int position);
     }
 }

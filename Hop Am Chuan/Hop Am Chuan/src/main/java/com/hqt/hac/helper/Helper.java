@@ -84,9 +84,6 @@ public class Helper {
 
     }
 */
-    public static Drawable getDrawableFromResId(Context context, int id) {
-        return context.getResources().getDrawable(id);
-    }
 
     public static String arrayToString(List list) {
         String res = "";

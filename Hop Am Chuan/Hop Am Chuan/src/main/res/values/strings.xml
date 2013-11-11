@@ -46,7 +46,47 @@
         <item>Am, F, C, G</item>
     </string-array>
 
-    <string name="title_activity_test">Test Activity</string>
+    <!-- list all chords for chord view activity -->
+    <string-array name="chords_all_chord">
+        <item>C</item>
+        <item>Cm</item>
+        <item>D</item>
+        <item>Dm</item>
+        <item>E</item>
+        <item>Em</item>
+        <item>F</item>
+        <item>Fm</item>
+        <item>G</item>
+        <item>Gm</item>
+        <item>A</item>
+        <item>Am</item>
+        <item>B</item>
+        <item>Bm</item>
+    </string-array>
+
+    <string-array name="simple_chord">
+        <item>C</item>
+        <item>Cm</item>
+        <item>D</item>
+        <item>Dm</item>
+        <item>F</item>
+        <item>Fm</item>
+    </string-array>
+
+
+    <string-array name="advanced_chord">
+    </string-array>
+
+
+    <string-array name="all_chord">
+    </string-array>
+
+    <stirng-array name="type_of_chord_view">
+        <item>Hợp âm thông dụng</item>
+        <item>Hợp âm nâng cao</item>
+        <item>Tất cả hợp âm</item>
+    </stirng-array>
+
     <string name="example_text">Example Text</string>
     <string name="example_number">10</string>
     <string name="title_activity_test_text_view">Test TextView</string>
@@ -59,5 +99,7 @@
     <string name="title_activity_find_by_chord">Tìm theo hợp âm</string>
     <string name="chord_search_search_button_text">Search</string>
     <string name="chord_search_add_chord_text">Thêm</string>
+    <string name="title_activity_chord_view">Tra cứu hợp âm</string>
+    <string name="title_activity_test">Activity Test</string>
 
 </resources>

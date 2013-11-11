@@ -1,14 +1,17 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -21,7 +24,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FindByChordFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+public class FindByChordFragment extends Fragment implements
+        AdapterView.OnItemSelectedListener,
+        FindByChordAdapter.IFindByChordAdapter {
 
     /** Main Activity for reference */
     MainActivity activity;
@@ -99,15 +104,33 @@ public class FindByChordFragment extends Fragment implements AdapterView.OnItemS
 
         /** ListView Configure */
         mListView = (ListView) rootView.findViewById(R.id.list_view);
-        adapter = new FindByChordAdapter(getActivity().getApplicationContext(), chords);
+        adapter = new FindByChordAdapter(getActivity().getApplicationContext(), this, chords);
         mListView.setAdapter(adapter);
 
         /** add event for button */
         insertChordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CharSequence chord = insertChordTextView.getText();
-                //chords.add(chord);
+
+                // remove focus of EditText
+                // by hiding soft keyboard
+               /* insertChordTextView.clearFocus();
+                insertChordTextView.requestFocus(EditText.FOCUS_DOWN);*/
+                InputMethodManager in = (InputMethodManager) getActivity().getApplicationContext().
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                in.hideSoftInputFromWindow(insertChordTextView.getApplicationWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+
+                String chord = insertChordTextView.getText().toString();
+
+                if (chord != null || chord.trim().length() > 0) {
+                    chords.add(chord);
+                    adapter.notifyDataSetChanged();
+                }
+
+                // clear data of EditText
+                insertChordTextView.setText("");
+                // go to end list
+                mListView.setSelection(adapter.getCount() - 1);
             }
         });
 
@@ -120,19 +143,32 @@ public class FindByChordFragment extends Fragment implements AdapterView.OnItemS
         return rootView;
     }
 
-    /** if user click
-     * will refresh the list view
-     * with base chords in resource
-     * */
+    /** happen user click the spinner
+     * will refresh the list view with new base chord list
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String[] chords = chordBase[position].split(", ");
+        chords = convertChordsToArray(chordBase[position]);
+        adapter.chords = chords;
+        adapter.notifyDataSetChanged();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
     }
 
+    /** this action happend when user click [X] on list item */
+    @Override
+    public void removeChordFromList(int position) {
+        chords.remove(position);
+        adapter.chords = chords;
+        adapter.notifyDataSetChanged();
+    }
+
+    /**
+     * convert string resource to arraylist of chords
+     * example : Am, Gm, C --> [Am,Gm,C]
+     */
     private List<String> convertChordsToArray(String chords) {
         String[] chordArr = chords.split(", ");
 
@@ -148,5 +184,4 @@ public class FindByChordFragment extends Fragment implements AdapterView.OnItemS
         for (String chord : chordArr) res.add(chord.trim());
         return res;
     }
-
 }
