@@ -112,7 +112,7 @@ public class MainActivity extends ActionBarActivity
 
         // if Drawer is open. Call Default Method
         // Let the Drawer decide what to show in the action bar
-        if (mNavigationDrawerFragment.isDrawerOpen()) {
+        if (mNavigationDrawerFragment != null && mNavigationDrawerFragment.isDrawerOpen()) {
             return super.onCreateOptionsMenu(menu);
         }
 
