@@ -47,9 +47,9 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.
                 createFromResource(getActivity().getApplicationContext(),
-                        R.array.song_list_method, android.R.layout.simple_spinner_item);
+                        R.array.song_list_method, R.layout.custom_spinner_item);
         // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
         spinner.setAdapter(adapter);    // Apply the adapter to the spinner
         spinner.setOnItemSelectedListener(this);    // because this fragment has implemented method
 

@@ -72,13 +72,9 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> choices = ArrayAdapter.
                 createFromResource(getActivity().getApplicationContext(),
-                        R.array.type_of_chord_view, android.R.layout.simple_spinner_item);
-      /*  ArrayAdapter<CharSequence> choices = ArrayAdapter.
-                createFromResource(getActivity().getApplicationContext(),
-                        R.array.song_list_method, android.R.layout.simple_spinner_item);*/
-
+                        R.array.type_of_chord_view, R.layout.custom_spinner_item);
         // Specify the layout to use when the list of choices appears
-        choices.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        choices.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
         spinner.setAdapter(choices);    // Apply the adapter to the spinner
         spinner.setOnItemSelectedListener(this);   // because this fragment has implemented method
 
