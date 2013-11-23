@@ -70,14 +70,12 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
         /** Spinner configure */
         spinner = (Spinner) rootView.findViewById(R.id.spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
-/*
         ArrayAdapter<CharSequence> choices = ArrayAdapter.
                 createFromResource(getActivity().getApplicationContext(),
                         R.array.type_of_chord_view, android.R.layout.simple_spinner_item);
-*/
-        ArrayAdapter<CharSequence> choices = ArrayAdapter.
+      /*  ArrayAdapter<CharSequence> choices = ArrayAdapter.
                 createFromResource(getActivity().getApplicationContext(),
-                        R.array.song_list_method, android.R.layout.simple_spinner_item);
+                        R.array.song_list_method, android.R.layout.simple_spinner_item);*/
 
         // Specify the layout to use when the list of choices appears
         choices.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -88,18 +86,13 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
         String[] _chordStr;
         _chordStr = ResourceUtils.loadStringArray(getActivity().getApplicationContext(), R.array.simple_chord);
         typeOfChords.add(_chordStr);
-        _chordStr = ResourceUtils.loadStringArray(getActivity().getApplicationContext(), R.array.simple_chord);
+        _chordStr = ResourceUtils.loadStringArray(getActivity().getApplicationContext(), R.array.advanced_chord);
         typeOfChords.add(_chordStr);
-        _chordStr = ResourceUtils.loadStringArray(getActivity().getApplicationContext(), R.array.simple_chord);
+        _chordStr = ResourceUtils.loadStringArray(getActivity().getApplicationContext(), R.array.all_chord);
         typeOfChords.add(_chordStr);
 
-
-        /** ListView configure for all chords */
-        mChordStrList = getActivity().getApplicationContext().getResources().getStringArray(R.array.chords_all_chord);
-        mChordSurfaceListView = (ListView) rootView.findViewById(R.id.list_chord_sign);
-
-        /** ListView Configure */
-        mChordSurfaceListView = (ListView) rootView.findViewById(R.id.list_chord_sign);
+        /** ListView Configure for view all SurfaceView of chords at main screen */
+        mChordSurfaceListView = (ListView) rootView.findViewById(R.id.list_chord_graphic);
         adapter = new ChordViewAdapter(getActivity().getApplicationContext(), typeOfChords.get(0));
         mChordSurfaceListView.setAdapter(adapter);
 

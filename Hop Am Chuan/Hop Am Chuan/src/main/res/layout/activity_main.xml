@@ -22,10 +22,22 @@
 
     <!-- The drawer is given a fixed width in dp and extends the full height of
          the container. -->
-    <fragment android:id="@+id/navigation_drawer"
+   <!-- <fragment android:id="@+id/navigation_drawer"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:name="com.hqt.hac.view.fragment.NavigationDrawerFragment" />
+        android:name="com.hqt.hac.view.fragment.NavigationDrawerFragment" />-->
+
+    <!-- new way : using ListView instead -->
+
+    <ListView
+        android:layout_height="match_parent"
+        android:layout_width="@dimen/navigation_drawer_width"
+        android:layout_gravity="start"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"
+        android:background="#111"
+        android:id="@+id/navigation_drawer"/>
 
 </android.support.v4.widget.DrawerLayout>

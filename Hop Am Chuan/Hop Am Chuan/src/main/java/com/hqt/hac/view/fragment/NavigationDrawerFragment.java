@@ -342,11 +342,11 @@ public class NavigationDrawerFragment extends Fragment
         }
 
         switch (item.getItemId()) {
-
         }
 
         return super.onOptionsItemSelected(item);
     }
+
 
     /**
      * Per the navigation drawer design guidelines, updates the action bar to show the global app
@@ -385,6 +385,7 @@ public class NavigationDrawerFragment extends Fragment
                     fragment = new FindByChordFragment();
                     break;
                 case SEARCH_CHORD:
+                    fragment = new ChordViewFragment();
                     break;
             }
 

@@ -81,11 +81,11 @@
     <string-array name="all_chord">
     </string-array>
 
-    <stirng-array name="type_of_chord_view">
+    <string-array name="type_of_chord_view">
         <item>Hợp âm thông dụng</item>
         <item>Hợp âm nâng cao</item>
         <item>Tất cả hợp âm</item>
-    </stirng-array>
+    </string-array>
 
     <string name="example_text">Example Text</string>
     <string name="example_number">10</string>
