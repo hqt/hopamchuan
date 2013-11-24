@@ -7,9 +7,9 @@
         <option name="externalProjectPath" value="C:\Users" />
       </GradleProjectSettings>
       <GradleProjectSettings>
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="$PROJECT_DIR$/../../gradle-1.8" />
+        <option name="gradleHome" value="C:/Java/gradle-1.8" />
       </GradleProjectSettings>
     </option>
   </component>

@@ -53,156 +53,117 @@ public class TestTextView extends ActionBarActivity {
             testTextView.setText(songContent);
             final ViewTreeObserver vto = testTextView.getViewTreeObserver();
             if (vto != null) {
-                vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                    volatile boolean isMySelf = false;
-                    volatile boolean isSetFormatText = false;
+//                vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//                    volatile boolean isMySelf = false;
+//                    volatile boolean isSetFormatText = false;
+//
+//                    @Override
+//                    public void onGlobalLayout() {
+//                        /**
+//                         * If the event is called inside this method, then do no action.
+//                         */
+//                        Log.i("TextViewDebug2", "Called: " + isMySelf);
+//                        Log.i("TextViewDebug2", "Text:\n" + testTextView.getText());
+//                        if (isMySelf) {
+//                            isMySelf = false;
+//                            return;
+//                        }
+//
+//                        String orgStr = songContent;
+//
+//                        if (isSetFormatText == false) {
+//                            // Set default text to get wrapped text
+//                            isSetFormatText = true;
+//                            testTextView.setText(songContent);
+//                            return;
+//                        } else {
+//                            isSetFormatText = false;
+//                            // Does the layout effected after .setText() method?
+//                            // If not, we have to do the 2 tasks
+//
+//                            // Must do sperate task here:
+//                            // Task 1: re-set the paint text
+//                            // Task 2: set the formatted text
+//
+//                            Log.i("TextViewDebug2", "Do next: ...");
+//
+//                            /**
+//                             * Do smartwrap.
+//                             */
+//                            Layout layout = testTextView.getLayout();
+//                            int numLine = layout.getLineCount();
+//
+//                            // This string to store the formatted lyric
+//                            String newStr = "";
+//                            Log.i("TextViewDebug", "orgStr: " + orgStr);
+//
+//                            // Create formatted chord
+//                            for (int i = 0; i < numLine; ++i) {
+//
+//                                // Get current lyric line
+//                                int startLine = layout.getLineStart(i);
+//                                int endLine = layout.getLineEnd(i);
+//                                StringBuilder curLine = new StringBuilder(orgStr.substring(startLine, endLine).trim());
+//
+//                                // Create chord line
+//                                Pattern pattern = Pattern.compile("\\[.*?\\]");
+//                                Matcher matcher = pattern.matcher(curLine);
+//                                StringBuilder chordLine = new StringBuilder();
+//
+//                                // End position of the last chord sign
+//                                int lastEnd = 0;
+//                                // Number of spaces to remove to synchronize with lyric text line
+//                                int stackDelete = 0;
+//                                //
+//                                int lastGroupLength = 0;
+//                                while (matcher.find()) {
+//                                    for (int j = lastEnd; j < matcher.start() - lastGroupLength; ++j) {
+//                                        chordLine.append(" ");
+//                                    }
+//                                    // Append the chord
+////                                    chordLine.append(matcher.group().replace("[", "").replace("]", "") + "  ");
+//                                    chordLine.append(matcher.group());
+//                                    // Remove chord sign
+//                                    curLine.delete(matcher.start() - stackDelete, matcher.end() - stackDelete);
+//                                    // Increase stackDelete
+//                                    stackDelete += matcher.group().length();
+//                                    // Set the position
+//                                    lastEnd = matcher.end();
+//                                    // Set the last group length
+//                                    lastGroupLength = matcher.group().length();
+//                                }
+//
+//
+//                                // Add chord line
+//                                newStr += chordLine + "\n" + curLine.toString() + "\n";
+//                            }
+//
+//                            // Re-set the smartwrapped text
+//                            isMySelf = true;
+//                            testTextView.setText(newStr);
+//
+//
+//                        } // End big if
+//                    }
+//                });
 
-                    @Override
-                    public void onGlobalLayout() {
-                        /**
-                         * If the event is called inside this method, then do no action.
-                         */
-                        Log.i("TextViewDebug2", "Called: " + isMySelf);
-                        Log.i("TextViewDebug2", "Text:\n" + testTextView.getText());
-                        if (isMySelf) {
-                            isMySelf = false;
-                            return;
-                        }
+            }
+            ////////////////////
+            ///////////
 
-                        String orgStr = songContent;
+            ChordClickableSpan clickableSpan = new ChordClickableSpan();
+            clickableSpan.context = getApplicationContext();
 
-                        if (isSetFormatText == false) {
-                            // Set default text to get wrapped text
-                            isSetFormatText = true;
-                            testTextView.setText(songContent);
-                            return;
-                        } else {
-                            isSetFormatText = false;
-                            // Does the layout effected after .setText() method?
-                            // If not, we have to do the 2 tasks
+            SpannableString text = new SpannableString(testTextView.getText());
 
-                            // Must do sperate task here:
-                            // Task 1: re-set the paint text
-                            // Task 2: set the formatted text
-
-                            Log.i("TextViewDebug2", "Do next: ...");
-
-                            /**
-                             * Do smartwrap.
-                             */
-                            Layout layout = testTextView.getLayout();
-                            int numLine = layout.getLineCount();
-
-                            // This string to store the formatted lyric
-                            String newStr = "";
-                            Log.i("TextViewDebug", "orgStr: " + orgStr);
-
-                            // Create formatted chord
-                            for (int i = 0; i < numLine; ++i) {
-
-                                // Get current lyric line
-                                int startLine = layout.getLineStart(i);
-                                int endLine = layout.getLineEnd(i);
-                                StringBuilder curLine = new StringBuilder(orgStr.substring(startLine, endLine).trim());
-
-                                // Create chord line
-                                Pattern pattern = Pattern.compile("\\[.*?\\]");
-                                Matcher matcher = pattern.matcher(curLine);
-                                StringBuilder chordLine = new StringBuilder();
-
-                                // End position of the last chord sign
-                                int lastEnd = 0;
-                                // Number of spaces to remove to synchronize with lyric text line
-                                int stackDelete = 0;
-                                //
-                                int lastGroupLength = 0;
-                                while (matcher.find()) {
-                                    for (int j = lastEnd; j < matcher.start() - lastGroupLength; ++j) {
-                                        chordLine.append(" ");
-                                    }
-                                    // Append the chord
-//                                    chordLine.append(matcher.group().replace("[", "").replace("]", "") + "  ");
-                                    chordLine.append(matcher.group());
-                                    // Remove chord sign
-                                    curLine.delete(matcher.start() - stackDelete, matcher.end() - stackDelete);
-                                    // Increase stackDelete
-                                    stackDelete += matcher.group().length();
-                                    // Set the position
-                                    lastEnd = matcher.end();
-                                    // Set the last group length
-                                    lastGroupLength = matcher.group().length();
-                                }
-
-
-                                // Add chord line
-                                newStr += chordLine + "\n" + curLine.toString() + "\n";
-                            }
-
-                            // Re-set the smartwrapped text
-                            isMySelf = true;
-                            testTextView.setText(newStr);
-
-
-                        } // End big if
-                    }
-                });
-
-                ////////////////////
-                ///////////
-                ClickableSpan clickableSpan = new ClickableSpan() {
-                    @Override
-                    public void onClick(View view) {
-                        // Get text
-
-                        // TODO add check if widget instanceof TextView
-                        TextView tv = (TextView) view;
-                        // TODO add check if tv.getText() instanceof Spanned
-                        Spanned s = (Spanned) tv.getText();
-                        int start = s.getSpanStart(this);
-                        int end = s.getSpanEnd(this);
-
-                        String chordName = s.subSequence(start, end).toString().replace("[", "").replace("]", "");
-
-                        Context context = getApplicationContext();
-                        final Toast toast = new Toast(context);
-                        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-                        View layout2 = inflater.inflate(R.layout.chordsurfaceview_toast, null);
-
-                        //                  TextView text = (TextView) layout.findViewById(R.id.customToastTextView);
-                        //                  text.setText("This is a custom toast");
-                        final ChordSurfaceView chord = (ChordSurfaceView) layout2.findViewById(R.id.chordViewA);
-                        chord.drawChord(chordName);
-
-                        Button btnDismiss = (Button) layout2.findViewById(R.id.close);
-                        btnDismiss.setText("X!");
-                        btnDismiss.setOnClickListener(new Button.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                chord.nextPosition();
-                            }
-                        });
-
-                        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                        toast.setDuration(Toast.LENGTH_LONG);
-                        toast.setView(layout2);
-                        toast.show();
-                    }
-                }; // End clickable span
-
-
-                SpannableString text = new SpannableString(testTextView.getText());
-
-                Pattern pattern = Pattern.compile("\\[.*?\\]");
-                Matcher matcher = pattern.matcher(text);
-                // Check all occurrences
-                while (matcher.find()) {
+            Pattern pattern = Pattern.compile("\\[.*?\\]");
+            Matcher matcher = pattern.matcher(text);
+            // Check all occurrences
+            while (matcher.find()) {
 //                                System.out.print("Start index: " + matcher.start());
 //                                System.out.print(" End index: " + matcher.end());
 //                                System.out.println(" Found: " + matcher.group());
-                    text.setSpan(clickableSpan, matcher.start(), matcher.end(), 0);
-                }
-
+                text.setSpan(clickableSpan, matcher.start(), matcher.end(), 0);
             }
         } else {
             Log.i("Debug", "testTextView is null!");

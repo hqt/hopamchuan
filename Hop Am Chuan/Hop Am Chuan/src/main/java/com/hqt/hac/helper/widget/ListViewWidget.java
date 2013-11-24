@@ -8,8 +8,8 @@
 //import android.widget.ListView;
 //
 ///**
-// * animation on ListView
-// */
+//* animation on ListView
+//*/
 //public class ListViewWidget {
 //
 //    /**
