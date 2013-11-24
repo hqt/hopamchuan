@@ -9,7 +9,6 @@ import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 
 import com.hac_library.classes.Chord;
-import com.hac_library.classes.ChordLibrary;
 import com.hac_library.helper.ChordHelper;
 import com.hac_library.helper.DrawHelper;
 

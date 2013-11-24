@@ -1,23 +1,13 @@
 package com.hqt.hac.utils;
 
-import android.app.Activity;
 import android.content.Context;
-import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.RelativeSizeSpan;
-import android.text.style.StrikethroughSpan;
-import android.text.style.URLSpan;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,8 +19,6 @@ import com.hqt.hac.view.R;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static android.graphics.Color.GREEN;
-import static android.graphics.Color.RED;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 public class HacUtils {
