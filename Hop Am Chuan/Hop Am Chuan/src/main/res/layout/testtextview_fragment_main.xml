@@ -38,16 +38,29 @@
         android:id="@+id/btnTDo"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/btnTUp" />
-
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="tiếng việt"
-        android:id="@+id/testTextView"
-        android:typeface="monospace"
-        android:layout_below="@+id/btnTUp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true" />
+        android:text="Test"
+        android:id="@+id/btnTest"
+        android:onClick="testOutsideSetText"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/btnTDo" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnTUp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="tiếng việt"
+            android:id="@+id/testTextView"
+            android:typeface="monospace"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true" />
+        </ScrollView>
+
 
 </RelativeLayout>
