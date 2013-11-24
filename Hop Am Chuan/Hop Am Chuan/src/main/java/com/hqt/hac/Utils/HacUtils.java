@@ -64,29 +64,29 @@ public class HacUtils {
                     // Show toast
 
                     //Toast.makeText(context, text, Toast.LENGTH_LONG).show();
-                    final Toast toast = new Toast(context);
-                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE );
-
-                    View layout = inflater.inflate(R.layout.chordsurfaceview_toast, null);
-
-//                  TextView text = (TextView) layout.findViewById(R.id.customToastTextView);
-//                  text.setText("This is a custom toast");
-                    final ChordSurfaceView chord = (ChordSurfaceView) layout.findViewById(R.id.chordViewA);
-                    chord.drawChord(chordName);
-
-                    Button btnDismiss = (Button)layout.findViewById(R.id.close);
-                    btnDismiss.setText("X!");
-                    btnDismiss.setOnClickListener(new Button.OnClickListener(){
-                        @Override
-                        public void onClick(View v) {
-                            chord.nextPosition();
-                        }
-                    });
-
-                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                    toast.setDuration(Toast.LENGTH_LONG);
-                    toast.setView(layout);
-                    toast.show();
+//                    final Toast toast = new Toast(context);
+//                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE );
+//
+//                    View layout = inflater.inflate(R.layout.chordsurfaceview_toast, null);
+//
+////                  TextView text = (TextView) layout.findViewById(R.id.customToastTextView);
+////                  text.setText("This is a custom toast");
+//                    final ChordSurfaceView chord = (ChordSurfaceView) layout.findViewById(R.id.chordViewA);
+//                    chord.drawChord(chordName);
+//
+//                    Button btnDismiss = (Button)layout.findViewById(R.id.close);
+//                    btnDismiss.setText("X!");
+//                    btnDismiss.setOnClickListener(new Button.OnClickListener(){
+//                        @Override
+//                        public void onClick(View v) {
+//                            chord.nextPosition();
+//                        }
+//                    });
+//
+//                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+//                    toast.setDuration(Toast.LENGTH_LONG);
+//                    toast.setView(layout);
+//                    toast.show();
                 }
             };
             text.setSpan(clickableSpan, matcher.start(), matcher.end(), 0);

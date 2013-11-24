@@ -44,6 +44,8 @@
     <string-array name="chords_base_chord">
         <item>Am, Dm, E</item>
         <item>Am, F, C, G</item>
+        <item>Em, C, G, D</item>
+        <item>C, G, Am, Em, F, Dm</item>
     </string-array>
 
     <!-- list all chords for chord view activity -->
@@ -66,15 +68,81 @@
 
     <string-array name="simple_chord">
         <item>C</item>
+        <item>C#</item>
         <item>Cm</item>
+        <item>C#m</item>
         <item>D</item>
+        <item>D#</item>
         <item>Dm</item>
+        <item>D#m</item>
+        <item>E</item>
+        <item>Em</item>
         <item>F</item>
+        <item>F#</item>
         <item>Fm</item>
+        <item>F#m</item>
+        <item>G</item>
+        <item>G#</item>
+        <item>Gm</item>
+        <item>G#m</item>
+        <item>A</item>
+        <item>A#</item>
+        <item>Am</item>
+        <item>A#m</item>
+        <item>B</item>
+        <item>Bm</item>
     </string-array>
 
 
     <string-array name="advanced_chord">
+        <item>C7</item>
+        <item>Cm7</item>
+        <item>C9</item>
+        <item>Cm9</item>
+        <item>Cdim</item>
+        <item>Csus4</item>
+
+        <item>D7</item>
+        <item>Dm7</item>
+        <item>D9</item>
+        <item>Dm9</item>
+        <item>Ddim</item>
+        <item>Dsus4</item>
+
+        <item>E7</item>
+        <item>Em7</item>
+        <item>E9</item>
+        <item>Em9</item>
+        <item>Edim</item>
+        <item>Esus4</item>
+
+        <item>F7</item>
+        <item>Fm7</item>
+        <item>F9</item>
+        <item>Fm9</item>
+        <item>Fdim</item>
+        <item>Fsus4</item>
+
+        <item>G7</item>
+        <item>Gm7</item>
+        <item>G9</item>
+        <item>Gm9</item>
+        <item>Gdim</item>
+        <item>Gsus4</item>
+
+        <item>A7</item>
+        <item>Am7</item>
+        <item>A9</item>
+        <item>Am9</item>
+        <item>Adim</item>
+        <item>Asus4</item>
+
+        <item>B7</item>
+        <item>Bm7</item>
+        <item>B9</item>
+        <item>Bm9</item>
+        <item>Bdim</item>
+        <item>Bsus4</item>
     </string-array>
 
 
