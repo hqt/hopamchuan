@@ -87,7 +87,10 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
         _chordStr = ResourceUtils.loadStringArray(getActivity().getApplicationContext(), R.array.all_chord);
         typeOfChords.add(_chordStr);
 
-        /** ListView Configure for view all SurfaceView of chords at main screen */
+        /**
+         * Left Panel :
+         * ListView Configure for view all SurfaceView of chords at main screen
+         */
         mChordSurfaceListView = (ListView) rootView.findViewById(R.id.list_chord_graphic);
         adapter = new ChordViewAdapter(getActivity().getApplicationContext(), typeOfChords.get(0));
         mChordSurfaceListView.setAdapter(adapter);
@@ -113,7 +116,6 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
 }

@@ -22,14 +22,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:id="@+id/list_chord_graphic"
-            android:layout_alignLeft="@+id/list_chord_sign"
             android:layout_alignParentLeft="true"/>
-
-        <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:id="@+id/list_chord_sign"
-            android:layout_alignParentRight="true" />
 
     </RelativeLayout>
 

@@ -177,6 +177,7 @@ public class ListViewWidget {
                 if (observer == null) return;
 
                 observer.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                    @Override
                     public boolean onPreDraw() {
                         observer.removeOnPreDrawListener(this);
                         // first animation : mark animation for delete row before animate other rows

@@ -3,8 +3,6 @@ package com.hqt.hac.view.test;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.text.Layout;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -12,19 +10,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.hac_library.helper.ChordHelper;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.utils.ParserUtils;
 import com.hqt.hac.view.R;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class TestTextView extends ActionBarActivity {
 
