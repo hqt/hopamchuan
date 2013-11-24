@@ -17,13 +17,32 @@
         android:textColor="#0e0e0e"
         android:id="@+id/spinner"/>
 
-    <ListView
+
+    <view
+        class="com.hqt.hac.helper.widget.BackgroundContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/spinner"
+        android:layout_above="@+id/linear_layout"
+        android:id="@+id/listViewBackground">
+
+        <ListView
+            android:id="@+id/list_view"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </view>
+
+   <!-- <ListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/list_view"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/spinner"
-        android:layout_above="@+id/linear_layout" />
+        android:layout_above="@+id/linear_layout" />-->
 
 
     <LinearLayout
