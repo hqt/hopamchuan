@@ -11,9 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.hac_library.components.ChordSurfaceView;
+import com.hac_library.helper.DrawHelper;
 import com.hqt.hac.view.R;
 
 public class TestSurfaceView extends ActionBarActivity {
@@ -23,6 +25,11 @@ public class TestSurfaceView extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.testsurfaceview_fragment_main);
+
+
+        ImageView imgView = (ImageView) findViewById(R.id.imageView1);
+        imgView.setImageDrawable(DrawHelper.getBitmapDrawable(getResources(), 200, 200, "Am",0,0));
+
         final Button btn = (Button) findViewById(R.id.button);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

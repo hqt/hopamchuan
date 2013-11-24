@@ -1,9 +1,12 @@
 package com.hac_library.helper;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 
 import com.hac_library.classes.Chord;
@@ -79,15 +82,6 @@ public class DrawHelper {
 	 * Draw a black circle with the finger number on stringNum:fretNum Finger
 	 * number: 0: No finger 1: Index finger 2: Middle finger 3: Ring finger 4:
 	 * Pinky finger (or baby finger)
-	 * 
-	 * @param canvas
-	 * @param string
-	 *            integer value from 1 to 6
-	 * @param fret
-	 *            integer value from -1 to 5
-	 * @param finger
-	 *            integer value from 0 to 4
-	 * @throws Exception
 	 */
 	public static void drawFingerPosition(Canvas canvas, int stringNum,
 			int fretNum, int fingerNum) throws Exception {
@@ -250,10 +244,35 @@ public class DrawHelper {
 		drawBaseLines(canvas, position);
 		drawChordName(canvas, chord.getName());
 		drawFretPosition(canvas, position);
-		Log.i("Debug", "position: " + position);
-		Log.i("Debug", "frets: " + frets[0] + " " + frets[1] + " " + frets[2] + " " + frets[3] + " " + frets[4] + " " + frets[5] + " ");
+//		Log.i("Debug", "position: " + position);
+//		Log.i("Debug", "frets: " + frets[0] + " " + frets[1] + " " + frets[2] + " " + frets[3] + " " + frets[4] + " " + frets[5] + " ");
 		for (int i = 0; i <= 5; ++i) {
 			drawFingerPosition(canvas, i + 1, frets[i], fingers[i]);
 		}
 	}
+
+
+    /**
+     * Return a BitmapDrawable, all you need to do is:
+     * yourImageView.setImageDrawable(theReturnValue);
+     * @param resource
+     * @param width
+     * @param height
+     * @param chordName
+     * @param position
+     * @param transpose
+     * @return
+     */
+    public static BitmapDrawable getBitmapDrawable(Resources resource, int width, int height, String chordName, int position, int transpose) {
+        Bitmap tempBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+        Canvas canvas = new Canvas(tempBitmap);
+        Chord chord = ChordHelper.getChord(chordName, position, transpose);
+        try {
+            DrawHelper.drawChord(canvas, chord);
+            return new BitmapDrawable(resource, tempBitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
