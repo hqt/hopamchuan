@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,7 +16,7 @@ import com.hqt.hac.view.fragment.FindByChordFragment;
 
 import java.util.List;
 
-public class FindByChordAdapter extends BaseAdapter {
+public class FindByChordAdapter extends ArrayAdapter {
 
     Context mContext;
 
@@ -24,10 +25,17 @@ public class FindByChordAdapter extends BaseAdapter {
 
     public List<String> chords;
 
+    private View.OnTouchListener mTouchListener;
+
     public FindByChordAdapter(Context context, IFindByChordAdapter delegate, List<String> chords) {
+        super(context, R.layout.list_item_chord_search,chords);
         this.mContext = context;
         this.delegate = delegate;
         this.chords = chords;
+    }
+
+    public void setTouchListener(View.OnTouchListener mTouchListener) {
+        this.mTouchListener = mTouchListener;
     }
 
     @Override
@@ -57,6 +65,7 @@ public class FindByChordAdapter extends BaseAdapter {
             holder.chordTextView = (TextView) row.findViewById(R.id.text_view);
             holder.removeImageView = (ImageView) row.findViewById(R.id.image_view);
             row.setTag(holder);
+            row.setOnTouchListener(mTouchListener);
         }
         else {
             holder = (ViewHolder) row.getTag();

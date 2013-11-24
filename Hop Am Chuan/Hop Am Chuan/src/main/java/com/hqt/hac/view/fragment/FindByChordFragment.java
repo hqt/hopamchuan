@@ -17,6 +17,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.hqt.hac.helper.adapter.FindByChordAdapter;
+import com.hqt.hac.helper.widget.BackgroundContainer;
+import com.hqt.hac.helper.widget.ListViewWidget;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
@@ -62,6 +64,10 @@ public class FindByChordFragment extends Fragment implements
      */
     List<String> chords;
 
+    BackgroundContainer mBackgroundContainer;
+
+    private View.OnTouchListener mTouchListener;
+
     public FindByChordFragment() {
     }
 
@@ -81,9 +87,11 @@ public class FindByChordFragment extends Fragment implements
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_find_by_chord, container, false);
 
+       mBackgroundContainer = (BackgroundContainer) rootView.findViewById(R.id.listViewBackground);
+
         /** using chord base from resource */
         chordBase = activity.getApplicationContext().getResources().getStringArray(R.array.chords_base_chord);
-        /** get first result for default listview */
+        /** get first result for default ListView */
         chords = convertChordsToArray(chordBase[0]);
 
         // load all views
@@ -105,6 +113,9 @@ public class FindByChordFragment extends Fragment implements
         /** ListView Configure */
         mListView = (ListView) rootView.findViewById(R.id.list_view);
         adapter = new FindByChordAdapter(getActivity().getApplicationContext(), this, chords);
+        // building TouchListener Object
+        mTouchListener = ListViewWidget.getTouchListener(getActivity().getBaseContext(), mListView, adapter, mBackgroundContainer);
+        adapter.setTouchListener(mTouchListener);
         mListView.setAdapter(adapter);
 
         /** add event for button */
