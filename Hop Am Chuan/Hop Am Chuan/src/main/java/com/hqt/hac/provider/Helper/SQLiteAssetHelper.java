@@ -22,6 +22,10 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+/**
+ * Use this class to copy pre-defined database to system database
+ * So can avoid time for building database. just copy it one-time
+ */
 public class SQLiteAssetHelper extends SQLiteOpenHelper {
 
     private static final String TAG = SQLiteAssetHelper.class.getSimpleName();

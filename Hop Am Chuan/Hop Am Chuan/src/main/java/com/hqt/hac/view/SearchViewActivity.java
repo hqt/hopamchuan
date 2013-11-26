@@ -1,15 +1,17 @@
 package com.hqt.hac.view;
 
+import android.annotation.TargetApi;
 import android.app.SearchManager;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.widget.SearchView;
+
+import com.hqt.hac.utils.ReflectionUtils;
+import com.hqt.hac.utils.UIUtils;
 
 /**
  * Search Activity acts as Search Dialog
@@ -73,40 +75,59 @@ public class SearchViewActivity extends ActionBarActivity {
         }
     }
 
-    @Override
+  /*  @Override
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        // getMenuInflater().inflate(R.menu.search, menu);
+        final MenuItem searchItem = menu.findItem(R.id.menu_search);
+        if (searchItem != null && UIUtils.hasHoneycomb()) {
+            SearchView searchView = (SearchView) searchItem.getActionView();
+            if (searchView != null) {
+                SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+                searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+                searchView.setQueryRefinementEnabled(true);
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String s) {
+                        ReflectionUtils.tryInvoke(searchItem, "collapseActionView");
+                        return false;
+                    }
 
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.search_view, menu);
+                    @Override
+                    public boolean onQueryTextChange(String s) {
+                        return false;
+                    }
+                });
+                searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
+                    @Override
+                    public boolean onSuggestionSelect(int i) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onSuggestionClick(int i) {
+                        ReflectionUtils.tryInvoke(searchItem, "collapseActionView");
+                        return false;
+                    }
+                });
+            }
+        }
         return true;
-    }
+    }*/
 
-    @Override
+
+   /* @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                return true;
+            case R.id.menu_search:
+                if (!UIUtils.hasHoneycomb()) {
+                    startSearch(null, false, Bundle.EMPTY, false);
+                    return true;
+                }
+                break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_search_view, container, false);
-            return rootView;
-        }
-    }
+    }*/
 
 }

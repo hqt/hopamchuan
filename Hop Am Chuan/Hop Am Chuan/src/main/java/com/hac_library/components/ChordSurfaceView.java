@@ -12,7 +12,12 @@ import com.hac_library.classes.Chord;
 import com.hac_library.helper.ChordHelper;
 import com.hac_library.helper.DrawHelper;
 
+import static com.hqt.hac.utils.LogUtils.LOGI;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
+
 public class ChordSurfaceView extends SurfaceView implements Callback {
+
+    public static final String TAG = makeLogTag(ChordSurfaceView.class);
 
     private SurfaceHolder holder;
     private String chordName = null;    // Value must be exists in ChordLibrary.baseChords
@@ -33,6 +38,7 @@ public class ChordSurfaceView extends SurfaceView implements Callback {
 
     @Override
     public void surfaceChanged(SurfaceHolder arg0, int arg1, int arg2, int arg3) {
+        LOGI(TAG, "Surface Changed");
         onDrawing(holder);
     }
 
@@ -46,6 +52,11 @@ public class ChordSurfaceView extends SurfaceView implements Callback {
 
     }
 
+    /**
+     * method prepare before draw
+     * by get Canvas. Lock it. and Release it before finish all process
+     * TODO : can make new thread in this method. so SurfaceView will draw on new thread, different from current thread
+     */
     public void onDrawing(SurfaceHolder holder) {
         if (chordName != null) {
             Canvas canvas = null;
@@ -64,6 +75,10 @@ public class ChordSurfaceView extends SurfaceView implements Callback {
         }
     }
 
+    /**
+     * method for real drawing
+     * is called from @link{onDrawing(SurfaceHolder holder)}
+     */
     private void onDrawing(Canvas canvas) {
         if (canvas == null) {
             Log.i("Debug", "onDrawing: canvas = null");

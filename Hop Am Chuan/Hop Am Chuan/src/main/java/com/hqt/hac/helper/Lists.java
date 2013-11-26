@@ -17,6 +17,7 @@ package com.hqt.hac.helper;
  */
 
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -61,5 +62,15 @@ public class Lists {
         ArrayList<E> list = new ArrayList<E>(capacity);
         Collections.addAll(list, elements);
         return list;
+    }
+
+    /**
+     * A hack to get currently capacity of ArrayList
+     * using Java Reflection API
+     */
+    public static int getCapacity(ArrayList<?> l) throws Exception {
+        Field dataField = ArrayList.class.getDeclaredField("elementData");
+        dataField.setAccessible(true);
+        return ((Object[]) dataField.get(l)).length;
     }
 }
