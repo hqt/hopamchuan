@@ -1,0 +1,5 @@
+.gradle
+/local.properties
+/Hop Am Chuan/.idea/*
+/Hop Am Chuan/.gradle/*
+.DS_Store
