@@ -112,7 +112,7 @@ public class IndexScroller {
                     mIsIndexing = true;
                     // Determine which section the point is in, and move the list to that section
                     mCurrentSection = getSectionByPoint(ev.getY());
-                    if (mListView != null) mListView.setSelection(mIndexer.getPositionForSection(mCurrentSection));
+                    mListView.setSelection(mIndexer.getPositionForSection(mCurrentSection));
                     return true;
                 }
                 break;
