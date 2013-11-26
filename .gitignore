@@ -4,5 +4,5 @@
 /Hop Am Chuan/local.properties
 /Hop Am Chuan/.idea/*
 /Hop Am Chuan/.DS_Store
-/Hop Am Chuan/Hop Am Chuan/Hop Am Chuan-Hop Am Chuan.iml
-/Hop Am Chuan/Hop Am Chuan/Hop Am Chuan.iml
+*.iml
+*.iml
