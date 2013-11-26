@@ -9,11 +9,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 
 import com.hqt.hac.helper.adapter.ChordViewAdapter;
-import com.hqt.hac.helper.adapter.FavoriteManagerAdapter;
+import com.hqt.hac.helper.adapter.ChordViewTextureAdapter;
 import com.hqt.hac.utils.ResourceUtils;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
@@ -92,8 +91,10 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
          * ListView Configure for view all SurfaceView of chords at main screen
          */
         mChordSurfaceListView = (ListView) rootView.findViewById(R.id.list_chord_graphic);
-        adapter = new ChordViewAdapter(getActivity().getApplicationContext(), typeOfChords.get(0));
-        mChordSurfaceListView.setAdapter(adapter);
+        //adapter = new ChordViewAdapter(getActivity().getApplicationContext(), typeOfChords.get(0));
+        // use custom adapter for testing purpose
+        ChordViewTextureAdapter tAdapter = new ChordViewTextureAdapter(getActivity().getApplicationContext(), typeOfChords.get(0));
+        mChordSurfaceListView.setAdapter(tAdapter);
 
         return rootView;
     }
@@ -106,8 +107,12 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch(position) {
             case 0 :
+                adapter.setChordList(typeOfChords.get(0));
+                adapter.notifyDataSetChanged();
                 break;
             case 1:
+                adapter.setChordList(typeOfChords.get(1));
+                adapter.notifyDataSetChanged();
                 break;
             case 2:
                 break;

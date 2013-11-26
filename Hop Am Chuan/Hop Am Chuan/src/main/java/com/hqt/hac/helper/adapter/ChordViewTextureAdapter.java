@@ -10,12 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hac_library.components.ChordSurfaceView;
+import com.hac_library.components.ChordTextureView;
 import com.hqt.hac.config.Config;
 import com.hqt.hac.view.R;
 
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class ChordViewAdapter extends BaseAdapter {
+public class ChordViewTextureAdapter extends BaseAdapter {
     public static String TAG = makeLogTag(ChordViewAdapter.class);
 
     Context mContext;
@@ -26,7 +27,7 @@ public class ChordViewAdapter extends BaseAdapter {
     /** currently index of chord */
     int[] index;
 
-    public ChordViewAdapter(Context mContext, String[] chords) {
+    public ChordViewTextureAdapter(Context mContext, String[] chords) {
         this.mContext = mContext;
         this.chords = chords;
         index = new int[chords.length];
@@ -61,7 +62,7 @@ public class ChordViewAdapter extends BaseAdapter {
         if (row == null) {
             row = inflater.inflate(R.layout.list_item_chord_view, null);
             holder = new ViewHolder();
-            holder.imageChord = (ChordSurfaceView) row.findViewById(R.id.chord_surface_view);
+            holder.imageChord = (ChordTextureView) row.findViewById(R.id.chord_texture_view);
             holder.upButton = (ImageView) row.findViewById(R.id.up_button);
             holder.downButton = (ImageView) row.findViewById(R.id.down_button);
             holder.signTextView = (TextView) row.findViewById(R.id.text_view);
@@ -111,7 +112,7 @@ public class ChordViewAdapter extends BaseAdapter {
     }
 
     public static class ViewHolder {
-        ChordSurfaceView imageChord;
+        ChordTextureView imageChord;
         ImageView upButton;
         ImageView downButton;
         TextView signTextView;
