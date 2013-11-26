@@ -1,2 +1,4 @@
-/Research Projects/SmartSongView/nbproject/private/
-/Research Projects/SmartSongView/build/
+.gradle
+/local.properties
+/Hop Am Chuan/.idea/*
+.DS_Store
