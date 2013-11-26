@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 
 public class Chord extends Position{
-	private String name;
+	public String name;
 
 	public Chord(String name, int position, int[] frets, int[] fingers) {
 		super(position, frets, fingers);
@@ -15,24 +15,11 @@ public class Chord extends Position{
 		super(fret, frets, fingers);
 	}
 	public Chord() {
-		super();
 	}
 
 	@Override
 	public String toString() {
-		return "Chord [name=" + name + "] Position [fret=" + getPosition() + ", frets=" + Arrays.toString(getFrets())
-				+ ", fingers=" + Arrays.toString(getFingers()) + "]";
+		return "Chord [name=" + name + "] Position [fret=" + position + ", frets=" + Arrays.toString(frets)
+				+ ", fingers=" + Arrays.toString(fingers) + "]";
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	
-	
-	
 }

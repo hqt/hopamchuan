@@ -3,27 +3,10 @@ package com.hac_library.classes;
 import java.util.Arrays;
 
 public class Position {
-	private int position;
-	private int frets[] = new int[6];
-	private int fingers[] = new int[6];
-	public int getPosition() {
-		return position;
-	}
-	public void setPosition(int position) {
-		this.position = position;
-	}
-	public int[] getFrets() {
-		return frets;
-	}
-	public void setFrets(int[] frets) {
-		this.frets = frets;
-	}
-	public int[] getFingers() {
-		return fingers;
-	}
-	public void setFingers(int[] fingers) {
-		this.fingers = fingers;
-	}
+	public int position;
+	public int frets[] = new int[6];
+	public int fingers[] = new int[6];
+
 	@Override
 	public String toString() {
 		return "Position [fret=" + position + ", frets=" + Arrays.toString(frets)
@@ -36,7 +19,6 @@ public class Position {
 		this.fingers = fingers;
 	}
 	public Position() {
-		super();
 	}
 	
 	

@@ -99,7 +99,8 @@ public class ChordHelper {
 						frets[i] -= (min - 1);
 					}
 				}
-				c.setPosition(c.getPosition() + (min - 1));
+                c.position = c.position + (min -1);
+				// c.setPosition(c.getPosition() + (min - 1));
 			}
 		}
 	}
@@ -123,7 +124,7 @@ public class ChordHelper {
 	 */
 	public static Chord getChord(String name, int position) {
 		Chord c = new Chord();
-		c.setName(name);
+		c.name = name;
 		String originalName = getChordBaseName(name);
 		int i = Arrays.asList(ChordLibrary.N).indexOf(originalName);
 
@@ -132,28 +133,36 @@ public class ChordHelper {
 		if (i > -1) {
 			equavilentChord = (ChordLibrary.Bname
 					.get(ChordLibrary.N[(i + position) % 5]) + getChordBaseNameTail(name));
-			c.setPosition(X(i, position, 0));
+            c.position = X(i, position, 0);
+			// c.setPosition(X(i, position, 0));
 		} else {
 			i = Arrays.asList(ChordLibrary.N).indexOf(
 					ChordLibrary.Bname.get(originalName));
 			equavilentChord = (ChordLibrary.Bname
 					.get(ChordLibrary.N[(i + position) % 5]) + getChordBaseNameTail(name));
-			c.setPosition(X(i, position, ChordLibrary.Bfret.get(originalName)));
+            c.position = X(i, position, ChordLibrary.Bfret.get(originalName));
+			// c.setPosition(X(i, position, ChordLibrary.Bfret.get(originalName)));
 		}
 
 		Position[] positions = ChordLibrary.baseChords.get(equavilentChord);
-		if (c.getPosition() > 0) {
+		if (c.position > 0) {
 			if (positions[1] != null) {
-				c.setFrets(positions[1].getFrets());
-				c.setFingers(positions[1].getFingers());
+                c.frets = positions[1].frets;
+                c.fingers = positions[1].fingers;
+				// c.setFrets(positions[1].getFrets());
+				// c.setFingers(positions[1].getFingers());
 			} else {
-				c.setFrets(positions[0].getFrets());
-				c.setFingers(positions[0].getFingers());
+                c.frets = positions[0].frets;
+                c.fingers = positions[0].fingers;
+				// c.setFrets(positions[0].getFrets());
+				// c.setFingers(positions[0].getFingers());
 				increaseEveryFretsByOne(c);
 			}
 		} else {
-			c.setFrets(positions[0].getFrets());
-			c.setFingers(positions[0].getFingers());
+            c.frets = positions[0].frets;
+            c.fingers = positions[0].fingers;
+			// c.setFrets(positions[0].getFrets());
+			// c.setFingers(positions[0].getFingers());
 		}
 
 		return c;
@@ -173,16 +182,17 @@ public class ChordHelper {
 	}
 
 	private static void increaseEveryFretsByOne(Chord c) {
-		Log.i("Debug", "Increase: fret before:" + Arrays.toString(c.getFrets()));
+		Log.i("Debug", "Increase: fret before:" + Arrays.toString(c.frets));
 		int[] newFrets = new int[6];
 		for (int i = 0; i <= 5; ++i) {
-			if (c.getFrets()[i] > -1) {
-				newFrets[i] = c.getFrets()[i] + 1;
+			if (c.frets[i] > -1) {
+				newFrets[i] = c.frets[i] + 1;
 			} else {
-				newFrets[i] = c.getFingers()[i];
+				newFrets[i] = c.fingers[i];
 			}
 		}
-		c.setFrets(newFrets);
+        c.frets = newFrets;
+		// c.setFrets(newFrets);
 	}
 
 	/**

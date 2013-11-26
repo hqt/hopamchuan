@@ -97,6 +97,10 @@ public class ChordSurfaceView extends SurfaceView implements Callback {
         }
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+    ///////////// OVERLOADING METHOD FOR USER CHOOSE HOW TO DRAW CHORD /////////
+    ////////////////////////////////////////////////////////////////////////////
+
     public void drawChord(String chordName, int position, int transpose) {
         String name = ChordHelper.simplifyName(chordName);
         try {
@@ -113,8 +117,6 @@ public class ChordSurfaceView extends SurfaceView implements Callback {
      * Draw a chord to surface view using chord name & position (default
      * transpose = 0)
      *
-     * @param name
-     * @param position
      */
     public void drawChord(String name, int position) {
         drawChord(name, position, 0);
@@ -123,7 +125,6 @@ public class ChordSurfaceView extends SurfaceView implements Callback {
     /**
      * Draw a chord to surface view using chord name only (default position = 0)
      *
-     * @param name
      */
     public void drawChord(String name) {
         drawChord(name, 0, 0);
@@ -152,7 +153,6 @@ public class ChordSurfaceView extends SurfaceView implements Callback {
     /**
      * Display a specific position of current chord
      *
-     * @param position
      */
     public void toPosition(int position) {
         if (position >= 0 && position <= 8) {
