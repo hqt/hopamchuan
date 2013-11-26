@@ -17,7 +17,7 @@ import com.hqt.hac.view.R;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 
-public class ChordViewImageAdapter extends BaseAdapter {
+public class ChordViewImageAdapter extends BaseAdapter implements IChordView {
     public static String TAG = makeLogTag(ChordViewAdapter.class);
 
     Context mContext;
@@ -63,7 +63,7 @@ public class ChordViewImageAdapter extends BaseAdapter {
         if (row == null) {
             row = inflater.inflate(R.layout.list_item_chord_view_image, null);
             holder = new ViewHolder();
-            holder.imageChord = (ImageView) row.findViewById(R.id.chord_surface_view);
+            holder.imageChord = (ImageView) row.findViewById(R.id.chord_image_view);
             holder.upButton = (ImageView) row.findViewById(R.id.up_button);
             holder.downButton = (ImageView) row.findViewById(R.id.down_button);
             holder.signTextView = (TextView) row.findViewById(R.id.text_view);
@@ -86,7 +86,7 @@ public class ChordViewImageAdapter extends BaseAdapter {
         // holder.imageChord.drawChord(chords[position], index[position]);
         int width = holder.imageChord.getWidth();
         int height = holder.imageChord.getHeight();
-        holder.imageChord.setImageDrawable(DrawHelper.getBitmapDrawable(mContext.getResources(), width, height, "Am", 0, 0));
+        holder.imageChord.setImageDrawable(DrawHelper.getBitmapDrawable(mContext.getResources(), 100, 100, chords[position], index[position], 0));
         holder.signTextView.setText(index[position] + "");
 
         // set action
@@ -94,20 +94,20 @@ public class ChordViewImageAdapter extends BaseAdapter {
         holder.upButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // finalHolder.imageChord.nextPosition();
                 ++index[position];
                 index[position] = index[position] % Config.FRET_POSITION_PERIOD;
                 finalHolder.signTextView.setText(index[position] + "");
+                finalHolder.imageChord.setImageDrawable(DrawHelper.getBitmapDrawable(mContext.getResources(), 100, 100, chords[position], index[position], 0));
             }
         });
 
         holder.downButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // finalHolder.imageChord.prevPosition();
                 --index[position];
                 if (index[position] < 0) index[position] = Config.FRET_POSITION_PERIOD;
                 finalHolder.signTextView.setText(index[position] + "");
+                finalHolder.imageChord.setImageDrawable(DrawHelper.getBitmapDrawable(mContext.getResources(), 100, 100, chords[position], index[position], 0));
             }
         });
 

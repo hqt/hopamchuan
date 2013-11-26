@@ -1,9 +1,11 @@
 package com.hac_library.components;
 
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.SurfaceTexture;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.TextureView;
@@ -15,37 +17,38 @@ import com.hac_library.helper.DrawHelper;
 import static android.view.TextureView.SurfaceTextureListener;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
+@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class ChordTextureView extends TextureView implements SurfaceTextureListener {
 
     public static final String TAG = makeLogTag(ChordTextureView.class);
 
-    private SurfaceTexture holder;
+    private SurfaceTexture surfaceTexture;
     private String chordName = null;    // Value must be exists in ChordLibrary.baseChords
     private int position = 0;            // Value from 0 to 8: position of chord
     private int transpose = 0;            // Value from 0 to 12: transpose distance
 
     public ChordTextureView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        holder = this.getSurfaceTexture();
-        setSurfaceTextureListener(this);
-
     }
 
     public ChordTextureView(Context context) {
         super(context);
-        holder = this.getSurfaceTexture();
-        setSurfaceTextureListener(this);
     }
 
-
+    /**
+     * different from SurfaceView, in constructor we can get Holder
+     * in TextureView, we must wait until SurfaceTexture (equivalent with SurfaceHolder) available
+     */
     @Override
     public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-        onDrawing(holder);
+        surfaceTexture = this.getSurfaceTexture();
+        setSurfaceTextureListener(this);
+        onDrawing(surfaceTexture);
     }
 
     @Override
     public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
-        onDrawing(holder);
+        onDrawing(surfaceTexture);
     }
 
     @Override
@@ -58,12 +61,12 @@ public class ChordTextureView extends TextureView implements SurfaceTextureListe
 
     }
 
-    public void onDrawing(SurfaceTexture holder) {
+    public void onDrawing(SurfaceTexture surfaceTexture) {
         if (chordName != null) {
             Canvas canvas = null;
             try {
                 canvas = this.lockCanvas();
-                synchronized(holder) {
+                synchronized(surfaceTexture) {
                     onDrawing(canvas);
                 }
             } catch (Exception e) {
@@ -82,6 +85,7 @@ public class ChordTextureView extends TextureView implements SurfaceTextureListe
         } else {
             if (chordName != null) {
                 try {
+                    Log.i("Debug", "onDrawing: beginning to draw");
                     Chord chord = ChordHelper.getChord(chordName, position,
                             transpose);
                     DrawHelper.drawChord(canvas, chord);
@@ -103,7 +107,7 @@ public class ChordTextureView extends TextureView implements SurfaceTextureListe
             this.chordName = name;
             this.position = position;
             this.transpose = transpose;
-            onDrawing(holder);
+            onDrawing(surfaceTexture);
         } catch (Exception e) {
             Log.i("Debug", "Unable to draw chord: " + chordName + " (" + name + ")");
         }
@@ -136,7 +140,7 @@ public class ChordTextureView extends TextureView implements SurfaceTextureListe
         if (++this.position > 8) {
             this.position = 0;
         }
-        onDrawing(holder);
+        onDrawing(surfaceTexture);
     }
 
     /**
@@ -146,7 +150,7 @@ public class ChordTextureView extends TextureView implements SurfaceTextureListe
         if (--this.position < 0) {
             this.position = 8;
         }
-        onDrawing(holder);
+        onDrawing(surfaceTexture);
     }
 
     /**
@@ -157,7 +161,7 @@ public class ChordTextureView extends TextureView implements SurfaceTextureListe
     public void toPosition(int position) {
         if (position >= 0 && position <= 8) {
             this.position = position;
-            onDrawing(holder);
+            onDrawing(surfaceTexture);
         }
     }
 
@@ -169,7 +173,7 @@ public class ChordTextureView extends TextureView implements SurfaceTextureListe
         if (++this.transpose < 0) {
             this.transpose = 12;
         }
-        onDrawing(holder);
+        onDrawing(surfaceTexture);
     }
 
     /**
@@ -180,7 +184,7 @@ public class ChordTextureView extends TextureView implements SurfaceTextureListe
         if (--this.transpose > 12) {
             this.transpose = 0;
         }
-        onDrawing(holder);
+        onDrawing(surfaceTexture);
     }
 
     /**
@@ -192,7 +196,7 @@ public class ChordTextureView extends TextureView implements SurfaceTextureListe
         if (distance >= 0 && distance <= 12) {
             this.position = 0;
             this.transpose = distance;
-            onDrawing(holder);
+            onDrawing(surfaceTexture);
         }
     }
 

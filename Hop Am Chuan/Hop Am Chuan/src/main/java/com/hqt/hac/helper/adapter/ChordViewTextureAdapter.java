@@ -16,7 +16,7 @@ import com.hqt.hac.view.R;
 
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class ChordViewTextureAdapter extends BaseAdapter {
+public class ChordViewTextureAdapter extends BaseAdapter implements IChordView {
     public static String TAG = makeLogTag(ChordViewAdapter.class);
 
     Context mContext;
@@ -60,7 +60,7 @@ public class ChordViewTextureAdapter extends BaseAdapter {
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (row == null) {
-            row = inflater.inflate(R.layout.list_item_chord_view, null);
+            row = inflater.inflate(R.layout.list_item_chord_view_texture_view, null);
             holder = new ViewHolder();
             holder.imageChord = (ChordTextureView) row.findViewById(R.id.chord_texture_view);
             holder.upButton = (ImageView) row.findViewById(R.id.up_button);
@@ -82,7 +82,7 @@ public class ChordViewTextureAdapter extends BaseAdapter {
          */
 
         // set data
-        holder.imageChord.drawChord(chords[position], index[position]);
+        if (holder.imageChord != null) holder.imageChord.drawChord(chords[position], index[position]);
         holder.signTextView.setText(index[position] + "");
 
         // set action

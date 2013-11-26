@@ -8,12 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.hqt.hac.helper.adapter.ChordViewAdapter;
+import com.hqt.hac.helper.adapter.ChordViewImageAdapter;
 import com.hqt.hac.helper.adapter.ChordViewTextureAdapter;
+import com.hqt.hac.helper.adapter.IChordView;
 import com.hqt.hac.utils.ResourceUtils;
+import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
@@ -39,7 +43,7 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
 
 
     /** Adapter for this fragment */
-    ChordViewAdapter adapter;
+    IChordView adapter;
 
     /** spinner of this fragment
      * use for user select how to view chords (simple or advanced or all)
@@ -91,10 +95,14 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
          * ListView Configure for view all SurfaceView of chords at main screen
          */
         mChordSurfaceListView = (ListView) rootView.findViewById(R.id.list_chord_graphic);
-        //adapter = new ChordViewAdapter(getActivity().getApplicationContext(), typeOfChords.get(0));
-        // use custom adapter for testing purpose
-        ChordViewTextureAdapter tAdapter = new ChordViewTextureAdapter(getActivity().getApplicationContext(), typeOfChords.get(0));
-        mChordSurfaceListView.setAdapter(tAdapter);
+
+        // custom Adapter base on current Android System
+        if (UIUtils.hasICS()) {
+            adapter = new ChordViewTextureAdapter(getActivity().getApplicationContext(), typeOfChords.get(0));
+        } else {
+            adapter = new ChordViewImageAdapter(getActivity().getApplicationContext(), typeOfChords.get(0));
+        }
+        mChordSurfaceListView.setAdapter((BaseAdapter)adapter);
 
         return rootView;
     }
@@ -108,11 +116,11 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
         switch(position) {
             case 0 :
                 adapter.setChordList(typeOfChords.get(0));
-                adapter.notifyDataSetChanged();
+                ((BaseAdapter)adapter).notifyDataSetChanged();
                 break;
             case 1:
                 adapter.setChordList(typeOfChords.get(1));
-                adapter.notifyDataSetChanged();
+                ((BaseAdapter)adapter).notifyDataSetChanged();
                 break;
             case 2:
                 break;

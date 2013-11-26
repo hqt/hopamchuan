@@ -15,7 +15,7 @@ import com.hqt.hac.view.R;
 
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class ChordViewAdapter extends BaseAdapter {
+public class ChordViewAdapter extends BaseAdapter implements IChordView {
     public static String TAG = makeLogTag(ChordViewAdapter.class);
 
     Context mContext;
