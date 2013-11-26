@@ -16,6 +16,7 @@ import com.hqt.hac.helper.adapter.ChordViewAdapter;
 import com.hqt.hac.helper.adapter.ChordViewImageAdapter;
 import com.hqt.hac.helper.adapter.ChordViewTextureAdapter;
 import com.hqt.hac.helper.adapter.IChordView;
+import com.hqt.hac.helper.widget.FastSearchListView;
 import com.hqt.hac.utils.ResourceUtils;
 import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.MainActivity;
@@ -94,7 +95,7 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
          * Left Panel :
          * ListView Configure for view all SurfaceView of chords at main screen
          */
-        mChordSurfaceListView = (ListView) rootView.findViewById(R.id.list_chord_graphic);
+        mChordSurfaceListView = (FastSearchListView) rootView.findViewById(R.id.list_chord_graphic);
 
         // custom Adapter base on current Android System
         if (UIUtils.hasICS()) {
@@ -103,6 +104,7 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
             adapter = new ChordViewImageAdapter(getActivity().getApplicationContext(), typeOfChords.get(0));
         }
         mChordSurfaceListView.setAdapter((BaseAdapter)adapter);
+        mChordSurfaceListView.setFastScrollEnabled(true);
 
         return rootView;
     }

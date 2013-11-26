@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.hac_library.components.ChordSurfaceView;
@@ -17,7 +18,7 @@ import com.hqt.hac.view.R;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 
-public class ChordViewImageAdapter extends BaseAdapter implements IChordView {
+public class ChordViewImageAdapter extends BaseAdapter implements SectionIndexer, IChordView {
     public static String TAG = makeLogTag(ChordViewAdapter.class);
 
     Context mContext;
@@ -27,6 +28,9 @@ public class ChordViewImageAdapter extends BaseAdapter implements IChordView {
 
     /** currently index of chord */
     int[] index;
+
+    /** String that using for SectionIndexer */
+    private static String sections = "abcdefghilmnopqrstuvz";
 
     public ChordViewImageAdapter(Context mContext, String[] chords) {
         this.mContext = mContext;
@@ -113,6 +117,29 @@ public class ChordViewImageAdapter extends BaseAdapter implements IChordView {
 
 
         return row;
+    }
+
+    @Override
+    public Object[] getSections() {
+        String[] sectionsArr = new String[sections.length()];
+        for (int i=0; i < sections.length(); i++)
+            sectionsArr[i] = "" + sections.charAt(i);
+        return sectionsArr;
+    }
+
+    @Override
+    public int getPositionForSection(int section) {
+        for (int i=0; i < chords.length; i++) {
+            String item = chords[i];
+            if (item.charAt(0) == sections.charAt(section))
+                return i;
+        }
+        return 0;
+    }
+
+    @Override
+    public int getSectionForPosition(int position) {
+        return 0;
     }
 
     public static class ViewHolder {
