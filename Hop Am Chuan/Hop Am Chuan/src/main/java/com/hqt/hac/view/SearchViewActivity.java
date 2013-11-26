@@ -75,7 +75,7 @@ public class SearchViewActivity extends ActionBarActivity {
         }
     }
 
-    @Override
+  /*  @Override
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -114,10 +114,10 @@ public class SearchViewActivity extends ActionBarActivity {
             }
         }
         return true;
-    }
+    }*/
 
 
-    @Override
+   /* @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_search:
@@ -128,6 +128,6 @@ public class SearchViewActivity extends ActionBarActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
 }
