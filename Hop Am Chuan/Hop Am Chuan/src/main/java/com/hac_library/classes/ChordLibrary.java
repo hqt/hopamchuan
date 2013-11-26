@@ -59,7 +59,7 @@ public class ChordLibrary {
 		Bfret.put("B", 2);
 		
 		
-		/////////////////////////
+		////////////////////////
 		
 		
 		baseChords.put("C", new Position[]{new Position(0, new int[]{-1, 3, 2, 0, 1, 0}, new int[]{-1, 3, 2, -1, 1, -1}), new Position(12, new int[]{-1, 15, 14, 12, 13, 12}, new int[]{-1, 4, 3, 1, 2, 1}), });
