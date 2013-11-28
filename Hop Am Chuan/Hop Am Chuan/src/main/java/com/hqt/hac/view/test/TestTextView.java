@@ -1,5 +1,6 @@
 package com.hqt.hac.view.test;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -37,134 +38,18 @@ public class TestTextView extends ActionBarActivity {
 
     TextView testTextView;
     static int songCounter = 0;
+    Activity thisActivity = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.testtextview_fragment_main);
-
+        thisActivity = this;
         testTextView = (TextView) findViewById(R.id.testTextView);
         List<Song> songs = ParserUtils.getAllSongsFromResource(getApplicationContext());
         final String songContent = songs.get(++songCounter).getContent(getApplicationContext());
-//        final String songContent = "[Am]Đó [Bm]là [Cm]một [Em]buổi [F]sáng [G]đầy [A]sương thu và gió [Cm]lạnh.\n" +
-//                "[B#m79]Mẹ [A#m9]tôi [C]nắm [D]tay tôi dẫn đi [F]trên con đường [Dm]dài và hẹp.";
         if (testTextView != null) {
-//            HacUtils.setSongFormatted(getApplicationContext(), testTextView, songContent);
-            testTextView.setText(songContent);
-            final ViewTreeObserver vto = testTextView.getViewTreeObserver();
-            if (vto != null) {
-//                vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-//                    volatile boolean isMySelf = false;
-//                    volatile boolean isSetFormatText = false;
-//
-//                    @Override
-//                    public void onGlobalLayout() {
-//                        /**
-//                         * If the event is called inside this method, then do no action.
-//                         */
-//                        Log.i("TextViewDebug2", "Called: " + isMySelf);
-//                        Log.i("TextViewDebug2", "Text:\n" + testTextView.getText());
-//                        if (isMySelf) {
-//                            isMySelf = false;
-//                            return;
-//                        }
-//
-//                        String orgStr = songContent;
-//
-//                        if (isSetFormatText == false) {
-//                            // Set default text to get wrapped text
-//                            isSetFormatText = true;
-//                            testTextView.setText(songContent);
-//                            return;
-//                        } else {
-//                            isSetFormatText = false;
-//                            // Does the layout effected after .setText() method?
-//                            // If not, we have to do the 2 tasks
-//
-//                            // Must do sperate task here:
-//                            // Task 1: re-set the paint text
-//                            // Task 2: set the formatted text
-//
-//                            Log.i("TextViewDebug2", "Do next: ...");
-//
-//                            /**
-//                             * Do smartwrap.
-//                             */
-//                            Layout layout = testTextView.getLayout();
-//                            int numLine = layout.getLineCount();
-//
-//                            // This string to store the formatted lyric
-//                            String newStr = "";
-//                            Log.i("TextViewDebug", "orgStr: " + orgStr);
-//
-//                            // Create formatted chord
-//                            for (int i = 0; i < numLine; ++i) {
-//
-//                                // Get current lyric line
-//                                int startLine = layout.getLineStart(i);
-//                                int endLine = layout.getLineEnd(i);
-//                                StringBuilder curLine = new StringBuilder(orgStr.substring(startLine, endLine).trim());
-//
-//                                // Create chord line
-//                                Pattern pattern = Pattern.compile("\\[.*?\\]");
-//                                Matcher matcher = pattern.matcher(curLine);
-//                                StringBuilder chordLine = new StringBuilder();
-//
-//                                // End position of the last chord sign
-//                                int lastEnd = 0;
-//                                // Number of spaces to remove to synchronize with lyric text line
-//                                int stackDelete = 0;
-//                                //
-//                                int lastGroupLength = 0;
-//                                while (matcher.find()) {
-//                                    for (int j = lastEnd; j < matcher.start() - lastGroupLength; ++j) {
-//                                        chordLine.append(" ");
-//                                    }
-//                                    // Append the chord
-////                                    chordLine.append(matcher.group().replace("[", "").replace("]", "") + "  ");
-//                                    chordLine.append(matcher.group());
-//                                    // Remove chord sign
-//                                    curLine.delete(matcher.start() - stackDelete, matcher.end() - stackDelete);
-//                                    // Increase stackDelete
-//                                    stackDelete += matcher.group().length();
-//                                    // Set the position
-//                                    lastEnd = matcher.end();
-//                                    // Set the last group length
-//                                    lastGroupLength = matcher.group().length();
-//                                }
-//
-//
-//                                // Add chord line
-//                                newStr += chordLine + "\n" + curLine.toString() + "\n";
-//                            }
-//
-//                            // Re-set the smartwrapped text
-//                            isMySelf = true;
-//                            testTextView.setText(newStr);
-//
-//
-//                        } // End big if
-//                    }
-//                });
-
-            }
-            ////////////////////
-            ///////////
-
-            ChordClickableSpan clickableSpan = new ChordClickableSpan();
-            clickableSpan.context = getApplicationContext();
-
-            SpannableString text = new SpannableString(testTextView.getText());
-
-            Pattern pattern = Pattern.compile("\\[.*?\\]");
-            Matcher matcher = pattern.matcher(text);
-            // Check all occurrences
-            while (matcher.find()) {
-//                                System.out.print("Start index: " + matcher.start());
-//                                System.out.print(" End index: " + matcher.end());
-//                                System.out.println(" Found: " + matcher.group());
-                text.setSpan(clickableSpan, matcher.start(), matcher.end(), 0);
-            }
+            HacUtils.setSongFormatted(getApplicationContext(), testTextView, songContent, this);
         } else {
             Log.i("Debug", "testTextView is null!");
         }
@@ -173,7 +58,7 @@ public class TestTextView extends ActionBarActivity {
         findViewById(R.id.btnFUp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                testTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, testTextView.getTextSize() + 5);
+                testTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, testTextView.getTextSize() + 2);
             }
         });
 
@@ -181,7 +66,7 @@ public class TestTextView extends ActionBarActivity {
         findViewById(R.id.btnFDo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                testTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, testTextView.getTextSize() - 5);
+                testTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, testTextView.getTextSize() - 2);
             }
         });
 
@@ -189,7 +74,7 @@ public class TestTextView extends ActionBarActivity {
         findViewById(R.id.btnTUp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HacUtils.transposeTextView(getApplicationContext(), testTextView, 1);
+                HacUtils.transposeTextView(getApplicationContext(), testTextView, 1, thisActivity);
             }
         });
 
@@ -197,7 +82,7 @@ public class TestTextView extends ActionBarActivity {
         findViewById(R.id.btnTDo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HacUtils.transposeTextView(getApplicationContext(), testTextView, -1);
+                HacUtils.transposeTextView(getApplicationContext(), testTextView, -1, thisActivity);
             }
         });
 
