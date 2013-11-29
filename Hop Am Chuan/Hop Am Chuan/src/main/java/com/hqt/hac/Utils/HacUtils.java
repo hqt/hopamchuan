@@ -27,46 +27,50 @@ public class HacUtils {
     private static String TAG = makeLogTag(HacUtils.class);
 
     /**
-     * TODO: do this for song format
+     * Format song lyric with clickable chord sign.
+     * TODO: blur content
      *
      * @param context
-     * @param richTextView
-     * @param testTextView
+     * @param richTextView the TextView that display the song lyric
+     * @param songContent
+     * @param theActivity the activity that contain the text view
      */
-    public static void setSongFormatted(final Context context, TextView richTextView, String songContent, final Activity testTextView) {
-        // this is the text we'll be operating on
+    public static void setSongFormatted(final Context context, TextView richTextView, String songContent, final Activity theActivity) {
+        // This is the text we'll be operating on
         SpannableString text = new SpannableString(songContent);
 
+        // Search for chord sign
         Pattern pattern = Pattern.compile("\\[.*?\\]");
         Matcher matcher = pattern.matcher(songContent);
-        // Check all occurrences
+
         while (matcher.find()) {
+            // Set event handler
             ClickableSpan clickableSpan = new ClickableSpan() {
                 @Override
                 public void onClick(View view) {
-                    // Get text
-                    // TODO add check if widget instanceof TextView
+                    // When click event is fired
                     TextView tv = (TextView) view;
-                    // TODO add check if tv.getText() instanceof Spanned
                     Spanned s = (Spanned) tv.getText();
+
+                    // Get chord name
                     int start = s.getSpanStart(this);
                     int end = s.getSpanEnd(this);
-
                     String chordName = s.subSequence(start, end).toString().replace("[", "").replace("]", "");
 
-                    // Show toast
-
-
-                    final Dialog dialog = new Dialog(testTextView);
+                    // Create chord dialog
+                    final Dialog dialog = new Dialog(theActivity);
 
                     LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     View layout = inflater.inflate(R.layout.chordsurfaceview_toast, null);
+
+                    // Chord view
                     final ChordSurfaceView chord = (ChordSurfaceView) layout.findViewById(R.id.chordViewA);
                     chord.drawChord(chordName);
 
+                    // TODO: assign button later
+                    // Buttons
                     Button btnDismiss = (Button) layout.findViewById(R.id.close);
                     btnDismiss.setText("X!");
-
                     btnDismiss.setOnClickListener(new Button.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -78,39 +82,28 @@ public class HacUtils {
                     dialog.setTitle("Hợp âm " + chordName);
                     dialog.show();
 
-//                    final Toast toast = new Toast(context);
-//                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//
-//                    View layout = inflater.inflate(R.layout.chordsurfaceview_toast, null);
-//                    final ChordSurfaceView chord = (ChordSurfaceView) layout.findViewById(R.id.chordViewA);
-//                    chord.drawChord(chordName);
-//
-//                    Button btnDismiss = (Button) layout.findViewById(R.id.close);
-//                    btnDismiss.setText("X!");
-//                    btnDismiss.setOnClickListener(new Button.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            chord.nextPosition();
-//                        }
-//                    });
-//
-//                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-//                    toast.setDuration(Toast.LENGTH_LONG);
-//                    toast.setView(layout);
-//                    toast.show();
                 }
             };
+            // Set the ClickableSpan to the text view
             text.setSpan(clickableSpan, matcher.start(), matcher.end(), 0);
         }
 
-        // make our ClickableSpans and URLSpans work
+        // Make our ClickableSpans and URLSpans work
         richTextView.setMovementMethod(LinkMovementMethod.getInstance());
 
-        // shove our styled text into the TextView
+        // Shove our styled text into the TextView
         richTextView.setText(text, TextView.BufferType.SPANNABLE);
     }
 
-    public static void transposeTextView(Context context, TextView textView, int distance, final Activity testTextView) {
+    /**
+     * Transpose all chord sign in the TextView
+     *
+     * @param context
+     * @param textView
+     * @param distance
+     * @param theActivity
+     */
+    public static void transposeTextView(Context context, TextView textView, int distance, final Activity theActivity) {
         String content = textView.getText().toString();
         Pattern pattern = Pattern.compile("\\[.*?\\]");
         Matcher matcher = pattern.matcher(content);
@@ -124,6 +117,6 @@ public class HacUtils {
             content = content.substring(0, start + stackChange) + "[" + newChordName + "]" + content.substring(end + stackChange);
             stackChange += newChordName.length() - chordName.length();
         }
-        HacUtils.setSongFormatted(context, textView, content, testTextView);
+        HacUtils.setSongFormatted(context, textView, content, theActivity);
     }
 }

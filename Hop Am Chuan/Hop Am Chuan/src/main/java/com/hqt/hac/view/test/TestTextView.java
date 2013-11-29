@@ -53,40 +53,6 @@ public class TestTextView extends ActionBarActivity {
         } else {
             Log.i("Debug", "testTextView is null!");
         }
-
-        // Increase font size
-        findViewById(R.id.btnFUp).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                testTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, testTextView.getTextSize() + 2);
-            }
-        });
-
-        // Decrease font size
-        findViewById(R.id.btnFDo).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                testTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, testTextView.getTextSize() - 2);
-            }
-        });
-
-        // Increase transpose
-        findViewById(R.id.btnTUp).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                HacUtils.transposeTextView(getApplicationContext(), testTextView, 1, thisActivity);
-            }
-        });
-
-        // Decrease transpose
-        findViewById(R.id.btnTDo).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                HacUtils.transposeTextView(getApplicationContext(), testTextView, -1, thisActivity);
-            }
-        });
-
-
     }
 
     public void testOutsideSetText(View v) {
@@ -107,8 +73,19 @@ public class TestTextView extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            case R.id.action_fontsize_up:
+                testTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, testTextView.getTextSize() + 2);
                 return true;
+            case R.id.action_fontsize_down:
+                testTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, testTextView.getTextSize() - 2);
+                return true;
+            case R.id.action_trans_up:
+                HacUtils.transposeTextView(getApplicationContext(), testTextView, 1, thisActivity);
+                return true;
+            case R.id.action_trans_down:
+                HacUtils.transposeTextView(getApplicationContext(), testTextView, -1, thisActivity);
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }
