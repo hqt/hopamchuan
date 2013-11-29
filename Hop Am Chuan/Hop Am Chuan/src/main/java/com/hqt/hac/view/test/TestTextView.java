@@ -49,19 +49,14 @@ public class TestTextView extends ActionBarActivity {
         List<Song> songs = ParserUtils.getAllSongsFromResource(getApplicationContext());
         final String songContent = songs.get(++songCounter).getContent(getApplicationContext());
         if (testTextView != null) {
-            HacUtils.setSongFormatted(getApplicationContext(), testTextView, songContent, this);
+            HacUtils.setSongFormattedTwoLines(getApplicationContext(), testTextView, songContent, this);
         } else {
             Log.i("Debug", "testTextView is null!");
         }
     }
 
-    public void testOutsideSetText(View v) {
-        testTextView.setText("ABC Bitch!");
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.test_text_view, menu);
         return true;
@@ -85,7 +80,6 @@ public class TestTextView extends ActionBarActivity {
             case R.id.action_trans_down:
                 HacUtils.transposeTextView(getApplicationContext(), testTextView, -1, thisActivity);
                 return true;
-
         }
         return super.onOptionsItemSelected(item);
     }

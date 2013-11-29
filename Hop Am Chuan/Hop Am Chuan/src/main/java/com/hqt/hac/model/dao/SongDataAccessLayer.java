@@ -66,7 +66,7 @@ public class SongDataAccessLayer {
         cv.put(HopAmChuanDBContract.Songs.SONG_LINK, song.link);
         cv.put(HopAmChuanDBContract.Songs.SONG_FIRST_LYRIC, song.firstLyric);
         cv.put(HopAmChuanDBContract.Songs.SONG_DATE,(new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT)).format(song.date));
-        cv.put(HopAmChuanDBContract.Songs.SONG_TITLE_ASCII, StringUtils.removeAccients(song.title));
+        cv.put(HopAmChuanDBContract.Songs.SONG_TITLE_ASCII, StringUtils.removeAcients(song.title));
         cv.put(HopAmChuanDBContract.Songs.SONG_RHYTHM, song.rhythm);
         cv.put(HopAmChuanDBContract.Songs.SONG_LASTVIEW, song.lastView);
         cv.put(HopAmChuanDBContract.Songs.SONG_ISFAVORITE, song.isFavorite);
@@ -279,7 +279,7 @@ public class SongDataAccessLayer {
 
     public static List<Song> searchSongByTitle(Context context, String title, int limit) {
         LOGD(TAG, "search Song Title");
-        String keyword = StringUtils.removeAccients(title);
+        String keyword = StringUtils.removeAcients(title);
         ContentResolver resolver = context.getContentResolver();
         Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
         Cursor c = resolver.query(uri,

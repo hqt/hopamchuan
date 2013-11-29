@@ -58,7 +58,7 @@ public class ArtistDataAcessLayer {
 
     public static Artist getArtistByName(Context context, String name) {
         LOGD(TAG, "Get Artist By Id");
-        String artistName = StringUtils.removeAccients(name);
+        String artistName = StringUtils.removeAcients(name);
         ContentResolver resolver = context.getContentResolver();
         Uri uri = HopAmChuanDBContract.Artists.CONTENT_URI;
 

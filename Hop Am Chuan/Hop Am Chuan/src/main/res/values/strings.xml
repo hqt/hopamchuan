@@ -169,5 +169,6 @@
     <string name="chord_search_add_chord_text">Thêm</string>
     <string name="title_activity_chord_view">Tra cứu hợp âm</string>
     <string name="title_activity_test">Activity Test</string>
+    <string name="chord_finger_position">Cách bấm hợp âm</string>
 
 </resources>

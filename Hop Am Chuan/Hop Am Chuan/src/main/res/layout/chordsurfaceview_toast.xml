@@ -1,29 +1,27 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/toast_layout_root"
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
     android:padding="8dp"
-    android:background="#ccc">
+    android:background="#fff"
+    android:layout_marginBottom="20dp">
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/chord_linear_layout">
-        <com.hac_library.components.ChordSurfaceView
-            android:id="@+id/chordViewA"
-            android:layout_width="200dp"
-            android:layout_height="200dp" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/chord_linear_layout">
-    <Button
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Close"
-        android:id="@+id/close" />
+        android:layout_height="fill_parent"
+        android:src="@drawable/navigation_previous_item" />
 
-    </RelativeLayout>
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/chordViewA"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:src="@drawable/navigation_next_item" />
+
+</LinearLayout>
