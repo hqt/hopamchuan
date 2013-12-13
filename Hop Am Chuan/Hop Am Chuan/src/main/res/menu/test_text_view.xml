@@ -17,5 +17,13 @@
         android:title="Transpose down"
         android:orderInCategory="100"
         app:showAsAction="never" />
+    <item android:id="@+id/action_oneline"
+        android:title="One-line Mode"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item android:id="@+id/action_twoline"
+        android:title="Two-line Mode"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
 
 </menu>

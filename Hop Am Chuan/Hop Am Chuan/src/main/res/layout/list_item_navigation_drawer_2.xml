@@ -3,23 +3,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:paddingLeft="4dp"
+        android:layout_marginLeft="18dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
         android:orientation="vertical"
         android:id="@+id/linearLayout"
-        android:layout_centerHorizontal="false">
+        android:layout_centerHorizontal="false"
+        >
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="@string/example_text"
             android:paddingBottom="3dp"
+            android:textSize="13sp"
+            android:textColor="#fff"
             android:id="@+id/title"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -28,6 +31,8 @@
             android:layout_width="wrap_content"
             style="@style/ListItemTitle"
             android:paddingBottom="5dp"
+            android:textSize="10sp"
+            android:textColor="#fff"
             android:id="@+id/description"
             android:text="@string/example_text" />
     </LinearLayout>
@@ -36,18 +41,20 @@
         android:id="@+id/relativelayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:paddingRight="10dp"
+        android:paddingRight="15dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true">
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+
+        >
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:scaleType="centerCrop"
             android:layout_centerVertical="true"
-            android:src="@drawable/abc_ab_solid_light_holo" />
+            android:src="@drawable/song_count_bg" />
 
         <TextView
             android:id="@+id/countSongText"
@@ -59,9 +66,18 @@
             android:layout_alignBottom="@+id/imageView"
             android:layout_margin="1dp"
             android:gravity="center"
+            android:textSize="10sp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:text="@string/example_number"
-            android:textColor="#000000" />
+            android:textColor="#fff" />
 
     </RelativeLayout>
 
+    <View android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@id/linearLayout"
+        android:background="#ffb8b8b8"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
 </RelativeLayout>

@@ -39,7 +39,7 @@ public class TestTextView extends ActionBarActivity {
     TextView testTextView;
     static int songCounter = 0;
     Activity thisActivity = null;
-
+    String songContent = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +47,7 @@ public class TestTextView extends ActionBarActivity {
         thisActivity = this;
         testTextView = (TextView) findViewById(R.id.testTextView);
         List<Song> songs = ParserUtils.getAllSongsFromResource(getApplicationContext());
-        final String songContent = songs.get(++songCounter).getContent(getApplicationContext());
+        songContent = songs.get(++songCounter).getContent(getApplicationContext());
         if (testTextView != null) {
             HacUtils.setSongFormattedTwoLines(getApplicationContext(), testTextView, songContent, this);
         } else {
@@ -79,6 +79,12 @@ public class TestTextView extends ActionBarActivity {
                 return true;
             case R.id.action_trans_down:
                 HacUtils.transposeTextView(getApplicationContext(), testTextView, -1, thisActivity);
+                return true;
+            case R.id.action_oneline:
+                HacUtils.setSongFormatted(getApplicationContext(), testTextView, songContent, this);
+                return true;
+            case R.id.action_twoline:
+                HacUtils.setSongFormattedTwoLines(getApplicationContext(), testTextView, songContent, this);
                 return true;
         }
         return super.onOptionsItemSelected(item);

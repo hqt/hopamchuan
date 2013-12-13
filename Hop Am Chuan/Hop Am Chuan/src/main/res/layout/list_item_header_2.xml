@@ -2,16 +2,19 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:baselineAligned="false">
+    android:baselineAligned="false"
+    >
 
     <TextView
         android:id="@+id/playlist_header"
-        style="@style/ListItemTitle"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:textStyle="normal"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:textColor="#bec1ca"
+        android:textColor="#ffebebeb"
+        android:layout_marginTop="27dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="6dp"
         android:layout_gravity="start|center_vertical" />
 
     <View android:layout_width="match_parent"
