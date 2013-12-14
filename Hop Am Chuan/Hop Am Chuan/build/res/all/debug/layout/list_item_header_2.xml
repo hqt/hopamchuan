@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:baselineAligned="false">
+
+    <TextView
+        android:id="@+id/playlist_header"
+        style="@style/ListItemTitle"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:textColor="#bec1ca"
+        android:layout_gravity="start|center_vertical" />
+
+    <View android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#e0e0e0" />
+
+</LinearLayout>
+<!-- From: file:/E:/AndroidApp/Hop%20Am%20Chuan%20Project/Hop%20Am%20Chuan/Hop%20Am%20Chuan/src/main/res/layout/list_item_header_2.xml -->

@@ -80,12 +80,8 @@
             android:label="@string/title_activity_test_database" >
         </activity>
         <activity
-            android:name="com.hqt.hac.view.FindByChord"
-            android:label="@string/title_activity_find_by_chord" >
-        </activity>
-        <activity
-            android:name="com.hqt.hac.view.ChordView"
-            android:label="@string/title_activity_chord_view" >
+            android:name="com.hqt.hac.view.test.TestActivity"
+            android:label="@string/title_activity_test" >
         </activity>
     </application>
 

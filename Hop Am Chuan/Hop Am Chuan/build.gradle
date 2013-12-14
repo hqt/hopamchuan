@@ -20,14 +20,25 @@ android {
         minSdkVersion 9
         targetSdkVersion 18
     }
+
+    buildTypes {
+        debug {
+            packageNameSuffix ".debug"
+        }
+    }
 }
 
 dependencies {
     compile 'com.android.support:appcompat-v7:18.0.0'
-    compile 'com.android.support:support-v4:18.0.0'
+    // compile 'com.android.support:support-v4:18.0.0'
 
     compile files('libs/google-gson-2.2.4/gson-2.2.4.jar')
     compile files('libs/google-gson-2.2.4/gson-2.2.4-javadoc.jar')
     compile files('libs/google-gson-2.2.4/gson-2.2.4-sources.jar')
     compile files('libs/CWAC-SackOfViewsAdapter.jar')
+
+    compile project(':Hop Am Chuan:libs:SlidingMenu')
+
+
+
 }

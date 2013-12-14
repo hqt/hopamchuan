@@ -7,8 +7,9 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="fill_parent"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginBottom="10dp"
         android:id="@+id/chord_image_view"/>
 
     <LinearLayout

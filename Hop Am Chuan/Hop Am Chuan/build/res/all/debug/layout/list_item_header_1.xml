@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    >
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/relativelayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:paddingLeft="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignBottom="@+id/linearLayout"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:layout_centerVertical="true"
+            android:src="@drawable/abc_ab_solid_light_holo" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@id/relativelayout"
+        android:paddingLeft="4dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        >
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/example_text"
+            android:paddingBottom="3dp"
+            android:textColor="#bec1ca"
+            android:id="@+id/name"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <com.hqt.hac.helper.widget.AutoResizeTextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:maxLines="1"
+            style="@style/ListItemTitle"
+            android:paddingBottom="5dp"
+            android:id="@+id/mail"
+            android:textColor="#bec1ca"
+            android:text="@string/example_text"
+            />
+    </LinearLayout>
+
+    <View android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignBottom="@id/linearLayout"
+        android:background="#e0e0e0" />
+
+</RelativeLayout>
+<!-- From: file:/E:/AndroidApp/Hop%20Am%20Chuan%20Project/Hop%20Am%20Chuan/Hop%20Am%20Chuan/src/main/res/layout/list_item_header_1.xml -->

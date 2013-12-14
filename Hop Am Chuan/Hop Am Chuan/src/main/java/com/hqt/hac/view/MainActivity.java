@@ -33,6 +33,7 @@ import com.hqt.hac.view.fragment.PlaylistDetailFragment;
 import com.hqt.hac.view.fragment.PlaylistManagerFragment;
 import com.hqt.hac.view.fragment.SongListFragment;
 import com.hqt.hac.view.fragment.WelcomeFragment;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.unittest.DatabaseTest;
 
 import java.util.List;
@@ -111,6 +112,8 @@ public class MainActivity extends ActionBarActivity
         WelcomeFragment fragment = new WelcomeFragment();
         // ChordViewFragment fragment = new ChordViewFragment();
         switchFragment(fragment);
+
+        SlidingMenu s;
 
     }
 
@@ -261,6 +264,7 @@ public class MainActivity extends ActionBarActivity
 
     /**
      * set up adapter for list view
+     * include add all views and adapters to currently ListView
      * @return
      */
     public void setUpListView() {

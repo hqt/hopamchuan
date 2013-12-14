@@ -1,0 +1,60 @@
+// @author : Huynh Quang Thao
+// @Notes : this script is complicated and different from build.gradle at 'Hop Am Chuan'
+// because 'Hop Am Chuan' is the pure gradle project : everything is build on its convention
+// such as : "source code" inside "main/java" resource insdie "main/resource" ... so just use simple script
+// SlidingMenu is an Eclipse project. so its structure is different. and must config by hand.
+// See Gradle Online Document to know which variable can be used to config
+
+// script to decide which gradle version will use for maven
+// not a Gradle version for using compile whole projects
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.6.+'
+    }
+}
+
+// apply plugin: 'android'
+// because this is a library.
+apply plugin: 'android-library'
+
+// Base Project includes "Support Library v4 jar to its project
+// 1. If compile it. because its already belong to main project. --> DexFileException because same libs
+// 2. If Not Compile it : this library project cannot compile because missing libraries
+// 3. Cannot delete jar file in libs folder. Because its code depend on this libs. Delete jar file turn out that cannot see class file
+// 4. My Solution : Use Gradle Repository. By use Gradle Repository, this library will be synchronized between two projects.
+// So, just one instance could be used for both project.
+// Also, this is a strong point when using Build Tools
+// TODO if project is not in repository. How can to config this for both projects : main project and library project.
+dependencies {
+    // compile fileTree(dir: 'libs', include: '*.jar')
+    compile 'com.android.support:support-v4:18.0.0'
+}
+
+android {
+    compileSdkVersion 18
+    buildToolsVersion "18.1.1"
+
+    // modify link because this project is from Eclipse Project
+    // not from normal gradle Project. So project structure is different. Cannot make default
+    // Config by hand, get Gradle knows which part for each type of directory
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }
+
+        // Move the tests to tests/java, tests/res, etc...
+        instrumentTest.setRoot('tests')
+
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+}
