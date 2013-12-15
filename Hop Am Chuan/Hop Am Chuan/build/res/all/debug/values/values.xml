@@ -695,6 +695,7 @@
     <dimen name="element_spacing_normal">8dp</dimen>
     <dimen name="indeterminate_progress_size">16dp</dimen>
     <dimen name="list_extra_button_width">48dp</dimen>
+    <dimen name="list_padding">10dp</dimen>
     <dimen name="list_scroll_top_offset">16dp</dimen>
     <dimen name="map_content_padding">8dp</dimen>
     <dimen name="map_info_maxwidth">400dp</dimen>
@@ -709,6 +710,8 @@
     <dimen name="rating_bar_thumb_offset">0dp</dimen>
     <dimen name="sandbox_company_image_size">100dp</dimen>
     <dimen name="schedule_block_time_width">72dp</dimen>
+    <dimen name="shadow_width">15dp</dimen>
+    <dimen name="slidingmenu_offset">60dp</dimen>
     <dimen name="speaker_image_padding">8dp</dimen>
     <dimen name="speaker_image_size">48dp</dimen>
     <dimen name="stream_name_text_size">16sp</dimen>

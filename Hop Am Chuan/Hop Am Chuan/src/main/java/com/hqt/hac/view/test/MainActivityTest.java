@@ -21,16 +21,19 @@ import android.view.View;
 import android.widget.ListView;
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
+import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.R;
 import com.hqt.hac.view.fragment.*;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
 import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class MainActivityTest extends ActionBarActivity
+public class MainActivityTest extends SlidingMenuActionBarActivity
         implements NavigationDrawerAdapter.IHeaderDelegate, NavigationDrawerAdapter.IItemDelegate,
         NavigationDrawerAdapter.IPlaylistHeaderDelegate, NavigationDrawerAdapter.IPlaylistItemDelegate {
 
@@ -38,9 +41,6 @@ public class MainActivityTest extends ActionBarActivity
 
     /** SearchView widget */
     SearchView mSearchView;
-
-    /** DrawerLayout for MainActivity */
-    DrawerLayout mDrawerLayout;
 
     /** ListView contains all item categories */
     ListView mDrawerListView;
@@ -70,7 +70,7 @@ public class MainActivityTest extends ActionBarActivity
     ////////////////// LIFE CYCLE ACTIVITY METHOD ///////////////////
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // delete all database
@@ -79,9 +79,7 @@ public class MainActivityTest extends ActionBarActivity
         // create sample database
         // DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());
 
-        setContentView(R.layout.activity_main);
-
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        setContentView(R.layout.activity_main_test);
 
         mDrawerListView = (ListView) findViewById(R.id.navigation_drawer);
 
@@ -93,6 +91,20 @@ public class MainActivityTest extends ActionBarActivity
         // Set up the drawer.
         setUpActionBar();
 
+        // customize the SlidingMenu
+        SlidingMenu slidingMenu = getSlidingMenu();
+        slidingMenu.setShadowWidthRes(R.dimen.shadow_width);
+        slidingMenu.setShadowDrawable(R.drawable.shadow);
+        slidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        slidingMenu.setFadeDegree(0.35f);
+        slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+
+        // set above view
+        setContentView(R.id.content_frame);
+        // set below view
+        setBehindContentView(R.id.navigation_drawer);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // set up the list view
         setUpListView();
 
@@ -141,13 +153,6 @@ public class MainActivityTest extends ActionBarActivity
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
-        // if Drawer is open. Call Default Method
-        // Let the Drawer decide what to show in the action bar
-        if (isDrawerOpen()) {
-            return super.onCreateOptionsMenu(menu);
-        }
-
         // Only show items in the action bar relevant to this screen
         // if the drawer is not showing.
         MenuInflater inflater = getMenuInflater();
@@ -208,45 +213,12 @@ public class MainActivityTest extends ActionBarActivity
     public void setUpActionBar() {
 
         // set a custom shadow that overlays the main content when the drawer opens
-        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
 
         ActionBar actionBar = this.getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
 
-        // ActionBarDrawerToggle ties together the the proper interactions
-        // between the navigation drawer and the action bar app icon.
-        mDrawerToggle = new ActionBarDrawerToggle(
-                this,                    /* host Activity */
-                mDrawerLayout,                    /* DrawerLayout object */
-                R.drawable.ic_drawer,             /* nav drawer image to replace 'Up' caret */
-                R.string.navigation_drawer_open,  /* "open drawer" description for accessibility */
-                R.string.navigation_drawer_close  /* "close drawer" description for accessibility */
-        ) {
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-                supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
-            }
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
-            }
-        };
-
-
-        // Defer code dependent on restoration of previous instance state.
-        mDrawerLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                mDrawerToggle.syncState();
-            }
-        });
-
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
     /**
@@ -294,10 +266,6 @@ public class MainActivityTest extends ActionBarActivity
     ////////////////////////////////////////////////////////////////////////
     //////////////////// SIMPLE HELPER METHOD //////////////////////////////
 
-    public boolean isDrawerOpen() {
-        return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mDrawerListView);
-    }
-
     public void switchFragment(Fragment fragment) {
         if (fragment == null) return;
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -330,15 +298,6 @@ public class MainActivityTest extends ActionBarActivity
                 fragment = new ChordViewFragment();
                 break;
         }
-
-        // close Navigation Drawer
-        if (mDrawerListView != null) {
-            // mDrawerListView.setItemChecked(position, true);
-        }
-        if (mDrawerLayout != null) {
-            mDrawerLayout.closeDrawer(mDrawerListView);
-        }
-
         // Open Custom Fragment
         if (fragment != null) fragment.setArguments(arguments);
         switchFragment(fragment);
@@ -358,9 +317,6 @@ public class MainActivityTest extends ActionBarActivity
         // setting for Drawer List View
         if (mDrawerListView != null) {
             //mDrawerListView.setItemChecked(position, true);
-        }
-        if (mDrawerLayout != null) {
-            mDrawerLayout.closeDrawer(mDrawerListView);
         }
         switchFragment(fragment);
     }

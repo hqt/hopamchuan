@@ -20,12 +20,6 @@ android {
         minSdkVersion 9
         targetSdkVersion 18
     }
-
-    buildTypes {
-        debug {
-            packageNameSuffix ".debug"
-        }
-    }
 }
 
 dependencies {

@@ -954,34 +954,37 @@ containing a value of this type.
         public static final int element_spacing_normal=0x7f0b0018;
         public static final int indeterminate_progress_size=0x7f0b0019;
         public static final int list_extra_button_width=0x7f0b001a;
-        public static final int list_scroll_top_offset=0x7f0b001b;
-        public static final int map_content_padding=0x7f0b001c;
-        public static final int map_info_maxwidth=0x7f0b001d;
-        public static final int map_infowindow_width=0x7f0b001e;
-        public static final int map_multipane_right_padding=0x7f0b001f;
-        public static final int multipane_half_padding=0x7f0b0020;
-        public static final int multipane_padding=0x7f0b0021;
-        public static final int navigation_drawer_width=0x7f0b0022;
-        public static final int page_margin_width=0x7f0b0023;
-        public static final int plus_stream_padding_horizontal=0x7f0b0024;
-        public static final int plus_stream_padding_vertical=0x7f0b0025;
-        public static final int rating_bar_thumb_offset=0x7f0b0026;
-        public static final int sandbox_company_image_size=0x7f0b0027;
-        public static final int schedule_block_time_width=0x7f0b0028;
-        public static final int speaker_image_padding=0x7f0b0029;
-        public static final int speaker_image_size=0x7f0b002a;
-        public static final int stream_name_text_size=0x7f0b002b;
-        public static final int tab_height=0x7f0b002c;
-        public static final int text_size_diff_large_small=0x7f0b002d;
-        public static final int text_size_large=0x7f0b002e;
-        public static final int text_size_medium=0x7f0b002f;
-        public static final int text_size_small=0x7f0b0030;
-        public static final int text_size_xlarge=0x7f0b0031;
-        public static final int track_icon_padding=0x7f0b0032;
-        public static final int track_icon_size=0x7f0b0033;
-        public static final int track_icon_source_size=0x7f0b0034;
-        public static final int whats_on_height=0x7f0b0035;
-        public static final int widget_margin=0x7f0b0036;
+        public static final int list_padding=0x7f0b001b;
+        public static final int list_scroll_top_offset=0x7f0b001c;
+        public static final int map_content_padding=0x7f0b001d;
+        public static final int map_info_maxwidth=0x7f0b001e;
+        public static final int map_infowindow_width=0x7f0b001f;
+        public static final int map_multipane_right_padding=0x7f0b0020;
+        public static final int multipane_half_padding=0x7f0b0021;
+        public static final int multipane_padding=0x7f0b0022;
+        public static final int navigation_drawer_width=0x7f0b0023;
+        public static final int page_margin_width=0x7f0b0024;
+        public static final int plus_stream_padding_horizontal=0x7f0b0025;
+        public static final int plus_stream_padding_vertical=0x7f0b0026;
+        public static final int rating_bar_thumb_offset=0x7f0b0027;
+        public static final int sandbox_company_image_size=0x7f0b0028;
+        public static final int schedule_block_time_width=0x7f0b0029;
+        public static final int shadow_width=0x7f0b002a;
+        public static final int slidingmenu_offset=0x7f0b002b;
+        public static final int speaker_image_padding=0x7f0b002c;
+        public static final int speaker_image_size=0x7f0b002d;
+        public static final int stream_name_text_size=0x7f0b002e;
+        public static final int tab_height=0x7f0b002f;
+        public static final int text_size_diff_large_small=0x7f0b0030;
+        public static final int text_size_large=0x7f0b0031;
+        public static final int text_size_medium=0x7f0b0032;
+        public static final int text_size_small=0x7f0b0033;
+        public static final int text_size_xlarge=0x7f0b0034;
+        public static final int track_icon_padding=0x7f0b0035;
+        public static final int track_icon_size=0x7f0b0036;
+        public static final int track_icon_source_size=0x7f0b0037;
+        public static final int whats_on_height=0x7f0b0038;
+        public static final int widget_margin=0x7f0b0039;
     }
     public static final class drawable {
         public static final int abc_ab_bottom_solid_dark_holo=0x7f020000;
@@ -1083,8 +1086,10 @@ containing a value of this type.
         public static final int ic_menu_refresh=0x7f020060;
         public static final int ic_menu_search=0x7f020061;
         public static final int list_divider=0x7f020062;
-        public static final int shadowed_background=0x7f020063;
-        public static final int tv_background_with_divider=0x7f020064;
+        public static final int shadow=0x7f020063;
+        public static final int shadowed_background=0x7f020064;
+        public static final int shadowright=0x7f020065;
+        public static final int tv_background_with_divider=0x7f020066;
     }
     public static final class id {
         public static final int action_bar=0x7f0a001f;
@@ -1100,81 +1105,82 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0a0034;
         public static final int action_mode_bar_stub=0x7f0a0033;
         public static final int action_mode_close_button=0x7f0a0027;
-        public static final int action_settings=0x7f0a007b;
+        public static final int action_settings=0x7f0a007c;
         public static final int activity_chooser_view_content=0x7f0a0028;
-        public static final int add_chord_button=0x7f0a0059;
+        public static final int add_chord_button=0x7f0a005a;
         public static final int always=0x7f0a000f;
         public static final int beginning=0x7f0a000a;
-        public static final int btnFDo=0x7f0a0076;
-        public static final int btnFUp=0x7f0a0075;
-        public static final int btnTDo=0x7f0a0078;
-        public static final int btnTUp=0x7f0a0077;
-        public static final int btnTest=0x7f0a0079;
-        public static final int button=0x7f0a0073;
+        public static final int btnFDo=0x7f0a0077;
+        public static final int btnFUp=0x7f0a0076;
+        public static final int btnTDo=0x7f0a0079;
+        public static final int btnTUp=0x7f0a0078;
+        public static final int btnTest=0x7f0a007a;
+        public static final int button=0x7f0a0074;
         public static final int checkbox=0x7f0a0030;
-        public static final int chordViewA=0x7f0a0051;
-        public static final int chord_image_view=0x7f0a005f;
-        public static final int chord_surface_view=0x7f0a005e;
-        public static final int chord_texture_view=0x7f0a0060;
-        public static final int close=0x7f0a0052;
+        public static final int chordViewA=0x7f0a0052;
+        public static final int chord_image_view=0x7f0a0060;
+        public static final int chord_surface_view=0x7f0a005f;
+        public static final int chord_texture_view=0x7f0a0061;
+        public static final int close=0x7f0a0053;
         public static final int collapseActionView=0x7f0a0011;
-        public static final int company_name=0x7f0a0070;
+        public static final int company_name=0x7f0a0071;
         public static final int container=0x7f0a0047;
-        public static final int countSongText=0x7f0a0069;
+        public static final int content_frame=0x7f0a004b;
+        public static final int countSongText=0x7f0a006a;
         public static final int default_activity_button=0x7f0a002b;
-        public static final int description=0x7f0a0068;
+        public static final int description=0x7f0a0069;
         public static final int dialog=0x7f0a0016;
         public static final int disableHome=0x7f0a0008;
-        public static final int down_button=0x7f0a004f;
+        public static final int down_button=0x7f0a0050;
         public static final int drawer_layout=0x7f0a0049;
         public static final int dropdown=0x7f0a0017;
         public static final int edit_query=0x7f0a003b;
         public static final int end=0x7f0a000c;
         public static final int expand_activities_button=0x7f0a0029;
         public static final int expanded_menu=0x7f0a002f;
-        public static final int fragment_container_master=0x7f0a004b;
+        public static final int fragment_container_master=0x7f0a004c;
         public static final int fullscreen=0x7f0a0015;
         public static final int home=0x7f0a001b;
         public static final int homeAsUp=0x7f0a0005;
         public static final int icon=0x7f0a002d;
         public static final int ifRoom=0x7f0a000e;
         public static final int image=0x7f0a002a;
-        public static final int imageFavorite=0x7f0a006f;
-        public static final int imageOptionView=0x7f0a006b;
-        public static final int imageView=0x7f0a0063;
-        public static final int imageView1=0x7f0a0074;
-        public static final int image_view=0x7f0a005d;
-        public static final int insert_chord_edit_text=0x7f0a0058;
+        public static final int imageFavorite=0x7f0a0070;
+        public static final int imageOptionView=0x7f0a006c;
+        public static final int imageView=0x7f0a0064;
+        public static final int imageView1=0x7f0a0075;
+        public static final int image_view=0x7f0a005e;
+        public static final int insert_chord_edit_text=0x7f0a0059;
         public static final int left=0x7f0a0012;
         public static final int left_icon=0x7f0a0036;
-        public static final int linearLayout=0x7f0a0061;
-        public static final int linear_layout=0x7f0a0053;
-        public static final int list=0x7f0a005b;
+        public static final int linearLayout=0x7f0a0062;
+        public static final int linear_layout=0x7f0a0054;
+        public static final int list=0x7f0a005c;
         public static final int listMode=0x7f0a0001;
-        public static final int listViewBackground=0x7f0a0056;
-        public static final int list_chord_graphic=0x7f0a0055;
+        public static final int listViewBackground=0x7f0a0057;
+        public static final int list_chord_graphic=0x7f0a0056;
         public static final int list_item=0x7f0a002c;
-        public static final int list_view=0x7f0a004c;
-        public static final int mail=0x7f0a0065;
+        public static final int list_view=0x7f0a004d;
+        public static final int mail=0x7f0a0066;
         public static final int margin=0x7f0a0014;
         public static final int middle=0x7f0a000b;
-        public static final int name=0x7f0a0064;
+        public static final int name=0x7f0a0065;
         public static final int navigation_drawer=0x7f0a004a;
         public static final int never=0x7f0a000d;
         public static final int none=0x7f0a0009;
         public static final int normal=0x7f0a0000;
-        public static final int playlist=0x7f0a006a;
-        public static final int playlist_header=0x7f0a0066;
+        public static final int playlist=0x7f0a006b;
+        public static final int playlist_header=0x7f0a0067;
         public static final int progress_circular=0x7f0a0039;
         public static final int progress_horizontal=0x7f0a003a;
         public static final int radio=0x7f0a0032;
-        public static final int relativelayout=0x7f0a0062;
+        public static final int relativelayout=0x7f0a0063;
         public static final int right=0x7f0a0013;
         public static final int right_container=0x7f0a0037;
         public static final int right_icon=0x7f0a0038;
         public static final int search_badge=0x7f0a003d;
         public static final int search_bar=0x7f0a003c;
-        public static final int search_btn=0x7f0a0057;
+        public static final int search_btn=0x7f0a0058;
         public static final int search_button=0x7f0a003e;
         public static final int search_close_btn=0x7f0a0043;
         public static final int search_edit_frame=0x7f0a003f;
@@ -1183,32 +1189,32 @@ containing a value of this type.
         public static final int search_plate=0x7f0a0041;
         public static final int search_src_text=0x7f0a0042;
         public static final int search_voice_btn=0x7f0a0046;
-        public static final int section_label=0x7f0a005a;
+        public static final int section_label=0x7f0a005b;
         public static final int selected_view=0x7f0a001c;
         public static final int shortcut=0x7f0a0031;
         public static final int showCustom=0x7f0a0007;
         public static final int showHome=0x7f0a0004;
         public static final int showTitle=0x7f0a0006;
-        public static final int slidingmenumain=0x7f0a0071;
-        public static final int spinner=0x7f0a0054;
-        public static final int spinner_method_list=0x7f0a005c;
+        public static final int slidingmenumain=0x7f0a0072;
+        public static final int spinner=0x7f0a0055;
+        public static final int spinner_method_list=0x7f0a005d;
         public static final int split_action_bar=0x7f0a0021;
         public static final int submit_area=0x7f0a0044;
         public static final int tabMode=0x7f0a0002;
-        public static final int testTextView=0x7f0a007a;
-        public static final int text=0x7f0a0067;
-        public static final int textView=0x7f0a0072;
-        public static final int text_view=0x7f0a004e;
+        public static final int testTextView=0x7f0a007b;
+        public static final int text=0x7f0a0068;
+        public static final int textView=0x7f0a0073;
+        public static final int text_view=0x7f0a004f;
         public static final int textview=0x7f0a0048;
         public static final int title=0x7f0a002e;
         public static final int title_container=0x7f0a0035;
-        public static final int toast_layout_root=0x7f0a0050;
+        public static final int toast_layout_root=0x7f0a0051;
         public static final int top_action_bar=0x7f0a0023;
-        public static final int txtChord=0x7f0a006e;
-        public static final int txtLyrics=0x7f0a006d;
-        public static final int txtSongName=0x7f0a006c;
+        public static final int txtChord=0x7f0a006f;
+        public static final int txtLyrics=0x7f0a006e;
+        public static final int txtSongName=0x7f0a006d;
         public static final int up=0x7f0a0024;
-        public static final int up_button=0x7f0a004d;
+        public static final int up_button=0x7f0a004e;
         public static final int useLogo=0x7f0a0003;
         public static final int withText=0x7f0a0010;
     }
@@ -1248,52 +1254,53 @@ containing a value of this type.
         public static final int activity_database_test=0x7f030019;
         public static final int activity_find_by_chord=0x7f03001a;
         public static final int activity_main=0x7f03001b;
-        public static final int activity_my_playlist=0x7f03001c;
-        public static final int activity_myfavorite=0x7f03001d;
-        public static final int activity_playlist_detail=0x7f03001e;
-        public static final int activity_playlist_manager=0x7f03001f;
-        public static final int activity_search_view=0x7f030020;
-        public static final int activity_test=0x7f030021;
-        public static final int activity_testing=0x7f030022;
-        public static final int activity_welcome=0x7f030023;
-        public static final int chord_surface_view_control=0x7f030024;
-        public static final int chordsurfaceview_toast=0x7f030025;
-        public static final int custom_spinner_dropdown_item=0x7f030026;
-        public static final int custom_spinner_item=0x7f030027;
-        public static final int fragment_chord_view=0x7f030028;
-        public static final int fragment_database_test=0x7f030029;
-        public static final int fragment_find_by_chord=0x7f03002a;
-        public static final int fragment_main=0x7f03002b;
-        public static final int fragment_my_playlist=0x7f03002c;
-        public static final int fragment_myfavorite=0x7f03002d;
-        public static final int fragment_navigation_drawer=0x7f03002e;
-        public static final int fragment_playlist_detail=0x7f03002f;
-        public static final int fragment_playlist_manager=0x7f030030;
-        public static final int fragment_search_view=0x7f030031;
-        public static final int fragment_song_list=0x7f030032;
-        public static final int fragment_test=0x7f030033;
-        public static final int fragment_testing=0x7f030034;
-        public static final int fragment_welcome=0x7f030035;
-        public static final int list_item_chord_detail=0x7f030036;
-        public static final int list_item_chord_search=0x7f030037;
-        public static final int list_item_chord_view=0x7f030038;
-        public static final int list_item_chord_view_image=0x7f030039;
-        public static final int list_item_chord_view_texture_view=0x7f03003a;
-        public static final int list_item_header_1=0x7f03003b;
-        public static final int list_item_header_2=0x7f03003c;
-        public static final int list_item_navigation_drawer_1=0x7f03003d;
-        public static final int list_item_navigation_drawer_2=0x7f03003e;
-        public static final int list_item_playlist=0x7f03003f;
-        public static final int list_item_section_indexer=0x7f030040;
-        public static final int list_item_song_detail=0x7f030041;
-        public static final int list_item_song_favorite=0x7f030042;
-        public static final int list_item_test_view=0x7f030043;
-        public static final int slidingmenumain=0x7f030044;
-        public static final int support_simple_spinner_dropdown_item=0x7f030045;
-        public static final int testsurfaceview_activity_main=0x7f030046;
-        public static final int testsurfaceview_fragment_main=0x7f030047;
-        public static final int testtextview_activity_main=0x7f030048;
-        public static final int testtextview_fragment_main=0x7f030049;
+        public static final int activity_main_test=0x7f03001c;
+        public static final int activity_my_playlist=0x7f03001d;
+        public static final int activity_myfavorite=0x7f03001e;
+        public static final int activity_playlist_detail=0x7f03001f;
+        public static final int activity_playlist_manager=0x7f030020;
+        public static final int activity_search_view=0x7f030021;
+        public static final int activity_test=0x7f030022;
+        public static final int activity_testing=0x7f030023;
+        public static final int activity_welcome=0x7f030024;
+        public static final int chord_surface_view_control=0x7f030025;
+        public static final int chordsurfaceview_toast=0x7f030026;
+        public static final int custom_spinner_dropdown_item=0x7f030027;
+        public static final int custom_spinner_item=0x7f030028;
+        public static final int fragment_chord_view=0x7f030029;
+        public static final int fragment_database_test=0x7f03002a;
+        public static final int fragment_find_by_chord=0x7f03002b;
+        public static final int fragment_main=0x7f03002c;
+        public static final int fragment_my_playlist=0x7f03002d;
+        public static final int fragment_myfavorite=0x7f03002e;
+        public static final int fragment_navigation_drawer=0x7f03002f;
+        public static final int fragment_playlist_detail=0x7f030030;
+        public static final int fragment_playlist_manager=0x7f030031;
+        public static final int fragment_search_view=0x7f030032;
+        public static final int fragment_song_list=0x7f030033;
+        public static final int fragment_test=0x7f030034;
+        public static final int fragment_testing=0x7f030035;
+        public static final int fragment_welcome=0x7f030036;
+        public static final int list_item_chord_detail=0x7f030037;
+        public static final int list_item_chord_search=0x7f030038;
+        public static final int list_item_chord_view=0x7f030039;
+        public static final int list_item_chord_view_image=0x7f03003a;
+        public static final int list_item_chord_view_texture_view=0x7f03003b;
+        public static final int list_item_header_1=0x7f03003c;
+        public static final int list_item_header_2=0x7f03003d;
+        public static final int list_item_navigation_drawer_1=0x7f03003e;
+        public static final int list_item_navigation_drawer_2=0x7f03003f;
+        public static final int list_item_playlist=0x7f030040;
+        public static final int list_item_section_indexer=0x7f030041;
+        public static final int list_item_song_detail=0x7f030042;
+        public static final int list_item_song_favorite=0x7f030043;
+        public static final int list_item_test_view=0x7f030044;
+        public static final int slidingmenumain=0x7f030045;
+        public static final int support_simple_spinner_dropdown_item=0x7f030046;
+        public static final int testsurfaceview_activity_main=0x7f030047;
+        public static final int testsurfaceview_fragment_main=0x7f030048;
+        public static final int testtextview_activity_main=0x7f030049;
+        public static final int testtextview_fragment_main=0x7f03004a;
     }
     public static final class menu {
         public static final int chord_view=0x7f0f0000;
@@ -1569,27 +1576,27 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ActionBar_background com.hqt.hac.view.debug:background}</code></td><td> Specifies a background drawable for the action bar.</td></tr>
-           <tr><td><code>{@link #ActionBar_backgroundSplit com.hqt.hac.view.debug:backgroundSplit}</code></td><td> Specifies a background drawable for the bottom component of a split action bar.</td></tr>
-           <tr><td><code>{@link #ActionBar_backgroundStacked com.hqt.hac.view.debug:backgroundStacked}</code></td><td> Specifies a background drawable for a second stacked row of the action bar.</td></tr>
-           <tr><td><code>{@link #ActionBar_customNavigationLayout com.hqt.hac.view.debug:customNavigationLayout}</code></td><td> Specifies a layout for custom navigation.</td></tr>
-           <tr><td><code>{@link #ActionBar_displayOptions com.hqt.hac.view.debug:displayOptions}</code></td><td> Options affecting how the action bar is displayed.</td></tr>
-           <tr><td><code>{@link #ActionBar_divider com.hqt.hac.view.debug:divider}</code></td><td> Specifies the drawable used for item dividers.</td></tr>
-           <tr><td><code>{@link #ActionBar_height com.hqt.hac.view.debug:height}</code></td><td> Specifies a fixed height.</td></tr>
-           <tr><td><code>{@link #ActionBar_homeLayout com.hqt.hac.view.debug:homeLayout}</code></td><td> Specifies a layout to use for the "home" section of the action bar.</td></tr>
-           <tr><td><code>{@link #ActionBar_icon com.hqt.hac.view.debug:icon}</code></td><td> Specifies the drawable used for the application icon.</td></tr>
-           <tr><td><code>{@link #ActionBar_indeterminateProgressStyle com.hqt.hac.view.debug:indeterminateProgressStyle}</code></td><td> Specifies a style resource to use for an indeterminate progress spinner.</td></tr>
-           <tr><td><code>{@link #ActionBar_itemPadding com.hqt.hac.view.debug:itemPadding}</code></td><td>
+           <tr><td><code>{@link #ActionBar_background com.hqt.hac.view:background}</code></td><td> Specifies a background drawable for the action bar.</td></tr>
+           <tr><td><code>{@link #ActionBar_backgroundSplit com.hqt.hac.view:backgroundSplit}</code></td><td> Specifies a background drawable for the bottom component of a split action bar.</td></tr>
+           <tr><td><code>{@link #ActionBar_backgroundStacked com.hqt.hac.view:backgroundStacked}</code></td><td> Specifies a background drawable for a second stacked row of the action bar.</td></tr>
+           <tr><td><code>{@link #ActionBar_customNavigationLayout com.hqt.hac.view:customNavigationLayout}</code></td><td> Specifies a layout for custom navigation.</td></tr>
+           <tr><td><code>{@link #ActionBar_displayOptions com.hqt.hac.view:displayOptions}</code></td><td> Options affecting how the action bar is displayed.</td></tr>
+           <tr><td><code>{@link #ActionBar_divider com.hqt.hac.view:divider}</code></td><td> Specifies the drawable used for item dividers.</td></tr>
+           <tr><td><code>{@link #ActionBar_height com.hqt.hac.view:height}</code></td><td> Specifies a fixed height.</td></tr>
+           <tr><td><code>{@link #ActionBar_homeLayout com.hqt.hac.view:homeLayout}</code></td><td> Specifies a layout to use for the "home" section of the action bar.</td></tr>
+           <tr><td><code>{@link #ActionBar_icon com.hqt.hac.view:icon}</code></td><td> Specifies the drawable used for the application icon.</td></tr>
+           <tr><td><code>{@link #ActionBar_indeterminateProgressStyle com.hqt.hac.view:indeterminateProgressStyle}</code></td><td> Specifies a style resource to use for an indeterminate progress spinner.</td></tr>
+           <tr><td><code>{@link #ActionBar_itemPadding com.hqt.hac.view:itemPadding}</code></td><td>
              Specifies padding that should be applied to the left and right sides of
              system-provided items in the bar.</td></tr>
-           <tr><td><code>{@link #ActionBar_logo com.hqt.hac.view.debug:logo}</code></td><td> Specifies the drawable used for the application logo.</td></tr>
-           <tr><td><code>{@link #ActionBar_navigationMode com.hqt.hac.view.debug:navigationMode}</code></td><td> The type of navigation to use.</td></tr>
-           <tr><td><code>{@link #ActionBar_progressBarPadding com.hqt.hac.view.debug:progressBarPadding}</code></td><td> Specifies the horizontal padding on either end for an embedded progress bar.</td></tr>
-           <tr><td><code>{@link #ActionBar_progressBarStyle com.hqt.hac.view.debug:progressBarStyle}</code></td><td> Specifies a style resource to use for an embedded progress bar.</td></tr>
-           <tr><td><code>{@link #ActionBar_subtitle com.hqt.hac.view.debug:subtitle}</code></td><td> Specifies subtitle text used for navigationMode="normal" </td></tr>
-           <tr><td><code>{@link #ActionBar_subtitleTextStyle com.hqt.hac.view.debug:subtitleTextStyle}</code></td><td> Specifies a style to use for subtitle text.</td></tr>
-           <tr><td><code>{@link #ActionBar_title com.hqt.hac.view.debug:title}</code></td><td> Specifies title text used for navigationMode="normal" </td></tr>
-           <tr><td><code>{@link #ActionBar_titleTextStyle com.hqt.hac.view.debug:titleTextStyle}</code></td><td> Specifies a style to use for title text.</td></tr>
+           <tr><td><code>{@link #ActionBar_logo com.hqt.hac.view:logo}</code></td><td> Specifies the drawable used for the application logo.</td></tr>
+           <tr><td><code>{@link #ActionBar_navigationMode com.hqt.hac.view:navigationMode}</code></td><td> The type of navigation to use.</td></tr>
+           <tr><td><code>{@link #ActionBar_progressBarPadding com.hqt.hac.view:progressBarPadding}</code></td><td> Specifies the horizontal padding on either end for an embedded progress bar.</td></tr>
+           <tr><td><code>{@link #ActionBar_progressBarStyle com.hqt.hac.view:progressBarStyle}</code></td><td> Specifies a style resource to use for an embedded progress bar.</td></tr>
+           <tr><td><code>{@link #ActionBar_subtitle com.hqt.hac.view:subtitle}</code></td><td> Specifies subtitle text used for navigationMode="normal" </td></tr>
+           <tr><td><code>{@link #ActionBar_subtitleTextStyle com.hqt.hac.view:subtitleTextStyle}</code></td><td> Specifies a style to use for subtitle text.</td></tr>
+           <tr><td><code>{@link #ActionBar_title com.hqt.hac.view:title}</code></td><td> Specifies title text used for navigationMode="normal" </td></tr>
+           <tr><td><code>{@link #ActionBar_titleTextStyle com.hqt.hac.view:titleTextStyle}</code></td><td> Specifies a style to use for title text.</td></tr>
            </table>
            @see #ActionBar_background
            @see #ActionBar_backgroundSplit
@@ -1627,7 +1634,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:background
+          @attr name com.hqt.hac.view:background
         */
         public static final int ActionBar_background = 10;
         /**
@@ -1641,7 +1648,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:backgroundSplit
+          @attr name com.hqt.hac.view:backgroundSplit
         */
         public static final int ActionBar_backgroundSplit = 12;
         /**
@@ -1655,7 +1662,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:backgroundStacked
+          @attr name com.hqt.hac.view:backgroundStacked
         */
         public static final int ActionBar_backgroundStacked = 11;
         /**
@@ -1667,7 +1674,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:customNavigationLayout
+          @attr name com.hqt.hac.view:customNavigationLayout
         */
         public static final int ActionBar_customNavigationLayout = 13;
         /**
@@ -1690,7 +1697,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>disableHome</code></td><td>0x20</td><td></td></tr>
 </table>
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:displayOptions
+          @attr name com.hqt.hac.view:displayOptions
         */
         public static final int ActionBar_displayOptions = 3;
         /**
@@ -1702,7 +1709,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:divider
+          @attr name com.hqt.hac.view:divider
         */
         public static final int ActionBar_divider = 9;
         /**
@@ -1720,7 +1727,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:height
+          @attr name com.hqt.hac.view:height
         */
         public static final int ActionBar_height = 0;
         /**
@@ -1732,7 +1739,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:homeLayout
+          @attr name com.hqt.hac.view:homeLayout
         */
         public static final int ActionBar_homeLayout = 14;
         /**
@@ -1744,7 +1751,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:icon
+          @attr name com.hqt.hac.view:icon
         */
         public static final int ActionBar_icon = 7;
         /**
@@ -1756,7 +1763,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:indeterminateProgressStyle
+          @attr name com.hqt.hac.view:indeterminateProgressStyle
         */
         public static final int ActionBar_indeterminateProgressStyle = 16;
         /**
@@ -1777,7 +1784,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:itemPadding
+          @attr name com.hqt.hac.view:itemPadding
         */
         public static final int ActionBar_itemPadding = 18;
         /**
@@ -1789,7 +1796,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:logo
+          @attr name com.hqt.hac.view:logo
         */
         public static final int ActionBar_logo = 8;
         /**
@@ -1809,7 +1816,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>tabMode</code></td><td>2</td><td> The action bar will use a series of horizontal tabs for navigation. </td></tr>
 </table>
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:navigationMode
+          @attr name com.hqt.hac.view:navigationMode
         */
         public static final int ActionBar_navigationMode = 2;
         /**
@@ -1827,7 +1834,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:progressBarPadding
+          @attr name com.hqt.hac.view:progressBarPadding
         */
         public static final int ActionBar_progressBarPadding = 17;
         /**
@@ -1839,7 +1846,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:progressBarStyle
+          @attr name com.hqt.hac.view:progressBarStyle
         */
         public static final int ActionBar_progressBarStyle = 15;
         /**
@@ -1855,7 +1862,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:subtitle
+          @attr name com.hqt.hac.view:subtitle
         */
         public static final int ActionBar_subtitle = 4;
         /**
@@ -1867,7 +1874,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:subtitleTextStyle
+          @attr name com.hqt.hac.view:subtitleTextStyle
         */
         public static final int ActionBar_subtitleTextStyle = 6;
         /**
@@ -1883,7 +1890,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:title
+          @attr name com.hqt.hac.view:title
         */
         public static final int ActionBar_title = 1;
         /**
@@ -1895,7 +1902,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:titleTextStyle
+          @attr name com.hqt.hac.view:titleTextStyle
         */
         public static final int ActionBar_titleTextStyle = 5;
         /** Attributes that can be used with a ActionBarLayout.
@@ -1923,9 +1930,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ActionBarWindow_windowActionBar com.hqt.hac.view.debug:windowActionBar}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBarWindow_windowActionBarOverlay com.hqt.hac.view.debug:windowActionBarOverlay}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBarWindow_windowSplitActionBar com.hqt.hac.view.debug:windowSplitActionBar}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBarWindow_windowActionBar com.hqt.hac.view:windowActionBar}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBarWindow_windowActionBarOverlay com.hqt.hac.view:windowActionBarOverlay}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBarWindow_windowSplitActionBar com.hqt.hac.view:windowSplitActionBar}</code></td><td></td></tr>
            </table>
            @see #ActionBarWindow_windowActionBar
            @see #ActionBarWindow_windowActionBarOverlay
@@ -1935,7 +1942,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010050, 0x7f010051, 0x7f010052
         };
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#windowActionBar}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#windowActionBar}
           attribute's value can be found in the {@link #ActionBarWindow} array.
 
 
@@ -1945,11 +1952,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.hqt.hac.view.debug:windowActionBar
+          @attr name com.hqt.hac.view:windowActionBar
         */
         public static final int ActionBarWindow_windowActionBar = 0;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#windowActionBarOverlay}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#windowActionBarOverlay}
           attribute's value can be found in the {@link #ActionBarWindow} array.
 
 
@@ -1959,11 +1966,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.hqt.hac.view.debug:windowActionBarOverlay
+          @attr name com.hqt.hac.view:windowActionBarOverlay
         */
         public static final int ActionBarWindow_windowActionBarOverlay = 1;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#windowSplitActionBar}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#windowSplitActionBar}
           attribute's value can be found in the {@link #ActionBarWindow} array.
 
 
@@ -1973,7 +1980,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.hqt.hac.view.debug:windowSplitActionBar
+          @attr name com.hqt.hac.view:windowSplitActionBar
         */
         public static final int ActionBarWindow_windowSplitActionBar = 2;
         /** Attributes that can be used with a ActionMenuItemView.
@@ -2006,11 +2013,11 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ActionMode_background com.hqt.hac.view.debug:background}</code></td><td> Specifies a background for the action mode bar.</td></tr>
-           <tr><td><code>{@link #ActionMode_backgroundSplit com.hqt.hac.view.debug:backgroundSplit}</code></td><td> Specifies a background for the split action mode bar.</td></tr>
-           <tr><td><code>{@link #ActionMode_height com.hqt.hac.view.debug:height}</code></td><td> Specifies a fixed height for the action mode bar.</td></tr>
-           <tr><td><code>{@link #ActionMode_subtitleTextStyle com.hqt.hac.view.debug:subtitleTextStyle}</code></td><td> Specifies a style to use for subtitle text.</td></tr>
-           <tr><td><code>{@link #ActionMode_titleTextStyle com.hqt.hac.view.debug:titleTextStyle}</code></td><td> Specifies a style to use for title text.</td></tr>
+           <tr><td><code>{@link #ActionMode_background com.hqt.hac.view:background}</code></td><td> Specifies a background for the action mode bar.</td></tr>
+           <tr><td><code>{@link #ActionMode_backgroundSplit com.hqt.hac.view:backgroundSplit}</code></td><td> Specifies a background for the split action mode bar.</td></tr>
+           <tr><td><code>{@link #ActionMode_height com.hqt.hac.view:height}</code></td><td> Specifies a fixed height for the action mode bar.</td></tr>
+           <tr><td><code>{@link #ActionMode_subtitleTextStyle com.hqt.hac.view:subtitleTextStyle}</code></td><td> Specifies a style to use for subtitle text.</td></tr>
+           <tr><td><code>{@link #ActionMode_titleTextStyle com.hqt.hac.view:titleTextStyle}</code></td><td> Specifies a style to use for title text.</td></tr>
            </table>
            @see #ActionMode_background
            @see #ActionMode_backgroundSplit
@@ -2031,7 +2038,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:background
+          @attr name com.hqt.hac.view:background
         */
         public static final int ActionMode_background = 3;
         /**
@@ -2045,7 +2052,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:backgroundSplit
+          @attr name com.hqt.hac.view:backgroundSplit
         */
         public static final int ActionMode_backgroundSplit = 4;
         /**
@@ -2063,7 +2070,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:height
+          @attr name com.hqt.hac.view:height
         */
         public static final int ActionMode_height = 0;
         /**
@@ -2075,7 +2082,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:subtitleTextStyle
+          @attr name com.hqt.hac.view:subtitleTextStyle
         */
         public static final int ActionMode_subtitleTextStyle = 2;
         /**
@@ -2087,7 +2094,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:titleTextStyle
+          @attr name com.hqt.hac.view:titleTextStyle
         */
         public static final int ActionMode_titleTextStyle = 1;
         /** Attributes that can be used with a ActivityChooserView.
@@ -2096,9 +2103,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ActivityChooserView_expandActivityOverflowButtonDrawable com.hqt.hac.view.debug:expandActivityOverflowButtonDrawable}</code></td><td>
+           <tr><td><code>{@link #ActivityChooserView_expandActivityOverflowButtonDrawable com.hqt.hac.view:expandActivityOverflowButtonDrawable}</code></td><td>
              The drawable to show in the button for expanding the activities overflow popup.</td></tr>
-           <tr><td><code>{@link #ActivityChooserView_initialActivityCount com.hqt.hac.view.debug:initialActivityCount}</code></td><td> The maximal number of items initially shown in the activity list.</td></tr>
+           <tr><td><code>{@link #ActivityChooserView_initialActivityCount com.hqt.hac.view:initialActivityCount}</code></td><td> The maximal number of items initially shown in the activity list.</td></tr>
            </table>
            @see #ActivityChooserView_expandActivityOverflowButtonDrawable
            @see #ActivityChooserView_initialActivityCount
@@ -2121,7 +2128,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:expandActivityOverflowButtonDrawable
+          @attr name com.hqt.hac.view:expandActivityOverflowButtonDrawable
         */
         public static final int ActivityChooserView_expandActivityOverflowButtonDrawable = 1;
         /**
@@ -2137,7 +2144,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:initialActivityCount
+          @attr name com.hqt.hac.view:initialActivityCount
         */
         public static final int ActivityChooserView_initialActivityCount = 0;
         /** Attributes that can be used with a BaseTheme.
@@ -2146,10 +2153,10 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #BaseTheme_activatableItemBackground com.hqt.hac.view.debug:activatableItemBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #BaseTheme_emptyText com.hqt.hac.view.debug:emptyText}</code></td><td></td></tr>
-           <tr><td><code>{@link #BaseTheme_textHeaderMaxLines com.hqt.hac.view.debug:textHeaderMaxLines}</code></td><td></td></tr>
-           <tr><td><code>{@link #BaseTheme_trackAbstractMaxLines com.hqt.hac.view.debug:trackAbstractMaxLines}</code></td><td></td></tr>
+           <tr><td><code>{@link #BaseTheme_activatableItemBackground com.hqt.hac.view:activatableItemBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #BaseTheme_emptyText com.hqt.hac.view:emptyText}</code></td><td></td></tr>
+           <tr><td><code>{@link #BaseTheme_textHeaderMaxLines com.hqt.hac.view:textHeaderMaxLines}</code></td><td></td></tr>
+           <tr><td><code>{@link #BaseTheme_trackAbstractMaxLines com.hqt.hac.view:trackAbstractMaxLines}</code></td><td></td></tr>
            </table>
            @see #BaseTheme_activatableItemBackground
            @see #BaseTheme_emptyText
@@ -2160,27 +2167,27 @@ containing a value of this type.
             0x7f010055, 0x7f010056, 0x7f010057, 0x7f010058
         };
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#activatableItemBackground}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#activatableItemBackground}
           attribute's value can be found in the {@link #BaseTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.hqt.hac.view.debug:activatableItemBackground
+          @attr name com.hqt.hac.view:activatableItemBackground
         */
         public static final int BaseTheme_activatableItemBackground = 2;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#emptyText}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#emptyText}
           attribute's value can be found in the {@link #BaseTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.hqt.hac.view.debug:emptyText
+          @attr name com.hqt.hac.view:emptyText
         */
         public static final int BaseTheme_emptyText = 3;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#textHeaderMaxLines}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#textHeaderMaxLines}
           attribute's value can be found in the {@link #BaseTheme} array.
 
 
@@ -2190,11 +2197,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.hqt.hac.view.debug:textHeaderMaxLines
+          @attr name com.hqt.hac.view:textHeaderMaxLines
         */
         public static final int BaseTheme_textHeaderMaxLines = 0;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#trackAbstractMaxLines}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#trackAbstractMaxLines}
           attribute's value can be found in the {@link #BaseTheme} array.
 
 
@@ -2204,7 +2211,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.hqt.hac.view.debug:trackAbstractMaxLines
+          @attr name com.hqt.hac.view:trackAbstractMaxLines
         */
         public static final int BaseTheme_trackAbstractMaxLines = 1;
         /** Attributes that can be used with a BezelImageView.
@@ -2213,9 +2220,9 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #BezelImageView_borderDrawable com.hqt.hac.view.debug:borderDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #BezelImageView_desaturateOnPress com.hqt.hac.view.debug:desaturateOnPress}</code></td><td></td></tr>
-           <tr><td><code>{@link #BezelImageView_maskDrawable com.hqt.hac.view.debug:maskDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #BezelImageView_borderDrawable com.hqt.hac.view:borderDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #BezelImageView_desaturateOnPress com.hqt.hac.view:desaturateOnPress}</code></td><td></td></tr>
+           <tr><td><code>{@link #BezelImageView_maskDrawable com.hqt.hac.view:maskDrawable}</code></td><td></td></tr>
            </table>
            @see #BezelImageView_borderDrawable
            @see #BezelImageView_desaturateOnPress
@@ -2225,17 +2232,17 @@ containing a value of this type.
             0x7f010059, 0x7f01005a, 0x7f01005b
         };
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#borderDrawable}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#borderDrawable}
           attribute's value can be found in the {@link #BezelImageView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.hqt.hac.view.debug:borderDrawable
+          @attr name com.hqt.hac.view:borderDrawable
         */
         public static final int BezelImageView_borderDrawable = 1;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#desaturateOnPress}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#desaturateOnPress}
           attribute's value can be found in the {@link #BezelImageView} array.
 
 
@@ -2245,17 +2252,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.hqt.hac.view.debug:desaturateOnPress
+          @attr name com.hqt.hac.view:desaturateOnPress
         */
         public static final int BezelImageView_desaturateOnPress = 2;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#maskDrawable}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#maskDrawable}
           attribute's value can be found in the {@link #BezelImageView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.hqt.hac.view.debug:maskDrawable
+          @attr name com.hqt.hac.view:maskDrawable
         */
         public static final int BezelImageView_maskDrawable = 0;
         /** Attributes that can be used with a CompatTextView.
@@ -2264,7 +2271,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #CompatTextView_textAllCaps com.hqt.hac.view.debug:textAllCaps}</code></td><td> Present the text in ALL CAPS.</td></tr>
+           <tr><td><code>{@link #CompatTextView_textAllCaps com.hqt.hac.view:textAllCaps}</code></td><td> Present the text in ALL CAPS.</td></tr>
            </table>
            @see #CompatTextView_textAllCaps
          */
@@ -2281,7 +2288,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:textAllCaps
+          @attr name com.hqt.hac.view:textAllCaps
         */
         public static final int CompatTextView_textAllCaps = 0;
         /** Attributes that can be used with a LinearLayoutICS.
@@ -2290,9 +2297,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #LinearLayoutICS_divider com.hqt.hac.view.debug:divider}</code></td><td> Drawable to use as a vertical divider between buttons.</td></tr>
-           <tr><td><code>{@link #LinearLayoutICS_dividerPadding com.hqt.hac.view.debug:dividerPadding}</code></td><td> Size of padding on either end of a divider.</td></tr>
-           <tr><td><code>{@link #LinearLayoutICS_showDividers com.hqt.hac.view.debug:showDividers}</code></td><td> Setting for which dividers to show.</td></tr>
+           <tr><td><code>{@link #LinearLayoutICS_divider com.hqt.hac.view:divider}</code></td><td> Drawable to use as a vertical divider between buttons.</td></tr>
+           <tr><td><code>{@link #LinearLayoutICS_dividerPadding com.hqt.hac.view:dividerPadding}</code></td><td> Size of padding on either end of a divider.</td></tr>
+           <tr><td><code>{@link #LinearLayoutICS_showDividers com.hqt.hac.view:showDividers}</code></td><td> Setting for which dividers to show.</td></tr>
            </table>
            @see #LinearLayoutICS_divider
            @see #LinearLayoutICS_dividerPadding
@@ -2310,7 +2317,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:divider
+          @attr name com.hqt.hac.view:divider
         */
         public static final int LinearLayoutICS_divider = 0;
         /**
@@ -2328,7 +2335,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:dividerPadding
+          @attr name com.hqt.hac.view:dividerPadding
         */
         public static final int LinearLayoutICS_dividerPadding = 2;
         /**
@@ -2349,7 +2356,7 @@ containing a value of this type.
 <tr><td><code>end</code></td><td>4</td><td></td></tr>
 </table>
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:showDividers
+          @attr name com.hqt.hac.view:showDividers
         */
         public static final int LinearLayoutICS_showDividers = 1;
         /** Attributes that can be used with a MenuGroup.
@@ -2444,12 +2451,12 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #MenuItem_actionLayout com.hqt.hac.view.debug:actionLayout}</code></td><td>
+           <tr><td><code>{@link #MenuItem_actionLayout com.hqt.hac.view:actionLayout}</code></td><td>
              An optional layout to be used as an action view.</td></tr>
-           <tr><td><code>{@link #MenuItem_actionProviderClass com.hqt.hac.view.debug:actionProviderClass}</code></td><td>
+           <tr><td><code>{@link #MenuItem_actionProviderClass com.hqt.hac.view:actionProviderClass}</code></td><td>
              The name of an optional ActionProvider class to instantiate an action view
              and perform operations such as default action for that menu item.</td></tr>
-           <tr><td><code>{@link #MenuItem_actionViewClass com.hqt.hac.view.debug:actionViewClass}</code></td><td>
+           <tr><td><code>{@link #MenuItem_actionViewClass com.hqt.hac.view:actionViewClass}</code></td><td>
              The name of an optional View class to instantiate and use as an
              action view.</td></tr>
            <tr><td><code>{@link #MenuItem_android_alphabeticShortcut android:alphabeticShortcut}</code></td><td>
@@ -2474,7 +2481,7 @@ containing a value of this type.
            <tr><td><code>{@link #MenuItem_android_titleCondensed android:titleCondensed}</code></td><td>
              The condensed title associated with the item.</td></tr>
            <tr><td><code>{@link #MenuItem_android_visible android:visible}</code></td><td> Whether the item is shown/visible.</td></tr>
-           <tr><td><code>{@link #MenuItem_showAsAction com.hqt.hac.view.debug:showAsAction}</code></td><td> How this item should display in the Action Bar, if present.</td></tr>
+           <tr><td><code>{@link #MenuItem_showAsAction com.hqt.hac.view:showAsAction}</code></td><td> How this item should display in the Action Bar, if present.</td></tr>
            </table>
            @see #MenuItem_actionLayout
            @see #MenuItem_actionProviderClass
@@ -2514,7 +2521,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:actionLayout
+          @attr name com.hqt.hac.view:actionLayout
         */
         public static final int MenuItem_actionLayout = 14;
         /**
@@ -2535,7 +2542,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:actionProviderClass
+          @attr name com.hqt.hac.view:actionProviderClass
         */
         public static final int MenuItem_actionProviderClass = 16;
         /**
@@ -2555,7 +2562,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:actionViewClass
+          @attr name com.hqt.hac.view:actionViewClass
         */
         public static final int MenuItem_actionViewClass = 15;
         /**
@@ -2737,7 +2744,7 @@ containing a value of this type.
             </td></tr>
 </table>
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:showAsAction
+          @attr name com.hqt.hac.view:showAsAction
         */
         public static final int MenuItem_showAsAction = 13;
         /** Attributes that can be used with a MenuView.
@@ -2848,9 +2855,9 @@ containing a value of this type.
            <tr><td><code>{@link #SearchView_android_imeOptions android:imeOptions}</code></td><td> The IME options to set on the query text field.</td></tr>
            <tr><td><code>{@link #SearchView_android_inputType android:inputType}</code></td><td> The input type to set on the query text field.</td></tr>
            <tr><td><code>{@link #SearchView_android_maxWidth android:maxWidth}</code></td><td> An optional maximum width of the SearchView.</td></tr>
-           <tr><td><code>{@link #SearchView_iconifiedByDefault com.hqt.hac.view.debug:iconifiedByDefault}</code></td><td>
+           <tr><td><code>{@link #SearchView_iconifiedByDefault com.hqt.hac.view:iconifiedByDefault}</code></td><td>
              The default state of the SearchView.</td></tr>
-           <tr><td><code>{@link #SearchView_queryHint com.hqt.hac.view.debug:queryHint}</code></td><td> An optional query hint string to be displayed in the empty query field.</td></tr>
+           <tr><td><code>{@link #SearchView_queryHint com.hqt.hac.view:queryHint}</code></td><td> An optional query hint string to be displayed in the empty query field.</td></tr>
            </table>
            @see #SearchView_android_imeOptions
            @see #SearchView_android_inputType
@@ -2905,7 +2912,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:iconifiedByDefault
+          @attr name com.hqt.hac.view:iconifiedByDefault
         */
         public static final int SearchView_iconifiedByDefault = 3;
         /**
@@ -2921,7 +2928,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:queryHint
+          @attr name com.hqt.hac.view:queryHint
         */
         public static final int SearchView_queryHint = 4;
         /** Attributes that can be used with a SlidingMenu.
@@ -2930,20 +2937,20 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #SlidingMenu_behindOffset com.hqt.hac.view.debug:behindOffset}</code></td><td></td></tr>
-           <tr><td><code>{@link #SlidingMenu_behindScrollScale com.hqt.hac.view.debug:behindScrollScale}</code></td><td></td></tr>
-           <tr><td><code>{@link #SlidingMenu_behindWidth com.hqt.hac.view.debug:behindWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #SlidingMenu_fadeDegree com.hqt.hac.view.debug:fadeDegree}</code></td><td></td></tr>
-           <tr><td><code>{@link #SlidingMenu_fadeEnabled com.hqt.hac.view.debug:fadeEnabled}</code></td><td></td></tr>
-           <tr><td><code>{@link #SlidingMenu_mode com.hqt.hac.view.debug:mode}</code></td><td></td></tr>
-           <tr><td><code>{@link #SlidingMenu_selectorDrawable com.hqt.hac.view.debug:selectorDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #SlidingMenu_selectorEnabled com.hqt.hac.view.debug:selectorEnabled}</code></td><td></td></tr>
-           <tr><td><code>{@link #SlidingMenu_shadowDrawable com.hqt.hac.view.debug:shadowDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #SlidingMenu_shadowWidth com.hqt.hac.view.debug:shadowWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #SlidingMenu_touchModeAbove com.hqt.hac.view.debug:touchModeAbove}</code></td><td></td></tr>
-           <tr><td><code>{@link #SlidingMenu_touchModeBehind com.hqt.hac.view.debug:touchModeBehind}</code></td><td></td></tr>
-           <tr><td><code>{@link #SlidingMenu_viewAbove com.hqt.hac.view.debug:viewAbove}</code></td><td></td></tr>
-           <tr><td><code>{@link #SlidingMenu_viewBehind com.hqt.hac.view.debug:viewBehind}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_behindOffset com.hqt.hac.view:behindOffset}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_behindScrollScale com.hqt.hac.view:behindScrollScale}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_behindWidth com.hqt.hac.view:behindWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_fadeDegree com.hqt.hac.view:fadeDegree}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_fadeEnabled com.hqt.hac.view:fadeEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_mode com.hqt.hac.view:mode}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_selectorDrawable com.hqt.hac.view:selectorDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_selectorEnabled com.hqt.hac.view:selectorEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_shadowDrawable com.hqt.hac.view:shadowDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_shadowWidth com.hqt.hac.view:shadowWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_touchModeAbove com.hqt.hac.view:touchModeAbove}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_touchModeBehind com.hqt.hac.view:touchModeBehind}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_viewAbove com.hqt.hac.view:viewAbove}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_viewBehind com.hqt.hac.view:viewBehind}</code></td><td></td></tr>
            </table>
            @see #SlidingMenu_behindOffset
            @see #SlidingMenu_behindScrollScale
@@ -2967,7 +2974,7 @@ containing a value of this type.
             0x7f010071, 0x7f010072
         };
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#behindOffset}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#behindOffset}
           attribute's value can be found in the {@link #SlidingMenu} array.
 
 
@@ -2979,11 +2986,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.hqt.hac.view.debug:behindOffset
+          @attr name com.hqt.hac.view:behindOffset
         */
         public static final int SlidingMenu_behindOffset = 3;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#behindScrollScale}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#behindScrollScale}
           attribute's value can be found in the {@link #SlidingMenu} array.
 
 
@@ -2993,11 +3000,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.hqt.hac.view.debug:behindScrollScale
+          @attr name com.hqt.hac.view:behindScrollScale
         */
         public static final int SlidingMenu_behindScrollScale = 5;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#behindWidth}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#behindWidth}
           attribute's value can be found in the {@link #SlidingMenu} array.
 
 
@@ -3009,11 +3016,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.hqt.hac.view.debug:behindWidth
+          @attr name com.hqt.hac.view:behindWidth
         */
         public static final int SlidingMenu_behindWidth = 4;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#fadeDegree}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#fadeDegree}
           attribute's value can be found in the {@link #SlidingMenu} array.
 
 
@@ -3023,11 +3030,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.hqt.hac.view.debug:fadeDegree
+          @attr name com.hqt.hac.view:fadeDegree
         */
         public static final int SlidingMenu_fadeDegree = 11;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#fadeEnabled}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#fadeEnabled}
           attribute's value can be found in the {@link #SlidingMenu} array.
 
 
@@ -3037,11 +3044,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.hqt.hac.view.debug:fadeEnabled
+          @attr name com.hqt.hac.view:fadeEnabled
         */
         public static final int SlidingMenu_fadeEnabled = 10;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#mode}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#mode}
           attribute's value can be found in the {@link #SlidingMenu} array.
 
 
@@ -3054,21 +3061,21 @@ containing a value of this type.
 <tr><td><code>left</code></td><td>0</td><td></td></tr>
 <tr><td><code>right</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name com.hqt.hac.view.debug:mode
+          @attr name com.hqt.hac.view:mode
         */
         public static final int SlidingMenu_mode = 0;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#selectorDrawable}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#selectorDrawable}
           attribute's value can be found in the {@link #SlidingMenu} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.hqt.hac.view.debug:selectorDrawable
+          @attr name com.hqt.hac.view:selectorDrawable
         */
         public static final int SlidingMenu_selectorDrawable = 13;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#selectorEnabled}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#selectorEnabled}
           attribute's value can be found in the {@link #SlidingMenu} array.
 
 
@@ -3078,21 +3085,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.hqt.hac.view.debug:selectorEnabled
+          @attr name com.hqt.hac.view:selectorEnabled
         */
         public static final int SlidingMenu_selectorEnabled = 12;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#shadowDrawable}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#shadowDrawable}
           attribute's value can be found in the {@link #SlidingMenu} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.hqt.hac.view.debug:shadowDrawable
+          @attr name com.hqt.hac.view:shadowDrawable
         */
         public static final int SlidingMenu_shadowDrawable = 8;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#shadowWidth}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#shadowWidth}
           attribute's value can be found in the {@link #SlidingMenu} array.
 
 
@@ -3104,11 +3111,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.hqt.hac.view.debug:shadowWidth
+          @attr name com.hqt.hac.view:shadowWidth
         */
         public static final int SlidingMenu_shadowWidth = 9;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#touchModeAbove}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#touchModeAbove}
           attribute's value can be found in the {@link #SlidingMenu} array.
 
 
@@ -3121,11 +3128,11 @@ containing a value of this type.
 <tr><td><code>margin</code></td><td>0</td><td></td></tr>
 <tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name com.hqt.hac.view.debug:touchModeAbove
+          @attr name com.hqt.hac.view:touchModeAbove
         */
         public static final int SlidingMenu_touchModeAbove = 6;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#touchModeBehind}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#touchModeBehind}
           attribute's value can be found in the {@link #SlidingMenu} array.
 
 
@@ -3138,27 +3145,27 @@ containing a value of this type.
 <tr><td><code>margin</code></td><td>0</td><td></td></tr>
 <tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name com.hqt.hac.view.debug:touchModeBehind
+          @attr name com.hqt.hac.view:touchModeBehind
         */
         public static final int SlidingMenu_touchModeBehind = 7;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#viewAbove}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#viewAbove}
           attribute's value can be found in the {@link #SlidingMenu} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.hqt.hac.view.debug:viewAbove
+          @attr name com.hqt.hac.view:viewAbove
         */
         public static final int SlidingMenu_viewAbove = 1;
         /**
-          <p>This symbol is the offset where the {@link com.hqt.hac.view.debug.R.attr#viewBehind}
+          <p>This symbol is the offset where the {@link com.hqt.hac.view.R.attr#viewBehind}
           attribute's value can be found in the {@link #SlidingMenu} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.hqt.hac.view.debug:viewBehind
+          @attr name com.hqt.hac.view:viewBehind
         */
         public static final int SlidingMenu_viewBehind = 2;
         /** Attributes that can be used with a Spinner.
@@ -3177,14 +3184,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><td><code>{@link #Spinner_android_dropDownWidth android:dropDownWidth}</code></td><td> Width of the dropdown in spinnerMode="dropdown".</td></tr>
            <tr><td><code>{@link #Spinner_android_gravity android:gravity}</code></td><td> Gravity setting for positioning the currently selected item.</td></tr>
            <tr><td><code>{@link #Spinner_android_popupBackground android:popupBackground}</code></td><td> Background drawable to use for the dropdown in spinnerMode="dropdown".</td></tr>
-           <tr><td><code>{@link #Spinner_disableChildrenWhenDisabled com.hqt.hac.view.debug:disableChildrenWhenDisabled}</code></td><td>
+           <tr><td><code>{@link #Spinner_disableChildrenWhenDisabled com.hqt.hac.view:disableChildrenWhenDisabled}</code></td><td>
              Whether this spinner should mark child views as enabled/disabled when
              the spinner itself is enabled/disabled.</td></tr>
-           <tr><td><code>{@link #Spinner_popupPromptView com.hqt.hac.view.debug:popupPromptView}</code></td><td>
+           <tr><td><code>{@link #Spinner_popupPromptView com.hqt.hac.view:popupPromptView}</code></td><td>
              Reference to a layout to use for displaying a prompt in the dropdown for
              spinnerMode="dropdown".</td></tr>
-           <tr><td><code>{@link #Spinner_prompt com.hqt.hac.view.debug:prompt}</code></td><td> The prompt to display when the spinner's dialog is shown.</td></tr>
-           <tr><td><code>{@link #Spinner_spinnerMode com.hqt.hac.view.debug:spinnerMode}</code></td><td> Display mode for spinner options.</td></tr>
+           <tr><td><code>{@link #Spinner_prompt com.hqt.hac.view:prompt}</code></td><td> The prompt to display when the spinner's dialog is shown.</td></tr>
+           <tr><td><code>{@link #Spinner_spinnerMode com.hqt.hac.view:spinnerMode}</code></td><td> Display mode for spinner options.</td></tr>
            </table>
            @see #Spinner_android_dropDownHorizontalOffset
            @see #Spinner_android_dropDownSelector
@@ -3278,7 +3285,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:disableChildrenWhenDisabled
+          @attr name com.hqt.hac.view:disableChildrenWhenDisabled
         */
         public static final int Spinner_disableChildrenWhenDisabled = 9;
         /**
@@ -3294,7 +3301,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:popupPromptView
+          @attr name com.hqt.hac.view:popupPromptView
         */
         public static final int Spinner_popupPromptView = 8;
         /**
@@ -3306,7 +3313,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:prompt
+          @attr name com.hqt.hac.view:prompt
         */
         public static final int Spinner_prompt = 6;
         /**
@@ -3328,7 +3335,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             </td></tr>
 </table>
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:spinnerMode
+          @attr name com.hqt.hac.view:spinnerMode
         */
         public static final int Spinner_spinnerMode = 7;
         /** Attributes that can be used with a Theme.
@@ -3337,12 +3344,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #Theme_actionDropDownStyle com.hqt.hac.view.debug:actionDropDownStyle}</code></td><td> Default ActionBar dropdown style.</td></tr>
-           <tr><td><code>{@link #Theme_dropdownListPreferredItemHeight com.hqt.hac.view.debug:dropdownListPreferredItemHeight}</code></td><td> The preferred item height for dropdown lists.</td></tr>
-           <tr><td><code>{@link #Theme_listChoiceBackgroundIndicator com.hqt.hac.view.debug:listChoiceBackgroundIndicator}</code></td><td> Drawable used as a background for selected list items.</td></tr>
-           <tr><td><code>{@link #Theme_panelMenuListTheme com.hqt.hac.view.debug:panelMenuListTheme}</code></td><td> Default Panel Menu style.</td></tr>
-           <tr><td><code>{@link #Theme_panelMenuListWidth com.hqt.hac.view.debug:panelMenuListWidth}</code></td><td> Default Panel Menu width.</td></tr>
-           <tr><td><code>{@link #Theme_popupMenuStyle com.hqt.hac.view.debug:popupMenuStyle}</code></td><td> Default PopupMenu style.</td></tr>
+           <tr><td><code>{@link #Theme_actionDropDownStyle com.hqt.hac.view:actionDropDownStyle}</code></td><td> Default ActionBar dropdown style.</td></tr>
+           <tr><td><code>{@link #Theme_dropdownListPreferredItemHeight com.hqt.hac.view:dropdownListPreferredItemHeight}</code></td><td> The preferred item height for dropdown lists.</td></tr>
+           <tr><td><code>{@link #Theme_listChoiceBackgroundIndicator com.hqt.hac.view:listChoiceBackgroundIndicator}</code></td><td> Drawable used as a background for selected list items.</td></tr>
+           <tr><td><code>{@link #Theme_panelMenuListTheme com.hqt.hac.view:panelMenuListTheme}</code></td><td> Default Panel Menu style.</td></tr>
+           <tr><td><code>{@link #Theme_panelMenuListWidth com.hqt.hac.view:panelMenuListWidth}</code></td><td> Default Panel Menu width.</td></tr>
+           <tr><td><code>{@link #Theme_popupMenuStyle com.hqt.hac.view:popupMenuStyle}</code></td><td> Default PopupMenu style.</td></tr>
            </table>
            @see #Theme_actionDropDownStyle
            @see #Theme_dropdownListPreferredItemHeight
@@ -3364,7 +3371,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:actionDropDownStyle
+          @attr name com.hqt.hac.view:actionDropDownStyle
         */
         public static final int Theme_actionDropDownStyle = 0;
         /**
@@ -3382,7 +3389,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:dropdownListPreferredItemHeight
+          @attr name com.hqt.hac.view:dropdownListPreferredItemHeight
         */
         public static final int Theme_dropdownListPreferredItemHeight = 1;
         /**
@@ -3394,7 +3401,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:listChoiceBackgroundIndicator
+          @attr name com.hqt.hac.view:listChoiceBackgroundIndicator
         */
         public static final int Theme_listChoiceBackgroundIndicator = 5;
         /**
@@ -3406,7 +3413,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:panelMenuListTheme
+          @attr name com.hqt.hac.view:panelMenuListTheme
         */
         public static final int Theme_panelMenuListTheme = 4;
         /**
@@ -3424,7 +3431,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:panelMenuListWidth
+          @attr name com.hqt.hac.view:panelMenuListWidth
         */
         public static final int Theme_panelMenuListWidth = 3;
         /**
@@ -3436,7 +3443,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:popupMenuStyle
+          @attr name com.hqt.hac.view:popupMenuStyle
         */
         public static final int Theme_popupMenuStyle = 2;
         /** Attributes that can be used with a View.
@@ -3447,8 +3454,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #View_android_focusable android:focusable}</code></td><td>
              Boolean that controls whether a view can take focus.</td></tr>
-           <tr><td><code>{@link #View_paddingEnd com.hqt.hac.view.debug:paddingEnd}</code></td><td> Sets the padding, in pixels, of the end edge; see {@link android.R.attr#padding}.</td></tr>
-           <tr><td><code>{@link #View_paddingStart com.hqt.hac.view.debug:paddingStart}</code></td><td> Sets the padding, in pixels, of the start edge; see {@link android.R.attr#padding}.</td></tr>
+           <tr><td><code>{@link #View_paddingEnd com.hqt.hac.view:paddingEnd}</code></td><td> Sets the padding, in pixels, of the end edge; see {@link android.R.attr#padding}.</td></tr>
+           <tr><td><code>{@link #View_paddingStart com.hqt.hac.view:paddingStart}</code></td><td> Sets the padding, in pixels, of the start edge; see {@link android.R.attr#padding}.</td></tr>
            </table>
            @see #View_android_focusable
            @see #View_paddingEnd
@@ -3488,7 +3495,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:paddingEnd
+          @attr name com.hqt.hac.view:paddingEnd
         */
         public static final int View_paddingEnd = 2;
         /**
@@ -3506,7 +3513,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name com.hqt.hac.view.debug:paddingStart
+          @attr name com.hqt.hac.view:paddingStart
         */
         public static final int View_paddingStart = 1;
     };
