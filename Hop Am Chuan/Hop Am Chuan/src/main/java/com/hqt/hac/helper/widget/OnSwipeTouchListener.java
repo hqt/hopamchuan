@@ -1,4 +1,4 @@
-package com.hqt.hac.utils.listener;
+package com.hqt.hac.helper.widget;
 
 import android.view.GestureDetector;
 import android.view.MotionEvent;

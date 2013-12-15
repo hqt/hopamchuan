@@ -8,7 +8,7 @@ import android.text.style.ClickableSpan;
 import android.widget.TextView;
 
 import com.hac_library.helper.ChordHelper;
-import com.hqt.hac.utils.extender.ChordClickableSpan;
+import com.hqt.hac.helper.widget.ChordClickableSpan;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

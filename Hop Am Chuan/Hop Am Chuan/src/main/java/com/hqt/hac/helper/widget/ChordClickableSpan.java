@@ -1,4 +1,4 @@
-package com.hqt.hac.utils.extender;
+package com.hqt.hac.helper.widget;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hac_library.helper.DrawHelper;
-import com.hqt.hac.utils.listener.OnSwipeTouchListener;
 import com.hqt.hac.view.R;
 
 /**
