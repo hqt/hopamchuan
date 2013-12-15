@@ -323,6 +323,9 @@ public class MainActivity extends ActionBarActivity
         Bundle arguments = new Bundle();
         switch (pageType) {
             case HOME:
+                fragment = new WelcomeFragment();
+                break;
+            case SONGS:
                 fragment = new SongListFragment();
                 break;
             case MYPLAYLIST:

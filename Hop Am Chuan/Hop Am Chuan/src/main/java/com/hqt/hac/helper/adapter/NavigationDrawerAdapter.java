@@ -85,6 +85,7 @@ public class NavigationDrawerAdapter {
 
         public enum TYPE {
             HOME,
+            SONGS,
             MYPLAYLIST,
             FAVORITE,
             FIND_BY_CHORD,
@@ -149,21 +150,26 @@ public class NavigationDrawerAdapter {
                     type = TYPE.HOME;
                     break;
                 case 1:
+                    // Bài hát
+                    holder.imageView.setImageResource(R.drawable.songs_icon);
+                    type = TYPE.SONGS;
+                    break;
+                case 2:
                     // Playlist cua toi
                     holder.imageView.setImageResource(R.drawable.playlist_icon);
                     type = TYPE.MYPLAYLIST;
                     break;
-                case 2:
+                case 3:
                     // Yeu Thich
                     holder.imageView.setImageResource(R.drawable.favorite_icon);
                     type = TYPE.FAVORITE;
                     break;
-                case 3:
+                case 4:
                     // Tim Theo Hop Am
                     holder.imageView.setImageResource(R.drawable.search_icon);
                     type = TYPE.FIND_BY_CHORD;
                     break;
-                case 4:
+                case 5:
                     // Tra cuu hop am
                     holder.imageView.setImageResource(R.drawable.chord_icon);
                     type = TYPE.SEARCH_CHORD;

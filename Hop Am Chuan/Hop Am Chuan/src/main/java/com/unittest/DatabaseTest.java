@@ -53,17 +53,19 @@ public class DatabaseTest {
 
 
         // create songs
-        Song s1 = new Song(Config.DEFAULT_SONG_ID, 1, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());
-        Song s2 = new Song(Config.DEFAULT_SONG_ID, 2, "Lang toi", "www.microsoft.com", "lang toi xanh bong tre", "lang toi", new Date());
-        Song s3 = new Song(Config.DEFAULT_SONG_ID, 3, "Quoc Ca", "www.echip.com.vn", "doan quan Viet Nam di", "doan quan Viet Nam", new Date());
-        Song s4 = new Song(Config.DEFAULT_SONG_ID, 4, "Dem Dong", "www.echip.com.vn", "nguoi co lu dem dong khong nha", "dem dong khong nha", new Date());
-        Song s5 = new Song(Config.DEFAULT_SONG_ID, 5, "Suoi mo", "www.echip.com.vn", "dong nuoc troi lung lo ngoai nang", "dong nuoc troi", new Date());
+        Song s1 = new Song(Config.DEFAULT_SONG_ID, 1, "Cháu Lên Ba", "www.google.com", "Cháu lên ba cháu vô mẫu giáo", "chau len ba", new Date());
+        Song s2 = new Song(Config.DEFAULT_SONG_ID, 2, "Làng tôi", "www.microsoft.com", "Làng tôi xanh bóng tre, từng tiếng", "lang toi", new Date());
+        Song s3 = new Song(Config.DEFAULT_SONG_ID, 3, "Tiến Quân Ca", "www.echip.com.vn", "Đoàn quân Việt Nam đi, chung lòng", "doan quan Viet Nam", new Date());
+        Song s4 = new Song(Config.DEFAULT_SONG_ID, 4, "Đêm Đông", "www.echip.com.vn", "Đêm đông lao xanh, đêm đông nhớ ai", "dem dong khong nha", new Date());
+        Song s5 = new Song(Config.DEFAULT_SONG_ID, 5, "Tên bài hát thật là dài quá đi thôi", "www.echip.com.vn", "Dòng nước trôi lơ lững ngoài nắng", "dong nuoc troi", new Date());
+        Song s6 = new Song(Config.DEFAULT_SONG_ID, 6, "Suối không mơ", "www.echip.com.vn", "Dòng nước trôi lơ lững ngoài nắng", "dong nuoc troi", new Date());
 
         SongDataAccessLayer.insertSong(context, s1);
         SongDataAccessLayer.insertSong(context, s2);
         SongDataAccessLayer.insertSong(context, s3);
         SongDataAccessLayer.insertSong(context, s4);
         SongDataAccessLayer.insertSong(context, s5);
+        SongDataAccessLayer.insertSong(context, s6);
 
         // create author
         // thao : author of two songs
@@ -102,8 +104,8 @@ public class DatabaseTest {
         FavoriteDataAccessLayer.addSongToFavorite(context, 2);*/
 
         // Create sample playlists
-        Playlist playlist1 = new Playlist(1, "Nhac Trinh Cong Son", "Trinh Cong Son", new Date(), 1);
-        Playlist playlist2 = new Playlist(2, "Nhac Pham Duy", "Pham Duy", new Date(), 0);
+        Playlist playlist1 = new Playlist(1, "Nhac Trinh Cong Son Nhac Trinh Cong Son Nhac Trinh Cong Son", "Trinh Cong Son", new Date(), 1);
+        Playlist playlist2 = new Playlist(2, "Nhac Pham Duy", "Pham Duy Nhac Trinh Cong Son Nhac Trinh Cong Son", new Date(), 0);
         Playlist playlist3 = new Playlist(3, "Nhac Tien Chien", "Tien Chien", new Date(), 1);
         PlaylistDataAccessLayer.insertPlaylist(context, playlist1);
         PlaylistDataAccessLayer.insertPlaylist(context, playlist2);
@@ -119,6 +121,9 @@ public class DatabaseTest {
         FavoriteDataAccessLayer.addSongToFavorite(context, 1);
         FavoriteDataAccessLayer.addSongToFavorite(context, 2);
         FavoriteDataAccessLayer.addSongToFavorite(context, 3);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 4);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 5);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 6);
 
     }
 

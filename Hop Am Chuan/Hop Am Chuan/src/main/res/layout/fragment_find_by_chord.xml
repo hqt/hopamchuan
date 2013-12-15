@@ -56,18 +56,22 @@
 
         <EditText
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="0dp"
+            android:layout_height="match_parent"
             android:id="@+id/insert_chord_edit_text"
+            android:singleLine="true"
             android:layout_weight="2"
+            android:background="@android:drawable/edit_text"
             android:imeOptions="actionDone"
             android:text=""/>
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/add_chord_button"
             android:layout_weight="1"
-            android:text="Add"/>
+            android:text="@string/chord_search_add_chord_text"/>
 
     </LinearLayout>
 
@@ -75,9 +79,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/search_btn"
-        android:text="Search"
+        android:text="@string/chord_search_search_button_text"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="32dp" />
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>
