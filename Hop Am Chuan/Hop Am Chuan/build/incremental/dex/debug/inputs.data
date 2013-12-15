@@ -49,7 +49,7 @@
 1387083884396 2586 6df0ac4a01004ddc35e4f6582e4fef904dcec589 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\classes\debug\com\hqt\hac\model\dao\SongChordDataAccessLayer.class
 1387083883771 1405 594e8ef12efab72a3de2e6122842db76eb09bdd9 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\classes\debug\com\hqt\hac\helper\adapter\NavigationDrawerAdapter$PlaylistItemAdapter$1.class
 1387083884018 3050 a3734811e7e374bf98c37db12accab3bee1f527a E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\classes\debug\com\hqt\hac\helper\widget\ListViewWidget$1$2.class
-1387136256511 1267 3a26a90187c70823f0b3efae9d26b9240dc8f51c E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\classes\debug\com\hqt\hac\view\MainActivity$1.class
+1387138431106 1267 36b8386a86017516467b1104833b486e9eb86837 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\classes\debug\com\hqt\hac\view\MainActivity$1.class
 1368430748000 249351 be47c2ee6e9ab0668874e4c6c4933c0637f473d8 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\libs\google-gson-2.2.4\gson-2.2.4-javadoc.jar
 1387083866070 49235 f9dcd37fff5b08f1adb2c2e667cb0c7507cb1211 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\HopAmChuanHopAmChuanLibsSlidingMenuUnspecified.aar\classes.jar
 1387083883764 1601 7006902bcc95665709bd7e03058d50060e2563b6 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\classes\debug\com\hqt\hac\helper\adapter\NavigationDrawerAdapter$ItemAdapter$TYPE.class
@@ -76,7 +76,7 @@
 1387121693614 1227 1577ccda1e4f61fa7da76a77c7f620d6a74034b4 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\classes\debug\com\hqt\hac\view\SearchViewActivity.class
 1387083885127 24521 ea7ef95b9c89985d910aa305c61cbbf9aa0ca5b2 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\classes\debug\com\unittest\DatabaseTest.class
 1387089598175 6187 e0ae2030c930d9992e80bb8ae6d6f95ad76fcdd5 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\classes\debug\com\hqt\hac\view\R$drawable.class
-1387136256520 10133 10eda4248fae2fce1c8532ba42f1c71cd91d5db0 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\classes\debug\com\hqt\hac\view\MainActivity.class
+1387138431118 10132 8d08e63dfdcd0d649daa42883ab15a2935c30f88 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\classes\debug\com\hqt\hac\view\MainActivity.class
 1387083884508 5561 99ec339a25e9228cc421b94234376019385fea47 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\classes\debug\com\hqt\hac\provider\helper\SelectionBuilder.class
 1387083882934 3089 20b516e8e20e530d4cfef40368ee0b2703db7649 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\classes\debug\com\hqt\hac\helper\LimitedPipeArray.class
 1387083884223 275 680b0ac81e1180f575a18f37009bbec0a09102be E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\classes\debug\com\hqt\hac\helper\widget\alpha\PinnedHeaderListView$1.class

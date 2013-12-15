@@ -215,7 +215,8 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // customize look for SlidingMenu
         slidingMenu.setShadowWidthRes(R.dimen.shadow_width);
         slidingMenu.setShadowDrawable(R.drawable.shadow);
-        slidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        // recommend width for navigation drawer. use same for SlidingViewer
+        slidingMenu.setBehindWidthRes(R.dimen.navigation_drawer_width);
         slidingMenu.setFadeDegree(0.35f);
 
         // set custom action for SlidingMenu

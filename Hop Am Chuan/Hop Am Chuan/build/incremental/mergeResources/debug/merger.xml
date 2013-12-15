@@ -5107,7 +5107,7 @@ false
                 </dimen>
                 <dimen name="text_size_large" >18sp
                 </dimen>
-                <dimen name="slidingmenu_offset" >60dp
+                <dimen name="slidingmenu_offset" >240dp
                 </dimen>
                 <dimen name="list_extra_button_width" >48dp
                 </dimen>
@@ -5159,7 +5159,7 @@ false
                 </dimen>
                 <dimen name="add_to_schedule_button_height" >48dp
                 </dimen>
-                <dimen name="shadow_width" >5dp
+                <dimen name="shadow_width" >15dp
                 </dimen>
                 <dimen name="text_size_small" >12sp
                 </dimen>
