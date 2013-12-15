@@ -1,8 +1,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+    <item android:id="@+id/action_fontsize_up"
+        android:title="Font size up"
         android:orderInCategory="100"
         app:showAsAction="never" />
+    <item android:id="@+id/action_fontsize_down"
+        android:title="Font size down"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item android:id="@+id/action_trans_up"
+        android:title="Transpose up"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item android:id="@+id/action_trans_down"
+        android:title="Transpose down"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item android:id="@+id/action_oneline"
+        android:title="One-line Mode"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item android:id="@+id/action_twoline"
+        android:title="Two-line Mode"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
 </menu>

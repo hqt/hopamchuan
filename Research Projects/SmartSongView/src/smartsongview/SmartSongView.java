@@ -20,7 +20,9 @@ public class SmartSongView {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        PrintSmartSongView(InputData.song2, 20);
+        String result = formatLyricTwoLines(InputData.song1);
+        System.out.println("result:\n" + InputData.song1);
+        System.out.println("result:\n" + result);
     }
 
 //    Process:
@@ -62,5 +64,30 @@ public class SmartSongView {
         System.out.println("============");
         System.out.println("");
         System.out.println(contentC);
+    }
+
+    public static String formatLyricTwoLines(String content) {
+        String lines[] = content.split("\n");
+        String result = "";
+        for (String line : lines) {
+            StringBuilder chordLine = new StringBuilder();
+            String lyricLine = line.replaceAll("\\[.*?\\]", "");
+            Pattern pattern = Pattern.compile("\\[.*?\\]");
+            Matcher matcher = pattern.matcher(line);
+
+            int lastStart = 0;
+            int stackSpace = 0;
+            while (matcher.find()) {
+                for (int i = 0; i < matcher.start() - lastStart - stackSpace * 2; ++i) {
+                    chordLine.append(" ");
+                }
+                chordLine.append(matcher.group());
+                lastStart = matcher.start();
+                stackSpace = matcher.group().length();
+            }
+            result += chordLine + "\n";
+            result += lyricLine + "\n";
+        }
+        return result;
     }
 }

@@ -1,12 +1,10 @@
 package com.hqt.hac.model;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.hqt.hac.utils.StringUtils;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -73,7 +71,7 @@ public class Song implements Serializable {
         this.authors = authors;
         this.chords = chords;
         this.singers = singers;
-        this.titleAscii = StringUtils.removeAccients(title);
+        this.titleAscii = StringUtils.removeAcients(title);
         this.lastView = 0;
         this.isFavorite = 0;
     }
@@ -108,7 +106,7 @@ public class Song implements Serializable {
         this.content = content;
         this.firstLyric = firstLyric;
         this.date = date;
-        this.titleAscii = StringUtils.removeAccients(title);
+        this.titleAscii = StringUtils.removeAcients(title);
         this.lastView = 0;
         this.isFavorite = 0;
     }
@@ -140,7 +138,7 @@ public class Song implements Serializable {
         this.link = link;
         this.firstLyric = firstLyric;
         this.date = date;
-        this.titleAscii = StringUtils.removeAccients(title);
+        this.titleAscii = StringUtils.removeAcients(title);
         this.lastView = 0;
         this.isFavorite = 0;
     }

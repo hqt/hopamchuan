@@ -8,59 +8,21 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".TestTextView$PlaceholderFragment">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="F-Up"
-        android:id="@+id/btnFUp"
-        android:layout_alignParentTop="true"/>
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="F-Do"
-        android:id="@+id/btnFDo"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/btnFUp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="T-Up"
-        android:id="@+id/btnTUp"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/btnFDo" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="T-Do"
-        android:id="@+id/btnTDo"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/btnTUp" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test"
-        android:id="@+id/btnTest"
-        android:onClick="testOutsideSetText"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/btnTDo" />
-
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnTUp">
+        android:layout_height="fill_parent">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="tiếng việt"
+            android:lineSpacingExtra="10dp"
             android:id="@+id/testTextView"
             android:typeface="monospace"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true" />
-        </ScrollView>
+    </ScrollView>
 
 
 </RelativeLayout>

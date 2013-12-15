@@ -68,9 +68,9 @@ public class NavigationDrawerAdapter {
             }
 
             // assign value to view
-            holder.txtName.setText("huynh quang thao");
+            holder.txtName.setText("HUỲNH QUANG THẢO");
             holder.txtMail.setText("huynhquangthao@gmail.com");
-            holder.imgAvatar.setImageResource(R.drawable.ic_menu_search);
+            holder.imgAvatar.setImageResource(R.drawable.default_avatar);
             return row;
         }
 
@@ -145,27 +145,27 @@ public class NavigationDrawerAdapter {
             switch(position) {
                 case 0:
                     // Trang chu
-                    holder.imageView.setImageResource(R.drawable.ic_menu_search);
+                    holder.imageView.setImageResource(R.drawable.home_icon);
                     type = TYPE.HOME;
                     break;
                 case 1:
                     // Playlist cua toi
-                    holder.imageView.setImageResource(R.drawable.ic_menu_search);
+                    holder.imageView.setImageResource(R.drawable.playlist_icon);
                     type = TYPE.MYPLAYLIST;
                     break;
                 case 2:
                     // Yeu Thich
-                    holder.imageView.setImageResource(R.drawable.ic_action_not_important);
+                    holder.imageView.setImageResource(R.drawable.favorite_icon);
                     type = TYPE.FAVORITE;
                     break;
                 case 3:
                     // Tim Theo Hop Am
-                    holder.imageView.setImageResource(R.drawable.ic_menu_search);
+                    holder.imageView.setImageResource(R.drawable.search_icon);
                     type = TYPE.FIND_BY_CHORD;
                     break;
                 case 4:
                     // Tra cuu hop am
-                    holder.imageView.setImageResource(R.drawable.ic_action_settings);
+                    holder.imageView.setImageResource(R.drawable.chord_icon);
                     type = TYPE.SEARCH_CHORD;
                     break;
             }
@@ -228,7 +228,7 @@ public class NavigationDrawerAdapter {
             }
 
             // assign value to view
-            holder.txtHeader.setText("PLAYLIST CUA TOI");
+            holder.txtHeader.setText("PLAYLIST CỦA TÔI");
 
             return row;
         }

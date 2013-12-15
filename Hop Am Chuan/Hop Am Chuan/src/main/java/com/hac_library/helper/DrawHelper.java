@@ -36,7 +36,8 @@ public class DrawHelper {
 		canvas.drawColor(Color.WHITE);
 
 		// Draw border box
-		drawBorderBox(canvas);
+        // Edit 29 Nov 2013: remove border box
+		// drawBorderBox(canvas);
 
 		// Draw the Nut (The first fret wire - the big line)
 		Paint paint = new Paint();
