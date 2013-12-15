@@ -30,7 +30,7 @@ public class WelcomeFragment extends  Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        this.activity = (MainActivity) activity;
+        // this.activity = (MainActivity) activity;
     }
 
     @Override

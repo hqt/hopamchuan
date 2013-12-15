@@ -1,5 +1,6 @@
 package com.hqt.hac.view.test;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.graphics.Color;
@@ -7,17 +8,12 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
@@ -44,6 +40,14 @@ public class MainActivityTest extends SlidingMenuActionBarActivity
 
     /** ListView contains all item categories */
     ListView mDrawerListView;
+
+    /** SlidingMenu : use for slide to see like NavigationDrawer*/
+    SlidingMenu slidingMenu;
+
+    /** MainLayout of this activity */
+    FrameLayout mainLayout;
+
+    View sideBarLayout;
 
     /** Helper component that ties the action bar to the navigation drawer */
     private ActionBarDrawerToggle mDrawerToggle;
@@ -79,39 +83,31 @@ public class MainActivityTest extends SlidingMenuActionBarActivity
         // create sample database
         // DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());
 
+        // set Main View
         setContentView(R.layout.activity_main_test);
 
-        mDrawerListView = (ListView) findViewById(R.id.navigation_drawer);
+        // set navigation drawer View
+        LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        sideBarLayout = inflater.inflate(R.layout.activity_navigation_drawer, null);
+        mDrawerListView = (ListView) sideBarLayout.findViewById(R.id.navigation_drawer);
+        setBehindContentView(sideBarLayout);
 
         /** load all playlist here */
         playlistList = PlaylistDataAccessLayer.getAllPlayLists(getApplicationContext());
 
         mTitle = getTitle();
 
-        // Set up the drawer.
+        // Set up the actionbar
         setUpActionBar();
 
-        // customize the SlidingMenu
-        SlidingMenu slidingMenu = getSlidingMenu();
-        slidingMenu.setShadowWidthRes(R.dimen.shadow_width);
-        slidingMenu.setShadowDrawable(R.drawable.shadow);
-        slidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-        slidingMenu.setFadeDegree(0.35f);
-        slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        // Set up SlidingMenu
+        setUpSlidingMenu();
 
-        // set above view
-        setContentView(R.id.content_frame);
-        // set below view
-        setBehindContentView(R.id.navigation_drawer);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        // set up the list view
+        // set up the ListView
         setUpListView();
-
 
         // Load default fragment
         WelcomeFragment fragment = new WelcomeFragment();
-        // ChordViewFragment fragment = new ChordViewFragment();
         switchFragment(fragment);
 
     }
@@ -221,6 +217,20 @@ public class MainActivityTest extends SlidingMenuActionBarActivity
 
     }
 
+    public void setUpSlidingMenu() {
+        slidingMenu = getSlidingMenu();
+
+        // customize look for SlidingMenu
+        slidingMenu.setShadowWidthRes(R.dimen.shadow_width);
+        slidingMenu.setShadowDrawable(R.drawable.shadow);
+        slidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        slidingMenu.setFadeDegree(0.35f);
+
+        // set custom action for SlidingMenu
+        slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        // slidingMenu.setMode(SlidingMenu.LEFT_RIGHT);
+    }
+
     /**
      * set up adapter for list view
      * include add all views and adapters to currently ListView
@@ -269,7 +279,7 @@ public class MainActivityTest extends SlidingMenuActionBarActivity
     public void switchFragment(Fragment fragment) {
         if (fragment == null) return;
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
     }
 
 

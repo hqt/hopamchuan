@@ -76,7 +76,7 @@
     <orderEntry type="library" exported="" name="Gradle: gson-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="Gradle: gson-2.2.4-sources" level="project" />
     <orderEntry type="library" exported="" name="Gradle: CWAC-SackOfViewsAdapter" level="project" />
-    <orderEntry type="module" module-name="SlidingMenu" />
+    <orderEntry type="module" module-name="SlidingMenu" exported="" />
   </component>
 </module>
 

@@ -1,47 +1,32 @@
 package com.hqt.hac.view;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.widget.ListView;
-
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
+import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
-import com.hqt.hac.provider.HopAmChuanDatabase;
 import com.hqt.hac.utils.UIUtils;
-import com.hqt.hac.view.fragment.ChordViewFragment;
-import com.hqt.hac.view.fragment.FavoriteManagerFragment;
-import com.hqt.hac.view.fragment.FindByChordFragment;
-import com.hqt.hac.view.fragment.PlaylistDetailFragment;
-import com.hqt.hac.view.fragment.PlaylistManagerFragment;
-import com.hqt.hac.view.fragment.SongListFragment;
-import com.hqt.hac.view.fragment.WelcomeFragment;
+import com.hqt.hac.view.fragment.*;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.unittest.DatabaseTest;
 
 import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-
-public class MainActivity extends ActionBarActivity
+public class MainActivity extends SlidingMenuActionBarActivity
         implements NavigationDrawerAdapter.IHeaderDelegate, NavigationDrawerAdapter.IItemDelegate,
         NavigationDrawerAdapter.IPlaylistHeaderDelegate, NavigationDrawerAdapter.IPlaylistItemDelegate {
 
@@ -50,14 +35,16 @@ public class MainActivity extends ActionBarActivity
     /** SearchView widget */
     SearchView mSearchView;
 
-    /** DrawerLayout for MainActivity */
-    DrawerLayout mDrawerLayout;
-
     /** ListView contains all item categories */
     ListView mDrawerListView;
 
-    /** Helper component that ties the action bar to the navigation drawer */
-    private ActionBarDrawerToggle mDrawerToggle;
+    /** SlidingMenu : use for slide to see like NavigationDrawer*/
+    SlidingMenu slidingMenu;
+
+    /** Layout of Navigation Drawer
+     * Use this for Reference
+     */
+    View sideBarLayout;
 
     /** All Adapter for Navigation Drawer */
     MergeAdapter mergeAdapter;
@@ -81,39 +68,41 @@ public class MainActivity extends ActionBarActivity
     ////////////////// LIFE CYCLE ACTIVITY METHOD ///////////////////
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // delete all database
-        HopAmChuanDatabase.deleteDatabase(getApplicationContext());
+        // HopAmChuanDatabase.deleteDatabase(getApplicationContext());
 
         // create sample database
-        DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());
+        // DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());
 
-        setContentView(R.layout.activity_main);
+        // set Main View
+        setContentView(R.layout.activity_main_test);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-        mDrawerListView = (ListView) findViewById(R.id.navigation_drawer);
+        // set navigation drawer View
+        LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        sideBarLayout = inflater.inflate(R.layout.activity_navigation_drawer, null);
+        mDrawerListView = (ListView) sideBarLayout.findViewById(R.id.navigation_drawer);
+        setBehindContentView(sideBarLayout);
 
         /** load all playlist here */
         playlistList = PlaylistDataAccessLayer.getAllPlayLists(getApplicationContext());
 
         mTitle = getTitle();
 
-        // Set up the drawer.
+        // Set up the actionbar
         setUpActionBar();
 
-        // set up the list view
-        setUpListView();
+        // Set up SlidingMenu
+        setUpSlidingMenu();
 
+        // set up the ListView
+        setUpListView();
 
         // Load default fragment
         WelcomeFragment fragment = new WelcomeFragment();
-        // ChordViewFragment fragment = new ChordViewFragment();
         switchFragment(fragment);
-
-        SlidingMenu s;
 
     }
 
@@ -154,13 +143,6 @@ public class MainActivity extends ActionBarActivity
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
-        // if Drawer is open. Call Default Method
-        // Let the Drawer decide what to show in the action bar
-        if (isDrawerOpen()) {
-            return super.onCreateOptionsMenu(menu);
-        }
-
         // Only show items in the action bar relevant to this screen
         // if the drawer is not showing.
         MenuInflater inflater = getMenuInflater();
@@ -190,14 +172,12 @@ public class MainActivity extends ActionBarActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if(mDrawerToggle.onOptionsItemSelected(item))
-        {
-            return true;
-        }
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                toggle();
+                return true;
+            case R.id.action_settings:
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -221,45 +201,27 @@ public class MainActivity extends ActionBarActivity
     public void setUpActionBar() {
 
         // set a custom shadow that overlays the main content when the drawer opens
-        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
 
         ActionBar actionBar = this.getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
 
-        // ActionBarDrawerToggle ties together the the proper interactions
-        // between the navigation drawer and the action bar app icon.
-        mDrawerToggle = new ActionBarDrawerToggle(
-                this,                    /* host Activity */
-                mDrawerLayout,                    /* DrawerLayout object */
-                R.drawable.ic_drawer,             /* nav drawer image to replace 'Up' caret */
-                R.string.navigation_drawer_open,  /* "open drawer" description for accessibility */
-                R.string.navigation_drawer_close  /* "close drawer" description for accessibility */
-        ) {
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-                supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
-            }
+    }
 
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
-            }
-        };
+    public void setUpSlidingMenu() {
+        slidingMenu = getSlidingMenu();
 
+        // customize look for SlidingMenu
+        slidingMenu.setShadowWidthRes(R.dimen.shadow_width);
+        slidingMenu.setShadowDrawable(R.drawable.shadow);
+        slidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        slidingMenu.setFadeDegree(0.35f);
 
-        // Defer code dependent on restoration of previous instance state.
-        mDrawerLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                mDrawerToggle.syncState();
-            }
-        });
-
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        // set custom action for SlidingMenu
+        slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        // just use this option if want include both two sidebar as some apps on Android App
+        // slidingMenu.setMode(SlidingMenu.LEFT_RIGHT);
     }
 
     /**
@@ -300,20 +262,18 @@ public class MainActivity extends ActionBarActivity
 
         /** assign this complex adapter to navigation drawer list*/
         mDrawerListView.setAdapter(mergeAdapter);
+
     }
 
 
     ////////////////////////////////////////////////////////////////////////
     //////////////////// SIMPLE HELPER METHOD //////////////////////////////
 
-    public boolean isDrawerOpen() {
-        return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mDrawerListView);
-    }
-
     public void switchFragment(Fragment fragment) {
         if (fragment == null) return;
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        slidingMenu.showContent();
     }
 
 
@@ -342,15 +302,6 @@ public class MainActivity extends ActionBarActivity
                 fragment = new ChordViewFragment();
                 break;
         }
-
-        // close Navigation Drawer
-        if (mDrawerListView != null) {
-            // mDrawerListView.setItemChecked(position, true);
-        }
-        if (mDrawerLayout != null) {
-            mDrawerLayout.closeDrawer(mDrawerListView);
-        }
-
         // Open Custom Fragment
         if (fragment != null) fragment.setArguments(arguments);
         switchFragment(fragment);
@@ -370,9 +321,6 @@ public class MainActivity extends ActionBarActivity
         // setting for Drawer List View
         if (mDrawerListView != null) {
             //mDrawerListView.setItemChecked(position, true);
-        }
-        if (mDrawerLayout != null) {
-            mDrawerLayout.closeDrawer(mDrawerListView);
         }
         switchFragment(fragment);
     }

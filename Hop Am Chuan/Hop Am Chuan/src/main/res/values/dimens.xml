@@ -52,6 +52,6 @@
     <!-- SlidingMenu -->
     <dimen name="slidingmenu_offset">60dp</dimen>
     <dimen name="list_padding">10dp</dimen>
-    <dimen name="shadow_width">15dp</dimen>
+    <dimen name="shadow_width">5dp</dimen>
 
 </resources>
