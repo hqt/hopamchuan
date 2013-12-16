@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tran Kim Du"
+            android:id="@+id/song_title_txt"/>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            >
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/share_image_view"
+                android:src="@drawable/ic_menu_search"/>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/favorite_image_view"
+                android:src="@drawable/star"/>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/up_image_view"
+                android:src="@drawable/ic_action_collapse"/>
+    </LinearLayout>
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/author_image_view"
+            android:src="@drawable/ic_menu_search"
+            android:layout_below="@+id/song_title_txt"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/song_author_txt"
+            android:text="Nguyen Duc Cuong"
+            android:layout_alignBottom="@+id/author_image_view"
+            android:layout_toRightOf="@+id/author_image_view"/>
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/artist_image_view"
+            android:src="@drawable/ic_menu_search"
+            android:layout_below="@+id/author_image_view"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/song_artist_txt"
+            android:text="Van Mai Huong"
+            android:layout_alignBottom="@+id/artist_image_view"
+            android:layout_toRightOf="@+id/artist_image_view"/>
+
+    <!-- Building Media Player Control Here -->
+    <SeekBar
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/seek_bar"
+            android:layout_below="@+id/artist_image_view"/>
+
+
+
+</RelativeLayout>

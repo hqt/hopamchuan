@@ -84,7 +84,7 @@ public class MainActivityTest extends SlidingMenuActionBarActivity
         // DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());
 
         // set Main View
-        setContentView(R.layout.activity_main_test);
+        setContentView(R.layout.activity_main_frame);
 
         // set navigation drawer View
         LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
