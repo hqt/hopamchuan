@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChordView$PlaceholderFragment">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:background="#fff"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="0dp"
+        android:id="@+id/linear_layout"
+        android:layout_alignParentLeft="true">
+        <Spinner
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"/>
+        </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/linear_layout">
+
+        <com.hqt.hac.helper.widget.FastSearchListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/list_chord_graphic"
+            android:layout_alignParentLeft="true"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
+<!-- From: file:/F:/Github/HopAmChuan/Hop%20Am%20Chuan/Hop%20Am%20Chuan/src/main/res/layout/fragment_chord_view.xml -->

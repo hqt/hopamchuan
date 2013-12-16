@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Adapter;
 import android.widget.ListView;
 import android.widget.SectionIndexer;

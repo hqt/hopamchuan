@@ -8,12 +8,10 @@
     android:paddingBottom="10dp"
     android:paddingRight="50dp"
     >
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/relvChordView">
-
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"

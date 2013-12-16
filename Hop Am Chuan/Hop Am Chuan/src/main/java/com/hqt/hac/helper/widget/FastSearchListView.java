@@ -39,13 +39,14 @@ public class FastSearchListView extends ListView {
     @Override
     public void setFastScrollEnabled(boolean enabled) {
         mIsFastScrollEnabled = enabled;
+        mScroller = new IndexScroller(getContext(), this);
         if (mIsFastScrollEnabled) {
             if (mScroller == null)
                 mScroller = new IndexScroller(getContext(), this);
         } else {
             if (mScroller != null) {
                 mScroller.hide();
-                mScroller = null;
+                // mScroller = null;
             }
         }
     }

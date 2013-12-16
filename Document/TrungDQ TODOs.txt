@@ -25,3 +25,10 @@ Design:
 
 Server side:
 - Implemenet APIs
+
+FullTextSearch DAL (quan trong)
+
+
+
+
+*Note :

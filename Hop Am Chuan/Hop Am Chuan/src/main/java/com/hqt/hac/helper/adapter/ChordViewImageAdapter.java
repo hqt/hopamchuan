@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
-import com.hac_library.components.ChordSurfaceView;
 import com.hac_library.helper.DrawHelper;
 import com.hqt.hac.config.Config;
 import com.hqt.hac.view.R;

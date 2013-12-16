@@ -360,6 +360,7 @@ public class NavigationDrawerAdapter {
 
     public static interface IPlaylistItemDelegate {
         void gotoPlayList(int playlistId);
+
     }
 
 

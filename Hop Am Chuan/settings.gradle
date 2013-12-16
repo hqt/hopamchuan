@@ -1,1 +1,2 @@
 include ':Hop Am Chuan'
+include ':Hop Am Chuan:libs:SlidingMenu'

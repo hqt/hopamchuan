@@ -29,10 +29,14 @@ public class ChordTextureView extends TextureView implements SurfaceTextureListe
 
     public ChordTextureView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        surfaceTexture = this.getSurfaceTexture();
+        setSurfaceTextureListener(this);
     }
 
     public ChordTextureView(Context context) {
         super(context);
+        surfaceTexture = this.getSurfaceTexture();
+        setSurfaceTextureListener(this);
     }
 
     /**
