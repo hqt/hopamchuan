@@ -25,6 +25,10 @@ Design:
 
 Server side:
 - Implemenet APIs
+- Login API
+- Plash screen
+- Contact sidebar (chord view)
+- 
 
 FullTextSearch DAL (quan trong)
 
