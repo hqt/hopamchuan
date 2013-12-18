@@ -2,4 +2,4 @@
 <searchable xmlns:android="http://schemas.android.com/apk/res/android"
     android:label="@string/app_name"
     android:hint="@string/search_hint">
-</searchable><!-- From: file:/F:/Github/HopAmChuan/Hop%20Am%20Chuan/Hop%20Am%20Chuan/src/main/res/xml/searchable.xml -->
+</searchable><!-- From: file:/E:/AndroidApp/Hop%20Am%20Chuan%20Project/Hop%20Am%20Chuan/Hop%20Am%20Chuan/src/main/res/xml/searchable.xml -->

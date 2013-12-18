@@ -101,7 +101,8 @@ public class MainActivity extends SlidingMenuActionBarActivity
         setUpListView();
 
         // Load default fragment
-        WelcomeFragment fragment = new WelcomeFragment();
+        Fragment fragment = new WelcomeFragment();
+        fragment = new SongViewFragment();
         switchFragment(fragment);
 
     }

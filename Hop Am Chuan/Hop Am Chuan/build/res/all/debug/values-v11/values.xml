@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/F:/Github/HopAmChuan/Hop%20Am%20Chuan/Hop%20Am%20Chuan/build/exploded-bundles/ComAndroidSupportAppcompatV71800.aar/res/values-v11/values.xml -->
+    <!-- From: file:/E:/AndroidApp/Hop%20Am%20Chuan%20Project/Hop%20Am%20Chuan/Hop%20Am%20Chuan/build/exploded-bundles/ComAndroidSupportAppcompatV71800.aar/res/values-v11/values.xml -->
     <eat-comment />
 
     <style name="Theme.Base" parent="android:Theme.Holo">

@@ -18,4 +18,4 @@
     <item android:state_pressed="true" android:color="@color/abc_search_url_text_pressed"/>
     <item android:state_selected="true" android:color="@color/abc_search_url_text_selected"/>
     <item android:color="@color/abc_search_url_text_normal"/> <!-- not selected -->
-</selector><!-- From: file:/Volumes/Android/int/jb-mr2-ub-dev/frameworks/support/v7/appcompat/res/color/abc_search_url_text_holo.xml --><!-- From: file:/F:/Github/HopAmChuan/Hop%20Am%20Chuan/Hop%20Am%20Chuan/build/exploded-bundles/ComAndroidSupportAppcompatV71800.aar/res/color/abc_search_url_text_holo.xml -->
+</selector><!-- From: file:/Volumes/Android/int/jb-mr2-ub-dev/frameworks/support/v7/appcompat/res/color/abc_search_url_text_holo.xml --><!-- From: file:/E:/AndroidApp/Hop%20Am%20Chuan%20Project/Hop%20Am%20Chuan/Hop%20Am%20Chuan/build/exploded-bundles/ComAndroidSupportAppcompatV71800.aar/res/color/abc_search_url_text_holo.xml -->

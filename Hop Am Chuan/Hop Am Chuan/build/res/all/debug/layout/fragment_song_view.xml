@@ -66,12 +66,27 @@
             android:layout_toRightOf="@+id/artist_image_view"/>
 
     <!-- Building Media Player Control Here -->
-    <SeekBar
+    <com.hqt.hac.helper.widget.VideoControllerView
+            android:id="@+id/videoSurfaceContainer"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/seek_bar"
-            android:layout_below="@+id/artist_image_view"/>
+            android:layout_below="@+id/artist_image_view"
+            android:layout_alignParentLeft="true">
+
+        <SurfaceView
+                android:id="@+id/videoSurface"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+    </com.hqt.hac.helper.widget.VideoControllerView>
+
+    <!-- List View contains items -->
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/list_song_view"
+            android:text="huynh quang thao"
+            android:layout_below="@+id/videoSurfaceContainer"
+            android:layout_alignParentLeft="true"/>
 
 
-
-</RelativeLayout><!-- From: file:/F:/Github/HopAmChuan/Hop%20Am%20Chuan/Hop%20Am%20Chuan/src/main/res/layout/fragment_song_view.xml -->
+</RelativeLayout><!-- From: file:/E:/AndroidApp/Hop%20Am%20Chuan%20Project/Hop%20Am%20Chuan/Hop%20Am%20Chuan/src/main/res/layout/fragment_song_view.xml -->

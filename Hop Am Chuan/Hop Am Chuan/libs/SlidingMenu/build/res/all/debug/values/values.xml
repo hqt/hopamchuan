@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/F:/Github/HopAmChuan/Hop%20Am%20Chuan/Hop%20Am%20Chuan/libs/SlidingMenu/res/values/attrs.xml -->
+    <!-- From: file:/E:/AndroidApp/Hop%20Am%20Chuan%20Project/Hop%20Am%20Chuan/Hop%20Am%20Chuan/libs/SlidingMenu/res/values/attrs.xml -->
     <eat-comment />
 
     <declare-styleable name="SlidingMenu">
@@ -29,7 +29,7 @@
         <attr name="selectorEnabled" format="boolean" />
         <attr name="selectorDrawable" format="reference" />
     </declare-styleable>
-    <!-- From: file:/F:/Github/HopAmChuan/Hop%20Am%20Chuan/Hop%20Am%20Chuan/libs/SlidingMenu/res/values/ids.xml -->
+    <!-- From: file:/E:/AndroidApp/Hop%20Am%20Chuan%20Project/Hop%20Am%20Chuan/Hop%20Am%20Chuan/libs/SlidingMenu/res/values/ids.xml -->
     <eat-comment />
 
     <item name="selected_view" type="id"/>
