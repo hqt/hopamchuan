@@ -32,7 +32,4 @@ dependencies {
     compile files('libs/CWAC-SackOfViewsAdapter.jar')
 
     compile project(':Hop Am Chuan:libs:SlidingMenu')
-
-
-
 }

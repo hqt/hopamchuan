@@ -66,7 +66,6 @@
         <item>B</item>
         <item>Bm</item>
     </string-array>
-
     <string-array name="simple_chord">
         <item>C</item>
         <item>C#</item>
@@ -93,8 +92,6 @@
         <item>B</item>
         <item>Bm</item>
     </string-array>
-
-
     <string-array name="advanced_chord">
         <item>C7</item>
         <item>Cm7</item>
@@ -102,42 +99,36 @@
         <item>Cm9</item>
         <item>Cdim</item>
         <item>Csus4</item>
-
         <item>D7</item>
         <item>Dm7</item>
         <item>D9</item>
         <item>Dm9</item>
         <item>Ddim</item>
         <item>Dsus4</item>
-
         <item>E7</item>
         <item>Em7</item>
         <item>E9</item>
         <item>Em9</item>
         <item>Edim</item>
         <item>Esus4</item>
-
         <item>F7</item>
         <item>Fm7</item>
         <item>F9</item>
         <item>Fm9</item>
         <item>Fdim</item>
         <item>Fsus4</item>
-
         <item>G7</item>
         <item>Gm7</item>
         <item>G9</item>
         <item>Gm9</item>
         <item>Gdim</item>
         <item>Gsus4</item>
-
         <item>A7</item>
         <item>Am7</item>
         <item>A9</item>
         <item>Am9</item>
         <item>Adim</item>
         <item>Asus4</item>
-
         <item>B7</item>
         <item>Bm7</item>
         <item>B9</item>
@@ -145,11 +136,7 @@
         <item>Bdim</item>
         <item>Bsus4</item>
     </string-array>
-
-
-    <string-array name="all_chord">
-    </string-array>
-
+    <string-array name="all_chord" />
     <string-array name="type_of_chord_view">
         <item>Hợp âm thông dụng</item>
         <item>Hợp âm nâng cao</item>
@@ -177,5 +164,8 @@
     <string name="setting_auto_update_button">Cập nhật bài hát mới</string>
     <string name="setting_auto_sync">Tự động đồng bộ playlist</string>
     <string name="update_now_button">Cập nhật ngay</string>
+    <string name="title_activity_splash_screen">Hợp Âm Chuẩn</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>

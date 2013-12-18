@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merger>
 
-    <dataSet config="HopAmChuanHopAmChuanLibsSlidingMenuUnspecified.aar" >
-        <source path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\HopAmChuanHopAmChuanLibsSlidingMenuUnspecified.aar\assets" />
-    </dataSet>
     <dataSet config="ComAndroidSupportAppcompatV71800.aar" >
         <source path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\assets" />
     </dataSet>

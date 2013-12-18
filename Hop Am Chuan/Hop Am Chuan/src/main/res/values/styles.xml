@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
@@ -9,21 +10,19 @@
 
     <!-- Disable RTL support on older devices -->
     <!-- Prevents crash on certain devices to namespace conflict -->
-    <style name="FrameworkRoot.Base" parent="Theme.AppCompat.Light"></style>
+    <style name="FrameworkRoot.Base" parent="Theme.AppCompat.Light" />
 
     <!-- Root styles that vary by API level -->
     <style name="FrameworkRoot.Theme" parent="FrameworkRoot.Base">
+
         <!-- API 11+ (compatibility) -->
         <item name="buttonBarStyle">@style/Compat.ButtonBar</item>
         <item name="buttonBarButtonStyle">@style/Compat.ButtonBarButton</item>
         <item name="indeterminateProgressStyle">@style/Compat.IndeterminateProgress</item>
         <!-- API 14+ (compatibility) -->
-        <item name="listPreferredItemPaddingLeft">@dimen/compat_list_preferred_item_padding_left
-        </item>
-        <item name="listPreferredItemPaddingRight">@dimen/compat_list_preferred_item_padding_right
-        </item>
-        <item name="listPreferredItemHeightSmall">@dimen/compat_list_preferred_item_height_small
-        </item>
+        <item name="listPreferredItemPaddingLeft">@dimen/compat_list_preferred_item_padding_left</item>
+        <item name="listPreferredItemPaddingRight">@dimen/compat_list_preferred_item_padding_right</item>
+        <item name="listPreferredItemHeightSmall">@dimen/compat_list_preferred_item_height_small</item>
     </style>
 
     <style name="FrameworkRoot.ActionBar" parent="Widget.AppCompat.Light.ActionBar" />
@@ -36,7 +35,6 @@
 
     <style name="FrameworkRoot.ActionBar.TabView" parent="Widget.AppCompat.ActionBar.TabView" />
 
-
     <style name="ActionBar.TitleText" parent="FrameworkRoot.ActionBar.TitleText">
         <item name="android:textColor">#888</item>
         <item name="android:fontFamily">sans-serif-light</item>
@@ -46,15 +44,16 @@
         <item name="android:textColor">#888</item>
     </style>
 
-
     <!-- List views and list items -->
     <style name="ListItemContainerBase">
         <item name="android:background">?activatableItemBackground</item>
         <item name="android:minHeight">?android:listPreferredItemHeight</item>
     </style>
 
-    <!-- SimpleListItems are items whose containers provides the appropriate padding, and
-         usually the container and content are a single view. -->
+    <!--
+         SimpleListItems are items whose containers provides the appropriate padding, and
+         usually the container and content are a single view.
+    -->
     <style name="SimpleListItem" parent="ListItemContainerBase">
         <item name="android:paddingLeft">?listPreferredItemPaddingLeft</item>
         <item name="android:paddingRight">?listPreferredItemPaddingRight</item>
@@ -382,7 +381,6 @@
         <item name="android:visibility">gone</item>
     </style>
 
-
     <style name="StreamInteractionsContainer">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -412,5 +410,30 @@
         <item name="android:focusable">true</item>
     </style>
 
+    <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">@style/ButtonBar</item>
+        <item name="metaButtonBarButtonStyle">@style/ButtonBarButton</item>
+    </style>
+
+    <style name="ButtonBar">
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:background">@android:drawable/bottom_bar</item>
+    </style>
+    <style name="SplashTheme" parent="android:Theme">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="SplashTheme.FullScreen" parent="android:Theme">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    <style name="ButtonBarButton" />
 
 </resources>

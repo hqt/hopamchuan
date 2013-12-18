@@ -4508,6 +4508,11 @@ false
                 qualifiers="hdpi"
                 type="drawable" />
             <file
+                name="splash_screen"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\splash_screen.jpg"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
                 name="star"
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\star.png"
                 qualifiers="hdpi"
@@ -4628,6 +4633,11 @@ false
                 qualifiers="mdpi"
                 type="drawable" />
             <file
+                name="splash_screen"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-mdpi\splash_screen.jpg"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
                 name="star"
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-mdpi\star.png"
                 qualifiers="mdpi"
@@ -4745,6 +4755,11 @@ false
             <file
                 name="song_count_bg"
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\song_count_bg.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="splash_screen"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\splash_screen.jpg"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
@@ -4873,6 +4888,11 @@ false
                 qualifiers="xxhdpi"
                 type="drawable" />
             <file
+                name="splash_screen"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xxhdpi\splash_screen.jpg"
+                qualifiers="xxhdpi"
+                type="drawable" />
+            <file
                 name="star"
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xxhdpi\star.png"
                 qualifiers="xxhdpi"
@@ -4910,6 +4930,11 @@ false
             <file
                 name="activity_search_view"
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\activity_search_view.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_splash_screen"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\activity_splash_screen.xml"
                 qualifiers=""
                 type="layout" />
             <file
@@ -4980,6 +5005,11 @@ false
             <file
                 name="fragment_song_view"
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\fragment_song_view.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="fragment_splash_screen"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\fragment_splash_screen.xml"
                 qualifiers=""
                 type="layout" />
             <file
@@ -5128,6 +5158,11 @@ false
                 qualifiers=""
                 type="menu" />
             <file
+                name="splash_screen"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\menu\splash_screen.xml"
+                qualifiers=""
+                type="menu" />
+            <file
                 name="test"
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\menu\test.xml"
                 qualifiers=""
@@ -5201,6 +5236,14 @@ false
                         name="desaturateOnPress"
                         format="boolean" />
                 </declare-styleable>
+                <declare-styleable name="ButtonBarContainerTheme" >
+                    <attr
+                        name="metaButtonBarStyle"
+                        format="reference" />
+                    <attr
+                        name="metaButtonBarButtonStyle"
+                        format="reference" />
+                </declare-styleable>
                 <declare-styleable name="BaseTheme" >
                     <attr
                         name="textHeaderMaxLines"
@@ -5250,6 +5293,8 @@ false
                 <color name="dark_divider" >#32000000
                 </color>
                 <color name="body_text_3" >#33000000
+                </color>
+                <color name="black_overlay" >#66000000
                 </color>
                 <color name="body_text_2" >#77000000
                 </color>
@@ -5434,6 +5479,8 @@ false
                 </string>
                 <string name="title_activity_test_database" >Database Access Layer Test
                 </string>
+                <string name="title_activity_splash_screen" >Hợp Âm Chuẩn
+                </string>
                 <string name="search_title" >Search Song
                 </string>
                 <string name="update_now_button" >Cập nhật ngay
@@ -5455,9 +5502,9 @@ Tất cả hợp âm
                     </item>
                 </string-array>
 
-                <string name="title_activity_chord_view" >Tra cứu hợp âm
+                <string name="dummy_content" >DUMMY\nCONTENT
                 </string>
-                <string name="hello_world" >Hello world!
+                <string name="title_activity_chord_view" >Tra cứu hợp âm
                 </string>
 
                 <string-array name="advanced_chord" >
@@ -5589,6 +5636,8 @@ Bsus4
                     </item>
                 </string-array>
 
+                <string name="hello_world" >Hello world!
+                </string>
                 <string name="example_text" >Example Text
                 </string>
                 <string name="navigation_drawer_open" >Open navigation drawer
@@ -5598,6 +5647,8 @@ Bsus4
                 <string name="title_activity_test_text_view" >Test TextView
                 </string>
                 <string name="title_activity_playlist_detail_fragment" >MainActivity
+                </string>
+                <string name="dummy_button" >Dummy Button
                 </string>
                 <string name="title_activity_find_by_chord" >Tìm theo hợp âm
                 </string>
@@ -5647,8 +5698,7 @@ C, G, Am, Em, F, Dm
                 <string name="setting_auto_sync" >Tự động đồng bộ playlist
                 </string>
 
-                <string-array name="all_chord" >
-                </string-array>
+                <string-array name="all_chord" />
                 <string-array name="song_list_method" >
                     <item>
 Mới xem gần đây
@@ -6060,6 +6110,20 @@ gone
                     </item>
                 </style>
 
+                <style
+                    name="SplashTheme.FullScreen"
+                    parent="android:Theme" >
+                    <item name="android:windowBackground">
+@null
+                    </item>
+                    <item name="android:windowNoTitle">
+true
+                    </item>
+                    <item name="android:windowFullscreen">
+true
+                    </item>
+                </style>
+
                 <style name="TextHeader3" >
                     <item name="android:textSize">
 @dimen/text_size_medium
@@ -6095,6 +6159,24 @@ wrap_content
                         name="android:textAlignment"
                         ns1:ignore="NewApi">
 viewStart
+                    </item>
+                </style>
+
+                <style name="ButtonBar" >
+                    <item name="android:paddingLeft">
+2dp
+                    </item>
+                    <item name="android:paddingTop">
+5dp
+                    </item>
+                    <item name="android:paddingRight">
+2dp
+                    </item>
+                    <item name="android:paddingBottom">
+0dp
+                    </item>
+                    <item name="android:background">
+@android:drawable/bottom_bar
                     </item>
                 </style>
 
@@ -6174,6 +6256,23 @@ end
                     </item>
                     <item name="android:fontFamily">
 sans-serif-light
+                    </item>
+                </style>
+
+                <style
+                    name="FullscreenTheme"
+                    parent="android:Theme.NoTitleBar" >
+                    <item name="android:windowContentOverlay">
+@null
+                    </item>
+                    <item name="android:windowBackground">
+@null
+                    </item>
+                    <item name="metaButtonBarStyle">
+@style/ButtonBar
+                    </item>
+                    <item name="metaButtonBarButtonStyle">
+@style/ButtonBarButton
                     </item>
                 </style>
 
@@ -6309,6 +6408,8 @@ sans-serif-light
                     </item>
                 </style>
 
+                <style name="ButtonBarButton" />
+
                 <style name="LoginHelpText" >
                     <item name="android:textSize">
 @dimen/text_size_medium
@@ -6443,15 +6544,15 @@ viewStart
                 </style>
 
                 <style
+                    name="FrameworkRoot.ActionBar.TabBar"
+                    parent="Widget.AppCompat.Base.ActionBar.TabBar" />
+
+                <style
                     name="AppTheme"
                     parent="Theme.AppCompat.Light" >
 
                     <!-- Customize your theme here. -->
                 </style>
-
-                <style
-                    name="FrameworkRoot.ActionBar.TabBar"
-                    parent="Widget.AppCompat.Base.ActionBar.TabBar" />
 
                 <style name="StreamContent" >
                     <item name="android:layout_width">
@@ -6489,6 +6590,21 @@ viewStart
                     </item>
                 </style>
 
+                <style
+                    name="SplashTheme"
+                    parent="android:Theme" >
+                    <item name="android:windowBackground">
+@null
+                    </item>
+                    <item name="android:windowNoTitle">
+true
+                    </item>
+                </style>
+
+                <style
+                    name="SessionAbstract"
+                    parent="TextBody" />
+
                 <style name="StreamMediaContainer" >
                     <item name="android:layout_width">
 match_parent
@@ -6503,10 +6619,6 @@ match_parent
 gone
                     </item>
                 </style>
-
-                <style
-                    name="SessionAbstract"
-                    parent="TextBody" />
 
                 <style name="ListItemContainerBase" >
                     <item name="android:background">
@@ -6691,6 +6803,38 @@ bold
                 </style>
             </file>
             <file
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\values-v11\styles.xml"
+                qualifiers="v11" >
+
+                <style
+                    name="FullscreenTheme"
+                    parent="android:Theme.Holo" >
+                    <item name="android:actionBarStyle">
+@style/FullscreenActionBarStyle
+                    </item>
+                    <item name="android:windowActionBarOverlay">
+true
+                    </item>
+                    <item name="android:windowBackground">
+@null
+                    </item>
+                    <item name="metaButtonBarStyle">
+?android:attr/buttonBarStyle
+                    </item>
+                    <item name="metaButtonBarButtonStyle">
+?android:attr/buttonBarButtonStyle
+                    </item>
+                </style>
+
+                <style
+                    name="FullscreenActionBarStyle"
+                    parent="android:Widget.Holo.ActionBar" >
+                    <item name="android:background">
+@color/black_overlay
+                    </item>
+                </style>
+            </file>
+            <file
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\values-w820dp\dimens.xml"
                 qualifiers="w820dp" >
                 <dimen name="activity_horizontal_margin" >64dp
@@ -6706,6 +6850,26 @@ bold
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\xml\syncadapter.xml"
                 qualifiers=""
                 type="xml" />
+            <file
+                name="biglogo"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\biglogo.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="biglogo"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\biglogo.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="biglogo"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xxhdpi\biglogo.png"
+                qualifiers="xxhdpi"
+                type="drawable" />
+            <file
+                name="biglogo"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-mdpi\biglogo.png"
+                qualifiers="mdpi"
+                type="drawable" />
         </source>
         <source path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\rs\debug" />
     </dataSet>

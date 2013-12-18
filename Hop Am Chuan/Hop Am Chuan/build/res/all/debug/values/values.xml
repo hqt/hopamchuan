@@ -48,7 +48,7 @@
         <item>Bdim</item>
         <item>Bsus4</item>
     </string-array>
-    <string-array name="all_chord"></string-array>
+    <string-array name="all_chord" />
     <string-array name="chords_all_chord">
         <item>C</item>
         <item>Cm</item>
@@ -204,6 +204,7 @@
 
     <color name="accent_1">#ff4d90fe</color>
     <color name="all_track_color">#ff222222</color>
+    <color name="black_overlay">#66000000</color>
     <color name="body_text_1">#ff000000</color>
     <color name="body_text_1_inverse">#ffffffff</color>
     <color name="body_text_1_positive">#ff4CAA47</color>
@@ -339,6 +340,10 @@
         <attr name="maskDrawable" format="reference" />
         <attr name="borderDrawable" format="reference" />
         <attr name="desaturateOnPress" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference" />
+        <attr name="metaButtonBarButtonStyle" format="reference" />
     </declare-styleable>
     <!-- From: file:/F:/Github/HopAmChuan/Hop%20Am%20Chuan/Hop%20Am%20Chuan/build/exploded-bundles/ComAndroidSupportAppcompatV71800.aar/res/values/values.xml -->
     <eat-comment />
@@ -776,6 +781,8 @@
     <string name="chord_search_add_chord_text">Thêm</string>
     <string name="chord_search_search_button_text">Tìm kiếm</string>
     <string name="current_version">Lần cập nhật cuối:</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="example_number">10</string>
     <string name="example_text">Example Text</string>
     <string name="hello_world">Hello world!</string>
@@ -794,6 +801,7 @@
     <string name="title_activity_playlist_manager_fragment">Playlist Manager</string>
     <string name="title_activity_search_view">Search</string>
     <string name="title_activity_song_list_fragment">Hợp Âm Chuẩn</string>
+    <string name="title_activity_splash_screen">Hợp Âm Chuẩn</string>
     <string name="title_activity_test">Activity Test</string>
     <string name="title_activity_test_database">Database Access Layer Test</string>
     <string name="title_activity_test_surface_view">MainActivity</string>
@@ -848,6 +856,16 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="ButtonBar">
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:background">@android:drawable/bottom_bar</item>
+    </style>
+
+    <style name="ButtonBarButton" />
     <!-- From: file:/F:/Github/HopAmChuan/Hop%20Am%20Chuan/Hop%20Am%20Chuan/src/main/res/values/compat.xml -->
     <eat-comment />
 
@@ -933,6 +951,13 @@
         <item name="listPreferredItemPaddingLeft">@dimen/compat_list_preferred_item_padding_left</item>
         <item name="listPreferredItemPaddingRight">@dimen/compat_list_preferred_item_padding_right</item>
         <item name="listPreferredItemHeightSmall">@dimen/compat_list_preferred_item_height_small</item>
+    </style>
+
+    <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">@style/ButtonBar</item>
+        <item name="metaButtonBarButtonStyle">@style/ButtonBarButton</item>
     </style>
 
     <style name="ListItemContainerBase">
@@ -1043,6 +1068,17 @@
         <item name="android:layout_marginRight">@dimen/speaker_image_padding</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
+    </style>
+
+    <style name="SplashTheme" parent="android:Theme">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="SplashTheme.FullScreen" parent="android:Theme">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="StreamContainer">

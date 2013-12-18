@@ -74,10 +74,10 @@ public class MainActivity extends SlidingMenuActionBarActivity
         super.onCreate(savedInstanceState);
 
         // delete all database
-        HopAmChuanDatabase.deleteDatabase(getApplicationContext());
+//        HopAmChuanDatabase.deleteDatabase(getApplicationContext());
 
         // create sample database
-        DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());
+//        DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());
 
         // set Main View
         setContentView(R.layout.activity_main_frame);
