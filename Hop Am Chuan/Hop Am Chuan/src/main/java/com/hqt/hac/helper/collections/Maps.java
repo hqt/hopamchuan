@@ -1,4 +1,4 @@
-package com.hqt.hac.helper;
+package com.hqt.hac.helper.collections;
 
 import java.util.HashMap;
 
