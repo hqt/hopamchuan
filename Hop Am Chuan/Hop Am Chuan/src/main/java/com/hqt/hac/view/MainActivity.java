@@ -307,6 +307,9 @@ public class MainActivity extends SlidingMenuActionBarActivity
             case SEARCH_CHORD:
                 fragment = new ChordViewFragment();
                 break;
+            case SETTING:
+                fragment = new SettingFragment();
+                break;
         }
         // Open Custom Fragment
         if (fragment != null) fragment.setArguments(arguments);
