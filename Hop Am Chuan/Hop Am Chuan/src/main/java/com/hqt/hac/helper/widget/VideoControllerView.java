@@ -123,7 +123,7 @@ public class VideoControllerView extends FrameLayout {
     }
     //endregion
 
-    //region Public Method for Other Class Call
+    //region Public Method for Other Class CallƯ
     /////////////////////////////////////////////////////////////////
     //////////////////// PUBLIC METHOD FOR OTHER CLASS //////////////
 

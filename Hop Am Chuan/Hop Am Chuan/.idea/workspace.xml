@@ -2,7 +2,9 @@
 <project version="4">
   <component name="AndroidLayoutPreviewToolWindow">
     <option name="state">
-      <GlobalState />
+      <GlobalState>
+        <option name="visible" value="false" />
+      </GlobalState>
     </option>
   </component>
   <component name="AndroidLayouts">
@@ -15,151 +17,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74f080a4-3c8f-40ef-9386-568e9b063a63" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/VideoControllerView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/test/VideoPlayerActivityTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_video_player.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/media_controller.xml" />
-      <change type="DELETED" beforePath="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\java\com\hqt\hac\view\test\TestActivity.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/popup/LoginPopup.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/header_gradient.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/popup_login.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Document/HAC API/HAC API Reference.docx" afterPath="$PROJECT_DIR$/../../Document/HAC API/HAC API Reference.docx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Document/HAC API/HAC API Reference.pdf" afterPath="$PROJECT_DIR$/../../Document/HAC API/HAC API Reference.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/exploded-bundles/HopAmChuanHopAmChuanLibsSlidingMenuUnspecified.aar/classes.jar" afterPath="$PROJECT_DIR$/build/exploded-bundles/HopAmChuanHopAmChuanLibsSlidingMenuUnspecified.aar/classes.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hop Am Chuan-Hop Am Chuan.iml" afterPath="$PROJECT_DIR$/Hop Am Chuan-Hop Am Chuan.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Hop Am Chuan.iml" afterPath="$PROJECT_DIR$/../Hop Am Chuan.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/build/source/r/debug/android/support/v7/appcompat/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/source/r/debug/com/hqt/hac/view/R.java" afterPath="$PROJECT_DIR$/build/source/r/debug/com/hqt/hac/view/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/source/r/debug/com/jeremyfeinstein/slidingmenu/lib/R.java" afterPath="$PROJECT_DIR$/build/source/r/debug/com/jeremyfeinstein/slidingmenu/lib/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongViewFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongViewFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_bar_decor.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_bar_decor.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout-v11/abc_action_bar_decor.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout-v11/abc_action_bar_decor.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_bar_decor_include.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_bar_decor_include.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_bar_decor_overlay.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_bar_decor_overlay.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_bar_home.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_bar_home.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_bar_tab.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_bar_tab.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_bar_tabbar.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_bar_tabbar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_bar_title_item.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_bar_title_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_bar_view_list_nav_layout.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_bar_view_list_nav_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_menu_item_layout.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_menu_item_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_menu_layout.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_menu_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_mode_bar.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_mode_bar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_mode_close_item.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_action_mode_close_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_activity_chooser_view.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_activity_chooser_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout-v14/abc_activity_chooser_view.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout-v14/abc_activity_chooser_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_activity_chooser_view_include.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_activity_chooser_view_include.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_activity_chooser_view_list_item.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_activity_chooser_view_list_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_expanded_menu_layout.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_expanded_menu_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/anim/abc_fade_in.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/anim/abc_fade_in.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/anim/abc_fade_out.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/anim/abc_fade_out.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_ic_clear.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_ic_clear.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_ic_clear_holo_light.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_ic_clear_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_item_background_holo_dark.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_item_background_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_item_background_holo_light.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_item_background_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_list_menu_item_checkbox.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_list_menu_item_checkbox.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_list_menu_item_icon.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_list_menu_item_icon.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_list_menu_item_layout.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_list_menu_item_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_list_menu_item_radio.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_list_menu_item_radio.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_list_selector_background_transition_holo_dark.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_list_selector_background_transition_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_list_selector_background_transition_holo_light.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_list_selector_background_transition_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_list_selector_holo_dark.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_list_selector_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_list_selector_holo_light.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_list_selector_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_popup_menu_item_layout.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_popup_menu_item_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_screen.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_screen.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_search_dropdown_dark.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_search_dropdown_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_search_dropdown_item_icons_2line.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_search_dropdown_item_icons_2line.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_search_dropdown_light.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_search_dropdown_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/color/abc_search_url_text_holo.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/color/abc_search_url_text_holo.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/abc_search_view.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/abc_search_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/anim/abc_slide_in_bottom.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/anim/abc_slide_in_bottom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/anim/abc_slide_in_top.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/anim/abc_slide_in_top.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/anim/abc_slide_out_bottom.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/anim/abc_slide_out_bottom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/anim/abc_slide_out_top.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/anim/abc_slide_out_top.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_spinner_ab_holo_dark.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_spinner_ab_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_spinner_ab_holo_light.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_spinner_ab_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_tab_indicator_ab_holo.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_tab_indicator_ab_holo.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_textfield_searchview_holo_dark.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_textfield_searchview_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_textfield_searchview_holo_light.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_textfield_searchview_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_textfield_searchview_right_holo_dark.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_textfield_searchview_right_holo_dark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_textfield_searchview_right_holo_light.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/abc_textfield_searchview_right_holo_light.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/activity_database_test.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/activity_database_test.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/activity_main.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/activity_main_frame.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/activity_main_frame.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/activity_navigation_drawer.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/activity_navigation_drawer.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/activity_search_view.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/activity_search_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/activity_testing.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/activity_testing.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/menu/chord_view.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/menu/chord_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/chordsurfaceview_toast.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/chordsurfaceview_toast.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/custom_spinner_dropdown_item.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/custom_spinner_dropdown_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/custom_spinner_item.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/custom_spinner_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/menu/find_by_chord.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/menu/find_by_chord.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/VideoControllerView.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/VideoControllerView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_chord_view.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_chord_view.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_chord_view.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_chord_view.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_find_by_chord.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_find_by_chord.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_find_by_chord.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_find_by_chord.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_myfavorite.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_myfavorite.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_navigation_drawer.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_navigation_drawer.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_playlist_detail.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_playlist_detail.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_playlist_manager.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_playlist_manager.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_search_view.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_search_view.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_myfavorite.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_myfavorite.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_song_list.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_song_list.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_song_view.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_song_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_song_view.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_song_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_test.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_test.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_testing.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_testing.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_welcome.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_welcome.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/menu/global.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/menu/global.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/list_divider.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/list_divider.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_chord_detail.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_chord_detail.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_chord_search.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_chord_search.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_chord_view.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_chord_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_chord_view_image.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_chord_view_image.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_chord_view_texture_view.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_chord_view_texture_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_header_1.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_header_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_header_2.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_header_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_navigation_drawer_1.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_navigation_drawer_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_song_list.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_song_list.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_navigation_drawer_2.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_navigation_drawer_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_playlist.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_playlist.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_section_indexer.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_section_indexer.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_song_detail.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_song_detail.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_song_favorite.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_song_favorite.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_test_view.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_test_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/menu/main.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/menu/main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/menu/my_favorite.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/menu/my_favorite.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/menu/my_playlist.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/menu/my_playlist.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/menu/playlist_detail.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/menu/playlist_detail.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/menu/playlist_manager.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/menu/playlist_manager.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/SlidingMenu/project.properties" afterPath="$PROJECT_DIR$/libs/SlidingMenu/project.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/menu/search_view.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/menu/search_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/xml/searchable.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/xml/searchable.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/shadow.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/shadow.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/drawable/shadowright.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable/shadowright.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/exploded-bundles/HopAmChuanHopAmChuanLibsSlidingMenuUnspecified.aar/res/layout/slidingmenumain.xml" afterPath="$PROJECT_DIR$/build/exploded-bundles/HopAmChuanHopAmChuanLibsSlidingMenuUnspecified.aar/res/layout/slidingmenumain.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/slidingmenumain.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/slidingmenumain.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/SlidingMenu/build/res/all/debug/layout/slidingmenumain.xml" afterPath="$PROJECT_DIR$/libs/SlidingMenu/build/res/all/debug/layout/slidingmenumain.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/SlidingMenu/build/res/all/release/layout/slidingmenumain.xml" afterPath="$PROJECT_DIR$/libs/SlidingMenu/build/res/all/release/layout/slidingmenumain.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/menu/song_list.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/menu/song_list.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/support_simple_spinner_dropdown_item.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/support_simple_spinner_dropdown_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/xml/syncadapter.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/xml/syncadapter.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/menu/test.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/menu/test.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/menu/test_database.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/menu/test_database.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/menu/test_surface_view.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/menu/test_surface_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/menu/test_text_view.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/menu/test_text_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/testsurfaceview_fragment_main.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/testsurfaceview_fragment_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/testtextview_fragment_main.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/testtextview_fragment_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/exploded-bundles/HopAmChuanHopAmChuanLibsSlidingMenuUnspecified.aar/res/values/values.xml" afterPath="$PROJECT_DIR$/build/exploded-bundles/HopAmChuanHopAmChuanLibsSlidingMenuUnspecified.aar/res/values/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/values/values.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/values/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/values-land/values.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/values-land/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/values-large/values.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/values-large/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/values-sw600dp/values.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/values-sw600dp/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/values-v11/values.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/values-v11/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/values-v14/values.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/values-v14/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/values-w360dp/values.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/values-w360dp/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/values-w480dp/values.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/values-w480dp/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/values-w500dp/values.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/values-w500dp/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/values-w600dp/values.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/values-w600dp/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/values-w720dp/values.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/values-w720dp/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/values-w820dp/values.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/values-w820dp/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/values-xlarge/values.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/values-xlarge/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/SlidingMenu/build/res/all/debug/values/values.xml" afterPath="$PROJECT_DIR$/libs/SlidingMenu/build/res/all/debug/values/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/SlidingMenu/build/res/all/release/values/values.xml" afterPath="$PROJECT_DIR$/libs/SlidingMenu/build/res/all/release/values/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/menu/welcome.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/menu/welcome.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/list_item_navigation_drawer_2.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/list_item_navigation_drawer_2.xml" />
     </list>
     <ignored path="Hop Am Chuan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -249,50 +127,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="VideoControllerView.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/VideoControllerView.java">
+      <file leaf-file-name="LoginPopup.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/popup/LoginPopup.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="0" selection-start="3673" selection-end="3673" vertical-scroll-proportion="0.6618182" vertical-offset="124" max-vertical-offset="6460">
+            <state line="2" column="3" selection-start="36" selection-end="36" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="popup_login.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/popup_login.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="68" column="54" selection-start="3038" selection-end="3038" vertical-scroll-proportion="0.70331585" vertical-offset="328" max-vertical-offset="1003">
               <folding>
-                <element signature="docComment;class#VideoControllerView#0" expanded="false" />
-                <element signature="e#2005#2041#0" expanded="false" />
-                <element signature="e#2843#2886#0" expanded="false" />
-                <element signature="n#!!doc;n#VideoControllerView#0;n#VideoControllerView#0" expanded="false" />
-                <element signature="method#VideoControllerView#0;class#VideoControllerView#0" expanded="false" />
-                <element signature="method#VideoControllerView#1;class#VideoControllerView#0" expanded="false" />
-                <element signature="docComment;method#show#0;class#VideoControllerView#0" expanded="false" />
-                <element signature="method#show#0;class#VideoControllerView#0" expanded="false" />
-                <element signature="method#setEnabled#0;class#VideoControllerView#0" expanded="false" />
-                <element signature="docComment;method#initControllerView#0;class#VideoControllerView#0" expanded="false" />
-                <element signature="method#initControllerView#0;class#VideoControllerView#0" expanded="false" />
-                <element signature="method#disableUnsupportedButtons#0;class#VideoControllerView#0" expanded="false" />
-                <element signature="docComment;method#setProgress#0;class#VideoControllerView#0" expanded="false" />
-                <element signature="docComment;method#makeControllerView#0;class#VideoControllerView#0" expanded="false" />
-                <element signature="method#makeControllerView#0;class#VideoControllerView#0" expanded="false" />
-                <element signature="e#19598#19622#0" expanded="false" />
-                <element signature="docComment;field#mSeekListener#0;class#VideoControllerView#0" expanded="false" />
-                <element signature="class#MediaPlayerControl#0;class#VideoControllerView#0" expanded="false" />
-                <element signature="docComment;class#MessageHandler#0;class#VideoControllerView#0" expanded="false" />
-                <element signature="class#MessageHandler#0;class#VideoControllerView#0" expanded="false" />
+                <element signature="tag#LinearLayout#0;tag#LinearLayout#0;tag#RelativeLayout#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SongViewFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongViewFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="199" column="1" selection-start="5609" selection-end="5609" vertical-scroll-proportion="0.0" vertical-offset="2564" max-vertical-offset="3230">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fragment_song_view.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_song_view.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="7" selection-start="3051" selection-end="3051" vertical-scroll-proportion="-10.68" vertical-offset="1076" max-vertical-offset="1649">
-              <folding />
             </state>
           </provider>
           <provider editor-type-id="android-designer">
@@ -300,10 +150,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="media_controller.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/res/layout/media_controller.xml">
+      <file leaf-file-name="header_gradient.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/header_gradient.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="16" selection-start="321" selection-end="321" vertical-scroll-proportion="33.52" vertical-offset="957" max-vertical-offset="1496">
+            <state line="8" column="8" selection-start="321" selection-end="321" vertical-scroll-proportion="-5.44" vertical-offset="0" max-vertical-offset="238">
               <folding />
             </state>
           </provider>
@@ -1117,8 +967,11 @@
         <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/media_controller.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/fragment_song_view.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/VideoControllerView.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongViewFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/VideoControllerView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/popup/LoginPopup.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/header_gradient.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/popup_login.xml" />
       </list>
     </option>
   </component>
@@ -1440,6 +1293,48 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="popup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hac" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="fragment" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1513,48 +1408,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="helper" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="helper" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="widget" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1920,12 +1773,12 @@
       <workItem from="1387167377045" duration="6020000" />
       <workItem from="1387183806595" duration="11572000" />
       <workItem from="1387247781305" duration="25300000" />
-      <workItem from="1387290380026" duration="9575000" />
+      <workItem from="1387290380026" duration="13060000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104298000" />
+    <option name="totallyTimeSpent" value="107783000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="0" />
@@ -1946,14 +1799,14 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5176282" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="-8" y="413" width="1366" height="265" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5176282" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="-8" y="413" width="1366" height="265" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12462236" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25755286" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" x="947" y="85" width="341" height="378" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.020497805" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.11054173" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32930514" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32980332" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29807693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="0" y="272" width="1366" height="193" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2014,29 +1867,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/test/MainActivityNavigationDrawer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="13" selection-start="1735" selection-end="1735" vertical-scroll-proportion="-5.251208" vertical-offset="4094" max-vertical-offset="6800">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/SlidingMenuActionBarActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="18" selection-start="2529" selection-end="2529" vertical-scroll-proportion="3.4772727" vertical-offset="0" max-vertical-offset="1785">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/values/dimens.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="41" selection-start="521" selection-end="521" vertical-scroll-proportion="-0.77272725" vertical-offset="459" max-vertical-offset="1071">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/drawable/shadow.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="621" />
@@ -2391,36 +2221,9 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/media_controller.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="16" selection-start="321" selection-end="321" vertical-scroll-proportion="33.52" vertical-offset="957" max-vertical-offset="1496">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_song_view.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="7" selection-start="3051" selection-end="3051" vertical-scroll-proportion="-10.68" vertical-offset="1076" max-vertical-offset="1649">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongViewFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="199" column="1" selection-start="5609" selection-end="5609" vertical-scroll-proportion="0.0" vertical-offset="2564" max-vertical-offset="3230">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/VideoControllerView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="0" selection-start="3673" selection-end="3673" vertical-scroll-proportion="0.6618182" vertical-offset="124" max-vertical-offset="6460">
+        <state line="125" column="48" selection-start="4345" selection-end="4345" vertical-scroll-proportion="0.3896321" vertical-offset="124" max-vertical-offset="6460">
           <folding>
             <element signature="docComment;class#VideoControllerView#0" expanded="false" />
             <element signature="e#2005#2041#0" expanded="false" />
@@ -2437,13 +2240,69 @@
             <element signature="docComment;method#setProgress#0;class#VideoControllerView#0" expanded="false" />
             <element signature="docComment;method#makeControllerView#0;class#VideoControllerView#0" expanded="false" />
             <element signature="method#makeControllerView#0;class#VideoControllerView#0" expanded="false" />
-            <element signature="e#19598#19622#0" expanded="false" />
+            <element signature="e#19599#19623#0" expanded="false" />
             <element signature="docComment;field#mSeekListener#0;class#VideoControllerView#0" expanded="false" />
             <element signature="class#MediaPlayerControl#0;class#VideoControllerView#0" expanded="false" />
             <element signature="docComment;class#MessageHandler#0;class#VideoControllerView#0" expanded="false" />
             <element signature="class#MessageHandler#0;class#VideoControllerView#0" expanded="false" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongViewFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="199" column="1" selection-start="5609" selection-end="5609" vertical-scroll-proportion="0.9431438" vertical-offset="2564" max-vertical-offset="3230">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_song_view.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="79" column="7" selection-start="3051" selection-end="3051" vertical-scroll-proportion="0.47678572" vertical-offset="1076" max-vertical-offset="1649">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/media_controller.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="16" selection-start="321" selection-end="321" vertical-scroll-proportion="-1.4589286" vertical-offset="936" max-vertical-offset="1496">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/popup/LoginPopup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="3" selection-start="36" selection-end="36" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/header_gradient.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="8" selection-start="321" selection-end="321" vertical-scroll-proportion="-5.44" vertical-offset="0" max-vertical-offset="238">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/popup_login.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="54" selection-start="3038" selection-end="3038" vertical-scroll-proportion="0.70331585" vertical-offset="328" max-vertical-offset="1003">
+          <folding>
+            <element signature="tag#LinearLayout#0;tag#LinearLayout#0;tag#RelativeLayout#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
   </component>

@@ -55,6 +55,7 @@
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:scaleType="centerCrop"
+            android:src="@drawable/song_count_bg"
             android:layout_centerVertical="true"/>
 
         <TextView
