@@ -3,9 +3,9 @@ package com.hqt.hac.utils;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * Using Java Reflection API
+ * Using Java Reflection APIUtils
  * helping invoke method by name (and support add parameters and values)
- * Notes : this Java API is extremely slowly on Android Platform.
+ * Notes : this Java APIUtils is extremely slowly on Android Platform.
  */
 public class ReflectionUtils {
     public static Object tryInvoke(Object target, String methodName, Object... args) {

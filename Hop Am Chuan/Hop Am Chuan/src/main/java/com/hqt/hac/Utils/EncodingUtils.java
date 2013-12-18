@@ -1,6 +1,7 @@
 package com.hqt.hac.utils;
 
 import android.util.Base64;
+import com.google.gson.Gson;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -8,6 +9,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Use this class to encode data before sending to server
@@ -53,6 +56,10 @@ public class EncodingUtils {
         return new String(encodedBytes);
     }
 
+    public static byte[] decodeDataUsingBase64(String data) {
+        return Base64.decode(data, Base64.DEFAULT);
+    }
+
     /**
      * only need to keep in mind to encode only the individual query string parameter name
      * and/or value not the entire URL
@@ -66,5 +73,17 @@ public class EncodingUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static String encodeMapToJSONString(Map map) {
+        return new Gson().toJson(map);
+    }
+
+    public static String encodeListToJSONString(List list) {
+        return new Gson().toJson(list);
+    }
+
+    public static String encodeObjectToJSONString(Object object) {
+        return new Gson().toJson(object);
     }
 }

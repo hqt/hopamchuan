@@ -920,11 +920,11 @@
 
     <style name="FrameworkRoot.Theme" parent="FrameworkRoot.Base">
 
-        <!-- API 11+ (compatibility) -->
+        <!-- APIUtils 11+ (compatibility) -->
         <item name="buttonBarStyle">@style/Compat.ButtonBar</item>
         <item name="buttonBarButtonStyle">@style/Compat.ButtonBarButton</item>
         <item name="indeterminateProgressStyle">@style/Compat.IndeterminateProgress</item>
-        <!-- API 14+ (compatibility) -->
+        <!-- APIUtils 14+ (compatibility) -->
         <item name="listPreferredItemPaddingLeft">@dimen/compat_list_preferred_item_padding_left</item>
         <item name="listPreferredItemPaddingRight">@dimen/compat_list_preferred_item_padding_right</item>
         <item name="listPreferredItemHeightSmall">@dimen/compat_list_preferred_item_height_small</item>

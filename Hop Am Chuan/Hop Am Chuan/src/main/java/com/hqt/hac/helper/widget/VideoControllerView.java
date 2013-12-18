@@ -20,7 +20,7 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 /**
  * @author  Huynh Quang Thao
- * This class is copied from Google Source Code with modify to comparable with old system (API <= 10)*
+ * This class is copied from Google Source Code with modify to comparable with old system (APIUtils <= 10)*
  * A view containing controls for a MediaPlayer. Typically contains the
  * buttons like "Play/Pause", "Rewind", "Fast Forward" and a progress
  * slider. It takes care of synchronizing the controls with the state
