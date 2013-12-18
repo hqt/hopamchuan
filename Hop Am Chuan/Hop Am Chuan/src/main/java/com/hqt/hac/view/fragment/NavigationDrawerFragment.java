@@ -390,6 +390,10 @@ public class NavigationDrawerFragment extends Fragment
                 case SEARCH_CHORD:
                     fragment = new ChordViewFragment();
                     break;
+                case SETTING:
+                    fragment = new SettingFragment();
+                    break;
+
             }
 
         // assign parameters to fragment

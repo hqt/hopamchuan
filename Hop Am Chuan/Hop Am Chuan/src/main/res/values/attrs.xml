@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <declare-styleable name="BaseTheme">
@@ -5,13 +6,15 @@
         <attr name="trackAbstractMaxLines" format="integer" />
         <attr name="activatableItemBackground" format="reference" />
         <attr name="emptyText" format="reference" />
-
     </declare-styleable>
-
     <declare-styleable name="BezelImageView">
         <attr name="maskDrawable" format="reference" />
         <attr name="borderDrawable" format="reference" />
         <attr name="desaturateOnPress" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference" />
+        <attr name="metaButtonBarButtonStyle" format="reference" />
     </declare-styleable>
 
 </resources>

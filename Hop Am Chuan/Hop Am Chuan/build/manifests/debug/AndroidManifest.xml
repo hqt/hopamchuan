@@ -17,6 +17,10 @@
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
             </intent-filter>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
             <meta-data android:name="android.app.searchable" android:resource="@xml/searchable"/>
         </activity>
         <activity android:label="@string/title_activity_search_view" android:launchMode="singleTop" android:name="com.hqt.hac.view.SearchViewActivity" android:parentActivityName="MainActivity">
@@ -42,7 +46,15 @@
         </activity>
         <activity android:label="@string/title_activity_test" android:name="com.hqt.hac.view.test.MainActivityTest">
         </activity>
+<<<<<<< HEAD
         <activity android:label="@string/title_activity_test" android:name="com.hqt.hac.view.test.VideoPlayerActivityTest">
+=======
+        <activity android:configChanges="orientation|keyboardHidden|screenSize" android:name="com.hqt.hac.view.SplashScreen" android:theme="@style/SplashTheme.FullScreen" android:windowSoftInputMode="stateHidden|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+>>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
         </activity>
     </application>
 

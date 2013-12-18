@@ -7,43 +7,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63705522-a816-4679-b5bf-1def300d2420" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/APIUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/EncodingUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/model/HACAccount.java" />
-      <change type="DELETED" beforePath="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am ChuanProject.iml" afterPath="" />
-      <change type="DELETED" beforePath="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\Hop Am Chuan.iml" afterPath="" />
-      <change type="DELETED" beforePath="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\header_gradient.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/exploded-bundles/HopAmChuanHopAmChuanLibsSlidingMenuUnspecified.aar/classes.jar" afterPath="$PROJECT_DIR$/build/exploded-bundles/HopAmChuanHopAmChuanLibsSlidingMenuUnspecified.aar/classes.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Document/design/jpg/Splash_screen.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Document/design/Splash_screen.psd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Document/design/biglogo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/drawable-hdpi/biglogo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/drawable-mdpi/biglogo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/drawable-xhdpi/biglogo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/drawable-xxhdpi/biglogo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable-hdpi/setting_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable-mdpi/setting_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable-xhdpi/setting_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/res/all/debug/drawable-xxhdpi/setting_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/drawable-hdpi/setting_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/drawable-mdpi/setting_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/drawable-xhdpi/setting_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/drawable-xxhdpi/setting_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Document/design/splash_screen.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/drawable-hdpi/splash_screen.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/drawable-mdpi/splash_screen.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/drawable-xhdpi/splash_screen.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/drawable-xxhdpi/splash_screen.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SettingFragment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SplashScreen.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_splash_screen.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_setting.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_setting.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_splash_screen.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/menu/splash_screen.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/values-v11/styles.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Document/design/5_content_import_export.png" afterPath="$PROJECT_DIR$/../../Document/design/5_content_import_export.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../.gitignore" afterPath="$PROJECT_DIR$/../../.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/config/Config.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/config/Config.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/unittest/DatabaseTest.java" afterPath="$PROJECT_DIR$/src/main/java/com/unittest/DatabaseTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Hop Am Chuan.iml" afterPath="$PROJECT_DIR$/../Hop Am Chuan.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/test/MainActivityNavigationDrawer.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/test/MainActivityNavigationDrawer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/test/MainActivityTest.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/test/MainActivityTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/NetworkUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/NetworkUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ParserUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ParserUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/NavigationDrawerAdapter.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/NavigationDrawerAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/NavigationDrawerFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/NavigationDrawerFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/build/source/r/debug/android/support/v7/appcompat/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/source/r/debug/com/hqt/hac/view/R.java" afterPath="$PROJECT_DIR$/build/source/r/debug/com/hqt/hac/view/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/source/r/debug/com/jeremyfeinstein/slidingmenu/lib/R.java" afterPath="$PROJECT_DIR$/build/source/r/debug/com/jeremyfeinstein/slidingmenu/lib/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ReflectionUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ReflectionUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/provider/helper/SelectionBuilder.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/provider/helper/SelectionBuilder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/test/TestTextView.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/test/TestTextView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/VideoControllerView.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/VideoControllerView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/activity_main.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_chord_view.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_chord_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_find_by_chord.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_find_by_chord.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_myfavorite.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_myfavorite.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_song_list.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_song_list.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_navigation_drawer_2.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/list_item_navigation_drawer_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/popup_login.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/popup_login.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Document/TrungDQ TODOs.txt" afterPath="$PROJECT_DIR$/../../Document/TrungDQ TODOs.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/values/attrs.xml" afterPath="$PROJECT_DIR$/src/main/res/values/attrs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/src/main/res/values/colors.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/xml/searchable.xml" afterPath="$PROJECT_DIR$/src/main/res/xml/searchable.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/src/main/res/values/styles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/values/values.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/values/values.xml" />
-      <change type="MOVED" beforePath="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\java\com\hqt\hac\helper\LazyLoadingList.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/collections/LazyLoadingList.java" />
-      <change type="MOVED" beforePath="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\java\com\hqt\hac\helper\LimitedPipeArray.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/collections/LimitedPipeArray.java" />
-      <change type="MOVED" beforePath="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\java\com\hqt\hac\helper\Lists.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/collections/Lists.java" />
-      <change type="MOVED" beforePath="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\java\com\hqt\hac\helper\Maps.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/collections/Maps.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/values-v11/values.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/values-v11/values.xml" />
     </list>
     <ignored path="Hop Am Chuan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -161,7 +167,7 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="13" selection-start="1038" selection-end="1038" vertical-scroll-proportion="-7.9982667" vertical-offset="4683" max-vertical-offset="5610">
+            <state line="30" column="13" selection-start="1038" selection-end="1038" vertical-scroll-proportion="-7.9982667" vertical-offset="4683" max-vertical-offset="5661">
               <folding />
             </state>
           </provider>
@@ -985,6 +991,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/EncodingUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/APIUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/collections/LazyLoadingList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -1461,12 +1468,12 @@
       <changelist id="63705522-a816-4679-b5bf-1def300d2420" name="Default" comment="" />
       <created>1387365250745</created>
       <updated>1387365250745</updated>
-      <workItem from="1387365271935" duration="5101000" />
+      <workItem from="1387365271935" duration="5239000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5101000" />
+    <option name="totallyTimeSpent" value="5239000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />

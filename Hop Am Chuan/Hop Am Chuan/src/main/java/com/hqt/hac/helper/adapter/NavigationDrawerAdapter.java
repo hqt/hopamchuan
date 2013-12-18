@@ -89,7 +89,8 @@ public class NavigationDrawerAdapter {
             MYPLAYLIST,
             FAVORITE,
             FIND_BY_CHORD,
-            SEARCH_CHORD
+            SEARCH_CHORD,
+            SETTING
         }
 
         Context mContext;
@@ -174,6 +175,12 @@ public class NavigationDrawerAdapter {
                     holder.imageView.setImageResource(R.drawable.chord_icon);
                     type = TYPE.SEARCH_CHORD;
                     break;
+                case 6:
+                    // Cai dat
+                    holder.imageView.setImageResource(R.drawable.setting_icon);
+                    type = TYPE.SETTING;
+                    break;
+
             }
 
             final TYPE finalType = type;

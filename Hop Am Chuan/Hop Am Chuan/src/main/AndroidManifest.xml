@@ -9,10 +9,6 @@
         android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:allowBackup="true"
@@ -36,6 +32,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -47,6 +44,7 @@
             android:parentActivityName="MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
@@ -65,10 +63,6 @@
             android:name="com.hqt.hac.view.test.TestTextView"
             android:exported="true"
             android:label="@string/title_activity_test_text_view" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.hqt.hac.view.test.TestSurfaceView"
@@ -81,12 +75,22 @@
             android:label="@string/title_activity_test_database" >
         </activity>
         <activity
-                android:name="com.hqt.hac.view.test.MainActivityTest"
-                android:label="@string/title_activity_test" >
+            android:name="com.hqt.hac.view.test.TestActivity"
+            android:label="@string/title_activity_test" >
         </activity>
         <activity
-                android:name="com.hqt.hac.view.test.VideoPlayerActivityTest"
-                android:label="@string/title_activity_test" >
+            android:name="com.hqt.hac.view.test.MainActivityTest"
+            android:label="@string/title_activity_test" >
+        </activity>
+        <activity
+            android:name="com.hqt.hac.view.SplashScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:theme="@style/SplashTheme.FullScreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

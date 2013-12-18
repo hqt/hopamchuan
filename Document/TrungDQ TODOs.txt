@@ -30,6 +30,9 @@ Server side:
 - Contact sidebar (chord view)
 - 
 
+Performance:
+- Lag when go to Chord View
+
 FullTextSearch DAL (quan trong)
 
 
