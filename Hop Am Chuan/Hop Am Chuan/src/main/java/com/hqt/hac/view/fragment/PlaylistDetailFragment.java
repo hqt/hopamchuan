@@ -92,6 +92,18 @@ public class PlaylistDetailFragment extends  Fragment {
         adapter = new PlaylistDetailAdapter(getActivity().getApplicationContext(), playlist, songs);
         mListView.setAdapter(adapter);
 
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                SongDetailFragment fragment = new SongDetailFragment();
+                Bundle arguments = new Bundle();
+                arguments.putSerializable("song", songs.get(position));
+                fragment.setArguments(arguments);
+                activity.switchFragment(fragment);
+            }
+        });
+
+
         return rootView;
     }
 }

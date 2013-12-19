@@ -26,6 +26,8 @@
         </activity>
         <activity android:exported="true" android:label="@string/title_activity_test_text_view" android:name="com.hqt.hac.view.test.TestSurfaceView">
         </activity>
+        <activity android:exported="true" android:label="@string/title_activity_test" android:name="com.hqt.hac.view.test.VideoPlayerActivityTest">
+        </activity>
         <activity android:exported="true" android:label="@string/title_activity_test_database" android:name="com.hqt.hac.view.test.TestDatabaseActivity">
         </activity>
         <activity android:label="@string/title_activity_test" android:name="com.hqt.hac.view.test.MainActivityTest">

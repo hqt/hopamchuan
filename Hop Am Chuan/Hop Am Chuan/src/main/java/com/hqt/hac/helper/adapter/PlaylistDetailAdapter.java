@@ -74,8 +74,8 @@ public class PlaylistDetailAdapter extends BaseAdapter {
 
         Song song = songs.get(position);
         holder.txtSongName.setText(song.title);
-        holder.txtLyrics.setText(song.firstLyric);
-        holder.txtChord.setText("chords");
+        holder.txtLyrics.setText(song.firstLyric.replace("\n", ""));
+        holder.txtChord.setText(song.getChordString(mContext));
 
         return row;
     }

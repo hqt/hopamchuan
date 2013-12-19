@@ -11,6 +11,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
+        android:id="@+id/prevPositionBtn"
         android:src="@drawable/navigation_previous_item" />
 
     <ImageView
@@ -22,6 +23,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
+        android:id="@+id/nextPositionBtn"
         android:src="@drawable/navigation_next_item" />
 
 </LinearLayout><!-- From: file:/F:/Github/HopAmChuan/Hop%20Am%20Chuan/Hop%20Am%20Chuan/src/main/res/layout/chordsurfaceview_toast.xml -->

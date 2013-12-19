@@ -177,6 +177,20 @@ public class Song implements Serializable {
         return singers;
     }
 
+    public String getChordString(Context context) {
+        List<Chord> _chords = getChords(context);
+        StringBuilder result = new StringBuilder();
+        for (Chord _chord : _chords) {
+            result.append(_chord.name + ", ");
+        }
+        if (result.toString().length() > 2) {
+            // Delete the last two character: ", "
+            result.deleteCharAt(result.length());
+            result.deleteCharAt(result.length());
+        }
+        return result.toString();
+    }
+
     /**
      * Setters
      */
@@ -220,7 +234,7 @@ public class Song implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || ((Object)this).getClass() != o.getClass()) return false;
+        if (o == null || ((Object) this).getClass() != o.getClass()) return false;
 
         Song song = (Song) o;
 

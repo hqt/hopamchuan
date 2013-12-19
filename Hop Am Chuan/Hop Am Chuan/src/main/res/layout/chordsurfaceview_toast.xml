@@ -11,6 +11,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
+        android:id="@+id/prevPositionBtn"
         android:src="@drawable/navigation_previous_item" />
 
     <ImageView
@@ -22,6 +23,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
+        android:id="@+id/nextPositionBtn"
         android:src="@drawable/navigation_next_item" />
 
 </LinearLayout>

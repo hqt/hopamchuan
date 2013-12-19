@@ -18,8 +18,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="tiếng việt"
             android:lineSpacingExtra="10dp"
-            android:id="@+id/testTextView"
             android:typeface="monospace"
+            android:id="@+id/testTextView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true" />
     </ScrollView>

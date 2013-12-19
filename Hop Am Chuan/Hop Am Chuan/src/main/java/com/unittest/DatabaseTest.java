@@ -41,6 +41,29 @@ public class DatabaseTest {
         ChordDataAccessLayer.insertListOfChords(context, chords);
     }
 
+    public static void prepareLocalDatabaseWithSample(Context context) {
+        // prepareLocalDatabase(context);
+        // Create sample playlists
+//        Playlist playlist1 = new Playlist(1, "Nhac Trinh Cong Son Nhac Trinh Cong Son Nhac Trinh Cong Son", "Trinh Cong Son", new Date(), 1);
+//        Playlist playlist2 = new Playlist(2, "Nhac Pham Duy", "Pham Duy Nhac Trinh Cong Son Nhac Trinh Cong Son", new Date(), 0);
+//        Playlist playlist3 = new Playlist(3, "Nhac Tien Chien", "Tien Chien", new Date(), 1);
+//        PlaylistDataAccessLayer.insertPlaylist(context, playlist1);
+//        PlaylistDataAccessLayer.insertPlaylist(context, playlist2);
+//        PlaylistDataAccessLayer.insertPlaylist(context, playlist3);
+        // create songs in playlists
+//        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 1);
+//        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 2);
+//        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 3);
+//        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 2, 3);
+//
+//        // create favorites
+//        FavoriteDataAccessLayer.addSongToFavorite(context, 1);
+//        FavoriteDataAccessLayer.addSongToFavorite(context, 2);
+//        FavoriteDataAccessLayer.addSongToFavorite(context, 3);
+//        FavoriteDataAccessLayer.addSongToFavorite(context, 4);
+//        FavoriteDataAccessLayer.addSongToFavorite(context, 5);
+//        FavoriteDataAccessLayer.addSongToFavorite(context, 6);
+    }
 
     public static void prepareLocalDatabaseByHand(Context context) {
         // create three artist
