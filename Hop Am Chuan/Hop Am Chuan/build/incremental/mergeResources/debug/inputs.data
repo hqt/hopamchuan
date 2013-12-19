@@ -263,6 +263,7 @@
 1383229228104 1000 ddf60f4d3ab8f8ca0f0663a435c166dc80868ec5 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\values\compat.xml
 1387358737712 128 c2fb41f775653f1ceeaa9762f8295c1d4cadad05 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\res\drawable-mdpi\abc_cab_background_top_holo_light.9.png
 1387358739066 1930 b63a675a54c3cca4684f505749cb60b3d0c56e1b F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\res\layout\abc_action_bar_home.xml
+1387422088942 520 74769b2f1e050450abf25fe9d0eb6fc1a8cc3481 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\fragment_test_list_song.xml
 1387358738957 741 287d4308d9c967dede29069351faf3667440297a F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\res\drawable-xhdpi\abc_ic_ab_back_holo_dark.png
 1387166419332 2353 b25a6b588ce6ecbe33b88b3b9d23849a113996e6 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\list_item_chord_view_image.xml
 1387358739037 114 1faaccdb2cb05d0c6cbcdd58edb2c7921d906ef3 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\res\drawable-xhdpi\abc_textfield_search_selected_holo_dark.9.png
@@ -335,12 +336,13 @@
 1387358737708 133 f2135a54595894dc390e8ee5679d6f3d9ffe3b17 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\res\drawable-mdpi\abc_ab_transparent_light_holo.9.png
 1383229227945 19609 86694ee1200f36c03ee1db6b96b4fbc0bf5e4887 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\raw\song_chord.json
 1387358737705 133 c140c1abd5ef61db3ce6f68bbecc56ee4290e0ee F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\res\drawable-mdpi\abc_ab_stacked_solid_light_holo.9.png
-1387359880679 6359 e8f4b2e935d2764a604e58ce626f8b847a5d9a45 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\values\strings.xml
+1387421085894 6431 94080aef478d317cd8d5239a14b622f80fdfb50f F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\values\strings.xml
 1387358738869 532 4124dd23950ecb4ac94918e79a5d06ef7e12d723 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\res\drawable-mdpi\abc_ic_commit_search_api_holo_light.png
 1383042968613 309 0a176ed4406317cda273d6c27b6da555eb3a18a3 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\menu\song_list.xml
 1387358738971 184 87a195ee09432b8696e73ed443a992a7dd7515a0 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\res\drawable-xhdpi\abc_ic_menu_moreoverflow_normal_holo_light.png
 1385287628371 661 1fcebcc5412a9d5841a82b5f3d5b87305b327d24 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\ic_action_collapse.png
 1387358739095 11866 f839131fc9379f05a448b8c97458f87a9113a29e F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\res\values-v14\values.xml
+1387421085676 387 160c946045b9804b0a82930028bc61690245d448 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\menu\test_list_song.xml
 1387358737704 134 28a5a832c88cf99d22fa1a4e3c3e2c2f536987e5 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\res\drawable-mdpi\abc_ab_stacked_solid_dark_holo.9.png
 1387358739051 1335 4b6dd0d09d70a6a0fcf0fd25263f73b9b671d141 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\res\drawable\abc_spinner_ab_holo_light.xml
 1387183969074 1446 092db1d04e5508362043f015f563c8e510d45950 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\fragment_chord_view.xml
@@ -405,6 +407,7 @@
 1387358737628 1060 375825d66d35f6ac1325c4fdb33345b5b89cdf03 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\res\anim\abc_slide_out_bottom.xml
 1387358737647 147 4590a989718cac9fe5a8cdbdfd0697e9e5ecb786 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\res\drawable-hdpi\abc_cab_background_top_holo_light.9.png
 1382941748426 2804 3a8e857f3d883a9a91a6b759e7bdfbd262c39299 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\ic_launcher.png
+1387422424469 890 630e779429233ce30a1136e39e574da79ca4bcca F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\activity_test_list_song.xml
 1387358738900 567 6c4af4240891536bcabfc95fef2717254bbd3ecf F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\res\drawable-mdpi\abc_menu_hardkey_panel_holo_dark.9.png
 1387358739053 1092 30504b5284b175ca71ae71d84bef5df3644c217b F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\res\drawable\abc_textfield_searchview_holo_dark.xml
 1387358739022 583 57f9a9ec784c613131418fee5c16cf46d40c64a0 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\res\drawable-xhdpi\abc_spinner_ab_pressed_holo_light.9.png

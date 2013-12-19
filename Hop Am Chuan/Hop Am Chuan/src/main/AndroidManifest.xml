@@ -85,12 +85,18 @@
         <activity
             android:name="com.hqt.hac.view.SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:theme="@style/SplashTheme.FullScreen" >
+            android:theme="@style/SplashTheme.FullScreen"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.hqt.hac.view.test.TestListSong"
+            android:exported="true"
+            android:label="@string/title_activity_test_list_song" >
         </activity>
     </application>
 

@@ -804,6 +804,7 @@
     <string name="title_activity_splash_screen">Hợp Âm Chuẩn</string>
     <string name="title_activity_test">Activity Test</string>
     <string name="title_activity_test_database">Database Access Layer Test</string>
+    <string name="title_activity_test_list_song">TestListSong</string>
     <string name="title_activity_test_surface_view">MainActivity</string>
     <string name="title_activity_test_text_view">Test TextView</string>
     <string name="title_activity_welcome_fragment">MainActivity</string>

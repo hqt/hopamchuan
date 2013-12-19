@@ -4398,6 +4398,11 @@ false
                 qualifiers=""
                 type="drawable" />
             <file
+                name="biglogo"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\biglogo.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
                 name="chord_icon"
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\chord_icon.png"
                 qualifiers="hdpi"
@@ -4521,6 +4526,11 @@ false
                 name="star_liked"
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\star_liked.png"
                 qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="biglogo"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-mdpi\biglogo.png"
+                qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="chord_icon"
@@ -4648,6 +4658,11 @@ false
                 qualifiers="mdpi"
                 type="drawable" />
             <file
+                name="biglogo"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\biglogo.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
                 name="chord_icon"
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\chord_icon.png"
                 qualifiers="xhdpi"
@@ -4771,6 +4786,11 @@ false
                 name="star_liked"
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\star_liked.png"
                 qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="biglogo"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xxhdpi\biglogo.png"
+                qualifiers="xxhdpi"
                 type="drawable" />
             <file
                 name="chord_icon"
@@ -4943,6 +4963,11 @@ false
                 qualifiers=""
                 type="layout" />
             <file
+                name="activity_test_list_song"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\activity_test_list_song.xml"
+                qualifiers=""
+                type="layout" />
+            <file
                 name="chordsurfaceview_toast"
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\chordsurfaceview_toast.xml"
                 qualifiers=""
@@ -5020,6 +5045,11 @@ false
             <file
                 name="fragment_testing"
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\fragment_testing.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="fragment_test_list_song"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\fragment_test_list_song.xml"
                 qualifiers=""
                 type="layout" />
             <file
@@ -5170,6 +5200,11 @@ false
             <file
                 name="test_database"
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\menu\test_database.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="test_list_song"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\menu\test_list_song.xml"
                 qualifiers=""
                 type="menu" />
             <file
@@ -5637,6 +5672,8 @@ Bsus4
                 </string-array>
 
                 <string name="hello_world" >Hello world!
+                </string>
+                <string name="title_activity_test_list_song" >TestListSong
                 </string>
                 <string name="example_text" >Example Text
                 </string>
@@ -6850,26 +6887,6 @@ true
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\xml\syncadapter.xml"
                 qualifiers=""
                 type="xml" />
-            <file
-                name="biglogo"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\biglogo.png"
-                qualifiers="hdpi"
-                type="drawable" />
-            <file
-                name="biglogo"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\biglogo.png"
-                qualifiers="xhdpi"
-                type="drawable" />
-            <file
-                name="biglogo"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xxhdpi\biglogo.png"
-                qualifiers="xxhdpi"
-                type="drawable" />
-            <file
-                name="biglogo"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-mdpi\biglogo.png"
-                qualifiers="mdpi"
-                type="drawable" />
         </source>
         <source path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\rs\debug" />
     </dataSet>

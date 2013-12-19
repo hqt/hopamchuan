@@ -10,6 +10,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.hqt.hac.model.Song;
+import com.hqt.hac.model.dao.SongDataAccessLayer;
+import com.hqt.hac.provider.HopAmChuanDatabase;
+import com.hqt.hac.view.R;
+import com.unittest.DatabaseTest;
+
+import java.util.List;
 
 public class TestListSong extends ActionBarActivity {
 
@@ -23,6 +34,44 @@ public class TestListSong extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
+
+        // delete all database
+        HopAmChuanDatabase.deleteDatabase(getApplicationContext());
+
+        // create sample database
+        DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());
+
+
+
+        final TextView text = (TextView) findViewById(R.id.listSong);
+        List<Song> songs = SongDataAccessLayer.getNewSongs(getApplicationContext(), 3);
+        String a = "";
+        for (Song song : songs) {
+            a += song.toString() + "\n";
+        }
+        text.setText(a);
+
+        final EditText editText = (EditText) findViewById(R.id.lastetSongIdSet);
+
+        Button btn = (Button) findViewById(R.id.setLastestViewButton);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int songId = Integer.parseInt(editText.getText().toString());
+                SongDataAccessLayer.setLastestView(getApplicationContext(), songId);
+
+
+                List<Song> songs2 = SongDataAccessLayer.getRecentSongs(getApplicationContext(), 3);
+                String a = "";
+                for (Song song : songs2) {
+                    a += song.toString() + "\n";
+                }
+                text.setText(a);
+
+            }
+        });
+
     }
 
 

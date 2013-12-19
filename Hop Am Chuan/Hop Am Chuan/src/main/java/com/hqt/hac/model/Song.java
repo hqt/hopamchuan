@@ -2,6 +2,7 @@ package com.hqt.hac.model;
 
 import android.content.Context;
 
+import com.hqt.hac.model.dao.SongDataAccessLayer;
 import com.hqt.hac.utils.StringUtils;
 
 import java.io.Serializable;
@@ -149,6 +150,8 @@ public class Song implements Serializable {
     public String getContent(Context context) {
         if (this.content == null || this.content.isEmpty()) {
             this.content = getSongContent(context, songId);
+            // Re-assign the last view.
+            SongDataAccessLayer.setLastestView(context, songId);
         }
         return content;
     }

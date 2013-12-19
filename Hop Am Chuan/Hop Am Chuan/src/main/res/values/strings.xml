@@ -167,5 +167,6 @@
     <string name="title_activity_splash_screen">Hợp Âm Chuẩn</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_test_list_song">TestListSong</string>
 
 </resources>
