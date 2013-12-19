@@ -7039,6 +7039,71 @@ true
                 path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable\box_with_shadow.xml"
                 qualifiers=""
                 type="drawable" />
+            <file
+                name="drop_shadow"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable\drop_shadow.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="ffff"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\ffff.9.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ffff"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-mdpi\ffff.9.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ffff"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\ffff.9.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ffff"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xxhdpi\ffff.9.png"
+                qualifiers="xxhdpi"
+                type="drawable" />
+            <file
+                name="box_shadow"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\box_shadow.9.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="box_shadow"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xxhdpi\box_shadow.9.png"
+                qualifiers="xxhdpi"
+                type="drawable" />
+            <file
+                name="box_shadow"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\box_shadow.9.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="box_shadow"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-mdpi\box_shadow.9.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="text_box"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-mdpi\text_box.9.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="text_box"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\text_box.9.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="text_box"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xxhdpi\text_box.9.png"
+                qualifiers="xxhdpi"
+                type="drawable" />
+            <file
+                name="text_box"
+                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\text_box.9.png"
+                qualifiers="hdpi"
+                type="drawable" />
         </source>
         <source path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\rs\debug" />
     </dataSet>
