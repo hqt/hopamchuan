@@ -28,6 +28,17 @@ public class ParserUtils {
 
     private static String TAG = makeLogTag(ParserUtils.class);
 
+    /////////////////////////////////////////////////////////////
+    /////////////// GET DATA FROM STRING ////////////////////////
+    public static List<Artist> getAllSongsFromString(String json) {
+        JsonParser parser = new JsonParser();
+        return null;
+    }
+
+    ////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////
+
+    //region Get Data From Resource For Testing Purpose
     /**
      * Test purpose (use artist.json)
      * @param context
@@ -45,15 +56,9 @@ public class ParserUtils {
         return parseArtistsFromJsonArray(jsonArray);
     }
 
-    public static List<Artist> downloadAllArtistsFromNetwork() {
-        return null;
-    }
-
     /**
      * Get all song object from resourse, contains authors, singers and chords.
      * TODO: add a JSON string as a parameter (or stream)
-     * @param context
-     * @return
      */
     public static List<Song> getAllSongsFromResource(Context context) {
         Reader reader;
@@ -71,14 +76,9 @@ public class ParserUtils {
     }
 
 
-    public static List<Song> downloadAllChordsFromNetwork() {
-        return null;
-    }
 
     /**
      * Test purpose (use chord.json)
-     * @param context
-     * @return
      */
     public static List<Chord> getAllChordsFromResource(Context context) {
         Reader reader;
@@ -91,8 +91,9 @@ public class ParserUtils {
 
         return parseChordsFromJsonArray(jsonArray);
     }
+    //endregion
 
-
+    //region Private Method for Parser
     /////////////////////////////////////////////
     /////////////// private method //////////////
     /////////////// parsing data ////////////////
@@ -167,4 +168,5 @@ public class ParserUtils {
         }
         return chords;
     }
+    //endregion
 }

@@ -173,7 +173,7 @@ public class MainActivityNavigationDrawer extends ActionBarActivity
         // because SearchView just exist in HoneyComb 3.0 to above
         // we should check version of users here
         // if version is lower. We use SearchDialog instead
-        // TODO: search google. Find SearchWidget library for API Lower than 11
+        // TODO: search google. Find SearchWidget library for APIUtils Lower than 11
         MenuItem searchItem = menu.findItem(R.id.search_bar);
         if (searchItem != null && UIUtils.hasHoneycomb()) {
             // Get the SearchView and set the Search Configuration

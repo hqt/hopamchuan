@@ -5,8 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import com.hqt.hac.helper.Lists;
-import com.hqt.hac.helper.Maps;
+import com.hqt.hac.helper.collections.Lists;
+import com.hqt.hac.helper.collections.Maps;
 
 import java.util.ArrayList;
 import java.util.Arrays;
