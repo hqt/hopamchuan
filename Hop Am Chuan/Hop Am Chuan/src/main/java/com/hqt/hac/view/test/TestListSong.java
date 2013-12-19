@@ -45,7 +45,7 @@ public class TestListSong extends ActionBarActivity {
 
 
         final TextView text = (TextView) findViewById(R.id.listSong);
-        List<Song> songs = SongDataAccessLayer.getNewSongs(getApplicationContext(), 3);
+        List<Song> songs = SongDataAccessLayer.getRandSongs(getApplicationContext(), 3);
         String a = "";
         for (Song song : songs) {
             a += song.toString() + "\n";
@@ -62,7 +62,7 @@ public class TestListSong extends ActionBarActivity {
                 SongDataAccessLayer.setLastestView(getApplicationContext(), songId);
 
 
-                List<Song> songs2 = SongDataAccessLayer.getRecentSongs(getApplicationContext(), 3);
+                List<Song> songs2 = SongDataAccessLayer.getRandSongs(getApplicationContext(), 4);
                 String a = "";
                 for (Song song : songs2) {
                     a += song.toString() + "\n";

@@ -327,6 +327,25 @@ public class SongDataAccessLayer {
         return songs;
     }
 
+    public static List<Song> getRandSongs(Context context, int limit) {
+        LOGD(TAG, "get random "+limit+" Songs");
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
+        Cursor c = resolver.query(uri,
+                Query.Projections.SONG_ID_PROJECTION,                      // projection
+                null, // selection string
+                null,                   // selection args of strings
+                " RANDOM() DESC LIMIT " + limit);                                                  //  sort order
+
+        int songIdCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID);
+        List<Song> songs = new ArrayList<Song>();
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            int songId = c.getInt(songIdCol);
+            songs.add(getSongById(context, songId));
+        }
+        c.close();
+        return songs;
+    }
     /**
      * for testing purpose
      * Note : limit = 0 : No limit
