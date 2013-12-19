@@ -42,12 +42,6 @@
             android:label="@string/title_activity_search_view"
             android:launchMode="singleTop"
             android:parentActivityName="MainActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />
@@ -73,10 +67,6 @@
             android:name="com.hqt.hac.view.test.TestDatabaseActivity"
             android:exported="true"
             android:label="@string/title_activity_test_database" >
-        </activity>
-        <activity
-            android:name="com.hqt.hac.view.test.TestActivity"
-            android:label="@string/title_activity_test" >
         </activity>
         <activity
             android:name="com.hqt.hac.view.test.MainActivityTest"

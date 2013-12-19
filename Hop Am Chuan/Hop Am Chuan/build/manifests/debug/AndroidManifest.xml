@@ -17,12 +17,6 @@
             <meta-data android:name="android.app.searchable" android:resource="@xml/searchable"/>
         </activity>
         <activity android:label="@string/title_activity_search_view" android:launchMode="singleTop" android:name="com.hqt.hac.view.SearchViewActivity" android:parentActivityName="MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="MainActivity"/>
             <meta-data android:name="android.app.searchable" android:resource="@xml/searchable"/>
         </activity>
@@ -33,8 +27,6 @@
         <activity android:exported="true" android:label="@string/title_activity_test_text_view" android:name="com.hqt.hac.view.test.TestSurfaceView">
         </activity>
         <activity android:exported="true" android:label="@string/title_activity_test_database" android:name="com.hqt.hac.view.test.TestDatabaseActivity">
-        </activity>
-        <activity android:label="@string/title_activity_test" android:name="com.hqt.hac.view.test.TestActivity">
         </activity>
         <activity android:label="@string/title_activity_test" android:name="com.hqt.hac.view.test.MainActivityTest">
         </activity>
