@@ -75,9 +75,6 @@ public class NavigationDrawerAdapter {
                 holder = (ViewHolderHeader) row.getTag();
             }
 
-            // assign value to view
-            // holder.txtName.setText("HUỲNH QUANG THẢO");
-            // holder.txtMail.setText("huynhquangthao@gmail.com");
             holder.txtName.setText(PrefStore.getLoginUsername(mContext));
             holder.txtMail.setText(PrefStore.getEmail(mContext));
             Bitmap imageAvatar = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage(mContext));
@@ -90,8 +87,6 @@ public class NavigationDrawerAdapter {
             row.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-
                     // TrungDQ: if you user has logged in, then display Logout popup
                     Bitmap checkLoggedIn = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage(mContext));
                     if (checkLoggedIn == null) {
