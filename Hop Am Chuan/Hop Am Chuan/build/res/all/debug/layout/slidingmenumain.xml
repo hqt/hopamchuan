@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<com.jeremyfeinstein.slidingmenu.lib.SlidingMenu xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/slidingmenumain"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" /><!-- From: file:/F:/Github/HopAmChuan/Hop%20Am%20Chuan/Hop%20Am%20Chuan/libs/SlidingMenu/res/layout/slidingmenumain.xml --><!-- From: file:/F:/Github/HopAmChuan/Hop%20Am%20Chuan/Hop%20Am%20Chuan/build/exploded-bundles/HopAmChuanHopAmChuanLibsSlidingMenuUnspecified.aar/res/layout/slidingmenumain.xml -->
