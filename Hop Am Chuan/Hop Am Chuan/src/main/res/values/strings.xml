@@ -166,5 +166,8 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_test_list_song">TestListSong</string>
+    <string name="login_activity_title">Login Account</string>
+    <string name="login_account">ĐĂNG NHẬP</string>
+    <string name="login_account_description">Dùng tài khoản HAC</string>
 
 </resources>

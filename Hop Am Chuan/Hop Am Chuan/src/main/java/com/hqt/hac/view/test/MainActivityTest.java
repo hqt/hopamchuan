@@ -256,7 +256,7 @@ public class MainActivityTest extends SlidingMenuActionBarActivity
          * remove delegate on onPause()
          */
         // create all adapters as we want
-        headerAdapter = new NavigationDrawerAdapter.HeaderAdapter(getApplicationContext());
+        headerAdapter = new NavigationDrawerAdapter.HeaderAdapter(this);
         itemAdapter = new NavigationDrawerAdapter.ItemAdapter(getApplicationContext());
         playlistHeaderAdapter = new NavigationDrawerAdapter.PlaylistHeaderAdapter(getApplicationContext());
         playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(getApplicationContext(), playlistList);

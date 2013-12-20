@@ -7,9 +7,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.hqt.hac.config.Config;
-import com.hqt.hac.model.Artist;
-import com.hqt.hac.model.Chord;
-import com.hqt.hac.model.Song;
+import com.hqt.hac.model.*;
 import com.hqt.hac.view.R;
 
 import java.io.BufferedReader;
@@ -28,15 +26,44 @@ public class ParserUtils {
 
     private static String TAG = makeLogTag(ParserUtils.class);
 
-    /////////////////////////////////////////////////////////////
-    /////////////// GET DATA FROM STRING ////////////////////////
-    public static List<Artist> getAllSongsFromString(String json) {
+    //region Parse Data from String
+    ///////////////////////////////////////////////////////////////
+    /////////////// PARSE DATA FROM STRING ////////////////////////
+
+    public static List<Song> parseAllSongsFromJSONString(String json) {
         JsonParser parser = new JsonParser();
         return null;
     }
 
+    public static List<Playlist> parseAllPlaylistFromJSONString(String json) {
+        return null;
+    }
+
+    public static List<Integer> parseAllSongIdsFromJSONString(String json) {
+        return null;
+    }
+
+    public static HACAccount parseAccountFromJSONString(String json) {
+        try {
+            JsonParser jsonParser = new JsonParser();
+            JsonObject object = (JsonObject)jsonParser.parse(json);
+            String username = object.get("username").getAsString();
+            String password = object.get("password").getAsString();
+            String email = object.get("email").getAsString();
+            String link = object.get("avatar_image_data").getAsString();
+            LOGE(TAG, "Parse Account Detail:\n" + "Username: " + username + "\t" + password + "\t" + email);
+            byte[] image = EncodingUtils.decodeDataUsingBase64(link);
+            return new HACAccount(username, password, email, image);
+        } catch (Exception e) {
+            // parse error : maybe account is not exist
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     ////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////
+    //endregion
 
     //region Get Data From Resource For Testing Purpose
     /**

@@ -41,7 +41,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/example_text"
+            android:text="@string/login_account"
             android:textColor="#ffebebeb"
             android:textSize="17sp"
             android:id="@+id/name"
@@ -74,7 +74,7 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:freezesText="true"
 
-            android:text="@string/example_text"
+            android:text="@string/login_account_description"
             />
     </LinearLayout>
 

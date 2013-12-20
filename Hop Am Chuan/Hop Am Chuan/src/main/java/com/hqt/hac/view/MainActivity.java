@@ -74,7 +74,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         super.onCreate(savedInstanceState);
 
         // delete all database
-        // HopAmChuanDatabase.deleteDatabase(getApplicationContext());
+//        HopAmChuanDatabase.deleteDatabase(getApplicationContext());
 
         // create sample database
 //        DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());
@@ -104,6 +104,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
         // Load default fragment
         Fragment fragment = new WelcomeFragment();
+        // fragment = new SongViewFragment();
         switchFragment(fragment);
 
     }
@@ -252,7 +253,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
          * remove delegate on onPause()
          */
         // create all adapters as we want
-        headerAdapter = new NavigationDrawerAdapter.HeaderAdapter(getApplicationContext());
+        headerAdapter = new NavigationDrawerAdapter.HeaderAdapter(this);
         itemAdapter = new NavigationDrawerAdapter.ItemAdapter(getApplicationContext());
         playlistHeaderAdapter = new NavigationDrawerAdapter.PlaylistHeaderAdapter(getApplicationContext());
         playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(getApplicationContext(), playlistList);
