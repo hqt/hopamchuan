@@ -86,4 +86,12 @@ public class EncodingUtils {
     public static String encodeObjectToJSONString(Object object) {
         return new Gson().toJson(object);
     }
+
+    public static String encodeByteArrayToString(byte[] data) {
+        return new String(data);
+    }
+
+    public static byte[] encodeStringToByteArray(String data) {
+        return data.getBytes();
+    }
 }

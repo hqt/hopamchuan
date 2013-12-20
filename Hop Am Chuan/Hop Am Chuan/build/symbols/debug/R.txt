@@ -320,46 +320,6 @@ int drawable abc_textfield_searchview_holo_dark 0x7f020053
 int drawable abc_textfield_searchview_holo_light 0x7f020054
 int drawable abc_textfield_searchview_right_holo_dark 0x7f020055
 int drawable abc_textfield_searchview_right_holo_light 0x7f020056
-<<<<<<< HEAD
-int drawable chord_icon 0x7f020057
-int drawable default_avatar 0x7f020058
-int drawable drawer_shadow 0x7f020059
-int drawable favorite_icon 0x7f02005a
-int drawable home_icon 0x7f02005b
-int drawable ic_action_collapse 0x7f02005c
-int drawable ic_action_edit 0x7f02005d
-int drawable ic_action_expand 0x7f02005e
-int drawable ic_action_mic 0x7f02005f
-int drawable ic_action_not_important 0x7f020060
-int drawable ic_action_play 0x7f020061
-int drawable ic_action_remove 0x7f020062
-int drawable ic_action_search 0x7f020063
-int drawable ic_action_settings 0x7f020064
-int drawable ic_action_volume_muted 0x7f020065
-int drawable ic_action_volume_on 0x7f020066
-int drawable ic_drawer 0x7f020067
-int drawable ic_launcher 0x7f020068
-int drawable ic_media_fullscreen_shrink 0x7f020069
-int drawable ic_media_fullscreen_stretch 0x7f02006a
-int drawable ic_media_pause 0x7f02006b
-int drawable ic_media_play 0x7f02006c
-int drawable ic_menu_refresh 0x7f02006d
-int drawable ic_menu_search 0x7f02006e
-int drawable list_divider 0x7f02006f
-int drawable logo 0x7f020070
-int drawable navigation_next_item 0x7f020071
-int drawable navigation_previous_item 0x7f020072
-int drawable playlist_icon 0x7f020073
-int drawable search_icon 0x7f020074
-int drawable shadow 0x7f020075
-int drawable shadowed_background 0x7f020076
-int drawable shadowright 0x7f020077
-int drawable song_count_bg 0x7f020078
-int drawable songs_icon 0x7f020079
-int drawable star 0x7f02007a
-int drawable star_liked 0x7f02007b
-int drawable tv_background_with_divider 0x7f02007c
-=======
 int drawable biglogo 0x7f020057
 int drawable chord_icon 0x7f020058
 int drawable default_avatar 0x7f020059
@@ -367,31 +327,41 @@ int drawable drawer_shadow 0x7f02005a
 int drawable favorite_icon 0x7f02005b
 int drawable home_icon 0x7f02005c
 int drawable ic_action_collapse 0x7f02005d
-int drawable ic_action_expand 0x7f02005e
-int drawable ic_action_not_important 0x7f02005f
-int drawable ic_action_remove 0x7f020060
-int drawable ic_action_search 0x7f020061
-int drawable ic_action_settings 0x7f020062
-int drawable ic_drawer 0x7f020063
-int drawable ic_launcher 0x7f020064
-int drawable ic_menu_refresh 0x7f020065
-int drawable ic_menu_search 0x7f020066
-int drawable list_divider 0x7f020067
-int drawable navigation_next_item 0x7f020068
-int drawable navigation_previous_item 0x7f020069
-int drawable playlist_icon 0x7f02006a
-int drawable search_icon 0x7f02006b
-int drawable setting_icon 0x7f02006c
-int drawable shadow 0x7f02006d
-int drawable shadowed_background 0x7f02006e
-int drawable shadowright 0x7f02006f
-int drawable song_count_bg 0x7f020070
-int drawable songs_icon 0x7f020071
-int drawable splash_screen 0x7f020072
-int drawable star 0x7f020073
-int drawable star_liked 0x7f020074
-int drawable tv_background_with_divider 0x7f020075
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
+int drawable ic_action_edit 0x7f02005e
+int drawable ic_action_expand 0x7f02005f
+int drawable ic_action_mic 0x7f020060
+int drawable ic_action_not_important 0x7f020061
+int drawable ic_action_play 0x7f020062
+int drawable ic_action_remove 0x7f020063
+int drawable ic_action_search 0x7f020064
+int drawable ic_action_settings 0x7f020065
+int drawable ic_action_volume_muted 0x7f020066
+int drawable ic_action_volume_on 0x7f020067
+int drawable ic_drawer 0x7f020068
+int drawable ic_launcher 0x7f020069
+int drawable ic_media_fullscreen_shrink 0x7f02006a
+int drawable ic_media_fullscreen_stretch 0x7f02006b
+int drawable ic_media_pause 0x7f02006c
+int drawable ic_media_play 0x7f02006d
+int drawable ic_menu_refresh 0x7f02006e
+int drawable ic_menu_search 0x7f02006f
+int drawable list_divider 0x7f020070
+int drawable logo 0x7f020071
+int drawable navigation_next_item 0x7f020072
+int drawable navigation_previous_item 0x7f020073
+int drawable playlist_icon 0x7f020074
+int drawable progress_bar_states 0x7f020075
+int drawable search_icon 0x7f020076
+int drawable setting_icon 0x7f020077
+int drawable shadow 0x7f020078
+int drawable shadowed_background 0x7f020079
+int drawable shadowright 0x7f02007a
+int drawable song_count_bg 0x7f02007b
+int drawable songs_icon 0x7f02007c
+int drawable splash_screen 0x7f02007d
+int drawable star 0x7f02007e
+int drawable star_liked 0x7f02007f
+int drawable tv_background_with_divider 0x7f020080
 int id action_bar 0x7f0a001f
 int id action_bar_activity_content 0x7f0a0018
 int id action_bar_container 0x7f0a001e
@@ -400,90 +370,53 @@ int id action_bar_root 0x7f0a001d
 int id action_bar_subtitle 0x7f0a0026
 int id action_bar_title 0x7f0a0025
 int id action_context_bar 0x7f0a0020
-<<<<<<< HEAD
-int id action_fontsize_down 0x7f0a0092
-int id action_fontsize_up 0x7f0a0091
-=======
-int id action_fontsize_down 0x7f0a0091
-int id action_fontsize_up 0x7f0a0090
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
+int id action_fontsize_down 0x7f0a00a1
+int id action_fontsize_up 0x7f0a00a0
 int id action_menu_divider 0x7f0a0019
 int id action_menu_presenter 0x7f0a001a
 int id action_mode_bar 0x7f0a0034
 int id action_mode_bar_stub 0x7f0a0033
 int id action_mode_close_button 0x7f0a0027
-<<<<<<< HEAD
-int id action_oneline 0x7f0a0095
-int id action_settings 0x7f0a0090
-int id action_trans_down 0x7f0a0094
-int id action_trans_up 0x7f0a0093
-int id action_twoline 0x7f0a0096
-=======
-int id action_oneline 0x7f0a0094
-int id action_settings 0x7f0a008f
-int id action_trans_down 0x7f0a0093
-int id action_trans_up 0x7f0a0092
-int id action_twoline 0x7f0a0095
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
+int id action_oneline 0x7f0a00a4
+int id action_settings 0x7f0a009f
+int id action_trans_down 0x7f0a00a3
+int id action_trans_up 0x7f0a00a2
+int id action_twoline 0x7f0a00a5
 int id activity_chooser_view_content 0x7f0a0028
 int id add_chord_button 0x7f0a0057
 int id always 0x7f0a000f
 int id artist_image_view 0x7f0a006f
 int id author_image_view 0x7f0a006d
 int id beginning 0x7f0a000a
-<<<<<<< HEAD
-int id btnCancel 0x7f0a008a
-int id btnLogin 0x7f0a0089
-int id button 0x7f0a008d
-=======
-int id button 0x7f0a008c
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
+int id btnCancel 0x7f0a0099
+int id btnLogin 0x7f0a0098
+int id button 0x7f0a009c
 int id checkbox 0x7f0a0030
 int id checkbox_auto_sync 0x7f0a005f
 int id checkbox_auto_update 0x7f0a005d
 int id chordViewA 0x7f0a004f
-<<<<<<< HEAD
-int id chord_image_view 0x7f0a006e
-int id chord_surface_view 0x7f0a006b
-int id chord_texture_view 0x7f0a006f
+int id chord_image_view 0x7f0a007d
+int id chord_surface_view 0x7f0a007a
+int id chord_texture_view 0x7f0a007e
 int id collapseActionView 0x7f0a0011
-int id company_name 0x7f0a007e
+int id company_name 0x7f0a008d
 int id container 0x7f0a0047
 int id content_frame 0x7f0a004b
-int id countSongText 0x7f0a0077
-int id default_activity_button 0x7f0a002b
-int id description 0x7f0a0076
-int id dialog 0x7f0a0016
-int id disableHome 0x7f0a0008
-int id down_button 0x7f0a006d
-=======
-int id chord_image_view 0x7f0a007a
-int id chord_surface_view 0x7f0a0077
-int id chord_texture_view 0x7f0a007b
-int id collapseActionView 0x7f0a0011
-int id company_name 0x7f0a008a
-int id container 0x7f0a0047
-int id content_frame 0x7f0a004b
-int id countSongText 0x7f0a0083
+int id countSongText 0x7f0a0086
 int id current_version 0x7f0a0059
 int id default_activity_button 0x7f0a002b
-int id description 0x7f0a0082
+int id description 0x7f0a0085
 int id dialog 0x7f0a0016
 int id disableHome 0x7f0a0008
-int id down_button 0x7f0a0079
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
+int id down_button 0x7f0a007c
 int id drawer_layout 0x7f0a0049
 int id dropdown 0x7f0a0017
 int id edit_query 0x7f0a003b
 int id end 0x7f0a000c
 int id expand_activities_button 0x7f0a0029
 int id expanded_menu 0x7f0a002f
-<<<<<<< HEAD
-int id favorite_image_view 0x7f0a005c
-int id ffwd 0x7f0a0082
-=======
 int id favorite_image_view 0x7f0a006b
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
+int id ffwd 0x7f0a0091
 int id fragment_container_master 0x7f0a004c
 int id fullscreen 0x7f0a0015
 int id home 0x7f0a001b
@@ -491,79 +424,49 @@ int id homeAsUp 0x7f0a0005
 int id icon 0x7f0a002d
 int id ifRoom 0x7f0a000e
 int id image 0x7f0a002a
-<<<<<<< HEAD
-int id imageFavorite 0x7f0a007d
-int id imageOptionView 0x7f0a0079
-int id imageView 0x7f0a0071
-int id imageView1 0x7f0a008e
-int id image_view 0x7f0a0069
+int id imageFavorite 0x7f0a008c
+int id imageOptionView 0x7f0a0088
+int id imageView 0x7f0a0080
+int id imageView1 0x7f0a009d
+int id image_view 0x7f0a0078
 int id insert_chord_edit_text 0x7f0a0056
 int id left 0x7f0a0012
 int id left_icon 0x7f0a0036
-int id linearLayout 0x7f0a0066
-=======
-int id imageFavorite 0x7f0a0089
-int id imageOptionView 0x7f0a0085
-int id imageView 0x7f0a007d
-int id imageView1 0x7f0a008d
-int id image_view 0x7f0a0075
-int id insert_chord_edit_text 0x7f0a0056
-int id left 0x7f0a0012
-int id left_icon 0x7f0a0036
-int id linearLayout 0x7f0a0072
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
+int id linearLayout 0x7f0a0075
 int id linear_layout 0x7f0a0053
-int id link_to_register 0x7f0a008b
+int id link_to_register 0x7f0a009a
 int id list 0x7f0a0058
 int id listMode 0x7f0a0001
 int id listViewBackground 0x7f0a0054
 int id list_chord_graphic 0x7f0a0052
 int id list_item 0x7f0a002c
-int id list_song_view 0x7f0a0064
+int id list_song_view 0x7f0a0073
 int id list_view 0x7f0a004d
-<<<<<<< HEAD
-int id mail 0x7f0a0073
-=======
-int id mail 0x7f0a007f
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
+int id mail 0x7f0a0082
 int id margin 0x7f0a0014
-int id mediacontroller_progress 0x7f0a0085
+int id mediacontroller_progress 0x7f0a0094
 int id middle 0x7f0a000b
-<<<<<<< HEAD
-int id name 0x7f0a0072
-=======
-int id name 0x7f0a007e
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
+int id name 0x7f0a0081
 int id navigation_drawer 0x7f0a004a
 int id never 0x7f0a000d
-int id next 0x7f0a0083
+int id next 0x7f0a0092
 int id none 0x7f0a0009
 int id normal 0x7f0a0000
-<<<<<<< HEAD
-int id password 0x7f0a0088
-int id pause 0x7f0a0081
-int id playlist 0x7f0a0078
-int id playlist_header 0x7f0a0074
-int id prev 0x7f0a007f
-=======
-int id playlist 0x7f0a0084
-int id playlist_header 0x7f0a0080
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
+int id password 0x7f0a0097
+int id pause 0x7f0a0090
+int id playlist 0x7f0a0087
+int id playlist_header 0x7f0a0083
+int id prev 0x7f0a008e
 int id progress_circular 0x7f0a0039
 int id progress_horizontal 0x7f0a003a
 int id radio 0x7f0a0032
 int id relative_layout 0x7f0a0050
-<<<<<<< HEAD
-int id relativelayout 0x7f0a0070
-int id relvChordView 0x7f0a006a
-int id rew 0x7f0a0080
-=======
-int id relativelayout 0x7f0a007c
+int id relativelayout 0x7f0a007f
 int id relativelayout1 0x7f0a005b
 int id relativelayout11 0x7f0a005c
 int id relativelayout2 0x7f0a0062
-int id relvChordView 0x7f0a0076
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
+int id relvChordView 0x7f0a0079
+int id rew 0x7f0a008f
 int id right 0x7f0a0013
 int id right_container 0x7f0a0037
 int id right_icon 0x7f0a0038
@@ -578,80 +481,52 @@ int id search_mag_icon 0x7f0a0040
 int id search_plate 0x7f0a0041
 int id search_src_text 0x7f0a0042
 int id search_voice_btn 0x7f0a0046
-<<<<<<< HEAD
-=======
-int id seek_bar 0x7f0a0071
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
 int id selected_view 0x7f0a001c
 int id share_image_view 0x7f0a006a
 int id shortcut 0x7f0a0031
 int id showCustom 0x7f0a0007
 int id showHome 0x7f0a0004
 int id showTitle 0x7f0a0006
-<<<<<<< HEAD
-int id slidingmenumain 0x7f0a008c
-int id song_artist_txt 0x7f0a0061
-int id song_author_txt 0x7f0a005f
-int id song_title_txt 0x7f0a005a
-=======
-int id slidingmenumain 0x7f0a008b
+int id slidingmenumain 0x7f0a009b
 int id song_artist_txt 0x7f0a0070
 int id song_author_txt 0x7f0a006e
 int id song_title_txt 0x7f0a0069
 int id sperateline1 0x7f0a005a
 int id sperateline2 0x7f0a0061
 int id sperateline3 0x7f0a0067
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
 int id spinner 0x7f0a0051
 int id spinner_method_list 0x7f0a0068
 int id split_action_bar 0x7f0a0021
 int id submit_area 0x7f0a0044
 int id sync_song_button 0x7f0a0060
 int id tabMode 0x7f0a0002
-<<<<<<< HEAD
-int id testTextView 0x7f0a008f
-int id text 0x7f0a0075
-int id textView 0x7f0a0067
-int id text_view 0x7f0a0068
-int id textview 0x7f0a0048
-int id time 0x7f0a0086
-int id time_current 0x7f0a0084
-=======
-int id testTextView 0x7f0a008e
-int id text 0x7f0a0081
-int id textView 0x7f0a0073
-int id text_view 0x7f0a0074
+int id testTextView 0x7f0a009e
+int id text 0x7f0a0084
+int id textView 0x7f0a0076
+int id text_view 0x7f0a0077
 int id textview 0x7f0a0048
 int id textview2 0x7f0a0063
 int id textview3 0x7f0a0064
 int id textview4 0x7f0a0065
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
+int id time 0x7f0a0095
+int id time_current 0x7f0a0093
 int id title 0x7f0a002e
 int id title_container 0x7f0a0035
 int id toast_layout_root 0x7f0a004e
 int id top_action_bar 0x7f0a0023
-<<<<<<< HEAD
-int id txtChord 0x7f0a007c
-int id txtLyrics 0x7f0a007b
-int id txtSongName 0x7f0a007a
+int id txtChord 0x7f0a008b
+int id txtLyrics 0x7f0a008a
+int id txtSongName 0x7f0a0089
 int id up 0x7f0a0024
-int id up_button 0x7f0a006c
-int id up_image_view 0x7f0a005d
-=======
-int id txtChord 0x7f0a0088
-int id txtLyrics 0x7f0a0087
-int id txtSongName 0x7f0a0086
-int id up 0x7f0a0024
-int id up_button 0x7f0a0078
+int id up_button 0x7f0a007b
 int id up_image_view 0x7f0a006c
 int id update_now_button 0x7f0a0066
 int id update_song_button 0x7f0a005e
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
 int id useLogo 0x7f0a0003
-int id username 0x7f0a0087
-int id videoSurface 0x7f0a0063
-int id videoSurfaceContainer 0x7f0a0062
-int id video_container 0x7f0a0065
+int id username 0x7f0a0096
+int id videoSurface 0x7f0a0072
+int id videoSurfaceContainer 0x7f0a0071
+int id video_container 0x7f0a0074
 int id withText 0x7f0a0010
 int integer abc_max_action_buttons 0x7f0c0000
 int integer links_columns 0x7f0c0001
@@ -687,41 +562,6 @@ int layout activity_main 0x7f030019
 int layout activity_main_frame 0x7f03001a
 int layout activity_navigation_drawer 0x7f03001b
 int layout activity_search_view 0x7f03001c
-<<<<<<< HEAD
-int layout activity_testing 0x7f03001d
-int layout chordsurfaceview_toast 0x7f03001e
-int layout custom_spinner_dropdown_item 0x7f03001f
-int layout custom_spinner_item 0x7f030020
-int layout fragment_chord_view 0x7f030021
-int layout fragment_find_by_chord 0x7f030022
-int layout fragment_myfavorite 0x7f030023
-int layout fragment_navigation_drawer 0x7f030024
-int layout fragment_playlist_detail 0x7f030025
-int layout fragment_playlist_manager 0x7f030026
-int layout fragment_search_view 0x7f030027
-int layout fragment_song_list 0x7f030028
-int layout fragment_song_view 0x7f030029
-int layout fragment_test 0x7f03002a
-int layout fragment_testing 0x7f03002b
-int layout fragment_video_player 0x7f03002c
-int layout fragment_welcome 0x7f03002d
-int layout list_item_chord_detail 0x7f03002e
-int layout list_item_chord_search 0x7f03002f
-int layout list_item_chord_view 0x7f030030
-int layout list_item_chord_view_image 0x7f030031
-int layout list_item_chord_view_texture_view 0x7f030032
-int layout list_item_header_1 0x7f030033
-int layout list_item_header_2 0x7f030034
-int layout list_item_navigation_drawer_1 0x7f030035
-int layout list_item_navigation_drawer_2 0x7f030036
-int layout list_item_playlist 0x7f030037
-int layout list_item_section_indexer 0x7f030038
-int layout list_item_song_detail 0x7f030039
-int layout list_item_song_favorite 0x7f03003a
-int layout list_item_test_view 0x7f03003b
-int layout media_controller 0x7f03003c
-int layout popup_login 0x7f03003d
-=======
 int layout activity_splash_screen 0x7f03001d
 int layout activity_testing 0x7f03001e
 int layout chordsurfaceview_toast 0x7f03001f
@@ -740,26 +580,28 @@ int layout fragment_song_view 0x7f03002b
 int layout fragment_splash_screen 0x7f03002c
 int layout fragment_test 0x7f03002d
 int layout fragment_testing 0x7f03002e
-int layout fragment_welcome 0x7f03002f
-int layout list_item_chord_detail 0x7f030030
-int layout list_item_chord_search 0x7f030031
-int layout list_item_chord_view 0x7f030032
-int layout list_item_chord_view_image 0x7f030033
-int layout list_item_chord_view_texture_view 0x7f030034
-int layout list_item_header_1 0x7f030035
-int layout list_item_header_2 0x7f030036
-int layout list_item_navigation_drawer_1 0x7f030037
-int layout list_item_navigation_drawer_2 0x7f030038
-int layout list_item_playlist 0x7f030039
-int layout list_item_section_indexer 0x7f03003a
-int layout list_item_song_detail 0x7f03003b
-int layout list_item_song_favorite 0x7f03003c
-int layout list_item_test_view 0x7f03003d
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
-int layout slidingmenumain 0x7f03003e
-int layout support_simple_spinner_dropdown_item 0x7f03003f
-int layout testsurfaceview_fragment_main 0x7f030040
-int layout testtextview_fragment_main 0x7f030041
+int layout fragment_video_player 0x7f03002f
+int layout fragment_welcome 0x7f030030
+int layout list_item_chord_detail 0x7f030031
+int layout list_item_chord_search 0x7f030032
+int layout list_item_chord_view 0x7f030033
+int layout list_item_chord_view_image 0x7f030034
+int layout list_item_chord_view_texture_view 0x7f030035
+int layout list_item_header_1 0x7f030036
+int layout list_item_header_2 0x7f030037
+int layout list_item_navigation_drawer_1 0x7f030038
+int layout list_item_navigation_drawer_2 0x7f030039
+int layout list_item_playlist 0x7f03003a
+int layout list_item_section_indexer 0x7f03003b
+int layout list_item_song_detail 0x7f03003c
+int layout list_item_song_favorite 0x7f03003d
+int layout list_item_test_view 0x7f03003e
+int layout media_controller 0x7f03003f
+int layout popup_login 0x7f030040
+int layout slidingmenumain 0x7f030041
+int layout support_simple_spinner_dropdown_item 0x7f030042
+int layout testsurfaceview_fragment_main 0x7f030043
+int layout testtextview_fragment_main 0x7f030044
 int menu chord_view 0x7f0f0000
 int menu find_by_chord 0x7f0f0001
 int menu global 0x7f0f0002

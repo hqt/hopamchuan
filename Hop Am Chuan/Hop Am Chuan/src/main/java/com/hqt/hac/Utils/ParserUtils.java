@@ -7,9 +7,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.hqt.hac.config.Config;
-import com.hqt.hac.model.Artist;
-import com.hqt.hac.model.Chord;
-import com.hqt.hac.model.Song;
+import com.hqt.hac.model.*;
 import com.hqt.hac.view.R;
 
 import java.io.BufferedReader;
@@ -28,15 +26,37 @@ public class ParserUtils {
 
     private static String TAG = makeLogTag(ParserUtils.class);
 
-    /////////////////////////////////////////////////////////////
-    /////////////// GET DATA FROM STRING ////////////////////////
-    public static List<Artist> getAllSongsFromString(String json) {
+    //region Parse Data from String
+    ///////////////////////////////////////////////////////////////
+    /////////////// PARSE DATA FROM STRING ////////////////////////
+
+    public static List<Song> parseAllSongsFromJSONString(String json) {
         JsonParser parser = new JsonParser();
         return null;
     }
 
+    public static List<Playlist> parseAllPlaylistFromJSONString(String json) {
+        return null;
+    }
+
+    public static List<Integer> parseAllSongIdsFromJSONString(String json) {
+        return null;
+    }
+
+    public static HACAccount parseAccountFromJSONString(String json) {
+        JsonParser jsonParser = new JsonParser();
+        JsonObject object = (JsonObject)jsonParser.parse(json);
+        String username = object.get("username").getAsString();
+        String password = object.get("password").getAsString();
+        String email = object.get("email").getAsString();
+        String link = object.get("avatar_link").getAsString();
+        byte[] image = EncodingUtils.decodeDataUsingBase64(link);
+        return new HACAccount(username, password, email, image);
+    }
+
     ////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////
+    //endregion
 
     //region Get Data From Resource For Testing Purpose
     /**

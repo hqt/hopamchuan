@@ -8,7 +8,11 @@
         android:minSdkVersion="9"
         android:targetSdkVersion="18" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:allowBackup="true"
@@ -73,10 +77,6 @@
             android:name="com.hqt.hac.view.test.TestDatabaseActivity"
             android:exported="true"
             android:label="@string/title_activity_test_database" >
-        </activity>
-        <activity
-            android:name="com.hqt.hac.view.test.TestActivity"
-            android:label="@string/title_activity_test" >
         </activity>
         <activity
             android:name="com.hqt.hac.view.test.MainActivityTest"

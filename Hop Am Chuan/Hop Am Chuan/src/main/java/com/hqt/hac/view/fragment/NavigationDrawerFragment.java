@@ -160,7 +160,7 @@ public class NavigationDrawerFragment extends Fragment
         mergeAdapter = new MergeAdapter();
 
         // create all adapters as we want
-         headerAdapter = new NavigationDrawerAdapter.HeaderAdapter(getActivity().getApplicationContext());
+         headerAdapter = new NavigationDrawerAdapter.HeaderAdapter(getActivity());
          itemAdapter = new NavigationDrawerAdapter.ItemAdapter(getActivity().getApplicationContext());
          playlistHeaderAdapter = new NavigationDrawerAdapter.PlaylistHeaderAdapter(getActivity().getApplicationContext());
          playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(getActivity().getApplicationContext(),

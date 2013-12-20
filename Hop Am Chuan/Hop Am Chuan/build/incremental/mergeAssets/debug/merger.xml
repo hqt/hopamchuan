@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merger>
 
-<<<<<<< HEAD
     <dataSet config="HopAmChuanHopAmChuanLibsSlidingMenuUnspecified.aar" >
         <source path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\HopAmChuanHopAmChuanLibsSlidingMenuUnspecified.aar\assets" />
     </dataSet>
-=======
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
     <dataSet config="ComAndroidSupportAppcompatV71800.aar" >
         <source path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\assets" />
     </dataSet>

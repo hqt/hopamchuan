@@ -49,7 +49,7 @@ public class TestTextView extends ActionBarActivity {
         testTextView = (TextView) findViewById(R.id.testTextView);
 
         // get content
-        testTextView.setText(APIUtils.getAllSongsFromVersion(2));
+        // testTextView.setText(APIUtils.getAllSongsFromVersion(2));
 
     }
 

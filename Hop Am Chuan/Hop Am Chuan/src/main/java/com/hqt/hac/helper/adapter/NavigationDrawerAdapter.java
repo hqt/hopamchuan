@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 import com.hqt.hac.view.R;
+import com.hqt.hac.view.popup.LoginPopup;
 
 import java.util.List;
 
@@ -28,10 +29,12 @@ public class NavigationDrawerAdapter {
         private static String TAG = makeLogTag(HeaderAdapter.class);
 
         Context mContext;
+        Activity activity;
         IHeaderDelegate delegate;
 
-        public HeaderAdapter(Context context) {
-            this.mContext = context;
+        public HeaderAdapter(Activity activity) {
+            this.activity = activity;
+            this.mContext = activity.getBaseContext();
         }
 
         @Override
@@ -71,6 +74,15 @@ public class NavigationDrawerAdapter {
             holder.txtName.setText("HUỲNH QUANG THẢO");
             holder.txtMail.setText("huynhquangthao@gmail.com");
             holder.imgAvatar.setImageResource(R.drawable.default_avatar);
+
+            row.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LoginPopup loginPopup = new LoginPopup(activity);
+                    loginPopup.show();
+                }
+            });
+
             return row;
         }
 

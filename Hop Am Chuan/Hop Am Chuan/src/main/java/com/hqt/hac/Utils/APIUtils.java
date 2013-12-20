@@ -1,7 +1,9 @@
 package com.hqt.hac.utils;
 
 import com.hqt.hac.config.Config;
+import com.hqt.hac.model.HACAccount;
 import com.hqt.hac.model.Playlist;
+import com.hqt.hac.model.Song;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,49 +19,66 @@ public class APIUtils {
 
     public static String TAG = makeLogTag(APIUtils.class);
 
-    public static String validateAccount(String username, String password) {
+    /**
+     * validate account to server. return a account object will all properties if successfully login
+     */
+    public static HACAccount validateAccount(String username, String password) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("username", username);
         params.put("password", password);
         String url = generateRequestLink(Config.SERVICE_GET_PROFILE, params);
         String jsonString = NetworkUtils.getResponseFromGetRequest(url);
-        return jsonString;
+        return ParserUtils.parseAccountFromJSONString(jsonString);
     }
 
-    public static String getAllSongsFromVersion(int version) {
+    /**
+     * Get the latest version of database on server
+     */
+    public static String getLatestDatabaseVersion(int currentVersion) {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("from_ver", currentVersion + "");
+        String url = generateRequestLink(Config.SERVICE_LASTEST_VERSION_APP, params);
+        String jsonData = NetworkUtils.getResponseFromGetRequest(url);
+        return jsonData;
+    }
+
+    /**
+     * Base on current version on System to get the latest song
+     */
+    public static List<Song> getAllSongsFromVersion(int version) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("from_ver", version + "");
         String url = generateRequestLink(Config.SERVICE_GET_SONGS_FROM_DATE, params);
         String jsonString = NetworkUtils.getResponseFromGetRequest(url);
-        return jsonString;
+        return ParserUtils.parseAllSongsFromJSONString(jsonString);
     }
 
     /**
      * synchronize all playlist to server
      * and get again all playlist (include playlist already define on server) to user
      */
-    public static String syncPlaylist(String username, String password, List<Playlist> playlists) {
+    public static List<Playlist> syncPlaylist(String username, String password, List<Playlist> playlists) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("username", username);
         params.put("password", password);
         params.put("local_playlists", EncodingUtils.encodeListToJSONString(playlists));
         String url = generateRequestLink(Config.SERVICE_SYNC_PLAYLIST, params);
         String jsonString = NetworkUtils.getResponseFromGetRequest(url);
-        return jsonString;
+        return ParserUtils.parseAllPlaylistFromJSONString(jsonString);
     }
 
     /**
      * Synchronize all favorite songs to server
      * and get again all songs in favorites (include songs already defien on server) to user
      */
-    public static String syncFavorite(String username, String password, int[] favorite) {
+    public static List<Integer> syncFavorite(String username, String password, int[] favorite) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("username", username);
         params.put("password", password);
         params.put("local_favorites", EncodingUtils.encodeObjectToJSONString(favorite));
         String url = generateRequestLink(Config.SERVICE_SYNC_FAVORITE, params);
         String jsonString = NetworkUtils.getResponseFromGetRequest(url);
-        return jsonString;
+        return ParserUtils.parseAllSongIdsFromJSONString(jsonString);
     }
 
     private static final String generateRequestLink(String url, Map<String, String> parameters) {

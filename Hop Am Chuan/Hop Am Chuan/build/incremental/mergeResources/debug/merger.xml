@@ -1899,10 +1899,6 @@ wrap_content
                     name="TextAppearance.AppCompat.Widget.PopupMenu.Large"
                     parent="TextAppearance.AppCompat.Base.Widget.PopupMenu.Large" />
 
-                <attr
-                    name="listPreferredItemHeightSmall"
-                    format="dimension" />
-
                 <declare-styleable name="MenuItem" >
 
                     <!-- The ID of the item. -->
@@ -2040,6 +2036,10 @@ wrap_content
                         name="actionProviderClass"
                         format="string" />
                 </declare-styleable>
+
+                <attr
+                    name="listPreferredItemHeightSmall"
+                    format="dimension" />
 
                 <style
                     name="TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
@@ -3914,6 +3914,10 @@ false
                     parent="android:Widget.Holo.Light.ActionBar.TabView" />
 
                 <style
+                    name="TextAppearance.AppCompat.Widget.Base.ActionMode.Title.Inverse"
+                    parent="android:TextAppearance.Holo.Widget.ActionMode.Title.Inverse" />
+
+                <style
                     name="TextAppearance.AppCompat.Widget.Base.ActionMode.Title"
                     parent="android:TextAppearance.Holo.Widget.ActionMode.Title" />
 
@@ -3922,8 +3926,24 @@ false
                     parent="android:TextAppearance.Holo.Widget.ActionBar.Title" />
 
                 <style
+                    name="Widget.AppCompat.Light.Base.ActionBar.Solid"
+                    parent="android:Widget.Holo.Light.ActionBar.Solid" />
+
+                <style
+                    name="Widget.AppCompat.Base.ListView.DropDown"
+                    parent="android:Widget.Holo.ListView.DropDown" />
+
+                <style
                     name="Widget.AppCompat.Base.Spinner"
                     parent="android:Widget.Holo.Spinner" />
+
+                <style
+                    name="Widget.AppCompat.Base.ActionBar.TabView"
+                    parent="android:Widget.Holo.ActionBar.TabView" />
+
+                <style
+                    name="Widget.AppCompat.Base.ListView.Menu"
+                    parent="android:Widget.ListView.Menu" />
 
                 <style
                     name="Widget.AppCompat.Light.Base.ActionBar.Solid.Inverse"
@@ -3993,20 +4013,28 @@ false
                     parent="android:TextAppearance.Holo.Widget.ActionBar.Subtitle" />
 
                 <style
+                    name="Widget.AppCompat.Light.Base.ActionBar.TabBar"
+                    parent="android:Widget.Holo.Light.ActionBar.TabBar" />
+
+                <style
                     name="Widget.AppCompat.Light.Base.ActionBar.TabText"
                     parent="android:Widget.Holo.Light.ActionBar.TabText" />
 
                 <style
-                    name="Widget.AppCompat.Base.ActionBar.Solid"
-                    parent="android:Widget.Holo.ActionBar.Solid" />
+                    name="TextAppearance.AppCompat.Base.Widget.PopupMenu.Large"
+                    parent="android:TextAppearance.Holo.Widget.PopupMenu.Large" />
+
+                <style
+                    name="Widget.AppCompat.Light.Base.ActionMode.Inverse"
+                    parent="android:Widget.Holo.Light.ActionMode.Inverse" />
 
                 <style
                     name="Widget.AppCompat.Light.Base.ActionButton.CloseMode"
                     parent="android:Widget.Holo.Light.ActionButton.CloseMode" />
 
                 <style
-                    name="Widget.AppCompat.Light.Base.ActionMode.Inverse"
-                    parent="android:Widget.Holo.Light.ActionMode.Inverse" />
+                    name="Widget.AppCompat.Base.ActionBar.Solid"
+                    parent="android:Widget.Holo.ActionBar.Solid" />
 
                 <style
                     name="Widget.AppCompat.Light.Base.ActionButton"
@@ -4027,6 +4055,14 @@ false
                 <style
                     name="Widget.AppCompat.Light.Base.ActionBar.TabText.Inverse"
                     parent="android:Widget.Holo.Light.ActionBar.TabText.Inverse" />
+
+                <style
+                    name="TextAppearance.AppCompat.Base.Widget.PopupMenu.Small"
+                    parent="android:TextAppearance.Holo.Widget.PopupMenu.Small" />
+
+                <style
+                    name="TextAppearance.AppCompat.Light.Base.Widget.PopupMenu.Large"
+                    parent="android:TextAppearance.Holo.Widget.PopupMenu.Large" />
 
                 <style
                     name="Widget.AppCompat.Base.ActivityChooserView"
@@ -4053,147 +4089,12 @@ middle
                     parent="@android:TextAppearance.Holo.SearchResult.Title" />
 
                 <style
-                    name="Widget.AppCompat.Light.Base.Spinner"
-                    parent="android:Widget.Holo.Light.Spinner" />
-
-                <style
-                    name="Theme.Base.AppCompat.Light"
-                    parent="android:Theme.Holo.Light" >
-
-                    <!-- Copy system flag values for our use -->
-                    <item name="windowActionBar">
-?android:attr/windowActionBar
-                    </item>
-                    <item name="actionBarSize">
-?android:attr/actionBarSize
-                    </item>
-                    <item name="actionBarItemBackground">
-?android:attr/actionBarItemBackground
-                    </item>
-                    <item name="selectableItemBackground">
-?android:attr/selectableItemBackground
-                    </item>
-                    <item name="actionButtonStyle">
-?android:attr/actionButtonStyle
-                    </item>
-                    <item name="dividerVertical">
-?android:attr/dividerVertical
-                    </item>
-                    <item name="dividerHorizontal">
-?android:attr/dividerHorizontal
-                    </item>
-                    <item name="actionBarWidgetTheme">
-@null
-                    </item>
-                    <item name="android:actionBarWidgetTheme">
-?attr/actionBarWidgetTheme
-                    </item>
-
-                    <!-- Required for use of support_simple_spinner_dropdown_item.xml -->
-                    <item name="listPreferredItemHeight">
-?android:attr/listPreferredItemHeight
-                    </item>
-                    <item name="listPreferredItemHeightSmall">
-?android:attr/listPreferredItemHeightSmall
-                    </item>
-                    <item name="listPreferredItemHeightLarge">
-?android:attr/listPreferredItemHeightLarge
-                    </item>
-                    <item name="listPreferredItemPaddingLeft">
-?android:attr/listPreferredItemPaddingLeft
-                    </item>
-                    <item name="listPreferredItemPaddingRight">
-?android:attr/listPreferredItemPaddingRight
-                    </item>
-
-                    <!-- Attributes populated from the framework to be read by apps -->
-                    <item name="buttonBarStyle">
-?android:attr/buttonBarStyle
-                    </item>
-                    <item name="buttonBarButtonStyle">
-?android:attr/buttonBarButtonStyle
-                    </item>
-                </style>
-
-                <style
-                    name="Widget.AppCompat.Base.DropDownItem.Spinner"
-                    parent="android:Widget.Holo.DropDownItem.Spinner" />
-
-                <style
-                    name="Widget.AppCompat.Light.Base.PopupMenu"
-                    parent="android:Widget.Holo.Light.PopupMenu" />
-
-                <style
-                    name="Widget.AppCompat.Base.ActionBar.TabBar"
-                    parent="android:Widget.Holo.ActionBar.TabBar" />
-
-                <style
-                    name="TextAppearance.AppCompat.Widget.Base.ActionBar.Title.Inverse"
-                    parent="android:TextAppearance.Holo.Widget.ActionBar.Title.Inverse" />
-
-                <style
-                    name="Widget.AppCompat.Light.Base.ActionBar"
-                    parent="android:Widget.Holo.Light.ActionBar" />
-
-                <style
-                    name="TextAppearance.AppCompat.Widget.Base.ActionBar.Menu"
-                    parent="android:TextAppearance.Holo.Widget.ActionBar.Menu" />
-
-                <style
-                    name="Widget.AppCompat.Base.ActionButton.CloseMode"
-                    parent="android:Widget.Holo.ActionButton.CloseMode" />
-
-                <style
-                    name="Widget.AppCompat.Light.Base.ActionBar.TabBar.Inverse"
-                    parent="android:Widget.Holo.Light.ActionBar.TabBar.Inverse" />
-
-                <style
-                    name="TextAppearance.AppCompat.Widget.Base.ActionBar.Subtitle.Inverse"
-                    parent="android:TextAppearance.Holo.Widget.ActionBar.Subtitle.Inverse" />
-
-                <style
-                    name="Widget.AppCompat.Base.ActionBar"
-                    parent="android:Widget.Holo.ActionBar" />
-
-                <style
-                    name="TextAppearance.AppCompat.Widget.Base.ActionMode.Title.Inverse"
-                    parent="android:TextAppearance.Holo.Widget.ActionMode.Title.Inverse" />
-
-                <style
-                    name="Widget.AppCompat.Light.Base.ActionBar.Solid"
-                    parent="android:Widget.Holo.Light.ActionBar.Solid" />
-
-                <style
-                    name="Widget.AppCompat.Base.ListView.DropDown"
-                    parent="android:Widget.Holo.ListView.DropDown" />
-
-                <style
-                    name="Widget.AppCompat.Base.ActionBar.TabView"
-                    parent="android:Widget.Holo.ActionBar.TabView" />
-
-                <style
-                    name="Widget.AppCompat.Base.ListView.Menu"
-                    parent="android:Widget.ListView.Menu" />
-
-                <style
-                    name="Widget.AppCompat.Light.Base.ActionBar.TabBar"
-                    parent="android:Widget.Holo.Light.ActionBar.TabBar" />
-
-                <style
-                    name="TextAppearance.AppCompat.Base.Widget.PopupMenu.Large"
-                    parent="android:TextAppearance.Holo.Widget.PopupMenu.Large" />
-
-                <style
-                    name="TextAppearance.AppCompat.Base.Widget.PopupMenu.Small"
-                    parent="android:TextAppearance.Holo.Widget.PopupMenu.Small" />
-
-                <style
-                    name="TextAppearance.AppCompat.Light.Base.Widget.PopupMenu.Large"
-                    parent="android:TextAppearance.Holo.Widget.PopupMenu.Large" />
-
-                <style
                     name="Widget.AppCompat.Light.Base.ActionButton.Overflow"
                     parent="android:Widget.Holo.Light.ActionButton.Overflow" />
+
+                <style
+                    name="Widget.AppCompat.Light.Base.Spinner"
+                    parent="android:Widget.Holo.Light.Spinner" />
 
                 <style
                     name="TextAppearance.AppCompat.Base.SearchResult.Subtitle"
@@ -4275,8 +4176,87 @@ middle
                     parent="android:TextAppearance.Holo.Widget.ActionMode.Subtitle.Inverse" />
 
                 <style
+                    name="Widget.AppCompat.Base.DropDownItem.Spinner"
+                    parent="android:Widget.Holo.DropDownItem.Spinner" />
+
+                <style
+                    name="Theme.Base.AppCompat.Light"
+                    parent="android:Theme.Holo.Light" >
+
+                    <!-- Copy system flag values for our use -->
+                    <item name="windowActionBar">
+?android:attr/windowActionBar
+                    </item>
+                    <item name="actionBarSize">
+?android:attr/actionBarSize
+                    </item>
+                    <item name="actionBarItemBackground">
+?android:attr/actionBarItemBackground
+                    </item>
+                    <item name="selectableItemBackground">
+?android:attr/selectableItemBackground
+                    </item>
+                    <item name="actionButtonStyle">
+?android:attr/actionButtonStyle
+                    </item>
+                    <item name="dividerVertical">
+?android:attr/dividerVertical
+                    </item>
+                    <item name="dividerHorizontal">
+?android:attr/dividerHorizontal
+                    </item>
+                    <item name="actionBarWidgetTheme">
+@null
+                    </item>
+                    <item name="android:actionBarWidgetTheme">
+?attr/actionBarWidgetTheme
+                    </item>
+
+                    <!-- Required for use of support_simple_spinner_dropdown_item.xml -->
+                    <item name="listPreferredItemHeight">
+?android:attr/listPreferredItemHeight
+                    </item>
+                    <item name="listPreferredItemHeightSmall">
+?android:attr/listPreferredItemHeightSmall
+                    </item>
+                    <item name="listPreferredItemHeightLarge">
+?android:attr/listPreferredItemHeightLarge
+                    </item>
+                    <item name="listPreferredItemPaddingLeft">
+?android:attr/listPreferredItemPaddingLeft
+                    </item>
+                    <item name="listPreferredItemPaddingRight">
+?android:attr/listPreferredItemPaddingRight
+                    </item>
+
+                    <!-- Attributes populated from the framework to be read by apps -->
+                    <item name="buttonBarStyle">
+?android:attr/buttonBarStyle
+                    </item>
+                    <item name="buttonBarButtonStyle">
+?android:attr/buttonBarButtonStyle
+                    </item>
+                </style>
+
+                <style
+                    name="Widget.AppCompat.Light.Base.PopupMenu"
+                    parent="android:Widget.Holo.Light.PopupMenu" />
+
+                <style
+                    name="Widget.AppCompat.Base.ActionBar.TabBar"
+                    parent="android:Widget.Holo.ActionBar.TabBar" />
+
+                <style
                     name="TextAppearance.AppCompat.Base.SearchResult.Title"
                     parent="@android:TextAppearance.Holo.SearchResult.Title" />
+
+                <style
+                    name="TextAppearance.AppCompat.Widget.Base.ActionBar.Title.Inverse"
+                    parent="android:TextAppearance.Holo.Widget.ActionBar.Title.Inverse" />
+
+                <style
+                    name="Widget.AppCompat.Light.Base.ActionBar"
+                    parent="android:Widget.Holo.Light.ActionBar" />
 
                 <style
                     name="Widget.AppCompat.Base.PopupMenu"
@@ -4287,8 +4267,28 @@ middle
                     parent="@android:TextAppearance.Holo.SearchResult.Subtitle" />
 
                 <style
+                    name="TextAppearance.AppCompat.Widget.Base.ActionBar.Menu"
+                    parent="android:TextAppearance.Holo.Widget.ActionBar.Menu" />
+
+                <style
+                    name="Widget.AppCompat.Base.ActionButton.CloseMode"
+                    parent="android:Widget.Holo.ActionButton.CloseMode" />
+
+                <style
                     name="Widget.AppCompat.Base.ActionButton.Overflow"
                     parent="android:Widget.Holo.ActionButton.Overflow" />
+
+                <style
+                    name="Widget.AppCompat.Light.Base.ActionBar.TabBar.Inverse"
+                    parent="android:Widget.Holo.Light.ActionBar.TabBar.Inverse" />
+
+                <style
+                    name="TextAppearance.AppCompat.Widget.Base.ActionBar.Subtitle.Inverse"
+                    parent="android:TextAppearance.Holo.Widget.ActionBar.Subtitle.Inverse" />
+
+                <style
+                    name="Widget.AppCompat.Base.ActionBar"
+                    parent="android:Widget.Holo.ActionBar" />
             </file>
             <file
                 path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\res\values-w360dp\values.xml"
@@ -4402,6 +4402,11 @@ false
                 name="shadowright"
                 path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable\shadowright.xml"
                 qualifiers=""
+                type="drawable" />
+            <file
+                name="biglogo"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\biglogo.png"
+                qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="chord_icon"
@@ -4525,7 +4530,7 @@ false
                 type="drawable" />
             <file
                 name="setting_icon"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\setting_icon.png"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\setting_icon.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
@@ -4540,7 +4545,7 @@ false
                 type="drawable" />
             <file
                 name="splash_screen"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\splash_screen.jpg"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\splash_screen.jpg"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
@@ -4552,6 +4557,11 @@ false
                 name="star_liked"
                 path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\star_liked.png"
                 qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="biglogo"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-mdpi\biglogo.png"
+                qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="chord_icon"
@@ -4675,7 +4685,7 @@ false
                 type="drawable" />
             <file
                 name="setting_icon"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-mdpi\setting_icon.png"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-mdpi\setting_icon.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
@@ -4690,7 +4700,7 @@ false
                 type="drawable" />
             <file
                 name="splash_screen"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-mdpi\splash_screen.jpg"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-mdpi\splash_screen.jpg"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
@@ -4702,6 +4712,11 @@ false
                 name="star_liked"
                 path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-mdpi\star_liked.png"
                 qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="biglogo"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\biglogo.png"
+                qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="chord_icon"
@@ -4845,7 +4860,7 @@ false
                 type="drawable" />
             <file
                 name="setting_icon"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\setting_icon.png"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\setting_icon.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
@@ -4860,7 +4875,7 @@ false
                 type="drawable" />
             <file
                 name="splash_screen"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\splash_screen.jpg"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\splash_screen.jpg"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
@@ -4872,6 +4887,11 @@ false
                 name="star_liked"
                 path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\star_liked.png"
                 qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="biglogo"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xxhdpi\biglogo.png"
+                qualifiers="xxhdpi"
                 type="drawable" />
             <file
                 name="chord_icon"
@@ -4995,7 +5015,7 @@ false
                 type="drawable" />
             <file
                 name="setting_icon"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xxhdpi\setting_icon.png"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xxhdpi\setting_icon.png"
                 qualifiers="xxhdpi"
                 type="drawable" />
             <file
@@ -5015,7 +5035,7 @@ false
                 type="drawable" />
             <file
                 name="splash_screen"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xxhdpi\splash_screen.jpg"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xxhdpi\splash_screen.jpg"
                 qualifiers="xxhdpi"
                 type="drawable" />
             <file
@@ -5060,7 +5080,7 @@ false
                 type="layout" />
             <file
                 name="activity_splash_screen"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\activity_splash_screen.xml"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\activity_splash_screen.xml"
                 qualifiers=""
                 type="layout" />
             <file
@@ -5120,7 +5140,7 @@ false
                 type="layout" />
             <file
                 name="fragment_setting"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\fragment_setting.xml"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\fragment_setting.xml"
                 qualifiers=""
                 type="layout" />
             <file
@@ -5135,7 +5155,7 @@ false
                 type="layout" />
             <file
                 name="fragment_splash_screen"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\fragment_splash_screen.xml"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\fragment_splash_screen.xml"
                 qualifiers=""
                 type="layout" />
             <file
@@ -5300,7 +5320,7 @@ false
                 type="menu" />
             <file
                 name="splash_screen"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\menu\splash_screen.xml"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\menu\splash_screen.xml"
                 qualifiers=""
                 type="menu" />
             <file
@@ -5366,6 +5386,14 @@ false
             <file
                 path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\values\attrs.xml"
                 qualifiers="" >
+                <declare-styleable name="ButtonBarContainerTheme" >
+                    <attr
+                        name="metaButtonBarStyle"
+                        format="reference" />
+                    <attr
+                        name="metaButtonBarButtonStyle"
+                        format="reference" />
+                </declare-styleable>
                 <declare-styleable name="BezelImageView" >
                     <attr
                         name="maskDrawable"
@@ -5376,14 +5404,6 @@ false
                     <attr
                         name="desaturateOnPress"
                         format="boolean" />
-                </declare-styleable>
-                <declare-styleable name="ButtonBarContainerTheme" >
-                    <attr
-                        name="metaButtonBarStyle"
-                        format="reference" />
-                    <attr
-                        name="metaButtonBarButtonStyle"
-                        format="reference" />
                 </declare-styleable>
                 <declare-styleable name="BaseTheme" >
                     <attr
@@ -5433,9 +5453,9 @@ false
                 </color>
                 <color name="dark_divider" >#32000000
                 </color>
-                <color name="body_text_3" >#33000000
-                </color>
                 <color name="black_overlay" >#66000000
+                </color>
+                <color name="body_text_3" >#33000000
                 </color>
                 <color name="body_text_2" >#77000000
                 </color>
@@ -5647,6 +5667,8 @@ Tất cả hợp âm
                 </string>
                 <string name="title_activity_chord_view" >Tra cứu hợp âm
                 </string>
+                <string name="hello_world" >Hello world!
+                </string>
 
                 <string-array name="advanced_chord" >
                     <item>
@@ -5777,11 +5799,9 @@ Bsus4
                     </item>
                 </string-array>
 
-                <string name="hello_world" >Hello world!
+                <string name="navigation_drawer_open" >Open navigation drawer
                 </string>
                 <string name="example_text" >Example Text
-                </string>
-                <string name="navigation_drawer_open" >Open navigation drawer
                 </string>
                 <string name="title_activity_search_view" >Search
                 </string>
@@ -5837,18 +5857,11 @@ Em, C, G, D
 C, G, Am, Em, F, Dm
                     </item>
                 </string-array>
-<<<<<<< HEAD
-                <string-array name="all_chord" >
-                </string-array>
-=======
 
-                <string name="search_box_placeholder" >Tên bài hát, tác giả, ca sĩ...
-                </string>
                 <string name="setting_auto_sync" >Tự động đồng bộ playlist
                 </string>
 
                 <string-array name="all_chord" />
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
                 <string-array name="song_list_method" >
                     <item>
 Mới xem gần đây
@@ -6112,7 +6125,7 @@ gone
                     name="FrameworkRoot.Theme"
                     parent="FrameworkRoot.Base" >
 
-                    <!-- APIUtils 11+ (compatibility) -->
+                    <!-- API 11+ (compatibility) -->
                     <item name="buttonBarStyle">
 @style/Compat.ButtonBar
                     </item>
@@ -6122,7 +6135,7 @@ gone
                     <item name="indeterminateProgressStyle">
 @style/Compat.IndeterminateProgress
                     </item>
-                    <!-- APIUtils 14+ (compatibility) -->
+                    <!-- API 14+ (compatibility) -->
                     <item name="listPreferredItemPaddingLeft">
 @dimen/compat_list_preferred_item_padding_left
                     </item>
@@ -6215,6 +6228,20 @@ viewStart
                     </item>
                 </style>
 
+                <style
+                    name="SplashTheme.FullScreen"
+                    parent="android:Theme" >
+                    <item name="android:windowBackground">
+@null
+                    </item>
+                    <item name="android:windowNoTitle">
+true
+                    </item>
+                    <item name="android:windowFullscreen">
+true
+                    </item>
+                </style>
+
                 <style name="StreamPlusOnes" >
                     <item name="android:layout_width">
 wrap_content
@@ -6239,25 +6266,7 @@ gone
                     </item>
                 </style>
 
-<<<<<<< HEAD
                 <style name="TextHeader2" >
-=======
-                <style
-                    name="SplashTheme.FullScreen"
-                    parent="android:Theme" >
-                    <item name="android:windowBackground">
-@null
-                    </item>
-                    <item name="android:windowNoTitle">
-true
-                    </item>
-                    <item name="android:windowFullscreen">
-true
-                    </item>
-                </style>
-
-                <style name="TextHeader3" >
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
                     <item name="android:textSize">
 @dimen/text_size_small
                     </item>
@@ -6301,7 +6310,6 @@ viewStart
                     </item>
                 </style>
 
-<<<<<<< HEAD
                 <style name="TextHeader3" >
                     <item name="android:textSize">
 @dimen/text_size_medium
@@ -6314,7 +6322,9 @@ bold
                     </item>
                     <item name="android:textIsSelectable">
 true
-=======
+                    </item>
+                </style>
+
                 <style name="ButtonBar" >
                     <item name="android:paddingLeft">
 2dp
@@ -6330,7 +6340,6 @@ true
                     </item>
                     <item name="android:background">
 @android:drawable/bottom_bar
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
                     </item>
                 </style>
 
@@ -6698,15 +6707,15 @@ viewStart
                 </style>
 
                 <style
-                    name="FrameworkRoot.ActionBar.TabBar"
-                    parent="Widget.AppCompat.Base.ActionBar.TabBar" />
-
-                <style
                     name="AppTheme"
                     parent="Theme.AppCompat.Light" >
 
                     <!-- Customize your theme here. -->
                 </style>
+
+                <style
+                    name="FrameworkRoot.ActionBar.TabBar"
+                    parent="Widget.AppCompat.Base.ActionBar.TabBar" />
 
                 <style name="StreamContent" >
                     <item name="android:layout_width">
@@ -6755,10 +6764,6 @@ true
                     </item>
                 </style>
 
-                <style
-                    name="SessionAbstract"
-                    parent="TextBody" />
-
                 <style name="StreamMediaContainer" >
                     <item name="android:layout_width">
 match_parent
@@ -6773,6 +6778,10 @@ match_parent
 gone
                     </item>
                 </style>
+
+                <style
+                    name="SessionAbstract"
+                    parent="TextBody" />
 
                 <style name="ListItemContainerBase" >
                     <item name="android:background">
@@ -6957,10 +6966,7 @@ bold
                 </style>
             </file>
             <file
-<<<<<<< HEAD
-                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\values-w820dp\dimens.xml"
-=======
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\values-v11\styles.xml"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\values-v11\styles.xml"
                 qualifiers="v11" >
 
                 <style
@@ -6992,8 +6998,7 @@ true
                 </style>
             </file>
             <file
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\values-w820dp\dimens.xml"
->>>>>>> 44000b662b9e091043fae9efc27668833100d2a0
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\values-w820dp\dimens.xml"
                 qualifiers="w820dp" >
                 <dimen name="activity_horizontal_margin" >64dp
                 </dimen>
@@ -7009,24 +7014,9 @@ true
                 qualifiers=""
                 type="xml" />
             <file
-                name="biglogo"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-hdpi\biglogo.png"
-                qualifiers="hdpi"
-                type="drawable" />
-            <file
-                name="biglogo"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xhdpi\biglogo.png"
-                qualifiers="xhdpi"
-                type="drawable" />
-            <file
-                name="biglogo"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-xxhdpi\biglogo.png"
-                qualifiers="xxhdpi"
-                type="drawable" />
-            <file
-                name="biglogo"
-                path="F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable-mdpi\biglogo.png"
-                qualifiers="mdpi"
+                name="progress_bar_states"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable\progress_bar_states.xml"
+                qualifiers=""
                 type="drawable" />
         </source>
         <source path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\rs\debug" />
