@@ -98,6 +98,16 @@
         </LinearLayout>
         <!-- Login Form Ends -->
 
+        <!-- Footer Start -->
+       <!-- <LinearLayout android:id="@+id/footer"
+                      android:layout_width="fill_parent"
+                      android:orientation="horizontal"
+                      android:layout_height="90dip"
+                      android:background="@drawable/header_gradient"
+                      android:layout_alignParentBottom="true">
+        </LinearLayout>-->
+        <!-- Footer Ends -->
+
     </RelativeLayout>
 
 </ScrollView>

@@ -2,6 +2,8 @@ package com.hqt.hac.helper.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +12,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
+import com.hqt.hac.utils.EncodingUtils;
+import com.hqt.hac.view.LoginActivity;
 import com.hqt.hac.view.R;
 import com.hqt.hac.view.popup.LoginPopup;
 
@@ -71,15 +76,25 @@ public class NavigationDrawerAdapter {
             }
 
             // assign value to view
-            holder.txtName.setText("HUỲNH QUANG THẢO");
-            holder.txtMail.setText("huynhquangthao@gmail.com");
-            holder.imgAvatar.setImageResource(R.drawable.default_avatar);
+            // holder.txtName.setText("HUỲNH QUANG THẢO");
+            // holder.txtMail.setText("huynhquangthao@gmail.com");
+            holder.txtName.setText(PrefStore.getLoginUsername(mContext));
+            holder.txtMail.setText(PrefStore.getEmail(mContext));
+            Bitmap imageAvatar = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage(mContext));
+            if (imageAvatar != null) holder.imgAvatar.setImageBitmap(imageAvatar);
+            else                     holder.imgAvatar.setImageResource(R.drawable.default_avatar);
+            holder.imgAvatar.setImageBitmap(imageAvatar);
 
             row.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    LoginPopup loginPopup = new LoginPopup(activity);
-                    loginPopup.show();
+                    /*LoginPopup loginPopup = new LoginPopup(activity);
+                    loginPopup.show();*/
+
+                    // start Login Activity
+                    Intent intent = new Intent(activity, LoginActivity.class);
+                    activity.startActivity(intent);
+                    activity.finish();
                 }
             });
 

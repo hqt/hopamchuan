@@ -5959,6 +5959,8 @@ C, G, Am, Em, F, Dm
                 </string>
                 <string name="setting_auto_sync" >Tự động đồng bộ playlist
                 </string>
+                <string name="login_activity_title" >Login Account
+                </string>
 
                 <string-array name="all_chord" />
                 <string-array name="song_list_method" >

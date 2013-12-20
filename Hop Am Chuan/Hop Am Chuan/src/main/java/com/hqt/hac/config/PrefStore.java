@@ -6,11 +6,16 @@ import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 import com.hqt.hac.utils.EncodingUtils;
 
+import static com.hqt.hac.utils.LogUtils.LOGE;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
+
 /**
  * App Preferences
  * @author Huynh Quang Thao
  */
 public class PrefStore {
+
+    public static final String TAG = makeLogTag(PrefStore.class);
 
     ///////////////////////////////////////////////////
     ///////////////  PREFERENCE KEY   /////////////////
@@ -50,7 +55,7 @@ public class PrefStore {
     public static final int DEFAULT_LATEST_VERSION = 0;
 
     /** Default value for {@link PrefStore#PREF_USER_IMAGE} */
-    public static final String DEFAULT_USER_IMAGE = "";
+    public static final String DEFAULT_USER_IMAGE = "thao";
 
 
     ////////////////////////////////////////////////////////////////////
@@ -71,9 +76,19 @@ public class PrefStore {
     }
 
     public static byte[] getUserImage(Context ctx) {
-        String strImg =  getSharedPreferences(ctx).getString(PREF_LATEST_VERSION, DEFAULT_USER_IMAGE);
-        return EncodingUtils.encodeStringToByteArray(strImg);
+        String strImg =  getSharedPreferences(ctx).getString(PREF_USER_IMAGE, DEFAULT_USER_IMAGE);
+        return EncodingUtils.decodeDataUsingBase64(strImg);
     }
+
+    public static void setUserImage(Context ctx, byte[] image) {
+        LOGE(TAG, "OLD LENGTH: " + image.length);
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        String strImg = EncodingUtils.encodeByteArrUsingBase64(image);
+        editor.putString(PREF_USER_IMAGE, strImg);
+        editor.commit();
+        LOGE(TAG, "NEW LENGTH: " + PrefStore.getUserImage(ctx).length);
+    }
+
 
     public static int getLatestVersion(Context ctx) {
         return getSharedPreferences(ctx).getInt(PREF_LATEST_VERSION, DEFAULT_LATEST_VERSION);
@@ -95,15 +110,10 @@ public class PrefStore {
 
     public static void setLoginPassword(Context ctx, String password) {
         Editor editor = getSharedPreferences(ctx).edit();
-        editor.putString(PREF_LOGIN_USER, password);
+        editor.putString(PREF_LOGIN_PASSWORD, password);
         editor.commit();
     }
 
-    public static void setUserImage(Context ctx, byte[] image) {
-        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
-        String strImg = EncodingUtils.encodeByteArrayToString(image);
-        editor.putString(PREF_USER_IMAGE, strImg);
-    }
 
     public static void setLatestVersion(Context ctx, int version) {
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();

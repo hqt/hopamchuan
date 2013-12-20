@@ -44,20 +44,21 @@ public class ParserUtils {
     }
 
     public static HACAccount parseAccountFromJSONString(String json) {
-        JsonParser jsonParser = new JsonParser();
-        JsonObject object = (JsonObject)jsonParser.parse(json);
         try {
+            JsonParser jsonParser = new JsonParser();
+            JsonObject object = (JsonObject)jsonParser.parse(json);
             String username = object.get("username").getAsString();
             String password = object.get("password").getAsString();
             String email = object.get("email").getAsString();
-            String link = object.get("avatar_link").getAsString();
+            String link = object.get("avatar_image_data").getAsString();
+            LOGE(TAG, "Parse Account Detail:\n" + "Username: " + username + "\t" + password + "\t" + email);
             byte[] image = EncodingUtils.decodeDataUsingBase64(link);
             return new HACAccount(username, password, email, image);
         } catch (Exception e) {
             // parse error : maybe account is not exist
+            e.printStackTrace();
             return null;
         }
-
     }
 
     ////////////////////////////////////////////////////////////

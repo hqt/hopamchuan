@@ -1,8 +1,11 @@
 package com.hqt.hac.utils;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -249,5 +252,19 @@ public class UIUtils {
         if (hasHoneycomb()) {
             view.setActivated(activated);
         }
+    }
+
+    public static AlertDialog showAlertDialog(Activity activity, String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle(title)
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        return alert;
     }
 }

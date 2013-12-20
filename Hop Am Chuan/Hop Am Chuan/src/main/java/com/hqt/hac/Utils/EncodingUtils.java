@@ -1,5 +1,7 @@
 package com.hqt.hac.utils;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Base64;
 import com.google.gson.Gson;
 
@@ -12,10 +14,15 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Map;
 
+import static com.hqt.hac.utils.LogUtils.LOGE;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
+
 /**
  * Use this class to encode data before sending to server
  */
 public class EncodingUtils {
+
+    public static final String TAG = makeLogTag(EncodingUtils.class);
 
     public static String encodeDataUsingHMAC_MD5(String data, String keyValue)
     {
@@ -51,12 +58,19 @@ public class EncodingUtils {
         return encodeData ;
     }
 
+    public static String encodeByteArrUsingBase64(byte[] data) {
+        LOGE(TAG, "ENCODE OLD LENGTH: " + data.length);
+        byte[] encodedBytes = Base64.encode(data, Base64.DEFAULT);
+        return new String(encodedBytes);
+    }
+
     public static String encodeDataUsingBase64(String data) {
         byte[] encodedBytes = Base64.encode(data.getBytes(), Base64.DEFAULT);
         return new String(encodedBytes);
     }
 
     public static byte[] decodeDataUsingBase64(String data) {
+        LOGE(TAG, "ENCODE NEW LENGTH: " + Base64.decode(data, Base64.DEFAULT).length);
         return Base64.decode(data, Base64.DEFAULT);
     }
 
@@ -87,11 +101,16 @@ public class EncodingUtils {
         return new Gson().toJson(object);
     }
 
-    public static String encodeByteArrayToString(byte[] data) {
+    /*public static String encodeByteArrayToString(byte[] data) {
         return new String(data);
     }
 
     public static byte[] encodeStringToByteArray(String data) {
         return data.getBytes();
+    }*/
+
+    public static Bitmap decodeByteToBitmap(byte[] data) {
+        if (data == null || data.length == 0) return null;
+        return BitmapFactory.decodeByteArray(data, 0, data.length);
     }
 }

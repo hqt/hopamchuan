@@ -46,6 +46,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:label="@string/login_activity_title" android:name="com.hqt.hac.view.LoginActivity">
+        </activity>
     </application>
 
 </manifest>

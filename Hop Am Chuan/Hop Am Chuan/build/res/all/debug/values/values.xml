@@ -784,6 +784,7 @@
     <string name="example_number">10</string>
     <string name="example_text">Example Text</string>
     <string name="hello_world">Hello world!</string>
+    <string name="login_activity_title">Login Account</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="search_box_placeholder">Tên bài hát, tác giả, ca sĩ...</string>
