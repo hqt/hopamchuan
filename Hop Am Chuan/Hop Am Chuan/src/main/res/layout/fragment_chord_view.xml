@@ -2,17 +2,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="10dp"
-    android:paddingBottom="5dp"
     android:orientation="vertical"
     tools:context=".ChordView$PlaceholderFragment">
 
+
+
     <RelativeLayout
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="59dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        >
+
+        <com.hqt.hac.helper.widget.FastSearchListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/list_chord_graphic"
+            android:layout_alignParentLeft="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_height="65dp"
+        android:paddingTop="5dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="5dp"
         android:layout_width="match_parent"
         android:id="@+id/relative_layout"
+        android:background="@drawable/ffff"
         >
 
         <Spinner
@@ -24,20 +43,5 @@
             android:id="@+id/spinner"/>
 
     </RelativeLayout>
-
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/relative_layout">
-
-        <com.hqt.hac.helper.widget.FastSearchListView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/list_chord_graphic"
-            android:layout_alignParentLeft="true"/>
-
-    </RelativeLayout>
-
 
 </RelativeLayout>

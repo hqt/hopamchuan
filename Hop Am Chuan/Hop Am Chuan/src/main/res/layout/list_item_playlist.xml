@@ -25,7 +25,7 @@
             android:layout_height="35dp"
             android:scaleType="centerCrop"
             android:layout_centerVertical="true"
-            android:src="@drawable/abc_ab_solid_light_holo" />
+            android:src="@drawable/song_count_bg" />
 
         <TextView
             android:id="@+id/countSongText"
@@ -38,7 +38,7 @@
             android:layout_margin="1dp"
             android:gravity="center"
             android:text="@string/example_number"
-            android:textColor="#666" />
+            android:textColor="#222" />
 
     </RelativeLayout>
 

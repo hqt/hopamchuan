@@ -8,16 +8,16 @@
     android:paddingBottom="10dp"
     android:paddingRight="50dp"
     >
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/box_shadow"
         android:id="@+id/relvChordView">
-
         <com.hac_library.components.ChordSurfaceView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
             android:layout_centerVertical="true"
             android:id="@+id/chord_surface_view" />
     </RelativeLayout>
@@ -33,13 +33,17 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp"
+            android:paddingRight="20dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="50dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
                 android:src="@drawable/ic_action_collapse"
                 android:id="@+id/up_button" />
 
@@ -52,9 +56,10 @@
                 android:id="@+id/text_view" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="50dp"
+                android:layout_width="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
                 android:src="@drawable/ic_action_expand"
                 android:id="@+id/down_button" />
         </RelativeLayout>
@@ -63,4 +68,5 @@
     </RelativeLayout>
 
 
-</RelativeLayout><!-- From: file:/F:/Github/HopAmChuan/Hop%20Am%20Chuan/Hop%20Am%20Chuan/src/main/res/layout/list_item_chord_view.xml -->
+</RelativeLayout>
+<!-- From: file:/F:/Github/HopAmChuan/Hop%20Am%20Chuan/Hop%20Am%20Chuan/src/main/res/layout/list_item_chord_view.xml -->

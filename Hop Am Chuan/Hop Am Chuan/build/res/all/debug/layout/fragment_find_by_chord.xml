@@ -2,89 +2,106 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="10dp"
-    android:paddingBottom="5dp"
     android:orientation="vertical"
     tools:context=".FindByChord$PlaceholderFragment">
 
-    <Spinner
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:paddingBottom="0dp"
-        android:textColor="#0e0e0e"
-        android:id="@+id/spinner"/>
 
 
-    <view
-        class="com.hqt.hac.helper.widget.BackgroundContainer"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
-        android:background="@drawable/box_shadow"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/spinner"
-        android:layout_above="@+id/linear_layout"
-        android:id="@+id/listViewBackground">
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:layout_below="@+id/spinnerLayout">
 
-        <ListView
-            android:id="@+id/list_view"
-            android:divider="@null"
-            android:dividerHeight="0dp"
+        <view
+            class="com.hqt.hac.helper.widget.BackgroundContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </view>
-
-   <!-- <ListView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/list_view"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/spinner"
-        android:layout_above="@+id/linear_layout" />-->
-
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/linear_layout"
-        android:layout_above="@+id/search_btn"
-        android:weightSum="3"
-        android:layout_alignParentLeft="true">
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="0dp"
             android:layout_height="match_parent"
-            android:id="@+id/insert_chord_edit_text"
-            android:singleLine="true"
-            android:layout_weight="2"
-            android:background="@android:drawable/edit_text"
-            android:imeOptions="actionDone"
-            android:text=""/>
+            android:layout_alignParentLeft="true"
+            android:layout_above="@+id/linear_layout"
+            android:id="@+id/listViewBackground">
+
+            <ListView
+                android:id="@+id/list_view"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </view>
+
+        <!-- <ListView
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent"
+             android:id="@+id/list_view"
+             android:layout_alignParentLeft="true"
+             android:layout_below="@+id/spinner"
+             android:layout_above="@+id/linear_layout" />-->
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/linear_layout"
+            android:layout_above="@+id/search_btn"
+            android:weightSum="3"
+            android:layout_alignParentLeft="true">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/insert_chord_edit_text"
+                android:singleLine="true"
+                android:layout_weight="2"
+                android:background="@android:drawable/edit_text"
+                android:imeOptions="actionDone"
+                android:text="" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/add_chord_button"
+                android:layout_weight="1"
+                android:text="@string/chord_search_add_chord_text" />
+
+        </LinearLayout>
 
         <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/add_chord_button"
-            android:layout_weight="1"
-            android:text="@string/chord_search_add_chord_text"/>
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/search_btn"
+            android:text="@string/chord_search_search_button_text"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/search_btn"
-        android:text="@string/chord_search_search_button_text"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true" />
+    <RelativeLayout
+        android:layout_height="65dp"
+        android:layout_width="match_parent"
 
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="0dp"
+        android:paddingTop="5dp"
+        android:background="@drawable/ffff"
+        android:id="@+id/spinnerLayout"
+        >
+
+        <Spinner
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:textColor="#0e0e0e"
+            android:paddingBottom="0dp"
+            android:id="@+id/spinner"/>
+
+    </RelativeLayout>
 </RelativeLayout>
 <!-- From: file:/F:/Github/HopAmChuan/Hop%20Am%20Chuan/Hop%20Am%20Chuan/src/main/res/layout/fragment_find_by_chord.xml -->
