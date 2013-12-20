@@ -111,7 +111,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:textSize="28sp"
-                android:text="Nếu Như Anh Đến"
+                android:text="Nếu Như Anh Đến Nếu Như Anh Đến Nếu Như Anh Đến "
+
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:scrollHorizontally="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:freezesText="true"
+
                 android:fontFamily="sans-serif-light"
                 android:layout_marginRight="40dp"
                 android:id="@+id/songTitle" />
@@ -133,6 +142,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
+                    android:ellipsize="marquee"
+                    android:singleLine="true"
+                    android:scrollHorizontally="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:marqueeRepeatLimit="marquee_forever"
                     android:textColor="#555"
                     android:text="Nguyễn Đức Cường" />
 
@@ -153,6 +168,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:singleLine="true"
+                    android:scrollHorizontally="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:marqueeRepeatLimit="marquee_forever"
                     android:id="@+id/songSingers"
                     android:textColor="#555"
                     android:fontFamily="sans-serif-light"

@@ -141,7 +141,7 @@
 1387445174136 644 f36fd5717ad4bdec8599bf31caca5510b1f82065 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xxhdpi\playlist_icon.png
 1387445181152 594 fa284d2b701b33500cc375a29a198b42af8c9ddd F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xhdpi\ic_action_volume_on.png
 1387445181422 217 060cf03c6f1df51737ab6fe43d718f4143de919a F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-hdpi\abc_cab_background_top_holo_dark.9.png
-1387445174158 2479 1b61831d4b6b2ec479ae84f63aa5f02931453c3a F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\list_item_header_1.xml
+1387522316099 3077 40137fa54f1aa75b29d622a88b7a79c5f1dee140 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\list_item_header_1.xml
 1387445180211 178 ea6171ed6fd6673c33f0a681f20cf51709547e55 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xhdpi\abc_list_pressed_holo_dark.9.png
 1387445180876 451 97248b2c51ab47290337472b316b03389bc070f2 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-hdpi\abc_ic_clear_search_api_holo_light.png
 1387445174611 1525 1bc18352bde18802b8140e07289174492447f9c3 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xhdpi\abc_ic_clear_disabled.png
@@ -237,7 +237,7 @@
 1387445174612 2476 a56461d142475efdd8a37c7886f96efc0f934ad5 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable\abc_tab_indicator_ab_holo.xml
 1387445174598 423 6998c0facff47024be303d53a5251ca642721095 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xxhdpi\ic_action_play.png
 1387445173759 319 b3bbecf0303408bb06a7111bd6e4a2b66585b435 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\values-w500dp\values.xml
-1387445173702 3266 ed21183a6f0487dd0b4653165503564765316ec5 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\list_item_navigation_drawer_2.xml
+1387523124667 3266 3dbe25556acf90642d094b432eb622eb38298846 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\list_item_navigation_drawer_2.xml
 1387445181375 124 b98041423de06a6af23aed3d019aa724f60dfe94 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xhdpi\ic_drawer.png
 1387467623456 1226 a19531c7dfba62a3693d10c8984033a113eb47fa F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xhdpi\box_shadow.9.png
 1387445174248 175 764e3f8c2fe5c146f6c17a40bf714d7c1aac9a43 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-mdpi\abc_textfield_search_right_selected_holo_light.9.png
@@ -290,7 +290,7 @@
 1387445180238 2220 fc8c97e40fb4af37b0f905cc674c3526390dd5e2 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable\abc_item_background_holo_dark.xml
 1387445180813 644 f36fd5717ad4bdec8599bf31caca5510b1f82065 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-mdpi\playlist_icon.png
 1387445180503 644 f36fd5717ad4bdec8599bf31caca5510b1f82065 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-hdpi\playlist_icon.png
-1387517905535 6998 d43b915188c9b354bd33e5575a7dc3da0e1a85ec F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\fragment_song_detail.xml
+1387521910231 8027 ba636be84347823ee6fa2924f5df27f7e62d32a0 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\fragment_song_detail.xml
 1387445178466 178965 552db474fff93d08c9a6d3c54139676844bde36c F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\raw\song.json
 1387467623296 367 372a663c96a12e40316cb504de01db479716a9ce F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-mdpi\ffff.9.png
 1387445174549 513 e6882d96e2e9d7bf43e4b7b1377b31876bb892db F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-hdpi\abc_spinner_ab_focused_holo_light.9.png
@@ -464,7 +464,7 @@
 1387445181759 1327 7ff82fc29ad30db1f720557d11c6d9f91ab69008 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-hdpi\search_icon.png
 1387445174093 683 b390280ff9a2762a635a079b4f59b246c11b2e0d F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xxhdpi\navigation_next_item.png
 1387445177186 1688 0abcadc48f2e541a7a87072ec73384cf57ede2a7 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-hdpi\abc_ic_search.png
-1387445174237 943 bfe9d7530e5c3974ca7d0ec5703bdb92f990f7ec F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\list_item_header_2.xml
+1387523165315 943 fd993605219c81cd9392ff9b5e19c1c59209d952 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\list_item_header_2.xml
 1387445179816 642 a9fecf000fda81f18799631bfd2bcfe6404a564a F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xxhdpi\ic_action_search.png
 1387445181413 2039 9d4eba8b991b1803dce0c7bcc46bb961d09a7b07 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xhdpi\abc_ic_voice_search.png
 1387445180499 520 10ba1968b138f51f019018ed7efb618a4a6d41b6 F:\Github\HopAmChuan\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\menu\playlist_detail.xml

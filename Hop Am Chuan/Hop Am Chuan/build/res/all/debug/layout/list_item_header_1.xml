@@ -43,11 +43,21 @@
             android:layout_width="wrap_content"
             android:text="@string/example_text"
             android:textColor="#ffebebeb"
-            android:textSize="13sp"
+            android:textSize="17sp"
             android:id="@+id/name"
+
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:freezesText="true"
+
+
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <com.hqt.hac.helper.widget.AutoResizeTextView
+        <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:maxLines="1"
@@ -55,6 +65,15 @@
             style="@style/ListItemTitle"
             android:id="@+id/mail"
             android:textColor="#ffebebeb"
+
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:freezesText="true"
+
             android:text="@string/example_text"
             />
     </LinearLayout>

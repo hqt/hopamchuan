@@ -68,8 +68,8 @@ public class NavigationDrawerAdapter {
             }
 
             // assign value to view
-            holder.txtName.setText("HUỲNH QUANG THẢO");
-            holder.txtMail.setText("huynhquangthao@gmail.com");
+            holder.txtName.setText("ĐINH QUANG TRUNG HUỲNH QUANG THẢO");
+            holder.txtMail.setText("dinhquangtrung90@yahoo.com huynhquangthao@gmail.com");
             holder.imgAvatar.setImageResource(R.drawable.default_avatar);
             return row;
         }
