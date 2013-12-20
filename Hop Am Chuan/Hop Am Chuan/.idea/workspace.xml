@@ -16,31 +16,7 @@
     <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63705522-a816-4679-b5bf-1def300d2420" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/popup/LoginAsyncTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/drawable/progress_bar_states.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/APIUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/APIUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/EncodingUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/EncodingUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/popup/LoginPopup.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/popup/LoginPopup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/test/MainActivityNavigationDrawer.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/test/MainActivityNavigationDrawer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/test/MainActivityTest.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/test/MainActivityTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/NavigationDrawerAdapter.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/NavigationDrawerAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/NavigationDrawerFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/NavigationDrawerFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ParserUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ParserUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/config/PrefStore.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/config/PrefStore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/build/source/r/debug/android/support/v7/appcompat/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/source/r/debug/com/hqt/hac/view/R.java" afterPath="$PROJECT_DIR$/build/source/r/debug/com/hqt/hac/view/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/source/r/debug/com/jeremyfeinstein/slidingmenu/lib/R.java" afterPath="$PROJECT_DIR$/build/source/r/debug/com/jeremyfeinstein/slidingmenu/lib/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/test/TestTextView.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/test/TestTextView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_setting.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/fragment_setting.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/layout/popup_login.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/layout/popup_login.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/popup_login.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/popup_login.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/xml/searchable.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/xml/searchable.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/values/values.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/values/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/res/all/debug/values-v11/values.xml" afterPath="$PROJECT_DIR$/build/res/all/debug/values-v11/values.xml" />
-    </list>
+    <list default="true" id="63705522-a816-4679-b5bf-1def300d2420" name="Default" comment="" />
     <ignored path="Hop Am Chuan.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -115,7 +91,7 @@
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="16" selection-start="673" selection-end="673" vertical-scroll-proportion="0.46977547" vertical-offset="0" max-vertical-offset="1751">
+            <state line="11" column="74" selection-start="444" selection-end="444" vertical-scroll-proportion="0.50268817" vertical-offset="0" max-vertical-offset="1751">
               <folding>
                 <element signature="e#776#794#0" expanded="true" />
               </folding>
@@ -126,34 +102,7 @@
       <file leaf-file-name="LoginAsyncTask.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/popup/LoginAsyncTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="0" selection-start="2200" selection-end="2200" vertical-scroll-proportion="0.0" vertical-offset="257" max-vertical-offset="1462">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PrefStore.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/config/PrefStore.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="1" selection-start="5367" selection-end="5367" vertical-scroll-proportion="0.0" vertical-offset="2261" max-vertical-offset="2363">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LazyLoadingList.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/collections/LazyLoadingList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="34" selection-start="253" selection-end="253" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1768">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LimitedPipeArray.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/collections/LimitedPipeArray.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="434" selection-end="434" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="2006">
+            <state line="21" column="80" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0" vertical-offset="716" max-vertical-offset="1360">
               <folding />
             </state>
           </provider>
@@ -1746,12 +1695,12 @@
       <created>1387365250745</created>
       <updated>1387365250745</updated>
       <workItem from="1387365271935" duration="29725000" />
-      <workItem from="1387514378105" duration="745000" />
+      <workItem from="1387514378105" duration="987000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30470000" />
+    <option name="totallyTimeSpent" value="30712000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="0" />
@@ -1769,6 +1718,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.85303515" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15483384" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1777,13 +1727,12 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28247735" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32852563" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -2068,13 +2017,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/collections/LimitedPipeArray.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="434" selection-end="434" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1989">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/APIUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="64" selection-start="1066" selection-end="1066" vertical-scroll-proportion="0.0" vertical-offset="228" max-vertical-offset="1717">
@@ -2092,20 +2034,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/EncodingUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="53" column="4" selection-start="1498" selection-end="1498" vertical-scroll-proportion="0.0" vertical-offset="1192" max-vertical-offset="1581">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/config/PrefStore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="1" selection-start="5367" selection-end="5367" vertical-scroll-proportion="0.0" vertical-offset="1906" max-vertical-offset="2295">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/popup/LoginAsyncTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="0" selection-start="2200" selection-end="2200" vertical-scroll-proportion="0.0" vertical-offset="257" max-vertical-offset="1462">
           <folding />
         </state>
       </provider>
@@ -2132,9 +2060,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/collections/LimitedPipeArray.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="434" selection-end="434" vertical-scroll-proportion="-0.029360967" vertical-offset="272" max-vertical-offset="1989">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/config/PrefStore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="133" column="1" selection-start="5367" selection-end="5367" vertical-scroll-proportion="0.8238342" vertical-offset="1716" max-vertical-offset="2295">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/popup/LoginAsyncTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="80" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0" vertical-offset="716" max-vertical-offset="1360">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="16" selection-start="673" selection-end="673" vertical-scroll-proportion="0.46977547" vertical-offset="0" max-vertical-offset="1751">
+        <state line="11" column="74" selection-start="444" selection-end="444" vertical-scroll-proportion="0.50268817" vertical-offset="0" max-vertical-offset="1751">
           <folding>
             <element signature="e#776#794#0" expanded="true" />
           </folding>
