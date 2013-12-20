@@ -7106,6 +7106,11 @@ true
                 path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\xml\syncadapter.xml"
                 qualifiers=""
                 type="xml" />
+            <file
+                name="header_gradient"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable\header_gradient.xml"
+                qualifiers=""
+                type="drawable" />
         </source>
         <source path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\rs\debug" />
     </dataSet>

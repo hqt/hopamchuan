@@ -14,6 +14,7 @@
 1387516813892 182 650f2c5e3b4148556e52bbe920b52f5263b7ab1f E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-mdpi\abc_textfield_search_selected_holo_dark.9.png
 1387516809424 2217 f387bbb93d62758bba8fa24cfd24caff7c638af5 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\list_item_navigation_drawer_1.xml
 1387516821198 570 bba141ede6889084b91e4a879be42d09d63c968d E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-mdpi\abc_menu_hardkey_panel_holo_dark.9.png
+1387519192835 466 8faa8f27b33a7e2fb852dff2d38c3e72e7e2eb4a E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable\header_gradient.xml
 1387516816795 217 30f2bd4d9a51e73999f2c013d8ba1067494d2f2a E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xhdpi\abc_list_selector_disabled_holo_light.9.png
 1387516812621 608 d17a040df729ab58e453239d75556332795bebb8 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xhdpi\abc_spinner_ab_focused_holo_light.9.png
 1387516817411 175 ba08405819616f97f12201e58bc3601221868c66 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-mdpi\abc_list_pressed_holo_light.9.png
@@ -441,7 +442,7 @@
 1387516816278 614 c30cb97e3087fe7ba47995602a1f08cecad6d6d5 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xhdpi\abc_spinner_ab_focused_holo_dark.9.png
 1387516820815 686 0d13a204ac7dda117be4cc522b7bd8b585c3f806 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xxhdpi\navigation_previous_item.png
 1387516821720 271 0a8058c9a1c688c82d2583441ac24c071e73a71f E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xhdpi\abc_ab_share_pack_holo_dark.9.png
-1387517666801 3471 66bfd523997f2a3805b9ac254bb4a9eeea1679f3 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\popup_login.xml
+1387519583745 4698 1e2570f323dafea2e5690f3e4b6966062b7966f9 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\popup_login.xml
 1387516816866 1518 6147b6f4854ae8e5d5e40030ad7c7a935949b151 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\abc_list_menu_item_icon.xml
 1387516822014 1151 abae74654dfe4341ad62b317114dd3edbc6ef8fd E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-hdpi\box_shadow.9.png
 1387516814606 423 6998c0facff47024be303d53a5251ca642721095 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xxhdpi\ic_action_play.png
