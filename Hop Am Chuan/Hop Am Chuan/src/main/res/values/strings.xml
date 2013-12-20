@@ -30,8 +30,6 @@
     <string-array name="song_list_method">
         <item>Mới xem gần đây</item>
         <item>Mới cập nhật</item>
-        <item>Xem nhiều hôm nay</item>
-        <item>Xem nhiều trong tuần</item>
         <item>Bài hát ngẫu nhiên</item>
     </string-array>
 
@@ -167,5 +165,6 @@
     <string name="title_activity_splash_screen">Hợp Âm Chuẩn</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_test_list_song">TestListSong</string>
 
 </resources>

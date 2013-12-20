@@ -254,10 +254,10 @@ public class SongDataAccessLayer {
         ContentResolver resolver = context.getContentResolver();
         Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
         Cursor c = resolver.query(uri,
-                Query.Projections.SONG_CONTENT_PROJECTION,    // projection
-                HopAmChuanDBContract.Songs.SONG_ID + "=?",                           // selection string
-                new String[]{String.valueOf(songId)},                           // selection args of strings
-                null);                          //  sort order
+                Query.Projections.SONG_CONTENT_PROJECTION,      // projection
+                HopAmChuanDBContract.Songs.SONG_ID + "=?",      // selection string
+                new String[]{String.valueOf(songId)},           // selection args of strings
+                null);                                          //  sort order
 
         int contentCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_CONTENT);
 
@@ -269,6 +269,83 @@ public class SongDataAccessLayer {
         return "Error: could not get song content (songId=" + songId + ")";
     }
 
+    /**
+     * Set the lastest view time, used in song list (recent songs)
+     * @param context
+     * @param songId
+     * @return
+     */
+    public static boolean setLastestView(Context context, int songId) {
+        LOGD(TAG, "Set lasted view to " + songId);
+
+        ContentValues cv = new ContentValues();
+        cv.put(HopAmChuanDBContract.Songs.SONG_LASTVIEW, (new Date()).getTime());
+
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
+        int insertedUri = resolver.update(uri, cv, HopAmChuanDBContract.Songs.SONG_ID + "=?", new String[]{String.valueOf(songId)});
+        return insertedUri > 0;
+    }
+
+    public static List<Song> getRecentSongs(Context context, int limit) {
+        LOGD(TAG, "get Recent "+limit+" Songs");
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
+        Cursor c = resolver.query(uri,
+                Query.Projections.SONG_ID_PROJECTION,                      // projection
+                null, // selection string
+                null,                   // selection args of strings
+                HopAmChuanDBContract.Songs.SONG_LASTVIEW + " DESC LIMIT " + limit);                                                  //  sort order
+
+        int songIdCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID);
+        List<Song> songs = new ArrayList<Song>();
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            int songId = c.getInt(songIdCol);
+            songs.add(getSongById(context, songId));
+        }
+        c.close();
+        return songs;
+    }
+
+    public static List<Song> getNewSongs(Context context, int limit) {
+        LOGD(TAG, "get new "+limit+" Songs");
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
+        Cursor c = resolver.query(uri,
+                Query.Projections.SONG_ID_PROJECTION,                      // projection
+                null, // selection string
+                null,                   // selection args of strings
+                HopAmChuanDBContract.Songs.SONG_ID + " DESC LIMIT " + limit);                                                  //  sort order
+
+        int songIdCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID);
+        List<Song> songs = new ArrayList<Song>();
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            int songId = c.getInt(songIdCol);
+            songs.add(getSongById(context, songId));
+        }
+        c.close();
+        return songs;
+    }
+
+    public static List<Song> getRandSongs(Context context, int limit) {
+        LOGD(TAG, "get random "+limit+" Songs");
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
+        Cursor c = resolver.query(uri,
+                Query.Projections.SONG_ID_PROJECTION,                      // projection
+                null, // selection string
+                null,                   // selection args of strings
+                " RANDOM() DESC LIMIT " + limit);                                                  //  sort order
+
+        int songIdCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID);
+        List<Song> songs = new ArrayList<Song>();
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            int songId = c.getInt(songIdCol);
+            songs.add(getSongById(context, songId));
+        }
+        c.close();
+        return songs;
+    }
     /**
      * for testing purpose
      * Note : limit = 0 : No limit

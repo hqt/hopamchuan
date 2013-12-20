@@ -59,6 +59,34 @@ public class ChordClickableSpan extends ClickableSpan {
 
         // Chord view
         final ImageView chord = (ImageView) layout.findViewById(R.id.chordViewA);
+
+        final ImageView prevBtn = (ImageView) layout.findViewById(R.id.prevPositionBtn);
+        final ImageView nextBtn = (ImageView) layout.findViewById(R.id.nextPositionBtn);
+
+        prevBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                position--;
+                if (position < 0) {
+                    position = 8;
+                }
+                BitmapDrawable bitmapDrawable = DrawHelper.getBitmapDrawable(Resources.getSystem(), defaultActualSize, defaultActualSize, chordName, position, transpose);
+                chord.setImageDrawable(bitmapDrawable);
+            }
+        });
+
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                position++;
+                if (position > 8) {
+                    position = 0;
+                }
+                BitmapDrawable bitmapDrawable = DrawHelper.getBitmapDrawable(Resources.getSystem(), defaultActualSize, defaultActualSize, chordName, position, transpose);
+                chord.setImageDrawable(bitmapDrawable);
+            }
+        });
+
         chord.setOnTouchListener(new OnSwipeTouchListener() {
             public void onSwipeRight() {
                 position--;

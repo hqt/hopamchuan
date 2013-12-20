@@ -34,5 +34,8 @@ public class SplashScreen extends Activity {
             }
         }, SPLASH_TIME_OUT);
     }
-
+    @Override
+    public void onBackPressed() {
+        // Prevent back button from quiting the app before it starts.
+    }
 }

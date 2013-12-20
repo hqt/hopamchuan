@@ -14,7 +14,7 @@ import com.hqt.hac.view.R;
 public class LoginPopup {
 
     Activity activity;
-    final Dialog dialog;
+    Dialog dialog;
     EditText txtUsername;
     EditText txtPassword;
     Button loginButton;
@@ -24,7 +24,7 @@ public class LoginPopup {
         this.activity = activity;
 
         // Create custom dialog object
-        dialog = new Dialog(activity);
+        dialog = new Dialog(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
 
         // Include dialog.xml file
         dialog.setContentView(R.layout.popup_login);
@@ -58,6 +58,7 @@ public class LoginPopup {
 
     public void syncAccount() {
         if (!NetworkUtils.isNetworkConnected(activity.getApplicationContext())) {
+            dialog.dismiss();
             showAlertDialog();
             return;
         }

@@ -2,6 +2,7 @@ package com.hqt.hac.model;
 
 import android.content.Context;
 
+import com.hqt.hac.model.dao.SongDataAccessLayer;
 import com.hqt.hac.utils.StringUtils;
 
 import java.io.Serializable;
@@ -149,6 +150,8 @@ public class Song implements Serializable {
     public String getContent(Context context) {
         if (this.content == null || this.content.isEmpty()) {
             this.content = getSongContent(context, songId);
+            // Re-assign the last view.
+            SongDataAccessLayer.setLastestView(context, songId);
         }
         return content;
     }
@@ -172,6 +175,20 @@ public class Song implements Serializable {
             this.singers = getSingersBySongId(context, songId);
         }
         return singers;
+    }
+
+    public String getChordString(Context context) {
+        List<Chord> _chords = getChords(context);
+        StringBuilder result = new StringBuilder();
+        for (Chord _chord : _chords) {
+            result.append(_chord.name + ", ");
+        }
+        if (result.toString().length() > 2) {
+            // Delete the last two character: ", "
+            result.deleteCharAt(result.length());
+            result.deleteCharAt(result.length());
+        }
+        return result.toString();
     }
 
     /**
@@ -217,7 +234,7 @@ public class Song implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || ((Object)this).getClass() != o.getClass()) return false;
+        if (o == null || ((Object) this).getClass() != o.getClass()) return false;
 
         Song song = (Song) o;
 
