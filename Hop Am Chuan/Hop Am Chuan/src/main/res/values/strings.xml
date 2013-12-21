@@ -167,5 +167,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_test_list_song">TestListSong</string>
     <string name="login_activity_title">Login Account</string>
+    <string name="setting_activity_title">Setting Page</string>
 
 </resources>

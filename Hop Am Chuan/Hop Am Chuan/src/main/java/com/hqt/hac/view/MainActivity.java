@@ -3,6 +3,7 @@ package com.hqt.hac.view;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -309,7 +310,9 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 fragment = new ChordViewFragment();
                 break;
             case SETTING:
-                fragment = new SettingFragment();
+                Intent intent = new Intent(this, SettingActivity.class);
+                startActivity(intent);
+                finish();
                 break;
         }
         // Open Custom Fragment

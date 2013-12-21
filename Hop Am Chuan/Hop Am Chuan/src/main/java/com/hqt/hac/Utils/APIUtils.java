@@ -35,13 +35,13 @@ public class APIUtils {
     /**
      * Get the latest version of database on server
      */
-    public static int getLatestDatabaseVersion(int currentVersion) {
+    public static DBVersion getLatestDatabaseVersion(int currentVersion) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("from_ver", currentVersion + "");
         String url = generateRequestLink(Config.SERVICE_LASTEST_VERSION_APP, params);
         String jsonData = NetworkUtils.getResponseFromGetRequest(url);
         DBVersion ver = ParserUtils.getDBVersionDetail(jsonData);
-        return ver.no;
+        return ver;
     }
 
     /**

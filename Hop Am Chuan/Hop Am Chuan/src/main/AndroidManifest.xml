@@ -96,6 +96,10 @@
                 android:name="com.hqt.hac.view.LoginActivity"
                 android:label="@string/login_activity_title" >
         </activity>
+        <activity
+                android:name="com.hqt.hac.view.SettingActivity"
+                android:label="@string/setting_activity_title" >
+        </activity>
     </application>
 
 </manifest>

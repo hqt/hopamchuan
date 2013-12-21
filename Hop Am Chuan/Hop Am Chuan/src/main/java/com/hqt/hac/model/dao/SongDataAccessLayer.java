@@ -50,10 +50,12 @@ public class SongDataAccessLayer {
         return false;
     }
 
-    public static void insertFullSongListSync(Context context, List<Song> songs) {
+    public static boolean insertFullSongListSync(Context context, List<Song> songs) {
+        boolean status = true;
         for (Song song : songs) {
-            insertFullSongSync(context, song);
+            status = status && insertFullSongSync(context, song);
         }
+        return status;
     }
 
     public static String insertSong(Context context, Song song) {
