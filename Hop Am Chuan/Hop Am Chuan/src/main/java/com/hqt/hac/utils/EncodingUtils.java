@@ -3,10 +3,12 @@ package com.hqt.hac.utils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+
 import com.google.gson.Gson;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.InvalidKeyException;
@@ -24,11 +26,9 @@ public class EncodingUtils {
 
     public static final String TAG = makeLogTag(EncodingUtils.class);
 
-    public static String encodeDataUsingHMAC_MD5(String data, String keyValue)
-    {
+    public static String encodeDataUsingHMAC_MD5(String data, String keyValue) {
         String encodeData = null;
-        try
-        {
+        try {
             SecretKeySpec key = new SecretKeySpec((keyValue).getBytes("UTF-8"), "HmacMD5");
             Mac mac = Mac.getInstance("HmacMD5");
             mac.init(key);
@@ -37,31 +37,32 @@ public class EncodingUtils {
 
             StringBuffer hash = new StringBuffer();
 
-            for (int i=0; i<bytes.length; i++) {
-                String hex = Integer.toHexString(0xFF &  bytes[i]);
+            for (int i = 0; i < bytes.length; i++) {
+                String hex = Integer.toHexString(0xFF & bytes[i]);
                 if (hex.length() == 1) {
                     hash.append('0');
                 }
                 hash.append(hex);
             }
             encodeData = hash.toString();
-        }
-        catch (UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        catch(InvalidKeyException e){
-            e.printStackTrace();
-        }
-        catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return encodeData ;
+        return encodeData;
     }
 
     public static String encodeByteArrUsingBase64(byte[] data) {
 //        LOGE(TAG, "ENCODE OLD LENGTH: " + data.length);
-        byte[] encodedBytes = Base64.encode(data, Base64.DEFAULT);
-        return new String(encodedBytes);
+        if (data != null) {
+            byte[] encodedBytes = Base64.encode(data, Base64.DEFAULT);
+            return new String(encodedBytes);
+        } else {
+            return null;
+        }
     }
 
     public static String encodeDataUsingBase64(String data) {

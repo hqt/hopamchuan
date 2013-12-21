@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 /**
@@ -28,7 +29,13 @@ public class APIUtils {
         params.put("password", password);
         String url = generateRequestLink(Config.SERVICE_GET_PROFILE, params);
         String jsonString = NetworkUtils.getResponseFromGetRequest(url);
-        return ParserUtils.parseAccountFromJSONString(jsonString);
+        if (jsonString.equals("-1")) {
+            // Wrong password
+            return new HACAccount(null, null, null, null);
+        } else {
+            // Parse json
+            return ParserUtils.parseAccountFromJSONString(jsonString);
+        }
     }
 
     /**

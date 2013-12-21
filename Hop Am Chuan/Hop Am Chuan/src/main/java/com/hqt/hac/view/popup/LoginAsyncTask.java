@@ -49,7 +49,11 @@ public class LoginAsyncTask extends AsyncTask<Void, Integer, Long>{
        publishProgress(1);
         HACAccount account = APIUtils.validateAccount(username, password);
         if (account == null) {
+            // Error from Server
             return -1L;
+        } else if (account.username == null) {
+            // Wrong password
+            return -2L;
         }
 
         byte[] oldImage = account.image;
@@ -60,6 +64,7 @@ public class LoginAsyncTask extends AsyncTask<Void, Integer, Long>{
         PrefStore.setEmail(context, account.email);
         PrefStore.setUserImage(context, account.image);
 
+        /*
         byte[] newImage = PrefStore.getUserImage(context);
         if (newImage.length != oldImage.length) {
             LOGE(TAG, "FUCKING BYTE");
@@ -75,6 +80,7 @@ public class LoginAsyncTask extends AsyncTask<Void, Integer, Long>{
             }
             LOGE(TAG, "FUCKING END");
         }
+        */
 
         return 0L;
     }
@@ -82,8 +88,8 @@ public class LoginAsyncTask extends AsyncTask<Void, Integer, Long>{
     @Override
     protected void onProgressUpdate(Integer... progress) {
         if (progress[0] == 1) {
-            dialog.setTitle("Progress");
-            dialog.setMessage("Synchronize Account");
+            dialog.setTitle("Đăng nhập");
+            dialog.setMessage("Đang kiểm tra...");
         }
 
         /*try {
@@ -93,8 +99,8 @@ public class LoginAsyncTask extends AsyncTask<Void, Integer, Long>{
         }*/
 
         if (progress[0] == 2) {
-            dialog.setTitle("Progress");
-            dialog.setMessage("Update ...");
+            dialog.setTitle("Đăng nhập");
+            dialog.setMessage("Đang lấy thông tin...");
         }
 
         /*try {
@@ -112,7 +118,10 @@ public class LoginAsyncTask extends AsyncTask<Void, Integer, Long>{
         dialog.dismiss();
 
         if (result == -1L) {
-            AlertDialog dialog = UIUtils.showAlertDialog(activity, "ERROR", "Synchronize Account Fail");
+            AlertDialog dialog = UIUtils.showAlertDialog(activity, "Lỗi!", "Kết nối bị lỗi, vui lòng thử lại sau!");
+            dialog.show();
+        } else if (result == -2L) {
+            AlertDialog dialog = UIUtils.showAlertDialog(activity, "Lỗi!", "Tài khoản hoặc mật khẩu không đúng!");
             dialog.show();
         }
 
@@ -122,8 +131,8 @@ public class LoginAsyncTask extends AsyncTask<Void, Integer, Long>{
         // *NOTE* Cannot use General Method here
         if (result == 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setTitle("Notify")
-                    .setMessage("Synchronize Account Successfully")
+            builder.setTitle("Thành công")
+                    .setMessage("Đăng nhập thành công, nhấn OK để bắt đầu đồng bộ.")
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {

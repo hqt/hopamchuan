@@ -19,6 +19,7 @@ import com.hqt.hac.utils.EncodingUtils;
 import com.hqt.hac.view.LoginActivity;
 import com.hqt.hac.view.R;
 import com.hqt.hac.view.popup.LoginPopup;
+import com.hqt.hac.view.popup.ProfilePopup;
 
 import java.util.List;
 
@@ -105,6 +106,8 @@ public class NavigationDrawerAdapter {
                         loginPopup.show();
                     } else {
                         // Start logout activity or popup here.
+                        ProfilePopup profilePopup = new ProfilePopup(activity);
+                        profilePopup.show();
                     }
 
                 }

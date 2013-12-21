@@ -175,5 +175,8 @@
     <string name="login_loginbtn">Đăng nhập</string>
     <string name="login_cancelbtn">Hủy</string>
     <string name="default_artistname">N/A</string>
+    <string name="profile_logout"><u>Ngắt kết nối tài khoản</u></string>
+    <string name="proile_account_label">Tài khoản đang kết nối:</string>
+    <string name="profile_sync_now">Đồng bộ dữ liệu</string>
 
 </resources>
