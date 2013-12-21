@@ -1,27 +1,7 @@
 package com.hqt.hac.model;
 
-import java.util.Date;
-
 /**
- * Store version detail
+ * Created by Dinh Quang Trung on 12/21/13.
  */
 public class DBVersion {
-    public int no;
-    public Date date;
-    int numbers;
-
-    public DBVersion(int no, Date date, int numbers) {
-        this.no = no;
-        this.date = date;
-        this.numbers = numbers;
-    }
-
-    @Override
-    public String toString() {
-        return "DBVersion{" +
-                "no=" + no +
-                ", date=" + date +
-                ", numbers=" + numbers +
-                '}';
-    }
 }
