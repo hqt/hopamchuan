@@ -113,15 +113,9 @@
                 android:textSize="28sp"
                 android:text="Nếu Như Anh Đến Nếu Như Anh Đến Nếu Như Anh Đến "
 
-                android:ellipsize="marquee"
-                android:singleLine="true"
-                android:scrollHorizontally="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:freezesText="true"
+                style="@style/MarqueeText"
 
-                android:fontFamily="sans-serif-light"
+                android:fontFamily="@string/font_light"
                 android:layout_marginRight="40dp"
                 android:id="@+id/songTitle" />
 
@@ -141,15 +135,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:ellipsize="marquee"
-                    android:singleLine="true"
-                    android:scrollHorizontally="true"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:marqueeRepeatLimit="marquee_forever"
+                    android:fontFamily="@string/font_light"
+                    style="@style/MarqueeText"
+                    android:id="@+id/songAuthorsTV"
                     android:textColor="#555"
-                    android:text="Nguyễn Đức Cường" />
+                    android:text="@string/default_artistname" />
 
             </LinearLayout>
 
@@ -168,16 +158,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ellipsize="marquee"
-                    android:singleLine="true"
-                    android:scrollHorizontally="true"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:marqueeRepeatLimit="marquee_forever"
-                    android:id="@+id/songSingers"
+                    style="@style/MarqueeText"
+                    android:id="@+id/songSingersTV"
                     android:textColor="#555"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Văn Mai Hương" />
+                    android:fontFamily="@string/font_light"
+                    android:text="@string/default_artistname" />
 
             </LinearLayout>
 

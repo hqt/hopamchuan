@@ -10,7 +10,7 @@
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
     <string name="search_title">Search Song</string>
-    <string name="title_activity_search_view">Search</string>
+    <string name="title_activity_search_view">Tìm kiếm</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_test_database">Database Access Layer Test</string>
     <string name="title_activity_song_list_fragment">Hợp Âm Chuẩn</string>
@@ -166,8 +166,14 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_test_list_song">TestListSong</string>
-    <string name="login_activity_title">Login Account</string>
+    <string name="login_activity_title">Đăng nhập</string>
     <string name="login_account">ĐĂNG NHẬP</string>
     <string name="login_account_description">Dùng tài khoản HAC</string>
+    <string name="font_light">sans-serif-light</string>
+    <string name="login_username">Tài khoản</string>
+    <string name="login_password">Mật khẩu</string>
+    <string name="login_loginbtn">Đăng nhập</string>
+    <string name="login_cancelbtn">Hủy</string>
+    <string name="default_artistname">N/A</string>
 
 </resources>

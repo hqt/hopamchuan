@@ -44,6 +44,14 @@
         <item name="android:textColor">#888</item>
     </style>
 
+    <style name="MarqueeText">
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+    </style>
+
     <!-- List views and list items -->
     <style name="ListItemContainerBase">
         <item name="android:background">?activatableItemBackground</item>

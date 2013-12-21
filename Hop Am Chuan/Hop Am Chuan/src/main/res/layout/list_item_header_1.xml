@@ -45,16 +45,7 @@
             android:textColor="#ffebebeb"
             android:textSize="17sp"
             android:id="@+id/name"
-
-            android:ellipsize="marquee"
-            android:singleLine="true"
-            android:scrollHorizontally="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:freezesText="true"
-
-
+            style="@style/MarqueeText"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
@@ -62,17 +53,10 @@
             android:layout_width="wrap_content"
             android:maxLines="1"
             android:textSize="12sp"
-            style="@style/ListItemTitle"
             android:id="@+id/mail"
             android:textColor="#ffebebeb"
 
-            android:ellipsize="marquee"
-            android:singleLine="true"
-            android:scrollHorizontally="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:freezesText="true"
+            style="@style/MarqueeText"
 
             android:text="@string/login_account_description"
             />

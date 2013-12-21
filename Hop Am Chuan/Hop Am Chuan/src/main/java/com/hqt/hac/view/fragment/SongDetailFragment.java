@@ -86,9 +86,14 @@ public class SongDetailFragment extends  Fragment {
 
         // Set song content
         TextView songTitleTV = (TextView) rootView.findViewById(R.id.songTitle);
+        TextView songAuthorsTV = (TextView) rootView.findViewById(R.id.songAuthorsTV);
+        TextView songSingersTV = (TextView) rootView.findViewById(R.id.songSingersTV);
         TextView songContentTV = (TextView) rootView.findViewById(R.id.songContent);
 
         songTitleTV.setText(song.title);
+        songAuthorsTV.setText(song.getAuthorsString(activity.getApplicationContext()));
+        songSingersTV.setText(song.getSingersString(activity.getApplicationContext()));
+
         HacUtils.setSongFormatted(activity.getApplicationContext(), songContentTV, song.getContent(activity.getApplicationContext()), activity);
 
         // The header
