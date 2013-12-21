@@ -77,6 +77,11 @@ public class NavigationDrawerAdapter {
 
             holder.txtName.setText(PrefStore.getLoginUsername(mContext));
             holder.txtMail.setText(PrefStore.getEmail(mContext));
+
+            // Makes the marquee running
+            holder.txtMail.setSelected(true);
+            holder.txtName.setSelected(true);
+
             Bitmap imageAvatar = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage(mContext));
             if (imageAvatar != null) {
                 holder.imgAvatar.setImageBitmap(imageAvatar);
