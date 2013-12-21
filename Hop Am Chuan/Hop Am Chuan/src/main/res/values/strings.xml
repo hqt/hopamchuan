@@ -180,5 +180,6 @@
     <string name="profile_sync_now">Đồng bộ dữ liệu</string>
     <string name="title_activity_song_play_full_screen">SongPlayFullScreen</string>
     <string name="song_detail_click_to_fullscreen">Nhấn để xem toàn bộ</string>
+    <string name="title_activity_setting">Đồng bộ</string>
 
 </resources>

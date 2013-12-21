@@ -103,6 +103,10 @@
             android:label="@string/title_activity_song_play_full_screen"
             android:theme="@style/FullscreenTheme" >
         </activity>
+        <activity
+            android:name="com.hqt.hac.view.SettingActivity"
+            android:label="@string/title_activity_setting" >
+        </activity>
     </application>
 
 </manifest>

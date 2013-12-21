@@ -6,12 +6,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import com.hqt.hac.config.PrefStore;
-import com.hqt.hac.model.DBVersion;
 import com.hqt.hac.model.Playlist;
-import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dao.FavoriteDataAccessLayer;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
-import com.hqt.hac.model.dao.SongDataAccessLayer;
 import com.hqt.hac.utils.APIUtils;
 import com.hqt.hac.utils.UIUtils;
 
