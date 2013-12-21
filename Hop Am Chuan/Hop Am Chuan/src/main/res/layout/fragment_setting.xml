@@ -1,5 +1,3 @@
-
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -47,21 +45,14 @@
                 android:id="@+id/checkbox_auto_update"
                 android:text="@string/setting_auto_update" />
 
-            <Button
+            <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
+                android:src="@drawable/ic_menu_refresh"
+                android:padding="10dp"
                 android:id="@+id/update_song_button" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_menu_refresh"
-                android:layout_alignBottom="@+id/update_song_button"
-                android:layout_alignTop="@+id/update_song_button"
-                android:layout_alignLeft="@+id/update_song_button"
-                android:layout_alignRight="@+id/update_song_button"
-                android:padding="10dp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -76,21 +67,14 @@
                 android:id="@+id/checkbox_auto_sync"
                 android:text="@string/setting_auto_sync" />
 
-            <Button
+            <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_menu_refresh"
                 android:id="@+id/sync_song_button" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_menu_refresh"
-                android:layout_alignBottom="@+id/sync_song_button"
-                android:layout_alignTop="@+id/sync_song_button"
-                android:layout_alignLeft="@+id/sync_song_button"
-                android:layout_alignRight="@+id/sync_song_button"
-                android:padding="10dp" />
         </RelativeLayout>
 
     </RelativeLayout>
@@ -147,12 +131,6 @@
 
         </RelativeLayout>
 
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:visibility="visible" />
     </RelativeLayout>
 
 

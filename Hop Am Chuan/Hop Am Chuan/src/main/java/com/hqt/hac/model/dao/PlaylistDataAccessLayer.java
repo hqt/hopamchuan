@@ -127,21 +127,34 @@ public class PlaylistDataAccessLayer {
         return null;
     }
 
+    public static boolean insertAllPlaylist(Context context, List<Playlist> playlists) {
+        boolean status = true;
+        for (Playlist playlist : playlists) {
+            String res = insertPlaylist(context, playlist);
+            if (res == null) status = false;
+        }
+        return status;
+    }
+
     public static String insertPlaylist(Context context, Playlist playlist) {
         LOGD(TAG, "Adding an playlist");
 
-        ContentValues cv = new ContentValues();
-        cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_ID, playlist.playlistId);
-        cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_NAME, playlist.playlistName);
-        cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_DATE, (new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT)).format(playlist.date));
-        cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_DESCRIPTION, playlist.playlistDescription);
-        cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_PUBLIC, playlist.isPublic);
+        try {
+            ContentValues cv = new ContentValues();
+            cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_ID, playlist.playlistId);
+            cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_NAME, playlist.playlistName);
+            cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_DATE, (new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT)).format(playlist.date));
+            cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_DESCRIPTION, playlist.playlistDescription);
+            cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_PUBLIC, playlist.isPublic);
 
-        ContentResolver resolver = context.getContentResolver();
-        Uri uri = HopAmChuanDBContract.Playlist.CONTENT_URI;
-        Uri insertedUri = resolver.insert(uri, cv);
-        LOGD(TAG, "inserted uri: " + insertedUri);
-        return insertedUri.toString();
+            ContentResolver resolver = context.getContentResolver();
+            Uri uri = HopAmChuanDBContract.Playlist.CONTENT_URI;
+            Uri insertedUri = resolver.insert(uri, cv);
+            LOGD(TAG, "inserted uri: " + insertedUri);
+            return insertedUri.toString();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public static int renamePlaylist(Context context, int playlistId, String newName, String newDesc) {

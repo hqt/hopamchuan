@@ -32,15 +32,31 @@ public class ParserUtils {
 
     public static List<Song> parseAllSongsFromJSONString(String json) {
         JsonParser parser = new JsonParser();
-        return null;
+        JsonArray jsonArray = parser.parse(json).getAsJsonArray();
+        return parseSongsFromJsonArray(jsonArray);
     }
 
     public static List<Playlist> parseAllPlaylistFromJSONString(String json) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     public static List<Integer> parseAllSongIdsFromJSONString(String json) {
-        return null;
+        throw new UnsupportedOperationException();
+    }
+
+    public static DBVersion getDBVersionDetail(String json) {
+        try {
+            JsonParser jsonParser = new JsonParser();
+            JsonObject object = (JsonObject)jsonParser.parse(json);
+            int no = object.get("no").getAsInt();
+            Date date = new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT).parse(object.get("date").getAsString());
+            int number = object.get("song_number").getAsInt();
+            return new DBVersion(no, date, number);
+        } catch (Exception e) {
+            // parse error : maybe account is not exist
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static HACAccount parseAccountFromJSONString(String json) {

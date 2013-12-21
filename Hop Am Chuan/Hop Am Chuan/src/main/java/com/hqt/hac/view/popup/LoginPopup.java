@@ -3,11 +3,11 @@ package com.hqt.hac.view.popup;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import com.hqt.hac.helper.task.LoginAsyncTask;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.view.R;
 
