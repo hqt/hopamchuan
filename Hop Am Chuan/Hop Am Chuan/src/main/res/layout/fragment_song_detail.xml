@@ -5,25 +5,104 @@
     tools:context=".SettingFragment$PlaceholderFragment"
     android:background="#e6e7e5">
 
-
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:id="@+id/songContentScrollView">
 
-        <com.hqt.hac.helper.widget.CustomScrollView
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/songContentScrollView"
-            >
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/songHeader"
+                android:background="@drawable/ffff"
+                android:paddingLeft="@dimen/activity_vertical_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="28sp"
+                    android:text="Nếu Như Anh Đến"
+
+                    android:fontFamily="@string/font_light"
+                    android:layout_marginRight="40dp"
+                    android:id="@+id/songTitle" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/songTitle"
+                    android:id="@+id/songAuthors">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/ic_action_edit" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@string/font_light"
+                        android:id="@+id/songAuthorsTV"
+                        android:textColor="#555"
+                        android:text="@string/default_artistname" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/songAuthors">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/ic_action_mic" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/songSingersTV"
+                        android:textColor="#555"
+                        android:fontFamily="@string/font_light"
+                        android:text="@string/default_artistname" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/abc_ic_menu_moreoverflow_normal_holo_light"
+                    android:clickable="true"
+                    android:id="@+id/songMenuBtn"
+                    android:layout_alignParentRight="true" />
+
+
+            </RelativeLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_below="@id/songHeader"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
-                android:paddingTop="120dp"
+                android:paddingTop="10dp"
                 android:paddingBottom="@dimen/activity_vertical_margin">
 
                 <RelativeLayout
@@ -32,14 +111,32 @@
                     android:padding="10dp"
                     android:background="@drawable/box_shadow"
                     android:layout_marginBottom="10dp">
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:fontFamily="@string/font_light"
+                        android:layout_marginRight="40dp"
+                        android:paddingTop="5dp"
+                        android:paddingLeft="5dp"
+                        android:text="@string/song_detail_click_to_fullscreen"
+                        />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/songFullScreen"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/full_screen"
+                        android:clickable="true" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_below="@id/songFullScreen"
                         android:background="#fff"
                         android:lineSpacingExtra="10dp"
                         android:typeface="monospace"
-                        android:textSize="20sp"
+                        android:textSize="14sp"
                         android:id="@+id/songContent"
                         android:padding="10dp" />
                 </RelativeLayout>
@@ -90,91 +187,7 @@
 
 
             </LinearLayout>
-        </com.hqt.hac.helper.widget.CustomScrollView>
 
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ffff"
-            android:id="@+id/songHeader"
-            android:paddingLeft="@dimen/activity_vertical_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingBottom="@dimen/activity_vertical_margin">
-
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:textSize="28sp"
-                android:text="Nếu Như Anh Đến Nếu Như Anh Đến Nếu Như Anh Đến "
-
-                style="@style/MarqueeText"
-
-                android:fontFamily="@string/font_light"
-                android:layout_marginRight="40dp"
-                android:id="@+id/songTitle" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_below="@id/songTitle"
-                android:id="@+id/songAuthors">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginRight="5dp"
-                    android:src="@drawable/ic_action_edit" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@string/font_light"
-                    style="@style/MarqueeText"
-                    android:id="@+id/songAuthorsTV"
-                    android:textColor="#555"
-                    android:text="@string/default_artistname" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_below="@id/songAuthors">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginRight="5dp"
-                    android:src="@drawable/ic_action_mic" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/MarqueeText"
-                    android:id="@+id/songSingersTV"
-                    android:textColor="#555"
-                    android:fontFamily="@string/font_light"
-                    android:text="@string/default_artistname" />
-
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/abc_ic_menu_moreoverflow_normal_holo_light"
-                android:clickable="true"
-                android:id="@+id/songMenuBtn"
-                android:layout_alignParentRight="true" />
         </RelativeLayout>
-
-    </RelativeLayout>
-
+    </ScrollView>
 </RelativeLayout>

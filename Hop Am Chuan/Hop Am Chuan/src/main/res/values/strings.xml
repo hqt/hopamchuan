@@ -178,5 +178,7 @@
     <string name="profile_logout"><u>Ngắt kết nối tài khoản</u></string>
     <string name="proile_account_label">Tài khoản đang kết nối:</string>
     <string name="profile_sync_now">Đồng bộ dữ liệu</string>
+    <string name="title_activity_song_play_full_screen">SongPlayFullScreen</string>
+    <string name="song_detail_click_to_fullscreen">Nhấn để xem toàn bộ</string>
 
 </resources>

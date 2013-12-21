@@ -2,6 +2,7 @@ package com.hqt.hac.view.fragment;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -29,7 +30,9 @@ import com.hqt.hac.model.dao.SongDataAccessLayer;
 import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
+import com.hqt.hac.view.SongPlayFullScreen;
 
+import java.io.Serializable;
 import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
@@ -94,32 +97,49 @@ public class SongDetailFragment extends  Fragment {
         songAuthorsTV.setText(song.getAuthorsString(activity.getApplicationContext()));
         songSingersTV.setText(song.getSingersString(activity.getApplicationContext()));
 
-        // Makes the marquee running.
-        songTitleTV.setSelected(true);
-        songAuthorsTV.setSelected(true);
-        songSingersTV.setSelected(true);
-
         // Set song content
-        HacUtils.setSongFormatted(activity.getApplicationContext(), songContentTV, song.getContent(activity.getApplicationContext()), activity);
+        // HacUtils.setSongFormatted(activity.getApplicationContext(), songContentTV, song.getContent(activity.getApplicationContext()), activity);
+        songContentTV.setText(song.getContent(activity.getApplicationContext()));
+        songContentTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openFullScreenSong();
+            }
+        });
 
         // The header
         final RelativeLayout songHeader = (RelativeLayout) rootView.findViewById(R.id.songHeader);
 
         // Set top menu hidden
-        CustomScrollView scrollView = (CustomScrollView) rootView.findViewById(R.id.songContentScrollView);
-        scrollView.mOnScrollListener = new CustomScrollView.OnScrollListener() {
-            @Override
-            public void onScroll(int delta) {
-                // delta > 0: scroll down, delta < 0: scroll up
-                if (delta > 20) {
-                    songHeader.setVisibility(View.VISIBLE);
-                } else if (delta < -20) {
-                    songHeader.setVisibility(View.GONE);
-                }
-            }
-        };
+//        CustomScrollView scrollView = (CustomScrollView) rootView.findViewById(R.id.songContentScrollView);
+//        scrollView.mOnScrollListener = new CustomScrollView.OnScrollListener() {
+//            @Override
+//            public void onScroll(int delta) {
+//                // delta > 0: scroll down, delta < 0: scroll up
+//                if (delta > 20) {
+//                    songHeader.setVisibility(View.VISIBLE);
+//                } else if (delta < -20) {
+//                    songHeader.setVisibility(View.GONE);
+//                }
+//            }
+//        };
 
+        // Fullscreen button
+        ImageView fullScreenButton = (ImageView) rootView.findViewById(R.id.songFullScreen);
+
+        fullScreenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openFullScreenSong();
+            }
+        });
 
         return rootView;
+    }
+
+    private void openFullScreenSong() {
+        Intent intent = new Intent(activity, SongPlayFullScreen.class);
+        intent.putExtra("song", (Serializable)song);
+        activity.startActivity(intent);
     }
 }
