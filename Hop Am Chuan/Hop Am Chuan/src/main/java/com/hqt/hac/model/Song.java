@@ -185,8 +185,34 @@ public class Song implements Serializable {
         }
         if (result.toString().length() > 2) {
             // Delete the last two character: ", "
-            result.deleteCharAt(result.length());
-            result.deleteCharAt(result.length());
+            result.deleteCharAt(result.length() - 1);
+            result.deleteCharAt(result.length() - 1);
+        }
+        return result.toString();
+    }
+    public String getAuthorsString(Context context) {
+        List<Artist> _authors = getAuthors(context);
+        StringBuilder result = new StringBuilder();
+        for (Artist _author : _authors) {
+            result.append(_author.artistName + ", ");
+        }
+        if (result.toString().length() > 2) {
+            // Delete the last two character: ", "
+            result.deleteCharAt(result.length() - 1);
+            result.deleteCharAt(result.length() - 1);
+        }
+        return result.toString();
+    }
+    public String getSingersString(Context context) {
+        List<Artist> _singers = getSingers(context);
+        StringBuilder result = new StringBuilder();
+        for (Artist _singer : _singers) {
+            result.append(_singer.artistName + ", ");
+        }
+        if (result.toString().length() > 2) {
+            // Delete the last two character: ", "
+            result.deleteCharAt(result.length() - 1);
+            result.deleteCharAt(result.length() - 1);
         }
         return result.toString();
     }

@@ -43,19 +43,19 @@ public class PrefStore {
     public static final boolean DEFAULT_FIRST_RUN = true;
 
     /** Default value for {@link PrefStore#PREF_LOGIN_USER} */
-    public static final String DEFAULT_LOGIN_USER = "huynhquangthao";
+    public static final String DEFAULT_LOGIN_USER = "ĐĂNG NHẬP";
 
     /** Default value for {@link PrefStore#PREF_LOGIN_EMAIL} */
-    public static final String DEFAULT_LOGIN_EMAIL= "huynhquangthao@gmail.com";
+    public static final String DEFAULT_LOGIN_EMAIL= "Bằng tài khoản hopamchuan.com";
 
     /** Default value for {@link PrefStore#PREF_LOGIN_PASSWORD} */
-    public static final String DEFAULT_LOGIN_PASSWORD = "@trankimdu";
+    public static final String DEFAULT_LOGIN_PASSWORD = "@password";
 
     /** Default value for {@link PrefStore#PREF_LATEST_VERSION} */
     public static final int DEFAULT_LATEST_VERSION = 0;
 
     /** Default value for {@link PrefStore#PREF_USER_IMAGE} */
-    public static final String DEFAULT_USER_IMAGE = "thao";
+    public static final String DEFAULT_USER_IMAGE = "image_data";
 
 
     ////////////////////////////////////////////////////////////////////
@@ -81,12 +81,12 @@ public class PrefStore {
     }
 
     public static void setUserImage(Context ctx, byte[] image) {
-        LOGE(TAG, "OLD LENGTH: " + image.length);
+//        LOGE(TAG, "OLD LENGTH: " + image.length);
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         String strImg = EncodingUtils.encodeByteArrUsingBase64(image);
         editor.putString(PREF_USER_IMAGE, strImg);
         editor.commit();
-        LOGE(TAG, "NEW LENGTH: " + PrefStore.getUserImage(ctx).length);
+//        LOGE(TAG, "NEW LENGTH: " + PrefStore.getUserImage(ctx).length);
     }
 
 

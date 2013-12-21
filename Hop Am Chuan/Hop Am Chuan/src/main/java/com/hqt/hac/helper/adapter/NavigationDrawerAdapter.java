@@ -19,6 +19,7 @@ import com.hqt.hac.utils.EncodingUtils;
 import com.hqt.hac.view.LoginActivity;
 import com.hqt.hac.view.R;
 import com.hqt.hac.view.popup.LoginPopup;
+import com.hqt.hac.view.popup.ProfilePopup;
 
 import java.util.List;
 
@@ -75,26 +76,40 @@ public class NavigationDrawerAdapter {
                 holder = (ViewHolderHeader) row.getTag();
             }
 
-            // assign value to view
-            // holder.txtName.setText("HUỲNH QUANG THẢO");
-            // holder.txtMail.setText("huynhquangthao@gmail.com");
             holder.txtName.setText(PrefStore.getLoginUsername(mContext));
             holder.txtMail.setText(PrefStore.getEmail(mContext));
+
+            // Makes the marquee running
+            holder.txtMail.setSelected(true);
+            holder.txtName.setSelected(true);
+
             Bitmap imageAvatar = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage(mContext));
-            if (imageAvatar != null) holder.imgAvatar.setImageBitmap(imageAvatar);
-            else                     holder.imgAvatar.setImageResource(R.drawable.default_avatar);
-            holder.imgAvatar.setImageBitmap(imageAvatar);
+            if (imageAvatar != null) {
+                holder.imgAvatar.setImageBitmap(imageAvatar);
+            } else {
+                holder.imgAvatar.setImageResource(R.drawable.default_avatar);
+            }
 
             row.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*LoginPopup loginPopup = new LoginPopup(activity);
-                    loginPopup.show();*/
+                    // TrungDQ: if you user has logged in, then display Logout popup
+                    Bitmap checkLoggedIn = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage(mContext));
+                    if (checkLoggedIn == null) {
+                        // start Login Activity
+//                        Intent intent = new Intent(activity, LoginActivity.class);
+//                        activity.startActivity(intent);
+//                        activity.finish();
 
-                    // start Login Activity
-                    Intent intent = new Intent(activity, LoginActivity.class);
-                    activity.startActivity(intent);
-                    activity.finish();
+                        // TrungDQ: Prefer popup than an activity
+                        LoginPopup loginPopup = new LoginPopup(activity);
+                        loginPopup.show();
+                    } else {
+                        // Start logout activity or popup here.
+                        ProfilePopup profilePopup = new ProfilePopup(activity);
+                        profilePopup.show();
+                    }
+
                 }
             });
 

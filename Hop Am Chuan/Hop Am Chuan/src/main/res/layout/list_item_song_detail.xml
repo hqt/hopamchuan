@@ -32,7 +32,7 @@
             android:id="@+id/txtLyrics"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
-            android:text="@string/example_text"
+            style="@style/MarqueeText"
             android:layout_marginRight="40dp"
             android:textSize="15sp"
             android:textColor="#999"
@@ -42,8 +42,8 @@
             android:id="@+id/txtChord"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
-            android:text="@string/example_text"
             android:layout_marginRight="40dp"
+            style="@style/MarqueeText"
             android:textSize="15sp"
             android:textColor="#999"
             />

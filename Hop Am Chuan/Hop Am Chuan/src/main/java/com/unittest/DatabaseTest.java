@@ -28,10 +28,6 @@ public class DatabaseTest {
      * Use this method for easier development phrase
      */
     public static void prepareLocalDatabase(Context context) {
-        // create song database
-        List<Song> songs = ParserUtils.getAllSongsFromResource(context);
-        SongDataAccessLayer.insertListOfSongs(context, songs);
-
         // create artist database
         List<Artist> artists = ParserUtils.getAllArtistsFromRescource(context);
         ArtistDataAcessLayer.insertListOfArtists(context, artists);
@@ -39,30 +35,54 @@ public class DatabaseTest {
         // create chord database
         List<Chord> chords = ParserUtils.getAllChordsFromResource(context);
         ChordDataAccessLayer.insertListOfChords(context, chords);
+
+        // create song database
+        List<Song> songs = ParserUtils.getAllSongsFromResource(context);
+        SongDataAccessLayer.insertFullSongListSync(context, songs);
+
     }
 
     public static void prepareLocalDatabaseWithSample(Context context) {
-        // prepareLocalDatabase(context);
+        prepareLocalDatabase(context);
         // Create sample playlists
-//        Playlist playlist1 = new Playlist(1, "Nhac Trinh Cong Son Nhac Trinh Cong Son Nhac Trinh Cong Son", "Trinh Cong Son", new Date(), 1);
-//        Playlist playlist2 = new Playlist(2, "Nhac Pham Duy", "Pham Duy Nhac Trinh Cong Son Nhac Trinh Cong Son", new Date(), 0);
-//        Playlist playlist3 = new Playlist(3, "Nhac Tien Chien", "Tien Chien", new Date(), 1);
-//        PlaylistDataAccessLayer.insertPlaylist(context, playlist1);
-//        PlaylistDataAccessLayer.insertPlaylist(context, playlist2);
-//        PlaylistDataAccessLayer.insertPlaylist(context, playlist3);
+        Playlist playlist1 = new Playlist(1, "Nhac Trinh Cong", "Trinh Cong Son", new Date(), 1);
+        Playlist playlist2 = new Playlist(2, "Nhac Pham Duy", "Pham Duy Nhac Trinh", new Date(), 1);
+        Playlist playlist3 = new Playlist(3, "Nhac Tien Chien", "Tien Chien", new Date(), 1);
+        PlaylistDataAccessLayer.insertPlaylist(context, playlist1);
+        PlaylistDataAccessLayer.insertPlaylist(context, playlist2);
+        PlaylistDataAccessLayer.insertPlaylist(context, playlist3);
+
         // create songs in playlists
-//        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 1);
-//        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 2);
-//        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 3);
-//        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 2, 3);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 2);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 3);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 1, 4);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 2, 5);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 2, 6);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 2, 7);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 2, 8);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 2, 9);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 2, 10);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 2, 11);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 2, 12);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 2, 13);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 2, 14);
+        PlaylistSongDataAccessLayer.insertPlaylist_Song(context, 3, 57);
 //
 //        // create favorites
-//        FavoriteDataAccessLayer.addSongToFavorite(context, 1);
-//        FavoriteDataAccessLayer.addSongToFavorite(context, 2);
-//        FavoriteDataAccessLayer.addSongToFavorite(context, 3);
-//        FavoriteDataAccessLayer.addSongToFavorite(context, 4);
-//        FavoriteDataAccessLayer.addSongToFavorite(context, 5);
-//        FavoriteDataAccessLayer.addSongToFavorite(context, 6);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 1);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 2);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 3);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 4);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 5);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 6);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 7);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 8);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 9);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 10);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 11);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 12);
+        FavoriteDataAccessLayer.addSongToFavorite(context, 13);
+
     }
 
     public static void prepareLocalDatabaseByHand(Context context) {

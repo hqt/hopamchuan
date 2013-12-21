@@ -14,7 +14,6 @@
         <com.hqt.hac.helper.widget.CustomScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
             android:id="@+id/songContentScrollView"
             >
 
@@ -22,8 +21,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:paddingTop="120dp"
                 android:paddingBottom="@dimen/activity_vertical_margin">
 
@@ -100,7 +99,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/ffff"
             android:id="@+id/songHeader"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingLeft="@dimen/activity_vertical_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
             android:paddingBottom="@dimen/activity_vertical_margin">
@@ -112,8 +111,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:textSize="28sp"
-                android:text="Nếu Như Anh Đến"
-                android:fontFamily="sans-serif-light"
+                android:text="Nếu Như Anh Đến Nếu Như Anh Đến Nếu Như Anh Đến "
+
+                style="@style/MarqueeText"
+
+                android:fontFamily="@string/font_light"
                 android:layout_marginRight="40dp"
                 android:id="@+id/songTitle" />
 
@@ -133,9 +135,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@string/font_light"
+                    style="@style/MarqueeText"
+                    android:id="@+id/songAuthorsTV"
                     android:textColor="#555"
-                    android:text="Nguyễn Đức Cường" />
+                    android:text="@string/default_artistname" />
 
             </LinearLayout>
 
@@ -154,10 +158,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/songSingers"
+                    style="@style/MarqueeText"
+                    android:id="@+id/songSingersTV"
                     android:textColor="#555"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Văn Mai Hương" />
+                    android:fontFamily="@string/font_light"
+                    android:text="@string/default_artistname" />
 
             </LinearLayout>
 

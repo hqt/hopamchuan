@@ -24,13 +24,13 @@ public class LoginPopup {
         this.activity = activity;
 
         // Create custom dialog object
-        dialog = new Dialog(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        dialog = new Dialog(activity);
 
         // Include dialog.xml file
         dialog.setContentView(R.layout.popup_login);
 
         // Set dialog title
-        dialog.setTitle("Login");
+        dialog.setTitle("Đăng nhập");
 
         // find Widget by Id
         txtUsername = (EditText) dialog.findViewById(R.id.username);
@@ -69,14 +69,9 @@ public class LoginPopup {
 
     private void showAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setTitle("Network problem")
-                .setMessage("Check your Wifi or 3G Network Again")
-                .setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
-                });
+        builder.setTitle("Lỗi kết nối")
+                .setMessage("Không thể kết nối đến Internet. Vui lòng kiểm tra kết nối Wifi / 3G của bạn.")
+                .setCancelable(false);
         AlertDialog alert = builder.create();
         alert.show();
     }

@@ -89,14 +89,6 @@ public class FavoriteDataAccessLayer {
         return songs;
     }
 
-    public static int[] getAllFavoriteSongIds(Context context) {
-        throw new UnsupportedOperationException();
-    }
-
-    public static boolean addAllSongIdsToFavorite(Context context, List<Integer> ids) {
-        throw new UnsupportedOperationException();
-    }
-
     public static int removeSongFromFavorite(Context context, int songId) {
         LOGD(TAG, "remove song " + songId + " from favorite");
 
@@ -109,4 +101,13 @@ public class FavoriteDataAccessLayer {
         LOGD(TAG, "Inserted uri: " + insertedUri);
         return insertedUri;
     }
+
+    public static int[] getAllFavoriteSongIds(Context context) {
+        throw new UnsupportedOperationException();
+    }
+
+    public static boolean addAllSongIdsToFavorite(Context context, List<Integer> ids) {
+        throw new UnsupportedOperationException();
+    }
+
 }

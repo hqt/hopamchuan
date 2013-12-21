@@ -4393,6 +4393,11 @@ false
                 qualifiers=""
                 type="drawable" />
             <file
+                name="header_gradient"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable\header_gradient.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
                 name="list_divider"
                 path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable\list_divider.xml"
                 qualifiers=""
@@ -5238,6 +5243,11 @@ false
                 qualifiers=""
                 type="layout" />
             <file
+                name="fragment_song_view_sidebar"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\fragment_song_view_sidebar.xml"
+                qualifiers=""
+                type="layout" />
+            <file
                 name="fragment_splash_screen"
                 path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\fragment_splash_screen.xml"
                 qualifiers=""
@@ -5333,6 +5343,11 @@ false
                 qualifiers=""
                 type="layout" />
             <file
+                name="list_item_song_songlist"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\list_item_song_songlist.xml"
+                qualifiers=""
+                type="layout" />
+            <file
                 name="list_item_test_view"
                 path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\list_item_test_view.xml"
                 qualifiers=""
@@ -5345,6 +5360,11 @@ false
             <file
                 name="popup_login"
                 path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\popup_login.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="popup_profile"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\popup_profile.xml"
                 qualifiers=""
                 type="layout" />
             <file
@@ -5713,9 +5733,78 @@ false
                 </string>
                 <string name="title_section3" >Section 3
                 </string>
-                <string name="action_settings" >Settings
-                </string>
                 <string name="title_section2" >Section 2
+                </string>
+                <string name="navigation_drawer_close" >Close navigation drawer
+                </string>
+                <string name="login_account" >ĐĂNG NHẬP
+                </string>
+                <string name="title_activity_my_favorite_fragment" >My Favorite
+                </string>
+                <string name="example_number" >10
+                </string>
+                <string name="chord_search_search_button_text" >Tìm kiếm
+                </string>
+                <string name="setting_auto_update_button" >Cập nhật bài hát mới
+                </string>
+                <string name="search_title" >Search Song
+                </string>
+                <string name="title_activity_splash_screen" >Hợp Âm Chuẩn
+                </string>
+                <string name="update_now_button" >Cập nhật ngay
+                </string>
+                <string name="title_activity_chord_view" >Tra cứu hợp âm
+                </string>
+                <string name="profile_sync_now" >Đồng bộ dữ liệu
+                </string>
+                <string name="title_activity_test_list_song" >TestListSong
+                </string>
+                <string name="navigation_drawer_open" >Open navigation drawer
+                </string>
+                <string name="example_text" >Example Text
+                </string>
+                <string name="font_light" >sans-serif-light
+                </string>
+                <string name="title_activity_search_view" >Tìm kiếm
+                </string>
+                <string name="profile_logout" ><u>
+Ngắt kết nối tài khoản
+                    </u></string>
+                <string name="title_activity_playlist_detail_fragment" >MainActivity
+                </string>
+                <string name="dummy_button" >Dummy Button
+                </string>
+                <string name="setting_activity_string" >Setting Page
+                </string>
+                <string name="search_box_placeholder" >Tên bài hát, tác giả, ca sĩ...
+                </string>
+
+                <string-array name="chords_base_chord" >
+                    <item>
+Am, Dm, E
+                    </item>
+                    <item>
+Am, F, C, G
+                    </item>
+                    <item>
+Em, C, G, D
+                    </item>
+                    <item>
+C, G, Am, Em, F, Dm
+                    </item>
+                </string-array>
+
+                <string name="setting_auto_sync" >Tự động đồng bộ playlist
+                </string>
+                <string name="login_activity_title" >Đăng nhập
+                </string>
+                <string name="chord_search_add_chord_text" >Thêm
+                </string>
+                <string name="login_account_description" >Dùng tài khoản HAC
+                </string>
+                <string name="title_activity_playlist_manager_fragment" >Playlist Manager
+                </string>
+                <string name="action_settings" >Settings
                 </string>
                 <string name="title_activity_test_surface_view" >MainActivity
                 </string>
@@ -5723,31 +5812,13 @@ false
                 </string>
                 <string name="title_activity_song_list_fragment" >Hợp Âm Chuẩn
                 </string>
-                <string name="navigation_drawer_close" >Close navigation drawer
-                </string>
                 <string name="title_activity_welcome_fragment" >MainActivity
-                </string>
-                <string name="title_activity_my_favorite_fragment" >My Favorite
                 </string>
                 <string name="title_activity_test" >Activity Test
                 </string>
-                <string name="chord_search_search_button_text" >Tìm kiếm
-                </string>
-                <string name="example_number" >10
-                </string>
-                <string name="setting_auto_update_button" >Cập nhật bài hát mới
-                </string>
                 <string name="title_activity_test_database" >Database Access Layer Test
                 </string>
-                <string name="title_activity_splash_screen" >Hợp Âm Chuẩn
-                </string>
-                <string name="search_title" >Search Song
-                </string>
-                <string name="update_now_button" >Cập nhật ngay
-                </string>
                 <string name="current_version" >Lần cập nhật cuối:
-                </string>
-                <string name="action_example" >Example action
                 </string>
 
                 <string-array name="type_of_chord_view" >
@@ -5762,9 +5833,11 @@ Tất cả hợp âm
                     </item>
                 </string-array>
 
+                <string name="action_example" >Example action
+                </string>
                 <string name="dummy_content" >DUMMY\nCONTENT
                 </string>
-                <string name="title_activity_chord_view" >Tra cứu hợp âm
+                <string name="login_cancelbtn" >Hủy
                 </string>
 
                 <string-array name="advanced_chord" >
@@ -5898,19 +5971,13 @@ Bsus4
 
                 <string name="hello_world" >Hello world!
                 </string>
-                <string name="title_activity_test_list_song" >TestListSong
+                <string name="login_loginbtn" >Đăng nhập
                 </string>
-                <string name="example_text" >Example Text
-                </string>
-                <string name="navigation_drawer_open" >Open navigation drawer
-                </string>
-                <string name="title_activity_search_view" >Search
+                <string name="proile_account_label" >Tài khoản đang kết nối:
                 </string>
                 <string name="title_activity_test_text_view" >Test TextView
                 </string>
-                <string name="title_activity_playlist_detail_fragment" >MainActivity
-                </string>
-                <string name="dummy_button" >Dummy Button
+                <string name="login_password" >Mật khẩu
                 </string>
                 <string name="title_activity_find_by_chord" >Tìm theo hợp âm
                 </string>
@@ -5940,26 +6007,8 @@ Tra cứu hợp âm
 Đồng bộ
                     </item>
                 </string-array>
-                <string-array name="chords_base_chord" >
-                    <item>
-Am, Dm, E
-                    </item>
-                    <item>
-Am, F, C, G
-                    </item>
-                    <item>
-Em, C, G, D
-                    </item>
-                    <item>
-C, G, Am, Em, F, Dm
-                    </item>
-                </string-array>
 
-                <string name="search_box_placeholder" >Tên bài hát, tác giả, ca sĩ...
-                </string>
-                <string name="setting_auto_sync" >Tự động đồng bộ playlist
-                </string>
-                <string name="login_activity_title" >Login Account
+                <string name="default_artistname" >N/A
                 </string>
 
                 <string-array name="all_chord" />
@@ -5977,9 +6026,61 @@ Bài hát ngẫu nhiên
 
                 <string name="app_name" >Hợp Âm Chuẩn
                 </string>
-                <string name="chord_search_add_chord_text" >Thêm
+                <string name="login_username" >Tài khoản
                 </string>
 
+                <string-array name="favorite_sort_method" >
+                    <item>
+Sắp xếp ABC
+                    </item>
+                    <item>
+Thời gian
+                    </item>
+                </string-array>
+                <string-array name="chords_all_chord" >
+                    <item>
+C
+                    </item>
+                    <item>
+Cm
+                    </item>
+                    <item>
+D
+                    </item>
+                    <item>
+Dm
+                    </item>
+                    <item>
+E
+                    </item>
+                    <item>
+Em
+                    </item>
+                    <item>
+F
+                    </item>
+                    <item>
+Fm
+                    </item>
+                    <item>
+G
+                    </item>
+                    <item>
+Gm
+                    </item>
+                    <item>
+A
+                    </item>
+                    <item>
+Am
+                    </item>
+                    <item>
+B
+                    </item>
+                    <item>
+Bm
+                    </item>
+                </string-array>
                 <string-array name="simple_chord" >
                     <item>
 C
@@ -6054,62 +6155,8 @@ B
 Bm
                     </item>
                 </string-array>
-                <string-array name="chords_all_chord" >
-                    <item>
-C
-                    </item>
-                    <item>
-Cm
-                    </item>
-                    <item>
-D
-                    </item>
-                    <item>
-Dm
-                    </item>
-                    <item>
-E
-                    </item>
-                    <item>
-Em
-                    </item>
-                    <item>
-F
-                    </item>
-                    <item>
-Fm
-                    </item>
-                    <item>
-G
-                    </item>
-                    <item>
-Gm
-                    </item>
-                    <item>
-A
-                    </item>
-                    <item>
-Am
-                    </item>
-                    <item>
-B
-                    </item>
-                    <item>
-Bm
-                    </item>
-                </string-array>
-                <string-array name="favorite_sort_method" >
-                    <item>
-Sắp xếp ABC
-                    </item>
-                    <item>
-Thời gian
-                    </item>
-                </string-array>
 
                 <string name="setting_auto_update" >Tự động cập nhật bài hát mới
-                </string>
-                <string name="title_activity_playlist_manager_fragment" >Playlist Manager
                 </string>
             </file>
             <file
@@ -6589,6 +6636,24 @@ viewStart
                 <style
                     name="FrameworkRoot.ActionBar.TabView"
                     parent="Widget.AppCompat.ActionBar.TabView" />
+
+                <style name="MarqueeText" >
+                    <item name="android:ellipsize">
+marquee
+                    </item>
+                    <item name="android:scrollHorizontally">
+true
+                    </item>
+                    <item name="android:singleLine">
+true
+                    </item>
+                    <item name="android:focusableInTouchMode">
+true
+                    </item>
+                    <item name="android:marqueeRepeatLimit">
+marquee_forever
+                    </item>
+                </style>
 
                 <style name="TextHeaderSub" >
                     <item name="android:textSize">
@@ -7108,16 +7173,6 @@ true
                 path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\xml\syncadapter.xml"
                 qualifiers=""
                 type="xml" />
-            <file
-                name="header_gradient"
-                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable\header_gradient.xml"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="fragment_song_view_sidebar"
-                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\fragment_song_view_sidebar.xml"
-                qualifiers=""
-                type="layout" />
         </source>
         <source path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\rs\debug" />
     </dataSet>

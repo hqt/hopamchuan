@@ -41,21 +41,24 @@
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/example_text"
+            android:text="@string/login_account"
             android:textColor="#ffebebeb"
-            android:textSize="13sp"
+            android:textSize="17sp"
             android:id="@+id/name"
+            style="@style/MarqueeText"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <com.hqt.hac.helper.widget.AutoResizeTextView
+        <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:maxLines="1"
             android:textSize="12sp"
-            style="@style/ListItemTitle"
             android:id="@+id/mail"
             android:textColor="#ffebebeb"
-            android:text="@string/example_text"
+
+            style="@style/MarqueeText"
+
+            android:text="@string/login_account_description"
             />
     </LinearLayout>
 
