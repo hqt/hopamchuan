@@ -2,8 +2,6 @@ package com.hqt.hac.view;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.utils.UIUtils;
-import com.hqt.hac.view.popup.LoginAsyncTask;
+import com.hqt.hac.helper.task.LoginAsyncTask;
 
 /**
  * Activity just for login purpose

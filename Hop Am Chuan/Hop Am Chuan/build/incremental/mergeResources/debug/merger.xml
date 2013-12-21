@@ -7113,6 +7113,11 @@ true
                 path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\drawable\header_gradient.xml"
                 qualifiers=""
                 type="drawable" />
+            <file
+                name="fragment_song_view_sidebar"
+                path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\res\layout\fragment_song_view_sidebar.xml"
+                qualifiers=""
+                type="layout" />
         </source>
         <source path="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\rs\debug" />
     </dataSet>

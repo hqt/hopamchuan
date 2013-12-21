@@ -330,6 +330,7 @@
 1387516809695 168 23ef4e4add44ab4af11efa8162219f13e4b671d0 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-hdpi\abc_textfield_search_right_default_holo_light.9.png
 1387516822470 370 b3dce500142cfe41efa707f8fd5411458a9f5f8a E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-mdpi\abc_spinner_ab_pressed_holo_light.9.png
 1387516817335 178 ea6171ed6fd6673c33f0a681f20cf51709547e55 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xhdpi\abc_list_pressed_holo_dark.9.png
+1387543569545 596 1ab7a1df69bc05224ba78096bcaecfc756897821 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\fragment_song_view_sidebar.xml
 1387516821265 203 1fa432002aa5acb2f9bfab535525c3832b143aa5 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-hdpi\abc_list_selector_disabled_holo_dark.9.png
 1387516818750 483 fd952b25190f5fc503babb23e58d1c8cacc7424f E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xhdpi\ic_menu_search.png
 1387516809418 3286 088cb778803423ca9953f7abbea656c8a241eab9 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\list_item_navigation_drawer_2.xml
@@ -406,7 +407,7 @@
 1387516821033 740 c02c5a12379c2f58479e45c57e0b8e2651f97e67 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-mdpi\abc_ic_clear_search_api_disabled_holo_light.png
 1387516808997 1289 1c035d98c4f5befaf167569484ebb20bd5b803dd E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\abc_action_bar_decor.xml
 1387516819263 2266 9cc010056d87511ef487fbf346bb50f63fd7205b E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\list_item_song_favorite.xml
-1387516821672 3698 a1ccb8bc99c4535483e1526f84afe0cbf0821cf2 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\fragment_song_view.xml
+1387548575395 3100 9616ea6c6a6fe03c62e02e44613e9e87977fcf8d E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\layout\fragment_song_view.xml
 1387516822062 1039 3d96842ae3a5a2951c5fab5f628d87b06144883f E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xhdpi\ic_media_play.png
 1387516821710 144 1dde6b6bd2dd78d49b07a2b238ac85fb72220464 E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xxhdpi\tv_background_with_divider.9.png
 1387516812225 527 8fa6faaf44b14f16996268380e8f0635faffe52a E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\build\res\all\debug\drawable-xhdpi\abc_ic_ab_back_holo_light.png

@@ -41,7 +41,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
     ListView mDrawerListView;
 
     /** SlidingMenu : use for slide to see like NavigationDrawer*/
-    SlidingMenu slidingMenu;
+    public SlidingMenu slidingMenu;
 
     /** Layout of Navigation Drawer
      * Use this for Reference
@@ -104,7 +104,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
         // Load default fragment
         Fragment fragment = new WelcomeFragment();
-        // fragment = new SongViewFragment();
+        fragment = new SongViewFragment();
         switchFragment(fragment);
 
     }

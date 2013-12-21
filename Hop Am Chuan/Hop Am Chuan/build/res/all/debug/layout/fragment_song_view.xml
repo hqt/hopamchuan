@@ -65,19 +65,6 @@
             android:layout_alignBottom="@+id/artist_image_view"
             android:layout_toRightOf="@+id/artist_image_view"/>
 
-    <!-- Building Media Player Control Here -->
-    <com.hqt.hac.helper.widget.VideoControllerView
-            android:id="@+id/videoSurfaceContainer"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/artist_image_view"
-            android:layout_alignParentLeft="true">
-
-        <SurfaceView
-                android:id="@+id/videoSurface"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
-    </com.hqt.hac.helper.widget.VideoControllerView>
 
     <!-- List View contains items -->
     <TextView

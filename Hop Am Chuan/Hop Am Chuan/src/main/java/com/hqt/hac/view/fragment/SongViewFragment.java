@@ -12,6 +12,7 @@ import android.widget.ListView;
 import com.hqt.hac.helper.widget.VideoControllerView;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.io.IOException;
 
@@ -38,6 +39,9 @@ public static String TAG = makeLogTag(SongViewFragment.class);
     /** Controller for Media Player */
     VideoControllerView controller;
 
+    /** Right sidebar for this fragment */
+    SlidingMenu sidebar;
+
     public SongViewFragment() {
 
     }
@@ -46,6 +50,7 @@ public static String TAG = makeLogTag(SongViewFragment.class);
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         this.activity = (MainActivity) activity;
+        setRetainInstance(true);
     }
 
     @Override
@@ -58,7 +63,10 @@ public static String TAG = makeLogTag(SongViewFragment.class);
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_song_view, container, false);
 
-        /** Media Player */
+/*
+        */
+/** Media Player *//*
+
         mediaPlayerContainer = (FrameLayout) rootView.findViewById(R.id.videoSurfaceContainer);
         videoSurface = (SurfaceView) rootView.findViewById(R.id.videoSurface);
         SurfaceHolder videoHolder = videoSurface.getHolder();
@@ -84,11 +92,45 @@ public static String TAG = makeLogTag(SongViewFragment.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+*/
         /** List Data */
         // ListView listView = (ListView) rootView.findViewById(R.id.list_song_view);
 
+        /** set up side bar for this fragment */
+        setUpSideBar(rootView);
         return rootView;
+    }
+
+    private void setUpSideBar(View rootView) {
+        /** Set up Sidebar */
+        /*sidebar = new SlidingMenu(getActivity());
+        // customize look for SlidingMenu
+        sidebar.setShadowWidthRes(R.dimen.shadow_width);
+        // scroll from right
+        sidebar.setMode(SlidingMenu.RIGHT);
+        sidebar.setShadowDrawable(R.drawable.shadowright);
+        // recommend width for navigation drawer. use same for SlidingViewer
+        sidebar.setBehindWidthRes(R.dimen.navigation_drawer_width);
+        sidebar.setFadeDegree(0.35f);
+
+        // set custom action for SlidingMenu
+        sidebar.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+
+        // set up front view
+        //sidebar.setContent(rootView);
+        sidebar.attachToActivity(activity, SlidingMenu.SLIDING_CONTENT);
+        // set up back view
+        LayoutInflater inflater = (LayoutInflater) activity.getBaseContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        View sideBarLayout = inflater.inflate(R.layout.fragment_song_view_sidebar, null);
+        sidebar.setSecondaryMenu(sideBarLayout);*/
+
+        SlidingMenu slidingMenu = activity.slidingMenu;
+        slidingMenu.setMode(SlidingMenu.LEFT_RIGHT);
+        // set up back view
+        LayoutInflater inflater = (LayoutInflater) activity.getBaseContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        View sideBarLayout = inflater.inflate(R.layout.fragment_song_view_sidebar, null);
+        slidingMenu.setSecondaryMenu(sideBarLayout);
+
     }
 
     ////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,7 @@
 package com.hqt.hac.utils;
 
 import com.hqt.hac.config.Config;
+import com.hqt.hac.model.DBVersion;
 import com.hqt.hac.model.HACAccount;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
@@ -34,12 +35,13 @@ public class APIUtils {
     /**
      * Get the latest version of database on server
      */
-    public static String getLatestDatabaseVersion(int currentVersion) {
+    public static int getLatestDatabaseVersion(int currentVersion) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("from_ver", currentVersion + "");
         String url = generateRequestLink(Config.SERVICE_LASTEST_VERSION_APP, params);
         String jsonData = NetworkUtils.getResponseFromGetRequest(url);
-        return jsonData;
+        DBVersion ver = ParserUtils.getDBVersionDetail(jsonData);
+        return ver.no;
     }
 
     /**
