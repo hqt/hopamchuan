@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1084304763">
+    <data-source source="LOCAL" name="Android SQLite" uuid="dcbfbd97-17bd-40aa-b5df-6019a98977a9">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Huynh\.IntelliJIdea13\system\android\databases\SERIAL_NUMBER_LGOTMS73e6a32\com.hqt.hac.view\internal\hopamchuan.db</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+
