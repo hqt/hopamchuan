@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
@@ -70,8 +71,26 @@ public class MainActivity extends SlidingMenuActionBarActivity
     /////////////////////////////////////////////////////////////////
     ////////////////// LIFE CYCLE ACTIVITY METHOD ///////////////////
 
+    public static final boolean DEVELOPER_MODE = true;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        // add strict mode for searching performance issue
+        if (DEVELOPER_MODE) {
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                    .detectDiskReads()
+                    .detectDiskWrites()
+                    .detectNetwork()   // or .detectAll() for all detectable problems
+                    .penaltyLog()
+                    .build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                    .detectLeakedSqlLiteObjects()
+                    .detectLeakedClosableObjects()
+                    .penaltyLog()
+                    .penaltyDeath()
+                    .build());
+        }
+
         super.onCreate(savedInstanceState);
 
         // delete all database

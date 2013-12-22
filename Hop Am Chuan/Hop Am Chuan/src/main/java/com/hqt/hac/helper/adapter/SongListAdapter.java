@@ -14,9 +14,6 @@ import com.hqt.hac.view.R;
 
 import java.util.List;
 
-/**
- * Created by Dinh Quang Trung on 12/21/13.
- */
 public class SongListAdapter extends BaseAdapter {
 
     Context mContext;

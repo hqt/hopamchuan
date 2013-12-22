@@ -66,8 +66,6 @@ public class FindByChordFragment extends Fragment implements
 
     BackgroundContainer mBackgroundContainer;
 
-    private View.OnTouchListener mTouchListener;
-
     public FindByChordFragment() {
     }
 
@@ -114,7 +112,7 @@ public class FindByChordFragment extends Fragment implements
         mListView = (ListView) rootView.findViewById(R.id.list_view);
         adapter = new FindByChordAdapter(getActivity().getApplicationContext(), this, chords);
         // building TouchListener Object
-        mTouchListener = ListViewWidget.getTouchListener(getActivity().getBaseContext(), mListView, adapter, mBackgroundContainer);
+        View.OnTouchListener mTouchListener = ListViewWidget.getTouchListener(getActivity().getBaseContext(), mListView, adapter, mBackgroundContainer);
         adapter.setTouchListener(mTouchListener);
         mListView.setAdapter(adapter);
 
