@@ -169,7 +169,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // Only show items in the action bar relevant to this screen
         // if the drawer is not showing.
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
 
         // because SearchView just exist in HoneyComb 3.0 to above
         // we should check version of users here

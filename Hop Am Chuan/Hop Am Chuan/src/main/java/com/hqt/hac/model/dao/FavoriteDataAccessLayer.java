@@ -104,11 +104,20 @@ public class FavoriteDataAccessLayer {
     }
 
     public static int[] getAllFavoriteSongIds(Context context) {
-        throw new UnsupportedOperationException();
+        List<Song> songs = getAllFavoriteSongs(context);
+        int[] songids = new int[songs.size()];
+        for (int i = 0; i < songs.size(); ++i) {
+            songids[i] = songs.get(i).songId;
+        }
+        return songids;
     }
 
     public static boolean addAllSongIdsToFavorite(Context context, List<Integer> ids) {
-        throw new UnsupportedOperationException();
+        int fails = 0;
+        for (Integer id : ids) {
+            fails += addSongToFavorite(context, id);
+        }
+        return fails == 0;
     }
 
 }

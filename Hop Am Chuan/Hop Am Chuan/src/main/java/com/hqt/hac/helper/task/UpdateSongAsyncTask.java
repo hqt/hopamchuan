@@ -23,7 +23,7 @@ public class UpdateSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
     public UpdateSongAsyncTask(Activity activity) {
         this.activity = activity;
         context = activity.getBaseContext();
-        dialog = new ProgressDialog(context);
+        dialog = new ProgressDialog(activity);
         dialog.setTitle("Progress");
     }
 
