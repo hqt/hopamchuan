@@ -97,14 +97,14 @@
         <activity
             android:name="com.hqt.hac.view.SettingActivity"
             android:label="@string/title_activity_setting" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
                 android:name=".FullscreenSongActivity"
                 android:label="Full Screen Activity">
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIN" />
-                    <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>
         </activity>
     </application>
 

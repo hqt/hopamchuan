@@ -1,9 +1,11 @@
 package com.hqt.hac.model;
 
+import android.content.Context;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class Playlist implements Serializable {
 
@@ -14,7 +16,30 @@ public class Playlist implements Serializable {
     public Date date;
     public int isPublic;
     public int numberOfSongs = 0;
+    private List<Integer> songIds;
+    private List<Song> songs;
 
+    /** because lazy loading. use public getter to process */
+    public List<Integer> getAllSongIds(Context context) {
+        if (songIds != null) return songIds;
+        else {
+            songs = PlaylistDataAccessLayer.getAllSongsFromPlaylist(context, playlistId);
+            for (int i = 0; i < songs.size(); i++) {
+                songIds.add(songs.get(i).id);
+            }
+            return songIds;
+        }
+    }
+
+    /** because lazy loading. use public getter to process */
+    public List<Song> getAllSongFromPlaylist(Context context) {
+        if (songs != null) return songs;
+        else {
+            songs = PlaylistDataAccessLayer.getAllSongsFromPlaylist(context, playlistId);
+            return songs;
+        }
+    }
+    
     public Playlist(int id, int playlistId, String playlistName, String playlistDescription, Date date, int isPublic) {
         this.id = id;
         this.playlistId = playlistId;

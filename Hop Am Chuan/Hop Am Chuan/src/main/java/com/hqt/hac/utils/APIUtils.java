@@ -47,6 +47,7 @@ public class APIUtils {
         params.put("from_ver", currentVersion + "");
         String url = generateRequestLink(Config.SERVICE_LASTEST_VERSION_APP, params);
         String jsonData = NetworkUtils.getResponseFromGetRequest(url);
+        LOGE(TAG, "Version Json: " + jsonData);
         DBVersion ver = ParserUtils.getDBVersionDetail(jsonData);
         return ver;
     }

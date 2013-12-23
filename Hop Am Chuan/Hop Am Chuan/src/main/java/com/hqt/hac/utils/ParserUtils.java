@@ -9,11 +9,14 @@ import com.google.gson.JsonParser;
 import com.hqt.hac.config.Config;
 import com.hqt.hac.model.*;
 import com.hqt.hac.view.R;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,7 +40,9 @@ public class ParserUtils {
     }
 
     public static List<Playlist> parseAllPlaylistFromJSONString(String json) {
-        throw new UnsupportedOperationException();
+        JsonParser parser = new JsonParser();
+        JsonArray jsonArray = parser.parse(json).getAsJsonArray();
+        return parseAllPlaylistFromJSONArray(jsonArray);
     }
 
     public static List<Integer> parseAllSongIdsFromJSONString(String json) {
@@ -48,7 +53,7 @@ public class ParserUtils {
         try {
             JsonParser jsonParser = new JsonParser();
             JsonObject object = (JsonObject)jsonParser.parse(json);
-            int no = object.get("no").getAsInt();
+            int no = object.get("id").getAsInt();
             Date date = new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT).parse(object.get("date").getAsString());
             int number = object.get("song_number").getAsInt();
             return new DBVersion(no, date, number);
@@ -106,7 +111,6 @@ public class ParserUtils {
     public static List<Song> getAllSongsFromResource(Context context) {
         Reader reader;
 
-        // TODO: Change this, the R.raw.update is just for test purpose.
         InputStream stream = context.getResources()
                 .openRawResource(R.raw.update);
 
@@ -117,8 +121,6 @@ public class ParserUtils {
 
         return parseSongsFromJsonArray(jsonArray);
     }
-
-
 
     /**
      * Test purpose (use chord.json)
@@ -210,6 +212,42 @@ public class ParserUtils {
             }
         }
         return chords;
+    }
+
+    private static List<Playlist> parseAllPlaylistFromJSONArray(JsonArray jsonArray) {
+        List<Playlist> playlists = new ArrayList<Playlist>();
+        for (JsonElement element : jsonArray) {
+            try {
+                JsonObject object = element.getAsJsonObject();
+                int playlistId = object.get("playlist_id").getAsInt();
+                String name = object.get("name").getAsString();
+                String description = object.get("description").getAsString();
+                Date date = new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT).parse(object.get("date").getAsString());
+                int isPublic = object.get("public").getAsInt();
+                List<Integer> songIds = parseAllSongsFromJSONArray(object.get("song_ids").getAsJsonArray());
+                Playlist playlist = new Playlist(playlistId, name, description, date, isPublic);
+                playlists.add(playlist);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return playlists;
+    }
+
+    /** parse all song ids from array
+     * use this method for parse playlist or parse favorite
+     */
+    private static List<Integer> parseAllSongsFromJSONArray(JsonArray jsonArray) {
+        List<Integer> ids = new ArrayList<Integer>();
+        for (JsonElement element : jsonArray) {
+            try {
+                int id = element.getAsInt();
+                ids.add(id);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return ids;
     }
     //endregion
 }
