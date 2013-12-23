@@ -9,14 +9,11 @@ import com.google.gson.JsonParser;
 import com.hqt.hac.config.Config;
 import com.hqt.hac.model.*;
 import com.hqt.hac.view.R;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -46,7 +43,9 @@ public class ParserUtils {
     }
 
     public static List<Integer> parseAllSongIdsFromJSONString(String json) {
-        throw new UnsupportedOperationException();
+        JsonParser parser = new JsonParser();
+        JsonArray jsonArray = parser.parse(json).getAsJsonArray();
+        return parseAllSongIdsFromJSONArray(jsonArray);
     }
 
     public static DBVersion getDBVersionDetail(String json) {
@@ -224,8 +223,9 @@ public class ParserUtils {
                 String description = object.get("description").getAsString();
                 Date date = new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT).parse(object.get("date").getAsString());
                 int isPublic = object.get("public").getAsInt();
-                List<Integer> songIds = parseAllSongsFromJSONArray(object.get("song_ids").getAsJsonArray());
+                List<Integer> songIds = parseAllSongIdsFromJSONArray(object.get("song_ids").getAsJsonArray());
                 Playlist playlist = new Playlist(playlistId, name, description, date, isPublic);
+                playlist.setSongIds(songIds);
                 playlists.add(playlist);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -237,7 +237,7 @@ public class ParserUtils {
     /** parse all song ids from array
      * use this method for parse playlist or parse favorite
      */
-    private static List<Integer> parseAllSongsFromJSONArray(JsonArray jsonArray) {
+    private static List<Integer> parseAllSongIdsFromJSONArray(JsonArray jsonArray) {
         List<Integer> ids = new ArrayList<Integer>();
         for (JsonElement element : jsonArray) {
             try {

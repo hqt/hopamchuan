@@ -107,79 +107,29 @@
       <file leaf-file-name="SettingActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="129" column="21" selection-start="4274" selection-end="4274" vertical-scroll-proportion="0.0" vertical-offset="1414" max-vertical-offset="1887">
+            <state line="97" column="43" selection-start="3199" selection-end="3199" vertical-scroll-proportion="0.0" vertical-offset="944" max-vertical-offset="1887">
               <folding>
                 <element signature="e#4097#4292#0" expanded="true" />
+                <element signature="e#4273#4274#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UpdateSongAsyncTask.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/UpdateSongAsyncTask.java">
+      <file leaf-file-name="SyncSongAsyncTask.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/SyncSongAsyncTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="27" selection-start="1770" selection-end="1770" vertical-scroll-proportion="0.0" vertical-offset="337" max-vertical-offset="1853">
+            <state line="57" column="51" selection-start="1980" selection-end="1980" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="1904">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="APIUtils.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/APIUtils.java">
+      <file leaf-file-name="PlaylistSongDataAccessLayer.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/model/dao/PlaylistSongDataAccessLayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="45" selection-start="1858" selection-end="1858" vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="1853">
+            <state line="24" column="25" selection-start="625" selection-end="625" vertical-scroll-proportion="0.31270903" vertical-offset="51" max-vertical-offset="1139">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ParserUtils.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ParserUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="216" column="28" selection-start="8326" selection-end="8326" vertical-scroll-proportion="0.0" vertical-offset="3159" max-vertical-offset="4012">
-              <folding>
-                <element signature="e#8433#8443#0" expanded="true" />
-                <element signature="e#9578#9587#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Playlist.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/model/Playlist.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="4" selection-start="1250" selection-end="1250" vertical-scroll-proportion="0.8862876" vertical-offset="82" max-vertical-offset="1972">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PrefStore.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/config/PrefStore.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="117" column="23" selection-start="4737" selection-end="4737" vertical-scroll-proportion="0.0" vertical-offset="1416" max-vertical-offset="2431">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="102" column="28" selection-start="4307" selection-end="4307" vertical-scroll-proportion="0.0" vertical-offset="1221" max-vertical-offset="1989">
-              <folding>
-                <element signature="e#781#799#0" expanded="true" />
-                <element signature="e#1189#1207#0" expanded="true" />
-                <element signature="e#1349#1367#0" expanded="true" />
-                <element signature="e#1756#1792#0" expanded="true" />
-                <element signature="e#2486#2515#0" expanded="true" />
-                <element signature="e#2680#2719#0" expanded="true" />
-                <element signature="e#2887#2926#0" expanded="true" />
-                <element signature="e#3099#3137#0" expanded="true" />
-                <element signature="e#3270#3299#0" expanded="true" />
-                <element signature="e#3913#3943#0" expanded="true" />
-                <element signature="e#4070#4102#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -964,7 +914,6 @@
       <list>
         <option value="$PROJECT_DIR$/build/manifests/debug/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/model/dao/FavoriteDataAccessLayer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/SyncSongAsyncTask.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/provider/helper/SQLiteAssetHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/SongListAdapter.java" />
         <option value="dbtable:/c7410c5c/dcbfbd97-17bd-40aa-b5df-6019a98977a9/..Song_Chord_Tbl" />
@@ -991,8 +940,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/config/PrefStore.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/UpdateSongAsyncTask.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/collections/Pair.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ParserUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/model/Playlist.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ParserUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/SyncSongAsyncTask.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/model/dao/PlaylistSongDataAccessLayer.java" />
       </list>
     </option>
   </component>
@@ -1648,12 +1599,12 @@
       <updated>1387619365252</updated>
       <workItem from="1387619367221" duration="16363000" />
       <workItem from="1387775992671" duration="1827000" />
-      <workItem from="1387808216289" duration="10083000" />
+      <workItem from="1387808216289" duration="10785000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28273000" />
+    <option name="totallyTimeSpent" value="28975000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1701,7 +1652,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6283988" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2794562" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1730,43 +1681,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="dbDummy://dbtable:/c7410c5c/dcbfbd97-17bd-40aa-b5df-6019a98977a9/..Song_Chord_Tbl">
-      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100" />
-      </provider>
-    </entry>
-    <entry file="uml://DATABASE/dcbfbd97-17bd-40aa-b5df-6019a98977a9">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>DATABASE</ID>
-          <OriginalElement>dcbfbd97-17bd-40aa-b5df-6019a98977a9</OriginalElement>
-          <nodes>
-            <node x="" y="">dcbfbd97-17bd-40aa-b5df-6019a98977a9.table:SongTbl</node>
-            <node x="" y="">dcbfbd97-17bd-40aa-b5df-6019a98977a9.table:Song_Author_Tbl</node>
-            <node x="" y="">dcbfbd97-17bd-40aa-b5df-6019a98977a9.table:ArtistTbl</node>
-            <node x="" y="">dcbfbd97-17bd-40aa-b5df-6019a98977a9.table:Playlist_Song_Tbl</node>
-            <node x="" y="">dcbfbd97-17bd-40aa-b5df-6019a98977a9.table:android_metadata</node>
-            <node x="" y="">dcbfbd97-17bd-40aa-b5df-6019a98977a9.table:Playlist_Tbl</node>
-            <node x="" y="">dcbfbd97-17bd-40aa-b5df-6019a98977a9.table:Song_Chord_Tbl</node>
-            <node x="" y="">dcbfbd97-17bd-40aa-b5df-6019a98977a9.table:ChordTbl</node>
-            <node x="" y="">dcbfbd97-17bd-40aa-b5df-6019a98977a9.table:Song_Singer_Tbl</node>
-            <node x="" y="">dcbfbd97-17bd-40aa-b5df-6019a98977a9.table:sqlite_sequence</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0063694267515924" x="476.0" y="243.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>Columns</Category>
-            <Category>Key columns</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="0" selection-start="936" selection-end="936" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="1717">
@@ -2068,7 +1982,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="28" selection-start="4307" selection-end="4307" vertical-scroll-proportion="0.0" vertical-offset="1221" max-vertical-offset="1989">
+        <state line="102" column="28" selection-start="4307" selection-end="4307" vertical-scroll-proportion="0.85785955" vertical-offset="1221" max-vertical-offset="1989">
           <folding>
             <element signature="e#781#799#0" expanded="true" />
             <element signature="e#1189#1207#0" expanded="true" />
@@ -2081,15 +1995,6 @@
             <element signature="e#3270#3299#0" expanded="true" />
             <element signature="e#3913#3943#0" expanded="true" />
             <element signature="e#4070#4102#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="21" selection-start="4274" selection-end="4274" vertical-scroll-proportion="0.0" vertical-offset="1414" max-vertical-offset="1887">
-          <folding>
-            <element signature="e#4097#4292#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2108,20 +2013,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/UpdateSongAsyncTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="27" selection-start="1770" selection-end="1770" vertical-scroll-proportion="0.0" vertical-offset="337" max-vertical-offset="1853">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/config/PrefStore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="23" selection-start="4737" selection-end="4737" vertical-scroll-proportion="0.0" vertical-offset="1416" max-vertical-offset="2431">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/collections/Pair.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="18" selection-start="304" selection-end="304" vertical-scroll-proportion="0.56856185" vertical-offset="0" max-vertical-offset="598">
@@ -2131,24 +2022,65 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/APIUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="45" selection-start="1858" selection-end="1858" vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="1853">
+        <state line="50" column="45" selection-start="1858" selection-end="1858" vertical-scroll-proportion="0.5033445" vertical-offset="362" max-vertical-offset="1853">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ParserUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/config/PrefStore.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="216" column="28" selection-start="8326" selection-end="8326" vertical-scroll-proportion="0.0" vertical-offset="3159" max-vertical-offset="4012">
-          <folding>
-            <element signature="e#8433#8443#0" expanded="true" />
-            <element signature="e#9578#9587#0" expanded="true" />
-          </folding>
+        <state line="117" column="23" selection-start="4737" selection-end="4737" vertical-scroll-proportion="0.7591973" vertical-offset="1416" max-vertical-offset="2431">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/model/Playlist.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="4" selection-start="1250" selection-end="1250" vertical-scroll-proportion="0.8862876" vertical-offset="82" max-vertical-offset="1972">
+        <state line="33" column="16" selection-start="948" selection-end="948" vertical-scroll-proportion="0.6588629" vertical-offset="82" max-vertical-offset="2040">
+          <folding>
+            <element signature="e#978#979#0" expanded="true" />
+            <element signature="e#1012#1013#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ParserUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="5" selection-start="1633" selection-end="1633" vertical-scroll-proportion="-0.06521739" vertical-offset="515" max-vertical-offset="4063">
+          <folding>
+            <element signature="e#8463#8473#0" expanded="true" />
+            <element signature="e#9658#9667#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/UpdateSongAsyncTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="83" selection-start="1229" selection-end="1229" vertical-scroll-proportion="0.23244147" vertical-offset="337" max-vertical-offset="1853">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="43" selection-start="3199" selection-end="3199" vertical-scroll-proportion="0.0" vertical-offset="944" max-vertical-offset="1887">
+          <folding>
+            <element signature="e#4097#4292#0" expanded="true" />
+            <element signature="e#4273#4274#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/SyncSongAsyncTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="51" selection-start="1980" selection-end="1980" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="1904">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/model/dao/PlaylistSongDataAccessLayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="25" selection-start="625" selection-end="625" vertical-scroll-proportion="0.31270903" vertical-offset="51" max-vertical-offset="1139">
           <folding />
         </state>
       </provider>

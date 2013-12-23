@@ -31,6 +31,10 @@ public class Playlist implements Serializable {
         }
     }
 
+    public void setSongIds(List<Integer> ids) {
+        this.songIds = ids;
+    }
+
     /** because lazy loading. use public getter to process */
     public List<Song> getAllSongFromPlaylist(Context context) {
         if (songs != null) return songs;
@@ -39,7 +43,7 @@ public class Playlist implements Serializable {
             return songs;
         }
     }
-    
+
     public Playlist(int id, int playlistId, String playlistName, String playlistDescription, Date date, int isPublic) {
         this.id = id;
         this.playlistId = playlistId;
