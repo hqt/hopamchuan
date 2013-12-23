@@ -26,6 +26,10 @@ public class PlaylistManagerAdapter extends BaseAdapter {
         public void onRightMenuClick(View view, Playlist playlist);
     }
 
+    public void setPlayLists(List<Playlist> playLists) {
+        this.playLists = playLists;
+    }
+
     public RightMenuClick rightMenuClick;
 
     public PlaylistManagerAdapter(Context context, List<Playlist> playlists) {
