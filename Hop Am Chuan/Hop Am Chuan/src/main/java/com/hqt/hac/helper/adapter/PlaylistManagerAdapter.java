@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.hqt.hac.helper.widget.DialogFactory;
 import com.hqt.hac.model.Playlist;
+import com.hqt.hac.model.Song;
 import com.hqt.hac.view.R;
 
 import java.util.List;
@@ -20,6 +21,12 @@ public class PlaylistManagerAdapter extends BaseAdapter {
 
     Context mContext;
     List<Playlist> playLists;
+
+    public interface RightMenuClick {
+        public void onRightMenuClick(View view, Playlist playlist);
+    }
+
+    public RightMenuClick rightMenuClick;
 
     public PlaylistManagerAdapter(Context context, List<Playlist> playlists) {
         this.mContext = context;
@@ -60,20 +67,17 @@ public class PlaylistManagerAdapter extends BaseAdapter {
             holder = (ViewHolder) row.getTag();
         }
 
-        Playlist rowItem = (Playlist) getItem(position);
+        final Playlist rowItem = (Playlist) getItem(position);
         holder.numberOfSongTxt.setText(rowItem.numberOfSongs + ""); // carefully when set text is number
         holder.playListNameTxt.setText(rowItem.playlistName);
         holder.descriptionTxt.setText(rowItem.playlistDescription);
 
-        final PopupWindow pw = DialogFactory.createPopup(inflater, R.layout.popup_playlist_list_menu);
-
         holder.optionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pw.showAsDropDown(view);
+                rightMenuClick.onRightMenuClick(view, rowItem);
             }
         });
-
         return row;
     }
 

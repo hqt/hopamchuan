@@ -191,5 +191,12 @@
     <string name="register_link">http://hopamchuan.com/auth/register</string>
     <string name="title_add_to_playlist_dialog">Thêm vào playlist...</string>
     <string name="add_playlist">Thêm playlist mới</string>
+    <string name="new_playlist">Playlist mới</string>
+    <string name="playlist_name">Tên playlist...</string>
+    <string name="playlist_description">Mô tả ngắn...</string>
+    <string name="add_to_playlist_success">Đã thêm vào playlist</string>
+    <string name="create_playlist">Tạo playlist</string>
+    <string name="please_enter_playlist_name">Vui lòng nhập tên playlist</string>
+    <string name="create_playlist_success">Đã thêm playlist</string>
 
 </resources>

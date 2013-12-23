@@ -140,8 +140,10 @@ public class PlaylistDataAccessLayer {
         LOGD(TAG, "Adding an playlist");
 
         try {
+            int playlistId = getMaxPlaylistId(context) + 1;
+
             ContentValues cv = new ContentValues();
-            cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_ID, playlist.playlistId);
+            cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_ID, playlistId);
             cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_NAME, playlist.playlistName);
             cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_DATE, (new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT)).format(playlist.date));
             cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_DESCRIPTION, playlist.playlistDescription);
@@ -183,5 +185,32 @@ public class PlaylistDataAccessLayer {
         // TODO: delete song_playlist
     }
 
+    public static int getMaxPlaylistId(Context context) {
+        LOGD(TAG, "Get max playlist id");
+
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Playlist.CONTENT_URI;
+        Cursor c = resolver.query(uri,
+                new String[]{HopAmChuanDBContract.Playlist.PLAYLIST_ID},      // projection
+                null,      // selection string
+                null,           // selection args of strings
+                HopAmChuanDBContract.Playlist.PLAYLIST_ID + " DESC LIMIT 1");                                          //  sort order
+
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            try {
+                int _playlistId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_ID));
+                if (c != null) {
+                    c.close();
+                }
+                return  _playlistId;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (c != null) {
+            c.close();
+        }
+        return -1;
+    }
 
 }

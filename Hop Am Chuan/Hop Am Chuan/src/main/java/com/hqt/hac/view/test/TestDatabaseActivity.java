@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 import com.hqt.hac.provider.HopAmChuanDatabase;
 import com.hqt.hac.view.R;
 import com.unittest.DatabaseTest;
@@ -20,7 +21,7 @@ public class TestDatabaseActivity extends ActionBarActivity {
         TextView textView = (TextView) findViewById(R.id.textview);
 
         // delete database for consistency
-        HopAmChuanDatabase.deleteDatabase(getApplicationContext());
+//        HopAmChuanDatabase.deleteDatabase(getApplicationContext());
 
         String res = "";
 
@@ -42,27 +43,28 @@ public class TestDatabaseActivity extends ActionBarActivity {
 //        List<Playlist> playlists = PlaylistDataAccessLayer.getAllPlayLists(getApplicationContext());
 //        res += Helper.arrayToString(playlists);
 
-        res += DatabaseTest.TestGetArtistById(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestInsertSong_Chord(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestGetAuthorsBySongId(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestGetSingersBySongId(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestGetChordsBySongId(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestGetSongById(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestFindAllSongsByAuthor(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestFindAllSongsBySinger(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestGetAllFavoriteSongs(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestInFavorite(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestGetPlaylistById(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestGetAllSongsFromPlaylist(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestRemovePlaylistSong(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestRenamePlaylist(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestGetChordByName(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestGetRandomSongsByAuthor(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestGetRandomSongsBySinger(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestInsertFullSongSync(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestSearchSongByTitle(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestGetArtistByName(getApplicationContext()) + "\n";
-        res += DatabaseTest.TestSearchSongByArtist(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestGetArtistById(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestInsertSong_Chord(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestGetAuthorsBySongId(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestGetSingersBySongId(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestGetChordsBySongId(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestGetSongById(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestFindAllSongsByAuthor(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestFindAllSongsBySinger(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestGetAllFavoriteSongs(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestInFavorite(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestGetPlaylistById(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestGetAllSongsFromPlaylist(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestRemovePlaylistSong(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestRenamePlaylist(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestGetChordByName(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestGetRandomSongsByAuthor(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestGetRandomSongsBySinger(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestInsertFullSongSync(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestSearchSongByTitle(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestGetArtistByName(getApplicationContext()) + "\n";
+//        res += DatabaseTest.TestSearchSongByArtist(getApplicationContext()) + "\n";
+        res += PlaylistDataAccessLayer.getMaxPlaylistId(getApplicationContext()) + "\n";
 
         textView.setText(res);
 

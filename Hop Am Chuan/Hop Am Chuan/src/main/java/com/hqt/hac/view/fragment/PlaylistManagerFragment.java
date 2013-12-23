@@ -8,8 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 
 import com.hqt.hac.helper.adapter.PlaylistManagerAdapter;
+import com.hqt.hac.helper.widget.DialogFactory;
+import com.hqt.hac.helper.widget.PlaylistRightMenuHandler;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 import com.hqt.hac.view.MainActivity;
@@ -30,6 +33,9 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
      * Model for this View
      */
     List<Playlist> allPlaylists;
+
+    /** One popup menu for all items **/
+    PopupWindow pw = null;
 
     /**
      * Adapter for this View
@@ -58,6 +64,22 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
 
         mListView = (ListView) rootView.findViewById(R.id.list);
         adapter = new PlaylistManagerAdapter(activity.getApplicationContext(), allPlaylists);
+
+        pw = DialogFactory.createPopup(inflater, R.layout.popup_playlist_list_menu);
+        PlaylistRightMenuHandler.setRightMenuEvents(activity, pw);
+
+        // Event received from adapter.
+        adapter.rightMenuClick = new PlaylistManagerAdapter.RightMenuClick() {
+            @Override
+            public void onRightMenuClick(View view, Playlist playlist) {
+                // Show the popup menu and set selectedSong
+                /** Store the song that user clicked on the right menu (the star) **/
+                PlaylistRightMenuHandler.selectedPlaylist = playlist;
+                pw.showAsDropDown(view);
+            }
+        };
+
+
         mListView.setAdapter(adapter);
 
         // add click event item for this ListView

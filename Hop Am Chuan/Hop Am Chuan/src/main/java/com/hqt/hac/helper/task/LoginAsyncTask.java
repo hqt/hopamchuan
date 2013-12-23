@@ -21,7 +21,7 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
  */
 // TODO 1. Check again Login :sometimes cannot
 // TODO 2. close popup. lose asyntask. (loader || Handler ? )
-    
+
 public class LoginAsyncTask extends AsyncTask<Void, Integer, Long>{
 
     public static String TAG = makeLogTag(LoginAsyncTask.class);

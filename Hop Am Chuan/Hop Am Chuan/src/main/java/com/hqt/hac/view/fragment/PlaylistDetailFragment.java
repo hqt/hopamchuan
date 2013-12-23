@@ -1,33 +1,21 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.Spinner;
 
 import com.hqt.hac.helper.adapter.PlaylistDetailAdapter;
-import com.hqt.hac.helper.adapter.SongListAdapter;
 import com.hqt.hac.helper.widget.DialogFactory;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
-import com.hqt.hac.model.dao.FavoriteDataAccessLayer;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
-import com.hqt.hac.provider.HopAmChuanDBContract;
-import com.hqt.hac.utils.HacUtils;
+import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
@@ -104,7 +92,7 @@ public class PlaylistDetailFragment extends  Fragment {
 
         // Event for right menu click
         pw = DialogFactory.createPopup(inflater, R.layout.popup_songlist_menu);
-        HacUtils.setRightMenuEvents(activity, pw);
+        SongListRightMenuHandler.setRightMenuEvents(activity, pw);
 
         // Event received from adapter.
         adapter.rightMenuClick = new PlaylistDetailAdapter.RightMenuClick() {
@@ -112,7 +100,7 @@ public class PlaylistDetailFragment extends  Fragment {
             public void onRightMenuClick(View view, Song song) {
                 // Show the popup menu and set selectedSong
                 /** Store the song that user clicked on the right menu (the star) **/
-                HacUtils.selectedSong = song;
+                SongListRightMenuHandler.selectedSong = song;
                 pw.showAsDropDown(view);
             }
         };
