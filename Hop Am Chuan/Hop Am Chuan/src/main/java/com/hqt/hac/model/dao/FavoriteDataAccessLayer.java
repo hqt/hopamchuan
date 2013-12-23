@@ -120,4 +120,8 @@ public class FavoriteDataAccessLayer {
         return fails == 0;
     }
 
+    public static boolean syncFavorites(Context context, List<Integer> ids) {
+        throw new UnsupportedOperationException();
+    }
+
 }
