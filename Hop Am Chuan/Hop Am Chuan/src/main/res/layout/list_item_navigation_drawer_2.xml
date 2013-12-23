@@ -22,7 +22,7 @@
             android:text="@string/example_text"
             android:paddingBottom="3dp"
             android:layout_marginRight="45dp"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textColor="#fff"
             android:id="@+id/title"
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -52,8 +52,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:scaleType="centerCrop"
             android:src="@drawable/song_count_bg"
             android:layout_centerVertical="true"/>
@@ -68,7 +68,7 @@
             android:layout_alignBottom="@+id/imageView"
             android:layout_margin="1dp"
             android:gravity="center"
-            android:textSize="10sp"
+            android:textSize="14sp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="@string/example_number"

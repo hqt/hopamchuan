@@ -134,11 +134,20 @@
                         android:layout_height="200dp"
                         android:layout_below="@id/songFullScreen"
                         android:background="#fff"
-                        android:lineSpacingExtra="10dp"
-                        android:typeface="monospace"
+                        android:textColor="#666"
                         android:textSize="14sp"
                         android:id="@+id/songContent"
                         android:padding="10dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignTop="@id/songContent"
+                        android:layout_alignBottom="@id/songContent"
+                        android:layout_alignLeft="@id/songContent"
+                        android:layout_alignRight="@id/songContent"
+                        android:background="@drawable/fade_bottom"
+                        />
                 </RelativeLayout>
 
 

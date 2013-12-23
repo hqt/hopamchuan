@@ -1,39 +1,22 @@
 package com.hqt.hac.view.fragment;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.hqt.hac.helper.adapter.PlaylistDetailAdapter;
-import com.hqt.hac.helper.widget.CustomScrollView;
-import com.hqt.hac.helper.widget.OnSwipeTouchListener;
-import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
-import com.hqt.hac.model.dao.SongDataAccessLayer;
-import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
-import com.hqt.hac.view.SongPlayFullScreen;
 
 import java.io.Serializable;
-import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
@@ -106,7 +89,7 @@ public class SongDetailFragment extends  Fragment {
                 openFullScreenSong();
             }
         });
-
+        songContentTV.setSelected(true);
         // The header
         final RelativeLayout songHeader = (RelativeLayout) rootView.findViewById(R.id.songHeader);
 
@@ -138,8 +121,8 @@ public class SongDetailFragment extends  Fragment {
     }
 
     private void openFullScreenSong() {
-        Intent intent = new Intent(activity, SongPlayFullScreen.class);
-        intent.putExtra("song", (Serializable)song);
-        activity.startActivity(intent);
+//        Intent intent = new Intent(activity, SongPlayFullScreen.class);
+//        intent.putExtra("song", (Serializable)song);
+//        activity.startActivity(intent);
     }
 }

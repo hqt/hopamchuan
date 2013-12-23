@@ -98,12 +98,6 @@
             android:label="@string/login_activity_title" >
         </activity>
         <activity
-            android:name="com.hqt.hac.view.SongPlayFullScreen"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_song_play_full_screen"
-            android:theme="@style/FullscreenTheme" >
-        </activity>
-        <activity
             android:name="com.hqt.hac.view.SettingActivity"
             android:label="@string/title_activity_setting" >
         </activity>

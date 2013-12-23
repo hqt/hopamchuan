@@ -97,13 +97,13 @@ public class NavigationDrawerAdapter {
                     Bitmap checkLoggedIn = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage(mContext));
                     if (checkLoggedIn == null) {
                         // start Login Activity
-//                        Intent intent = new Intent(activity, LoginActivity.class);
-//                        activity.startActivity(intent);
-//                        activity.finish();
+                        Intent intent = new Intent(activity, LoginActivity.class);
+                        activity.startActivity(intent);
+                        activity.finish();
 
                         // TrungDQ: Prefer popup than an activity
-                        LoginPopup loginPopup = new LoginPopup(activity);
-                        loginPopup.show();
+//                        LoginPopup loginPopup = new LoginPopup(activity);
+//                        loginPopup.show();
                     } else {
                         // Start logout activity or popup here.
                         ProfilePopup profilePopup = new ProfilePopup(activity);
