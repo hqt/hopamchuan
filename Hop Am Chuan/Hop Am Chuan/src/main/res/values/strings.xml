@@ -198,5 +198,11 @@
     <string name="create_playlist">Tạo playlist</string>
     <string name="please_enter_playlist_name">Vui lòng nhập tên playlist</string>
     <string name="create_playlist_success">Đã thêm playlist</string>
+    <string name="rename_playlist_button">Lưu thay đổi</string>
+    <string name="rename_playlist_success">Đã đổi tên thành</string>
+    <string name="rename_playlist">Cập nhật playlist</string>
+    <string name="playlist_deleted_success">Đã xóa playlist</string>
+    <string name="are_you_sure_delete_playlist">Bạn có chắc chắn muốn xóa playlist</string>
+    <string name="delete_playlist">Xóa playlist</string>
 
 </resources>

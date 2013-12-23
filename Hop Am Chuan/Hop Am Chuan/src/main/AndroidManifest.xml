@@ -85,7 +85,10 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/SplashTheme.FullScreen"
             android:windowSoftInputMode="stateHidden|adjustResize" >
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -97,10 +100,6 @@
         <activity
             android:name="com.hqt.hac.view.SettingActivity"
             android:label="@string/title_activity_setting" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
                 android:name=".FullscreenSongActivity"

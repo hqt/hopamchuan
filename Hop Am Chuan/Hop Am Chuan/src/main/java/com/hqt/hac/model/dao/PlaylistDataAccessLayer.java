@@ -182,7 +182,7 @@ public class PlaylistDataAccessLayer {
         Uri deleteUri = Uri.withAppendedPath(uri, playlistId + "");
         resolver.delete(deleteUri, null, null);
 
-        // TODO: delete song_playlist
+        PlaylistSongDataAccessLayer.removePlaylist_Song(context, playlistId);
     }
 
     public static int getMaxPlaylistId(Context context) {

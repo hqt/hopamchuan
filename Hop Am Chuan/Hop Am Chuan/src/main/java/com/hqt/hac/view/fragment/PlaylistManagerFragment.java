@@ -66,7 +66,7 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
         adapter = new PlaylistManagerAdapter(activity.getApplicationContext(), allPlaylists);
 
         pw = DialogFactory.createPopup(inflater, R.layout.popup_playlist_list_menu);
-        PlaylistRightMenuHandler.setRightMenuEvents(activity, pw);
+        PlaylistRightMenuHandler.setRightMenuEvents(activity, pw, adapter);
 
         // Event received from adapter.
         adapter.rightMenuClick = new PlaylistManagerAdapter.RightMenuClick() {
