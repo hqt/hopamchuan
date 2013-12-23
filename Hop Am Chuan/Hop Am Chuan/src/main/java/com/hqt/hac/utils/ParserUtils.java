@@ -8,6 +8,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.hqt.hac.config.Config;
 import com.hqt.hac.model.*;
+import com.hqt.hac.model.json.DBVersion;
+import com.hqt.hac.model.json.HACAccount;
 import com.hqt.hac.view.R;
 
 import java.io.BufferedReader;
@@ -37,9 +39,15 @@ public class ParserUtils {
     }
 
     public static List<Playlist> parseAllPlaylistFromJSONString(String json) {
-        JsonParser parser = new JsonParser();
-        JsonArray jsonArray = parser.parse(json).getAsJsonArray();
-        return parseAllPlaylistFromJSONArray(jsonArray);
+        try {
+            JsonParser parser = new JsonParser();
+            JsonArray jsonArray = parser.parse(json).getAsJsonArray();
+            return parseAllPlaylistFromJSONArray(jsonArray);
+        } catch (Exception e) {
+            // cannot parse playlist
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static List<Integer> parseAllSongIdsFromJSONString(String json) {

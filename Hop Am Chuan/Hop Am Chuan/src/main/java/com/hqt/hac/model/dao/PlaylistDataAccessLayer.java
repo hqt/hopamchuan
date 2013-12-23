@@ -210,7 +210,7 @@ public class PlaylistDataAccessLayer {
         if (c != null) {
             c.close();
         }
-        return -1;
+        return 0;
     }
 
 }

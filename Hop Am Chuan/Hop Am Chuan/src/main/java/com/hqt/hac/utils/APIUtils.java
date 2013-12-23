@@ -1,10 +1,11 @@
 package com.hqt.hac.utils;
 
 import com.hqt.hac.config.Config;
-import com.hqt.hac.model.DBVersion;
-import com.hqt.hac.model.HACAccount;
+import com.hqt.hac.model.json.DBVersion;
+import com.hqt.hac.model.json.HACAccount;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
+import com.hqt.hac.model.json.JsonPlaylist;
 
 import java.util.HashMap;
 import java.util.List;
@@ -67,13 +68,15 @@ public class APIUtils {
      * synchronize all playlist to server
      * and get again all playlist (include playlist already define on server) to user
      */
-    public static List<Playlist> syncPlaylist(String username, String password, List<Playlist> playlists) {
+    public static List<Playlist> syncPlaylist(String username, String password, List<JsonPlaylist> playlists) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("username", username);
         params.put("password", password);
         params.put("local_playlists", EncodingUtils.encodeListToJSONString(playlists));
+        LOGE(TAG, "Encoding Playlist: " + EncodingUtils.encodeListToJSONString(playlists));
         String url = generateRequestLink(Config.SERVICE_SYNC_PLAYLIST, params);
         String jsonString = NetworkUtils.getResponseFromGetRequest(url);
+        LOGE(TAG, "Playlist JSON: " + jsonString);
         return ParserUtils.parseAllPlaylistFromJSONString(jsonString);
     }
 
@@ -85,9 +88,11 @@ public class APIUtils {
         Map<String, String> params = new HashMap<String, String>();
         params.put("username", username);
         params.put("password", password);
-        params.put("local_favorites", EncodingUtils.encodeObjectToJSONString(favorite));
+        params.put("local_favorite", EncodingUtils.encodeObjectToJSONString(favorite));
+        LOGE(TAG, "Encoding favorites: " + EncodingUtils.encodeObjectToJSONString(favorite));
         String url = generateRequestLink(Config.SERVICE_SYNC_FAVORITE, params);
         String jsonString = NetworkUtils.getResponseFromGetRequest(url);
+        LOGE(TAG, "Favorite JSON: " + jsonString);
         return ParserUtils.parseAllSongIdsFromJSONString(jsonString);
     }
 

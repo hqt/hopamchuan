@@ -8,7 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import com.hqt.hac.config.PrefStore;
-import com.hqt.hac.model.HACAccount;
+import com.hqt.hac.model.json.HACAccount;
 import com.hqt.hac.utils.APIUtils;
 import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.MainActivity;

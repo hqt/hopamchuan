@@ -4,6 +4,7 @@ import android.content.Context;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class Playlist implements Serializable {
         if (songIds != null) return songIds;
         else {
             songs = PlaylistDataAccessLayer.getAllSongsFromPlaylist(context, playlistId);
+            songIds = new ArrayList<Integer>();
             for (int i = 0; i < songs.size(); i++) {
                 songIds.add(songs.get(i).id);
             }

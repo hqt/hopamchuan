@@ -11,6 +11,7 @@ import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dao.FavoriteDataAccessLayer;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 import com.hqt.hac.model.dao.PlaylistSongDataAccessLayer;
+import com.hqt.hac.model.json.JsonPlaylist;
 import com.hqt.hac.utils.APIUtils;
 import com.hqt.hac.utils.UIUtils;
 
@@ -38,41 +39,43 @@ public class SyncSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
     protected Integer doInBackground(Void... params) {
         String username = PrefStore.getLoginUsername(context);
         String password = PrefStore.getLoginPassword(context);
-
-       // sync playlist
-        publishProgress(0);
-        List<Playlist> playlist = PlaylistDataAccessLayer.getAllPlayLists(context);
-        List<Playlist> newPlaylist = APIUtils.syncPlaylist(username, password, playlist);
-        /*if (newPlaylist == null || newPlaylist.size() == playlist.size()) {
-            return 0;
-        }*/
-
         boolean res;
+
+       /*// sync playlist
+        publishProgress(0);
+        List<Playlist> playlists = PlaylistDataAccessLayer.getAllPlayLists(context);
+        List<JsonPlaylist> jsonPlaylists = JsonPlaylist.convert(playlists, context);
+        List<Playlist> newPlaylists = APIUtils.syncPlaylist(username, password, jsonPlaylists);
+        *//*if (newPlaylist == null || newPlaylist.size() == playlist.size()) {
+            return 0;
+        }*//*
+
         // update playlist
         publishProgress(1);
-        // insert all song of its playlist to database
-        for (Playlist p : newPlaylist) {
-            // insert playlist
-            PlaylistDataAccessLayer.insertPlaylist(context, p);
-            // insert songs of playlist
-            List<Integer> ids = p.getAllSongIds(activity.getBaseContext());
-            res = PlaylistSongDataAccessLayer.insertPlaylist_Song(context, p.id, ids);
-            if (!res) return 1;
-        }
+        if (newPlaylists != null) {
+            // insert all song of its playlist to database
+            for (Playlist p : newPlaylists) {
+                // insert playlist
+                PlaylistDataAccessLayer.insertPlaylist(context, p);
+                // insert songs of playlist
+                List<Integer> ids = p.getAllSongIds(activity.getBaseContext());
+                res = PlaylistSongDataAccessLayer.insertPlaylist_Song(context, p.id, ids);
+                if (!res) return 1;
+            }
+        }*/
 
         // sync favorite
         publishProgress(2);
        int[] favorite = FavoriteDataAccessLayer.getAllFavoriteSongIds(context);
         List<Integer> newFavorite = APIUtils.syncFavorite(username, password, favorite);
-        if (newFavorite == null || newFavorite.size() == favorite.length) {
+        /*if (newFavorite == null || newFavorite.size() == favorite.length) {
             return 2;
-        }
+        }*/
 
         // update favorite
         publishProgress(3);
        res = FavoriteDataAccessLayer.addAllSongIdsToFavorite(context, newFavorite);
         if (!res) return 1;
-
         return 3;
     }
 

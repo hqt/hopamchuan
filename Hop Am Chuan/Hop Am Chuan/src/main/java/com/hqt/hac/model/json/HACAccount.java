@@ -1,4 +1,4 @@
-package com.hqt.hac.model;
+package com.hqt.hac.model.json;
 
 public class HACAccount {
     public String username;
