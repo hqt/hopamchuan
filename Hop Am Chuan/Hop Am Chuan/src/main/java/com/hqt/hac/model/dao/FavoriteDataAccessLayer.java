@@ -12,6 +12,7 @@ import com.hqt.hac.provider.HopAmChuanDBContract.Songs;
 import com.hqt.hac.provider.helper.Query;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
@@ -25,7 +26,7 @@ public class FavoriteDataAccessLayer {
         LOGD(TAG, "Adding a song to favorite");
 
         ContentValues cv = new ContentValues();
-        cv.put(Songs.SONG_ISFAVORITE, 1);
+        cv.put(Songs.SONG_ISFAVORITE, (new Date()).getTime());
 
         ContentResolver resolver = context.getContentResolver();
         Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
@@ -72,10 +73,10 @@ public class FavoriteDataAccessLayer {
         Uri favoriteUri = Uri.withAppendedPath(uri, "/isfavorite/all");
 
         Cursor c = resolver.query(favoriteUri,
-                Query.Projections.SONG_PROJECTION,    // projection
-                null,                             // selection string
-                null,                             // selection args of strings
-                null);                            //  sort order
+                Query.Projections.SONG_PROJECTION,      // projection
+                null,                                   // selection string
+                null,                                   // selection args of strings
+                null);                                  //  sort order
 
         int songidCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID);
         List<Song> songs = new ArrayList<Song>();

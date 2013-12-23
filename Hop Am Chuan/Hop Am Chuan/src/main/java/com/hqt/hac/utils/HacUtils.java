@@ -7,20 +7,31 @@ import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.hac_library.helper.ChordHelper;
+import com.hqt.hac.helper.adapter.PlaylistListAdapter;
 import com.hqt.hac.helper.widget.ChordClickableSpan;
 import com.hqt.hac.helper.widget.DialogFactory;
+import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dao.FavoriteDataAccessLayer;
+import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
+import com.hqt.hac.model.dao.PlaylistSongDataAccessLayer;
+import com.hqt.hac.view.R;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
+import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 /**
@@ -29,6 +40,10 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
  * HacUtils.transposeTextView(theContext, theTextView, transposeDistance, theActivity);
  */
 public class HacUtils {
+    /** Current selected song for song lists (favorite fragment, song list fragment,
+      playlist detail fragment **/
+    public static Song selectedSong = null;
+
     /**
      * Format song lyric with clickable chord sign.
      *
@@ -97,12 +112,64 @@ public class HacUtils {
         setSongFormatted(applicationContext, testTextView, songContent, theActivity);
     }
 
-    public static void setFavoriteButtonEvent(final Context mContext, final Song song, Button favoriteBtn, final PopupWindow pw) {
+    public static void setRightMenuEvents(final Activity activity, final PopupWindow pw) {
+        // Popup menu item
+        final Button favoriteBtn = (Button) pw.getContentView().findViewById(R.id.song_list_menu_addtofavorite);
+        final Button playlistBtn = (Button) pw.getContentView().findViewById(R.id.song_list_menu_addtoplaylist);
+        Button shareBtn = (Button) pw.getContentView().findViewById(R.id.song_list_menu_share);
+
+        // "Add to Favorite" button
         favoriteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FavoriteDataAccessLayer.addSongToFavorite(mContext, song.songId);
+                FavoriteDataAccessLayer.addSongToFavorite(activity.getApplicationContext(),
+                        selectedSong.songId);
                 pw.dismiss();
+            }
+        });
+
+        // "Add to playlist" dialog
+        final Dialog dialog = DialogFactory.createDialog(activity, R.string.title_add_to_playlist_dialog,
+                activity.getLayoutInflater(), R.layout.addtoplaylist_dialog);
+
+        ListView mPlaylists = (ListView) dialog.findViewById(R.id.playlist_list);
+
+        final List<Playlist> playlists = PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext());
+
+        final PlaylistListAdapter playlistAdapter = new PlaylistListAdapter(activity, playlists);
+        mPlaylists.setAdapter(playlistAdapter);
+
+        // Add click event item for this ListView
+        mPlaylists.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PlaylistSongDataAccessLayer.insertPlaylist_Song(
+                        activity.getApplicationContext(),
+                        playlists.get(position).playlistId, selectedSong.songId);
+
+                dialog.dismiss();
+            }
+        });
+
+        // Event to add new playlist
+        LinearLayout addNewPlaylistBtn = (LinearLayout) dialog.findViewById(R.id.playlist_list_header);
+        addNewPlaylistBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: open new playlist popup
+                LOGE("DEBUG", "new playlist");
+            }
+        });
+
+        playlistBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pw.dismiss();
+                dialog.setTitle(selectedSong.title);
+
+                // Refresh playlists
+                playlistAdapter.setPlaylists(PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext()));
+                dialog.show();
             }
         });
     }

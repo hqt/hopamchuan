@@ -35,8 +35,8 @@
 
     <!-- list all method to view songs in favorite -->
     <string-array name="favorite_sort_method">
+        <item>Gần đây</item>
         <item>Sắp xếp ABC</item>
-        <item>Thời gian</item>
     </string-array>
 
     <!-- list all base chords in search chord activity -->
@@ -189,5 +189,7 @@
     <string name="app_website">www.hopamchuan.com</string>
     <string name="app_website_reg_link"><u>Đăng ký tài khoản</u></string>
     <string name="register_link">http://hopamchuan.com/auth/register</string>
+    <string name="title_add_to_playlist_dialog">Thêm vào playlist...</string>
+    <string name="add_playlist">Thêm playlist mới</string>
 
 </resources>

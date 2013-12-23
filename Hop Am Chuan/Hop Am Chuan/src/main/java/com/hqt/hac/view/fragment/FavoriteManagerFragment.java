@@ -1,6 +1,7 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -14,21 +15,27 @@ import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 
 import com.hqt.hac.helper.adapter.FavoriteManagerAdapter;
 import com.hqt.hac.helper.adapter.PlaylistDetailAdapter;
+import com.hqt.hac.helper.widget.DialogFactory;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dao.FavoriteDataAccessLayer;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
+import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.utils.SortUtils;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
 import java.util.List;
 
+import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 
 public class FavoriteManagerFragment extends  Fragment implements AdapterView.OnItemSelectedListener {
@@ -44,6 +51,9 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
 
     /** Adapter for this fragment */
     FavoriteManagerAdapter adapter;
+
+    /** One popup menu for all items **/
+    PopupWindow pw = null;
 
     /** spinner of this fragment
      * use for user select display setting
@@ -66,7 +76,7 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_myfavorite, container, false);
 
@@ -84,6 +94,22 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
         /** ListView Configure */
         mListView = (ListView) rootView.findViewById(R.id.list_view);
         adapter = new FavoriteManagerAdapter(getActivity(), songs);
+
+        // Event for right menu click
+        pw = DialogFactory.createPopup(inflater, R.layout.popup_songlist_menu);
+        HacUtils.setRightMenuEvents(activity, pw);
+
+        // Event received from adapter.
+        adapter.rightMenuClick = new FavoriteManagerAdapter.RightMenuClick() {
+            @Override
+            public void onRightMenuClick(View view, Song song) {
+                // Show the popup menu and set selectedSong
+                /** Store the song that user clicked on the right menu (the star) **/
+                HacUtils.selectedSong = song;
+                pw.showAsDropDown(view);
+            }
+        };
+
         mListView.setAdapter(adapter);
 
 
@@ -106,13 +132,13 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch(position) {
-            // sort by ABC
             case 0:
-                SortUtils.sortSongByABC(songs);
-                break;
-            // sort by times
-            case 1:
+                // sort by times
                 SortUtils.sortSongByDate(songs);
+                break;
+            case 1:
+                // sort by ABC
+                SortUtils.sortSongByABC(songs);
                 break;
             default:
                 // do nothing
@@ -126,4 +152,5 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
 }

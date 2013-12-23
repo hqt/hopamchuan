@@ -25,11 +25,12 @@ public class SortUtils {
                 }
             };
         }
+        // TrungDQ: sort by the time user added the song to favorite
         public static Comparator<Song> compareSongByDate() {
             return new Comparator<Song>() {
                 @Override
                 public int compare(Song lhs, Song rhs) {
-                    return lhs.lastView - rhs.lastView;
+                    return rhs.isFavorite - lhs.isFavorite;
                 }
             };
         }

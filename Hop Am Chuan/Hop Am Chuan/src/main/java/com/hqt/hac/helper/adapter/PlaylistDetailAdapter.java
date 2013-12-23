@@ -21,7 +21,13 @@ import java.util.List;
 
 public class PlaylistDetailAdapter extends BaseAdapter {
 
-    Context mContext;
+    Activity activity;
+
+    public interface RightMenuClick {
+        public void onRightMenuClick(View view, Song song);
+    }
+
+    public RightMenuClick rightMenuClick;
 
     /**
      * Playlist of this adapter
@@ -33,8 +39,8 @@ public class PlaylistDetailAdapter extends BaseAdapter {
      */
     List<Song> songs;
 
-    public PlaylistDetailAdapter(Context context, Playlist playlist, List<Song> songs) {
-        this.mContext = context;
+    public PlaylistDetailAdapter(Activity activity, Playlist playlist, List<Song> songs) {
+        this.activity = activity;
         this.playlist = playlist;
         this.songs = songs;
     }
@@ -59,7 +65,7 @@ public class PlaylistDetailAdapter extends BaseAdapter {
         ViewHolder holder = null;
         View row = convertView;
 
-        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) activity.getApplicationContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (row == null) {
             row = inflater.inflate(R.layout.list_item_song_detail, null);
             holder = new ViewHolder();
@@ -73,19 +79,18 @@ public class PlaylistDetailAdapter extends BaseAdapter {
             holder = (ViewHolder) row.getTag();
         }
 
-        Song song = songs.get(position);
+        final Song song = songs.get(position);
         holder.txtSongName.setText(song.title);
         holder.txtLyrics.setText(song.firstLyric.replace("\n", ""));
-        holder.txtChord.setText(song.getChordString(mContext));
-
-        final PopupWindow pw = DialogFactory.createPopup(inflater, R.layout.popup_songlist_menu);
+        holder.txtChord.setText(song.getChordString(activity.getApplicationContext()));
 
         holder.imgFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pw.showAsDropDown(view);
+                rightMenuClick.onRightMenuClick(view, song);
             }
         });
+
         return row;
     }
 

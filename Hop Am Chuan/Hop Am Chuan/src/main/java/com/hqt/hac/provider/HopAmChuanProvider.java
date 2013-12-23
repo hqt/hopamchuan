@@ -451,11 +451,11 @@ public class HopAmChuanProvider extends ContentProvider {
             case SONG_IS_FAVORITE: {
                 final String songId = uri.getPathSegments().get(2);
                 return builder.table(Tables.SONG)
-                        .where(Songs.SONG_ID + "=? AND " + Songs.SONG_ISFAVORITE + "=1", songId);
+                        .where(Songs.SONG_ID + "=? AND " + Songs.SONG_ISFAVORITE + ">0", songId);
             }
             case SONG_ALL_FAVORITE: {
                 return builder.table(Tables.SONG)
-                        .where(Songs.SONG_ISFAVORITE + "=1");
+                        .where(Songs.SONG_ISFAVORITE + "> 0");
             }
 
             /**

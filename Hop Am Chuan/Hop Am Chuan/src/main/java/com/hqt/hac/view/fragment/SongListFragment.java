@@ -1,6 +1,7 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,13 +10,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 
 import com.hqt.hac.helper.adapter.FavoriteManagerAdapter;
 import com.hqt.hac.helper.adapter.SongListAdapter;
+import com.hqt.hac.helper.widget.DialogFactory;
 import com.hqt.hac.model.Song;
+import com.hqt.hac.model.dao.FavoriteDataAccessLayer;
 import com.hqt.hac.model.dao.SongDataAccessLayer;
+import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
@@ -30,6 +36,9 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     MainActivity activity;
     ListView mListView;
     List<Song> songs;
+
+    /** One popup menu for all items **/
+    PopupWindow pw = null;
 
     /** Adapter for this fragment */
     SongListAdapter songlistAdapter;
@@ -70,7 +79,23 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
 
         /** ListView Configure */
         mListView = (ListView) rootView.findViewById(R.id.list_view);
-        songlistAdapter = new SongListAdapter(activity.getApplicationContext(), songs);
+        songlistAdapter = new SongListAdapter(activity, songs);
+
+        // Event for right menu click
+        pw = DialogFactory.createPopup(inflater, R.layout.popup_songlist_menu);
+        HacUtils.setRightMenuEvents(activity, pw);
+
+        // Event received from adapter.
+        songlistAdapter.rightMenuClick = new SongListAdapter.RightMenuClick() {
+            @Override
+            public void onRightMenuClick(View view, Song song) {
+                // Show the popup menu and set selectedSong
+                /** Store the song that user clicked on the right menu (the star) **/
+                HacUtils.selectedSong = song;
+                pw.showAsDropDown(view);
+            }
+        };
+
         mListView.setAdapter(songlistAdapter);
 
 
@@ -114,4 +139,5 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
 }

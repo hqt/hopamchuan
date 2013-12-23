@@ -25,6 +25,12 @@ public class FavoriteManagerAdapter extends BaseAdapter {
 
     Activity activity;
 
+    public interface RightMenuClick {
+        public void onRightMenuClick(View view, Song song);
+    }
+
+    public RightMenuClick rightMenuClick;
+
     /**
      * List all Songs of this favorite that adapter should be display
      */
@@ -78,33 +84,10 @@ public class FavoriteManagerAdapter extends BaseAdapter {
         holder.txtLyrics.setText(song.firstLyric.replace("\n", ""));
         holder.txtChord.setText(song.getChordString(activity.getApplicationContext()));
 
-        // Popup menu
-        final PopupWindow pw = DialogFactory.createPopup(inflater, R.layout.popup_songlist_menu);
-
-        // Popup menu item
-        Button favoriteBtn = (Button) pw.getContentView().findViewById(R.id.song_list_menu_addtofavorite);
-        Button playlistBtn = (Button) pw.getContentView().findViewById(R.id.song_list_menu_addtoplaylist);
-        Button shareBtn = (Button) pw.getContentView().findViewById(R.id.song_list_menu_share);
-
-        // Favorite button
-        HacUtils.setFavoriteButtonEvent(activity.getApplicationContext(), song, favoriteBtn, pw);
-
-        // "Add to playlist" dialog
-
-        final Dialog dialog = DialogFactory.createDialog(activity, R.string.title_activity_chord_view,
-                activity.getLayoutInflater(), R.layout.activity_setting);
-        playlistBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                pw.dismiss();
-                dialog.show();
-            }
-        });
-
         holder.imgFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pw.showAsDropDown(view);
+                rightMenuClick.onRightMenuClick(view, song);
             }
         });
 

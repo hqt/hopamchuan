@@ -71,6 +71,7 @@ public class SyncSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
         switch(progress[0]) {
             case 0:
                 dialog.setMessage("Sync Playlist ...");
+                break;
             case 1:
                 dialog.setMessage("Update Playlist ...");
                 break;
@@ -79,6 +80,7 @@ public class SyncSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
                 break;
             case 3:
                 dialog.setMessage("Update Favorite ...");
+                break;
             default:
                 // do nothing
         }
