@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Map;
 
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
@@ -90,5 +91,10 @@ public class NetworkUtils {
             ex.printStackTrace();
         }
         return null;
+    }
+
+    /** Get Data Fom URL Using POST Method */
+    public static final String getResponseFromPOSTRequest(String url, Map<String, String> params) {
+        throw new UnsupportedOperationException();
     }
 }

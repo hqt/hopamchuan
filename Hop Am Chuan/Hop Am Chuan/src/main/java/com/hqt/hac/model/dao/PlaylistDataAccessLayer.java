@@ -174,6 +174,12 @@ public class PlaylistDataAccessLayer {
         return updatedUriResult;
     }
 
+    public static void removeAllPlaylists(Context context, List<Playlist> playlists) {
+        for (Playlist p : playlists) {
+            removePlaylistById(context, p.playlistId);
+        }
+    }
+
     public static void removePlaylistById(Context context, int playlistId) {
         LOGD(TAG, "Delete playlist");
 

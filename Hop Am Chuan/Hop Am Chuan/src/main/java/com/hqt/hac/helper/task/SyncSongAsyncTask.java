@@ -41,18 +41,21 @@ public class SyncSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
         String password = PrefStore.getLoginPassword(context);
         boolean res;
 
-       /*// sync playlist
+       // sync playlist
         publishProgress(0);
-        List<Playlist> playlists = PlaylistDataAccessLayer.getAllPlayLists(context);
-        List<JsonPlaylist> jsonPlaylists = JsonPlaylist.convert(playlists, context);
+        List<Playlist> oldPlaylists = PlaylistDataAccessLayer.getAllPlayLists(context);
+        List<JsonPlaylist> jsonPlaylists = JsonPlaylist.convert(oldPlaylists, context);
         List<Playlist> newPlaylists = APIUtils.syncPlaylist(username, password, jsonPlaylists);
-        *//*if (newPlaylist == null || newPlaylist.size() == playlist.size()) {
+        /*if (newPlaylists == null || newPlaylists.size() == newPlaylists.size()) {
             return 0;
-        }*//*
+        }*/
 
         // update playlist
         publishProgress(1);
         if (newPlaylists != null) {
+            // delete all playlists in system
+            PlaylistDataAccessLayer.removeAllPlaylists(context, oldPlaylists);
+
             // insert all song of its playlist to database
             for (Playlist p : newPlaylists) {
                 // insert playlist
@@ -62,7 +65,7 @@ public class SyncSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
                 res = PlaylistSongDataAccessLayer.insertPlaylist_Song(context, p.id, ids);
                 if (!res) return 1;
             }
-        }*/
+        }
 
         // sync favorite
         publishProgress(2);
@@ -74,7 +77,8 @@ public class SyncSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
 
         // update favorite
         publishProgress(3);
-       res = FavoriteDataAccessLayer.addAllSongIdsToFavorite(context, newFavorite);
+        res = FavoriteDataAccessLayer.syncFavorites(context, newFavorite);
+        // res = FavoriteDataAccessLayer.addAllSongIdsToFavorite(context, newFavorite);
         if (!res) return 1;
         return 3;
     }
