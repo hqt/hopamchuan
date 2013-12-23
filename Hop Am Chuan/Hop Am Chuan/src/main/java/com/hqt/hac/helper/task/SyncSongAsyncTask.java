@@ -47,25 +47,26 @@ public class SyncSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
             return 0;
         }*/
 
+        boolean res;
         // update playlist
         publishProgress(1);
-        // insert all playlist
-        boolean res = PlaylistDataAccessLayer.insertAllPlaylist(context, newPlaylist);
-        if (!res) return 1;
         // insert all song of its playlist to database
         for (Playlist p : newPlaylist) {
+            // insert playlist
+            PlaylistDataAccessLayer.insertPlaylist(context, p);
+            // insert songs of playlist
             List<Integer> ids = p.getAllSongIds(activity.getBaseContext());
-            PlaylistSongDataAccessLayer.insertPlaylist_Song(context,)
-
+            res = PlaylistSongDataAccessLayer.insertPlaylist_Song(context, p.id, ids);
+            if (!res) return 1;
         }
 
         // sync favorite
         publishProgress(2);
        int[] favorite = FavoriteDataAccessLayer.getAllFavoriteSongIds(context);
         List<Integer> newFavorite = APIUtils.syncFavorite(username, password, favorite);
-        /*if (newFavorite == null || newFavorite.size() == favorite.length) {
+        if (newFavorite == null || newFavorite.size() == favorite.length) {
             return 2;
-        }*/
+        }
 
         // update favorite
         publishProgress(3);
