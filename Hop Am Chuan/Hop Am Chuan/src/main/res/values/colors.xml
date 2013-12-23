@@ -9,6 +9,7 @@
     <color name="body_text_2_inverse">#99ffffff</color>
     <color name="body_text_1_positive">#ff4CAA47</color>
     <color name="accent_1">#ff4d90fe</color>
+    <color name="dropdown_menu_active">#ff76d1ff</color>
     <color name="all_track_color">#ff222222</color>
     <color name="home_pane_header">#99000000</color>
     <color name="sliding_pane_content_fade">#cceeeeee</color>

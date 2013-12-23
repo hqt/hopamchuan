@@ -6,8 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.hqt.hac.helper.widget.DropdownPopup;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 import com.hqt.hac.view.R;
@@ -51,6 +54,7 @@ public class PlaylistManagerAdapter extends BaseAdapter {
             holder.numberOfSongTxt = (TextView) row.findViewById(R.id.countSongText);
             holder.playListNameTxt = (TextView) row.findViewById(R.id.playlist);
             holder.descriptionTxt = (TextView) row.findViewById(R.id.description);
+            holder.optionBtn = (ImageView) row.findViewById(R.id.imageOptionView);
             row.setTag(holder);
         }
         else {
@@ -62,6 +66,15 @@ public class PlaylistManagerAdapter extends BaseAdapter {
         holder.playListNameTxt.setText(rowItem.playlistName);
         holder.descriptionTxt.setText(rowItem.playlistDescription);
 
+        final PopupWindow pw = DropdownPopup.createPopup(inflater, R.layout.popup_song_detail_menu);
+
+        holder.optionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pw.showAsDropDown(view);
+            }
+        });
+
         return row;
     }
 
@@ -69,6 +82,7 @@ public class PlaylistManagerAdapter extends BaseAdapter {
         TextView numberOfSongTxt;
         TextView playListNameTxt;
         TextView descriptionTxt;
+        ImageView optionBtn;
     }
 
     public static interface IPlaylistManagerAdapter {

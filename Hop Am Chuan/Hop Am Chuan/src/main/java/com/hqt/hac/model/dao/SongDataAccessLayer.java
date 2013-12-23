@@ -134,10 +134,7 @@ public class SongDataAccessLayer {
                 int isFavorite = c.getInt(isFavoriteCol);
                 int lastView = c.getInt(lastViewCol);
 
-
-                if (c != null) {
-                    c.close();
-                }
+                c.close();
                 return new Song(_id, id, title, link, firstLyric, date,
                         titleAscii, lastView, isFavorite, rhythm);
             }
@@ -145,9 +142,7 @@ public class SongDataAccessLayer {
             LOGE(TAG, "Parse song fail!");
             e.printStackTrace();
         }
-        if (c != null) {
-            c.close();
-        }
+        c.close();
         return null;
     }
 
@@ -265,9 +260,9 @@ public class SongDataAccessLayer {
 
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
             String content = c.getString(contentCol);
+            c.close();
             return content;
         }
-        c.close();
         return "Error: could not get song content (songId=" + songId + ")";
     }
 

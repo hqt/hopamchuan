@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true"
+        android:drawable="@color/dropdown_menu_active" /> <!-- pressed -->
+    <item android:state_focused="true"
+        android:drawable="@color/plus_stream_media_background" /> <!-- focused -->
+    <item android:drawable="@android:color/transparent" /> <!-- default -->
+</selector>

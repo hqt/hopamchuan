@@ -1,17 +1,30 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.hqt.hac.helper.widget.DropdownPopup;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
@@ -22,21 +35,33 @@ import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class SongDetailFragment extends  Fragment {
+public class SongDetailFragment extends Fragment {
 
     private static String TAG = makeLogTag(PlaylistDetailFragment.class);
 
-    /** Main Activity for reference */
+    /**
+     * Main Activity for reference
+     */
     MainActivity activity;
 
-    /** ListView : contains all items of this fragment */
+    /**
+     * ListView : contains all items of this fragment
+     */
     ListView mListView;
 
-    /** Adapter for this fragment */
+    /**
+     * Adapter for this fragment
+     */
     // PlaylistDetailAdapter adapter;
     Song song;
 
-    /** empty constructor
+    // Stuff for popup menu
+    private PopupWindow mPopupMenu;
+    private View mMenuLayout;
+    private boolean isPopupOpened = false;
+
+    /**
+     * empty constructor
      * must have for fragment
      */
     public SongDetailFragment() {
@@ -52,8 +77,7 @@ public class SongDetailFragment extends  Fragment {
         Bundle arguments = getArguments();
         if (arguments.get("song") != null) {
             this.song = (Song) arguments.get("song");
-        }
-        else {
+        } else {
             LOGE(TAG, "no suitable arguments to continues");
             return;
         }
@@ -68,7 +92,7 @@ public class SongDetailFragment extends  Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_song_detail, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_song_detail, container, false);
 
         // Set song info
         TextView songTitleTV = (TextView) rootView.findViewById(R.id.songTitle);
@@ -109,11 +133,23 @@ public class SongDetailFragment extends  Fragment {
 
         // Fullscreen button
         ImageView fullScreenButton = (ImageView) rootView.findViewById(R.id.songFullScreen);
+        // Menu button
+        final ImageView menuButton = (ImageView) rootView.findViewById(R.id.songMenuBtn);
 
         fullScreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openFullScreenSong();
+            }
+        });
+
+        // Create popup menu
+        final PopupWindow pw = DropdownPopup.createPopup(inflater, R.layout.popup_song_detail_menu);
+
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pw.showAsDropDown(view);
             }
         });
 
@@ -125,4 +161,6 @@ public class SongDetailFragment extends  Fragment {
 //        intent.putExtra("song", (Serializable)song);
 //        activity.startActivity(intent);
     }
+
+
 }
