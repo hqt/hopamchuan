@@ -36,7 +36,7 @@ public class LoginPopup {
         txtUsername = (EditText) dialog.findViewById(R.id.username);
         txtPassword = (EditText) dialog.findViewById(R.id.password);
         loginButton = (Button) dialog.findViewById(R.id.btnLogin);
-        cancelButton = (Button) dialog.findViewById(R.id.btnCancel);
+//        cancelButton = (Button) dialog.findViewById(R.id.btnCancel);
 
         // add event
         loginButton.setOnClickListener(new View.OnClickListener() {

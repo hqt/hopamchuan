@@ -52,16 +52,21 @@ public class ChordClickableSpan extends ClickableSpan {
         final String chordName = s.subSequence(start, end).toString().replace("[", "").replace("]", "");
 
         // Create chord dialog
-        final Dialog dialog = new Dialog(theActivity);
-
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.chordsurfaceview_toast, null);
+        final  Dialog dialog = DialogFactory.createDialog(
+                theActivity,
+                R.string.chord_finger_position,
+                (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE),
+                R.layout.chordsurfaceview_toast);
+//        final Dialog dialog = new Dialog(theActivity);
+//
+//        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        View layout = inflater.inflate(R.layout.chordsurfaceview_toast, null);
 
         // Chord view
-        final ImageView chord = (ImageView) layout.findViewById(R.id.chordViewA);
+        final ImageView chord = (ImageView) dialog.findViewById(R.id.chordViewA);
 
-        final ImageView prevBtn = (ImageView) layout.findViewById(R.id.prevPositionBtn);
-        final ImageView nextBtn = (ImageView) layout.findViewById(R.id.nextPositionBtn);
+        final ImageView prevBtn = (ImageView) dialog.findViewById(R.id.prevPositionBtn);
+        final ImageView nextBtn = (ImageView) dialog.findViewById(R.id.nextPositionBtn);
 
         prevBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,8 +133,6 @@ public class ChordClickableSpan extends ClickableSpan {
         BitmapDrawable bitmapDrawable = DrawHelper.getBitmapDrawable(Resources.getSystem(), defaultActualSize, defaultActualSize, chordName, position, transpose);
         chord.setImageDrawable(bitmapDrawable);
 
-        dialog.setContentView(layout);
-        dialog.setTitle(R.string.chord_finger_position);
         dialog.show();
 
     }

@@ -7,11 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.hqt.hac.helper.widget.DialogFactory;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
-import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 import com.hqt.hac.view.R;
 
 import java.util.List;
@@ -77,6 +78,14 @@ public class PlaylistDetailAdapter extends BaseAdapter {
         holder.txtLyrics.setText(song.firstLyric.replace("\n", ""));
         holder.txtChord.setText(song.getChordString(mContext));
 
+        final PopupWindow pw = DialogFactory.createPopup(inflater, R.layout.popup_songlist_menu);
+
+        holder.imgFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pw.showAsDropDown(view);
+            }
+        });
         return row;
     }
 

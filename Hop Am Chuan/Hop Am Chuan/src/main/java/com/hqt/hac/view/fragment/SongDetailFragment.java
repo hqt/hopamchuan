@@ -1,35 +1,20 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.Display;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.hqt.hac.helper.widget.DropdownPopup;
+import com.hqt.hac.helper.widget.DialogFactory;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
-
-import java.io.Serializable;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
@@ -114,8 +99,9 @@ public class SongDetailFragment extends Fragment {
             }
         });
         songContentTV.setSelected(true);
+
         // The header
-        final RelativeLayout songHeader = (RelativeLayout) rootView.findViewById(R.id.songHeader);
+//        final RelativeLayout songHeader = (RelativeLayout) rootView.findViewById(R.id.songHeader);
 
         // Set top menu hidden
 //        CustomScrollView scrollView = (CustomScrollView) rootView.findViewById(R.id.songContentScrollView);
@@ -144,7 +130,7 @@ public class SongDetailFragment extends Fragment {
         });
 
         // Create popup menu
-        final PopupWindow pw = DropdownPopup.createPopup(inflater, R.layout.popup_song_detail_menu);
+        final PopupWindow pw = DialogFactory.createPopup(inflater, R.layout.popup_song_detail_menu);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -26,7 +26,6 @@ import android.widget.Toast;
 import com.hac_library.components.ChordSurfaceView;
 import com.hac_library.helper.ChordHelper;
 import com.hqt.hac.model.Song;
-import com.hqt.hac.utils.APIUtils;
 import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.utils.ParserUtils;
 import com.hqt.hac.view.R;
@@ -47,10 +46,13 @@ public class TestTextView extends ActionBarActivity {
         setContentView(R.layout.testtextview_fragment_main);
         thisActivity = this;
         testTextView = (TextView) findViewById(R.id.testTextView);
-
-        // get content
-        // testTextView.setText(APIUtils.getAllSongsFromVersion(2));
-
+        List<Song> songs = ParserUtils.getAllSongsFromResource(getApplicationContext());
+        songContent = songs.get(++songCounter).getContent(getApplicationContext());
+        if (testTextView != null) {
+            HacUtils.setSongFormattedTwoLines(getApplicationContext(), testTextView, songContent, this);
+        } else {
+            Log.i("Debug", "testTextView is null!");
+        }
     }
 
     @Override

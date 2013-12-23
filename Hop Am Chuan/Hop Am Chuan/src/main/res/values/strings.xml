@@ -184,5 +184,10 @@
     <string name="song_detail_menu_favorite">Yêu thích</string>
     <string name="song_detail_menu_addtoplaylist">Thêm vào playlist</string>
     <string name="song_detail_menu_share">Chia sẻ</string>
+    <string name="playlist_menu_rename">Đổi tên</string>
+    <string name="playlist_menu_delete">Xóa playlist</string>
+    <string name="app_website">www.hopamchuan.com</string>
+    <string name="app_website_reg_link"><u>Đăng ký tài khoản</u></string>
+    <string name="register_link">http://hopamchuan.com/auth/register</string>
 
 </resources>

@@ -10,9 +10,8 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.hqt.hac.helper.widget.DropdownPopup;
+import com.hqt.hac.helper.widget.DialogFactory;
 import com.hqt.hac.model.Playlist;
-import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 import com.hqt.hac.view.R;
 
 import java.util.List;
@@ -66,7 +65,7 @@ public class PlaylistManagerAdapter extends BaseAdapter {
         holder.playListNameTxt.setText(rowItem.playlistName);
         holder.descriptionTxt.setText(rowItem.playlistDescription);
 
-        final PopupWindow pw = DropdownPopup.createPopup(inflater, R.layout.popup_song_detail_menu);
+        final PopupWindow pw = DialogFactory.createPopup(inflater, R.layout.popup_playlist_list_menu);
 
         holder.optionBtn.setOnClickListener(new View.OnClickListener() {
             @Override

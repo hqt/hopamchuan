@@ -1,6 +1,10 @@
 package com.hqt.hac.helper.widget;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -13,9 +17,14 @@ import com.hqt.hac.view.R;
 
 /**
  * Created by Dinh Quang Trung on 12/23/13.
- * Create a dropdown popup menu
  */
-public class DropdownPopup {
+public class DialogFactory {
+    /**
+     * Create dropdown popup menu
+     * @param inflater
+     * @param popupLayout
+     * @return
+     */
     public static PopupWindow createPopup(LayoutInflater inflater, int popupLayout) {
         View layout = inflater.inflate(popupLayout, null);
 
@@ -37,5 +46,20 @@ public class DropdownPopup {
         });
 
         return pw;
+    }
+
+    /**
+     * Create popup dialog
+     * @param theActivity
+     * @param inflater
+     * @param dialogLayout
+     * @return
+     */
+    public static Dialog createDialog(Activity theActivity, int titleStringResource, LayoutInflater inflater, int dialogLayout) {
+        View layout = inflater.inflate(dialogLayout, null);
+        Dialog dialog = new Dialog(theActivity);
+        dialog.setContentView(layout);
+        dialog.setTitle(titleStringResource);
+        return dialog;
     }
 }

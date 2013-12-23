@@ -51,7 +51,7 @@ public class SettingActivity extends ActionBarActivity {
         autoUpdateSongChkbox = (CheckBox) findViewById(R.id.checkbox_auto_update);
 
         // set value and action for widget
-        currentVersionTxt.setText(R.string.current_version + " " + PrefStore.getLatestVersion(getApplicationContext()));
+        currentVersionTxt.setText(getString(R.string.current_version) + " " + PrefStore.getLatestVersion(getApplicationContext()));
 
         updateSongBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -23,7 +23,7 @@
             android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="www.hopamchuan.com"
+            android:text="@string/app_website"
             />
     </RelativeLayout>
 

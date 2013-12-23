@@ -94,6 +94,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:theme="@style/FullscreenTheme"
             android:name="com.hqt.hac.view.LoginActivity"
             android:label="@string/login_activity_title" >
         </activity>

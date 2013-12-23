@@ -52,7 +52,7 @@ public class PrefStore {
     public static final String DEFAULT_LOGIN_PASSWORD = "@password";
 
     /** Default value for {@link PrefStore#PREF_LATEST_VERSION} */
-    public static final int DEFAULT_LATEST_VERSION = 0;
+    public static final int DEFAULT_LATEST_VERSION = 3; // set = 3 for testing
 
     /** Default value for {@link PrefStore#PREF_USER_IMAGE} */
     public static final String DEFAULT_USER_IMAGE = "image_data";
