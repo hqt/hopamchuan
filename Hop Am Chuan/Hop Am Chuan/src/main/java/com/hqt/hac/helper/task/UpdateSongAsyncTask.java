@@ -38,24 +38,27 @@ public class UpdateSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
         publishProgress(1);
         DBVersion version = APIUtils.getLatestDatabaseVersion(PrefStore.getLatestVersion(context));
         // no update need
-        if (version.no == PrefStore.getLatestVersion(context)) {
-            return 0;
-        } else {
-            PrefStore.setLatestVersion(context, version.no);
+        if (version == null || version.no == PrefStore.getLatestVersion(context)) {
+            return 1;
         }
 
         // update songs
         publishProgress(2);
         List<Song> songs = APIUtils.getAllSongsFromVersion(PrefStore.getLatestVersion(context));
         if (songs == null) {
-            return 1;
+            return 2;
         }
 
         // save to database
         publishProgress(3);
         boolean status = SongDataAccessLayer.insertFullSongListSync(context, songs);
-        if (status) return 2;
-        else return 3;
+        if (status) return 3;
+        else {
+            // set latest version to system after all step has successfully update
+            PrefStore.setLatestVersion(context, version.no);
+            return 4;
+        }
+
     }
 
     @Override
@@ -69,6 +72,7 @@ public class UpdateSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
                 break;
             case 3:
                 dialog.setMessage("Updating ...");
+                break;
             default:
                 // do nothing
         }
@@ -77,29 +81,31 @@ public class UpdateSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
 
     @Override
     protected void onPostExecute(Integer result) {
+        dialog.dismiss();
+
         switch (result) {
             // latest version
-            case 0: {
+            case 1: {
                 AlertDialog dialog = UIUtils.showAlertDialog(activity, "Notify", "Already newest version");
                 dialog.show();
                 break;
             }
 
             // download or parse fail
-            case 1: {
+            case 2: {
                 AlertDialog dialog = UIUtils.showAlertDialog(activity, "Error", "Network Error. Try again");
                 dialog.show();
                 break;
             }
             // update to database fail
-            case 2: {
+            case 3: {
                 AlertDialog dialog = UIUtils.showAlertDialog(activity, "Error", "System Fail. Restart Application");
                 dialog.show();
                 break;
             }
 
             // successfully
-            case 3: {
+            case 4: {
             }
 
             default:

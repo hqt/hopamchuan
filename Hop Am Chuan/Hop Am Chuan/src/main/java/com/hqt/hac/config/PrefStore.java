@@ -52,7 +52,7 @@ public class PrefStore {
     public static final String DEFAULT_LOGIN_PASSWORD = "@password";
 
     /** Default value for {@link PrefStore#PREF_LATEST_VERSION} */
-    public static final int DEFAULT_LATEST_VERSION = 3; // set = 3 for testing
+    public static final int DEFAULT_LATEST_VERSION = 1;
 
     /** Default value for {@link PrefStore#PREF_USER_IMAGE} */
     public static final String DEFAULT_USER_IMAGE = "image_data";
@@ -118,6 +118,7 @@ public class PrefStore {
     public static void setLatestVersion(Context ctx, int version) {
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.putInt(PREF_LATEST_VERSION, version);
+        editor.putInt(PREF_LATEST_VERSION, 1);      // debugging purpose
         editor.commit();
     }
 

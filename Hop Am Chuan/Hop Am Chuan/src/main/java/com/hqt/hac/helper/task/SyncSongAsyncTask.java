@@ -5,10 +5,12 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.test.RenamingDelegatingContext;
 import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dao.FavoriteDataAccessLayer;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
+import com.hqt.hac.model.dao.PlaylistSongDataAccessLayer;
 import com.hqt.hac.utils.APIUtils;
 import com.hqt.hac.utils.UIUtils;
 
@@ -25,8 +27,8 @@ public class SyncSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
         context = activity.getBaseContext();
         dialog = new ProgressDialog(activity);
         dialog.setTitle("Progress");
-    }
 
+}
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -45,18 +47,26 @@ public class SyncSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
             return 0;
         }*/
 
+        boolean res;
         // update playlist
         publishProgress(1);
-        boolean res = PlaylistDataAccessLayer.insertAllPlaylist(context, newPlaylist);
-        if (!res) return 1;
+        // insert all song of its playlist to database
+        for (Playlist p : newPlaylist) {
+            // insert playlist
+            PlaylistDataAccessLayer.insertPlaylist(context, p);
+            // insert songs of playlist
+            List<Integer> ids = p.getAllSongIds(activity.getBaseContext());
+            res = PlaylistSongDataAccessLayer.insertPlaylist_Song(context, p.id, ids);
+            if (!res) return 1;
+        }
 
         // sync favorite
         publishProgress(2);
        int[] favorite = FavoriteDataAccessLayer.getAllFavoriteSongIds(context);
         List<Integer> newFavorite = APIUtils.syncFavorite(username, password, favorite);
-        /*if (newFavorite == null || newFavorite.size() == favorite.length) {
+        if (newFavorite == null || newFavorite.size() == favorite.length) {
             return 2;
-        }*/
+        }
 
         // update favorite
         publishProgress(3);
@@ -89,6 +99,8 @@ public class SyncSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
 
     @Override
     protected void onPostExecute(Integer result) {
+        dialog.dismiss();
+
         switch (result) {
             // SYSTEM ERROR
             case 1: {

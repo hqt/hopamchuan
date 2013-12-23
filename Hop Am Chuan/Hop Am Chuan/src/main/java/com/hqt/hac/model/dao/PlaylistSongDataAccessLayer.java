@@ -7,6 +7,8 @@ import android.net.Uri;
 
 import com.hqt.hac.provider.HopAmChuanDBContract;
 
+import java.util.List;
+
 import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
@@ -19,6 +21,16 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
  */
 public class PlaylistSongDataAccessLayer {
     private static String TAG = makeLogTag(PlaylistSongDataAccessLayer.class);
+
+    public static boolean insertPlaylist_Song(Context context, int playlistId, List<Integer> ids) {
+        boolean res = true;
+        for (Integer id : ids) {
+            String uri = insertPlaylist_Song(context, playlistId, id);
+            if (uri == null) res = false;
+        }
+        return res;
+    }
+
     public static String insertPlaylist_Song(Context context, int playlistId, int songId) {
         LOGD(TAG, "Adding an playlist_song");
 
@@ -30,7 +42,8 @@ public class PlaylistSongDataAccessLayer {
         Uri uri = HopAmChuanDBContract.PlaylistSongs.CONTENT_URI;
         Uri insertedUri = resolver.insert(uri, cv);
         LOGD(TAG, "inserted uri: " + insertedUri);
-        return insertedUri.toString();
+        if (insertedUri == null) return null;
+        else return insertedUri.toString();
     }
     public static int removePlaylist_Song(Context context, int playlistId, int songId) {
         LOGD(TAG, "Remove an Playlist_Song: playlist " + playlistId + " , song " + songId);

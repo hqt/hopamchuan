@@ -7,6 +7,9 @@
          https://developer.android.com/design/patterns/navigation-drawer.html -->
     <dimen name="navigation_drawer_width">240dp</dimen>
 
+    <!-- dimen for right sidebar -->
+    <dimen name="sidebar_width">100dp</dimen>
+
 
     <dimen name="whats_on_height">64dp</dimen>
     <dimen name="tab_height">48dp</dimen>
