@@ -57,7 +57,7 @@
                 android:padding="10dp"
                 android:textSize="15sp"
                 android:hint="@string/login_username"
-
+                android:textColor="#333"
                 android:layout_marginBottom="5dip"
                 android:background="@drawable/text_box"
                 android:fontFamily="@string/font_light"
@@ -69,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dip"
                 android:padding="10dp"
+                android:textColor="#333"
                 android:textSize="15sp"
                 android:hint="@string/login_password"
                 android:singleLine="true"
