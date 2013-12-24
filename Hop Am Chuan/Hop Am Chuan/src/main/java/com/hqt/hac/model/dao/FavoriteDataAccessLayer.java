@@ -120,8 +120,32 @@ public class FavoriteDataAccessLayer {
         return fails == 0;
     }
 
+    /**
+     * Synchronize favorite from server to local
+     * We need to: Add first > remove then
+     * to make sure that the timestamps are not affected.
+     *
+     * @param context
+     * @param ids
+     * @return
+     */
     public static boolean syncFavorites(Context context, List<Integer> ids) {
-        throw new UnsupportedOperationException();
+        // Add new song to favorite
+        for (Integer id : ids) {
+            if (isInFavorite(context, id) == 0) {
+                addSongToFavorite(context, id);
+            }
+        }
+
+        // Remove songs
+        List<Song> songs = getAllFavoriteSongs(context);
+        for (Song song : songs) {
+            if (ids.indexOf(song.songId) == -1) {
+                removeSongFromFavorite(context, song.songId);
+            }
+        }
+
+        return true;
     }
 
 }
