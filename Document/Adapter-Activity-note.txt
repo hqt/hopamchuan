@@ -1,0 +1,3 @@
+FavoriteManagerAdapter.java
+PlaylistDetailAdapter.java
+SongListAdapter.java
