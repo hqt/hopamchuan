@@ -19,9 +19,6 @@ import com.hqt.hac.view.R;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Dinh Quang Trung on 12/24/13.
- */
 public class PlaylistRightMenuHandler {
     /**
      * Current selected playlist

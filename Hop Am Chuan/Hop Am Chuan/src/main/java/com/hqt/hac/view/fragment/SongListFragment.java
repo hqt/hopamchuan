@@ -33,7 +33,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     List<Song> songs;
 
     /** One popup menu for all items **/
-    PopupWindow pw = null;
+    PopupWindow popupWindow = null;
 
     /** Adapter for this fragment */
     SongListAdapter songlistAdapter;
@@ -48,6 +48,12 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     }
 
     @Override
+    public void onDetach() {
+        super.onDetach();
+        this.activity = null;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
     }
@@ -57,7 +63,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_song_list, container, false);
 
-        /** Spinner : create adapter for Spinner */
+        /** Spinner : create mAdapter for Spinner */
         Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner_method_list);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.
@@ -65,7 +71,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
                         R.array.song_list_method, R.layout.custom_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
-        spinner.setAdapter(adapter);    // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);    // Apply the mAdapter to the spinner
         spinner.setOnItemSelectedListener(this);    // because this fragment has implemented method
 
 
@@ -77,17 +83,17 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         songlistAdapter = new SongListAdapter(activity, songs);
 
         // Event for right menu click
-        pw = DialogFactory.createPopup(inflater, R.layout.popup_songlist_menu);
-        SongListRightMenuHandler.setRightMenuEvents(activity, pw);
+        popupWindow = DialogFactory.createPopup(inflater, R.layout.popup_songlist_menu);
+        SongListRightMenuHandler.setRightMenuEvents(activity, popupWindow);
 
-        // Event received from adapter.
+        // Event received from mAdapter.
         songlistAdapter.rightMenuClick = new SongListAdapter.RightMenuClick() {
             @Override
             public void onRightMenuClick(View view, Song song) {
                 // Show the popup menu and set selectedSong
                 /** Store the song that user clicked on the right menu (the star) **/
                 SongListRightMenuHandler.selectedSong = song;
-                pw.showAsDropDown(view);
+                popupWindow.showAsDropDown(view);
             }
         };
 

@@ -35,7 +35,7 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
     List<Playlist> allPlaylists;
 
     /** One popup menu for all items **/
-    PopupWindow pw = null;
+    PopupWindow popupWindow = null;
 
     /**
      * Adapter for this View
@@ -52,6 +52,12 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
     }
 
     @Override
+    public void onDetach() {
+        super.onDetach();
+        this.activity = null;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         allPlaylists = PlaylistDataAccessLayer.getAllPlayLists(getActivity().getApplicationContext());
@@ -65,17 +71,17 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
         mListView = (ListView) rootView.findViewById(R.id.list);
         adapter = new PlaylistManagerAdapter(activity.getApplicationContext(), allPlaylists);
 
-        pw = DialogFactory.createPopup(inflater, R.layout.popup_playlist_list_menu);
-        PlaylistRightMenuHandler.setRightMenuEvents(activity, pw, adapter);
+        popupWindow = DialogFactory.createPopup(inflater, R.layout.popup_playlist_list_menu);
+        PlaylistRightMenuHandler.setRightMenuEvents(activity, popupWindow, adapter);
 
-        // Event received from adapter.
+        // Event received from mAdapter.
         adapter.rightMenuClick = new PlaylistManagerAdapter.RightMenuClick() {
             @Override
             public void onRightMenuClick(View view, Playlist playlist) {
                 // Show the popup menu and set selectedSong
                 /** Store the song that user clicked on the right menu (the star) **/
                 PlaylistRightMenuHandler.selectedPlaylist = playlist;
-                pw.showAsDropDown(view);
+                popupWindow.showAsDropDown(view);
             }
         };
 

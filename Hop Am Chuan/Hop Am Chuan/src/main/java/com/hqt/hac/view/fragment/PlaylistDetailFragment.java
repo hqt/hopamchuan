@@ -10,7 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
-import com.hqt.hac.helper.adapter.PlaylistDetailAdapter;
+import com.hqt.hac.helper.adapter.SongListAdapter;
 import com.hqt.hac.helper.widget.DialogFactory;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
@@ -32,13 +32,13 @@ public class PlaylistDetailFragment extends  Fragment {
     MainActivity activity;
 
     /** One popup menu for all items **/
-    PopupWindow pw = null;
+    PopupWindow popupWindows = null;
 
     /** ListView : contains all items of this fragment */
     ListView mListView;
 
     /** Adapter for this fragment */
-    PlaylistDetailAdapter adapter;
+    SongListAdapter mAdapter;
 
     Playlist playlist;
     List<Song> songs;
@@ -77,6 +77,12 @@ public class PlaylistDetailFragment extends  Fragment {
     }
 
     @Override
+    public void onDetach() {
+        super.onDetach();
+        this.activity = null;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
@@ -87,26 +93,26 @@ public class PlaylistDetailFragment extends  Fragment {
         View rootView = inflater.inflate(R.layout.fragment_playlist_detail, container, false);
 
         mListView = (ListView) rootView.findViewById(R.id.list);
-        adapter = new PlaylistDetailAdapter(activity, playlist, songs);
+        mAdapter = new SongListAdapter(activity, songs);
 
 
         // Event for right menu click
-        pw = DialogFactory.createPopup(inflater, R.layout.popup_songlist_menu);
-        SongListRightMenuHandler.setRightMenuEvents(activity, pw);
+        popupWindows = DialogFactory.createPopup(inflater, R.layout.popup_songlist_menu);
+        SongListRightMenuHandler.setRightMenuEvents(activity, popupWindows);
 
-        // Event received from adapter.
-        adapter.rightMenuClick = new PlaylistDetailAdapter.RightMenuClick() {
+        // Event received from mAdapter.
+        mAdapter.rightMenuClick = new SongListAdapter.RightMenuClick() {
             @Override
             public void onRightMenuClick(View view, Song song) {
                 // Show the popup menu and set selectedSong
                 /** Store the song that user clicked on the right menu (the star) **/
                 SongListRightMenuHandler.selectedSong = song;
-                pw.showAsDropDown(view);
+                popupWindows.showAsDropDown(view);
             }
         };
 
 
-        mListView.setAdapter(adapter);
+        mListView.setAdapter(mAdapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

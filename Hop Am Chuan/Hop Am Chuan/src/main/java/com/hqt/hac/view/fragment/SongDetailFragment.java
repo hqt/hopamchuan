@@ -37,7 +37,7 @@ public class SongDetailFragment extends Fragment {
     /**
      * Adapter for this fragment
      */
-    // PlaylistDetailAdapter adapter;
+    // PlaylistDetailAdapter mAdapter;
     Song song;
 
     // Stuff for popup menu
@@ -66,7 +66,12 @@ public class SongDetailFragment extends Fragment {
             LOGE(TAG, "no suitable arguments to continues");
             return;
         }
+    }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.activity = null;
     }
 
     @Override

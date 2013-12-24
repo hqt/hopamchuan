@@ -75,7 +75,7 @@ public class NavigationDrawerFragment extends Fragment
     private boolean mUserLearnedDrawer;
 
     /**
-     * All adapter type for this view
+     * All mAdapter type for this view
      */
     MergeAdapter mergeAdapter;
     NavigationDrawerAdapter.HeaderAdapter headerAdapter;
@@ -143,8 +143,8 @@ public class NavigationDrawerFragment extends Fragment
 
         // Old way to use Adapter
         // Not stability. Need framework to work on this
-        // NavigationDrawerAdapterDraft adapter = new NavigationDrawerAdapterDraft(getActivity().getApplicationContext());
-        // mDrawerListView.setAdapter(adapter);
+        // NavigationDrawerAdapterDraft mAdapter = new NavigationDrawerAdapterDraft(getActivity().getApplicationContext());
+        // mDrawerListView.setAdapter(mAdapter);
 
 
         // TODO need modify and watch carefully here
@@ -168,13 +168,13 @@ public class NavigationDrawerFragment extends Fragment
          playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(getActivity().getApplicationContext(),
                  playlistList);
 
-        // assign each adapters to this composite adapter
+        // assign each adapters to this composite mAdapter
         mergeAdapter.addAdapter(headerAdapter);
         mergeAdapter.addAdapter(itemAdapter);
         mergeAdapter.addAdapter(playlistHeaderAdapter);
         mergeAdapter.addAdapter(playlistItemAdapter);
 
-        // assign this complex adapter to navigation drawer list
+        // assign this complex mAdapter to navigation drawer list
         mDrawerListView.setAdapter(mergeAdapter);
 
         return mDrawerListView;

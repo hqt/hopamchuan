@@ -33,7 +33,7 @@ public class PlaylistManagerAdapter extends BaseAdapter {
     public RightMenuClick rightMenuClick;
 
     public PlaylistManagerAdapter(Context context, List<Playlist> playlists) {
-        this.mContext = context;
+        this.mContext = context.getApplicationContext();
         this.playLists = playlists;
     }
 

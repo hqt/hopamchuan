@@ -62,6 +62,12 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
     }
 
     @Override
+    public void onDetach() {
+        super.onDetach();
+        this.activity = null;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
@@ -79,7 +85,7 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
                         R.array.type_of_chord_view, R.layout.custom_spinner_item);
         // Specify the layout to use when the list of choices appears
         choices.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
-        spinner.setAdapter(choices);    // Apply the adapter to the spinner
+        spinner.setAdapter(choices);    // Apply the mAdapter to the spinner
         spinner.setOnItemSelectedListener(this);   // because this fragment has implemented method
 
         // load all chord to memory

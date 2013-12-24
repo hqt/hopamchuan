@@ -20,7 +20,7 @@ import static com.hqt.hac.utils.LogUtils.LOGE;
 
 public class SongListAdapter extends BaseAdapter {
 
-    Activity activity;
+    Context mContext;
 
     public interface RightMenuClick {
         public void onRightMenuClick(View view, Song song);
@@ -33,8 +33,8 @@ public class SongListAdapter extends BaseAdapter {
      */
     List<Song> songs;
 
-    public SongListAdapter(Activity activity, List<Song> songs) {
-        this.activity = activity;
+    public SongListAdapter(Context context, List<Song> songs) {
+        this.mContext = context.getApplicationContext();
         this.songs = songs;
     }
 
@@ -62,7 +62,7 @@ public class SongListAdapter extends BaseAdapter {
         ViewHolder holder = null;
         View row = convertView;
 
-        LayoutInflater inflater = (LayoutInflater) activity.getApplicationContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (row == null) {
             row = inflater.inflate(R.layout.list_item_song_songlist, null);
             holder = new ViewHolder();
@@ -79,7 +79,7 @@ public class SongListAdapter extends BaseAdapter {
         final Song song = songs.get(position);
         holder.txtSongName.setText(song.title);
         holder.txtLyrics.setText(song.firstLyric.replace("\n", ""));
-        holder.txtChord.setText(song.getChordString(activity.getApplicationContext()));
+        holder.txtChord.setText(song.getChordString(mContext));
 
         if (song.isFavorite > 0) {
             holder.imgFavorite.setImageResource(R.drawable.star_liked);

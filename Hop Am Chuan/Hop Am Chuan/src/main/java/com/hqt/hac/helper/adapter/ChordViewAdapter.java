@@ -27,7 +27,7 @@ public class ChordViewAdapter extends BaseAdapter implements IChordView {
     int[] index;
 
     public ChordViewAdapter(Context mContext, String[] chords) {
-        this.mContext = mContext;
+        this.mContext = mContext.getApplicationContext();
         this.chords = chords;
         index = new int[chords.length];
     }

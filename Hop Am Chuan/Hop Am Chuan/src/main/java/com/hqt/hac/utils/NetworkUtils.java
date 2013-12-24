@@ -56,7 +56,6 @@ public class NetworkUtils {
     /** Get Data Fom URL Using GET Method */
     public static String getResponseFromGetRequest(String url) {
         HttpClient httpClient = new DefaultHttpClient();
-
         HttpGet httpGet = new HttpGet(url);
 
         /** after prepare for data. prepare for sending */

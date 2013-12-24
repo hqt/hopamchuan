@@ -1,6 +1,7 @@
 package com.hqt.hac.helper.adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +19,14 @@ import java.util.List;
 
 public class PlaylistListAdapter extends BaseAdapter {
 
-    Activity activity;
-
+    Context mContext;
     /**
      * List all Songs of this favorite that adapter should be display
      */
     List<Playlist> playlists;
 
-    public PlaylistListAdapter(Activity activity, List<Playlist> playlists) {
-        this.activity = activity;
+    public PlaylistListAdapter(Context context, List<Playlist> playlists) {
+        this.mContext = context.getApplicationContext();
         this.playlists = playlists;
     }
 
@@ -54,7 +54,7 @@ public class PlaylistListAdapter extends BaseAdapter {
         ViewHolder holder = null;
         View row = convertView;
 
-        LayoutInflater inflater = (LayoutInflater) activity.getApplicationContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (row == null) {
             row = inflater.inflate(R.layout.list_item_playlist_list, null);
             holder = new ViewHolder();

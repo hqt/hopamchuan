@@ -40,7 +40,7 @@ public class NavigationDrawerAdapter {
 
         public HeaderAdapter(Activity activity) {
             this.activity = activity;
-            this.mContext = activity.getBaseContext();
+            this.mContext = mContext.getApplicationContext();
         }
 
         @Override
@@ -140,7 +140,7 @@ public class NavigationDrawerAdapter {
         IItemDelegate mDelegate;
 
         public ItemAdapter(Context context) {
-            this.mContext = context;
+            this.mContext = context.getApplicationContext();
             categories = context.getResources().getStringArray(R.array.navigation_drawer_default_items);
         }
 
@@ -248,7 +248,7 @@ public class NavigationDrawerAdapter {
         IPlaylistHeaderDelegate delegate;
 
         public PlaylistHeaderAdapter(Context context) {
-            this.mContext = context;
+            this.mContext = context.getApplicationContext();
         }
 
         @Override
@@ -302,14 +302,14 @@ public class NavigationDrawerAdapter {
         List<Playlist> playlists;
 
         public PlaylistItemAdapter(Context context) {
-            this.mContext = context;
+            this.mContext = context.getApplicationContext();
             // load all playlist
             playlists = PlaylistDataAccessLayer.getAllPlayLists(context);
         }
 
         /** use this constructor for performance */
         public PlaylistItemAdapter(Context context, List<Playlist> playlists) {
-            this.mContext = context;
+            this.mContext = context.getApplicationContext();
             this.playlists = playlists;
         }
 

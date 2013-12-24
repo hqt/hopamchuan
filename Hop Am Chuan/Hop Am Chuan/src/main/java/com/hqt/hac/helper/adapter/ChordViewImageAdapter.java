@@ -32,7 +32,7 @@ public class ChordViewImageAdapter extends BaseAdapter implements SectionIndexer
     private static String sections = "abcdefghilmnopqrstuvz";
 
     public ChordViewImageAdapter(Context mContext, String[] chords) {
-        this.mContext = mContext;
+        this.mContext = mContext.getApplicationContext();
         this.chords = chords;
         index = new int[chords.length];
     }
