@@ -5,15 +5,18 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
@@ -51,7 +54,7 @@ public class NetworkUtils {
     }
 
     /** Get Data Fom URL Using GET Method */
-    public static final String getResponseFromGetRequest(String url) {
+    public static String getResponseFromGetRequest(String url) {
         HttpClient httpClient = new DefaultHttpClient();
 
         HttpGet httpGet = new HttpGet(url);
@@ -59,31 +62,11 @@ public class NetworkUtils {
         /** after prepare for data. prepare for sending */
         try {
             /**
-             * HttpResponse is an interface just like HttpPost
+             * HttpResponse is an interface just like HttpGet
              * therefore we can't initialize them
              */
             HttpResponse httpResponse = httpClient.execute(httpGet);
-
-            /**
-             * according to the JAVA API, InputStream constructor do nothing.
-             * So we can't initialize InputStream although it is not an interface
-             */
-            InputStream inputStream = httpResponse.getEntity().getContent();
-
-            /** buffer for performance */
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-            /** StringBuilder for performance */
-            StringBuilder stringBuilder = new StringBuilder();
-
-            String bufferedStrChunk = null;
-
-            while((bufferedStrChunk = bufferedReader.readLine()) != null){
-                stringBuilder.append(bufferedStrChunk);
-            }
-
-            Log.i(TAG, stringBuilder.toString());
-            return stringBuilder.toString();
+            return parseHttpResponse(httpResponse);
 
         } catch (ClientProtocolException ex) {
             ex.printStackTrace();
@@ -94,7 +77,91 @@ public class NetworkUtils {
     }
 
     /** Get Data Fom URL Using POST Method */
-    public static final String getResponseFromPOSTRequest(String url, Map<String, String> params) {
-        throw new UnsupportedOperationException();
+    public static String getResponseFromPOSTRequest(String url, Map<String, String> params) {
+
+        HttpClient httpClient = new DefaultHttpClient();
+
+        /**
+         * In a POST request, we don't pass the values in the URL.
+         * Therefore we use only the web page URL as the parameter of the HtpPost arguments
+         */
+        HttpPost httpPost = new HttpPost(url);
+
+        /**
+         * Because we are not passing values over the URL, we should have a mechanism to pass the values that can be
+         * uniquely separate by the other end.
+         * To achieve that we use BasicNameValuePair
+         */
+        List<NameValuePair> nameValuePairList = new ArrayList<NameValuePair>();
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            BasicNameValuePair basicNameValuePair = new BasicNameValuePair(entry.getKey(), entry.getValue());
+
+            /**
+             * We add the content that we want to pass with the POST request to as name-value pairs
+             * Now we put those sending details to an ArrayList with type safe of NameValuePair
+             */
+            nameValuePairList.add(basicNameValuePair);
+        }
+
+        /** after prepare for data. prepare for sending */
+        try {
+
+            /**
+             *  UrlEncodedFormEntity is an entity composed of a list of url-encoded pairs.
+             *  This is typically useful while sending an HTTP POST request.
+             */
+            UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(nameValuePairList);
+
+            /** setEntity() hands the entity (here it is urlEncodedFormEntity) to the request. */
+            httpPost.setEntity(urlEncodedFormEntity);
+
+            try {
+                /**
+                 * HttpResponse is an interface just like HttpPost
+                 * therefore we can't initialize them
+                 */
+                HttpResponse httpResponse = httpClient.execute(httpPost);
+
+                return parseHttpResponse(httpResponse);
+
+
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static String parseHttpResponse(HttpResponse httpResponse) {
+        /**
+         * according to the JAVA API, InputStream constructor do nothing.
+         * So we can't initialize InputStream although it is not an interface
+         */
+        InputStream inputStream;
+        try {
+            inputStream = httpResponse.getEntity().getContent();
+            /** buffer for performance */
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+            /** StringBuilder for performance */
+            StringBuilder stringBuilder = new StringBuilder();
+
+            String bufferedStrChunk;
+
+            while((bufferedStrChunk = bufferedReader.readLine()) != null){
+                stringBuilder.append(bufferedStrChunk);
+            }
+
+            Log.i(TAG, stringBuilder.toString());
+            return stringBuilder.toString();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

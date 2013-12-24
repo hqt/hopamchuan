@@ -29,13 +29,20 @@ public class APIUtils {
         Map<String, String> params = new HashMap<String, String>();
         params.put("username", username);
         params.put("password", password);
-        String url = generateRequestLink(Config.SERVICE_GET_PROFILE, params);
-        String jsonString = NetworkUtils.getResponseFromGetRequest(url);
+
+        // old code using GET
+        // String url = generateRequestLink(Config.SERVICE_GET_PROFILE, params);
+        // String jsonString = NetworkUtils.getResponseFromGetRequest(url);
+
+        // new code using POST
+        Map post_params = generatePostRequestParams(params);
+        String jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_GET_PROFILE, post_params);
+
         if (jsonString.equals("-1")) {
             // Wrong password
             return new HACAccount(null, null, null, null);
         } else {
-            // Parse json
+            // Parse json. can login true or server error
             return ParserUtils.parseAccountFromJSONString(jsonString);
         }
     }
@@ -46,8 +53,15 @@ public class APIUtils {
     public static DBVersion getLatestDatabaseVersion(int currentVersion) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("from_ver", currentVersion + "");
-        String url = generateRequestLink(Config.SERVICE_LASTEST_VERSION_APP, params);
-        String jsonData = NetworkUtils.getResponseFromGetRequest(url);
+
+        // old code using GET
+        // String url = generateRequestLink(Config.SERVICE_LASTEST_VERSION_APP, params);
+        // String jsonData = NetworkUtils.getResponseFromGetRequest(url);
+
+        // new code using POST
+        Map post_params = generatePostRequestParams(params);
+        String jsonData = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_LASTEST_VERSION_APP, post_params);
+
         LOGE(TAG, "Version Json: " + jsonData);
         DBVersion ver = ParserUtils.getDBVersionDetail(jsonData);
         return ver;
@@ -59,8 +73,15 @@ public class APIUtils {
     public static List<Song> getAllSongsFromVersion(int version) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("from_ver", version + "");
-        String url = generateRequestLink(Config.SERVICE_GET_SONGS_FROM_DATE, params);
-        String jsonString = NetworkUtils.getResponseFromGetRequest(url);
+
+        // old code using GET
+        // String url = generateRequestLink(Config.SERVICE_GET_SONGS_FROM_DATE, params);
+        // String jsonString = NetworkUtils.getResponseFromGetRequest(url);
+
+        // new code using POST
+        Map post_params = generatePostRequestParams(params);
+        String jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_GET_SONGS_FROM_DATE, post_params);
+
         return ParserUtils.parseAllSongsFromJSONString(jsonString);
     }
 
@@ -74,8 +95,15 @@ public class APIUtils {
         params.put("password", password);
         params.put("local_playlists", EncodingUtils.encodeListToJSONString(playlists));
         LOGE(TAG, "Encoding Playlist: " + EncodingUtils.encodeListToJSONString(playlists));
-        String url = generateRequestLink(Config.SERVICE_SYNC_PLAYLIST, params);
-        String jsonString = NetworkUtils.getResponseFromGetRequest(url);
+
+        // old code using GET
+        // String url = generateRequestLink(Config.SERVICE_SYNC_PLAYLIST, params);
+        //String jsonString = NetworkUtils.getResponseFromGetRequest(url);
+
+        // new code using POST
+        Map post_params = generatePostRequestParams(params);
+        String jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_SYNC_PLAYLIST, post_params);
+
         LOGE(TAG, "Playlist JSON: " + jsonString);
         return ParserUtils.parseAllPlaylistFromJSONString(jsonString);
     }
@@ -90,8 +118,15 @@ public class APIUtils {
         params.put("password", password);
         params.put("local_favorite", EncodingUtils.encodeObjectToJSONString(favorite));
         LOGE(TAG, "Encoding favorites: " + EncodingUtils.encodeObjectToJSONString(favorite));
-        String url = generateRequestLink(Config.SERVICE_SYNC_FAVORITE, params);
-        String jsonString = NetworkUtils.getResponseFromGetRequest(url);
+
+        // old code using get
+        // String url = generateRequestLink(Config.SERVICE_SYNC_FAVORITE, params);
+        //String jsonString = NetworkUtils.getResponseFromGetRequest(url);
+
+        // new code using post request
+        Map post_params = generatePostRequestParams(params);
+        String jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_SYNC_FAVORITE, post_params);
+
         LOGE(TAG, "Favorite JSON: " + jsonString);
         return ParserUtils.parseAllSongIdsFromJSONString(jsonString);
     }
@@ -116,5 +151,24 @@ public class APIUtils {
         // append Json Data that already encode
         builder.append("&jsondata=" + encodeJsonData);
         return builder.toString();
+    }
+
+    private static final Map<String, String> generatePostRequestParams(Map<String, String> parameters) {
+        // convert json object to string
+        String jsonData = EncodingUtils.encodeMapToJSONString(parameters);
+        // encode this string to unreadable (still can decode)
+        String encodeJsonData = EncodingUtils.encodeDataUsingBase64(jsonData);
+        // remove special characters to comparable with url
+        encodeJsonData = EncodingUtils.encodeParameterUsingUrlLenCode(encodeJsonData);
+        // create signature base on encode json data and private key
+        String signature = EncodingUtils.encodeDataUsingHMAC_MD5(encodeJsonData, Config.PRIVATE_KEY);
+
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("publicKey", Config.PUBLIC_KEY);
+        params.put("privateKey", Config.PRIVATE_KEY);
+        params.put("signature", signature);
+        params.put("jsondata", encodeJsonData);
+
+        return params;
     }
 }

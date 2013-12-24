@@ -122,26 +122,29 @@ public class FavoriteDataAccessLayer {
      * We need to: Add first > remove then
      * to make sure that the timestamps are not affected.
      *
-     * @param context
-     * @param ids
-     * @return
      */
     public static boolean syncFavorites(Context context, List<Integer> ids) {
         // Add new song to favorite
+        // waiting to remove favorite later
         for (Integer id : ids) {
+            // this song is not from favorite
             if (isInFavorite(context, id) == 0) {
                 addSongToFavorite(context, id);
             }
         }
 
         // Remove songs
+        // view again all favorite songs. if not exist in ids (favorite sync from network)
+        // meaning, this songs has been delete. remove it
         List<Song> songs = getAllFavoriteSongs(context);
         for (Song song : songs) {
+            // not from ids
             if (ids.indexOf(song.songId) == -1) {
                 removeSongFromFavorite(context, song.songId);
             }
         }
 
+        // always return true
         return true;
     }
 
