@@ -393,7 +393,7 @@ public class NavigationDrawerFragment extends Fragment
                     fragment = new ChordViewFragment();
                     break;
                 case SETTING:
-                    fragment = new SettingFragment();
+                    //fragment = new SettingFragment();
                     break;
 
             }

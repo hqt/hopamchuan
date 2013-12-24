@@ -83,12 +83,12 @@ public class MainActivity extends SlidingMenuActionBarActivity
                     .detectNetwork()   // or .detectAll() for all detectable problems
                     .penaltyLog()
                     .build());
-            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+            /*StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
                     .detectLeakedSqlLiteObjects()
                     .detectLeakedClosableObjects()
                     .penaltyLog()
                     .penaltyDeath()
-                    .build());
+                    .build());*/
         }
 
         super.onCreate(savedInstanceState);
@@ -122,10 +122,11 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // set up the ListView
         setUpListView();
 
-        // Load default fragment
-        Fragment fragment = new WelcomeFragment();
-//        fragment = new SongViewFragment();
-        switchFragment(fragment);
+        if (savedInstanceState == null) {
+            // Load default fragment
+            Fragment fragment = new WelcomeFragment();
+            switchFragment(fragment);
+        }
 
     }
 

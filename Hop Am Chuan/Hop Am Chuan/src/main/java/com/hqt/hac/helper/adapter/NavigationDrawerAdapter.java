@@ -40,7 +40,7 @@ public class NavigationDrawerAdapter {
 
         public HeaderAdapter(Activity activity) {
             this.activity = activity;
-            this.mContext = mContext.getApplicationContext();
+            this.mContext = activity.getApplicationContext();
         }
 
         @Override
