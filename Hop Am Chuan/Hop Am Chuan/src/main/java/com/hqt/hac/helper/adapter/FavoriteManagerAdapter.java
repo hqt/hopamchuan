@@ -3,6 +3,7 @@ package com.hqt.hac.helper.adapter;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,6 +84,10 @@ public class FavoriteManagerAdapter extends BaseAdapter {
         holder.txtSongName.setText(song.title);
         holder.txtLyrics.setText(song.firstLyric.replace("\n", ""));
         holder.txtChord.setText(song.getChordString(activity.getApplicationContext()));
+
+        if (song.isFavorite > 0) {
+            holder.imgFavorite.setImageResource(R.drawable.star_liked);
+        }
 
         holder.imgFavorite.setOnClickListener(new View.OnClickListener() {
             @Override

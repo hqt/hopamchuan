@@ -58,11 +58,10 @@ public class FavoriteDataAccessLayer {
 
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
             int favoriteSongId = c.getInt(songidCol);
+            c.close();
             return favoriteSongId;
         }
-        if (c != null) {
-            c.close();
-        }
+        c.close();
         return 0;
     }
 
@@ -84,9 +83,7 @@ public class FavoriteDataAccessLayer {
             int favoriteSongId = c.getInt(songidCol);
             songs.add(SongDataAccessLayer.getSongById(context, favoriteSongId));
         }
-        if (c != null) {
-            c.close();
-        }
+        c.close();
         return songs;
     }
 

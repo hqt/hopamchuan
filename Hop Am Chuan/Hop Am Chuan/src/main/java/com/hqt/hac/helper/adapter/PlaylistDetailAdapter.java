@@ -84,6 +84,10 @@ public class PlaylistDetailAdapter extends BaseAdapter {
         holder.txtLyrics.setText(song.firstLyric.replace("\n", ""));
         holder.txtChord.setText(song.getChordString(activity.getApplicationContext()));
 
+        if (song.isFavorite > 0) {
+            holder.imgFavorite.setImageResource(R.drawable.star_liked);
+        }
+
         holder.imgFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -80,7 +80,7 @@ public class SongListRightMenuHandler {
         Button shareBtn = (Button) pw.getContentView().findViewById(R.id.song_list_menu_share);
 
         // "Add to Favorite" button
-        favoriteBtn.setOnClickListener(new AddToFavorite());
+        favoriteBtn.setOnClickListener(new ToggleFavorite());
 
         // "Add to playlist" dialog
         playlistListDialog = DialogFactory.createDialog(activity, R.string.title_add_to_playlist_dialog,
@@ -187,11 +187,31 @@ public class SongListRightMenuHandler {
         }
     }
 
-    private static class AddToFavorite implements View.OnClickListener {
+    private static class ToggleFavorite implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            FavoriteDataAccessLayer.addSongToFavorite(activity.getApplicationContext(),
-                    selectedSong.songId);
+            // If already in favorite
+            if (FavoriteDataAccessLayer.isInFavorite(
+                    activity.getApplicationContext(), selectedSong.songId) > 0) {
+                FavoriteDataAccessLayer.removeSongFromFavorite(
+                        activity.getApplicationContext(), selectedSong.songId);
+
+                Toast msg = Toast.makeText(activity.getApplicationContext(),
+                        activity.getString(R.string.removed_from_favorite),
+                        Toast.LENGTH_LONG);
+                msg.show();
+
+            }
+            // If not in favorite
+            else {
+                FavoriteDataAccessLayer.addSongToFavorite(activity.getApplicationContext(),
+                        selectedSong.songId);
+                Toast msg = Toast.makeText(activity.getApplicationContext(),
+                        activity.getString(R.string.added_to_favorite),
+                        Toast.LENGTH_LONG);
+                msg.show();
+            }
+
             pw.dismiss();
         }
     }

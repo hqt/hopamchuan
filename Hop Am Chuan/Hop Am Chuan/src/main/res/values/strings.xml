@@ -204,5 +204,8 @@
     <string name="playlist_deleted_success">Đã xóa playlist</string>
     <string name="are_you_sure_delete_playlist">Bạn có chắc chắn muốn xóa playlist</string>
     <string name="delete_playlist">Xóa playlist</string>
+    <string name="remove_from_favorite">Bỏ yêu thích</string>
+    <string name="removed_from_favorite">Đã xóa ra khỏi danh sách Yêu thích</string>
+    <string name="added_to_favorite">Đã thêm vào Yêu thích</string>
 
 </resources>

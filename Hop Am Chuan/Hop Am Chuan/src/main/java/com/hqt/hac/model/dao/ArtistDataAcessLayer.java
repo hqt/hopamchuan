@@ -78,14 +78,10 @@ public class ArtistDataAcessLayer {
             int _artistId = c.getInt(artistidCol);
             String _name = c.getString(nameCol);
             String _ascii = c.getString(asciiCol);
-            if (c != null) {
-                c.close();
-            }
+            c.close();
             return new Artist(_id, _artistId, _name, _ascii);
         }
-        if (c != null) {
-            c.close();
-        }
+        c.close();
         return null;
     }
 
@@ -111,14 +107,10 @@ public class ArtistDataAcessLayer {
             int _artistId = c.getInt(artistidCol);
             String _name = c.getString(nameCol);
             String _ascii = c.getString(asciiCol);
-            if (c != null) {
-                c.close();
-            }
+            c.close();
             return new Artist(_id, _artistId, _name, _ascii);
         }
-        if (c != null) {
-            c.close();
-        }
+        c.close();
         return null;
     }
 

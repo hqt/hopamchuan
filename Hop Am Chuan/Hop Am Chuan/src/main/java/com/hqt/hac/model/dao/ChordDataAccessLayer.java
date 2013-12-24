@@ -56,14 +56,10 @@ public class ChordDataAccessLayer {
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
             int chordId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Chords.CHORD_ID));
             String _chordName = c.getString(c.getColumnIndex(HopAmChuanDBContract.Chords.CHORD_NAME));
-            if (c != null) {
-                c.close();
-            }
+            c.close();
             return new Chord(chordId, _chordName);
         }
-        if (c != null) {
-            c.close();
-        }
+        c.close();
         return null;
     }
 

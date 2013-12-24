@@ -16,6 +16,8 @@ import com.hqt.hac.view.R;
 
 import java.util.List;
 
+import static com.hqt.hac.utils.LogUtils.LOGE;
+
 public class SongListAdapter extends BaseAdapter {
 
     Activity activity;
@@ -78,6 +80,12 @@ public class SongListAdapter extends BaseAdapter {
         holder.txtSongName.setText(song.title);
         holder.txtLyrics.setText(song.firstLyric.replace("\n", ""));
         holder.txtChord.setText(song.getChordString(activity.getApplicationContext()));
+
+        if (song.isFavorite > 0) {
+            holder.imgFavorite.setImageResource(R.drawable.star_liked);
+        } else {
+            holder.imgFavorite.setImageResource(R.drawable.star);
+        }
 
         holder.imgFavorite.setOnClickListener(new View.OnClickListener() {
             @Override

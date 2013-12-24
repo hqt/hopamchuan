@@ -112,18 +112,14 @@ public class PlaylistDataAccessLayer {
                 int playlistIsPublic = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_PUBLIC));
                 int playlistNumOfSongs = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_NUMOFSONGS));
 
-                if (c != null) {
-                    c.close();
-                }
+                c.close();
                 return new Playlist(_playlistId, playlistName, playlistDescription, playlistDate, playlistIsPublic, playlistNumOfSongs);
             } catch (Exception e) {
                 LOGE(TAG, "Fail to parse: " + c.toString());
                 e.printStackTrace();
             }
         }
-        if (c != null) {
-            c.close();
-        }
+        c.close();
         return null;
     }
 
@@ -205,17 +201,13 @@ public class PlaylistDataAccessLayer {
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
             try {
                 int _playlistId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Playlist.PLAYLIST_ID));
-                if (c != null) {
-                    c.close();
-                }
+                c.close();
                 return  _playlistId;
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        if (c != null) {
-            c.close();
-        }
+        c.close();
         return 0;
     }
 
