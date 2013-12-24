@@ -121,7 +121,6 @@ public class NetworkUtils {
                  * therefore we can't initialize them
                  */
                 HttpResponse httpResponse = httpClient.execute(httpPost);
-
                 return parseHttpResponse(httpResponse);
 
 
@@ -130,6 +129,7 @@ public class NetworkUtils {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
