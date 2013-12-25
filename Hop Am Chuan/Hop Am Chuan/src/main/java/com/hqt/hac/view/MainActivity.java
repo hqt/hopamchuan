@@ -15,20 +15,21 @@ import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.*;
 import android.widget.ListView;
+import android.widget.Toast;
+import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
-import com.hqt.hac.provider.HopAmChuanDatabase;
 import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.fragment.*;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.unittest.DatabaseTest;
 
-import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 
+import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 public class MainActivity extends SlidingMenuActionBarActivity
@@ -68,6 +69,9 @@ public class MainActivity extends SlidingMenuActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+
+    /** variable to control last time user has pressed back button */
+    long mTimePressBackBtn = 0;
 
     /////////////////////////////////////////////////////////////////
     ////////////////// LIFE CYCLE ACTIVITY METHOD ///////////////////
@@ -126,7 +130,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         if (savedInstanceState == null) {
             // Load default fragment
             Fragment fragment = new WelcomeFragment();
-            switchFragment(fragment);
+            switchFragmentNormal(fragment);
         }
 
     }
@@ -158,6 +162,28 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
     //////////////////////////////////////////////////////////////////////
     ////////////////////// CONFIGURATION METHOD /////////////////////////
+
+    // TODO need to test this method carefully to have same behavior as Mp3 Zing
+    @Override
+    public void onBackPressed() {
+        // put this setter here. for clearer rather than put in onCreate() method.
+        // a missing magic number :)
+        if (mTimePressBackBtn == 0) mTimePressBackBtn = -14181147;
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        if (fragmentManager.getBackStackEntryCount() == 0) {
+            long currentTime = Calendar.getInstance().getTimeInMillis();
+            LOGE(TAG, mTimePressBackBtn + "/" + currentTime);
+            if (currentTime < mTimePressBackBtn + Config.TOAST_LENGTH_SHORT) {
+                // in fact. exit app
+                super.onBackPressed();
+            } else {
+                Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
+                mTimePressBackBtn = currentTime;
+            }
+        } else {
+            super.onBackPressed();
+        }
+    }
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
@@ -301,7 +327,11 @@ public class MainActivity extends SlidingMenuActionBarActivity
     ////////////////////////////////////////////////////////////////////////
     //////////////////// SIMPLE HELPER METHOD //////////////////////////////
 
-    public void switchFragment(Fragment fragment) {
+    public static enum COMMIT_TYPE {
+        MAIN,
+        SUB
+    }
+    public void switchFragmentNormal(Fragment fragment) {
         if (fragment == null) return;
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
@@ -310,8 +340,33 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 .addToBackStack("detail")
                 .commit();
         slidingMenu.showContent();
+        slidingMenu.setEnabled(false);
     }
 
+    public void switchFragmentClearStack(Fragment fragment) {
+        if (fragment == null) return;
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        // clear whole stack before add new fragment to stack
+        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame, fragment)
+                .commit();
+        slidingMenu.showContent();
+        slidingMenu.setEnabled(true);
+    }
+
+    public void switchFragment(Fragment fragment, COMMIT_TYPE type) {
+        switch (type) {
+            case MAIN:
+                switchFragmentClearStack(fragment);
+                break;
+            case SUB:
+                switchFragmentNormal(fragment);
+                break;
+            default:
+                // do nothing
+        }
+    }
 
     ////////////////////////////////////////////////////////////////
     //////////////// METHOD OVERRIDE USE FOR ADAPTER //////////////
@@ -348,7 +403,8 @@ public class MainActivity extends SlidingMenuActionBarActivity
         }
         // Open Custom Fragment
         if (fragment != null) fragment.setArguments(arguments);
-        switchFragment(fragment);
+        switchFragmentClearStack(fragment);
+
     }
 
     @Override
@@ -366,7 +422,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         if (mDrawerListView != null) {
             //mDrawerListView.setItemChecked(position, true);
         }
-        switchFragment(fragment);
+        switchFragmentNormal(fragment);
     }
 
     /////////////////// HQT //////////////////////////////////////////

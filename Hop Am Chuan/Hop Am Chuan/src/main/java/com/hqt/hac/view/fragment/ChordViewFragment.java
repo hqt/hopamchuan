@@ -102,6 +102,7 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
          * ListView Configure for view all SurfaceView of chords at main screen
          */
         mChordSurfaceListView = (FastSearchListView) rootView.findViewById(R.id.list_chord_graphic);
+        mChordSurfaceListView.setDivider(null);
 
         // custom Adapter base on current Android System
         if (UIUtils.hasICS()) {

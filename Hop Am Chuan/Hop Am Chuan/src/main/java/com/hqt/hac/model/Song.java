@@ -316,7 +316,6 @@ public class Song implements Parcelable {
          private List<Artist> singers;
      */
 
-    //TODO POSTPONE TO WRITE List<Artist | Chord> TO PREVENT RECURSION
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);

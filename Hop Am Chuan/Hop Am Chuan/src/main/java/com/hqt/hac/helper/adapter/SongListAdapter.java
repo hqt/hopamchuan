@@ -7,10 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.hqt.hac.helper.widget.DialogFactory;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.view.R;
 
@@ -22,11 +20,7 @@ public class SongListAdapter extends BaseAdapter {
 
     Context mContext;
 
-    public interface RightMenuClick {
-        public void onRightMenuClick(View view, Song song);
-    }
-
-    public RightMenuClick rightMenuClick;
+    public IContextMenu contextMenuDelegate;
 
     /**
      * List all Songs of this favorite that adapter should be display
@@ -90,7 +84,7 @@ public class SongListAdapter extends BaseAdapter {
         holder.imgFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rightMenuClick.onRightMenuClick(view, song);
+                contextMenuDelegate.onMenuClick(view, song);
             }
         });
         return row;
@@ -105,4 +99,10 @@ public class SongListAdapter extends BaseAdapter {
         TextView txtChord;
         ImageView imgFavorite;
     }
+
+    /** interface */
+    public interface IContextMenu {
+        public void onMenuClick(View view, Song song);
+    }
+
 }

@@ -6,13 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.hqt.hac.helper.widget.DialogFactory;
 import com.hqt.hac.model.Playlist;
-import com.hqt.hac.model.Song;
 import com.hqt.hac.view.R;
 
 import java.util.List;

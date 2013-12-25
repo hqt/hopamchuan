@@ -13,11 +13,8 @@ import android.widget.Toast;
 import com.hqt.hac.helper.adapter.PlaylistManagerAdapter;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
-import com.hqt.hac.view.MainActivity;
+import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.view.R;
-
-import java.util.Date;
-import java.util.List;
 
 public class PlaylistRightMenuHandler {
     /**
@@ -62,7 +59,7 @@ public class PlaylistRightMenuHandler {
         final Button btnDeletePlaylist = (Button) pw.getContentView().findViewById(R.id.btnDeletePlaylist);
 
         // "Rename playlist" button
-        renPlaylistDialog = DialogFactory.createDialog(activity, R.string.rename_playlist,
+        renPlaylistDialog = DialogUtils.createDialog(activity, R.string.rename_playlist,
                 activity.getLayoutInflater(), R.layout.dialog_newplaylist);
 
         // Load for existing data

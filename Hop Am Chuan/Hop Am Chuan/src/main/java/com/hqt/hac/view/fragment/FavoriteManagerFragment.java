@@ -13,7 +13,7 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 
 import com.hqt.hac.helper.adapter.SongListAdapter;
-import com.hqt.hac.helper.widget.DialogFactory;
+import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dao.FavoriteDataAccessLayer;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
@@ -90,13 +90,13 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
         mAdapter = new SongListAdapter(getActivity(), songs);
 
         // Event for right menu click
-        popupWindow = DialogFactory.createPopup(inflater, R.layout.popup_songlist_menu);
+        popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
         SongListRightMenuHandler.setRightMenuEvents(activity, popupWindow);
 
         // Event received from mAdapter.
-        mAdapter.rightMenuClick = new SongListAdapter.RightMenuClick() {
+        mAdapter.contextMenuDelegate = new SongListAdapter.IContextMenu() {
             @Override
-            public void onRightMenuClick(View view, Song song) {
+            public void onMenuClick(View view, Song song) {
                 // Show the popup menu and set selectedSong
                 /** Store the song that user clicked on the right menu (the star) **/
                 SongListRightMenuHandler.selectedSong = song;
@@ -114,7 +114,7 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
                 Bundle arguments = new Bundle();
                 arguments.putParcelable("song", songs.get(position));
                 fragment.setArguments(arguments);
-                activity.switchFragment(fragment);
+                activity.switchFragmentNormal(fragment);
             }
         });
 

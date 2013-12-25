@@ -12,9 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.helper.task.LoginAsyncTask;
+
+import static com.hqt.hac.utils.LogUtils.LOGE;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 /**
  * Activity just for login purpose
@@ -24,10 +28,11 @@ import com.hqt.hac.helper.task.LoginAsyncTask;
  */
 public class LoginActivity extends Activity {
 
+    public static String TAG = makeLogTag(LoginActivity.class);
+
     EditText txtUsername;
     EditText txtPassword;
     Button loginButton;
-    Button cancelButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +49,6 @@ public class LoginActivity extends Activity {
         txtUsername = (EditText) findViewById(R.id.username);
         txtPassword = (EditText) findViewById(R.id.password);
         loginButton = (Button) findViewById(R.id.btnLogin);
-//        cancelButton = (Button)findViewById(R.id.btnCancel);
 
         // Register link
         TextView regLink = (TextView) findViewById(R.id.homepage_link);
@@ -78,15 +82,14 @@ public class LoginActivity extends Activity {
 
     private void syncAccount() {
         if (!NetworkUtils.isNetworkConnected(getBaseContext())) {
-            AlertDialog dialog = UIUtils.showAlertDialog(this, "Network Problem", "Check Your Wifi or 3G Network Again");
+            AlertDialog dialog = DialogUtils.showAlertDialog(this, "Network Problem", "Check Your Wifi or 3G Network Again");
             dialog.show();
             return;
         }
         LoginAsyncTask task = new LoginAsyncTask(this, txtUsername.getText().toString().trim(),
                 txtPassword.getText().toString().trim());
-
         // task = new LoginAsyncTask(this, "test8", "123456");
-
+        LOGE(TAG, txtUsername.getText() + "\t" + txtPassword.getText());
         task.execute();
     }
 
@@ -101,6 +104,4 @@ public class LoginActivity extends Activity {
         startActivity(intent);
         finish();
     }
-
-
 }

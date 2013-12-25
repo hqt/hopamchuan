@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 
 import com.hqt.hac.helper.adapter.PlaylistManagerAdapter;
-import com.hqt.hac.helper.widget.DialogFactory;
+import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.helper.widget.PlaylistRightMenuHandler;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
@@ -71,7 +71,7 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
         mListView = (ListView) rootView.findViewById(R.id.list);
         adapter = new PlaylistManagerAdapter(activity.getApplicationContext(), allPlaylists);
 
-        popupWindow = DialogFactory.createPopup(inflater, R.layout.popup_playlist_list_menu);
+        popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_playlist_list_menu);
         PlaylistRightMenuHandler.setRightMenuEvents(activity, popupWindow, adapter);
 
         // Event received from mAdapter.
@@ -96,7 +96,7 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
                 Bundle arguments = new Bundle();
                 arguments.putParcelable("playlist", allPlaylists.get(position));
                 fragment.setArguments(arguments);
-                activity.switchFragment(fragment);
+                activity.switchFragmentNormal(fragment);
             }
         });
 

@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.helper.task.SyncSongAsyncTask;
 import com.hqt.hac.helper.task.UpdateSongAsyncTask;
+import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.utils.UIUtils;
 
@@ -102,7 +103,7 @@ public class SettingActivity extends ActionBarActivity {
     private void update(int method) {
         // check network
         if (!NetworkUtils.isNetworkConnected(getApplicationContext())) {
-            AlertDialog dialog = UIUtils.showAlertDialog(SettingActivity.this, "Network Problem", "Check Your Wifi or 3G Network Again");
+            AlertDialog dialog = DialogUtils.showAlertDialog(SettingActivity.this, "Network Problem", "Check Your Wifi or 3G Network Again");
             dialog.show();
             return;
         }

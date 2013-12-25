@@ -3,6 +3,7 @@ package com.hqt.hac.view.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,7 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 
 import com.hqt.hac.helper.adapter.SongListAdapter;
-import com.hqt.hac.helper.widget.DialogFactory;
+import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dao.SongDataAccessLayer;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
@@ -22,10 +23,15 @@ import com.hqt.hac.view.R;
 
 import java.util.List;
 
+import static com.hqt.hac.utils.LogUtils.LOGE;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
+
 /**
  * Fragment uses for viewing songs as categories
  */
 public class SongListFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+
+    public static final String TAG = makeLogTag(SongListFragment.class);
 
     /** Main Activity for reference */
     MainActivity activity;
@@ -83,17 +89,31 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         songlistAdapter = new SongListAdapter(activity, songs);
 
         // Event for right menu click
-        popupWindow = DialogFactory.createPopup(inflater, R.layout.popup_songlist_menu);
+        popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
         SongListRightMenuHandler.setRightMenuEvents(activity, popupWindow);
 
         // Event received from mAdapter.
-        songlistAdapter.rightMenuClick = new SongListAdapter.RightMenuClick() {
+        songlistAdapter.contextMenuDelegate = new SongListAdapter.IContextMenu() {
             @Override
-            public void onRightMenuClick(View view, Song song) {
+            public void onMenuClick(View view, Song song) {
                 // Show the popup menu and set selectedSong
-                /** Store the song that user clicked on the right menu (the star) **/
+                // Store the song that user clicked on the right menu (the star)
                 SongListRightMenuHandler.selectedSong = song;
+                int availableHeight = popupWindow.getMaxAvailableHeight(view);
                 popupWindow.showAsDropDown(view);
+                /*int height = popupWindow.getHeight();
+                LOGE(TAG, "HQT POPUP Height: " + height);
+                if (availableHeight < popupWindow.getHeight()) {
+                    int[] loc_int = new int[2];
+                    // popupWindow.showAsDropDown(view, 10, 10);
+                    LOGE(TAG, "Not Enough Room Space");
+                    popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 35, 35);
+                } else {
+
+                }
+                popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 35, 35);*/
+
+
             }
         };
 
@@ -107,7 +127,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
                 Bundle arguments = new Bundle();
                 arguments.putParcelable("song", songs.get(position));
                 fragment.setArguments(arguments);
-                activity.switchFragment(fragment);
+                activity.switchFragmentNormal(fragment);
             }
         });
 

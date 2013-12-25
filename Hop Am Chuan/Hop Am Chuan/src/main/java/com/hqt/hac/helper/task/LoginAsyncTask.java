@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.model.json.HACAccount;
 import com.hqt.hac.utils.APIUtils;
+import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.MainActivity;
 
@@ -121,10 +122,10 @@ public class LoginAsyncTask extends AsyncTask<Void, Integer, Long>{
         dialog.dismiss();
 
         if (result == -1L) {
-            AlertDialog dialog = UIUtils.showAlertDialog(activity, "Lỗi!", "Kết nối bị lỗi, vui lòng thử lại sau!");
+            AlertDialog dialog = DialogUtils.showAlertDialog(activity, "Lỗi!", "Kết nối bị lỗi, vui lòng thử lại sau!");
             dialog.show();
         } else if (result == -2L) {
-            AlertDialog dialog = UIUtils.showAlertDialog(activity, "Lỗi!", "Tài khoản hoặc mật khẩu không đúng!");
+            AlertDialog dialog = DialogUtils.showAlertDialog(activity, "Lỗi!", "Tài khoản hoặc mật khẩu không đúng!");
             dialog.show();
         }
 

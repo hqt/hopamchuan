@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.hqt.hac.helper.widget.DialogFactory;
+import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
@@ -135,7 +135,7 @@ public class SongDetailFragment extends Fragment {
         });
 
         // Create popup menu
-        final PopupWindow pw = DialogFactory.createPopup(inflater, R.layout.popup_song_detail_menu);
+        final PopupWindow pw = DialogUtils.createPopup(inflater, R.layout.popup_song_detail_menu);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override

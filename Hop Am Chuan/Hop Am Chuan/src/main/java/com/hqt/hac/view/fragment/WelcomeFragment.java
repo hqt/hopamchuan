@@ -21,8 +21,6 @@ import com.hqt.hac.view.R;
 
 public class WelcomeFragment extends  Fragment {
 
-    /** Main Activity for reference */
-    MainActivity activity;
 
     public WelcomeFragment() {
     }
@@ -30,7 +28,6 @@ public class WelcomeFragment extends  Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        // this.activity = (MainActivity) activity;
     }
 
     @Override

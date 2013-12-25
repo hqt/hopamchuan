@@ -73,7 +73,7 @@ public class EncodingUtils {
     public static byte[] decodeDataUsingBase64(String data) {
 //        LOGE(TAG, "ENCODE NEW LENGTH: " + Base64.decode(data, Base64.DEFAULT).length);
 
-        // TrungDQ: add trycatch for IllegalAgrumentException.
+        // TrungDQ: add trycatch for IllegalArgumentException.
         try {
             return Base64.decode(data, Base64.DEFAULT);
         } catch (IllegalArgumentException ex) {
