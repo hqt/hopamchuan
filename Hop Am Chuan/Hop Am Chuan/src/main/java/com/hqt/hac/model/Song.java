@@ -330,6 +330,9 @@ public class Song implements Parcelable {
         dest.writeInt(isFavorite);
         dest.writeString(rhythm);
         dest.writeString(content);
+        dest.writeTypedList(authors);
+        dest.writeTypedList(chords);
+        dest.writeTypedList(singers);
     }
 
     private void readFromParcel(Parcel in) {
@@ -344,6 +347,9 @@ public class Song implements Parcelable {
         isFavorite = in.readInt();
         rhythm = in.readString();
         content = in.readString();
+        in.readTypedList(authors, Artist.CREATOR);
+        in.readTypedList(chords, Chord.CREATOR);
+        in.readTypedList(singers, Artist.CREATOR);
     }
 
     /**
