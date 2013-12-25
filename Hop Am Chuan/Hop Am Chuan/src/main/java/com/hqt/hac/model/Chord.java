@@ -1,8 +1,11 @@
 package com.hqt.hac.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
-public class Chord implements Serializable {
+public class Chord implements Parcelable {
 
     public int id;
     public int chordId;
@@ -18,6 +21,11 @@ public class Chord implements Serializable {
     public Chord(int chordId, String name) {
         this.chordId = chordId;
         this.name = name;
+    }
+
+    /** constructor for parcelable interface using */
+    public Chord(Parcel chord) {
+        readFromParcel(chord);
     }
 
     @Override
@@ -47,4 +55,49 @@ public class Chord implements Serializable {
     public int hashCode() {
         return name.hashCode();
     }
+
+    ////////////////////////////////////////////////////////////////////
+    //////////////////// IMPLEMENT PARCELABLE MECHANISM ///////////////
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    /**
+         public int id;
+         public int chordId;
+         public String name;
+         public String relations;
+     */
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeInt(chordId);
+        dest.writeString(name);
+        dest.writeString(relations);
+    }
+
+    private void readFromParcel(Parcel in) {
+        id = in.readInt();
+        chordId = in.readInt();
+        name = in.readString();
+        relations = in.readString();
+    }
+
+    /**
+     * This class will be required during un-marshalling data store in Parcel, individually or as arrays
+     * If not exist this class. Android Runtime will throw Exception
+     * Parcelable protocol requires a Parcelable.Creator object called CREATOR
+     */
+    public static final Parcelable.Creator<Chord> CREATOR = new Parcelable.Creator<Chord>() {
+        @Override
+        public Chord createFromParcel(Parcel source) {
+            return new Chord(source);
+        }
+        @Override
+        public Chord[] newArray(int size) {
+            return new Chord[size];
+        }
+    };
 }

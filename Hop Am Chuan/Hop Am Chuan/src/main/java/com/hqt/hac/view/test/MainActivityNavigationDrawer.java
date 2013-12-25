@@ -368,7 +368,7 @@ public class MainActivityNavigationDrawer extends ActionBarActivity
         // setting parameters
         Bundle arguments = new Bundle();
         // TODO : can change to parcelable later for performance
-        arguments.putSerializable("playlist", playlist);
+        arguments.putParcelable("playlist", playlist);
         fragment.setArguments(arguments);
 
         // setting for Drawer List View

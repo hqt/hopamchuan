@@ -94,7 +94,7 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 PlaylistDetailFragment fragment = new PlaylistDetailFragment();
                 Bundle arguments = new Bundle();
-                arguments.putSerializable("playlist", allPlaylists.get(position));
+                arguments.putParcelable("playlist", allPlaylists.get(position));
                 fragment.setArguments(arguments);
                 activity.switchFragment(fragment);
             }

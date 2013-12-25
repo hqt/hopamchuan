@@ -1,10 +1,11 @@
 package com.hqt.hac.model;
 
-import com.hqt.hac.utils.StringUtils;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-import java.io.Serializable;
 
-public class Artist implements Serializable {
+public class Artist implements Parcelable
+{
 
     public int id;
     public int artistId;
@@ -24,6 +25,9 @@ public class Artist implements Serializable {
         this.artistAscii = artistAscii;
     }
 
+    public Artist(Parcel artist) {
+        readFromParcel(artist);
+    }
 
     @Override
     public String toString() {
@@ -55,4 +59,54 @@ public class Artist implements Serializable {
         result = 31 * result + artistAscii.hashCode();
         return result;
     }
+
+    ////////////////////////////////////////////////////////////////////
+    //////////////////// IMPLEMENT PARCELABLE MECHANISM ///////////////
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    /**
+         public int id;
+         public int artistId;
+         public String artistName;
+         public String artistAscii;
+      */
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeInt(artistId);
+        dest.writeString(artistName);
+        dest.writeString(artistAscii);
+
+    }
+
+    /**
+     * must be assign again in-order
+     */
+    private void readFromParcel(Parcel in) {
+        this.id = in.readInt();
+        this.artistId = in.readInt();
+        this.artistName = in.readString();
+        this.artistAscii = in.readString();
+    }
+
+    /**
+     * This class will be required during un-marshalling data store in Parcel, individually or as arrays
+     * If not exist this class. Android Runtime will throw Exception
+     * Parcelable protocol requires a Parcelable.Creator object called CREATOR
+     */
+    public static final Parcelable.Creator<Artist> CREATOR = new Parcelable.Creator<Artist>() {
+        @Override
+        public Artist createFromParcel(Parcel source) {
+            return new Artist(source);
+        }
+        @Override
+        public Artist[] newArray(int size) {
+            return new Artist[size];
+        }
+    };
 }

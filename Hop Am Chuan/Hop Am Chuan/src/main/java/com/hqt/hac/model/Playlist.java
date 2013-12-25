@@ -1,6 +1,8 @@
 package com.hqt.hac.model;
 
 import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 
 import java.io.Serializable;
@@ -8,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Playlist implements Serializable {
+public class Playlist implements Parcelable {
 
     public int id;
     public int playlistId;
@@ -82,6 +84,11 @@ public class Playlist implements Serializable {
         this.numberOfSongs = numberOfSongs;
     }
 
+    /** constructor for parcelable interface using */
+    public Playlist(Parcel playlist) {
+        readFromParcel(playlist);
+    }
+
 
     @Override
     public String toString() {
@@ -118,4 +125,66 @@ public class Playlist implements Serializable {
         result = 31 * result + isPublic;
         return result;
     }
+
+    ////////////////////////////////////////////////////////////////////
+    //////////////////// IMPLEMENT PARCELABLE MECHANISM ///////////////
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    /**
+     public int id;
+     public int playlistId;
+     public String playlistName;
+     public String playlistDescription;
+     public Date date;
+     public int isPublic;
+     public int numberOfSongs = 0;
+     private List<Integer> songIds;
+     private List<Song> songs;
+     */
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeInt(playlistId);
+        dest.writeString(playlistName);
+        dest.writeString(playlistDescription);
+        dest.writeLong(date.getTime());
+        dest.writeInt(isPublic);
+        dest.writeInt(numberOfSongs);
+        dest.writeList(songIds);
+        dest.writeTypedList(songs);
+    }
+
+    private void readFromParcel(Parcel in) {
+        id = in.readInt();
+        playlistId = in.readInt();
+        playlistName = in.readString();
+        playlistDescription = in.readString();
+        date = new Date(in.readLong());
+        isPublic = in.readInt();
+        numberOfSongs = in.readInt();
+        in.readList(songIds, Integer.class.getClassLoader());
+        in.readTypedList(songs, Song.CREATOR);
+
+    }
+
+    /**
+     * This class will be required during un-marshalling data store in Parcel, individually or as arrays
+     * If not exist this class. Android Runtime will throw Exception
+     * Parcelable protocol requires a Parcelable.Creator object called CREATOR
+     */
+    public static final Parcelable.Creator<Playlist> CREATOR = new Parcelable.Creator<Playlist>() {
+        @Override
+        public Playlist createFromParcel(Parcel source) {
+            return new Playlist(source);
+        }
+        @Override
+        public Playlist[] newArray(int size) {
+            return new Playlist[size];
+        }
+    };
 }

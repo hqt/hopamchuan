@@ -38,6 +38,7 @@ public class LoginAsyncTask extends AsyncTask<Void, Integer, Long>{
         this.password = password;
         this.context = activity.getBaseContext();
         dialog = new ProgressDialog(activity);
+        dialog.setCanceledOnTouchOutside(false);
     }
 
     @Override

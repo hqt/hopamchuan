@@ -26,6 +26,7 @@ import com.hqt.hac.view.fragment.*;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.unittest.DatabaseTest;
 
+import java.io.Serializable;
 import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
@@ -146,6 +147,13 @@ public class MainActivity extends SlidingMenuActionBarActivity
         itemAdapter.setDelegate(null);
         playlistHeaderAdapter.setDelegate(null);
         playlistItemAdapter.setDelegate(null);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // outState.putParcelableArrayList("playlist", playlistList);
+
     }
 
     //////////////////////////////////////////////////////////////////////
@@ -296,7 +304,11 @@ public class MainActivity extends SlidingMenuActionBarActivity
     public void switchFragment(Fragment fragment) {
         if (fragment == null) return;
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame, fragment)
+                // Add this transaction to the back stack
+                .addToBackStack("detail")
+                .commit();
         slidingMenu.showContent();
     }
 
@@ -347,7 +359,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // setting parameters
         Bundle arguments = new Bundle();
         // TODO : can change to parcelable later for performance
-        arguments.putSerializable("playlist", playlist);
+        arguments.putParcelable("playlist", playlist);
         fragment.setArguments(arguments);
 
         // setting for Drawer List View

@@ -424,7 +424,7 @@ public class NavigationDrawerFragment extends Fragment
         PlaylistDetailFragment fragment = new PlaylistDetailFragment();
         // setting parameters
         Bundle arguments = new Bundle();
-        arguments.putSerializable("playlist", playlist);
+        arguments.putParcelable("playlist", playlist);
         fragment.setArguments(arguments);
 
         // setting for Drawer List View

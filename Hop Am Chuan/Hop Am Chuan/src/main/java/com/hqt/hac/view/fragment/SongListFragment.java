@@ -105,7 +105,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 SongDetailFragment fragment = new SongDetailFragment();
                 Bundle arguments = new Bundle();
-                arguments.putSerializable("song", songs.get(position));
+                arguments.putParcelable("song", songs.get(position));
                 fragment.setArguments(arguments);
                 activity.switchFragment(fragment);
             }
