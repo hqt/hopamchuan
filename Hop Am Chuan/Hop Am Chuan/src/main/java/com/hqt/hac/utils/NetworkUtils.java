@@ -163,4 +163,12 @@ public class NetworkUtils {
         }
         return null;
     }
+
+    public static void stimulateNetwork(int second) {
+        try {
+            Thread.sleep(second * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

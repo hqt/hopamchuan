@@ -37,7 +37,11 @@ public class APIUtils {
 
         // new code using POST
         Map post_params = generatePostRequestParams(params);
-        String jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_GET_PROFILE, post_params);
+
+        String jsonString = "-1";
+        NetworkUtils.stimulateNetwork(10);
+
+        //String jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_GET_PROFILE, post_params);
 
         if (jsonString.equals("-1")) {
             // Wrong password
