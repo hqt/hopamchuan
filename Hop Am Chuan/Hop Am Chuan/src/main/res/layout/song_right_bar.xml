@@ -10,7 +10,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Font Up"
+        android:text="F Up"
         android:textColor="#fff"
         android:id="@+id/btnFontUp" />
 
@@ -18,7 +18,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#fff"
-        android:text="Font Down"
+        android:text="F Down"
         android:id="@+id/btnFontDown" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:text="T Up"
+        android:id="@+id/btnTransUp" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:text="T Down"
+        android:id="@+id/btnTransDown" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:text="1 / 2"
+        android:id="@+id/btnLineModeToggle" />
+
 
 </LinearLayout>
