@@ -305,7 +305,7 @@
       <file leaf-file-name="AsyncActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/AsyncActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="50" selection-start="379" selection-end="411" vertical-scroll-proportion="0.5117057" vertical-offset="0" max-vertical-offset="598">
+            <state line="19" column="22" selection-start="438" selection-end="438" vertical-scroll-proportion="0.819797" vertical-offset="0" max-vertical-offset="510">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1830,16 +1830,16 @@
       <updated>1387858772165</updated>
       <workItem from="1387858773785" duration="3744000" />
       <workItem from="1387891565606" duration="7596000" />
-      <workItem from="1387933333898" duration="31110000" />
+      <workItem from="1387933333898" duration="31771000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42450000" />
+    <option name="totallyTimeSpent" value="43111000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1855,7 +1855,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29229608" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32692307" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2635,10 +2635,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/NavigationDrawerAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="401" column="13" selection-start="13052" selection-end="13052" vertical-scroll-proportion="0.35011992" vertical-offset="5974" max-vertical-offset="6494">
-          <folding>
-            <element signature="e#7763#7954#0" expanded="false" />
-            <element signature="e#7939#7940#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2810,7 +2807,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/AsyncActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="50" selection-start="379" selection-end="411" vertical-scroll-proportion="0.5117057" vertical-offset="0" max-vertical-offset="598">
+        <state line="19" column="22" selection-start="438" selection-end="438" vertical-scroll-proportion="0.819797" vertical-offset="0" max-vertical-offset="510">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
