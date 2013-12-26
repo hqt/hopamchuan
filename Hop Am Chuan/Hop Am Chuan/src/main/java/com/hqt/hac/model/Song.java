@@ -2,6 +2,8 @@ package com.hqt.hac.model;
 
 import android.content.Context;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import com.hqt.hac.model.dao.SongDataAccessLayer;
 import com.hqt.hac.utils.StringUtils;
 
@@ -14,7 +16,7 @@ import static com.hqt.hac.model.dao.SongDataAccessLayer.getChordsBySongId;
 import static com.hqt.hac.model.dao.SongDataAccessLayer.getSingersBySongId;
 import static com.hqt.hac.model.dao.SongDataAccessLayer.getSongContent;
 
-public class Song implements Serializable {
+public class Song implements Parcelable {
 
     public int id = 0;
     public int songId;
@@ -142,6 +144,11 @@ public class Song implements Serializable {
         this.titleAscii = StringUtils.removeAcients(title);
         this.lastView = 0;
         this.isFavorite = 0;
+    }
+
+    /** constructor for parcelable interface using */
+    public Song(Parcel song) {
+        readFromParcel(song);
     }
 
     /**
@@ -281,4 +288,82 @@ public class Song implements Serializable {
         result = 31 * result + titleAscii.hashCode();
         return result;
     }
+
+    ////////////////////////////////////////////////////////////////////
+    //////////////////// IMPLEMENT PARCELABLE MECHANISM ///////////////
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    /**
+         public int id = 0;
+         public int songId;
+         public String title;
+         public String link;
+         public String firstLyric;
+         public Date date;
+         public String titleAscii;
+         public int lastView;
+         public int isFavorite;
+         public String rhythm;
+
+         // private modifier for lazy loading
+         private String content;
+         private List<Artist> authors;
+         private List<Chord> chords;
+         private List<Artist> singers;
+     */
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeInt(songId);
+        dest.writeString(title);
+        dest.writeString(link);
+        dest.writeString(firstLyric);
+        dest.writeLong(date.getTime());
+        dest.writeString(titleAscii);
+        dest.writeInt(lastView);
+        dest.writeInt(isFavorite);
+        dest.writeString(rhythm);
+        dest.writeString(content);
+        dest.writeTypedList(authors);
+        dest.writeTypedList(chords);
+        dest.writeTypedList(singers);
+    }
+
+    private void readFromParcel(Parcel in) {
+        id = in.readInt();
+        songId = in.readInt();
+        title = in.readString();
+        link = in.readString();
+        firstLyric = in.readString();
+        date = new Date(in.readLong());
+        titleAscii = in.readString();
+        lastView = in.readInt();
+        isFavorite = in.readInt();
+        rhythm = in.readString();
+        content = in.readString();
+        in.readTypedList(authors, Artist.CREATOR);
+        in.readTypedList(chords, Chord.CREATOR);
+        in.readTypedList(singers, Artist.CREATOR);
+    }
+
+    /**
+     * This class will be required during un-marshalling data store in Parcel, individually or as arrays
+     * If not exist this class. Android Runtime will throw Exception
+     * Parcelable protocol requires a Parcelable.Creator object called CREATOR
+     */
+    public static final Parcelable.Creator<Song> CREATOR = new Parcelable.Creator<Song>() {
+        @Override
+        public Song createFromParcel(Parcel source) {
+            return new Song(source);
+        }
+        @Override
+        public Song[] newArray(int size) {
+            return new Song[size];
+        }
+    };
 }

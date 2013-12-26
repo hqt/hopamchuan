@@ -29,7 +29,7 @@ public class FindByChordAdapter extends ArrayAdapter {
 
     public FindByChordAdapter(Context context, IFindByChordAdapter delegate, List<String> chords) {
         super(context, R.layout.list_item_chord_search,chords);
-        this.mContext = context;
+        this.mContext = context.getApplicationContext();
         this.delegate = delegate;
         this.chords = chords;
     }

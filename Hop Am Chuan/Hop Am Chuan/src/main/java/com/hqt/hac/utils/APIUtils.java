@@ -87,7 +87,7 @@ public class APIUtils {
     }
 
     /**
-     * synchronize all playlist to server
+     * synchronize all playlist to servere
      * and get again all playlist (include playlist already define on server) to user
      */
     public static List<Playlist> syncPlaylist(String username, String password, List<JsonPlaylist> playlists) {

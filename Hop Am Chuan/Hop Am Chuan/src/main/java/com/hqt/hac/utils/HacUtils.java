@@ -1,34 +1,15 @@
 package com.hqt.hac.utils;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hac_library.helper.ChordHelper;
-import com.hqt.hac.helper.adapter.PlaylistListAdapter;
 import com.hqt.hac.helper.widget.ChordClickableSpan;
-import com.hqt.hac.helper.widget.DialogFactory;
-import com.hqt.hac.model.Playlist;
-import com.hqt.hac.model.Song;
-import com.hqt.hac.model.dao.FavoriteDataAccessLayer;
-import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
-import com.hqt.hac.model.dao.PlaylistSongDataAccessLayer;
-import com.hqt.hac.view.R;
 
-import java.util.Date;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

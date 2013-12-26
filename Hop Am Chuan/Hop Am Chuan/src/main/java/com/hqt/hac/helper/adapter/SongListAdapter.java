@@ -7,10 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.hqt.hac.helper.widget.DialogFactory;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.view.R;
 
@@ -20,21 +18,17 @@ import static com.hqt.hac.utils.LogUtils.LOGE;
 
 public class SongListAdapter extends BaseAdapter {
 
-    Activity activity;
+    Context mContext;
 
-    public interface RightMenuClick {
-        public void onRightMenuClick(View view, Song song);
-    }
-
-    public RightMenuClick rightMenuClick;
+    public IContextMenu contextMenuDelegate;
 
     /**
      * List all Songs of this favorite that adapter should be display
      */
     List<Song> songs;
 
-    public SongListAdapter(Activity activity, List<Song> songs) {
-        this.activity = activity;
+    public SongListAdapter(Context context, List<Song> songs) {
+        this.mContext = context.getApplicationContext();
         this.songs = songs;
     }
 
@@ -62,7 +56,7 @@ public class SongListAdapter extends BaseAdapter {
         ViewHolder holder = null;
         View row = convertView;
 
-        LayoutInflater inflater = (LayoutInflater) activity.getApplicationContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (row == null) {
             row = inflater.inflate(R.layout.list_item_song_songlist, null);
             holder = new ViewHolder();
@@ -79,7 +73,7 @@ public class SongListAdapter extends BaseAdapter {
         final Song song = songs.get(position);
         holder.txtSongName.setText(song.title);
         holder.txtLyrics.setText(song.firstLyric.replace("\n", ""));
-        holder.txtChord.setText(song.getChordString(activity.getApplicationContext()));
+        holder.txtChord.setText(song.getChordString(mContext));
 
         if (song.isFavorite > 0) {
             holder.imgFavorite.setImageResource(R.drawable.star_liked);
@@ -90,7 +84,7 @@ public class SongListAdapter extends BaseAdapter {
         holder.imgFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rightMenuClick.onRightMenuClick(view, song);
+                contextMenuDelegate.onMenuClick(view, song);
             }
         });
         return row;
@@ -105,4 +99,10 @@ public class SongListAdapter extends BaseAdapter {
         TextView txtChord;
         ImageView imgFavorite;
     }
+
+    /** interface */
+    public interface IContextMenu {
+        public void onMenuClick(View view, Song song);
+    }
+
 }

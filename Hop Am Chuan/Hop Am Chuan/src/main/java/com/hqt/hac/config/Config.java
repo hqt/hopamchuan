@@ -5,6 +5,9 @@ public class Config {
     public static final int DEFAULT_SEARCH_LIMIT = 50;
     public static final int DEFAULT_SEARCH_ARTIST_LIMIT = 2;
     public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    /** length of toast counting in millisecond */
+    public static final long TOAST_LENGTH_LONG = 3500;
+    public static final long TOAST_LENGTH_SHORT = 2000;
     public static final int FRET_POSITION_PERIOD = 8;
 
     /** Link Config To Contact Server */

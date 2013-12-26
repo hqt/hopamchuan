@@ -10,6 +10,7 @@ import com.hqt.hac.model.json.DBVersion;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dao.SongDataAccessLayer;
 import com.hqt.hac.utils.APIUtils;
+import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.utils.UIUtils;
 
 import java.util.List;
@@ -86,20 +87,20 @@ public class UpdateSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
         switch (result) {
             // latest version
             case 1: {
-                AlertDialog dialog = UIUtils.showAlertDialog(activity, "Notify", "Already newest version");
+                AlertDialog dialog = DialogUtils.showAlertDialog(activity, "Notify", "Already newest version");
                 dialog.show();
                 break;
             }
 
             // download or parse fail
             case 2: {
-                AlertDialog dialog = UIUtils.showAlertDialog(activity, "Error", "Network Error. Try again");
+                AlertDialog dialog = DialogUtils.showAlertDialog(activity, "Error", "Network Error. Try again");
                 dialog.show();
                 break;
             }
             // update to database fail
             case 3: {
-                AlertDialog dialog = UIUtils.showAlertDialog(activity, "Error", "System Fail. Restart Application");
+                AlertDialog dialog = DialogUtils.showAlertDialog(activity, "Error", "System Fail. Restart Application");
                 dialog.show();
                 break;
             }

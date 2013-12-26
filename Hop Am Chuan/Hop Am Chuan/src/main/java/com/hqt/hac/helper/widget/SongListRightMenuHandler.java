@@ -17,14 +17,12 @@ import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dao.FavoriteDataAccessLayer;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 import com.hqt.hac.model.dao.PlaylistSongDataAccessLayer;
+import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.view.R;
 
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Dinh Quang Trung on 12/24/13.
- */
 public class SongListRightMenuHandler {
     /**
      * Current selected song for song lists (favorite fragment, song list fragment,
@@ -33,9 +31,9 @@ public class SongListRightMenuHandler {
     public static Song selectedSong = null;
 
     /**
-     * The list view control
+     * The list view control for Playlist
      */
-    static ListView mPlaylists;
+    static ListView mListView;
 
     /**
      * Playlist list for "Add to playlist" dialog
@@ -51,7 +49,7 @@ public class SongListRightMenuHandler {
      * The popup window
      */
 
-    static PopupWindow pw;
+    static PopupWindow popupWindow;
 
     /**
      * Dialog for playlist list
@@ -72,32 +70,32 @@ public class SongListRightMenuHandler {
     public static void setRightMenuEvents(final Activity _activity, final PopupWindow _pw) {
 
         activity = _activity;
-        pw = _pw;
+        popupWindow = _pw;
 
         // Popup menu item
-        final Button favoriteBtn = (Button) pw.getContentView().findViewById(R.id.song_list_menu_addtofavorite);
-        final Button playlistBtn = (Button) pw.getContentView().findViewById(R.id.song_list_menu_addtoplaylist);
-        Button shareBtn = (Button) pw.getContentView().findViewById(R.id.song_list_menu_share);
+        final Button favoriteBtn = (Button) popupWindow.getContentView().findViewById(R.id.song_list_menu_addtofavorite);
+        final Button playlistBtn = (Button) popupWindow.getContentView().findViewById(R.id.song_list_menu_addtoplaylist);
+        Button shareBtn = (Button) popupWindow.getContentView().findViewById(R.id.song_list_menu_share);
 
         // "Add to Favorite" button
         favoriteBtn.setOnClickListener(new ToggleFavorite());
 
         // "Add to playlist" dialog
-        playlistListDialog = DialogFactory.createDialog(activity, R.string.title_add_to_playlist_dialog,
+        playlistListDialog = DialogUtils.createDialog(activity, R.string.title_add_to_playlist_dialog,
                 activity.getLayoutInflater(), R.layout.dialog_addtoplaylist);
 
-        mPlaylists = (ListView) playlistListDialog.findViewById(R.id.playlist_list);
+        mListView = (ListView) playlistListDialog.findViewById(R.id.playlist_list);
 
         playlists = PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext());
 
         playlistAdapter = new PlaylistListAdapter(activity, playlists);
-        mPlaylists.setAdapter(playlistAdapter);
+        mListView.setAdapter(playlistAdapter);
 
         // Add click event item for this ListView
-        mPlaylists.setOnItemClickListener(new AddToPlaylistOnClick());
+        mListView.setOnItemClickListener(new AddToPlaylistOnClick());
 
         /***** New playlist dialog *****/
-        newPlaylistDialog = DialogFactory.createDialog(activity, R.string.new_playlist,
+        newPlaylistDialog = DialogUtils.createDialog(activity, R.string.new_playlist,
                 activity.getLayoutInflater(), R.layout.dialog_newplaylist);
 
         Button createPlaylistBtn = (Button) newPlaylistDialog.findViewById(R.id.btnCreatePlaylist);
@@ -118,7 +116,7 @@ public class SongListRightMenuHandler {
         playlistBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pw.dismiss();
+                popupWindow.dismiss();
                 playlistListDialog.setTitle(selectedSong.title);
 
                 // Refresh playlists
@@ -178,8 +176,8 @@ public class SongListRightMenuHandler {
                 // We have to re-set the adapter for onItemClick event.
                 playlists = PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext());
                 playlistAdapter = new PlaylistListAdapter(activity, playlists);
-                mPlaylists.setAdapter(playlistAdapter);
-                mPlaylists.setOnItemClickListener(new AddToPlaylistOnClick());
+                mListView.setAdapter(playlistAdapter);
+                mListView.setOnItemClickListener(new AddToPlaylistOnClick());
 
                 // Close dialog
                 newPlaylistDialog.dismiss();
@@ -212,7 +210,7 @@ public class SongListRightMenuHandler {
                 msg.show();
             }
 
-            pw.dismiss();
+            popupWindow.dismiss();
         }
     }
 }

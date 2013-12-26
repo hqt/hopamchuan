@@ -1,14 +1,16 @@
 package com.hac_library.classes;
 
+import android.support.v4.util.SimpleArrayMap;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class ChordLibrary {
-	public static Map<String, Position[]> baseChords = new HashMap<String, Position[]>();
+	public static HashMap<String, Position[]> baseChords = new HashMap<String, Position[]>();
 	public static String[] N = new String[]{"C", "A", "G", "E", "D"};
 	public static int[] F =       new int[]{ 3,   2,   3,   2,   2};
-	public static Map<String, String> Bname = new HashMap<String, String>();
-	public static Map<String, Integer> Bfret = new HashMap<String, Integer>();
+	public static HashMap<String, String> Bname = new HashMap<String, String>();
+	public static HashMap<String, Integer> Bfret = new HashMap<String, Integer>();
 	
 	static {
 		

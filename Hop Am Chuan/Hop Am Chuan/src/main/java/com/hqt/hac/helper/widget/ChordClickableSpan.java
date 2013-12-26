@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hac_library.helper.DrawHelper;
+import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.view.R;
 
 /**
@@ -52,7 +53,7 @@ public class ChordClickableSpan extends ClickableSpan {
         final String chordName = s.subSequence(start, end).toString().replace("[", "").replace("]", "");
 
         // Create chord dialog
-        final  Dialog dialog = DialogFactory.createDialog(
+        final  Dialog dialog = DialogUtils.createDialog(
                 theActivity,
                 R.string.chord_finger_position,
                 (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE),

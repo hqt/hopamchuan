@@ -76,6 +76,12 @@ public class FindByChordFragment extends Fragment implements
     }
 
     @Override
+    public void onDetach() {
+        super.onDetach();
+        this.activity = null;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
@@ -105,14 +111,14 @@ public class FindByChordFragment extends Fragment implements
                         R.array.chords_base_chord, R.layout.custom_spinner_item);
         // Specify the layout to use when the list of choices appears
         choices.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
-        spinner.setAdapter(choices);    // Apply the adapter to the spinner
+        spinner.setAdapter(choices);    // Apply the mAdapter to the spinner
         spinner.setOnItemSelectedListener(this);   // because this fragment has implemented method
 
         /** ListView Configure */
         mListView = (ListView) rootView.findViewById(R.id.list_view);
         adapter = new FindByChordAdapter(getActivity().getApplicationContext(), this, chords);
         // building TouchListener Object
-        View.OnTouchListener mTouchListener = ListViewWidget.getTouchListener(getActivity().getBaseContext(), mListView, adapter, mBackgroundContainer);
+        View.OnTouchListener mTouchListener = ListViewWidget.getTouchListener(getActivity().getApplicationContext(), mListView, adapter, mBackgroundContainer);
         adapter.setTouchListener(mTouchListener);
         mListView.setAdapter(adapter);
 

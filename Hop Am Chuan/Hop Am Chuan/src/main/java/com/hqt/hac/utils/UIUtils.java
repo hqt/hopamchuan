@@ -253,18 +253,4 @@ public class UIUtils {
             view.setActivated(activated);
         }
     }
-
-    public static AlertDialog showAlertDialog(Activity activity, String title, String message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setTitle(title)
-                .setMessage(message)
-                .setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
-                });
-        AlertDialog alert = builder.create();
-        return alert;
-    }
 }

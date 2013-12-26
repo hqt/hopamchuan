@@ -12,8 +12,8 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 
-import com.hqt.hac.helper.adapter.FavoriteManagerAdapter;
-import com.hqt.hac.helper.widget.DialogFactory;
+import com.hqt.hac.helper.adapter.SongListAdapter;
+import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dao.FavoriteDataAccessLayer;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
@@ -38,10 +38,10 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
     List<Song> songs;
 
     /** Adapter for this fragment */
-    FavoriteManagerAdapter adapter;
+    SongListAdapter mAdapter;
 
     /** One popup menu for all items **/
-    PopupWindow pw = null;
+    PopupWindow popupWindow = null;
 
     /** spinner of this fragment
      * use for user select display setting
@@ -56,6 +56,12 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
         super.onAttach(activity);
         this.activity = (MainActivity) activity;
         songs = FavoriteDataAccessLayer.getAllFavoriteSongs(getActivity().getApplicationContext());
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.activity = null;
     }
 
     @Override
@@ -76,29 +82,29 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
                         R.array.favorite_sort_method, R.layout.custom_spinner_item);
         // Specify the layout to use when the list of choices appears
         choices.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
-        spinner.setAdapter(choices);    // Apply the adapter to the spinner
+        spinner.setAdapter(choices);    // Apply the mAdapter to the spinner
         spinner.setOnItemSelectedListener(this);   // because this fragment has implemented method
 
         /** ListView Configure */
         mListView = (ListView) rootView.findViewById(R.id.list_view);
-        adapter = new FavoriteManagerAdapter(getActivity(), songs);
+        mAdapter = new SongListAdapter(getActivity(), songs);
 
         // Event for right menu click
-        pw = DialogFactory.createPopup(inflater, R.layout.popup_songlist_menu);
-        SongListRightMenuHandler.setRightMenuEvents(activity, pw);
+        popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
+        SongListRightMenuHandler.setRightMenuEvents(activity, popupWindow);
 
-        // Event received from adapter.
-        adapter.rightMenuClick = new FavoriteManagerAdapter.RightMenuClick() {
+        // Event received from mAdapter.
+        mAdapter.contextMenuDelegate = new SongListAdapter.IContextMenu() {
             @Override
-            public void onRightMenuClick(View view, Song song) {
+            public void onMenuClick(View view, Song song) {
                 // Show the popup menu and set selectedSong
                 /** Store the song that user clicked on the right menu (the star) **/
                 SongListRightMenuHandler.selectedSong = song;
-                pw.showAsDropDown(view);
+                popupWindow.showAsDropDown(view);
             }
         };
 
-        mListView.setAdapter(adapter);
+        mListView.setAdapter(mAdapter);
 
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -106,9 +112,9 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 SongDetailFragment fragment = new SongDetailFragment();
                 Bundle arguments = new Bundle();
-                arguments.putSerializable("song", songs.get(position));
+                arguments.putParcelable("song", songs.get(position));
                 fragment.setArguments(arguments);
-                activity.switchFragment(fragment);
+                activity.switchFragmentNormal(fragment);
             }
         });
 
@@ -132,7 +138,7 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
                 // do nothing
         }
         // refresh ListView
-        adapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
 
     }
 

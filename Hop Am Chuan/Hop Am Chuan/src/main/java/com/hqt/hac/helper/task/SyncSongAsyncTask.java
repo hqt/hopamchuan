@@ -13,6 +13,7 @@ import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 import com.hqt.hac.model.dao.PlaylistSongDataAccessLayer;
 import com.hqt.hac.model.json.JsonPlaylist;
 import com.hqt.hac.utils.APIUtils;
+import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.utils.UIUtils;
 
 import java.util.List;
@@ -111,7 +112,7 @@ public class SyncSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
         switch (result) {
             // SYSTEM ERROR
             case 1: {
-                AlertDialog dialog = UIUtils.showAlertDialog(activity, "Error", "System Fail. Restart Application");
+                AlertDialog dialog = DialogUtils.showAlertDialog(activity, "Error", "System Fail. Restart Application");
                 dialog.show();
                 break;
             }

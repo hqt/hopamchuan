@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 
 import com.hqt.hac.helper.adapter.PlaylistManagerAdapter;
-import com.hqt.hac.helper.widget.DialogFactory;
+import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.helper.widget.PlaylistRightMenuHandler;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
@@ -35,7 +35,7 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
     List<Playlist> allPlaylists;
 
     /** One popup menu for all items **/
-    PopupWindow pw = null;
+    PopupWindow popupWindow = null;
 
     /**
      * Adapter for this View
@@ -52,6 +52,12 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
     }
 
     @Override
+    public void onDetach() {
+        super.onDetach();
+        this.activity = null;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         allPlaylists = PlaylistDataAccessLayer.getAllPlayLists(getActivity().getApplicationContext());
@@ -65,17 +71,17 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
         mListView = (ListView) rootView.findViewById(R.id.list);
         adapter = new PlaylistManagerAdapter(activity.getApplicationContext(), allPlaylists);
 
-        pw = DialogFactory.createPopup(inflater, R.layout.popup_playlist_list_menu);
-        PlaylistRightMenuHandler.setRightMenuEvents(activity, pw, adapter);
+        popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_playlist_list_menu);
+        PlaylistRightMenuHandler.setRightMenuEvents(activity, popupWindow, adapter);
 
-        // Event received from adapter.
+        // Event received from mAdapter.
         adapter.rightMenuClick = new PlaylistManagerAdapter.RightMenuClick() {
             @Override
             public void onRightMenuClick(View view, Playlist playlist) {
                 // Show the popup menu and set selectedSong
                 /** Store the song that user clicked on the right menu (the star) **/
                 PlaylistRightMenuHandler.selectedPlaylist = playlist;
-                pw.showAsDropDown(view);
+                popupWindow.showAsDropDown(view);
             }
         };
 
@@ -88,9 +94,9 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 PlaylistDetailFragment fragment = new PlaylistDetailFragment();
                 Bundle arguments = new Bundle();
-                arguments.putSerializable("playlist", allPlaylists.get(position));
+                arguments.putParcelable("playlist", allPlaylists.get(position));
                 fragment.setArguments(arguments);
-                activity.switchFragment(fragment);
+                activity.switchFragmentNormal(fragment);
             }
         });
 

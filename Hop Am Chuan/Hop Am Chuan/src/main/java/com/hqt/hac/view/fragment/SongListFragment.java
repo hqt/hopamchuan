@@ -3,6 +3,7 @@ package com.hqt.hac.view.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,7 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 
 import com.hqt.hac.helper.adapter.SongListAdapter;
-import com.hqt.hac.helper.widget.DialogFactory;
+import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dao.SongDataAccessLayer;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
@@ -22,10 +23,15 @@ import com.hqt.hac.view.R;
 
 import java.util.List;
 
+import static com.hqt.hac.utils.LogUtils.LOGE;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
+
 /**
  * Fragment uses for viewing songs as categories
  */
 public class SongListFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+
+    public static final String TAG = makeLogTag(SongListFragment.class);
 
     /** Main Activity for reference */
     MainActivity activity;
@@ -33,7 +39,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     List<Song> songs;
 
     /** One popup menu for all items **/
-    PopupWindow pw = null;
+    PopupWindow popupWindow = null;
 
     /** Adapter for this fragment */
     SongListAdapter songlistAdapter;
@@ -48,6 +54,12 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     }
 
     @Override
+    public void onDetach() {
+        super.onDetach();
+        this.activity = null;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
     }
@@ -57,7 +69,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_song_list, container, false);
 
-        /** Spinner : create adapter for Spinner */
+        /** Spinner : create mAdapter for Spinner */
         Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner_method_list);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.
@@ -65,7 +77,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
                         R.array.song_list_method, R.layout.custom_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
-        spinner.setAdapter(adapter);    // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);    // Apply the mAdapter to the spinner
         spinner.setOnItemSelectedListener(this);    // because this fragment has implemented method
 
 
@@ -77,17 +89,31 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         songlistAdapter = new SongListAdapter(activity, songs);
 
         // Event for right menu click
-        pw = DialogFactory.createPopup(inflater, R.layout.popup_songlist_menu);
-        SongListRightMenuHandler.setRightMenuEvents(activity, pw);
+        popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
+        SongListRightMenuHandler.setRightMenuEvents(activity, popupWindow);
 
-        // Event received from adapter.
-        songlistAdapter.rightMenuClick = new SongListAdapter.RightMenuClick() {
+        // Event received from mAdapter.
+        songlistAdapter.contextMenuDelegate = new SongListAdapter.IContextMenu() {
             @Override
-            public void onRightMenuClick(View view, Song song) {
+            public void onMenuClick(View view, Song song) {
                 // Show the popup menu and set selectedSong
-                /** Store the song that user clicked on the right menu (the star) **/
+                // Store the song that user clicked on the right menu (the star)
                 SongListRightMenuHandler.selectedSong = song;
-                pw.showAsDropDown(view);
+                int availableHeight = popupWindow.getMaxAvailableHeight(view);
+                popupWindow.showAsDropDown(view);
+                /*int height = popupWindow.getHeight();
+                LOGE(TAG, "HQT POPUP Height: " + height);
+                if (availableHeight < popupWindow.getHeight()) {
+                    int[] loc_int = new int[2];
+                    // popupWindow.showAsDropDown(view, 10, 10);
+                    LOGE(TAG, "Not Enough Room Space");
+                    popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 35, 35);
+                } else {
+
+                }
+                popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 35, 35);*/
+
+
             }
         };
 
@@ -99,9 +125,9 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 SongDetailFragment fragment = new SongDetailFragment();
                 Bundle arguments = new Bundle();
-                arguments.putSerializable("song", songs.get(position));
+                arguments.putParcelable("song", songs.get(position));
                 fragment.setArguments(arguments);
-                activity.switchFragment(fragment);
+                activity.switchFragmentNormal(fragment);
             }
         });
 

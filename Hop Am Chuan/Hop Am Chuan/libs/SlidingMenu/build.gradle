@@ -30,7 +30,7 @@ apply plugin: 'android-library'
 // TODO if project is not in repository. How can to config this for both projects : main project and library project.
 dependencies {
     // compile fileTree(dir: 'libs', include: '*.jar')
-    compile 'com.android.support:support-v4:18.0.0'
+    compile 'com.android.support:support-v4:19.0.0'
 }
 
 android {

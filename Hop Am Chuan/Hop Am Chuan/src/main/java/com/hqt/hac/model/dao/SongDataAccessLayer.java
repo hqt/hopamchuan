@@ -134,15 +134,17 @@ public class SongDataAccessLayer {
                 int isFavorite = c.getInt(isFavoriteCol);
                 int lastView = c.getInt(lastViewCol);
 
-                c.close();
                 return new Song(_id, id, title, link, firstLyric, date,
                         titleAscii, lastView, isFavorite, rhythm);
             }
         } catch (Exception e) {
             LOGE(TAG, "Parse song fail!");
             e.printStackTrace();
+        } finally {
+            if (c != null) {
+                c.close();
+            }
         }
-        c.close();
         return null;
     }
 
