@@ -87,6 +87,8 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
 
 
         mListView.setAdapter(adapter);
+        View emptyView = inflater.inflate(R.layout.list_item_playlist_empty, container, false);
+        mListView.setEmptyView(emptyView);
 
         // add click event item for this ListView
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

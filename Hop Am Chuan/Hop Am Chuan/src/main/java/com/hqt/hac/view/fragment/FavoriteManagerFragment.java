@@ -105,6 +105,8 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
         };
 
         mListView.setAdapter(mAdapter);
+        View emptyView = inflater.inflate(R.layout.list_item_playlist_empty, container, false);
+        mListView.setEmptyView(emptyView);
 
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

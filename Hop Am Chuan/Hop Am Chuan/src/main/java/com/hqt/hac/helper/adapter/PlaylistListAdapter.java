@@ -45,6 +45,8 @@ public class PlaylistListAdapter extends BaseAdapter {
         return playlists.get(position).playlistId;
     }
 
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
         ViewHolder holder = null;

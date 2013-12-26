@@ -13,12 +13,19 @@ public class AsyncActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        task=(RotationAsyncTask)getLastNonConfigurationInstance();
+        if (task != null) {
+            task.attach(this);
+        }
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
     public Object onRetainNonConfigurationInstance() {
         task.detach();
-
         return(task);
     }
 }
