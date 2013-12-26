@@ -83,11 +83,11 @@ public class LoginActivity extends AsyncActivity {
     }
 
     private void syncAccount() {
-       /* if (!NetworkUtils.isNetworkConnected(getBaseContext())) {
+        if (!NetworkUtils.isNetworkConnected(getBaseContext())) {
             AlertDialog dialog = DialogUtils.showAlertDialog(this, "Network Problem", "Check Your Wifi or 3G Network Again");
             dialog.show();
             return;
-        }*/
+        }
 
         LOGE(TAG, txtUsername.getText() + "\t" + txtPassword.getText());
         username = txtUsername.getText().toString();
