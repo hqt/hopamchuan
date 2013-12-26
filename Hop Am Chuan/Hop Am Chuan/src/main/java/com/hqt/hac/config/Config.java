@@ -27,4 +27,9 @@ public class Config {
 
     /** Default song count to display in SongListFragment **/
     public static final int DEFAULT_SONG_LIST_COUNT = 10;
+
+
+    /** Song full view config **/
+    public static final float SONG_CONTENT_FONT_SIZE_STEP = 2;
+    public static final float SONG_CONTENT_DEFAULT_FONT_SIZE = 30;
 }

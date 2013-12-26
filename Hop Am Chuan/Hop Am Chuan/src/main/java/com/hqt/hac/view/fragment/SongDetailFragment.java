@@ -1,7 +1,9 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import com.hqt.hac.helper.adapter.SongListAdapter;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Song;
+import com.hqt.hac.view.FullscreenSongActivity;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
@@ -60,7 +63,7 @@ public class SongDetailFragment extends Fragment {
         super.onAttach(activity);
         this.activity = (MainActivity) activity;
 
-        // get arguments from main mActivity
+        // get arguments from main activity
         Bundle arguments = getArguments();
         if (arguments.get("song") != null) {
             this.song = (Song) arguments.get("song");
@@ -97,7 +100,7 @@ public class SongDetailFragment extends Fragment {
         songSingersTV.setText(song.getSingersString(activity.getApplicationContext()));
 
         // Set song content
-        // HacUtils.setSongFormatted(mActivity.getApplicationContext(), songContentTV, song.getContent(mActivity.getApplicationContext()), mActivity);
+        // HacUtils.setSongFormatted(activity.getApplicationContext(), songContentTV, song.getContent(activity.getApplicationContext()), activity);
         songContentTV.setText(song.getContent(activity.getApplicationContext()));
         songContentTV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,9 +161,9 @@ public class SongDetailFragment extends Fragment {
     }
 
     private void openFullScreenSong() {
-//        Intent intent = new Intent(mActivity, SongPlayFullScreen.class);
-//        intent.putExtra("song", (Serializable)song);
-//        mActivity.startActivity(intent);
+        Intent intent = new Intent(activity, FullscreenSongActivity.class);
+        intent.putExtra("song", song);
+        activity.startActivity(intent);
     }
 
 

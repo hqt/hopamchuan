@@ -21,6 +21,7 @@ import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
 import com.hqt.hac.model.Playlist;
+import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.fragment.*;
@@ -81,7 +82,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // add strict mode for searching performance issue
-        if (!DEVELOPER_MODE) {
+        if (DEVELOPER_MODE) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                     .detectDiskReads()
                     .detectDiskWrites()
@@ -95,6 +96,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
                     .penaltyDeath()
                     .build());*/
         }
+
 
         super.onCreate(savedInstanceState);
 

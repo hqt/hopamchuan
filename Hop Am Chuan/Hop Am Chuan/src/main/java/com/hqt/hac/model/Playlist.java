@@ -169,9 +169,18 @@ public class Playlist implements Parcelable {
         date = new Date(in.readLong());
         isPublic = in.readInt();
         numberOfSongs = in.readInt();
-        in.readList(songIds, Integer.class.getClassLoader());
-        in.readTypedList(songs, Song.CREATOR);
 
+        try {
+            in.readList(songIds, Integer.class.getClassLoader());
+        } catch(NullPointerException e) {
+            songIds = null;
+        }
+
+        try {
+            in.readTypedList(songs, Song.CREATOR);
+        } catch(NullPointerException e) {
+            songs = null;
+        }
     }
 
     /**
