@@ -58,7 +58,7 @@ public class SongDetailFragment extends Fragment {
         super.onAttach(activity);
         this.activity = (MainActivity) activity;
 
-        // get arguments from main activity
+        // get arguments from main mActivity
         Bundle arguments = getArguments();
         if (arguments.get("song") != null) {
             this.song = (Song) arguments.get("song");
@@ -95,7 +95,7 @@ public class SongDetailFragment extends Fragment {
         songSingersTV.setText(song.getSingersString(activity.getApplicationContext()));
 
         // Set song content
-        // HacUtils.setSongFormatted(activity.getApplicationContext(), songContentTV, song.getContent(activity.getApplicationContext()), activity);
+        // HacUtils.setSongFormatted(mActivity.getApplicationContext(), songContentTV, song.getContent(mActivity.getApplicationContext()), mActivity);
         songContentTV.setText(song.getContent(activity.getApplicationContext()));
         songContentTV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,9 +148,9 @@ public class SongDetailFragment extends Fragment {
     }
 
     private void openFullScreenSong() {
-//        Intent intent = new Intent(activity, SongPlayFullScreen.class);
+//        Intent intent = new Intent(mActivity, SongPlayFullScreen.class);
 //        intent.putExtra("song", (Serializable)song);
-//        activity.startActivity(intent);
+//        mActivity.startActivity(intent);
     }
 
 

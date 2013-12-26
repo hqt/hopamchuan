@@ -28,8 +28,8 @@ public abstract class SystemUiHider {
      * When this flag is set, the
      * {@link android.view.WindowManager.LayoutParams#FLAG_LAYOUT_IN_SCREEN}
      * flag will be set on older devices, making the status bar "float" on top
-     * of the activity layout. This is most useful when there are no controls at
-     * the top of the activity layout.
+     * of the mActivity layout. This is most useful when there are no controls at
+     * the top of the mActivity layout.
      * <p>
      * This flag isn't used on newer devices because the <a
      * href="http://developer.android.com/design/patterns/actionbar.html">action
@@ -54,7 +54,7 @@ public abstract class SystemUiHider {
     public static final int FLAG_HIDE_NAVIGATION = FLAG_FULLSCREEN | 0x4;
 
     /**
-     * The activity associated with this UI hider object.
+     * The mActivity associated with this UI hider object.
      */
     protected Activity mActivity;
 
@@ -83,7 +83,7 @@ public abstract class SystemUiHider {
      * {@link SystemUiHiderBase} or {@link SystemUiHiderHoneycomb} depending on
      * the device.
      * 
-     * @param activity The activity whose window's system UI should be
+     * @param activity The mActivity whose window's system UI should be
      *            controlled by this class.
      * @param anchorView The view on which
      *            {@link View#setSystemUiVisibility(int)} will be called.

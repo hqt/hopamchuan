@@ -209,7 +209,7 @@ public class NavigationDrawerFragment extends Fragment
     /**
      * Users of this fragment must call this method to set up the navigation drawer interactions.
      *
-     * @param fragmentId   The android:id of this fragment in its activity's layout.
+     * @param fragmentId   The android:id of this fragment in its mActivity's layout.
      * @param drawerLayout The DrawerLayout containing this fragment's UI.
      */
     public void setUp(int fragmentId, DrawerLayout drawerLayout) {
@@ -409,7 +409,7 @@ public class NavigationDrawerFragment extends Fragment
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
 
-        // assign this work to main activity
+        // assign this work to main mActivity
         if (mCallbacks != null) {
             mCallbacks.onNavigationDrawerItemSelected(fragment);
         }
@@ -435,14 +435,14 @@ public class NavigationDrawerFragment extends Fragment
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
 
-        // assign this work to main activity
+        // assign this work to main mActivity
         if (mCallbacks != null) {
             mCallbacks.onNavigationDrawerItemSelected(fragment);
         }
     }
 
     /**
-     * Callbacks interface that send data back from fragment to activity
+     * Callbacks interface that send data back from fragment to mActivity
      * Activity will use this function to determine what should to do
      * All activities using this fragment must implement this interface.
      * See this link for more detail:
@@ -450,8 +450,8 @@ public class NavigationDrawerFragment extends Fragment
      *
      * STEP :
      *  1. create interface
-     *  2. assign activity to mCallback on onAttach() method
-     *      (can do this because activity must be implements this method)
+     *  2. assign mActivity to mCallback on onAttach() method
+     *      (can do this because mActivity must be implements this method)
      *  on NavigationDrawer, when event arises. use mCallback
      */
     public static interface NavigationDrawerCallbacks {

@@ -43,19 +43,19 @@ public class SearchViewActivity extends ActionBarActivity {
      * If the currently Activity is searchable Activity, then one of two things will be happens :
      *
      * 1) <b> By default: </b>
-     * the searchable activity receives the ACTION_SEARCH intent with a call to onCreate()
-     * and a new instance of the activity is brought to the top of the activity stack.
-     * There are now two instances of your searchable activity in the activity stack
-     * (so pressing the Back button goes back to the previous instance of the searchable activity,
-     * rather than exiting the searchable activity).
+     * the searchable mActivity receives the ACTION_SEARCH intent with a call to onCreate()
+     * and a new instance of the mActivity is brought to the top of the mActivity stack.
+     * There are now two instances of your searchable mActivity in the mActivity stack
+     * (so pressing the Back button goes back to the previous instance of the searchable mActivity,
+     * rather than exiting the searchable mActivity).
      *
      * 2) <b> If you set android:launchMode to "singleTop" (Set in Android Manifest): </b>
-     * then the searchable activity receives the ACTION_SEARCH intent with a call to onNewIntent(Intent),
+     * then the searchable mActivity receives the ACTION_SEARCH intent with a call to onNewIntent(Intent),
      * passing the new ACTION_SEARCH intent here.
      * <hqt>
      * This action usually ideal.
      * Because chances are goods that once a search is done, the user will performs additional searches
-     * bad practice if app creates multiple instances of the searchable activity !!!
+     * bad practice if app creates multiple instances of the searchable mActivity !!!
      * </hqt>
      */
     @Override

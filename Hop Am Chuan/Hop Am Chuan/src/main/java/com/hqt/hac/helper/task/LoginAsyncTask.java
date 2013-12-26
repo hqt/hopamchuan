@@ -69,7 +69,7 @@ public class LoginAsyncTask extends AsyncTask<Void, Integer, Long>{
         PrefStore.setUserImage(context, account.image);
 
         /*
-        byte[] newImage = PrefStore.getUserImage(context);
+        byte[] newImage = PrefStore.getUserImage(mContext);
         if (newImage.length != oldImage.length) {
             LOGE(TAG, "FUCKING BYTE");
             LOGE(TAG, "OLD LENGTH: " + oldImage.length);

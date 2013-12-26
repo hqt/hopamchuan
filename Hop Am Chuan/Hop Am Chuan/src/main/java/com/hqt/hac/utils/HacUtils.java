@@ -29,7 +29,7 @@ public class HacUtils {
      * @param context
      * @param richTextView the TextView that display the song lyric
      * @param songContent
-     * @param theActivity  the activity that contain the text view
+     * @param theActivity  the mActivity that contain the text view
      */
     public static void setSongFormatted(final Context context, TextView richTextView, String songContent, final Activity theActivity) {
         // This is the text we'll be operating on

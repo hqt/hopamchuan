@@ -44,7 +44,7 @@ public class MainActivityTest extends SlidingMenuActionBarActivity
     /** SlidingMenu : use for slide to see like NavigationDrawer*/
     SlidingMenu slidingMenu;
 
-    /** MainLayout of this activity */
+    /** MainLayout of this mActivity */
     FrameLayout mainLayout;
 
     View sideBarLayout;
@@ -163,7 +163,7 @@ public class MainActivityTest extends SlidingMenuActionBarActivity
             // Get the SearchView and set the Search Configuration
             SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
             mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-            // Assumes current activity is the searchable activity
+            // Assumes current mActivity is the searchable mActivity
             mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
             // Do not icon the widget. expand it.
             mSearchView.setIconifiedByDefault(false);
@@ -177,7 +177,7 @@ public class MainActivityTest extends SlidingMenuActionBarActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // as you specify a parent mActivity in AndroidManifest.xml.
         int id = item.getItemId();
 
         if(mDrawerToggle.onOptionsItemSelected(item))
@@ -192,7 +192,7 @@ public class MainActivityTest extends SlidingMenuActionBarActivity
     }
 
     /**
-     * when search dialog is active. activity will lost input focus
+     * when search dialog is active. mActivity will lost input focus
      * so. do some stuffs (such as saving state) before search
      * Unless passing search context data.
      * should end method by calling super class implementation
@@ -334,7 +334,7 @@ public class MainActivityTest extends SlidingMenuActionBarActivity
     /////////////////// HQT //////////////////////////////////////////
     //////////// NOTES ABOUT CALLBACK ///////////////////////////////
     /**
-     * Callbacks interface that send data back from fragment to activity
+     * Callbacks interface that send data back from fragment to mActivity
      * Activity will use this function to determine what should to do
      * All activities using this fragment must implement this interface.
      * See this link for more detail:
@@ -342,8 +342,8 @@ public class MainActivityTest extends SlidingMenuActionBarActivity
      *
      * STEP :
      *  1. create interface
-     *  2. assign activity to mCallback on onAttach() method
-     *      (can do this because activity must be implements this method)
+     *  2. assign mActivity to mCallback on onAttach() method
+     *      (can do this because mActivity must be implements this method)
      *  on NavigationDrawer, when event arises. use mCallback
      */
 }

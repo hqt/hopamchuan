@@ -39,7 +39,7 @@
         <item>Sắp xếp ABC</item>
     </string-array>
 
-    <!-- list all base chords in search chord activity -->
+    <!-- list all base chords in search chord mActivity -->
     <string-array name="chords_base_chord">
         <item>Am, Dm, E</item>
         <item>Am, F, C, G</item>
@@ -47,7 +47,7 @@
         <item>C, G, Am, Em, F, Dm</item>
     </string-array>
 
-    <!-- list all chords for chord view activity -->
+    <!-- list all chords for chord view mActivity -->
     <string-array name="chords_all_chord">
         <item>C</item>
         <item>Cm</item>

@@ -55,7 +55,7 @@ public class PlaylistDetailFragment extends  Fragment {
         super.onAttach(activity);
         this.activity = (MainActivity) activity;
 
-        // get arguments from main activity
+        // get arguments from main mActivity
         Bundle arguments = getArguments();
         if ((arguments.get("playlistId") != null)) {
             int playlistId = arguments.getInt("playlistId");

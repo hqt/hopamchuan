@@ -101,11 +101,11 @@ public class NavigationDrawerAdapter {
                         activity.startActivity(intent);
                         activity.finish();
 
-                        // TrungDQ: Prefer popup than an activity
-//                        LoginPopup loginPopup = new LoginPopup(activity);
+                        // TrungDQ: Prefer popup than an mActivity
+//                        LoginPopup loginPopup = new LoginPopup(mActivity);
 //                        loginPopup.show();
                     } else {
-                        // Start logout activity or popup here.
+                        // Start logout mActivity or popup here.
                         ProfilePopup profilePopup = new ProfilePopup(activity);
                         profilePopup.show();
                     }

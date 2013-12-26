@@ -25,11 +25,11 @@ public class SplashScreen extends Activity {
             @Override
             public void run() {
                 // This method will be executed once the timer is over
-                // Start your app main activity
+                // Start your app main mActivity
                 Intent i = new Intent(SplashScreen.this, MainActivity.class);
                 startActivity(i);
 
-                // close this activity
+                // close this mActivity
                 finish();
             }
         }, SPLASH_TIME_OUT);

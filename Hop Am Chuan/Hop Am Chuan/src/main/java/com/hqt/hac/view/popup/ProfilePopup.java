@@ -88,7 +88,7 @@ public class ProfilePopup {
         PrefStore.setEmail(context, null);
         PrefStore.setUserImage(context, null);
 
-        // Reload the activity
+        // Reload the mActivity
         dialog.dismiss();
         Intent intent = new Intent(activity, MainActivity.class);
         activity.startActivity(intent);

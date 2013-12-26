@@ -20,7 +20,7 @@ public class FindByChordAdapter extends ArrayAdapter {
 
     Context mContext;
 
-    /** delegate is the callback to fragment / activity */
+    /** delegate is the callback to fragment / mActivity */
     IFindByChordAdapter delegate;
 
     public List<String> chords;

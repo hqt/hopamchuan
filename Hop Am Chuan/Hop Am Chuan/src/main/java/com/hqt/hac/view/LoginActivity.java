@@ -22,9 +22,9 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 /**
  * Activity just for login purpose
- * Use this activity will gain more benefit rather than using DialogBox
+ * Use this mActivity will gain more benefit rather than using DialogBox
  * More easily to control work flow and sync data between app and web
- * *Note*: No actionbar. so jus pure activity
+ * *Note*: No actionbar. so jus pure mActivity
  */
 public class LoginActivity extends Activity {
 

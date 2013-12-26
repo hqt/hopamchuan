@@ -205,7 +205,7 @@
 
     <style name="SessionAbstract" parent="TextBody" />
 
-    <!-- What's On section in Home activity -->
+    <!-- What's On section in Home mActivity -->
     <style name="WhatsOnItemBase">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
