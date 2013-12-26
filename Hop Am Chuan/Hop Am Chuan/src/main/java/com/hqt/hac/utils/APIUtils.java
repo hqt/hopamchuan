@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
@@ -81,7 +82,7 @@ public class APIUtils {
         // new code using POST
         Map post_params = generatePostRequestParams(params);
         String jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_GET_SONGS_FROM_DATE, post_params);
-
+        LOGE("TRUNGDQ", "Song list: " + jsonString);
         return ParserUtils.parseAllSongsFromJSONString(jsonString);
     }
 

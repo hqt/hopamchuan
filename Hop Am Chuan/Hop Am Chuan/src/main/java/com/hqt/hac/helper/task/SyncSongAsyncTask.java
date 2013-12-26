@@ -18,6 +18,8 @@ import com.hqt.hac.utils.UIUtils;
 
 import java.util.List;
 
+import static com.hqt.hac.utils.LogUtils.LOGD;
+
 public class SyncSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
 
     Activity activity;
@@ -50,20 +52,27 @@ public class SyncSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
         /*if (newPlaylists == null || newPlaylists.size() == newPlaylists.size()) {
             return 0;
         }*/
-
+        LOGD("TRUNGDQ", "newPlaylists: " + newPlaylists.size());
         // update playlist
         publishProgress(1);
         if (newPlaylists != null) {
             // delete all playlists in system
-            PlaylistDataAccessLayer.removeAllPlaylists(context, oldPlaylists);
+
+            // TrungDQ: No need to send old playlists, this cause the duplicate playlist situation.
+            // PlaylistDataAccessLayer.removeAllPlaylists(context, oldPlaylists);
+            PlaylistDataAccessLayer.removeAllPlaylists(context);
 
             // insert all song of its playlist to database
-            for (Playlist p : newPlaylists) {
+            for (Playlist playlist : newPlaylists) {
                 // insert playlist
-                PlaylistDataAccessLayer.insertPlaylist(context, p);
+                PlaylistDataAccessLayer.insertPlaylist(context, playlist);
                 // insert songs of playlist
-                List<Integer> ids = p.getAllSongIds(activity.getBaseContext());
-                res = PlaylistSongDataAccessLayer.insertPlaylist_Song(context, p.id, ids);
+                List<Integer> ids = playlist.getAllSongIds(activity.getBaseContext());
+                LOGD("TRUNGDQ", "Playlist " + playlist.playlistId + ": songs: " + playlist.getAllSongIds(activity.getBaseContext()));
+
+                // TrungDQ: p.playlistId, not p.id, this cause the duplicate playlist situation also.
+                // res = PlaylistSongDataAccessLayer.insertPlaylist_Song(context, p.id, ids);
+                res = PlaylistSongDataAccessLayer.insertPlaylist_Song(context, playlist.playlistId, ids);
                 if (!res) return 1;
             }
         }

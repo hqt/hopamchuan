@@ -81,10 +81,11 @@ public class SongListAdapter extends BaseAdapter {
             holder.imgFavorite.setImageResource(R.drawable.star);
         }
 
+        final ImageView finalImgFavorite = holder.imgFavorite;
         holder.imgFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                contextMenuDelegate.onMenuClick(view, song);
+                contextMenuDelegate.onMenuClick(view, song, finalImgFavorite);
             }
         });
         return row;
@@ -102,7 +103,7 @@ public class SongListAdapter extends BaseAdapter {
 
     /** interface */
     public interface IContextMenu {
-        public void onMenuClick(View view, Song song);
+        public void onMenuClick(View view, Song song, ImageView theStar);
     }
 
 }

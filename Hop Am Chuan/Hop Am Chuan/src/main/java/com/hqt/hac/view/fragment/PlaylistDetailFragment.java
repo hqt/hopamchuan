@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
@@ -103,11 +104,9 @@ public class PlaylistDetailFragment extends  Fragment {
         // Event received from mAdapter.
         mAdapter.contextMenuDelegate = new SongListAdapter.IContextMenu() {
             @Override
-            public void onMenuClick(View view, Song song) {
-                // Show the popup menu and set selectedSong
-                /** Store the song that user clicked on the right menu (the star) **/
-                SongListRightMenuHandler.selectedSong = song;
-                popupWindows.showAsDropDown(view);
+            public void onMenuClick(View view, Song song, ImageView theStar) {
+                // Show the popup menu and set selectedSong, theStar
+                SongListRightMenuHandler.openPopupMenu(view, song, theStar);
             }
         };
 

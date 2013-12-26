@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 
+import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.SongListAdapter;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Song;
@@ -95,24 +97,26 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         // Event received from mAdapter.
         songlistAdapter.contextMenuDelegate = new SongListAdapter.IContextMenu() {
             @Override
-            public void onMenuClick(View view, Song song) {
-                // Show the popup menu and set selectedSong
-                // Store the song that user clicked on the right menu (the star)
-                SongListRightMenuHandler.selectedSong = song;
-                int availableHeight = popupWindow.getMaxAvailableHeight(view);
-                popupWindow.showAsDropDown(view);
-                /*int height = popupWindow.getHeight();
-                LOGE(TAG, "HQT POPUP Height: " + height);
-                if (availableHeight < popupWindow.getHeight()) {
-                    int[] loc_int = new int[2];
-                    // popupWindow.showAsDropDown(view, 10, 10);
-                    LOGE(TAG, "Not Enough Room Space");
-                    popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 35, 35);
-                } else {
-
-                }
-                popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 35, 35);*/
-
+            public void onMenuClick(View view, Song song, ImageView theStar) {
+                // Show the popup menu and set selectedSong, theStar
+                SongListRightMenuHandler.openPopupMenu(view, song, theStar);
+//
+// TrungDQ: moved TO SongListRightMenuHandler.openPopupMenu
+/***************************************************************************************
+//                int availableHeight = popupWindow.getMaxAvailableHeight(view);
+//                popupWindow.showAsDropDown(view);
+//                int height = popupWindow.getHeight();
+//                LOGE(TAG, "HQT POPUP Height: " + height);
+//                if (availableHeight < popupWindow.getHeight()) {
+//                    int[] loc_int = new int[2];
+//                    // popupWindow.showAsDropDown(view, 10, 10);
+//                    LOGE(TAG, "Not Enough Room Space");
+//                    popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 35, 35);
+//                } else {
+//
+//                }
+//                popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 35, 35);
+//**************************************************************************************/
 
             }
         };
@@ -137,17 +141,20 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch(position) {
-            // Moi xem gan day
             case 0:
-                songlistAdapter.setSongs(SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), 10));
+                // Moi xem gan day
+                songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), Config.DEFAULT_SONG_LIST_COUNT);
+                songlistAdapter.setSongs(songs);
                 break;
-            // Moi cap nhat
             case 1:
-                songlistAdapter.setSongs(SongDataAccessLayer.getNewSongs(activity.getApplicationContext(), 10));
+                // Moi cap nhat
+                songs = SongDataAccessLayer.getNewSongs(activity.getApplicationContext(), Config.DEFAULT_SONG_LIST_COUNT);
+                songlistAdapter.setSongs(songs);
                 break;
             case 2:
-            // Bai hat ngau nhien
-                songlistAdapter.setSongs(SongDataAccessLayer.getRandSongs(activity.getApplicationContext(), 10));
+                // Bai hat ngau nhien
+                songs = SongDataAccessLayer.getRandSongs(activity.getApplicationContext(), Config.DEFAULT_SONG_LIST_COUNT);
+                songlistAdapter.setSongs(songs);
                 break;
             default:
                 // do nothing

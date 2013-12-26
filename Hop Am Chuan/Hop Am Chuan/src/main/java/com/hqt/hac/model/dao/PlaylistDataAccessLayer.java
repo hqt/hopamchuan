@@ -133,10 +133,16 @@ public class PlaylistDataAccessLayer {
     }
 
     public static String insertPlaylist(Context context, Playlist playlist) {
-        LOGD(TAG, "Adding an playlist");
+        LOGD(TAG, "Adding an playlist: " + playlist.toString());
 
         try {
-            int playlistId = getMaxPlaylistId(context) + 1;
+            int playlistId = playlist.playlistId;
+            // If the playlist is inserted by user (playlistId = 0), then find a new id for it.
+            if (playlistId == 0) {
+                playlistId = getMaxPlaylistId(context) + 1;
+            } else {
+                // This means the playlist is inserted by sync action, keep the id as it is.
+            }
 
             ContentValues cv = new ContentValues();
             cv.put(HopAmChuanDBContract.Playlist.PLAYLIST_ID, playlistId);
@@ -170,7 +176,8 @@ public class PlaylistDataAccessLayer {
         return updatedUriResult;
     }
 
-    public static void removeAllPlaylists(Context context, List<Playlist> playlists) {
+    public static void removeAllPlaylists(Context context) {
+        List<Playlist> playlists = getAllPlayLists(context);
         for (Playlist p : playlists) {
             removePlaylistById(context, p.playlistId);
         }

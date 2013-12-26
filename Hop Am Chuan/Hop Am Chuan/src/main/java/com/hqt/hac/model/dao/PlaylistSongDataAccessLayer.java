@@ -32,7 +32,7 @@ public class PlaylistSongDataAccessLayer {
     }
 
     public static String insertPlaylist_Song(Context context, int playlistId, int songId) {
-        LOGD(TAG, "Adding an playlist_song");
+        LOGD(TAG, "Adding song " + songId + " to playlist " + playlistId);
 
         ContentValues cv = new ContentValues();
         cv.put(HopAmChuanDBContract.PlaylistSongs.PLAYLIST_ID, playlistId);

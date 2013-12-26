@@ -29,7 +29,9 @@ public class Playlist implements Parcelable {
             songs = PlaylistDataAccessLayer.getAllSongsFromPlaylist(context, playlistId);
             songIds = new ArrayList<Integer>();
             for (int i = 0; i < songs.size(); i++) {
-                songIds.add(songs.get(i).id);
+                // TrungDQ: again, .songId, not .id
+                // songIds.add(songs.get(i).id);
+                songIds.add(songs.get(i).songId);
             }
             return songIds;
         }

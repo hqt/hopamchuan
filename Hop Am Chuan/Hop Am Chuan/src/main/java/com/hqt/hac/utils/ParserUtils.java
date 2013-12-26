@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
@@ -51,9 +52,12 @@ public class ParserUtils {
     }
 
     public static List<Integer> parseAllSongIdsFromJSONString(String json) {
-        JsonParser parser = new JsonParser();
-        JsonArray jsonArray = parser.parse(json).getAsJsonArray();
-        return parseAllSongIdsFromJSONArray(jsonArray);
+        if (json != null) {
+            JsonParser parser = new JsonParser();
+            JsonArray jsonArray = parser.parse(json).getAsJsonArray();
+            return parseAllSongIdsFromJSONArray(jsonArray);
+        }
+        return null;
     }
 
     public static DBVersion getDBVersionDetail(String json) {

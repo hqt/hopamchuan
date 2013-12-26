@@ -18,6 +18,7 @@ import com.hqt.hac.utils.EncodingUtils;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
+import com.hqt.hac.view.SettingActivity;
 
 public class ProfilePopup {
 
@@ -78,7 +79,9 @@ public class ProfilePopup {
     }
 
     private void openSyncDialog() {
-
+        Intent intent = new Intent(activity, SettingActivity.class);
+        activity.startActivity(intent);
+        activity.finish();
     }
 
     private void logout() {

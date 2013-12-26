@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
@@ -96,11 +97,9 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
         // Event received from mAdapter.
         mAdapter.contextMenuDelegate = new SongListAdapter.IContextMenu() {
             @Override
-            public void onMenuClick(View view, Song song) {
-                // Show the popup menu and set selectedSong
-                /** Store the song that user clicked on the right menu (the star) **/
-                SongListRightMenuHandler.selectedSong = song;
-                popupWindow.showAsDropDown(view);
+            public void onMenuClick(View view, Song song, ImageView theStar) {
+                // Show the popup menu and set selectedSong, theStar
+                SongListRightMenuHandler.openPopupMenu(view, song, theStar);
             }
         };
 
