@@ -11,6 +11,8 @@ import com.hac_library.classes.Chord;
 import com.hac_library.classes.ChordLibrary;
 import com.hac_library.classes.Position;
 
+import static com.hqt.hac.utils.LogUtils.LOGD;
+
 @SuppressLint("DefaultLocale")
 public class ChordHelper {
 	/**
@@ -83,7 +85,7 @@ public class ChordHelper {
 				min = frets[i];
 			}
 		}
-		Log.i("Debug", "min = " + min);
+		// Log.i("Debug", "min = " + min);
 		// Only reduce for fret 12
 		if (min >= 12) {
 			// Subtract all for (min - 1)
@@ -125,6 +127,10 @@ public class ChordHelper {
 	public static Chord getChord(String name, int position) {
 		Chord c = new Chord();
 		c.name = name;
+
+        // Where the hell did I put these lines?!
+        name = ignoreBassNote(name);
+
 		String originalName = getChordBaseName(name);
 		int i = Arrays.asList(ChordLibrary.N).indexOf(originalName);
 
@@ -168,7 +174,11 @@ public class ChordHelper {
 		return c;
 	}
 
-	public static String simplifyName(String chordName) {
+    private static String ignoreBassNote(String name) {
+        return name.replaceAll("\\/.*$", "");
+    }
+
+    public static String simplifyName(String chordName) {
 		String chord = chordName;
 		chord = chord.toLowerCase();
 		// The first letter

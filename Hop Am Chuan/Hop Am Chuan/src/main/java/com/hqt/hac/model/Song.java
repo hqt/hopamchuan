@@ -346,9 +346,23 @@ public class Song implements Parcelable {
         isFavorite = in.readInt();
         rhythm = in.readString();
         content = in.readString();
-        in.readTypedList(authors, Artist.CREATOR);
-        in.readTypedList(chords, Chord.CREATOR);
+
+        // TrungDQ: because of lazy load, these value might be null.
+        try {
+            in.readTypedList(authors, Artist.CREATOR);
+        } catch (NullPointerException e) {
+            authors = null;
+        }
+        try {
+            in.readTypedList(chords, Chord.CREATOR);
+        } catch (NullPointerException e) {
+            chords = null;
+        }
+        try {
         in.readTypedList(singers, Artist.CREATOR);
+        } catch (NullPointerException e) {
+            singers = null;
+        }
     }
 
     /**

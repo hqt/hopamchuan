@@ -1,7 +1,9 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import com.hqt.hac.helper.adapter.SongListAdapter;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Song;
+import com.hqt.hac.view.FullscreenSongActivity;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
@@ -158,9 +161,9 @@ public class SongDetailFragment extends Fragment {
     }
 
     private void openFullScreenSong() {
-//        Intent intent = new Intent(activity, SongPlayFullScreen.class);
-//        intent.putExtra("song", (Serializable)song);
-//        activity.startActivity(intent);
+        Intent intent = new Intent(activity, FullscreenSongActivity.class);
+        intent.putExtra("song", song);
+        activity.startActivity(intent);
     }
 
 

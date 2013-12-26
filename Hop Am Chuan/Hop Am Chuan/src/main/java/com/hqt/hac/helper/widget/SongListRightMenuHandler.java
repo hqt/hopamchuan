@@ -25,8 +25,6 @@ import com.hqt.hac.view.R;
 import java.util.Date;
 import java.util.List;
 
-import static com.hqt.hac.utils.LogUtils.LOGE;
-
 public class SongListRightMenuHandler {
     /**
      * Current selected song for song lists (favorite fragment, song list fragment,
@@ -147,13 +145,10 @@ public class SongListRightMenuHandler {
             favoriteBtn.setText(R.string.song_detail_menu_unfavorite);
         }
 
-        int availableHeight = popupWindow.getMaxAvailableHeight(_view);
+        // int availableHeight = popupWindow.getMaxAvailableHeight(_view);
         int height = popupWindow.getHeight();
-        LOGE("TRUNGDQ", "POPUP Height: " + height);
-        LOGE("TRUNGDQ", "Available Height: " + availableHeight);
-
-
-        /* if (availableHeight < popupWindow.getHeight()) {
+        /* LOGE(TAG, "HQT POPUP Height: " + height);
+        if (availableHeight < popupWindow.getHeight()) {
             int[] loc_int = new int[2];
             // popupWindow.showAsDropDown(view, 10, 10);
             LOGE(TAG, "Not Enough Room Space");
@@ -162,6 +157,7 @@ public class SongListRightMenuHandler {
 
         }
         popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 35, 35);*/
+
         popupWindow.showAsDropDown(_view);
     }
 
