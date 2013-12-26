@@ -17,36 +17,24 @@ import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.view.R;
 
 public class PlaylistRightMenuHandler {
-    /**
-     * Current selected playlist
-     */
+    /*** Current selected playlist */
     public static Playlist selectedPlaylist;
 
-    /**
-     * Activity for dialogs
-     */
-    static Activity activity;
+    /*** Activity for dialogs */
+    private static Activity activity;
 
-    /**
-     * The popup window
-     */
-    static PopupWindow pw;
+    /*** The popup window */
+    private static PopupWindow pw;
 
-    /**
-     * Dialog for renaming
-     */
-    static Dialog renPlaylistDialog;
+    /*** Dialog for renaming */
+    private static Dialog renPlaylistDialog;
 
-    /**
-     * Adapter to change after renaming / deleting
-     */
-    static PlaylistManagerAdapter adapter;
+    /*** Adapter to change after renaming / deleting */
+    private static PlaylistManagerAdapter adapter;
 
-    /**
-     * Controls
-     */
-    static EditText txtNewPlaylistName;
-    static EditText txtNewPlaylistDescription;
+    /*** Controls */
+    private static EditText txtNewPlaylistName;
+    private static EditText txtNewPlaylistDescription;
 
     public static void setRightMenuEvents(final Activity _activity, final PopupWindow _pw, PlaylistManagerAdapter _adapter) {
 
@@ -142,7 +130,7 @@ public class PlaylistRightMenuHandler {
         public void onClick(DialogInterface dialog, int which) {
             switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
-                    // Yes button clicked
+                    // "Yes" button clicked
                     PlaylistDataAccessLayer.removePlaylistById(activity.getApplicationContext(), selectedPlaylist.playlistId);
 
                     // Refresh playlist list
@@ -158,7 +146,7 @@ public class PlaylistRightMenuHandler {
                     break;
 
                 case DialogInterface.BUTTON_NEGATIVE:
-                    // No button clicked
+                    // "No" button clicked
                     break;
             }
         }

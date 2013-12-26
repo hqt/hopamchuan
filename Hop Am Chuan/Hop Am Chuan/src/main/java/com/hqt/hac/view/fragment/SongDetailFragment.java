@@ -11,6 +11,8 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.hqt.hac.helper.adapter.SongListAdapter;
+import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.view.MainActivity;
@@ -124,8 +126,14 @@ public class SongDetailFragment extends Fragment {
 
         // Fullscreen button
         ImageView fullScreenButton = (ImageView) rootView.findViewById(R.id.songFullScreen);
-        // Menu button
-        final ImageView menuButton = (ImageView) rootView.findViewById(R.id.songMenuBtn);
+        // Star menu button
+        final ImageView starMenuButton = (ImageView) rootView.findViewById(R.id.songMenuBtn);
+
+        if (song.isFavorite > 0) {
+            starMenuButton.setImageResource(R.drawable.star_liked);
+        } else {
+            starMenuButton.setImageResource(R.drawable.star);
+        }
 
         fullScreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,13 +142,15 @@ public class SongDetailFragment extends Fragment {
             }
         });
 
-        // Create popup menu
-        final PopupWindow pw = DialogUtils.createPopup(inflater, R.layout.popup_song_detail_menu);
+        // Event for star menu click
+        final PopupWindow popupWindows = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
+        SongListRightMenuHandler.setRightMenuEvents(activity, popupWindows);
 
-        menuButton.setOnClickListener(new View.OnClickListener() {
+        starMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pw.showAsDropDown(view);
+                // Show the popup menu and set selectedSong, theStar
+                SongListRightMenuHandler.openPopupMenu(view, song, starMenuButton);
             }
         });
 

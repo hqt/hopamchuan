@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -24,55 +25,47 @@ import com.hqt.hac.view.R;
 import java.util.Date;
 import java.util.List;
 
+import static com.hqt.hac.utils.LogUtils.LOGE;
+
 public class SongListRightMenuHandler {
     /**
      * Current selected song for song lists (favorite fragment, song list fragment,
-     * playlist detail fragment *
-     */
+     * playlist detail fragment **/
     public static Song selectedSong = null;
 
-    /**
-     * The list view control for Playlist
-     */
-    static ListView mListView;
+    /*** The ImageView for visual feedback when user like/unlike a song */
+    public static ImageView theStar;
 
-    /**
-     * Playlist list for "Add to playlist" dialog
-     */
-    static List<Playlist> playlists;
+    /*** The list view control for Playlist */
+    private static ListView mListView;
 
-    /**
-     * Activity for dialogs
-     */
-    static Activity activity;
+    /*** Playlist list for "Add to playlist" dialog */
+    private static List<Playlist> playlists;
 
-    /**
-     * The popup window
-     */
+    /*** Activity for dialogs */
+    private static Activity activity;
 
-    static PopupWindow popupWindow;
+    /*** The popup window */
+    private static PopupWindow popupWindow;
 
-    /**
-     * Dialog for playlist list
-     */
-    static Dialog playlistListDialog;
-
-    /**
-     * Dialog for new playlist
-     */
-    static Dialog newPlaylistDialog;
-
-    /**
-     * New playlist dialog controls
-     */
-    static EditText txtNewPlaylistName;
-    static EditText txtNewPlaylistDescription;
+    /*** The popup window's controls */
+    private static Button favoriteBtn;
+    private static Button playlistBtn;
+    private static Button shareBtn;
 
 
-    /**
-     * Adapter for playlist list
-     */
-    static PlaylistListAdapter playlistAdapter;
+    /*** Dialog for playlist list */
+    private static Dialog playlistListDialog;
+
+    /*** Dialog for new playlist */
+    private static Dialog newPlaylistDialog;
+
+    /*** New playlist dialog controls */
+    private static EditText txtNewPlaylistName;
+    private static EditText txtNewPlaylistDescription;
+
+    /*** Adapter for playlist list */
+    private static PlaylistListAdapter playlistAdapter;
 
 
     public static void setRightMenuEvents(final Activity _activity, final PopupWindow _pw) {
@@ -81,9 +74,9 @@ public class SongListRightMenuHandler {
         popupWindow = _pw;
 
         // Popup menu item
-        final Button favoriteBtn = (Button) popupWindow.getContentView().findViewById(R.id.song_list_menu_addtofavorite);
-        final Button playlistBtn = (Button) popupWindow.getContentView().findViewById(R.id.song_list_menu_addtoplaylist);
-        Button shareBtn = (Button) popupWindow.getContentView().findViewById(R.id.song_list_menu_share);
+        favoriteBtn = (Button) popupWindow.getContentView().findViewById(R.id.song_list_menu_addtofavorite);
+        playlistBtn = (Button) popupWindow.getContentView().findViewById(R.id.song_list_menu_addtoplaylist);
+        shareBtn = (Button) popupWindow.getContentView().findViewById(R.id.song_list_menu_share);
 
         // "Add to Favorite" button
         favoriteBtn.setOnClickListener(new ToggleFavorite());
@@ -139,6 +132,37 @@ public class SongListRightMenuHandler {
                 playlistListDialog.show();
             }
         });
+    }
+
+    public static void openPopupMenu(View _view, Song _song, ImageView _theStar) {
+        /** Store the song that user clicked on the right menu **/
+        selectedSong = _song;
+        /** The Image View for visual feedback as user selection **/
+        theStar = _theStar;
+
+        /** Set label for favorite button **/
+        if (_song.isFavorite == 0) {
+            favoriteBtn.setText(R.string.song_detail_menu_favorite);
+        } else {
+            favoriteBtn.setText(R.string.song_detail_menu_unfavorite);
+        }
+
+        int availableHeight = popupWindow.getMaxAvailableHeight(_view);
+        int height = popupWindow.getHeight();
+        LOGE("TRUNGDQ", "POPUP Height: " + height);
+        LOGE("TRUNGDQ", "Available Height: " + availableHeight);
+
+
+        /* if (availableHeight < popupWindow.getHeight()) {
+            int[] loc_int = new int[2];
+            // popupWindow.showAsDropDown(view, 10, 10);
+            LOGE(TAG, "Not Enough Room Space");
+            popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 35, 35);
+        } else {
+
+        }
+        popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 35, 35);*/
+        popupWindow.showAsDropDown(_view);
     }
 
     private static class AddToPlaylistOnClick implements AdapterView.OnItemClickListener {
@@ -212,6 +236,9 @@ public class SongListRightMenuHandler {
                         Toast.LENGTH_LONG);
                 msg.show();
 
+                // Update UI
+                theStar.setImageResource(R.drawable.star);
+                selectedSong.isFavorite = 0;
             }
             // If not in favorite
             else {
@@ -221,6 +248,10 @@ public class SongListRightMenuHandler {
                         activity.getString(R.string.added_to_favorite),
                         Toast.LENGTH_LONG);
                 msg.show();
+
+                // Update UI
+                theStar.setImageResource(R.drawable.star_liked);
+                selectedSong.isFavorite = (int) (new Date()).getTime();
             }
 
             popupWindow.dismiss();

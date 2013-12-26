@@ -207,5 +207,6 @@
     <string name="remove_from_favorite">Bỏ yêu thích</string>
     <string name="removed_from_favorite">Đã xóa ra khỏi danh sách Yêu thích</string>
     <string name="added_to_favorite">Đã thêm vào Yêu thích</string>
+    <string name="song_detail_menu_unfavorite">Bỏ yêu thích</string>
 
 </resources>
