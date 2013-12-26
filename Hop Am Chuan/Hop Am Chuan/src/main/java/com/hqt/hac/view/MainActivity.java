@@ -81,7 +81,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // add strict mode for searching performance issue
-        if (DEVELOPER_MODE) {
+        if (!DEVELOPER_MODE) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                     .detectDiskReads()
                     .detectDiskWrites()

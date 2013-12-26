@@ -1,0 +1,1 @@
+delete playlist > go to playlist > back button: old playlist still here

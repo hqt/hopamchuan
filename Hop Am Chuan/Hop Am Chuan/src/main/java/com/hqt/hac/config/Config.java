@@ -1,7 +1,8 @@
 package com.hqt.hac.config;
 
 public class Config {
-    public static final int DEFAULT_SONG_ID = -1;
+    public static final int DEFAULT_SONG_ID = 0;
+    public static final int DEFAULT_PLAYLIST_ID_INSERTED_BY_USER = 0;
     public static final int DEFAULT_SEARCH_LIMIT = 50;
     public static final int DEFAULT_SEARCH_ARTIST_LIMIT = 2;
     public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
@@ -24,7 +25,6 @@ public class Config {
     public static final String SERVICE_SYNC_FAVORITE = SITE + "/api/put_favorite";
     public static final String SERVICE_GET_PROFILE = SITE + "/api/get_profile";
 
-
-
-
+    /** Default song count to display in SongListFragment **/
+    public static final int DEFAULT_SONG_LIST_COUNT = 10;
 }

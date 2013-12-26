@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.PlaylistListAdapter;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
@@ -62,6 +63,13 @@ public class SongListRightMenuHandler {
     static Dialog newPlaylistDialog;
 
     /**
+     * New playlist dialog controls
+     */
+    static EditText txtNewPlaylistName;
+    static EditText txtNewPlaylistDescription;
+
+
+    /**
      * Adapter for playlist list
      */
     static PlaylistListAdapter playlistAdapter;
@@ -106,9 +114,16 @@ public class SongListRightMenuHandler {
 
         // Event to add new playlist
         LinearLayout addNewPlaylistBtn = (LinearLayout) playlistListDialog.findViewById(R.id.playlist_list_header);
+
+        txtNewPlaylistName = (EditText) newPlaylistDialog.findViewById(R.id.txtNewPlaylistName);
+        txtNewPlaylistDescription = (EditText) newPlaylistDialog.findViewById(R.id.txtNewPlaylistDescription);
+
         addNewPlaylistBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                txtNewPlaylistName.setText("");
+                txtNewPlaylistDescription.setText("");
+                txtNewPlaylistName.requestFocus();
                 newPlaylistDialog.show();
             }
         });
@@ -117,7 +132,7 @@ public class SongListRightMenuHandler {
             @Override
             public void onClick(View view) {
                 popupWindow.dismiss();
-                playlistListDialog.setTitle(selectedSong.title);
+                playlistListDialog.setTitle(R.string.title_add_to_playlist_dialog);
 
                 // Refresh playlists
                 playlistAdapter.setPlaylists(PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext()));
@@ -147,8 +162,6 @@ public class SongListRightMenuHandler {
     }
 
     private static class NewPlaylistOnClick implements View.OnClickListener {
-        final EditText txtNewPlaylistName = (EditText) newPlaylistDialog.findViewById(R.id.txtNewPlaylistName);
-        final EditText txtNewPlaylistDescription = (EditText) newPlaylistDialog.findViewById(R.id.txtNewPlaylistDescription);
 
         @Override
         public void onClick(View view) {
@@ -159,7 +172,7 @@ public class SongListRightMenuHandler {
                 msg.show();
             } else {
                 // Add new playlist
-                Playlist newPlaylist = new Playlist(0,
+                Playlist newPlaylist = new Playlist(Config.DEFAULT_PLAYLIST_ID_INSERTED_BY_USER,
                         txtNewPlaylistName.getText().toString(),
                         txtNewPlaylistDescription.getText().toString(),
                         new Date(),

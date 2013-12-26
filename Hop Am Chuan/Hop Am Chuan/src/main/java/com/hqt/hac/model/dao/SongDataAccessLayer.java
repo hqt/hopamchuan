@@ -95,7 +95,6 @@ public class SongDataAccessLayer {
      * @return
      */
     public static Song getSongById(Context context, int songId) {
-        LOGD(TAG, "Get Song By Id");
         ContentResolver resolver = context.getContentResolver();
         Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
         Uri songUri = Uri.withAppendedPath(uri, songId + "");
@@ -134,17 +133,16 @@ public class SongDataAccessLayer {
                 int isFavorite = c.getInt(isFavoriteCol);
                 int lastView = c.getInt(lastViewCol);
 
+                LOGD(TAG, "Get Song By Id: " + songId + ":" + title);
                 return new Song(_id, id, title, link, firstLyric, date,
                         titleAscii, lastView, isFavorite, rhythm);
             }
         } catch (Exception e) {
-            LOGE(TAG, "Parse song fail!");
             e.printStackTrace();
         } finally {
-            if (c != null) {
-                c.close();
-            }
+            c.close();
         }
+        LOGD(TAG, "Get Song By Id FAIL: " + songId);
         return null;
     }
 
