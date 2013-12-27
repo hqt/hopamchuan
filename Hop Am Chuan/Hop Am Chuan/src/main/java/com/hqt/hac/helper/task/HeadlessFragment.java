@@ -1,10 +1,14 @@
 package com.hqt.hac.helper.task;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import com.hqt.hac.utils.ResourceUtils;
+import com.hqt.hac.utils.UIUtils;
 
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
@@ -32,6 +36,7 @@ public class HeadlessFragment extends Fragment {
     private boolean isFinish = false;
 
     /** this method should be only called at first created */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +47,14 @@ public class HeadlessFragment extends Fragment {
 
         // running long action
         task = new RotationAsyncTask();
-        task.execute();
+
+        // because on API >= 11. All AsyncTask runs on same thread (and different from UI Thread)
+        // we need to call Executor
+        if (UIUtils.hasHoneycomb()) {
+            task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        } else {
+            task.execute();
+        }
     }
 
     /** when configuration changes. attach again activity

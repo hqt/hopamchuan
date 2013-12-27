@@ -52,6 +52,22 @@ public class NetworkUtils {
         }
     }
 
+    /** wifi connect or not (not including 3G) */
+    public static boolean isWifiConnect(Context ctx) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) ctx
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        final android.net.NetworkInfo wifi = connectivityManager
+                .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+        if (wifi.isAvailable()
+                && wifi.getDetailedState() == NetworkInfo.DetailedState.CONNECTED) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /** Get Data Fom URL Using GET Method */
     public static String getResponseFromGetRequest(String url) {
         HttpClient httpClient = new DefaultHttpClient();
