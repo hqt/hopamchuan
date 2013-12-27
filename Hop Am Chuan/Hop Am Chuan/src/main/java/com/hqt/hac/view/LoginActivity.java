@@ -1,6 +1,5 @@
 package com.hqt.hac.view;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -20,8 +19,6 @@ import com.hqt.hac.model.json.HACAccount;
 import com.hqt.hac.utils.APIUtils;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.utils.NetworkUtils;
-import com.hqt.hac.utils.UIUtils;
-import com.hqt.hac.helper.task.LoginAsyncTask;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
@@ -83,11 +80,11 @@ public class LoginActivity extends AsyncActivity {
     }
 
     private void syncAccount() {
-        if (!NetworkUtils.isNetworkConnected(getBaseContext())) {
+        /*if (!NetworkUtils.isNetworkConnected(getBaseContext())) {
             AlertDialog dialog = DialogUtils.showAlertDialog(this, "Network Problem", "Check Your Wifi or 3G Network Again");
             dialog.show();
             return;
-        }
+        }*/
 
         LOGE(TAG, txtUsername.getText() + "\t" + txtPassword.getText());
         username = txtUsername.getText().toString();

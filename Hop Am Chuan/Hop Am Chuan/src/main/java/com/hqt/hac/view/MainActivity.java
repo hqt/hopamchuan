@@ -26,6 +26,7 @@ import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.fragment.*;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.unittest.DatabaseTest;
 
 import java.util.Calendar;
 import java.util.List;
@@ -103,8 +104,9 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // delete all database
 //        HopAmChuanDatabase.deleteDatabase(getApplicationContext());
 
-        // create sample database
-//        DatabaseTest.prepareLocalDatabaseWithSample(getApplicationContext());
+         // create sample database
+         // DatabaseTest.prepareLocalDatabaseWithSample(getApplicationContext());
+         // DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());
 
         // set Main View
         setContentView(R.layout.activity_main_frame);

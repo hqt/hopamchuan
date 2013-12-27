@@ -28,8 +28,7 @@ public class NetworkUtils {
     /**
      * Reference this link : {@see <a href=
      * "http://developer.android.com/training/monitoring-device-state/connectivity-monitoring.html"
-     * >Android Developer</a>} Using to detect network on Android Device if Wifi
-     * | 3G -> can synchronize data
+     * >Android Developer</a>} Using to detect network on Android Device if Wifi | 3G -> can synchronize data
      */
     public static boolean isNetworkConnected(Context ctx) {
 
@@ -164,11 +163,29 @@ public class NetworkUtils {
         return null;
     }
 
+    /** sleep for predefine second as we working on slow network @_@ */
     public static void stimulateNetwork(int second) {
         try {
             Thread.sleep(second * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    /** use this method to determine thread signature when running on multi-thread */
+    public static long getThreadId() {
+        Thread t = Thread.currentThread();
+        return t.getId();
+    }
+
+    /** get signature of current thread */
+    public static String getThreadSignature() {
+        Thread t = Thread.currentThread();
+        long id = t.getId();
+        String name = t.getName();
+        long priority = t.getPriority();
+        String groupname = t.getThreadGroup().getName();
+        return (name + ":(id)" + id + ":(priority)" + priority
+                + ":(group)" + groupname);
     }
 }

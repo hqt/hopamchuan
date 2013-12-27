@@ -102,6 +102,8 @@ public class DatabaseTest {
         Song s4 = new Song(Config.DEFAULT_SONG_ID, 4, "Đêm Đông", "www.echip.com.vn", "Đêm đông lao xanh, đêm đông nhớ ai", "dem dong khong nha", new Date());
         Song s5 = new Song(Config.DEFAULT_SONG_ID, 5, "Tên bài hát thật là dài quá đi thôi", "www.echip.com.vn", "Dòng nước trôi lơ lững ngoài nắng", "dong nuoc troi", new Date());
         Song s6 = new Song(Config.DEFAULT_SONG_ID, 6, "Suối không mơ", "www.echip.com.vn", "Dòng nước trôi lơ lững ngoài nắng", "dong nuoc troi", new Date());
+        Song s7 = new Song(Config.DEFAULT_SONG_ID, 7, "Toi dua em sang song", "www.mathscope.org", "toi dua em sang song. troi mua mua roi am tham", "toi dua em sang song", new Date());
+        Song s8 = new Song(Config.DEFAULT_SONG_ID, 8, "Toc hat", "www.mathlink.org", "Duong nhu ai do ngang qua loi ve, gio cuon toc the", "duong nhu ai do", new Date());
 
         SongDataAccessLayer.insertSong(context, s1);
         SongDataAccessLayer.insertSong(context, s2);
@@ -109,11 +111,15 @@ public class DatabaseTest {
         SongDataAccessLayer.insertSong(context, s4);
         SongDataAccessLayer.insertSong(context, s5);
         SongDataAccessLayer.insertSong(context, s6);
+        SongDataAccessLayer.insertSong(context, s7);
+        SongDataAccessLayer.insertSong(context, s8);
 
         // create author
         // thao : author of two songs
         SongArtistDataAccessLayer.insertSong_Author(context, 1, 1);
         SongArtistDataAccessLayer.insertSong_Author(context, 2, 1);
+        SongArtistDataAccessLayer.insertSong_Author(context, 6, 3);
+        SongArtistDataAccessLayer.insertSong_Author(context, 7, 3);
 
         // create chords
         Chord c1 = new Chord(1, "Am");
@@ -141,6 +147,9 @@ public class DatabaseTest {
         SongArtistDataAccessLayer.insertSong_Singer(context, 1, 1);
         SongArtistDataAccessLayer.insertSong_Singer(context, 1, 3);
         SongArtistDataAccessLayer.insertSong_Singer(context, 3, 3);
+        SongArtistDataAccessLayer.insertSong_Singer(context, 6, 3);
+        SongArtistDataAccessLayer.insertSong_Singer(context, 7, 3);
+        SongArtistDataAccessLayer.insertSong_Singer(context, 8, 3);
 
         /*// create favorite includes two songs
         FavoriteDataAccessLayer.addSongToFavorite(context, 1);

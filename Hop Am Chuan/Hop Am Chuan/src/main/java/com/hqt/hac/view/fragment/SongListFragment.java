@@ -3,19 +3,14 @@ package com.hqt.hac.view.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.PopupWindow;
-import android.widget.Spinner;
+import android.widget.*;
 
 import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.SongListAdapter;
+import com.hqt.hac.helper.widget.InfinityListView;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dao.SongDataAccessLayer;
@@ -31,13 +26,13 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
 /**
  * Fragment uses for viewing songs as categories
  */
-public class SongListFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+public class SongListFragment extends Fragment implements AdapterView.OnItemSelectedListener, InfinityListView.ILoadingContent {
 
     public static final String TAG = makeLogTag(SongListFragment.class);
 
     /** Main Activity for reference */
     MainActivity activity;
-    ListView mListView;
+    InfinityListView mListView;
     List<Song> songs;
 
     /** One popup menu for all items **/
@@ -87,7 +82,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), 10);
 
         /** ListView Configure */
-        mListView = (ListView) rootView.findViewById(R.id.list_view);
+        mListView = (InfinityListView) rootView.findViewById(R.id.list_view);
         songlistAdapter = new SongListAdapter(activity, songs);
 
         // Event for right menu click
@@ -135,6 +130,19 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
             }
         });
 
+       /* mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            int id = 1;
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                LOGE(TAG, "On Scroll State Changed");
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                LOGE(TAG, "On Scroll");
+            }
+        });*/
+
         return rootView;
     }
 
@@ -168,4 +176,15 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
 
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////////////// METHOD FOR ENDLESS LOADING //////////////////////////
+    @Override
+    public void load(int index) {
+
+    }
+
+    @Override
+    public void load(int from, int to) {
+
+    }
 }

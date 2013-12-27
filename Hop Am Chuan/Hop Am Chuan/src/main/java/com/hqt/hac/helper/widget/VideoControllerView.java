@@ -93,7 +93,7 @@ public class VideoControllerView extends FrameLayout {
     private TextView mEndTime, mCurrentTime;
     //endregion
 
-    /** Use handler for processing on Multi thread */
+    /** Use mHandler for processing on Multi thread */
     private Handler mHandler = new MessageHandler(this);
 
 

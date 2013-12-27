@@ -9,8 +9,9 @@ import android.support.v4.app.Fragment;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 /**
- * Use this fragment for running task underground using AsyncTask
+ * Use this fragment for running background task using AsyncTask
  * because Android retains Fragment (different from Activity). so itself will be survive across configuration changes
+ * we will use this trick to fix configuration change when using AsyncTask
  * *Note* because Java does not support real Callback method. we create one for convenience
  *
  * Created by ThaoHQSE60963 on 12/26/13.
@@ -105,12 +106,13 @@ public class HeadlessFragment extends Fragment {
 
         @Override
         protected Integer doInBackground(Void... params) {
-            return mCallback.doInBackground();
+            if (mCallback != null) return mCallback.doInBackground();
+            else return -1;
         }
 
         /** because publishProgress is protected. use this method to public to outside */
-        public void publishProgressToUI(Integer progess) {
-            publishProgress(progess);
+        public void publishProgressToUI(Integer progress) {
+            publishProgress(progress);
 
         }
     }

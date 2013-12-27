@@ -24,10 +24,6 @@ public class ProfilePopup {
 
     Activity activity;
     Dialog dialog;
-    EditText txtUsername;
-    EditText txtPassword;
-    Button loginButton;
-    Button cancelButton;
 
     public ProfilePopup(Activity activity) {
         this.activity = activity;

@@ -38,4 +38,9 @@ public class SplashScreen extends Activity {
     public void onBackPressed() {
         // Prevent back button from quiting the app before it starts.
     }
+
+    @Override
+    public Object onRetainNonConfigurationInstance() {
+        return super.onRetainNonConfigurationInstance();
+    }
 }

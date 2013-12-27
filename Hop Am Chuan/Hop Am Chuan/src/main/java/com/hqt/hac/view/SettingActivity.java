@@ -20,13 +20,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.hqt.hac.config.PrefStore;
+import com.hqt.hac.helper.task.AsyncActivity;
 import com.hqt.hac.helper.task.SyncSongAsyncTask;
 import com.hqt.hac.helper.task.UpdateSongAsyncTask;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.utils.UIUtils;
 
-public class SettingActivity extends ActionBarActivity {
+public class SettingActivity extends AsyncActivity {
 
 
     /** Screen Widget */
@@ -140,5 +141,48 @@ public class SettingActivity extends ActionBarActivity {
         startActivity(intent);
         finish();
     }
+
+    /////////////////////////////////////////////////////////////////
+    ////////////////// ASYNCTASK METHOD CALLBACK ///////////////////
+    @Override
+    public void onPreExecute() {
+
+    }
+
+    @Override
+    public Integer doInBackground() {
+        return null;
+    }
+
+    @Override
+    public void onProgressUpdate(Integer... values) {
+
+    }
+
+    @Override
+    public void onCancel() {
+
+    }
+
+    @Override
+    public void onPostExecute(int status) {
+
+    }
+
+
+
+
+    ////////////////////////////////////////////////////////////////
+    //////////////////// UPDATE SONG TASK //////////////////////////
+    private void updateSongPreExecute() {
+
+    }
+
+
+
+
+    ////////////////////////////////////////////////////////////////
+    /////////////////// SYNC SONG TASK /////////////////////////////
+
 
 }

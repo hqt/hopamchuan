@@ -1,5 +1,6 @@
 package com.hqt.hac.helper.task;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -13,7 +14,7 @@ import android.support.v4.app.FragmentManager;
 public abstract class AsyncActivity extends FragmentActivity implements ITaskCallback {
 
     HeadlessFragment fragment;
-    // this dialog should put in this activity because it asscioate with activity
+    // this dialog should put in this activity because it associate with activity
     public ProgressDialog dialog;
 
     @Override

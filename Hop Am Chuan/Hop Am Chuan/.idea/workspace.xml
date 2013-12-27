@@ -2,7 +2,9 @@
 <project version="4">
   <component name="AndroidLayoutPreviewToolWindow">
     <option name="state">
-      <GlobalState />
+      <GlobalState>
+        <option name="visible" value="false" />
+      </GlobalState>
     </option>
   </component>
   <component name="AndroidLayouts">
@@ -15,6 +17,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="053ba43b-507b-4d1e-a71a-12584668e3f0" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/list_item_loading.xml" />
+      <change type="DELETED" beforePath="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\java\com\hqt\hac\helper\task\LoginAsyncTask.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\java\com\hqt\hac\view\popup\LoginPopup.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GraphicExampleProjectProject/.gitignore" afterPath="$PROJECT_DIR$/../../GraphicExampleProjectProject/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/.gitignore" afterPath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/APIUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/APIUtils.java" />
@@ -43,14 +49,17 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/AnimatorListenerAdapter.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/AnimatorListenerAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/view/animation/AnimatorProxy.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/view/animation/AnimatorProxy.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/AnimatorSet.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/AnimatorSet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/AsyncActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/AsyncActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/menu/BaseMenuPresenter.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/menu/BaseMenuPresenter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/gen/com/actionbarsherlock/BuildConfig.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/gen/com/actionbarsherlock/BuildConfig.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/CapitalizingButton.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/CapitalizingButton.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/CapitalizingTextView.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/CapitalizingTextView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/view/CollapsibleActionView.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/view/CollapsibleActionView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/CollapsibleActionViewWrapper.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/CollapsibleActionViewWrapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/unittest/DatabaseTest.java" afterPath="$PROJECT_DIR$/src/main/java/com/unittest/DatabaseTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/FloatEvaluator.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/FloatEvaluator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/FloatKeyframeSet.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/FloatKeyframeSet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/HeadlessFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/HeadlessFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/IcsAbsSpinner.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/IcsAbsSpinner.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/IcsAdapterView.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/IcsAdapterView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/IcsColorDrawable.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/IcsColorDrawable.java" />
@@ -68,6 +77,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/menu/ListMenuItemView.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/menu/ListMenuItemView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/LoginActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/LoginActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/java/com/example/view/MainActivity.java" afterPath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/java/com/example/view/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/view/Menu.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/view/Menu.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/menu/MenuBuilder.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/menu/MenuBuilder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/view/MenuItem.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/view/MenuItem.java" />
@@ -78,23 +88,29 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/menu/MenuView.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/menu/MenuView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/menu/MenuWrapper.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/menu/MenuWrapper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Document/design/jpg/Missing.txt" afterPath="$PROJECT_DIR$/../../Document/design/jpg/Missing.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/NavigationDrawerAdapter.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/NavigationDrawerAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/NetworkUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/NetworkUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/widget/NineFrameLayout.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/widget/NineFrameLayout.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/widget/NineHorizontalScrollView.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/widget/NineHorizontalScrollView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/widget/NineLinearLayout.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/widget/NineLinearLayout.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/view/NineViewGroup.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/view/NineViewGroup.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/ObjectAnimator.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/ObjectAnimator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/PopupWindowCompat.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/PopupWindowCompat.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/popup/ProfilePopup.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/popup/ProfilePopup.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/PropertyValuesHolder.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/PropertyValuesHolder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/README.md" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/ResourcesCompat.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/ResourcesCompat.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/test/com/actionbarsherlock/internal/ResourcesCompatTest.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/test/com/actionbarsherlock/internal/ResourcesCompatTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/ScrollingTabContainerView.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/ScrollingTabContainerView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/widget/SearchView.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/widget/SearchView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/widget/ShareActionProvider.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/widget/ShareActionProvider.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/app/SherlockDialogFragment.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/app/SherlockDialogFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/app/SherlockFragment.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/app/SherlockFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/app/SherlockFragmentActivity.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/app/SherlockFragmentActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/app/SherlockListFragment.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/app/SherlockListFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SplashScreen.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SplashScreen.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/StandaloneActionMode.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/StandaloneActionMode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Research Projects/SmartSongView/src/smartsongview/StringUtils.java" afterPath="$PROJECT_DIR$/../../Research Projects/SmartSongView/src/smartsongview/StringUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/view/SubMenu.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/view/SubMenu.java" />
@@ -104,6 +120,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/TabsLinearLayout.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/TabsLinearLayout.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/TypeEvaluator.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/TypeEvaluator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/ValueAnimator.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/ValueAnimator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/VideoControllerView.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/VideoControllerView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/View_HasStateListenerSupport.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/View_HasStateListenerSupport.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/View_OnAttachStateChangeListener.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/View_OnAttachStateChangeListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/android/support/v4/app/Watson.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/android/support/v4/app/Watson.java" />
@@ -195,6 +212,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/res/values/dimens.xml" afterPath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/res/values/dimens.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/res/values-w820dp/dimens.xml" afterPath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/res/values-w820dp/dimens.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/res/layout/fragment_main.xml" afterPath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/res/layout/fragment_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_song_list.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_song_list.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Research Projects/SmartSongView/nbproject/genfiles.properties" afterPath="$PROJECT_DIR$/../../Research Projects/SmartSongView/nbproject/genfiles.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GraphicExampleProjectProject/gradlew" afterPath="$PROJECT_DIR$/../../GraphicExampleProjectProject/gradlew" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/bin/jarlist.cache" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/bin/jarlist.cache" />
@@ -212,6 +230,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/res/layout-v14/sherlock_spinner_item.xml" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/res/layout-v14/sherlock_spinner_item.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/res/values/styles.xml" />
+      <change type="MOVED" beforePath="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\java\com\hqt\hac\helper\widget\BezelImageView.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/alpha/BezelImageView.java" />
+      <change type="MOVED" beforePath="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\java\com\hqt\hac\helper\widget\EllipsizedTextView.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/alpha/EllipsizedTextView.java" />
     </list>
     <ignored path="Hop Am Chuan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -279,56 +299,103 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LoginAsyncTask.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/LoginAsyncTask.java">
+      <file leaf-file-name="InfinityListView.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="26" selection-start="1000" selection-end="1000" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2414">
+            <state line="107" column="0" selection-start="3637" selection-end="3637" vertical-scroll-proportion="0.0" vertical-offset="1323" max-vertical-offset="1921">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2535#2951#0" expanded="true" />
+                <element signature="e#2936#2937#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BackgroundContainer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/BackgroundContainer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="13" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginActivity.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/LoginActivity.java">
+      <file leaf-file-name="ObservableScrollView.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/alpha/ObservableScrollView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="5" selection-start="2614" selection-end="2614" vertical-scroll-proportion="0.7965812" vertical-offset="384" max-vertical-offset="2907">
-              <folding>
-                <element signature="e#2226#2259#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="APIUtils.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/APIUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="10" selection-start="1361" selection-end="1361" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="2907">
+            <state line="9" column="13" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AsyncActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/AsyncActivity.java">
+      <file leaf-file-name="FastSearchListView.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/FastSearchListView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="3" selection-start="194" selection-end="194" vertical-scroll-proportion="186.5" vertical-offset="492" max-vertical-offset="1088">
+            <state line="15" column="13" selection-start="357" selection-end="357" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1666">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomScrollView.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/CustomScrollView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="38" column="0" selection-start="957" selection-end="957" vertical-scroll-proportion="0.94107455" vertical-offset="52" max-vertical-offset="697">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="193" column="71" selection-start="6867" selection-end="6867" vertical-scroll-proportion="0.0" vertical-offset="2295" max-vertical-offset="7157">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="53" selection-start="727" selection-end="727" vertical-scroll-proportion="0.0" vertical-offset="82" max-vertical-offset="680">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MergeAdapter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/MergeAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="13" selection-start="459" selection-end="459" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="7871">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SongListFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="179" column="79" selection-start="6888" selection-end="6888" vertical-scroll-proportion="0.0" vertical-offset="2288" max-vertical-offset="2924">
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#4646#5128#0" expanded="true" />
+                <element signature="e#5117#5118#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HeadlessFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/HeadlessFragment.java">
+      <file leaf-file-name="fragment_song_list.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_song_list.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="0" selection-start="1832" selection-end="1832" vertical-scroll-proportion="0.0" vertical-offset="711" max-vertical-offset="2074">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2361#2362#0" expanded="true" />
-                <element signature="e#2393#2394#0" expanded="true" />
-              </folding>
+            <state line="17" column="41" selection-start="660" selection-end="660" vertical-scroll-proportion="-1.92" vertical-offset="241" max-vertical-offset="816">
+              <folding />
             </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
           </provider>
         </entry>
       </file>
@@ -1111,13 +1178,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/ChordViewTextureAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/FindByChordAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/PlaylistManagerAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/NavigationDrawerAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/model/Artist.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/model/Chord.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/NavigationDrawerFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/test/MainActivityNavigationDrawer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/test/MainActivityTest.java" />
         <option value="$PROJECT_DIR$/libs/SlidingMenu/build.gradle" />
@@ -1138,7 +1198,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/hac_library/classes/ChordLibrary.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/ChordViewFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/config/Config.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/RotationAsyncTask.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/PlaylistListAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/PlaylistManagerFragment.java" />
@@ -1148,20 +1207,28 @@
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/BunnyApp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/BunnyApplication.java" />
         <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/FullscreenSongActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongDetailFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/model/Song.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/model/Playlist.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/RotationAsyncTaskTemp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/ClassA.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/util/LoginActivityTemp.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/NetworkUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/popup/ProfilePopup.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/HeadlessFragment.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/AsyncActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/APIUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SplashScreen.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/LoginActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/APIUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/AsyncActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/list_item_loading.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/fragment_song_list.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/unittest/DatabaseTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/NetworkUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/EndlessListView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java" />
       </list>
     </option>
   </component>
@@ -1197,6 +1264,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1299,6 +1367,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1342,6 +1440,48 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hac" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="popup" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1573,8 +1713,96 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="widget" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hac" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="helper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="task" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hac" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="helper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="task" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AsyncActivity.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1750,7 +1978,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1771,6 +1998,7 @@
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="LGOTMS73e6a32" />
+    <property name="last_opened_file_path" value="E:/" />
   </component>
   <component name="RunManager" selected="Android Application.Hop Am Chuan-Hop Am Chuan">
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
@@ -1804,20 +2032,17 @@
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
-    <configuration default="true" type="XSLT" factoryName="XSLT">
-      <option name="myOutputFile" />
-      <option name="myOpenOutputFile" value="false" />
-      <option name="myOpenInBrowser" value="false" />
-      <option name="mySmartErrorHandling" value="true" />
-      <option name="myRunnerPort" value="34873" />
-      <option name="myVmArguments" />
-      <option name="myWorkingDirectory" />
-      <option name="myModule" />
-      <option name="myJdk" />
-      <parameters />
-      <OutputType value="CONSOLE" save-to-file="false" />
-      <FileType name="XML" />
-      <JdkChoice value="FROM_MODULE" />
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -1848,17 +2073,20 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
+    <configuration default="true" type="XSLT" factoryName="XSLT">
+      <option name="myOutputFile" />
+      <option name="myOpenOutputFile" value="false" />
+      <option name="myOpenInBrowser" value="false" />
+      <option name="mySmartErrorHandling" value="true" />
+      <option name="myRunnerPort" value="34873" />
+      <option name="myVmArguments" />
+      <option name="myWorkingDirectory" />
+      <option name="myModule" />
+      <option name="myJdk" />
+      <parameters />
+      <OutputType value="CONSOLE" save-to-file="false" />
+      <FileType name="XML" />
+      <JdkChoice value="FROM_MODULE" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -1962,12 +2190,15 @@
       <workItem from="1387858773785" duration="3744000" />
       <workItem from="1387891565606" duration="7596000" />
       <workItem from="1387933333898" duration="45020000" />
-      <workItem from="1388060617166" duration="11507000" />
+      <workItem from="1388060617166" duration="14605000" />
+      <workItem from="1388086629381" duration="2405000" />
+      <workItem from="1388109013505" duration="7770000" />
+      <workItem from="1388133488514" duration="8294000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67867000" />
+    <option name="totallyTimeSpent" value="89434000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -1976,11 +2207,12 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290469" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3258786" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32428116" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1999,10 +2231,40 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20392749" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29229608" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3253205" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.525641" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USERS">
@@ -2025,629 +2287,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="uml://JAVA/">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement />
-          <nodes>
-            <node x="" y="">raw-xlarge</node>
-            <node x="" y="">values-lt-rLT</node>
-            <node x="" y="">raw-lv-xlarge</node>
-            <node x="" y="">groovyjarjarantlr.FileLineFormatter</node>
-            <node x="" y="">groovyjarjarantlr.DefaultFileLineFormatter</node>
-            <node x="" y="">groovyjarjarcommonscli.OptionBuilder</node>
-            <node x="" y="">values-da-rDK</node>
-            <node x="" y="">values-v14</node>
-            <node x="" y="">groovyjarjarantlr.ZeroOrMoreBlock</node>
-            <node x="" y="">values-v11</node>
-            <node x="" y="">.groovy</node>
-            <node x="" y="">drawable-sw600dp-mdpi</node>
-            <node x="" y="">groovyjarjarantlr.ExceptionHandler</node>
-            <node x="" y="">values-mcc314</node>
-            <node x="" y="">groovyjarjarantlr.ANTLRTokenTypes</node>
-            <node x="" y="">values-mcc315</node>
-            <node x="" y="">values-mcc316</node>
-            <node x="" y="">groovyjarjarantlr.GrammarSymbol</node>
-            <node x="" y="">values-mcc310</node>
-            <node x="" y="">values-mcc311</node>
-            <node x="" y="">values-mcc312</node>
-            <node x="" y="">values-mcc313</node>
-            <node x="" y="">values-ro-rRO</node>
-            <node x="" y="">values-it-rCH</node>
-            <node x="" y="">groovyjarjarantlr.TreeParser</node>
-            <node x="" y="">groovyjarjarantlr.LexerSharedInputState</node>
-            <node x="" y="">groovyjarjarantlr.Grammar</node>
-            <node x="" y="">drawable-nodpi</node>
-            <node x="" y="">drawable-land-ldpi</node>
-            <node x="" y="">groovyjarjarantlr.TokenStreamRewriteEngine</node>
-            <node x="" y="">values-es-rES</node>
-            <node x="" y="">values-hr-rHR</node>
-            <node x="" y="">groovyjarjarantlr.CharRangeElement</node>
-            <node x="" y="">groovyjarjarantlr.CharQueue</node>
-            <node x="" y="">res</node>
-            <node x="" y="">values-sw720dp-w1280dp</node>
-            <node x="" y="">groovyjarjarantlr.TreeBlockContext</node>
-            <node x="" y="">layout-large</node>
-            <node x="" y="">values-zh-rCN</node>
-            <node x="" y="">groovyjarjarantlr.TokenStreamIOException</node>
-            <node x="" y="">values-vi</node>
-            <node x="" y="">values-uk</node>
-            <node x="" y="">raw-sr-xlarge</node>
-            <node x="" y="">sunw</node>
-            <node x="" y="">groovyjarjarantlr.BaseAST</node>
-            <node x="" y="">drawable-hdpi</node>
-            <node x="" y="">values-cs-rCZ</node>
-            <node x="" y="">values-nl-rBE</node>
-            <node x="" y="">groovyjarjarantlr.StringLiteralSymbol</node>
-            <node x="" y="">groovyjarjarantlr.CharStreamIOException</node>
-            <node x="" y="">classes</node>
-            <node x="" y="">groovyjarjarantlr.SynPredBlock</node>
-            <node x="" y="">groovyjarjarantlr.ANTLRError</node>
-            <node x="" y="">groovyjarjarantlr.WildcardElement</node>
-            <node x="" y="">values-mcc340-mnc01</node>
-            <node x="" y="">groovyjarjarantlr.ASTVisitor</node>
-            <node x="" y="">values-tl</node>
-            <node x="" y="">groovyjarjarcommonscli.CommandLineParser</node>
-            <node x="" y="">drawable-sw600dp-nodpi</node>
-            <node x="" y="">values-tr</node>
-            <node x="" y="">values-el-rGR</node>
-            <node x="" y="">resources</node>
-            <node x="" y="">raw-fa-xlarge</node>
-            <node x="" y="">groovyjarjarantlr.ParseTreeToken</node>
-            <node x="" y="">raw-sl</node>
-            <node x="" y="">raw-sk</node>
-            <node x="" y="">values-pt-rPT</node>
-            <node x="" y="">values-de-rAT</node>
-            <node x="" y="">values-mcc450</node>
-            <node x="" y="">values-sv-rSE</node>
-            <node x="" y="">raw-nb-xlarge</node>
-            <node x="" y="">raw-ru</node>
-            <node x="" y="">raw-hr-xlarge</node>
-            <node x="" y="">groovyjarjarantlr.CommonHiddenStreamToken</node>
-            <node x="" y="">raw-ro</node>
-            <node x="" y="">raw-rm</node>
-            <node x="" y="">values-mcc214-mnc07</node>
-            <node x="" y="">values-mcc214-mnc03</node>
-            <node x="" y="">raw-th</node>
-            <node x="" y="">raw-tl</node>
-            <node x="" y="">values-w720dp</node>
-            <node x="" y="">groovyjarjarantlr.LLkGrammarAnalyzer</node>
-            <node x="" y="">groovyjarjarantlr.TokenManager</node>
-            <node x="" y="">values-mcc440</node>
-            <node x="" y="">values-mcc234-mnc33</node>
-            <node x="" y="">values-en-rZA</node>
-            <node x="" y="">raw-sv</node>
-            <node x="" y="">groovyjarjarantlr.DefineGrammarSymbols</node>
-            <node x="" y="">groovyjarjarantlr.ASTIterator</node>
-            <node x="" y="">values-zu</node>
-            <node x="" y="">raw-sr</node>
-            <node x="" y="">raw</node>
-            <node x="" y="">drawable-sw600dp-xhdpi</node>
-            <node x="" y="">values-land</node>
-            <node x="" y="">groovyjarjarcommonscli.Parser</node>
-            <node x="" y="">raw-uk</node>
-            <node x="" y="">drawable-sw600dp-hdpi</node>
-            <node x="" y="">raw-ar-xlarge</node>
-            <node x="" y="">raw-pt-rPT-xlarge</node>
-            <node x="" y="">groovyjarjarantlr.BlockWithImpliedExitPath</node>
-            <node x="" y="">values-mcc450-ko</node>
-            <node x="" y="">raw-de-xlarge</node>
-            <node x="" y="">raw-tr</node>
-            <node x="" y="">groovyjarjarantlr.PrintWriterWithSMAP</node>
-            <node x="" y="">raw-vi</node>
-            <node x="" y="">.groovyjarjarcommonscli</node>
-            <node x="" y="">META-INF</node>
-            <node x="" y="">groovyjarjarantlr.ParseTreeRule</node>
-            <node x="" y="">raw-fr-xlarge</node>
-            <node x="" y="">color</node>
-            <node x="" y="">groovyjarjarcommonscli.UnrecognizedOptionException</node>
-            <node x="" y="">groovyjarjarantlr.GrammarElement</node>
-            <node x="" y="">groovyjarjarantlr.DefaultToolErrorHandler</node>
-            <node x="" y="">java</node>
-            <node x="" y="">jdk</node>
-            <node x="" y="">groovyjarjarantlr.ExceptionSpec</node>
-            <node x="" y="">values-ca-rES</node>
-            <node x="" y="">values-mcc222-mnc10</node>
-            <node x="" y="">mipmap-xxhdpi</node>
-            <node x="" y="">drawable</node>
-            <node x="" y="">groovyjarjarantlr.TokenStreamBasicFilter</node>
-            <node x="" y="">values-tr-rTR</node>
-            <node x="" y="">groovyjarjarcommonscli.OptionGroup</node>
-            <node x="" y="">raw-it-xlarge</node>
-            <node x="" y="">layout-w600dp</node>
-            <node x="" y="">groovyjarjarantlr.TokenStreamSelector</node>
-            <node x="" y="">.META-INF</node>
-            <node x="" y="">groovyjarjarantlr.TokenSymbol</node>
-            <node x="" y="">values-pt-rBR</node>
-            <node x="" y="">values-mcc302-mnc720</node>
-            <node x="" y="">menu</node>
-            <node x="" y="">values-nl</node>
-            <node x="" y="">values-pl-rPL</node>
-            <node x="" y="">groovyjarjarantlr.PythonCharFormatter</node>
-            <node x="" y="">raw-ar</node>
-            <node x="" y="">drawable-sw720dp-nodpi</node>
-            <node x="" y="">drawable-land-hdpi</node>
-            <node x="" y="">groovyjarjarantlr.LexerGrammar</node>
-            <node x="" y="">groovyjarjarantlr.CSharpCodeGenerator</node>
-            <node x="" y="">groovyjarjarantlr.ANTLRException</node>
-            <node x="" y="">drawable-ldrtl-hdpi</node>
-            <node x="" y="">groovyjarjarantlr.Token</node>
-            <node x="" y="">values-th-rTH</node>
-            <node x="" y="">values-h720dp</node>
-            <node x="" y="">values-ms</node>
-            <node x="" y="">raw-vi-xlarge</node>
-            <node x="" y="">groovyjarjarantlr.JavaCharFormatter</node>
-            <node x="" y="">groovyjarjarantlr.PythonBlockFinishingInfo</node>
-            <node x="" y="">values-nb</node>
-            <node x="" y="">groovyjarjarantlr.CharFormatter</node>
-            <node x="" y="">groovyjarjarantlr.Alternative</node>
-            <node x="" y="">values-sw720dp-land</node>
-            <node x="" y="">groovyjarjarantlr.StringLiteralElement</node>
-            <node x="" y="">values-mcc222-mnc01</node>
-            <node x="" y="">layout-port</node>
-            <node x="" y="">layout-sw600dp-port</node>
-            <node x="" y="">groovyjarjarantlr.ANTLRTokdefLexer</node>
-            <node x="" y="">groovyjarjarantlr.StringUtils</node>
-            <node x="" y="">drawable-ldrtl-ldpi</node>
-            <node x="" y="">groovyjarjarantlr.ParserSharedInputState</node>
-            <node x="" y="">values-lt</node>
-            <node x="" y="">values-lv</node>
-            <node x="" y="">groovyjarjarantlr.RuleRefElement</node>
-            <node x="" y="">drawable-mdpi</node>
-            <node x="" y="">drawable-land-xhdpi</node>
-            <node x="" y="">groovyjarjarantlr.ToolErrorHandler</node>
-            <node x="" y="">values-sr-rRS</node>
-            <node x="" y="">raw-es-xlarge</node>
-            <node x="" y="">values-nb-rNO</node>
-            <node x="" y="">values-sw</node>
-            <node x="" y="">values-sv</node>
-            <node x="" y="">groovyjarjarcommonscli.OptionValidator</node>
-            <node x="" y="">mipmap-mdpi</node>
-            <node x="" y="">groovyjarjarcommonscli.Option</node>
-            <node x="" y="">values-sr</node>
-            <node x="" y="">layout-xlarge</node>
-            <node x="" y="">values-port</node>
-            <node x="" y="">values-ru-rRU</node>
-            <node x="" y="">values-sl</node>
-            <node x="" y="">groovyjarjarantlr.ByteBuffer</node>
-            <node x="" y="">values-sk</node>
-            <node x="" y="">values-bg-rBG</node>
-            <node x="" y="">values-th</node>
-            <node x="" y="">groovyjarjarantlr.Version</node>
-            <node x="" y="">values-en-rSG</node>
-            <node x="" y="">groovyjarjarantlr.ASTPair</node>
-            <node x="" y="">.groovyjarjarantlr</node>
-            <node x="" y="">groovyjarjarantlr.TokenRefElement</node>
-            <node x="" y="">groovyjarjarantlr.CharBuffer</node>
-            <node x="" y="">groovyjarjarcommonscli.TypeHandler</node>
-            <node x="" y="">groovyjarjarantlr.FileCopyException</node>
-            <node x="" y="">groovyjarjarantlr.CharStreamException</node>
-            <node x="" y="">values-ru</node>
-            <node x="" y="">groovyjarjarantlr.ParseTree</node>
-            <node x="" y="">values-ro</node>
-            <node x="" y="">values-rm-rCH</node>
-            <node x="" y="">values-rm</node>
-            <node x="" y="">groovyjarjarcommonscli.BasicParser</node>
-            <node x="" y="">groovyjarjarantlr.RuleBlock</node>
-            <node x="" y="">values-sw600dp-land</node>
-            <node x="" y="">values-lv-rLV</node>
-            <node x="" y="">values-iw-rIL</node>
-            <node x="" y="">drawable-en-hdpi</node>
-            <node x="" y="">.groovyjarjarasm</node>
-            <node x="" y="">groovyjarjarcommonscli.HelpFormatter</node>
-            <node x="" y="">.sshd-config</node>
-            <node x="" y="">layout-sw600dp</node>
-            <node x="" y="">groovyjarjarantlr.PythonCodeGenerator</node>
-            <node x="" y="">raw-sv-xlarge</node>
-            <node x="" y="">values-es-rUS</node>
-            <node x="" y="">raw-zh-rTW</node>
-            <node x="" y="">groovyjarjarantlr.JavaBlockFinishingInfo</node>
-            <node x="" y="">groovyjarjarantlr.CharScanner</node>
-            <node x="" y="">values-sl-rSI</node>
-            <node x="" y="">values-en-rUS</node>
-            <node x="" y="">mipmap-hdpi</node>
-            <node x="" y="">values-sw-rTZ</node>
-            <node x="" y="">groovyjarjarantlr.CppBlockFinishingInfo</node>
-            <node x="" y="">groovyjarjarcommonscli.MissingOptionException</node>
-            <node x="" y="">layout</node>
-            <node x="" y="">groovyjarjarantlr.BlockContext</node>
-            <node x="" y="">values-sw380dp</node>
-            <node x="" y="">groovyjarjarantlr.DocBookCodeGenerator</node>
-            <node x="" y="">drawable-en-ldpi</node>
-            <node x="" y="">values-pt</node>
-            <node x="" y="">groovyjarjarantlr.TokenBuffer</node>
-            <node x="" y="">groovyjarjarantlr.LLkParser</node>
-            <node x="" y="">values-ms-rMY</node>
-            <node x="" y="">values-pl</node>
-            <node x="" y="">groovyjarjarcommonscli.PatternOptionBuilder</node>
-            <node x="" y="">values-w500dp</node>
-            <node x="" y="">groovyjarjarantlr.CharLiteralElement</node>
-            <node x="" y="">groovyjarjarcommonscli.Options</node>
-            <node x="" y="">groovyjarjarantlr.DefaultJavaCodeGeneratorPrintWriterManager</node>
-            <node x="" y="">groovyjarjarantlr.CSharpNameSpace</node>
-            <node x="" y="">values-fr</node>
-            <node x="" y="">values-sw380dp-land</node>
-            <node x="" y="">values-zu-rZA</node>
-            <node x="" y="">raw-ca-xlarge</node>
-            <node x="" y="">groovyjarjarcommonscli.MissingArgumentException</node>
-            <node x="" y="">raw-zh-rTW-xlarge</node>
-            <node x="" y="">groovyjarjarantlr.HTMLCodeGenerator</node>
-            <node x="" y="">raw-pt-xlarge</node>
-            <node x="" y="">values-fa</node>
-            <node x="" y="">drawable-xhdpi</node>
-            <node x="" y="">values-hu-rHU</node>
-            <node x="" y="">values-mcc302-mnc660</node>
-            <node x="" y="">groovyjarjarantlr.ImportVocabTokenManager</node>
-            <node x="" y="">groovyjarjarantlr.GrammarAtom</node>
-            <node x="" y="">values-fi</node>
-            <node x="" y="">drawable-en-mdpi</node>
-            <node x="" y="">values-w600dp</node>
-            <node x="" y="">values-fi-rFI</node>
-            <node x="" y="">values-en-rNZ</node>
-            <node x="" y="">values-in-rID</node>
-            <node x="" y="">raw-fr</node>
-            <node x="" y="">raw-ru-xlarge</node>
-            <node x="" y="">raw-ja-xlarge</node>
-            <node x="" y="">raw-fa</node>
-            <node x="" y="">values-large</node>
-            <node x="" y="">raw-th-xlarge</node>
-            <node x="" y="">groovyjarjarantlr.Utils</node>
-            <node x="" y="">raw-sk-xlarge</node>
-            <node x="" y="">xml-mdpi</node>
-            <node x="" y="">groovyjarjarantlr.TreeElement</node>
-            <node x="" y="">raw-fi</node>
-            <node x="" y="">raw-it</node>
-            <node x="" y="">raw-iw</node>
-            <node x="" y="">values-zh-rTW</node>
-            <node x="" y="">groovyjarjarantlr.Parser</node>
-            <node x="" y="">raw-sl-xlarge</node>
-            <node x="" y="">groovyjarjarantlr.CSharpBlockFinishingInfo</node>
-            <node x="" y="">groovyjarjarantlr.TokenRangeElement</node>
-            <node x="" y="">values-sw600dp</node>
-            <node x="" y="">raw-ja</node>
-            <node x="" y="">layout-land</node>
-            <node x="" y="">groovyjarjarantlr.ANTLRHashString</node>
-            <node x="" y="">raw-hi-xlarge</node>
-            <node x="" y="">raw-id</node>
-            <node x="" y="">values-w360dp</node>
-            <node x="" y="">groovyjarjarcommonscli.CommandLine</node>
-            <node x="" y="">groovyjarjarantlr.TokenQueue</node>
-            <node x="" y="">values-de</node>
-            <node x="" y="">values-da</node>
-            <node x="" y="">raw-hu</node>
-            <node x="" y="">groovyjarjarantlr.InputBuffer</node>
-            <node x="" y="">values-el</node>
-            <node x="" y="">values-es</node>
-            <node x="" y="">drawable-land-mdpi</node>
-            <node x="" y="">raw-el-xlarge</node>
-            <node x="" y="">values-et</node>
-            <node x="" y="">raw-lt-xlarge</node>
-            <node x="" y="">groovyjarjarantlr.AlternativeBlock</node>
-            <node x="" y="">groovyjarjarcommonscli.GnuParser</node>
-            <node x="" y="">raw-hi</node>
-            <node x="" y="">groovyjarjarantlr.CppCodeGenerator</node>
-            <node x="" y="">groovyjarjarantlr.Lookahead</node>
-            <node x="" y="">groovyjarjarantlr.ASTFactory</node>
-            <node x="" y="">groovyjarjarantlr.TokenStreamRetryException</node>
-            <node x="" y="">raw-hr</node>
-            <node x="" y="">raw-hu-xlarge</node>
-            <node x="" y="">values-mcc302-mnc370</node>
-            <node x="" y="">groovyjarjarcommonscli.AlreadySelectedException</node>
-            <node x="" y="">com</node>
-            <node x="" y="">raw-pt-rBR</node>
-            <node x="" y="">groovyjarjarantlr.TokenWithIndex</node>
-            <node x="" y="">layout-sw720dp</node>
-            <node x="" y="">raw-cs</node>
-            <node x="" y="">raw-es-rUS</node>
-            <node x="" y="">groovyjarjarantlr.OneOrMoreBlock</node>
-            <node x="" y="">values</node>
-            <node x="" y="">drawable-ldrtl-xhdpi</node>
-            <node x="" y="">raw-iw-xlarge</node>
-            <node x="" y="">javax</node>
-            <node x="" y="">mipmap-xhdpi</node>
-            <node x="" y="">values-ja</node>
-            <node x="" y="">groovyjarjarantlr.CodeGenerator</node>
-            <node x="" y="">raw-ca</node>
-            <node x="" y="">values-de-rDE</node>
-            <node x="" y="">values-fr-rFR</node>
-            <node x="" y="">values-nl-rNL</node>
-            <node x="" y="">xml</node>
-            <node x="" y="">values-af-rZA</node>
-            <node x="" y="">javafx</node>
-            <node x="" y="">assets</node>
-            <node x="" y="">groovyjarjarantlr.MakeGrammar</node>
-            <node x="" y="">raw-bg</node>
-            <node x="" y="">values-ko</node>
-            <node x="" y="">values-de-rCH</node>
-            <node x="" y="">raw-da-xlarge</node>
-            <node x="" y="">android</node>
-            <node x="" y="">groovyjarjarantlr.RuleSymbol</node>
-            <node x="" y="">values-hu</node>
-            <node x="" y="">values-mcc286</node>
-            <node x="" y="">raw-es</node>
-            <node x="" y="">values-hr</node>
-            <node x="" y="">groovyjarjarantlr.SimpleTokenManager</node>
-            <node x="" y="">sun</node>
-            <node x="" y="">values-hi</node>
-            <node x="" y="">raw-el</node>
-            <node x="" y="">raw-cs-xlarge</node>
-            <node x="" y="">values-uk-rUA</node>
-            <node x="" y="">groovyjarjarantlr.ANTLRStringBuffer</node>
-            <node x="" y="">.org</node>
-            <node x="" y="">values-iw</node>
-            <node x="" y="">groovyjarjarantlr.TokenStreamHiddenTokenFilter</node>
-            <node x="" y="">values-it</node>
-            <node x="" y="">groovyjarjarantlr.CommonAST</node>
-            <node x="" y="">junit</node>
-            <node x="" y="">values-in</node>
-            <node x="" y="">values-tl-rPH</node>
-            <node x="" y="">groovyjarjarantlr.CommonASTWithHiddenTokens</node>
-            <node x="" y="">animator</node>
-            <node x="" y="">raw-da</node>
-            <node x="" y="">raw-de</node>
-            <node x="" y="">values-am-rET</node>
-            <node x="" y="">groovyjarjarantlr.MismatchedTokenException</node>
-            <node x="" y="">groovyjarjarantlr.ANTLRLexer</node>
-            <node x="" y="">groovyjarjarantlr.RuleEndElement</node>
-            <node x="" y="">raw-zh-rCN-xlarge</node>
-            <node x="" y="">values-port-mdpi</node>
-            <node x="" y="">values-fr-rCH</node>
-            <node x="" y="">xml-land</node>
-            <node x="" y="">values-mcc260</node>
-            <node x="" y="">anim-land</node>
-            <node x="" y="">groovyjarjarantlr.TreeParserSharedInputState</node>
-            <node x="" y="">values-mcc262</node>
-            <node x="" y="">groovyjarjarantlr.JavaCodeGenerator</node>
-            <node x="" y="">groovyjarjarantlr.ActionElement</node>
-            <node x="" y="">values-it-rIT</node>
-            <node x="" y="">groovyjarjarantlr.CommonToken</node>
-            <node x="" y="">groovyjarjarantlr.GrammarAnalyzer</node>
-            <node x="" y="">raw-zh-rCN</node>
-            <node x="" y="">groovyjarjarantlr.PreservingFileWriter</node>
-            <node x="" y="">raw-nl</node>
-            <node x="" y="">values-en-rGB</node>
-            <node x="" y="">anim-sw720dp</node>
-            <node x="" y="">values-fr-rCA</node>
-            <node x="" y="">xml-xlarge</node>
-            <node x="" y="">groovyjarjarantlr.TreeWalkerGrammar</node>
-            <node x="" y="">interpolator</node>
-            <node x="" y="">xml-en</node>
-            <node x="" y="">raw-tr-xlarge</node>
-            <node x="" y="">groovyjarjarantlr.ASTNULLType</node>
-            <node x="" y="">raw-pl-xlarge</node>
-            <node x="" y="">groovyjarjarcommonscli.Util</node>
-            <node x="" y="">groovyjarjarantlr.DumpASTVisitor</node>
-            <node x="" y="">anim</node>
-            <node x="" y="">raw-fi-xlarge</node>
-            <node x="" y="">drawable-xxhdpi</node>
-            <node x="" y="">values-fr-rBE</node>
-            <node x="" y="">values-ar-rEG</node>
-            <node x="" y="">org</node>
-            <node x="" y="">groovyjarjarantlr.NameSpace</node>
-            <node x="" y="">values-w480dp</node>
-            <node x="" y="">groovyjarjarantlr.BlockEndElement</node>
-            <node x="" y="">mipmap-ldpi</node>
-            <node x="" y="">values-hi-rIN</node>
-            <node x="" y="">raw-pt-rPT</node>
-            <node x="" y="">groovyjarjarantlr.NoViableAltException</node>
-            <node x="" y="">groovyjarjarantlr.ANTLRTokdefParser</node>
-            <node x="" y="">groovyjarjarantlr.ParserGrammar</node>
-            <node x="" y="">raw-pl</node>
-            <node x="" y="">values-sw720dp</node>
-            <node x="" y="">values-en-rIE</node>
-            <node x="" y="">raw-ro-xlarge</node>
-            <node x="" y="">raw-pt</node>
-            <node x="" y="">values-en-rIN</node>
-            <node x="" y="">values-mcc208-mnc10</node>
-            <node x="" y="">values-sw720dp-port</node>
-            <node x="" y="">groovyjarjarantlr.DiagnosticCodeGenerator</node>
-            <node x="" y="">values-xlarge-land</node>
-            <node x="" y="">groovyjarjarantlr.JavaCodeGeneratorPrintWriterManager</node>
-            <node x="" y="">layout-v11</node>
-            <node x="" y="">layout-v14</node>
-            <node x="" y="">drawable-ldrtl-mdpi</node>
-            <node x="" y="">groovyjarjarcommonscli.PosixParser</node>
-            <node x="" y="">raw-nl-xlarge</node>
-            <node x="" y="">values-mcc208-mnc01</node>
-            <node x="" y="">groovyjarjarantlr.Tool</node>
-            <node x="" y="">raw-ko</node>
-            <node x="" y="">values-be</node>
-            <node x="" y="">netscape</node>
-            <node x="" y="">groovyjarjarantlr.LLkAnalyzer</node>
-            <node x="" y="">groovyjarjarantlr.CSharpCharFormatter</node>
-            <node x="" y="">raw-en-rGB-xlarge</node>
-            <node x="" y="">values-de-rLI</node>
-            <node x="" y="">values-ko-rKR</node>
-            <node x="" y="">values-en-rAU</node>
-            <node x="" y="">raw-tl-xlarge</node>
-            <node x="" y="">values-bg</node>
-            <node x="" y="">groovyjarjarantlr.CppCharFormatter</node>
-            <node x="" y="">groovyjarjarantlr.ActionTransInfo</node>
-            <node x="" y="">values-mcc220</node>
-            <node x="" y="">raw-es-rUS-xlarge</node>
-            <node x="" y="">values-ca</node>
-            <node x="" y="">values-mcc234</node>
-            <node x="" y="">raw-uk-xlarge</node>
-            <node x="" y="">raw-ko-xlarge</node>
-            <node x="" y="">values-en-rCA</node>
-            <node x="" y="">raw-bg-xlarge</node>
-            <node x="" y="">values-cs</node>
-            <node x="" y="">values-sw600dp-w960dp</node>
-            <node x="" y="">raw-id-xlarge</node>
-            <node x="" y="">values-xlarge</node>
-            <node x="" y="">groovyjarjarantlr.TokenStreamException</node>
-            <node x="" y="">groovyjarjarcommonscli.ParseException</node>
-            <node x="" y="">values-mcc232</node>
-            <node x="" y="">groovyjarjarantlr.TokenStream</node>
-            <node x="" y="">values-mcc230</node>
-            <node x="" y="">values-mcc204</node>
-            <node x="" y="">groovyjarjarantlr.TreeSpecifierNode</node>
-            <node x="" y="">groovyjarjarantlr.AlternativeElement</node>
-            <node x="" y="">values-ar-rIL</node>
-            <node x="" y="">values-ja-rJP</node>
-            <node x="" y="">groovyjarjarantlr.RecognitionException</node>
-            <node x="" y="">oracle</node>
-            <node x="" y="">values-w820dp</node>
-            <node x="" y="">groovyjarjarantlr.ANTLRGrammarParseBehavior</node>
-            <node x="" y="">raw-nb</node>
-            <node x="" y="">groovyjarjarantlr.SemanticException</node>
-            <node x="" y="">values-vi-rVN</node>
-            <node x="" y="">groovyjarjarantlr.TokenStreamRecognitionException</node>
-            <node x="" y="">raw-lt</node>
-            <node x="" y="">raw-lv</node>
-            <node x="" y="">groovyjarjarantlr.MismatchedCharException</node>
-            <node x="" y="">dalvik</node>
-            <node x="" y="">values-fa-rIR</node>
-            <node x="" y="">values-mcc219</node>
-            <node x="" y="">groovyjarjarantlr.NoViableAltForCharException</node>
-            <node x="" y="">values-ar</node>
-            <node x="" y="">groovyjarjarantlr.ANTLRParser</node>
-            <node x="" y="">groovyjarjarantlr.ANTLRTokdefParserTokenTypes</node>
-            <node x="" y="">values-sw600dp-port</node>
-            <node x="" y="">drawable-ldpi</node>
-            <node x="" y="">values-am</node>
-            <node x="" y="">raw-en-rGB</node>
-            <node x="" y="">values-af</node>
-            <node x="" y="">values-sk-rSK</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.2090809227389236" x="1430.0" y="271.0" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://JAVA/com">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement>com</OriginalElement>
-          <nodes>
-            <node x="" y="">com.hqt</node>
-            <node x="" y="">com.unittest</node>
-            <node x="" y="">com.oracle</node>
-            <node x="" y="">com.jeremyfeinstein</node>
-            <node x="" y="">com.hac_library</node>
-            <node x="" y="">com.commonsware</node>
-            <node x="" y="">com.sun</node>
-            <node x="" y="">com.google</node>
-            <node x="" y="">com.android</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="171.0" y="147.0" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://JAVA/com.hqt.hac">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement>com.hqt.hac</OriginalElement>
-          <nodes>
-            <node x="" y="">com.hqt.hac.helper</node>
-            <node x="" y="">com.hqt.hac.view</node>
-            <node x="" y="">com.hqt.hac.model</node>
-            <node x="" y="">com.hqt.hac.utils</node>
-            <node x="" y="">com.hqt.hac.provider</node>
-            <node x="" y="">com.hqt.hac.config</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="129.0" y="124.0" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="18" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0" vertical-offset="82" max-vertical-offset="680">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/SongListRightMenuHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="29" selection-start="2278" selection-end="2278" vertical-scroll-proportion="0.7054455" vertical-offset="769" max-vertical-offset="3281" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/SlidingMenu/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="1" selection-start="2536" selection-end="2536" vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1105">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/NavigationDrawerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="401" column="13" selection-start="13052" selection-end="13052" vertical-scroll-proportion="0.35011992" vertical-offset="5974" max-vertical-offset="6494">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/model/dao/SongDataAccessLayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="173" column="9" selection-start="7872" selection-end="7872" vertical-scroll-proportion="-7.0894117" vertical-offset="5597" max-vertical-offset="6171" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/UpdateSongAsyncTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="48" selection-start="3075" selection-end="3075" vertical-scroll-proportion="0.0" vertical-offset="675" max-vertical-offset="1853">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/WelcomeFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="1" selection-start="1173" selection-end="1173" vertical-scroll-proportion="0.0" vertical-offset="173" max-vertical-offset="595">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ThemeUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="211" selection-end="211" vertical-scroll-proportion="-0.43674698" vertical-offset="281" max-vertical-offset="646">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/UIUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="255" column="0" selection-start="9487" selection-end="9487" vertical-scroll-proportion="11.418674" vertical-offset="0" max-vertical-offset="3910">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_welcome.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state line="59" column="40" selection-start="2478" selection-end="2478" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1258">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/ChordViewFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="54" selection-start="1194" selection-end="1194" vertical-scroll-proportion="0.563253" vertical-offset="0" max-vertical-offset="2108">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hac_library/classes/ChordLibrary.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="28" selection-start="578" selection-end="578" vertical-scroll-proportion="0.69279" vertical-offset="0" max-vertical-offset="5712">
@@ -2674,26 +2313,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SplashScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="154" selection-end="154" vertical-scroll-proportion="0.11371238" vertical-offset="0" max-vertical-offset="598">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/config/Config.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="40" selection-start="333" selection-end="333" vertical-scroll-proportion="0.17558528" vertical-offset="14" max-vertical-offset="612">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="0" selection-start="4976" selection-end="4976" vertical-scroll-proportion="0.1923077" vertical-offset="2078" max-vertical-offset="2788">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2719,13 +2342,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/list_item_playlist_empty.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="17" selection-start="428" selection-end="428" vertical-scroll-proportion="-8.16" vertical-offset="0" max-vertical-offset="306">
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/PlaylistDetailFragment.java">
@@ -2752,13 +2375,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/PlaylistRightMenuHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="13" selection-start="543" selection-end="543" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="2414" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/BunnyApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="5" selection-start="319" selection-end="319" vertical-scroll-proportion="0.5117057" vertical-offset="0" max-vertical-offset="598">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
@@ -2803,30 +2419,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="19" selection-start="4479" selection-end="4479" vertical-scroll-proportion="0.6512821" vertical-offset="1234" max-vertical-offset="1819">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/SlidingMenuActionBarActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="67" selection-start="598" selection-end="615" vertical-scroll-proportion="0.23247863" vertical-offset="0" max-vertical-offset="1785">
-          <folding />
-        </state>
+        <state line="16" column="67" selection-start="598" selection-end="615" vertical-scroll-proportion="0.23247863" vertical-offset="0" max-vertical-offset="1785" />
       </provider>
     </entry>
     <entry file="jar://D:/Compiler/Android SDK/extras/android/m2repository/com/android/support/support-v4/19.0.0/support-v4-19.0.0.jar!/android/support/v4/app/FragmentManager.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="22" selection-start="174" selection-end="174" vertical-scroll-proportion="0.15178572" vertical-offset="0" max-vertical-offset="1343" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="337" column="16" selection-start="12180" selection-end="12181" vertical-scroll-proportion="0.0" vertical-offset="4896" max-vertical-offset="7140">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/SyncSongAsyncTask.java">
@@ -2847,58 +2447,215 @@
     </entry>
     <entry file="file://D:/Compiler/Android SDK/sources/android-18/android/os/AsyncTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="619" column="25" selection-start="24984" selection-end="24984" vertical-scroll-proportion="0.33277592" vertical-offset="9729" max-vertical-offset="10846">
+        <state line="619" column="25" selection-start="24984" selection-end="24984" vertical-scroll-proportion="0.33277592" vertical-offset="9729" max-vertical-offset="10846" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/BunnyApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="5" selection-start="319" selection-end="319" vertical-scroll-proportion="0.5117057" vertical-offset="0" max-vertical-offset="598">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/NetworkUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/popup/ProfilePopup.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="166" column="18" selection-start="6059" selection-end="6059" vertical-scroll-proportion="0.6020067" vertical-offset="2139" max-vertical-offset="2737">
+        <state line="90" column="25" selection-start="2811" selection-end="2811" vertical-scroll-proportion="0.0" vertical-offset="667" max-vertical-offset="1326">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/LoginAsyncTask.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/UpdateSongAsyncTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="26" selection-start="1000" selection-end="1000" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2414">
+        <state line="102" column="48" selection-start="3075" selection-end="3075" vertical-scroll-proportion="0.43143812" vertical-offset="1476" max-vertical-offset="2074">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/AsyncActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="3" selection-start="194" selection-end="194" vertical-scroll-proportion="186.5" vertical-offset="492" max-vertical-offset="1088">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/HeadlessFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="0" selection-start="1832" selection-end="1832" vertical-scroll-proportion="0.0" vertical-offset="711" max-vertical-offset="2074">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2361#2362#0" expanded="true" />
-            <element signature="e#2393#2394#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/APIUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="10" selection-start="1361" selection-end="1361" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="2907">
+        <state line="93" column="4" selection-start="3080" selection-end="3080" vertical-scroll-proportion="0.0" vertical-offset="841" max-vertical-offset="2975">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="5" selection-start="2614" selection-end="2614" vertical-scroll-proportion="0.7965812" vertical-offset="384" max-vertical-offset="2907">
+        <state line="123" column="0" selection-start="3687" selection-end="3687" vertical-scroll-proportion="0.0" vertical-offset="1508" max-vertical-offset="2907">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/APIUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="8" selection-start="1359" selection-end="1359" vertical-scroll-proportion="0.20735785" vertical-offset="352" max-vertical-offset="2907">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/device-2013-12-27-090928.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://E:/device-2013-12-27-091002.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SplashScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="25" selection-start="1008" selection-end="1008" vertical-scroll-proportion="0.59699" vertical-offset="0" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ParserUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="78" column="13" selection-start="2723" selection-end="2723" vertical-scroll-proportion="0.16722408" vertical-offset="835" max-vertical-offset="4216">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/AsyncActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="220" selection-end="220" vertical-scroll-proportion="-0.028428094" vertical-offset="153" max-vertical-offset="1105">
           <folding>
-            <element signature="e#2226#2259#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/list_item_loading.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="15" selection-start="450" selection-end="450" vertical-scroll-proportion="0.4003623" vertical-offset="0" max-vertical-offset="552">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/ListViewWidget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="13" selection-start="453" selection-end="453" vertical-scroll-proportion="-1.2358156" vertical-offset="816" max-vertical-offset="4131">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/HeadlessFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="34" selection-start="892" selection-end="892" vertical-scroll-proportion="-195.5" vertical-offset="0" max-vertical-offset="2074">
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongViewFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="13" selection-start="610" selection-end="610" vertical-scroll-proportion="0.11333334" vertical-offset="0" max-vertical-offset="3400">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/unittest/DatabaseTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="87" column="49" selection-start="4106" selection-end="4132" vertical-scroll-proportion="-3.591453" vertical-offset="3223" max-vertical-offset="22032">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_song_list.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="41" selection-start="660" selection-end="660" vertical-scroll-proportion="-1.92" vertical-offset="241" max-vertical-offset="816">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/NetworkUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="65" selection-start="1563" selection-end="1563" vertical-scroll-proportion="0.28762543" vertical-offset="202" max-vertical-offset="3026">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="179" column="79" selection-start="6888" selection-end="6888" vertical-scroll-proportion="0.0" vertical-offset="2288" max-vertical-offset="2924">
+          <folding>
+            <element signature="e#4646#5128#0" expanded="true" />
+            <element signature="e#5117#5118#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="193" column="71" selection-start="6867" selection-end="6867" vertical-scroll-proportion="0.0" vertical-offset="2295" max-vertical-offset="7157">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="53" selection-start="727" selection-end="727" vertical-scroll-proportion="0.0" vertical-offset="82" max-vertical-offset="680">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/MergeAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="13" selection-start="459" selection-end="459" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="7871">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/ChordClickableSpan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="140" column="0" selection-start="5397" selection-end="5397" vertical-scroll-proportion="0.93971634" vertical-offset="1510" max-vertical-offset="2142">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="0" selection-start="3637" selection-end="3637" vertical-scroll-proportion="0.0" vertical-offset="1323" max-vertical-offset="1921">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2535#2951#0" expanded="true" />
+            <element signature="e#2936#2937#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/BackgroundContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="13" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/alpha/ObservableScrollView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="13" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/FastSearchListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="13" selection-start="357" selection-end="357" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1666">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/CustomScrollView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="0" selection-start="957" selection-end="957" vertical-scroll-proportion="0.94107455" vertical-offset="52" max-vertical-offset="697">
+          <folding />
         </state>
       </provider>
     </entry>
