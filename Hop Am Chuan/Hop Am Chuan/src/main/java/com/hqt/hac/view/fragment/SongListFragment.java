@@ -34,7 +34,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
 
     /** Main Activity for reference */
     MainActivity activity;
-    ListView mListView;
+    InfinityListView mListView;
     List<Song> songs;
 
     /** One popup menu for all items **/
@@ -84,11 +84,11 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
 
 
         /** Default song list **/
-        songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), 3);
+        songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), 0, 3);
 
         /** ListView Configure */
-        mListView = (ListView) rootView.findViewById(R.id.list_view);
-        // mListView.setLoader(this);
+        mListView = (InfinityListView) rootView.findViewById(R.id.list_view);
+        mListView.setLoader(this);
         songlistAdapter = new SongListAdapter(activity, songs);
         infAdapter = new InfinityAdapter(activity.getApplicationContext(), songlistAdapter);
         infAdapter.setLoader(this);
@@ -125,7 +125,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         };
 
         mListView.setAdapter(songlistAdapter);
-        mListView.setAdapter(infAdapter);
+        // mListView.setAdapter(infAdapter);
 
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -160,12 +160,12 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         switch(position) {
             case 0:
                 // Moi xem gan day
-                songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), Config.DEFAULT_SONG_LIST_COUNT);
+                songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), 0, Config.DEFAULT_SONG_LIST_COUNT);
                 songlistAdapter.setSongs(songs);
                 break;
             case 1:
                 // Moi cap nhat
-                songs = SongDataAccessLayer.getNewSongs(activity.getApplicationContext(), Config.DEFAULT_SONG_LIST_COUNT);
+                songs = SongDataAccessLayer.getNewSongs(activity.getApplicationContext(), 0, Config.DEFAULT_SONG_LIST_COUNT);
                 songlistAdapter.setSongs(songs);
                 break;
             case 2:
@@ -188,11 +188,13 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     ///////////////////////////////////////////////////////////////////////////
     ///////////////////// METHOD FOR ENDLESS LOADING //////////////////////////
     Song s;
+    int cth = 0;
     @Override
     public void load(int index) {
         NetworkUtils.stimulateNetwork(3);
         LOGE(TAG, "Add a Song to Inf ListView");
         s = SongDataAccessLayer.getSongById(getActivity().getApplicationContext(), 1);
+        s.title = s.title + " " + cth++;
     }
 
     @Override

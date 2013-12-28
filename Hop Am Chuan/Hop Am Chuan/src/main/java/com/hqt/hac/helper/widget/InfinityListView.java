@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.view.R;
@@ -44,6 +45,10 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     LoadingHandler mHandler;
     /** animation for rotation */
     RotateAnimation rotate;
+    /** Adapter for this ListView. Keep this Adapter, because there's a time should set Adapter to null */
+    BaseAdapter mAdapter;
+    /** variable to control currently active index */
+    int activeIndex;
 
     public InfinityListView(Context context) {
         super(context);
@@ -60,10 +65,6 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         settingUpListView();
     }
 
-    public void setLoader(ILoaderContent loader) {
-        this.mLoader = loader;
-    }
-
     private void settingUpListView() {
         isLoading = new AtomicBoolean(false);
         isGreedy = false;
@@ -78,6 +79,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         rotate.setDuration(600);
         rotate.setRepeatMode(Animation.RESTART);
         rotate.setRepeatCount(Animation.INFINITE);
+        addFooterView(footer);
     }
 
     ////////////////////////////////////////////////////////////////////////
@@ -96,24 +98,37 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         this.isRunningBackground = isRunningBackground;
     }
 
+    /** set Loader do action for this inf ListView (should implement ILoaderInterface) */
+    public void setLoader(ILoaderContent loader) {
+        this.mLoader = loader;
+    }
+
     /** set for Greedy Mode or not */
     public void setGreedyMode(boolean mode) {
         this.isGreedy = mode;
     }
 
-    /** set number of items per loading */
+    /** set number of items per loading. just use when greedy mode is set to true */
     public void setNumPerLoading(int num) {
         this.numPerLoading = num;
     }
 
+    /** Change Loading View */
+    public void changeLoadingView(View v) { this.footer = v; }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////// INTERNAL METHOD /////////////////////////////////////
+
     /** convenient method to know is loading or not */
-    public boolean isLoading() {
+    private boolean isLoading() {
         return isLoading.get();
     }
 
-    /** Change Loading View */
-    public void changeLoadingView(View v) {
-        this.footer = v;
+    /** just override again this method to get Adapter */
+    @Override
+    public void setAdapter(ListAdapter adapter) {
+        super.setAdapter(adapter);
+        mAdapter = (BaseAdapter) adapter;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -136,12 +151,11 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
                 + visibleItemCount + "  TotalItemCount:" + totalItemCount);
         if (firstItemHide >= totalItemCount && !isLoading()) {
             isLoading.set(true);
-            // replace footer with loading
-            this.addFooterView(footer);
+            activeIndex = firstVisibleItem;
             Thread t = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    LOGE(TAG, "Update Song on " + NetworkUtils.getThreadSignature());
+                    LOGE(TAG, "New Thread is running on " + NetworkUtils.getThreadSignature());
                     // run background
                    longRunningTask(10);
                     // notify data set to UI
@@ -182,14 +196,18 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
             LOGE(TAG, "Update Adapter on " + NetworkUtils.getThreadSignature());
             // update data
              mLoader.append();
-            // remove currently footer view
-            footer.setVisibility(View.GONE);
+            smallHack();
             // after change adapter. notify to adapter
-             LOGE(TAG, "Finish Work  " + getClass());
-            ((BaseAdapter) getAdapter()).notifyDataSetChanged();
+            mAdapter.notifyDataSetChanged();
+            setSelection(activeIndex-1);
             // restore state
             isLoading.set(false);
+        }
 
+        private void smallHack() {
+            removeFooterView(footer);
+            addFooterView(footer);
+            setAdapter(mAdapter);
         }
     }
 }
