@@ -208,5 +208,15 @@
     <string name="removed_from_favorite">Đã xóa ra khỏi danh sách Yêu thích</string>
     <string name="added_to_favorite">Đã thêm vào Yêu thích</string>
     <string name="song_detail_menu_unfavorite">Bỏ yêu thích</string>
+    <string name="song_detail_fontsize">Cỡ chữ</string>
+    <string name="song_detail_scroll">Tự động cuộn</string>
+    <string name="turn_on_auto_scroll">Bật tự động cuộn</string>
+    <string name="to_top">Lên đầu trang</string>
+    <string name="song_detail_transpose">Đổi tông</string>
+    <string name="transpose_down">Hạ tông</string>
+    <string name="transpose_up">Nâng tông</string>
+    <string name="split_line">Tách dòng</string>
+    <string name="song_detail_scroll_label">Cuộn trang</string>
+    <string name="play_music">Nghe nhạc</string>
 
 </resources>

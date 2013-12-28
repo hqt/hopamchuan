@@ -18,7 +18,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="tiếng việt"
             android:lineSpacingExtra="10dp"
-            android:typeface="monospace"
+            android:typeface="normal"
             android:id="@+id/testTextView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true" />

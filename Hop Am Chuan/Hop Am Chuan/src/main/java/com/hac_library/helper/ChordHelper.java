@@ -65,7 +65,9 @@ public class ChordHelper {
 		    String newValue = scale[i < 0 ? i + scale.length : i];
 		    chord = chord.replaceAll(token, newValue);
 		}
-		
+
+        chord = chord.replaceAll("^A#", "Bb").replaceAll("^D#", "Eb");
+
 		return chord;
 	}
 

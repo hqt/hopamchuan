@@ -1142,7 +1142,7 @@ public class DatabaseTest {
             SongDataAccessLayer.insertSong(context, song3);
 
             // Get
-            List<Song> results = SongDataAccessLayer.searchSongByTitle(context, "Chau", Config.DEFAULT_SEARCH_LIMIT);
+            List<Song> results = SongDataAccessLayer.searchSongByTitle(context, "Chau", 0, Config.DEFAULT_SEARCH_LIMIT);
 
             // Compare
             if (results.size() == 2 && results.get(0).equals(song2) && results.get(1).equals(song1)) {
@@ -1152,7 +1152,7 @@ public class DatabaseTest {
             }
 
             // Get 2
-            List<Song> results2 = SongDataAccessLayer.searchSongByTitle(context, "m", Config.DEFAULT_SEARCH_LIMIT);
+            List<Song> results2 = SongDataAccessLayer.searchSongByTitle(context, "m", 0, Config.DEFAULT_SEARCH_LIMIT);
 
             // Compare 2
             if (results2.size() == 1 && results2.get(0).equals(song3)) {
