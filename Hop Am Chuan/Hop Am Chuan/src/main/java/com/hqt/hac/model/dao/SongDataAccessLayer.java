@@ -284,15 +284,23 @@ public class SongDataAccessLayer {
         return insertedUri > 0;
     }
 
-    public static List<Song> getRecentSongs(Context context, int limit) {
-        LOGD(TAG, "get Recent "+limit+" Songs");
+    /**
+     * Get last view songs.
+     * Use offset, count for pagination, infinity scrolling...
+     * @param context
+     * @param offset
+     * @param count
+     * @return
+     */
+    public static List<Song> getRecentSongs(Context context, int offset, int count) {
+        LOGD(TAG, "get Recent "+count+" Songs");
         ContentResolver resolver = context.getContentResolver();
         Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
         Cursor c = resolver.query(uri,
                 Query.Projections.SONG_ID_PROJECTION,                      // projection
                 null, // selection string
                 null,                   // selection args of strings
-                HopAmChuanDBContract.Songs.SONG_LASTVIEW + " DESC LIMIT " + limit);                                                  //  sort order
+                HopAmChuanDBContract.Songs.SONG_LASTVIEW + " DESC LIMIT " + offset + ", " + count);                                                  //  sort order
 
         int songIdCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID);
         List<Song> songs = new ArrayList<Song>();
@@ -304,15 +312,23 @@ public class SongDataAccessLayer {
         return songs;
     }
 
-    public static List<Song> getNewSongs(Context context, int limit) {
-        LOGD(TAG, "get new "+limit+" Songs");
+    /**
+     * Get the lasted updated songs.
+     * Use offset and count for pagination, infinity scrolling...
+     * @param context
+     * @param offset
+     * @param count
+     * @return
+     */
+    public static List<Song> getNewSongs(Context context, int offset, int count) {
+        LOGD(TAG, "get new "+count+" Songs from " + offset);
         ContentResolver resolver = context.getContentResolver();
         Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
         Cursor c = resolver.query(uri,
                 Query.Projections.SONG_ID_PROJECTION,                      // projection
                 null, // selection string
                 null,                   // selection args of strings
-                HopAmChuanDBContract.Songs.SONG_ID + " DESC LIMIT " + limit);                                                  //  sort order
+                HopAmChuanDBContract.Songs.SONG_ID + " DESC LIMIT " + offset + ", " + count);                                                  //  sort order
 
         int songIdCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID);
         List<Song> songs = new ArrayList<Song>();
@@ -324,6 +340,14 @@ public class SongDataAccessLayer {
         return songs;
     }
 
+    /**
+     * Get random song
+     * For pagination & infinity scrolling: just use with limit = 1.
+     * (may cause a duplicate song, but thats worth).
+     * @param context
+     * @param limit
+     * @return
+     */
     public static List<Song> getRandSongs(Context context, int limit) {
         LOGD(TAG, "get random "+limit+" Songs");
         ContentResolver resolver = context.getContentResolver();
@@ -332,7 +356,7 @@ public class SongDataAccessLayer {
                 Query.Projections.SONG_ID_PROJECTION,                      // projection
                 null, // selection string
                 null,                   // selection args of strings
-                " RANDOM() DESC LIMIT " + limit);                                                  //  sort order
+                " RANDOM() DESC LIMIT " + limit);
 
         int songIdCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID);
         List<Song> songs = new ArrayList<Song>();
@@ -351,8 +375,16 @@ public class SongDataAccessLayer {
         throw new UnsupportedOperationException();
     }
 
-    public static List<Song> searchSongByTitle(Context context, String title, int limit) {
-        LOGD(TAG, "search Song Title");
+    /**
+     * Search by title, use offset and count for pagination, infinity scrolling...
+     * @param context
+     * @param title
+     * @param offset
+     * @param count
+     * @return
+     */
+    public static List<Song> searchSongByTitle(Context context, String title, int offset, int count) {
+        LOGD(TAG, "search Song Title: " + title);
         String keyword = StringUtils.removeAcients(title);
         ContentResolver resolver = context.getContentResolver();
         Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
@@ -360,7 +392,7 @@ public class SongDataAccessLayer {
                 Query.Projections.SONG_ID_PROJECTION,                      // projection
                 HopAmChuanDBContract.Songs.SONG_TITLE_ASCII + " LIKE ?", // selection string
                 new String[]{keyword + "%"},                   // selection args of strings
-                "LENGTH(" + HopAmChuanDBContract.Songs.SONG_TITLE_ASCII + ") LIMIT " + limit);                                                  //  sort order
+                "LENGTH(" + HopAmChuanDBContract.Songs.SONG_TITLE_ASCII + ") LIMIT " + offset + ", " + count);
 
         int songIdCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID);
         List<Song> songs = new ArrayList<Song>();
