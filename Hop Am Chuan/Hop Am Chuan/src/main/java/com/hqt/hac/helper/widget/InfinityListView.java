@@ -6,11 +6,15 @@ import android.os.Message;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.view.R;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
@@ -24,10 +28,22 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 
     public static String TAG = makeLogTag(InfinityListView.class);
 
+    /** view for loading row effect */
     View footer;
-    boolean isLoading = false;
-    ILoadingContent mLoader;
+    /** variable to control is in current loading state or not */
+    AtomicBoolean isLoading = new AtomicBoolean(false);
+    /** variable to control should loading data should be on different thread or not */
+    boolean isRunningBackground = true;
+    /** variable to control should load multi data in one time or just only one */
+    boolean isGreedy = false;
+    /** variable to control number of items one time will be loading. just use when isGreedy set to true */
+    int numPerLoading = 0;
+    /** loader : use to define load action */
+    ILoaderContent mLoader;
+    /** Handler : use to run task on different thread */
     LoadingHandler mHandler;
+    /** animation for rotation */
+    RotateAnimation rotate;
 
     public InfinityListView(Context context) {
         super(context);
@@ -44,13 +60,64 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         settingUpListView();
     }
 
+    public void setLoader(ILoaderContent loader) {
+        this.mLoader = loader;
+    }
+
     private void settingUpListView() {
-        isLoading = false;
+        isLoading = new AtomicBoolean(false);
+        isGreedy = false;
+        isRunningBackground = true;
         setOnScrollListener(this);
         LayoutInflater inflater = (LayoutInflater) super.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         footer = inflater.inflate(R.layout.list_item_loading, null);
         mHandler = new LoadingHandler();
+        rotate=new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF,
+                0.5f, Animation.RELATIVE_TO_SELF,
+                0.5f);
+        rotate.setDuration(600);
+        rotate.setRepeatMode(Animation.RESTART);
+        rotate.setRepeatCount(Animation.INFINITE);
     }
+
+    ////////////////////////////////////////////////////////////////////////
+    //////////////////// GETTER / SETTER ///////////////////////////////////
+
+    /**
+     * When set to false, task will be called directly, rather than from different thread.
+     *
+     * This is useful if for example have code to populate the adapter that already runs in a background thread,
+     * and simply don't need the built in background functionality.
+     *
+     * When using this you must remember to call onDataReady() once already appended data.
+     *
+     */
+    public void setRunningBackground(boolean isRunningBackground) {
+        this.isRunningBackground = isRunningBackground;
+    }
+
+    /** set for Greedy Mode or not */
+    public void setGreedyMode(boolean mode) {
+        this.isGreedy = mode;
+    }
+
+    /** set number of items per loading */
+    public void setNumPerLoading(int num) {
+        this.numPerLoading = num;
+    }
+
+    /** convenient method to know is loading or not */
+    public boolean isLoading() {
+        return isLoading.get();
+    }
+
+    /** Change Loading View */
+    public void changeLoadingView(View v) {
+        this.footer = v;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////////// INFINITY LOADING IMPLEMENTATION ////////////////////////
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -59,24 +126,24 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-        LOGE(TAG, "On Scroll");
         if (getAdapter() == null) return;
         LOGE(TAG, "On Scroll : Number of Items: " + getAdapter().getCount());
         if (getAdapter().getCount() == 0) return;
 
         // get the first Item that currently hide and need to show
         final int firstItemHide = firstVisibleItem + visibleItemCount;
-        LOGE(TAG, "Params: FirstVisibleItem:" + firstVisibleItem + "\tVisibleItemCount:"
-                + visibleItemCount + "\tTotalItemCount:" + totalItemCount);
-        if (firstItemHide >= totalItemCount && !isLoading) {
+        LOGE(TAG, "FirstVisibleItem:" + firstVisibleItem + "  VisibleItemCount:"
+                + visibleItemCount + "  TotalItemCount:" + totalItemCount);
+        if (firstItemHide >= totalItemCount && !isLoading()) {
+            isLoading.set(true);
+            // replace footer with loading
             this.addFooterView(footer);
-            isLoading = true;
             Thread t = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     LOGE(TAG, "Update Song on " + NetworkUtils.getThreadSignature());
                     // run background
-                    mLoader.load(firstItemHide, firstItemHide + 10);
+                   longRunningTask(10);
                     // notify data set to UI
                     mHandler.sendMessage(mHandler.obtainMessage());
                 }
@@ -85,9 +152,23 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         }
     }
 
-    public interface ILoadingContent {
+    private void longRunningTask(int index) {
+        if (isGreedy) {
+            mLoader.load(index, index + numPerLoading);
+        } else {
+            mLoader.load(index);
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
+    ////////////////// HANDLER IMPLEMENTATION ///////////////////////////////////
+
+    /** Using this interface for loading data and append data to new Adapter */
+    /** Notes that load should perform on different thread and append must be perform on UI Thread */
+    public interface ILoaderContent {
         void load(int index);
         void load(int from, int to);
+        void append();
     }
 
     /**
@@ -99,9 +180,16 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         @Override
         public void handleMessage(Message msg) {
             LOGE(TAG, "Update Adapter on " + NetworkUtils.getThreadSignature());
-            // update
+            // update data
+             mLoader.append();
+            // remove currently footer view
+            footer.setVisibility(View.GONE);
+            // after change adapter. notify to adapter
+             LOGE(TAG, "Finish Work  " + getClass());
             ((BaseAdapter) getAdapter()).notifyDataSetChanged();
-            isLoading = true;
+            // restore state
+            isLoading.set(false);
+
         }
     }
 }

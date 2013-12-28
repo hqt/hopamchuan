@@ -18,6 +18,10 @@ import static android.view.TextureView.SurfaceTextureListener;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+/**
+ * Using TextureView to gain performance on Android ICS above
+ * by combine both benefit of ImageView and SurfaceView
+ */
 public class ChordTextureView extends TextureView implements SurfaceTextureListener {
 
     public static final String TAG = makeLogTag(ChordTextureView.class);

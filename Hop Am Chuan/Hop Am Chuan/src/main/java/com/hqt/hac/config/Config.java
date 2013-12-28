@@ -26,7 +26,7 @@ public class Config {
     public static final String SERVICE_GET_PROFILE = SITE + "/api/get_profile";
 
     /** Default song count to display in SongListFragment **/
-    public static final int DEFAULT_SONG_LIST_COUNT = 10;
+    public static final int DEFAULT_SONG_LIST_COUNT = 3;
 
 
     /** Song full view config **/

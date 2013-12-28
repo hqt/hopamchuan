@@ -25,9 +25,10 @@ public class SongListAdapter extends BaseAdapter {
     /**
      * List all Songs of this favorite that adapter should be display
      */
-    List<Song> songs;
+    public List<Song> songs;
 
     public SongListAdapter(Context context, List<Song> songs) {
+        //super(context);
         this.mContext = context.getApplicationContext();
         this.songs = songs;
     }
