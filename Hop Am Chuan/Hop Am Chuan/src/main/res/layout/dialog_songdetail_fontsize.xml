@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    >
+    <TextView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/fontSizeTV"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:fontFamily="@string/font_light"
+        android:textSize="15sp"
+        android:background="@drawable/song_count_bg"
+        />
+    <SeekBar
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fontSizeSB"
+        android:max="99"
+        />
+</LinearLayout>

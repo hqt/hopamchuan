@@ -84,7 +84,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
 
 
         /** Default song list **/
-        songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), 10);
+        songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), 0, 10);
 
         /** ListView Configure */
         mListView = (ListView) rootView.findViewById(R.id.list_view);
@@ -143,12 +143,12 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         switch(position) {
             case 0:
                 // Moi xem gan day
-                songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), Config.DEFAULT_SONG_LIST_COUNT);
+                songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), 0, Config.DEFAULT_SONG_LIST_COUNT);
                 songlistAdapter.setSongs(songs);
                 break;
             case 1:
                 // Moi cap nhat
-                songs = SongDataAccessLayer.getNewSongs(activity.getApplicationContext(), Config.DEFAULT_SONG_LIST_COUNT);
+                songs = SongDataAccessLayer.getNewSongs(activity.getApplicationContext(), 0, Config.DEFAULT_SONG_LIST_COUNT);
                 songlistAdapter.setSongs(songs);
                 break;
             case 2:

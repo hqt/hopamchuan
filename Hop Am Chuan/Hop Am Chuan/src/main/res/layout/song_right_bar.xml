@@ -3,42 +3,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#586fa3"
-    >
+    android:background="#586fa3">
 
-    <Button
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="F Up"
-        android:textColor="#fff"
-        android:id="@+id/btnFontUp" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:text="F Down"
-        android:id="@+id/btnFontDown" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:text="T Up"
-        android:id="@+id/btnTransUp" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:text="T Down"
-        android:id="@+id/btnTransDown" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:text="1 / 2"
-        android:id="@+id/btnLineModeToggle" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/song_detail_fontsize"
+                android:textColor="#fff"
+                android:id="@+id/btnFont" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:text="@string/song_detail_scroll_label"
+                android:id="@+id/btnScroll" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:text="@string/song_detail_transpose"
+                android:id="@+id/btnTrans" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:text="@string/split_line"
+                android:id="@+id/btnLineModeToggle" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:text="@string/play_music"
+                android:id="@+id/btnPlayMusic" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

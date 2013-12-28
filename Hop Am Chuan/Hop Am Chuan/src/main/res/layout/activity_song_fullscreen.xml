@@ -8,6 +8,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/songContentScrollView"
         >
         <TextView
             android:layout_width="match_parent"
@@ -21,4 +22,15 @@
             android:text="Song content"/>
         </ScrollView>
 
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_action_collapse"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="#33000000"
+        android:id="@+id/toTopShortcutBtn"
+        android:clickable="true"
+        android:layout_margin="10dp"
+        />
 </RelativeLayout>

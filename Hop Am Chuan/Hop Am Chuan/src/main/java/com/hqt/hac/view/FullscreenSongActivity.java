@@ -1,47 +1,88 @@
 package com.hqt.hac.view;
 
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Intent;
+import android.app.Dialog;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.TypedValue;
 import android.view.*;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ImageButton;
+import android.widget.ScrollView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
 import com.hqt.hac.model.Song;
+import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.utils.ScreenUtils;
-import com.hqt.hac.view.util.SystemUiHider;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 
 public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
-    /** My self **/
+    /**
+     * My self *
+     */
     private Activity that = this;
 
-    /** View for side bar */
+    /**
+     * View for side bar
+     */
     private View sidebarView;
 
-     /** Sliding Menu for Right View */
+    /**
+     * Sliding Menu for Right View
+     */
     private SlidingMenu sidebar;
 
-    /** The song to display **/
+    /**
+     * The song to display *
+     */
     private Song song;
 
-    /** Controls **/
-    private TextView songContentTV;
+    /**
+     * Dialogs *
+     */
+    private Dialog dialogFontSize;
+    private TextView fontSizeTV;
+    private SeekBar fontSizeSB;
 
-    /** Lyric view mode **/
+    private Dialog dialogScroll;
+    private TextView scrollTV;
+    private SeekBar scrollSB;
+    private Button toTopBtn;
+    private CheckBox turnOnChk;
+
+    private Dialog dialogTranspose;
+    private Button transUpBtn;
+    private Button transDownBtn;
+
+    private Dialog dialogMusic;
+
+
+    /**
+     * Controls *
+     */
+    // The text view
+    private TextView songContentTV;
+    // Scroll view for smoothie and auto scroll function
+    private ScrollView scrollView;
+
+    // Auto scroll thread
+    private AutoScrollThread scroller;
+
+    /**
+     * Lyric view mode *
+     */
     private boolean singleLineMode = true;
+    private int speed = Config.SONG_AUTO_SCROLL_MIN_NEV_SPEED;
+    private boolean autoScroll = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,44 +104,162 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
         // Set up Sidebar
         setUpSideBar();
 
-        // Get the song
+        // Get the song from Intent
         song = getIntent().getParcelableExtra("song");
 
-        // Set content controls
-        songContentTV = (TextView) findViewById(R.id.songContent);
+        // Set up dialogs
+        setUpDialogs();
 
-        // Set sidebar controls
-        Button btnFontUp = (Button) findViewById(R.id.btnFontUp);
-        Button btnFontDown = (Button) findViewById(R.id.btnFontDown);
-        Button btnTransDown = (Button) findViewById(R.id.btnTransDown);
-        Button btnTransUp = (Button) findViewById(R.id.btnTransUp);
-        Button btnLineModeToggle = (Button) findViewById(R.id.btnLineModeToggle);
+        // Set up controls and events
+        setUpControlsAndEvents();
 
+        // Set up content
+        setUpContent();
 
-        btnFontUp.setOnClickListener(new View.OnClickListener() {
+        // Start auto scroll
+        scroller = new AutoScrollThread();
+        scroller.start();
+    }
+
+    private void setUpDialogs() {
+        dialogFontSize = DialogUtils.createDialog(this, R.string.song_detail_fontsize,
+                getLayoutInflater(), R.layout.dialog_songdetail_fontsize);
+        fontSizeTV = (TextView) dialogFontSize.findViewById(R.id.fontSizeTV);
+        fontSizeSB = (SeekBar) dialogFontSize.findViewById(R.id.fontSizeSB);
+
+        fontSizeSB.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onClick(View view) {
-                songContentTV.setTextSize(TypedValue.COMPLEX_UNIT_PX, songContentTV.getTextSize() + Config.SONG_CONTENT_FONT_SIZE_STEP);
+            public void onProgressChanged(SeekBar seekBar, int value, boolean b) {
+                fontSizeTV.setText(String.valueOf(value + 1));
+                songContentTV.setTextSize(TypedValue.COMPLEX_UNIT_PX, value + 1);
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
-        btnFontDown.setOnClickListener(new View.OnClickListener() {
+
+
+        dialogScroll = DialogUtils.createDialog(this, R.string.song_detail_scroll,
+                getLayoutInflater(), R.layout.dialog_songdetail_autoscroll);
+        scrollTV = (TextView) dialogScroll.findViewById(R.id.scrollTV);
+        scrollSB = (SeekBar) dialogScroll.findViewById(R.id.scrollSB);
+        toTopBtn = (Button) dialogScroll.findViewById(R.id.toTopBtn);
+        turnOnChk = (CheckBox) dialogScroll.findViewById(R.id.turnOnChk);
+
+        scrollSB.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onClick(View view) {
-                songContentTV.setTextSize(TypedValue.COMPLEX_UNIT_PX, songContentTV.getTextSize() - Config.SONG_CONTENT_FONT_SIZE_STEP);
+            public void onProgressChanged(SeekBar seekBar, int value, boolean isUserTouched) {
+                if (isUserTouched) {
+                    speed = value + Config.SONG_AUTO_SCROLL_MIN_NEV_SPEED;
+                    scrollTV.setText(String.valueOf(speed));
+                }
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
-        btnTransUp.setOnClickListener(new View.OnClickListener() {
+        toTopBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scrollView.scrollTo(0, 0);
+            }
+        });
+        turnOnChk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                autoScroll = b;
+            }
+        });
+
+        dialogTranspose = DialogUtils.createDialog(this, R.string.song_detail_transpose,
+                getLayoutInflater(), R.layout.dialog_songdetail_transpose);
+        transUpBtn = (Button) dialogTranspose.findViewById(R.id.btnTransUp);
+        transDownBtn = (Button) dialogTranspose.findViewById(R.id.btnTransDown);
+
+
+        transUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 HacUtils.transposeTextView(getApplicationContext(), songContentTV, 1, that);
             }
         });
-        btnTransDown.setOnClickListener(new View.OnClickListener() {
+        transDownBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 HacUtils.transposeTextView(getApplicationContext(), songContentTV, -1, that);
             }
         });
+    }
+
+    private void setUpControlsAndEvents() {
+        // Set content controls
+        songContentTV = (TextView) findViewById(R.id.songContent);
+
+        // Scroll view
+        scrollView = (ScrollView) findViewById(R.id.songContentScrollView);
+
+        // Set sidebar controls
+        Button btnFont = (Button) findViewById(R.id.btnFont);
+//        Button btnFontDown = (Button) findViewById(R.id.btnFontDown);
+        Button btnLineModeToggle = (Button) findViewById(R.id.btnLineModeToggle);
+        Button btnScroll = (Button) findViewById(R.id.btnScroll);
+        Button btnTrans = (Button) findViewById(R.id.btnTrans);
+        ImageButton toTopShortcutBtn = (ImageButton) findViewById(R.id.toTopShortcutBtn);
+
+        // Events for controls
+        btnFont.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Close sliding menu
+                sidebar.showContent();
+                sidebar.setEnabled(false);
+
+                // Set value
+                fontSizeTV.setText(String.valueOf(songContentTV.getTextSize()));
+                fontSizeSB.setProgress((int) songContentTV.getTextSize());
+
+                dialogFontSize.show();
+            }
+        });
+
+        btnScroll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Close sliding menu
+                sidebar.showContent();
+                sidebar.setEnabled(false);
+
+                // Set value
+                scrollTV.setText(String.valueOf(speed));
+                scrollSB.setProgress(speed - 1);
+
+                // Show dialog
+                dialogScroll.show();
+            }
+        });
+
+        btnTrans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Close sliding menu
+                sidebar.showContent();
+                sidebar.setEnabled(false);
+
+                // Show dialog
+                dialogTranspose.show();
+            }
+        });
+
         btnLineModeToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,9 +273,12 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
                 }
             }
         });
-
-        // Set up content
-        setUpContent();
+        toTopShortcutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scrollView.scrollTo(0, 0);
+            }
+        });
     }
 
     private void setUpContent() {
@@ -147,7 +309,9 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
         finish();
     }
 
-    /** *NOTE* this sidebar lays from right */
+    /**
+     * NOTE* this sidebar lays from right
+     */
     private void setUpSideBar() {
         sidebar = getSlidingMenu();
 
@@ -162,5 +326,21 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
         // set custom action for SlidingMenu
         sidebar.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 
+    }
+
+    private class AutoScrollThread extends Thread {
+        @Override
+        public void run() {
+            try {
+                while (true) {
+                    if (autoScroll) {
+                        sleep(Config.SONG_AUTO_SCROLL_MAX_NEV_SPEED / speed * Config.SONG_AUTO_SCROLL_DEGREE);
+                        scrollView.smoothScrollBy(0, (int) Math.sqrt(Math.sqrt(speed)));
+                    }
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
