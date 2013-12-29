@@ -35,4 +35,6 @@ public class Config {
     public static final int SONG_AUTO_SCROLL_MIN_NEV_SPEED = 1;
     public static final int SONG_AUTO_SCROLL_MAX_NEV_SPEED = 10;
     public static final int SONG_AUTO_SCROLL_DEGREE = 10;
+
+    public static final String HAC_POWERMANAGER_SCREEN_TAG = "HAC TAG";
 }

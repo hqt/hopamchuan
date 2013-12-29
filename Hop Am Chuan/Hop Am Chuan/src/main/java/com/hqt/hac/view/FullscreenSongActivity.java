@@ -3,14 +3,17 @@ package com.hqt.hac.view;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.util.TypedValue;
 import android.view.*;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -84,6 +87,9 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
     private int speed = Config.SONG_AUTO_SCROLL_MIN_NEV_SPEED;
     private boolean autoScroll = false;
 
+    /** This is used to keep the screen always on **/
+    protected PowerManager.WakeLock mWakeLock;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,9 +122,17 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
         // Set up content
         setUpContent();
 
-        // Start auto scroll
+        // Start auto scroll thread
         scroller = new AutoScrollThread();
-        scroller.start();
+        // scroller.start();
+
+        // Keep the screen always on
+        setScreenOn();
+
+    }
+
+    private void setScreenOn() {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     private void setUpDialogs() {
