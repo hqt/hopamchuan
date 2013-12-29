@@ -15,9 +15,12 @@ import android.widget.ListView;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.view.R;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
+import static com.hqt.hac.utils.LogUtils.LOGI;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 
@@ -39,6 +42,8 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     boolean isGreedy = false;
     /** variable to control number of items one time will be loading. just use when isGreedy set to true */
     int numPerLoading = 0;
+    /** should this ListView process first loading for adapter */
+    boolean isFirstProcessLoading = false;
     /** loader : use to define load action */
     ILoaderContent mLoader;
     /** Handler : use to run task on different thread */
@@ -49,6 +54,10 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     BaseAdapter mAdapter;
     /** variable to control currently active index */
     int activeIndex;
+    /** boolean variable to control should list view will load more or has come to end */
+    AtomicBoolean isComeToEnd = new AtomicBoolean(false);
+    /** variable to control current state pending view. often*/
+    AtomicBoolean isExistFooter = new AtomicBoolean(false);
 
     public InfinityListView(Context context) {
         super(context);
@@ -69,6 +78,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         isLoading = new AtomicBoolean(false);
         isGreedy = false;
         isRunningBackground = true;
+        isFirstProcessLoading = false;
         setOnScrollListener(this);
         LayoutInflater inflater = (LayoutInflater) super.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         footer = inflater.inflate(R.layout.list_item_loading, null);
@@ -80,6 +90,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         rotate.setRepeatMode(Animation.RESTART);
         rotate.setRepeatCount(Animation.INFINITE);
         addFooterView(footer);
+        isExistFooter.set(false);
     }
 
     ////////////////////////////////////////////////////////////////////////
@@ -108,6 +119,9 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         this.isGreedy = mode;
     }
 
+    /** set for first process loading. this behavior helps decrease delay when loading */
+    public void setFirstProcessLoading(boolean state) { this.isFirstProcessLoading = state;}
+
     /** set number of items per loading. just use when greedy mode is set to true */
     public void setNumPerLoading(int num) {
         this.numPerLoading = num;
@@ -129,6 +143,10 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     public void setAdapter(ListAdapter adapter) {
         super.setAdapter(adapter);
         mAdapter = (BaseAdapter) adapter;
+        /** it will loading until full of ListView */
+        if (isFirstProcessLoading) {
+
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -136,15 +154,28 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
-        LOGE(TAG, "On Scroll State Changed");
+        LOGI(TAG, "On Scroll State Changed");
     }
 
+    int limit = 9;
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         if (getAdapter() == null) return;
-        LOGE(TAG, "On Scroll : Number of Items: " + getAdapter().getCount());
+        if (isComeToEnd.get()) return;
+        LOGI(TAG, "On Scroll : Number of Items: " + getAdapter().getCount());
         if (getAdapter().getCount() == 0) return;
 
+        if (totalItemCount == limit) {
+            LOGE(TAG, "Has come to limit. Set All State to Finish");
+            if (isExistFooter.get()) {
+                removeFooterView(footer);
+                isExistFooter.set(false);
+            }
+            setAdapter(mAdapter);
+            mAdapter.notifyDataSetChanged();
+            isComeToEnd.set(true);
+            return;
+        }
         // get the first Item that currently hide and need to show
         final int firstItemHide = firstVisibleItem + visibleItemCount;
         LOGE(TAG, "FirstVisibleItem:" + firstVisibleItem + "  VisibleItemCount:"
@@ -174,6 +205,18 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         }
     }
 
+    private Dictionary<Integer, Integer> listViewItemHeights = new Hashtable<Integer, Integer>();
+    private int getScroll() {
+        View c = getChildAt(0); //this is the first visible row
+        int scrollY = -c.getTop();
+        listViewItemHeights.put(getFirstVisiblePosition(), c.getHeight());
+        for (int i = 0; i < getFirstVisiblePosition(); ++i) {
+            if (listViewItemHeights.get(i) != null) // (this is a sanity check)
+                scrollY += listViewItemHeights.get(i); //add all heights of the views that are gone
+        }
+        return scrollY;
+    }
+
     //////////////////////////////////////////////////////////////////////////////
     ////////////////// HANDLER IMPLEMENTATION ///////////////////////////////////
 
@@ -195,18 +238,24 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         public void handleMessage(Message msg) {
             LOGE(TAG, "Update Adapter on " + NetworkUtils.getThreadSignature());
             // update data
-             mLoader.append();
+            mLoader.append();
             smallHack();
             // after change adapter. notify to adapter
+            /*int x = getScrollX();
+            int y1 = getScrollY();
+            int y2 = getScrollY();
+            LOGE(TAG, "y1: " + y1 + "\ty2" + y2);*/
             mAdapter.notifyDataSetChanged();
-            setSelection(activeIndex-1);
+            //setSelection(getCount());
             // restore state
             isLoading.set(false);
         }
 
         private void smallHack() {
-            removeFooterView(footer);
-            addFooterView(footer);
+            if (isExistFooter.get()) {
+                removeFooterView(footer);
+                addFooterView(footer);
+            }
             setAdapter(mAdapter);
         }
     }
