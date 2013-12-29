@@ -3,7 +3,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    >
 
     <LinearLayout
         android:layout_height="wrap_content"
@@ -53,10 +55,10 @@
         android:id="@+id/imageFavorite"
         android:layout_width="70dp"
         android:layout_height="60dp"
-        android:paddingLeft="20dp"
+        android:paddingLeft="15dp"
         android:paddingTop="15dp"
         android:paddingBottom="20dp"
-        android:paddingRight="20dp"
+        android:paddingRight="5dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"

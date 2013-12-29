@@ -75,6 +75,9 @@ public class MainActivity extends SlidingMenuActionBarActivity
     /** variable to control last time user has pressed back button */
     long mTimePressBackBtn = 0;
 
+    /** Variable to help process that user can only exit in welcome fragment **/
+    boolean isLevelZero = false;
+
     /////////////////////////////////////////////////////////////////
     ////////////////// LIFE CYCLE ACTIVITY METHOD ///////////////////
 
@@ -175,14 +178,24 @@ public class MainActivity extends SlidingMenuActionBarActivity
         if (mTimePressBackBtn == 0) mTimePressBackBtn = -14181147;
         FragmentManager fragmentManager = getSupportFragmentManager();
         if (fragmentManager.getBackStackEntryCount() == 0) {
-            long currentTime = Calendar.getInstance().getTimeInMillis();
-            LOGE(TAG, mTimePressBackBtn + "/" + currentTime);
-            if (currentTime < mTimePressBackBtn + Config.TOAST_LENGTH_SHORT) {
-                // in fact. exit app
-                super.onBackPressed();
+            // Only exit in welcome fragment.
+            if (!isLevelZero) {
+                // Open welcome fragment
+                Fragment fragment = new WelcomeFragment();
+                mTitle = getString(R.string.title_activity_welcome_fragment);
+                switchFragmentClearStack(fragment);
+                restoreActionBar();
+                isLevelZero = true;
             } else {
-                Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
-                mTimePressBackBtn = currentTime;
+                long currentTime = Calendar.getInstance().getTimeInMillis();
+                LOGE(TAG, mTimePressBackBtn + "/" + currentTime);
+                if (currentTime < mTimePressBackBtn + Config.TOAST_LENGTH_SHORT) {
+                    // in fact. exit app
+                    super.onBackPressed();
+                } else {
+                    Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
+                    mTimePressBackBtn = currentTime;
+                }
             }
         } else {
             super.onBackPressed();
@@ -345,6 +358,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 .commit();
         slidingMenu.showContent();
         slidingMenu.setEnabled(false);
+        isLevelZero = false;
     }
 
     public void switchFragmentClearStack(Fragment fragment) {
@@ -357,6 +371,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 .commit();
         slidingMenu.showContent();
         slidingMenu.setEnabled(true);
+        isLevelZero = false;
     }
 
     public void switchFragment(Fragment fragment, COMMIT_TYPE type) {
@@ -383,21 +398,27 @@ public class MainActivity extends SlidingMenuActionBarActivity
         switch (pageType) {
             case HOME:
                 fragment = new WelcomeFragment();
+                mTitle = getString(R.string.title_activity_welcome_fragment);
                 break;
             case SONGS:
                 fragment = new SongListFragment();
+                mTitle = getString(R.string.title_activity_song_list_fragment);
                 break;
             case MYPLAYLIST:
                 fragment = new PlaylistManagerFragment();
+                mTitle = getString(R.string.title_activity_my_playlist_fragment);
                 break;
             case FAVORITE:
                 fragment = new FavoriteManagerFragment();
+                mTitle = getString(R.string.title_activity_my_favorite_fragment);
                 break;
             case FIND_BY_CHORD:
                 fragment = new FindByChordFragment();
+                mTitle = getString(R.string.title_activity_find_by_chord);
                 break;
             case SEARCH_CHORD:
                 fragment = new ChordViewFragment();
+                mTitle = getString(R.string.title_activity_chord_view);
                 break;
             case SETTING:
                 Intent intent = new Intent(this, SettingActivity.class);
@@ -408,6 +429,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // Open Custom Fragment
         if (fragment != null) fragment.setArguments(arguments);
         switchFragmentClearStack(fragment);
+        restoreActionBar();
 
     }
 

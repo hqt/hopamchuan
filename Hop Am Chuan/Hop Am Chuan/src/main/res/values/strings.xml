@@ -13,7 +13,7 @@
     <string name="title_activity_search_view">Tìm kiếm</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_test_database">Database Access Layer Test</string>
-    <string name="title_activity_song_list_fragment">Hợp Âm Chuẩn</string>
+    <string name="title_activity_song_list_fragment">Bài hát</string>
 
     <!-- default items for navigation drawer -->
     <string-array name="navigation_drawer_default_items">
@@ -145,9 +145,9 @@
     <string name="example_number">10</string>
     <string name="title_activity_test_text_view">Test TextView</string>
     <string name="title_activity_test_surface_view">MainActivity</string>
-    <string name="title_activity_welcome_fragment">MainActivity</string>
-    <string name="title_activity_my_playlist_fragment">Playlist cua toi</string>
-    <string name="title_activity_my_favorite_fragment">My Favorite</string>
+    <string name="title_activity_welcome_fragment">Trang chủ</string>
+    <string name="title_activity_my_playlist_fragment">Playlist của tôi</string>
+    <string name="title_activity_my_favorite_fragment">Yêu thích</string>
     <string name="title_activity_playlist_detail_fragment">MainActivity</string>
     <string name="title_activity_playlist_manager_fragment">Playlist Manager</string>
     <string name="title_activity_find_by_chord">Tìm theo hợp âm</string>
