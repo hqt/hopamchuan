@@ -29,7 +29,7 @@ public class ChordViewTextureAdapter extends BaseAdapter implements SectionIndex
     int[] index;
 
     /** String that using for SectionIndexer */
-    private static String sections = "abcdefghilmnopqrstuvz";
+    private static String sections = "cdefgab";
 
     public ChordViewTextureAdapter(Context mContext, String[] chords) {
         this.mContext = mContext.getApplicationContext();

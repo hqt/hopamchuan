@@ -53,6 +53,7 @@ public class SplashScreen extends Activity {
         if (isSplashTimeOut.get()) {
             Intent i = new Intent(SplashScreen.this, MainActivity.class);
             startActivity();
+            finish();
         }
     }
 
@@ -71,6 +72,7 @@ public class SplashScreen extends Activity {
         @Override
         public void handleMessage(Message msg) {
             startActivity();
+            finish();
         }
     }
 
