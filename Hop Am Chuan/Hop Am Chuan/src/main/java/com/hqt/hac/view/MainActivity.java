@@ -28,6 +28,7 @@ import com.hqt.hac.view.fragment.*;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.unittest.DatabaseTest;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -118,7 +119,15 @@ public class MainActivity extends SlidingMenuActionBarActivity
         setBehindContentView(sideBarLayout);
 
         /** load all playlist here */
-        playlistList = PlaylistDataAccessLayer.getAllPlayLists(getApplicationContext());
+        playlistList = getIntent().getParcelableArrayListExtra("playlistList");
+        LOGE(TAG, "Size of Playlist: " + playlistList.size());
+        int count = 0;
+        for (int i = 0; i < playlistList.size(); i++) {
+            if (playlistList.get(i) == null) {
+                count++;
+            }
+        }
+        LOGE(TAG, "Null Elements: " + count);
 
         mTitle = getTitle();
 
@@ -418,7 +427,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
         // setting parameters
         Bundle arguments = new Bundle();
-        // TODO : can change to parcelable later for performance
         arguments.putParcelable("playlist", playlist);
         fragment.setArguments(arguments);
 

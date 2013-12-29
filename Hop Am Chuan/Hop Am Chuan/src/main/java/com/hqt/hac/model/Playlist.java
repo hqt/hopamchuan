@@ -131,6 +131,8 @@ public class Playlist implements Parcelable {
     ////////////////////////////////////////////////////////////////////
     //////////////////// IMPLEMENT PARCELABLE MECHANISM ///////////////
 
+    // TODO write list of songs object
+    
     @Override
     public int describeContents() {
         return 0;
@@ -158,7 +160,7 @@ public class Playlist implements Parcelable {
         dest.writeInt(isPublic);
         dest.writeInt(numberOfSongs);
         dest.writeList(songIds);
-        dest.writeTypedList(songs);
+        // dest.writeTypedList(songs);
     }
 
     private void readFromParcel(Parcel in) {
@@ -176,11 +178,11 @@ public class Playlist implements Parcelable {
             songIds = null;
         }
 
-        try {
+       /* try {
             in.readTypedList(songs, Song.CREATOR);
         } catch(NullPointerException e) {
             songs = null;
-        }
+        }*/
     }
 
     /**
