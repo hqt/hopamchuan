@@ -123,6 +123,11 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
         /** load all playlist here */
         playlistList = getIntent().getParcelableArrayListExtra("playlistList");
+
+        /** if playlist is not in intent, then load it again **/
+        if (playlistList == null) {
+            playlistList = PlaylistDataAccessLayer.getAllPlayLists(getApplicationContext());
+        }
         LOGE(TAG, "Size of Playlist: " + playlistList.size());
         int count = 0;
         for (int i = 0; i < playlistList.size(); i++) {

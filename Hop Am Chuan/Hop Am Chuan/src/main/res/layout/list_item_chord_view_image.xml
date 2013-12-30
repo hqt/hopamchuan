@@ -7,6 +7,7 @@
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
     android:paddingRight="50dp"
+    android:clickable="false"
     >
     <RelativeLayout
         android:layout_width="match_parent"
@@ -40,6 +41,7 @@
             android:layout_centerVertical="true">
 
             <ImageView
+                android:clickable="true"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_centerHorizontal="true"
@@ -56,6 +58,7 @@
                 android:id="@+id/text_view" />
 
             <ImageView
+                android:clickable="true"
                 android:layout_width="50dp"
                 android:layout_alignParentBottom="true"
                 android:layout_height="50dp"
