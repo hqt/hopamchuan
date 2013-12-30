@@ -1,19 +1,17 @@
 package com.hqt.hac.view.test;
 
-import java.io.FileDescriptor;
 import java.io.IOException;
 
 import android.app.Activity;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.FrameLayout;
-import com.hqt.hac.helper.widget.VideoControllerView;
+import com.hqt.hac.helper.widget.alpha.VideoControllerView;
 import com.hqt.hac.view.R;
 
 public class VideoPlayerActivityTest extends Activity implements

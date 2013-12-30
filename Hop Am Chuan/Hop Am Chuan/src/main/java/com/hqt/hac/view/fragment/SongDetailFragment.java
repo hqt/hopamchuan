@@ -187,7 +187,6 @@ public class SongDetailFragment extends Fragment implements MediaPlayer.OnPrepar
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -197,18 +196,20 @@ public class SongDetailFragment extends Fragment implements MediaPlayer.OnPrepar
         // father view that this media controller belongs too
         // controller.setAnchorView(mediaPlayerContainer);
         // after set AnchorView. can show Media Controller
-        controller.show();
+        // controller.show();
         // after get into prepare state. call start() to go to started state
         player.start();
     }
 
     @Override
     public void start() {
+        LOGD(TAG, "Start Player");
         player.start();
     }
 
     @Override
     public void pause() {
+        LOGD(TAG, "Pause Player");
         player.pause();
     }
 

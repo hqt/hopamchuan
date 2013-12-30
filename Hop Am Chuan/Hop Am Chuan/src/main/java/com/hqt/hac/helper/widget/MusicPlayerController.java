@@ -21,19 +21,27 @@ public class MusicPlayerController {
 
     /** interface that which class use this view must implement */
     private IMediaPlayerControl player;
+    /** Root View that contains control of Media Player */
     private View mRootView;
+    /** variable to control should show currently Media Player or not */
     private boolean mShowing = true;
     private boolean mDragging;
+    /** Time out to hide Media Player. 0 means inf */
     private static final int sDefaultTimeout = 0;
+    /** Time to fade out Media Player */
     private static final int FADE_OUT = 1;
     private static final int SHOW_PROGRESS = 2;
     private boolean mUseFastForward;
-    private boolean mListenersSet;
-    /** Listener : Use to handle action for those two button */
+    /** variable to control should use Next/Previous song or not. Default is false : not use this function */
+    private boolean isNextSongFunction = true;
+    /** Listener : Use to handle action for next and previous song buttons */
     private View.OnClickListener mNextListener, mPrevListener;
     /** Use StringBuilder And Formatter for format time of songs */
     StringBuilder mFormatBuilder;
     Formatter mFormatter;
+    /** constant variable */
+    private final int FAST_FORWARD_TIME = 15000;
+    private final int REWIND_TIME = 5000;
 
     //region Media Player Component
     /** Media Player Component declaration */
@@ -56,16 +64,57 @@ public class MusicPlayerController {
     private TextView mEndTime, mCurrentTime;
     //endregion
 
+    //region state variable to know should show/turn off control of Media Player
+    /** state variable */
+    boolean isPauseFunction = true;
+    boolean isFullScreenFunction = true;
+    boolean isFastForwardFunction = true;
+    boolean isReWindFunction = true;
+    boolean isNextFunction = true;
+    boolean isPreviousFunction = true;
+    boolean isSeekBarFunction = true;
+    //endregion
+
     /** Use mHandler for processing on Multi thread */
     private Handler mHandler = new MessageHandler(this);
 
+    /** set components for Media Player */
+    public void setPauseButton(boolean state) {
+        isPauseFunction = state;
+    }
+    public void setFullscreenButton(boolean state) {
+        isFullScreenFunction = state;
+    }
+
+    public void setFastForwardButton(boolean state) {
+        isFastForwardFunction = state;
+    }
+
+    public void setRewindButton(boolean state) {
+        isReWindFunction = state;
+    }
+
+    public void setNextFunction(boolean state) {
+        isNextFunction = state;
+    }
+
+    public void setPreviousButton(boolean state) {
+        isPreviousFunction = state;
+    }
+
+    public void setSeekBarButton(boolean state) {
+        isSeekBarFunction = state;
+    }
+
+
     //region Construct all components of class
     //////////////////////////////////////////////////////////////////////
-    //////////////////// CONSTRUCTOR METHOD /////////////////////////////
+    //////////////////// CONSTRUCTOR METHOD //////////////////////////////
 
     /** constructor assign rootView can parse Media Player elements */
     public MusicPlayerController(View rootView) {
         this.mRootView = rootView;
+        mUseFastForward = true;
         // parse element for this Music Player Control
         initializeComponents();
     }
@@ -86,6 +135,7 @@ public class MusicPlayerController {
         mPauseButton = (ImageButton) mRootView.findViewById(R.id.pause);
         if (mPauseButton != null) {
             LOGD(TAG, "Pause Button: " + mPauseButton);
+            isPauseFunction = true;
             mPauseButton.requestFocus();
             mPauseButton.setOnClickListener(mPauseListener);
         }
@@ -93,6 +143,7 @@ public class MusicPlayerController {
         fullscreenButton = (ImageButton) mRootView.findViewById(R.id.fullscreen);
         if (fullscreenButton != null) {
             LOGD(TAG, "Fullscreen Button: " + fullscreenButton);
+            isFullScreenFunction = true;
             fullscreenButton.requestFocus();
             fullscreenButton.setOnClickListener(mFullscreenListener);
         }
@@ -100,32 +151,38 @@ public class MusicPlayerController {
         mFastForwardButton = (ImageButton) mRootView.findViewById(R.id.ffwd);
         if (mFastForwardButton != null) {
             LOGD(TAG, "FastForward Button: " + mFastForwardButton);
-            mFastForwardButton.setOnClickListener(fastForwardListener);
+            isFastForwardFunction = true;
+            mFastForwardButton.setOnClickListener(mFastForwardListener);
             mFastForwardButton.setVisibility(mUseFastForward ? View.VISIBLE : View.GONE);
         }
 
         mRewindButton = (ImageButton) mRootView.findViewById(R.id.rew);
         if (mRewindButton != null) {
             LOGD(TAG, "Rewind Button: " + mRewindButton);
-            mRewindButton.setOnClickListener(mRewListener);
+            isReWindFunction = true;
+            mRewindButton.setOnClickListener(mRewindListener);
             mRewindButton.setVisibility(mUseFastForward ? View.VISIBLE : View.GONE);
         }
 
         // By default these are hidden. They will be enabled when setupPreviousNextListeners() is called
         mNextButton = (ImageButton) mRootView.findViewById(R.id.next);
-        if (mNextButton != null && !mListenersSet) {
+        if (mNextButton != null && isNextSongFunction) {
             LOGD(TAG, "Next Button: " + mNextButton);
-            mNextButton.setVisibility(View.GONE);
+            isNextFunction = true;
+            mNextButton.setVisibility(View.VISIBLE);
         }
+
         prevButton = (ImageButton) mRootView.findViewById(R.id.prev);
-        if (prevButton != null && !mListenersSet) {
+        if (prevButton != null && isNextSongFunction) {
             LOGD(TAG, "Previous Button: " + prevButton);
-            prevButton.setVisibility(View.GONE);
+            isPreviousFunction = true;
+            prevButton.setVisibility(View.VISIBLE);
         }
 
         mProgress = (ProgressBar) mRootView.findViewById(R.id.mediacontroller_progress);
         if (mProgress != null) {
             LOGD(TAG, "Progress Button: " + mProgress);
+            isSeekBarFunction = true;
             if (mProgress instanceof SeekBar) {
                 SeekBar seeker = (SeekBar) mProgress;
                 seeker.setOnSeekBarChangeListener(mSeekListener);
@@ -149,7 +206,7 @@ public class MusicPlayerController {
     /**
      * Disable pause or seek buttons if the stream cannot be paused or seeked.
      * This requires the control interface to be a MediaPlayerControlExt
-     * Class implements this interface must declare explicity enable or not
+     * Class implements this interface must declare explicitly enable or not
      */
     private void disableUnsupportedButtons() {
         if (player == null) return;
@@ -166,22 +223,22 @@ public class MusicPlayerController {
 
     /** Set Enable for Media Player Control */
     private void enabledSupportedButtons(boolean enabled) {
-        if (mPauseButton != null) {
+        if (isPauseFunction) {
             mPauseButton.setEnabled(enabled);
         }
-        if (mFastForwardButton != null) {
+        if (isFastForwardFunction) {
             mFastForwardButton.setEnabled(enabled);
         }
-        if (mRewindButton != null) {
+        if (isReWindFunction) {
             mRewindButton.setEnabled(enabled);
         }
-        if (mNextButton != null) {
+        if (isNextFunction) {
             mNextButton.setEnabled(enabled && mNextListener != null);
         }
-        if (prevButton != null) {
+        if (isPreviousFunction) {
             prevButton.setEnabled(enabled && mPrevListener != null);
         }
-        if (mProgress != null) {
+        if (isSeekBarFunction) {
             mProgress.setEnabled(enabled);
         }
         disableUnsupportedButtons();
@@ -206,7 +263,7 @@ public class MusicPlayerController {
      */
     private void setupToggleFullscreen() {
         if (player == null) return;
-
+        // call fullscreen from Callback
         player.toggleFullScreen();
         updateFullScreen();
     }
@@ -217,12 +274,12 @@ public class MusicPlayerController {
      * this method will set listener object for button (already define in listener object scope)
      */
     private void setupPreviousNextListeners() {
-        if (mNextButton != null) {
+        if (isNextFunction) {
             mNextButton.setOnClickListener(mNextListener);
             mNextButton.setEnabled(mNextListener != null);
         }
 
-        if (prevButton != null) {
+        if (isPreviousFunction) {
             prevButton.setOnClickListener(mPrevListener);
             prevButton.setEnabled(mPrevListener != null);
         }
@@ -235,7 +292,7 @@ public class MusicPlayerController {
     public void setupPreviousNextListeners(View.OnClickListener next, View.OnClickListener prev) {
         mNextListener = next;
         mPrevListener = prev;
-        mListenersSet = true;
+        isNextSongFunction = true;
 
         if (mRootView != null) {
             // set action and enable for those two buttons
@@ -334,9 +391,7 @@ public class MusicPlayerController {
      * if player is stopped, display playing button
      */
     public void updatePausePlay() {
-        if (mRootView == null || mPauseButton == null || player == null) {
-            return;
-        }
+        if (mRootView == null || player == null || (!isPauseFunction)) return;
         if (player.isPlaying()) {
             mPauseButton.setImageResource(R.drawable.ic_media_pause);
         } else {
@@ -350,9 +405,7 @@ public class MusicPlayerController {
      * if is not, display icon fullscreen sketch
      */
     public void updateFullScreen() {
-        if (mRootView == null || fullscreenButton == null || player == null) {
-            return;
-        }
+        if (mRootView == null || player == null || (!isFullScreenFunction)) return;
         if (player.isFullScreen()) {
             fullscreenButton.setImageResource(R.drawable.ic_media_fullscreen_shrink);
         } else {
@@ -426,7 +479,7 @@ public class MusicPlayerController {
      */
 
     /** Listener for FastForward Button */
-    private View.OnClickListener fastForwardListener = new View.OnClickListener() {
+    private View.OnClickListener mFastForwardListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if (player == null) {
@@ -434,8 +487,7 @@ public class MusicPlayerController {
             }
 
             int pos = player.getCurrentPosition();
-            // plus 15 seconds forward
-            pos += 15000; // milliseconds
+            pos += FAST_FORWARD_TIME; // milliseconds
             // set SeekBar to this point
             player.seekTo(pos);
             // set progress of current video to this point
@@ -446,7 +498,7 @@ public class MusicPlayerController {
     };
 
     /** Set Listener for Previous Forward Button */
-    private View.OnClickListener mRewListener = new View.OnClickListener() {
+    private View.OnClickListener mRewindListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if (player == null) {
@@ -454,8 +506,7 @@ public class MusicPlayerController {
             }
 
             int pos = player.getCurrentPosition();
-            // decrease about 5 seconds
-            pos -= 5000; // milliseconds
+            pos -= REWIND_TIME; // milliseconds
             // set player SeekBar to this point
             player.seekTo(pos);
             // Change music/video to this point
@@ -485,7 +536,7 @@ public class MusicPlayerController {
 
     /**
      * There are two scenarios that can trigger the seekbar listener to trigger:
-     The first is the user using the touchpad to adjust the posititon of the
+     The first is the user using the touch to adjust the position of the
      seekbar's thumb. In this case onStartTrackingTouch is called followed by
      a number of onProgressChanged notifications, concluded by onStopTrackingTouch.
      We're setting the field "mDragging" to true for the duration of the dragging
