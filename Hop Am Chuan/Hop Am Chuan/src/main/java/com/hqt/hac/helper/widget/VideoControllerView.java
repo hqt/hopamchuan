@@ -39,10 +39,10 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
  * MediaController will hide and
  * show the buttons according to these rules:
  * <ul>
- * <li> The "previous" and "next" buttons are hidden until setPreviousNextListeners()
+ * <li> The "previous" and "next" buttons are hidden until setupPreviousNextListeners()
  * has been called
  * <li> The "previous" and "next" buttons are visible but disabled if
- * setPreviousNextListeners() was called with null listeners
+ * setupPreviousNextListeners() was called with null listeners
  * <li> The "rewind" and "fastforward" buttons are shown unless requested
  * otherwise by using the MediaController(Context, boolean) constructor
  * with the boolean set to false
@@ -424,7 +424,7 @@ public class VideoControllerView extends FrameLayout {
             }
         }
 
-        // By default these are hidden. They will be enabled when setPreviousNextListeners() is called
+        // By default these are hidden. They will be enabled when setupPreviousNextListeners() is called
         mNextButton = (ImageButton) v.findViewById(R.id.next);
         if (mNextButton != null && !mFromXml && !mListenersSet) {
             mNextButton.setVisibility(View.GONE);
@@ -555,7 +555,7 @@ public class VideoControllerView extends FrameLayout {
 
     /**
      * Set Listener for Previous Button and Next Button
-     * public method setPreviousNextListeners() will call this private method
+     * public method setupPreviousNextListeners() will call this private method
      * this method will set listener object for button (already define in listener object scope)
      */
     private void installPrevNextListeners() {

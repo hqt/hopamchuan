@@ -22,10 +22,15 @@ public class SplashScreen extends Activity {
 
     // Splash screen timer
     private static int SPLASH_TIME_OUT = 2;
+    /** pre-load playlist list */
     ArrayList<Playlist> playlistList;
+    /** variable control when finish time wait */
     AtomicBoolean isSplashTimeOut = new AtomicBoolean(false);
+    /** variable control when all work is finish */
     AtomicBoolean isFinishWork = new AtomicBoolean(false);
+    /** Handler to switch to another activity */
     SwitchActivityHandler mHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +45,6 @@ public class SplashScreen extends Activity {
                 // sleep for two second
                 NetworkUtils.stimulateNetwork(SPLASH_TIME_OUT);
                 isSplashTimeOut.set(true);
-                LOGE(TAG, "Finish Wait");
                 if (isFinishWork.get()) {
                     mHandler.sendMessage(mHandler.obtainMessage());
                 }
@@ -61,10 +65,6 @@ public class SplashScreen extends Activity {
         /** load all playlist here */
         playlistList = (ArrayList)PlaylistDataAccessLayer.getAllPlayLists(getApplicationContext());
         isFinishWork.set(true);
-        LOGE(TAG, "finish work");
-        if (playlistList == null) {
-            LOGE(TAG, "finish work with error");
-        }
     }
 
     private class SwitchActivityHandler extends Handler {
@@ -82,13 +82,6 @@ public class SplashScreen extends Activity {
     private void startActivity() {
         Intent intent = new Intent(SplashScreen.this, MainActivity.class);
         intent.putParcelableArrayListExtra("playlistList", playlistList);
-        int count = 0;
-        for (int i = 0; i < playlistList.size(); i++) {
-            if (playlistList.get(i) == null) {
-                count++;
-            }
-        }
-        LOGE(TAG, "Null Elements: " + count);
         startActivity(intent);
     }
 }

@@ -179,7 +179,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
     //////////////////////////////////////////////////////////////////////
     ////////////////////// CONFIGURATION METHOD /////////////////////////
 
-    // TODO need to test this method carefully to have same behavior as Mp3 Zing
     @Override
     public void onBackPressed() {
         // put this setter here. for clearer rather than put in onCreate() method.
@@ -196,6 +195,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 restoreActionBar();
                 isLevelZero = true;
             } else {
+                // in Welcome Fragment. Just exit when double click back press as Zing MP3
                 long currentTime = Calendar.getInstance().getTimeInMillis();
                 LOGE(TAG, mTimePressBackBtn + "/" + currentTime);
                 if (currentTime < mTimePressBackBtn + Config.TOAST_LENGTH_SHORT) {

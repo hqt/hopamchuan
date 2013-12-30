@@ -137,7 +137,7 @@ public static String TAG = makeLogTag(SongViewFragment.class);
         // father view that this media controller belongs too
         // controller.setAnchorView(mediaPlayerContainer);
         // after set AnchorView. can show Media Controller
-        controller.show();
+        // controller.show();
         // after get into prepare state. call start() to go to started state
         player.start();
     }

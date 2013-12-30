@@ -92,7 +92,7 @@ public class VideoPlayerActivityTest extends Activity implements
         player.start();
     }
 
-    // Implement VideoMediaController.MediaPlayerControl
+    // Implement VideoMediaController.IMediaPlayerControl
     @Override
     public boolean canPause() {
         return true;

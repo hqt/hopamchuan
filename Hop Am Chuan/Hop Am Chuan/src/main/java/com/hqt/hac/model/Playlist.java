@@ -132,7 +132,7 @@ public class Playlist implements Parcelable {
     //////////////////// IMPLEMENT PARCELABLE MECHANISM ///////////////
 
     // TODO write list of songs object
-    
+
     @Override
     public int describeContents() {
         return 0;
