@@ -24,6 +24,7 @@ public class Config {
     public static final String SERVICE_SYNC_PLAYLIST = SITE + "/api/put_playlists";
     public static final String SERVICE_SYNC_FAVORITE = SITE + "/api/put_favorite";
     public static final String SERVICE_GET_PROFILE = SITE + "/api/get_profile";
+    public static final String SERVICE_GET_MP3_LINK = SITE  + "/api/get_mp3_link";
 
     /** Default song count to display in SongListFragment **/
     public static final int DEFAULT_SONG_LIST_COUNT = 3;

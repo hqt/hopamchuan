@@ -175,7 +175,7 @@ public class SongDetailFragment extends Fragment implements MediaPlayer.OnPrepar
             // testing for source
             AssetFileDescriptor afd = getActivity().getApplicationContext().getAssets().openFd("aaa.mp3");
             player.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
-            // this line should put after set DataSource
+            // this line should put after set DataSource and should use prepareAsync() rather than just only prepare()
             player.prepareAsync();
             player.setOnPreparedListener(this);
         } catch (IllegalArgumentException e) {

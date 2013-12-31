@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
@@ -36,12 +35,9 @@ public class APIUtils {
         // String jsonString = NetworkUtils.getResponseFromGetRequest(url);
 
         // new code using POST
-        Map post_params = generatePostRequestParams(params);
+        Map<String, String> post_params = generatePostRequestParams(params);
 
-        String jsonString = "-1";
-        NetworkUtils.stimulateNetwork(10);
-
-        jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_GET_PROFILE, post_params);
+        String jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_GET_PROFILE, post_params);
 
         if (jsonString != null && jsonString.equals("-1")) {
             // Wrong password
@@ -64,12 +60,11 @@ public class APIUtils {
         // String jsonData = NetworkUtils.getResponseFromGetRequest(url);
 
         // new code using POST
-        Map post_params = generatePostRequestParams(params);
+        Map<String, String> post_params = generatePostRequestParams(params);
         String jsonData = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_LASTEST_VERSION_APP, post_params);
 
         LOGE(TAG, "Version Json: " + jsonData);
-        DBVersion ver = ParserUtils.getDBVersionDetail(jsonData);
-        return ver;
+        return ParserUtils.getDBVersionDetail(jsonData);
     }
 
     /**
@@ -84,7 +79,7 @@ public class APIUtils {
         // String jsonString = NetworkUtils.getResponseFromGetRequest(url);
 
         // new code using POST
-        Map post_params = generatePostRequestParams(params);
+        Map<String, String> post_params = generatePostRequestParams(params);
         String jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_GET_SONGS_FROM_DATE, post_params);
         LOGE("TRUNGDQ", "Song list: " + jsonString);
         return ParserUtils.parseAllSongsFromJSONString(jsonString);
@@ -106,7 +101,7 @@ public class APIUtils {
         //String jsonString = NetworkUtils.getResponseFromGetRequest(url);
 
         // new code using POST
-        Map post_params = generatePostRequestParams(params);
+        Map<String, String> post_params = generatePostRequestParams(params);
         String jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_SYNC_PLAYLIST, post_params);
 
         LOGE(TAG, "Playlist JSON: " + jsonString);
@@ -129,14 +124,23 @@ public class APIUtils {
         //String jsonString = NetworkUtils.getResponseFromGetRequest(url);
 
         // new code using post request
-        Map post_params = generatePostRequestParams(params);
+        Map<String, String> post_params = generatePostRequestParams(params);
         String jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_SYNC_FAVORITE, post_params);
 
         LOGE(TAG, "Favorite JSON: " + jsonString);
         return ParserUtils.parseAllSongIdsFromJSONString(jsonString);
     }
 
-    private static final String generateRequestLink(String url, Map<String, String> parameters) {
+    /** get mp3 link for streaming */
+    public static String getMp3Link(String link) {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("mp3Link", link);
+        Map<String, String> post_params = generatePostRequestParams(params);
+        String jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_GET_MP3_LINK, post_params);
+        return jsonString;
+    }
+
+    private static String generateRequestLink(String url, Map<String, String> parameters) {
         StringBuilder builder = new StringBuilder(url);
         // convert json object to string
         String jsonData = EncodingUtils.encodeMapToJSONString(parameters);
@@ -152,13 +156,13 @@ public class APIUtils {
         // append private key
         builder.append("&privateKey=" + Config.PRIVATE_KEY);
         // append signature
-        builder.append("&signature=" + signature);
+        builder.append("&signature=").append(signature);
         // append Json Data that already encode
-        builder.append("&jsondata=" + encodeJsonData);
+        builder.append("&jsondata=").append(encodeJsonData);
         return builder.toString();
     }
 
-    private static final Map<String, String> generatePostRequestParams(Map<String, String> parameters) {
+    private static Map<String, String> generatePostRequestParams(Map<String, String> parameters) {
         // convert json object to string
         String jsonData = EncodingUtils.encodeMapToJSONString(parameters);
         // encode this string to unreadable (still can decode)
