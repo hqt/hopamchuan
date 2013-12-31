@@ -17,6 +17,7 @@ import com.hqt.hac.helper.adapter.ChordViewImageAdapter;
 import com.hqt.hac.helper.adapter.ChordViewTextureAdapter;
 import com.hqt.hac.helper.adapter.IChordView;
 import com.hqt.hac.helper.widget.FastSearchListView;
+import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.utils.ResourceUtils;
 import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.MainActivity;
@@ -27,29 +28,31 @@ import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class ChordViewFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+public class ChordViewFragment extends Fragment implements AdapterView.OnItemSelectedListener, IHacFragment {
 
     public static String TAG = makeLogTag(ChordViewFragment.class);
 
+    public int titleRes = R.string.title_activity_chord_view;
+
     /** Main Activity for reference */
-    MainActivity activity;
+    private MainActivity activity;
 
     /** ListView : contains all ChordSurfaceView for current type of query */
-    List<String[]> typeOfChords = new ArrayList<String[]>();
-    ListView mChordSurfaceListView;
+    private List<String[]> typeOfChords = new ArrayList<String[]>();
+    private ListView mChordSurfaceListView;
 
     /** ListView : contains all chords in system (defined in string resource) */
-    String[] mChordStrList;
-    ListView mChordListView;
+    private String[] mChordStrList;
+    private ListView mChordListView;
 
 
     /** Adapter for this fragment */
-    IChordView adapter;
+    private IChordView adapter;
 
     /** spinner of this fragment
      * use for user select how to view chords (simple or advanced or all)
      */
-    Spinner spinner;
+    private Spinner spinner;
 
     public ChordViewFragment() {
 
@@ -140,4 +143,8 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
     public void onNothingSelected(AdapterView<?> parent) {
     }
 
+    @Override
+    public int getTitle() {
+        return titleRes;
+    }
 }

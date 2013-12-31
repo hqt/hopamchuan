@@ -148,4 +148,10 @@ public class FavoriteDataAccessLayer {
         return true;
     }
 
+    public static void removeAllFavorites(Context context) {
+        List<Song> songs = getAllFavoriteSongs(context);
+        for (Song song : songs) {
+            removeSongFromFavorite(context, song.songId);
+        }
+    }
 }

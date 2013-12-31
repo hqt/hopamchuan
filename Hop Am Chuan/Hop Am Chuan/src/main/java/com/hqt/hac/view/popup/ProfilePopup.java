@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hqt.hac.config.PrefStore;
+import com.hqt.hac.model.dao.FavoriteDataAccessLayer;
+import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 import com.hqt.hac.utils.EncodingUtils;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.view.MainActivity;
@@ -86,6 +88,10 @@ public class ProfilePopup {
         PrefStore.setLoginPassword(context, null);
         PrefStore.setEmail(context, null);
         PrefStore.setUserImage(context, null);
+
+        // Remove all playlist, favorites
+        PlaylistDataAccessLayer.removeAllPlaylists(context);
+        FavoriteDataAccessLayer.removeAllFavorites(context);
 
         // Reload the mActivity
         dialog.dismiss();

@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.hqt.hac.helper.adapter.FindByChordAdapter;
 import com.hqt.hac.helper.widget.BackgroundContainer;
+import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.helper.widget.ListViewWidget;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
@@ -28,47 +29,55 @@ import java.util.List;
 
 public class FindByChordFragment extends Fragment implements
         AdapterView.OnItemSelectedListener,
-        FindByChordAdapter.IFindByChordAdapter {
+        FindByChordAdapter.IFindByChordAdapter,
+        IHacFragment {
+
+    public int titleRes = R.string.title_activity_find_by_chord;
 
     /** Main Activity for reference */
-    MainActivity activity;
+    private MainActivity activity;
 
     /** ListView : contains all Chords can use to search of this fragment */
-    ListView mListView;
+    private ListView mListView;
 
     /** TextView for insert Chord */
-    TextView insertChordTextView;
+    private TextView insertChordTextView;
 
     /** Button for insert Chord to list */
-    Button insertChordBtn;
+    private Button insertChordBtn;
 
     /** Button for Search Action */
-    Button searchBtn;
+    private Button searchBtn;
 
     /** spinner of this fragment
      * use for user select base chords
      */
-    Spinner spinner;
+    private Spinner spinner;
 
     /** Adapter for this fragment */
-    FindByChordAdapter adapter;
+    private FindByChordAdapter adapter;
 
 
     /**
      * List all chords base
      */
-    String[] chordBase;
+    private String[] chordBase;
 
     /**
      * List all current chords need to search in listview
      */
-    List<String> chords;
+    private List<String> chords;
 
-    BackgroundContainer mBackgroundContainer;
+    private BackgroundContainer mBackgroundContainer;
 
     public FindByChordFragment() {
     }
 
+
+    @Override
+    public int getTitle() {
+        return titleRes;
+    }
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

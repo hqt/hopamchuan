@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 
 import com.hqt.hac.helper.adapter.PlaylistManagerAdapter;
+import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.helper.widget.PlaylistRightMenuHandler;
 import com.hqt.hac.model.Playlist;
@@ -20,9 +21,12 @@ import com.hqt.hac.view.R;
 
 import java.util.List;
 
-public class PlaylistManagerFragment extends Fragment implements PlaylistManagerAdapter.IPlaylistManagerAdapter {
+public class PlaylistManagerFragment extends Fragment implements PlaylistManagerAdapter.IPlaylistManagerAdapter, IHacFragment {
+
+    public int titleRes = R.string.title_activity_my_playlist_fragment;
+
     /** Main Activity for reference */
-    MainActivity activity;
+    private MainActivity activity;
 
     /**
      * ListView of this fragment
@@ -32,10 +36,10 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
     /**
      * Model for this View
      */
-    List<Playlist> allPlaylists;
+    private List<Playlist> allPlaylists;
 
     /** One popup menu for all items **/
-    PopupWindow popupWindow = null;
+    private PopupWindow popupWindow = null;
 
     /**
      * Adapter for this View
@@ -45,6 +49,12 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
     public PlaylistManagerFragment() {
     }
 
+
+
+    @Override
+    public int getTitle() {
+        return titleRes;
+    }
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -98,6 +108,7 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
                 Bundle arguments = new Bundle();
                 arguments.putParcelable("playlist", allPlaylists.get(position));
                 fragment.setArguments(arguments);
+                activity.changeTitleBar(allPlaylists.get(position).playlistName);
                 activity.switchFragmentNormal(fragment);
             }
         });

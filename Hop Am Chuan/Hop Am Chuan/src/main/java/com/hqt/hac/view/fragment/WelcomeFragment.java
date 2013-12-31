@@ -16,15 +16,23 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
-public class WelcomeFragment extends  Fragment {
+public class WelcomeFragment extends  Fragment implements IHacFragment {
 
+    public int titleRes = R.string.title_activity_welcome_fragment;
 
     public WelcomeFragment() {
     }
 
+
+
+    @Override
+    public int getTitle() {
+        return titleRes;
+    }
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -33,14 +41,13 @@ public class WelcomeFragment extends  Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_welcome, container, false);
-
-
         return rootView;
     }
 }

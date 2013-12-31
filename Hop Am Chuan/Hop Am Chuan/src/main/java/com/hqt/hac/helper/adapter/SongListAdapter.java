@@ -52,6 +52,20 @@ public class SongListAdapter extends BaseAdapter {
         return songs.get(position).songId;
     }
 
+    /**
+     * Remove song from list
+     * @param songId
+     */
+    public void remove(int songId) {
+        for (int i = 0; i < songs.size(); ++i) {
+            if (songs.get(i).songId == songId) {
+                songs.remove(i);
+                break;
+            }
+        }
+        notifyDataSetChanged();
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
         ViewHolder holder = null;

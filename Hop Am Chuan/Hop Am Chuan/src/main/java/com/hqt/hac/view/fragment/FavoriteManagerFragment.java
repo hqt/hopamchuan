@@ -14,6 +14,7 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 
 import com.hqt.hac.helper.adapter.SongListAdapter;
+import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dao.FavoriteDataAccessLayer;
@@ -27,22 +28,24 @@ import java.util.List;
 import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 
-public class FavoriteManagerFragment extends  Fragment implements AdapterView.OnItemSelectedListener {
+public class FavoriteManagerFragment extends  Fragment implements AdapterView.OnItemSelectedListener, IHacFragment {
+
+    public int titleRes = R.string.title_activity_my_favorite_fragment;
 
     /** Main Activity for reference */
-    MainActivity activity;
+    private MainActivity activity;
 
     /** ListView : contains all items of this fragment */
-    ListView mListView;
+    private ListView mListView;
 
     /** List of All songs in favorite */
-    List<Song> songs;
+    private List<Song> songs;
 
     /** Adapter for this fragment */
-    SongListAdapter mAdapter;
+    private SongListAdapter mAdapter;
 
     /** One popup menu for all items **/
-    PopupWindow popupWindow = null;
+    private PopupWindow popupWindow = null;
 
     /** spinner of this fragment
      * use for user select display setting
@@ -52,6 +55,11 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
     public FavoriteManagerFragment() {
     }
 
+
+    @Override
+    public int getTitle() {
+        return titleRes;
+    }
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -116,6 +124,7 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
                 arguments.putParcelable("song", songs.get(position));
                 fragment.setArguments(arguments);
                 activity.switchFragmentNormal(fragment);
+                activity.changeTitleBar(songs.get(position).title);
             }
         });
 

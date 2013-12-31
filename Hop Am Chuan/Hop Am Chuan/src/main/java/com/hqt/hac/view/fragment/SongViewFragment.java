@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.*;
 import android.widget.FrameLayout;
+
+import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.helper.widget.alpha.VideoControllerView;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
@@ -13,7 +15,10 @@ import com.hqt.hac.view.R;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 public class SongViewFragment extends Fragment implements
-        SurfaceHolder.Callback, MediaPlayer.OnPreparedListener, VideoControllerView.MediaPlayerControl {
+        SurfaceHolder.Callback,
+        MediaPlayer.OnPreparedListener,
+        VideoControllerView.MediaPlayerControl,
+        IHacFragment {
 
 
 public static String TAG = makeLogTag(SongViewFragment.class);
@@ -37,6 +42,12 @@ public static String TAG = makeLogTag(SongViewFragment.class);
 
     }
 
+
+
+    @Override
+    public int getTitle() {
+        return 0;
+    }
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

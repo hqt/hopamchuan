@@ -11,6 +11,7 @@ import android.widget.*;
 import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.InfinityAdapter;
 import com.hqt.hac.helper.adapter.SongListAdapter;
+import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.helper.widget.InfinityListView;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Song;
@@ -28,27 +29,38 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
 /**
  * Fragment uses for viewing songs as categories
  */
-public class SongListFragment extends Fragment implements AdapterView.OnItemSelectedListener, InfinityListView.ILoaderContent, InfinityAdapter.ILoaderContent {
+public class SongListFragment extends Fragment implements AdapterView.OnItemSelectedListener,
+        InfinityListView.ILoaderContent,
+        InfinityAdapter.ILoaderContent,
+        IHacFragment {
 
     public static final String TAG = makeLogTag(SongListFragment.class);
 
+    public int titleRes = R.string.title_activity_song_list_fragment;
+
     /** Main Activity for reference */
-    MainActivity activity;
-    InfinityListView mListView;
-    List<Song> songs;
+    private MainActivity activity;
+    private InfinityListView mListView;
+    private List<Song> songs;
 
     /** One popup menu for all items **/
-    PopupWindow popupWindow = null;
+    private PopupWindow popupWindow = null;
 
     /** Adapter for this fragment */
-    SongListAdapter songlistAdapter;
+    private SongListAdapter songlistAdapter;
 
     /** Adapter use for loading when go to ending list */
-    InfinityAdapter infAdapter;
+    private InfinityAdapter infAdapter;
 
     public SongListFragment() {
     }
 
+
+
+    @Override
+    public int getTitle() {
+        return titleRes;
+    }
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -136,6 +148,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
                 arguments.putParcelable("song", songs.get(position));
                 fragment.setArguments(arguments);
                 activity.switchFragmentNormal(fragment);
+                activity.changeTitleBar(songs.get(position).title);
             }
         });
 
@@ -193,7 +206,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     public void load(int index) {
         NetworkUtils.stimulateNetwork(1);
         LOGE(TAG, "Add a Song to Inf ListView");
-        s = SongDataAccessLayer.getSongById(getActivity().getApplicationContext(), 1);
+        s = SongDataAccessLayer.getSongById(getActivity().getApplicationContext(), 4384);
         s.title = s.title + " " + cth++;
     }
 

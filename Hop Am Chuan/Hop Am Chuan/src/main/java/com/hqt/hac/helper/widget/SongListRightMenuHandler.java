@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.PlaylistListAdapter;
+import com.hqt.hac.helper.adapter.SongListAdapter;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dao.FavoriteDataAccessLayer;
@@ -159,6 +160,28 @@ public class SongListRightMenuHandler {
         popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 35, 35);*/
 
         popupWindow.showAsDropDown(_view);
+    }
+
+    public static void openPopupMenu(View _view, final Song _song, ImageView _theStar,
+                                     final int playlistId, final SongListAdapter mAdapter) {
+        playlistBtn.setText(R.string.remove_from_playlist);
+
+        // Override add playlist button
+        playlistBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupWindow.dismiss();
+
+                // Remove from playlist
+                PlaylistSongDataAccessLayer.removePlaylist_Song(
+                        activity.getApplicationContext(), playlistId, _song.songId);
+
+                // Update UI
+                mAdapter.remove(_song.songId);
+            }
+        });
+
+        openPopupMenu(_view, _song, _theStar);
     }
 
     private static class AddToPlaylistOnClick implements AdapterView.OnItemClickListener {
