@@ -11,20 +11,17 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.hqt.hac.helper.adapter.FindByChordAdapter;
 import com.hqt.hac.helper.widget.BackgroundContainer;
-import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.helper.widget.ListViewWidget;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FindByChordFragment extends Fragment implements

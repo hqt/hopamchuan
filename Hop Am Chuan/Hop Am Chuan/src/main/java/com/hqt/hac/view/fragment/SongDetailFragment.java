@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.*;
 
 import com.hqt.hac.helper.service.Mp3PlayerService;
-import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.helper.widget.MusicPlayerController;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.utils.DialogUtils;

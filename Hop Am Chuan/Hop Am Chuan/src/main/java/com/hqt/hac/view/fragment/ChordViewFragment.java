@@ -12,12 +12,10 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-import com.hqt.hac.helper.adapter.ChordViewAdapter;
 import com.hqt.hac.helper.adapter.ChordViewImageAdapter;
 import com.hqt.hac.helper.adapter.ChordViewTextureAdapter;
 import com.hqt.hac.helper.adapter.IChordView;
 import com.hqt.hac.helper.widget.FastSearchListView;
-import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.utils.ResourceUtils;
 import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.MainActivity;

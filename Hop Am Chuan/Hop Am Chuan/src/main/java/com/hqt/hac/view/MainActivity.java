@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
-import com.hqt.hac.helper.widget.IHacFragment;
+import com.hqt.hac.view.fragment.IHacFragment;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
@@ -28,9 +28,7 @@ import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
 import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.fragment.*;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.unittest.DatabaseTest;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -211,7 +209,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
         if (mTimePressBackBtn == 0) mTimePressBackBtn = -14181147;
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment currentFragment = getCurrentFragment(fragmentManager, 1);
-        LOGE("TRUNGDQ", "current fragment: " + currentFragment);
 //        if (fragmentManager.getBackStackEntryCount() == 0) {
         if (fragmentManager.getBackStackEntryCount() == 1) {
             // Only exit in welcome fragment.
@@ -239,9 +236,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
             Fragment afterBackFragment = getCurrentFragment(fragmentManager, 2);
             // Change title bar after change fragment.
             if (afterBackFragment != null) {
-//                LOGE("TRUNGDQ", "current fragment: " + fragment);
                 int titleRes = ((IHacFragment) afterBackFragment).getTitle();
-//                LOGE("TRUNGDQ", "fragment title: " + titleRes);
                 if (titleRes > 0) {
                     changeTitleBar(getString(titleRes));
                 } else {
@@ -249,33 +244,11 @@ public class MainActivity extends SlidingMenuActionBarActivity
                         changeTitleBar(((PlaylistDetailFragment) afterBackFragment).playlist.playlistName);
                     }
                 }
-            } else {
-//                LOGE("TRUNGDQ", "current fragment: NULL");
             }
-
             super.onBackPressed();
-
         }
     }
 
-    /**
-     * Get current fragment using tag
-     * http://stackoverflow.com/questions/15028527/is-there-a-way-to-get-fragment-from-top-of-stack
-     * @param fragmentManager
-     * @param offset: just for test purpose, use 1 for default
-     * @return
-     */
-    private Fragment getCurrentFragment(FragmentManager fragmentManager, int offset){
-        try {
-            String fragmentTag = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - offset).getName();
-            Fragment currentFragment = getSupportFragmentManager()
-                    .findFragmentByTag(fragmentTag);
-            return currentFragment;
-        } catch (ArrayIndexOutOfBoundsException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     public void changeTitleBar(String title) {
         mTitle = title;
@@ -288,7 +261,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
-
 
     /**
      * Create ActionBar items
@@ -478,6 +450,25 @@ public class MainActivity extends SlidingMenuActionBarActivity
             default:
                 // do nothing
         }
+    }
+
+    /**
+     * Get current fragment using tag
+     * http://stackoverflow.com/questions/15028527/is-there-a-way-to-get-fragment-from-top-of-stack
+     * @param fragmentManager
+     * @param offset: just for test purpose, use 1 for default
+     * @return
+     */
+    private Fragment getCurrentFragment(FragmentManager fragmentManager, int offset){
+        try {
+            String fragmentTag = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - offset).getName();
+            Fragment currentFragment = getSupportFragmentManager()
+                    .findFragmentByTag(fragmentTag);
+            return currentFragment;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     ////////////////////////////////////////////////////////////////

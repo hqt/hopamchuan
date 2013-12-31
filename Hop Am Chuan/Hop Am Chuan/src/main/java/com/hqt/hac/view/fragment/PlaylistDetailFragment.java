@@ -12,7 +12,6 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 
 import com.hqt.hac.helper.adapter.SongListAdapter;
-import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;

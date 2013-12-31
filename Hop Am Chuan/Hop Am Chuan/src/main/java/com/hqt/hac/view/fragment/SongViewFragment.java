@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.*;
 import android.widget.FrameLayout;
 
-import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.helper.widget.alpha.VideoControllerView;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
