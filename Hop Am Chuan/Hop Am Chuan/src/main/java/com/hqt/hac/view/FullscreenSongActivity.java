@@ -3,9 +3,10 @@ package com.hqt.hac.view;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.PowerManager;
 import android.util.TypedValue;
 import android.view.*;
@@ -13,7 +14,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -25,6 +25,8 @@ import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.utils.ScreenUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 
@@ -53,12 +55,12 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
      * Dialogs *
      */
     private Dialog dialogFontSize;
-    private TextView fontSizeTV;
-    private SeekBar fontSizeSB;
+    private TextView fontSizeTextView;
+    private SeekBar fontSizeSeekBar;
 
     private Dialog dialogScroll;
-    private TextView scrollTV;
-    private SeekBar scrollSB;
+    private TextView scrollTextView;
+    private SeekBar scrollSeekBar;
     private Button toTopBtn;
     private CheckBox turnOnChk;
 
@@ -73,22 +75,22 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
      * Controls *
      */
     // The text view
-    private TextView songContentTV;
+    private TextView songContentTextView;
     // Scroll view for smoothie and auto scroll function
     private ScrollView scrollView;
 
-    // Auto scroll thread
-    private AutoScrollThread scroller;
 
     /**
      * Lyric view mode *
      */
     private boolean singleLineMode = true;
     private int speed = Config.SONG_AUTO_SCROLL_MIN_NEV_SPEED;
-    private boolean autoScroll = false;
+    private AtomicBoolean isAutoScroll = new AtomicBoolean(false);
 
-    /** This is used to keep the screen always on **/
-    protected PowerManager.WakeLock mWakeLock;
+    /** velocity speed */
+    int velocitySpeed =  velocitySpeedFormula();
+
+    ScrollHandler mHandler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -107,6 +109,8 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
         sidebarView = inflater.inflate(R.layout.song_right_bar, null);
         setBehindContentView(sidebarView);
 
+        mHandler = new ScrollHandler();
+
         // Set up Sidebar
         setUpSideBar();
 
@@ -122,10 +126,6 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
         // Set up content
         setUpContent();
 
-        // Start auto scroll thread
-        scroller = new AutoScrollThread();
-        // scroller.start();
-
         // Keep the screen always on
         setScreenOn();
 
@@ -138,19 +138,21 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
     private void setUpDialogs() {
         dialogFontSize = DialogUtils.createDialog(this, R.string.song_detail_fontsize,
                 getLayoutInflater(), R.layout.dialog_songdetail_fontsize);
-        fontSizeTV = (TextView) dialogFontSize.findViewById(R.id.fontSizeTV);
-        fontSizeSB = (SeekBar) dialogFontSize.findViewById(R.id.fontSizeSB);
+        fontSizeTextView = (TextView) dialogFontSize.findViewById(R.id.fontSizeTV);
+        fontSizeSeekBar = (SeekBar) dialogFontSize.findViewById(R.id.fontSizeSB);
 
-        fontSizeSB.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        fontSizeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean b) {
-                fontSizeTV.setText(String.valueOf(value + 1));
-                songContentTV.setTextSize(TypedValue.COMPLEX_UNIT_PX, value + 1);
+                fontSizeTextView.setText(String.valueOf(value + 1));
+                songContentTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, value + 1);
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
@@ -160,23 +162,26 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
 
         dialogScroll = DialogUtils.createDialog(this, R.string.song_detail_scroll,
                 getLayoutInflater(), R.layout.dialog_songdetail_autoscroll);
-        scrollTV = (TextView) dialogScroll.findViewById(R.id.scrollTV);
-        scrollSB = (SeekBar) dialogScroll.findViewById(R.id.scrollSB);
+        scrollTextView = (TextView) dialogScroll.findViewById(R.id.scrollTV);
+        scrollSeekBar = (SeekBar) dialogScroll.findViewById(R.id.scrollSB);
         toTopBtn = (Button) dialogScroll.findViewById(R.id.toTopBtn);
         turnOnChk = (CheckBox) dialogScroll.findViewById(R.id.turnOnChk);
 
-        scrollSB.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        scrollSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean isUserTouched) {
                 if (isUserTouched) {
                     speed = value + Config.SONG_AUTO_SCROLL_MIN_NEV_SPEED;
-                    scrollTV.setText(String.valueOf(speed));
+                    velocitySpeed = velocitySpeedFormula();
+                    scrollTextView.setText(String.valueOf(speed));
                 }
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
@@ -188,10 +193,28 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
                 scrollView.scrollTo(0, 0);
             }
         });
+
+        /** add Event for check box of Turn On */
         turnOnChk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                autoScroll = b;
+            public void onCheckedChanged(CompoundButton compoundButton, boolean state) {
+                isAutoScroll.set(state);
+                if (isAutoScroll.get()) {
+                    Thread t = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(Config.SONG_AUTO_SCROLL_MAX_NEV_SPEED / speed * Config.SONG_AUTO_SCROLL_DEGREE);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            mHandler.sendMessage(mHandler.obtainMessage());
+                        }
+                    });
+                    t.start();
+                } else {
+
+                }
             }
         });
 
@@ -204,20 +227,20 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
         transUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HacUtils.transposeTextView(getApplicationContext(), songContentTV, 1, that);
+                HacUtils.transposeTextView(getApplicationContext(), songContentTextView, 1, that);
             }
         });
         transDownBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HacUtils.transposeTextView(getApplicationContext(), songContentTV, -1, that);
+                HacUtils.transposeTextView(getApplicationContext(), songContentTextView, -1, that);
             }
         });
     }
 
     private void setUpControlsAndEvents() {
         // Set content controls
-        songContentTV = (TextView) findViewById(R.id.songContent);
+        songContentTextView = (TextView) findViewById(R.id.songContent);
 
         // Scroll view
         scrollView = (ScrollView) findViewById(R.id.songContentScrollView);
@@ -239,8 +262,8 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
                 sidebar.setEnabled(false);
 
                 // Set value
-                fontSizeTV.setText(String.valueOf(songContentTV.getTextSize()));
-                fontSizeSB.setProgress((int) songContentTV.getTextSize());
+                fontSizeTextView.setText(String.valueOf(songContentTextView.getTextSize()));
+                fontSizeSeekBar.setProgress((int) songContentTextView.getTextSize());
 
                 dialogFontSize.show();
             }
@@ -254,8 +277,8 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
                 sidebar.setEnabled(false);
 
                 // Set value
-                scrollTV.setText(String.valueOf(speed));
-                scrollSB.setProgress(speed - 1);
+                scrollTextView.setText(String.valueOf(speed));
+                scrollSeekBar.setProgress(speed - 1);
 
                 // Show dialog
                 dialogScroll.show();
@@ -279,11 +302,11 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
             public void onClick(View view) {
                 singleLineMode = !singleLineMode;
                 if (singleLineMode) {
-                    HacUtils.setSongFormatted(getApplicationContext(), songContentTV, song.getContent(getApplicationContext()), that);
-                    songContentTV.setTypeface(Typeface.DEFAULT);
+                    HacUtils.setSongFormatted(getApplicationContext(), songContentTextView, song.getContent(getApplicationContext()), that);
+                    songContentTextView.setTypeface(Typeface.DEFAULT);
                 } else {
-                    HacUtils.setSongFormattedTwoLines(getApplicationContext(), songContentTV, song.getContent(getApplicationContext()), that);
-                    songContentTV.setTypeface(Typeface.MONOSPACE);
+                    HacUtils.setSongFormattedTwoLines(getApplicationContext(), songContentTextView, song.getContent(getApplicationContext()), that);
+                    songContentTextView.setTypeface(Typeface.MONOSPACE);
                 }
             }
         });
@@ -298,12 +321,12 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
     private void setUpContent() {
         HacUtils.setSongFormatted(
                 getApplicationContext(),
-                songContentTV,
+                songContentTextView,
                 song.getContent(getApplicationContext()),
                 this);
-        songContentTV.setTextSize(TypedValue.COMPLEX_UNIT_PX, Config.SONG_CONTENT_DEFAULT_FONT_SIZE);
+        songContentTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, Config.SONG_CONTENT_DEFAULT_FONT_SIZE);
         int paddingTop = ScreenUtils.getScreenSize(this).y / 2;
-        songContentTV.setPadding(
+        songContentTextView.setPadding(
                 Config.SONG_CONTENT_DEFAULT_PADDING,
                 paddingTop,
                 Config.SONG_CONTENT_DEFAULT_PADDING,
@@ -342,19 +365,14 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
 
     }
 
-    private class AutoScrollThread extends Thread {
+    private int velocitySpeedFormula() {
+        return (int)Math.sqrt(Math.sqrt(speed));
+    }
+
+    private class ScrollHandler extends Handler {
         @Override
-        public void run() {
-            try {
-                while (true) {
-                    if (autoScroll) {
-                        sleep(Config.SONG_AUTO_SCROLL_MAX_NEV_SPEED / speed * Config.SONG_AUTO_SCROLL_DEGREE);
-                        scrollView.smoothScrollBy(0, (int) Math.sqrt(Math.sqrt(speed)));
-                    }
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        public void handleMessage(Message msg) {
+            scrollView.smoothScrollBy(0, velocitySpeed);
         }
     }
 }

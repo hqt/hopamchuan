@@ -1,20 +1,14 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
-import android.content.res.AssetFileDescriptor;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.*;
 import android.widget.FrameLayout;
-import android.widget.ListView;
-import com.hqt.hac.helper.widget.VideoControllerView;
+import com.hqt.hac.helper.widget.alpha.VideoControllerView;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-
-import java.io.IOException;
 
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
@@ -137,7 +131,7 @@ public static String TAG = makeLogTag(SongViewFragment.class);
         // father view that this media controller belongs too
         // controller.setAnchorView(mediaPlayerContainer);
         // after set AnchorView. can show Media Controller
-        controller.show();
+        // controller.show();
         // after get into prepare state. call start() to go to started state
         player.start();
     }
