@@ -18,7 +18,6 @@ import com.hqt.hac.helper.task.AsyncActivity;
 import com.hqt.hac.model.json.HACAccount;
 import com.hqt.hac.utils.APIUtils;
 import com.hqt.hac.utils.DialogUtils;
-import com.hqt.hac.utils.NetworkUtils;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;

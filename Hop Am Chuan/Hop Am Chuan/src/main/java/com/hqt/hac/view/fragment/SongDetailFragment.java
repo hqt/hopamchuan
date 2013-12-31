@@ -5,8 +5,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.res.AssetFileDescriptor;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -25,8 +23,6 @@ import com.hqt.hac.view.FullscreenSongActivity;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
-import java.io.IOException;
-
 import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
@@ -40,17 +36,9 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
      */
     MainActivity activity;
 
-    /**
-     * ListView : contains all items of this fragment
-     */
-    ListView mListView;
-
     View rootView;
 
-    /**
-     * Adapter for this fragment
-     */
-    // PlaylistDetailAdapter mAdapter;
+    /** Song object for this fragment */
     Song song;
 
     // Stuff for popup menu
@@ -148,7 +136,7 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
             }
         });
 
-        setupMediaPlayer(rootView);
+        setupMediaPlayer();
 
         return rootView;
     }
@@ -162,15 +150,9 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
     ////////////////////////////////////////////////////////////////////
     /////////////////// CONFIG MP3 PLAYER //////////////////////////////
 
-    /**
-     * Reference link  :
-     * http://developer.android.com/reference/android/media/MediaPlayer.html
-     * Using State Machine on this page to prevent IllegalStateException
-     */
-
     /** Controller for Media Player */
     MusicPlayerController controller;
-    /** Android Built-in Media Player */
+    /** Android Built-in Media Player : reference object from service object */
     MediaPlayer player;
 
     /** Intent to start Background service*/
@@ -185,10 +167,10 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
             controller = new MusicPlayerController(rootView);
             // set player for this control
             controller.setMediaPlayer(SongDetailFragment.this);
+            // set progress here. because maybe player has been started same song before
+            controller.setProgress();
             if (player == null) {
                 LOGE(TAG, "PLAYER IS NULL WHEN BIND TO SERVICE");
-            } else {
-                LOGE(TAG, "ALREADY BIND PLAYER FROM SERVICE");
             }
         }
 
@@ -199,8 +181,9 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
     };
 
     /** setup start from here */
-    private void setupMediaPlayer(View rootView) {
+    private void setupMediaPlayer() {
         mp3ServiceIntent = new Intent(getActivity(), Mp3PlayerService.class);
+        mp3ServiceIntent.putExtra("song", song);
         activity.bindService(mp3ServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
@@ -208,12 +191,17 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
     public void start() {
         LOGD(TAG, "Start Player");
         player.start();
+        Bundle arguments = new Bundle();
+        arguments.putParcelable("song", song);
+        DialogUtils.createNotification(activity.getApplicationContext(), MainActivity.class, arguments,
+                song.title, song.getAuthors(getActivity().getApplicationContext()).get(0).artistName, Mp3PlayerService.NOTIFICATION_ID);
     }
 
     @Override
     public void pause() {
         LOGD(TAG, "Pause Player");
         player.pause();
+        DialogUtils.closeNotification(activity.getApplicationContext(), Mp3PlayerService.NOTIFICATION_ID);
     }
 
     @Override

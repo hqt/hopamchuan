@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.helper.task.AsyncActivity;
-import com.hqt.hac.helper.task.SyncSongAsyncTask;
-import com.hqt.hac.helper.task.UpdateSongAsyncTask;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dao.FavoriteDataAccessLayer;

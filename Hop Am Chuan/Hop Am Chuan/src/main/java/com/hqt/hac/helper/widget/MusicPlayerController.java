@@ -117,6 +117,7 @@ public class MusicPlayerController {
         mUseFastForward = true;
         // parse element for this Music Player Control
         initializeComponents();
+        show(sDefaultTimeout);
     }
 
     /** set which class will control behaviour of currently MediaPlayer */
@@ -440,7 +441,7 @@ public class MusicPlayerController {
      * Set Progress on SeekBar
      *
      */
-    private int setProgress() {
+    public int setProgress() {
         if (player == null || mDragging) {
             return 0;
         }

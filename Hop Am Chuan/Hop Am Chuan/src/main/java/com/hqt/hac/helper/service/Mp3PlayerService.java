@@ -7,6 +7,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
+import com.hqt.hac.model.Song;
 
 import java.io.IOException;
 
@@ -15,6 +16,14 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 /**
  * Service for listening to music background
+ *
+ * Reference:
+ * Learning about Local Bound Service:
+ * http://developer.android.com/guide/components/bound-services.html
+ * http://www.vogella.com/articles/AndroidServices/article.html
+ * Learning about Media Player (Using State Machine on this page to prevent IllegalStateException)
+ * http://developer.android.com/reference/android/media/MediaPlayer.html
+ *
  * Created by ThaoHQSE60963 on 12/31/13.
  */
 public class Mp3PlayerService extends Service implements
@@ -26,7 +35,10 @@ public class Mp3PlayerService extends Service implements
     public MediaPlayer player;
 
     /** to know which song that service is holding */
-    int currentSongId;
+    Song currentSong;
+
+    /** Notification Id for this service */
+    public static final int NOTIFICATION_ID = 147141;
 
     /** Binder for Mp3 Service */
     private final IBinder iBinder = new Mp3PlayerService.BackgroundAudioServiceBinder();
@@ -55,7 +67,8 @@ public class Mp3PlayerService extends Service implements
             e.printStackTrace();
         }
 
-
+        // buildingNotification();
+        // DialogUtils.createNotification(getApplicationContext(), MainActivity.class, "Mp3 Player", "Tran Kim Du", NOTIFICATION_ID);
     }
 
     /**
@@ -63,14 +76,29 @@ public class Mp3PlayerService extends Service implements
      * We first check that the MediaPlayer object isn’t already playing, as this method may be called multiple times.
      * If it isn’t, we start it.
      *
+     * Service.START_STICKY :
+     *              Service is restarted if it gets terminated.
+     *              Intent data passed to the onStartCommand method is null.
+     *              Used for services which manages their own state and do not depend on the Intent data.
+     * Service.START_NOT_STICKY :
+     *              Service is not restarted.
+     *              Used for services which are periodically triggered anyway.
+     *              The service is only restarted if the runtime has pending startService() calls since the service termination.
+     * Service.START_REDELIVER_INTENT :
+     *              Similar to Service.START_STICKY but the original Intent is re-delivered to the onStartCommand method.
+     *
      * *Notes* The onStartCommand method was introduced with Android 2.0 (API level 5)
      * Previous to that, the method used was onStart.
      */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         LOGD(TAG, "OnStartCommand Service");
-        if (!player.isPlaying()) {
-            player.start();
+        Song intentSong = intent.getParcelableExtra("song");
+        if (intentSong.songId != currentSong.songId) {
+            currentSong = intentSong;
+            if (!player.isPlaying()) {
+                player.start();
+            }
         }
         return START_STICKY;
     }
@@ -82,8 +110,7 @@ public class Mp3PlayerService extends Service implements
 
     public void onDestroy() {
         LOGD(TAG, "On Destroy Service");
-        if (player.isPlaying())
-        {
+        if (player.isPlaying()) {
             player.stop();
         }
         player.release();
@@ -105,7 +132,7 @@ public class Mp3PlayerService extends Service implements
 
     @Override
     public void onPrepared(MediaPlayer mp) {
-        player.start();
+        // player.start();
     }
 
     @Override
