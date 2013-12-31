@@ -1,4 +1,4 @@
-package com.hqt.hac.helper;
+package com.hqt.hac.helper.service;
 
 import android.app.AlarmManager;
 import android.app.IntentService;

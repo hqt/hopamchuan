@@ -1,17 +1,22 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 
+import com.hqt.hac.helper.service.Mp3PlayerService;
 import com.hqt.hac.helper.widget.MusicPlayerController;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.utils.DialogUtils;
@@ -26,7 +31,7 @@ import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class SongDetailFragment extends Fragment implements MediaPlayer.OnPreparedListener,MusicPlayerController.IMediaPlayerControl {
+public class SongDetailFragment extends Fragment implements MusicPlayerController.IMediaPlayerControl {
 
     private static String TAG = makeLogTag(PlaylistDetailFragment.class);
 
@@ -39,6 +44,8 @@ public class SongDetailFragment extends Fragment implements MediaPlayer.OnPrepar
      * ListView : contains all items of this fragment
      */
     ListView mListView;
+
+    View rootView;
 
     /**
      * Adapter for this fragment
@@ -88,7 +95,7 @@ public class SongDetailFragment extends Fragment implements MediaPlayer.OnPrepar
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_song_detail, container, false);
+        rootView = inflater.inflate(R.layout.fragment_song_detail, container, false);
 
         // Set song info
         TextView songTitleTextView = (TextView) rootView.findViewById(R.id.songTitle);
@@ -161,44 +168,40 @@ public class SongDetailFragment extends Fragment implements MediaPlayer.OnPrepar
      * Using State Machine on this page to prevent IllegalStateException
      */
 
-    /** Android Built-in Media Player */
-    MediaPlayer player;
     /** Controller for Media Player */
     MusicPlayerController controller;
+    /** Android Built-in Media Player */
+    MediaPlayer player;
 
-    private void setupMediaPlayer(View rootView) {
-        player = new MediaPlayer();
-        controller = new MusicPlayerController(rootView);
-        try {
-            player.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-            // testing for source
-            AssetFileDescriptor afd = getActivity().getApplicationContext().getAssets().openFd("aaa.mp3");
-            player.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
-            // this line should put after set DataSource and should use prepareAsync() rather than just only prepare()
-            player.prepareAsync();
-            player.setOnPreparedListener(this);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+    /** Intent to start Background service*/
+    Intent mp3ServiceIntent;
+    Mp3PlayerService mp3Service;
+    /** ServiceConnection : use to bind with Activity */
+    ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder iBinder) {
+            mp3Service = ((Mp3PlayerService.BackgroundAudioServiceBinder)iBinder).getService();
+            player = mp3Service.player;
+            controller = new MusicPlayerController(rootView);
+            // set player for this control
+            controller.setMediaPlayer(SongDetailFragment.this);
+            if (player == null) {
+                LOGE(TAG, "PLAYER IS NULL WHEN BIND TO SERVICE");
+            } else {
+                LOGE(TAG, "ALREADY BIND PLAYER FROM SERVICE");
+            }
         }
-    }
 
-    @Override
-    public void onPrepared(MediaPlayer mp) {
-        // set player for this control
-        controller.setMediaPlayer(this);
-        // father view that this media controller belongs too
-        // controller.setAnchorView(mediaPlayerContainer);
-        // after set AnchorView. can show Media Controller
-        // controller.show();
-        // after get into prepare state. call start() to go to started state
-        player.start();
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mp3Service = null;
+        }
+    };
+
+    /** setup start from here */
+    private void setupMediaPlayer(View rootView) {
+        mp3ServiceIntent = new Intent(getActivity(), Mp3PlayerService.class);
+        activity.bindService(mp3ServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
