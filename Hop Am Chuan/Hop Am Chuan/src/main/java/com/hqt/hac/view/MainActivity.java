@@ -236,7 +236,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
             }
         } else {
-
             Fragment afterBackFragment = getCurrentFragment(fragmentManager, 2);
             // Change title bar after change fragment.
             if (afterBackFragment != null) {
@@ -268,14 +267,9 @@ public class MainActivity extends SlidingMenuActionBarActivity
      */
     private Fragment getCurrentFragment(FragmentManager fragmentManager, int offset){
         try {
-//            LOGE("TRUNGDQ", "count: " + fragmentManager.getBackStackEntryCount());
-//            LOGE("TRUNGDQ", "entry at count - 1: " + fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1));
-//            LOGE("TRUNGDQ", "name of entry at count - 1: " + fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName());
-
             String fragmentTag = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - offset).getName();
             Fragment currentFragment = getSupportFragmentManager()
                     .findFragmentByTag(fragmentTag);
-//            LOGE("TRUNGDQ", "result: " + currentFragment);
             return currentFragment;
         } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();

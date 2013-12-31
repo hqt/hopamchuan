@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 
 import com.hqt.hac.helper.service.Mp3PlayerService;
+import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.helper.widget.MusicPlayerController;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.utils.DialogUtils;
@@ -27,7 +28,7 @@ import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class SongDetailFragment extends Fragment implements MusicPlayerController.IMediaPlayerControl {
+public class SongDetailFragment extends Fragment implements MusicPlayerController.IMediaPlayerControl, IHacFragment {
 
     private static String TAG = makeLogTag(PlaylistDetailFragment.class);
 
@@ -41,6 +42,9 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
     /** Song object for this fragment */
     Song song;
 
+    /** resource for title int */
+    int mResTitle = R.string.title_activity_song_list_fragment;
+
     // Stuff for popup menu
     private PopupWindow mPopupMenu;
     private View mMenuLayout;
@@ -52,6 +56,11 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
      */
     public SongDetailFragment() {
 
+    }
+
+    @Override
+    public int getTitle() {
+        return mResTitle;
     }
 
     @Override
@@ -107,7 +116,7 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
         songContentTextView.setSelected(true);
 
         // Fullscreen button
-        ImageView fullScreenButton = (ImageView) rootView.findViewById(R.id.songFullScreen);
+        ImageView fullScreenButton = (ImageView) rootView.findViewById(R.id.fullscreen);
         // Star menu button
         final ImageView starMenuButton = (ImageView) rootView.findViewById(R.id.songMenuBtn);
 
