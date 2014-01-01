@@ -27,23 +27,34 @@ public class DialogUtils {
     public static PopupWindow createPopup(LayoutInflater inflater, int popupLayout) {
         View layout = inflater.inflate(popupLayout, null);
 
-        final PopupWindow popupWindow = new PopupWindow(layout , LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT, true);
-        // display the popup in the center
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.setBackgroundDrawable(new ColorDrawable(android.R.color.transparent));
-        popupWindow.setFocusable(true);
-        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
-                    popupWindow.dismiss();
-                    return true;
+        if (layout != null) {
+            layout.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+
+            final PopupWindow popupWindow = new PopupWindow(layout , LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT, true);
+            // display the popup
+            popupWindow.setOutsideTouchable(true);
+            popupWindow.setBackgroundDrawable(new ColorDrawable(android.R.color.transparent));
+            popupWindow.setFocusable(true);
+            popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+                        popupWindow.dismiss();
+                        return true;
+                    }
+                    return false;
                 }
-                return false;
-            }
-        });
-        return popupWindow;
+            });
+
+            // Remember to set this or popup height will be messed up
+            popupWindow.setHeight(layout.getMeasuredHeight());
+
+            return popupWindow;
+        }
+
+        return null;
     }
 
     /** Create popup dialog  */

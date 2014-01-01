@@ -335,7 +335,6 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
     @Override
     public void onResume() {
         super.onResume();
-        LOGE("TRUNGDQ", "resume now!");
     }
 
     @Override

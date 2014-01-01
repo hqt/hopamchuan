@@ -2,6 +2,7 @@ package com.hqt.hac.helper.widget;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -21,10 +22,13 @@ import com.hqt.hac.model.dal.FavoriteDataAccessLayer;
 import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.model.dal.PlaylistSongDataAccessLayer;
 import com.hqt.hac.utils.DialogUtils;
+import com.hqt.hac.utils.ScreenUtils;
 import com.hqt.hac.view.R;
 
 import java.util.Date;
 import java.util.List;
+
+import static com.hqt.hac.utils.LogUtils.LOGE;
 
 public class SongListRightMenuHandler {
     /**
@@ -145,19 +149,6 @@ public class SongListRightMenuHandler {
         } else {
             favoriteBtn.setText(R.string.song_detail_menu_unfavorite);
         }
-
-        // int availableHeight = popupWindow.getMaxAvailableHeight(_view);
-        int height = popupWindow.getHeight();
-        /* LOGE(TAG, "HQT POPUP Height: " + height);
-        if (availableHeight < popupWindow.getHeight()) {
-            int[] loc_int = new int[2];
-            // popupWindow.showAsDropDown(view, 10, 10);
-            LOGE(TAG, "Not Enough Room Space");
-            popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 35, 35);
-        } else {
-
-        }
-        popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 35, 35);*/
 
         popupWindow.showAsDropDown(_view);
     }
