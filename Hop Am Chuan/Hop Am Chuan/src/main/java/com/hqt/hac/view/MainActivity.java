@@ -205,41 +205,44 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // a missing magic number :)
         if (mTimePressBackBtn == 0) mTimePressBackBtn = -14181147;
         FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment currentFragment = getCurrentFragment(fragmentManager, 1);
+        LOGE("TRUNGDQ", "current fragment: " + currentFragment);
 //        if (fragmentManager.getBackStackEntryCount() == 0) {
         if (fragmentManager.getBackStackEntryCount() == 1) {
             // Only exit in welcome fragment.
-            if (!isLevelZero) {
-                // Open welcome fragment
-                Fragment fragment = new WelcomeFragment();
-                switchFragmentClearStack(fragment);
-                changeTitleBar(getString(R.string.title_activity_welcome_fragment));
-                isLevelZero = true;
-            } else {
+            if (isLevelZero || (currentFragment instanceof WelcomeFragment)) {
                 // in Welcome Fragment. Just exit when double click back press as Zing MP3
                 long currentTime = Calendar.getInstance().getTimeInMillis();
                 LOGE(TAG, mTimePressBackBtn + "/" + currentTime);
                 if (currentTime < mTimePressBackBtn + Config.TOAST_LENGTH_SHORT) {
                     // in fact. exit app
-                    // super.onBackPressed(); // << This will cause a blank screen (as descripted in BUG.txt)
+                    // super.onBackPressed(); // << This will cause a blank screen (as described in BUG.txt)
                     finish();
                 } else {
                     Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
                     mTimePressBackBtn = currentTime;
                 }
+            } else {
+                // Open welcome fragment
+                Fragment fragment = new WelcomeFragment();
+                switchFragmentClearStack(fragment);
+                changeTitleBar(getString(R.string.title_activity_welcome_fragment));
+                isLevelZero = true;
+
             }
         } else {
 
+            Fragment afterBackFragment = getCurrentFragment(fragmentManager, 2);
             // Change title bar after change fragment.
-            Fragment fragment = getCurrentFragment(fragmentManager, 2);
-            if (fragment != null) {
+            if (afterBackFragment != null) {
 //                LOGE("TRUNGDQ", "current fragment: " + fragment);
-                int titleRes = ((IHacFragment) fragment).getTitle();
+                int titleRes = ((IHacFragment) afterBackFragment).getTitle();
 //                LOGE("TRUNGDQ", "fragment title: " + titleRes);
                 if (titleRes > 0) {
                     changeTitleBar(getString(titleRes));
                 } else {
-                    if (fragment instanceof PlaylistDetailFragment) {
-                        changeTitleBar(((PlaylistDetailFragment) fragment).playlist.playlistName);
+                    if (afterBackFragment instanceof PlaylistDetailFragment) {
+                        changeTitleBar(((PlaylistDetailFragment) afterBackFragment).playlist.playlistName);
                     }
                 }
             } else {

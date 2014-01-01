@@ -124,6 +124,7 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
                 arguments.putParcelable("song", songs.get(position));
                 fragment.setArguments(arguments);
                 activity.switchFragmentNormal(fragment);
+                activity.changeTitleBar(songs.get(position).title);
             }
         });
 

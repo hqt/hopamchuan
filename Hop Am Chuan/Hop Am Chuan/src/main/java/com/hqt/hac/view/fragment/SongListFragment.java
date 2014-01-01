@@ -148,6 +148,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
                 arguments.putParcelable("song", songs.get(position));
                 fragment.setArguments(arguments);
                 activity.switchFragmentNormal(fragment);
+                activity.changeTitleBar(songs.get(position).title);
             }
         });
 
