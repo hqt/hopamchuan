@@ -21,6 +21,7 @@ import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
@@ -95,14 +96,20 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
 
 
         /** Default song list **/
-        songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), 0, 3);
+        //songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), 0, 0);
+        songs = new ArrayList<Song>();
+        songlistAdapter = new SongListAdapter(activity, songs);
 
         /** ListView Configure */
         mListView = (InfinityListView) rootView.findViewById(R.id.list_view);
+        /** config mode for this ListView.
+         *  this ListView is full rich function. See document for more detail
+         */
         mListView.setLoader(this);
-        songlistAdapter = new SongListAdapter(activity, songs);
-        //infAdapter = new InfinityAdapter(activity.getApplicationContext(), songlistAdapter);
-        //infAdapter.setLoader(this);
+        mListView.setFirstProcessLoading(true);
+        mListView.setGreedyMode(false);
+        mListView.setRunningBackground(true);
+        mListView.setAdapter(songlistAdapter);
 
         // Event for right menu click
         popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
@@ -117,10 +124,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
             }
         };
 
-        mListView.setAdapter(songlistAdapter);
-        // mListView.setAdapter(infAdapter);
-
-
+        // Event for Item Click on ListView
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -141,8 +145,8 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         switch(position) {
             case 0:
                 // Moi xem gan day
-                songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), 0, Config.DEFAULT_SONG_LIST_COUNT);
-                songlistAdapter.setSongs(songs);
+                //songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), 0, Config.DEFAULT_SONG_LIST_COUNT);
+                //songlistAdapter.setSongs(songs);
                 break;
             case 1:
                 // Moi cap nhat
@@ -170,20 +174,20 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     ///////////////////// METHOD FOR ENDLESS LOADING //////////////////////////
     Song s;
     int cth = 0;
-    int limit = 10;
+    int limit = 20;
     @Override
-    public int load(int index) {
-        NetworkUtils.stimulateNetwork(1);
+    public boolean load(int index) {
+        NetworkUtils.stimulateNetwork(4);
         LOGE(TAG, "Add a Song to Inf ListView");
         s = SongDataAccessLayer.getSongById(getActivity().getApplicationContext(), 1);
         s.title = s.title + " " + cth++;
-        if (cth == limit) return 1;
-        else return 0;
+        if (cth == limit) return false;
+        else return true;
     }
 
     @Override
-    public int load(int from, int to) {
-        return 0;
+    public boolean load(int from, int to) {
+        return false;
     }
 
 
