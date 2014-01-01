@@ -165,9 +165,10 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
 
     /** Intent to start Background service*/
     Intent mp3ServiceIntent;
+    /** ref to current Service */
     Mp3PlayerService mp3Service;
     /** ServiceConnection : use to bind with Activity */
-    public static ServiceConnection serviceConnection;
+    public ServiceConnection serviceConnection;
 
     /** setup start from here */
     private void setupMediaPlayer() {

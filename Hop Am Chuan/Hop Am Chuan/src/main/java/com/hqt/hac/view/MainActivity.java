@@ -2,10 +2,13 @@ package com.hqt.hac.view;
 
 import android.app.Activity;
 import android.app.SearchManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +23,8 @@ import android.widget.Toast;
 import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
+import com.hqt.hac.helper.service.Mp3PlayerService;
+import com.hqt.hac.helper.widget.MusicPlayerController;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.utils.StringUtils;
 import com.hqt.hac.view.fragment.IHacFragment;
@@ -88,6 +93,11 @@ public class MainActivity extends SlidingMenuActionBarActivity
      */
     long mTimePressBackBtn = 0;
 
+    /** ServiceConnection : use to bind with Activity */
+    public ServiceConnection serviceConnection;
+
+
+    //region Activity Life Cycle Method
     /////////////////////////////////////////////////////////////////
     ////////////////// LIFE CYCLE ACTIVITY METHOD ///////////////////
 
@@ -149,6 +159,9 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // set up the ListView
         setUpListView();
 
+        // set up Mp3Service
+        setUpMp3Service();
+
         // implement first fragment for MainActivity
         Bundle arguments = getIntent().getBundleExtra("notification");
         if (arguments != null) {
@@ -197,9 +210,12 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // outState.putParcelableArrayList("playlist", playlistList);
 
     }
+    //endregion
 
     //////////////////////////////////////////////////////////////////////
     ////////////////////// CONFIGURATION METHOD //////////////////////////
+
+
     //////////////////////////////////////////////////////////////////////
     // Back button navigation flow and title bar text change            //
     // 1. Every fragment is added to the stack. Use hashCode as name    //
@@ -293,30 +309,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
         }
     }
 
-    /**
-     * Get current fragment using tag
-     * http://stackoverflow.com/questions/15028527/is-there-a-way-to-get-fragment-from-top-of-stack
-     * @param fragmentManager
-     * @param ignoreTop: ignore number of entry on the top. Use 0 to get the top entry.
-     * @return
-     */
-    private Fragment getCurrentFragment(FragmentManager fragmentManager, int ignoreTop){
-        try {
-            // LOGE("TRUNGDQ", "count: " + fragmentManager.getBackStackEntryCount());
-            // LOGE("TRUNGDQ", "entry at count - 1: " + fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1));
-            // LOGE("TRUNGDQ", "name of entry at count - 1: " + fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName());
-
-            String fragmentTag = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - ignoreTop - 1).getName();
-            Fragment currentFragment = getSupportFragmentManager()
-                    .findFragmentByTag(fragmentTag);
-            // LOGE("TRUNGDQ", "result: " + currentFragment);
-            return currentFragment;
-        } catch (ArrayIndexOutOfBoundsException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public void changeTitleBar(String title) {
         mTitle = title;
         restoreActionBar();
@@ -340,6 +332,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // Only show items in the action bar relevant to this screen
         // if the drawer is not showing.
         MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
 
         // because SearchView just exist in HoneyComb 3.0 to above
         // we should check version of users here
@@ -370,6 +363,8 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 toggle();
                 return true;
             case R.id.action_settings:
+                return true;
+            case R.id.search_bar:
                 return true;
         }
 
@@ -460,7 +455,37 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
     }
 
+    /** Set up Mp3 Service Start From MainActivity
+     *  So easily to unbind later
+     */
+    public void setUpMp3Service() {
+        // TODO 
+      /*  serviceConnection = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder iBinder) {
+                mp3Service = ((Mp3PlayerService.BackgroundAudioServiceBinder)iBinder).getService();
+                player = mp3Service.player;
+                controller = new MusicPlayerController(rootView);
+                // set player for this control
+                controller.setMediaPlayer(SongDetailFragment.this);
+                // set progress here. because maybe player has been started same song before
+                controller.setProgress();
+                if (player == null) {
+                    LOGE(TAG, "PLAYER IS NULL WHEN BIND TO SERVICE");
+                }
+            }
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                mp3Service = null;
+            }
+        };
+        mp3ServiceIntent = new Intent(getActivity(), Mp3PlayerService.class);
+        mp3ServiceIntent.putExtra("song", song);
+        activity.bindService(mp3ServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);*/
+    }
 
+
+    //region Main Activity Helper
     ////////////////////////////////////////////////////////////////////////
     //////////////////// SIMPLE HELPER METHOD //////////////////////////////
 
@@ -524,6 +549,31 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 // do nothing
         }
     }
+
+    /**
+     * Get current fragment using tag
+     * http://stackoverflow.com/questions/15028527/is-there-a-way-to-get-fragment-from-top-of-stack
+     * @param fragmentManager
+     * @param ignoreTop: ignore number of entry on the top. Use 0 to get the top entry.
+     * @return
+     */
+    private Fragment getCurrentFragment(FragmentManager fragmentManager, int ignoreTop){
+        try {
+            // LOGE("TRUNGDQ", "count: " + fragmentManager.getBackStackEntryCount());
+            // LOGE("TRUNGDQ", "entry at count - 1: " + fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1));
+            // LOGE("TRUNGDQ", "name of entry at count - 1: " + fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName());
+
+            String fragmentTag = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - ignoreTop - 1).getName();
+            Fragment currentFragment = getSupportFragmentManager()
+                    .findFragmentByTag(fragmentTag);
+            // LOGE("TRUNGDQ", "result: " + currentFragment);
+            return currentFragment;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    //endregion
 
     ////////////////////////////////////////////////////////////////
     //////////////// METHOD OVERRIDE USE FOR ADAPTER //////////////
