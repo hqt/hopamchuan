@@ -134,11 +134,6 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     ////////////////////////////////////////////////////////////////////////////////
     ////////////////////////// INTERNAL METHOD /////////////////////////////////////
 
-    /** convenient method to know is loading or not */
-    private boolean isLoading() {
-        return isLoading.get();
-    }
-
     /** just override again this method to get Adapter */
     @Override
     public void setAdapter(ListAdapter adapter) {
