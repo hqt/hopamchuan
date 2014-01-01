@@ -16,9 +16,11 @@ import android.util.Log;
 import android.view.*;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
+import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
@@ -41,21 +43,30 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
     private static final String TAG = makeLogTag(MainActivity.class);
 
-    /** SearchView widget */
+    /**
+     * SearchView widget
+     */
     SearchView mSearchView;
 
-    /** ListView contains all item categories */
+    /**
+     * ListView contains all item categories
+     */
     ListView mDrawerListView;
 
-    /** SlidingMenu : use for slide to see like NavigationDrawer*/
+    /**
+     * SlidingMenu : use for slide to see like NavigationDrawer
+     */
     public SlidingMenu slidingMenu;
 
-    /** Layout of Navigation Drawer
+    /**
+     * Layout of Navigation Drawer
      * Use this for Reference
      */
     View sideBarLayout;
 
-    /** All Adapter for Navigation Drawer */
+    /**
+     * All Adapter for Navigation Drawer
+     */
     MergeAdapter mergeAdapter;
     NavigationDrawerAdapter.HeaderAdapter headerAdapter;
     NavigationDrawerAdapter.ItemAdapter itemAdapter;
@@ -73,11 +84,15 @@ public class MainActivity extends SlidingMenuActionBarActivity
      */
     private CharSequence mTitle;
 
-    /** variable to control last time user has pressed back button */
+    /**
+     * variable to control last time user has pressed back button
+     */
     long mTimePressBackBtn = 0;
 
-    /** Variable to help process that user can only exit in welcome fragment **/
-    boolean isLevelZero = false;
+    /**
+     * Variable to help process that user can only exit in welcome fragment *
+     */
+    boolean isLevelZero = true;
 
     /////////////////////////////////////////////////////////////////
     ////////////////// LIFE CYCLE ACTIVITY METHOD ///////////////////
@@ -108,9 +123,9 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // delete all database
 //        HopAmChuanDatabase.deleteDatabase(getApplicationContext());
 
-         // create sample database
-         // DatabaseTest.prepareLocalDatabaseWithSample(getApplicationContext());
-         // DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());
+        // create sample database
+        // DatabaseTest.prepareLocalDatabaseWithSample(getApplicationContext());
+        // DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());
 
         // set Main View
         setContentView(R.layout.activity_main_frame);
@@ -190,14 +205,14 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // a missing magic number :)
         if (mTimePressBackBtn == 0) mTimePressBackBtn = -14181147;
         FragmentManager fragmentManager = getSupportFragmentManager();
-        if (fragmentManager.getBackStackEntryCount() == 0) {
+//        if (fragmentManager.getBackStackEntryCount() == 0) {
+        if (fragmentManager.getBackStackEntryCount() == 1) {
             // Only exit in welcome fragment.
             if (!isLevelZero) {
                 // Open welcome fragment
                 Fragment fragment = new WelcomeFragment();
-                mTitle = getString(R.string.title_activity_welcome_fragment);
                 switchFragmentClearStack(fragment);
-                restoreActionBar();
+                changeTitleBar(getString(R.string.title_activity_welcome_fragment));
                 isLevelZero = true;
             } else {
                 // in Welcome Fragment. Just exit when double click back press as Zing MP3
@@ -205,15 +220,64 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 LOGE(TAG, mTimePressBackBtn + "/" + currentTime);
                 if (currentTime < mTimePressBackBtn + Config.TOAST_LENGTH_SHORT) {
                     // in fact. exit app
-                    super.onBackPressed();
+                    // super.onBackPressed(); // << This will cause a blank screen (as descripted in BUG.txt)
+                    finish();
                 } else {
                     Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
                     mTimePressBackBtn = currentTime;
                 }
             }
         } else {
+
+            // Change title bar after change fragment.
+            Fragment fragment = getCurrentFragment(fragmentManager, 2);
+            if (fragment != null) {
+//                LOGE("TRUNGDQ", "current fragment: " + fragment);
+                int titleRes = ((IHacFragment) fragment).getTitle();
+//                LOGE("TRUNGDQ", "fragment title: " + titleRes);
+                if (titleRes > 0) {
+                    changeTitleBar(getString(titleRes));
+                } else {
+                    if (fragment instanceof PlaylistDetailFragment) {
+                        changeTitleBar(((PlaylistDetailFragment) fragment).playlist.playlistName);
+                    }
+                }
+            } else {
+//                LOGE("TRUNGDQ", "current fragment: NULL");
+            }
+
             super.onBackPressed();
+
         }
+    }
+
+    /**
+     * Get current fragment using tag
+     * http://stackoverflow.com/questions/15028527/is-there-a-way-to-get-fragment-from-top-of-stack
+     * @param fragmentManager
+     * @param offset: just for test purpose, use 1 for default
+     * @return
+     */
+    private Fragment getCurrentFragment(FragmentManager fragmentManager, int offset){
+        try {
+//            LOGE("TRUNGDQ", "count: " + fragmentManager.getBackStackEntryCount());
+//            LOGE("TRUNGDQ", "entry at count - 1: " + fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1));
+//            LOGE("TRUNGDQ", "name of entry at count - 1: " + fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName());
+
+            String fragmentTag = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - offset).getName();
+            Fragment currentFragment = getSupportFragmentManager()
+                    .findFragmentByTag(fragmentTag);
+//            LOGE("TRUNGDQ", "result: " + currentFragment);
+            return currentFragment;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void changeTitleBar(String title) {
+        mTitle = title;
+        restoreActionBar();
     }
 
     public void restoreActionBar() {
@@ -316,6 +380,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
     /**
      * set up adapter for list view
      * include add all views and adapters to currently ListView
+     *
      * @return
      */
     public void setUpListView() {
@@ -362,17 +427,23 @@ public class MainActivity extends SlidingMenuActionBarActivity
         MAIN,
         SUB
     }
+
     public void switchFragmentNormal(Fragment fragment) {
         if (fragment == null) return;
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.content_frame, fragment)
-                // Add this transaction to the back stack
-                .addToBackStack("detail")
+                // Add tag for back button tracking
+                .replace(R.id.content_frame, fragment, String.valueOf(fragment.hashCode()))
+                        // Add this transaction to the back stack
+                .addToBackStack(String.valueOf(fragment.hashCode()))
                 .commit();
         slidingMenu.showContent();
         slidingMenu.setEnabled(false);
         isLevelZero = false;
+        int titleRes = ((IHacFragment) fragment).getTitle();
+        if (titleRes > 0) {
+            changeTitleBar(getString(titleRes));
+        }
     }
 
     public void switchFragmentClearStack(Fragment fragment) {
@@ -381,11 +452,17 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // clear whole stack before add new fragment to stack
         fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fragmentManager.beginTransaction()
-                .replace(R.id.content_frame, fragment)
+                // Add tag for back button tracking
+                .replace(R.id.content_frame, fragment, String.valueOf(fragment.hashCode()))
+                .addToBackStack(String.valueOf(fragment.hashCode()))
                 .commit();
         slidingMenu.showContent();
         slidingMenu.setEnabled(true);
         isLevelZero = false;
+        int titleRes = ((IHacFragment) fragment).getTitle();
+        if (titleRes > 0) {
+            changeTitleBar(getString(titleRes));
+        }
     }
 
     public void switchFragment(Fragment fragment, COMMIT_TYPE type) {
@@ -412,27 +489,21 @@ public class MainActivity extends SlidingMenuActionBarActivity
         switch (pageType) {
             case HOME:
                 fragment = new WelcomeFragment();
-                mTitle = getString(R.string.title_activity_welcome_fragment);
                 break;
             case SONGS:
                 fragment = new SongListFragment();
-                mTitle = getString(R.string.title_activity_song_list_fragment);
                 break;
             case MYPLAYLIST:
                 fragment = new PlaylistManagerFragment();
-                mTitle = getString(R.string.title_activity_my_playlist_fragment);
                 break;
             case FAVORITE:
                 fragment = new FavoriteManagerFragment();
-                mTitle = getString(R.string.title_activity_my_favorite_fragment);
                 break;
             case FIND_BY_CHORD:
                 fragment = new FindByChordFragment();
-                mTitle = getString(R.string.title_activity_find_by_chord);
                 break;
             case SEARCH_CHORD:
                 fragment = new ChordViewFragment();
-                mTitle = getString(R.string.title_activity_chord_view);
                 break;
             case SETTING:
                 Intent intent = new Intent(this, SettingActivity.class);
@@ -443,7 +514,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // Open Custom Fragment
         if (fragment != null) fragment.setArguments(arguments);
         switchFragmentClearStack(fragment);
-        restoreActionBar();
 
     }
 

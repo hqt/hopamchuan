@@ -78,7 +78,7 @@ public class SplashScreen extends Activity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        // Yes, nothing here. Because we don't want user to exit our app in splash screen.
     }
 
     private void startActivity() {

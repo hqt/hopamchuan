@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 
+import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.helper.widget.MusicPlayerController;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.utils.DialogUtils;
@@ -26,7 +27,9 @@ import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class SongDetailFragment extends Fragment implements MediaPlayer.OnPreparedListener,MusicPlayerController.IMediaPlayerControl {
+public class SongDetailFragment extends Fragment implements MediaPlayer.OnPreparedListener,
+        MusicPlayerController.IMediaPlayerControl,
+        IHacFragment {
 
     private static String TAG = makeLogTag(PlaylistDetailFragment.class);
 
@@ -59,6 +62,10 @@ public class SongDetailFragment extends Fragment implements MediaPlayer.OnPrepar
 
     }
 
+    @Override
+    public int getTitle() {
+        return 0;
+    }
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -95,6 +102,7 @@ public class SongDetailFragment extends Fragment implements MediaPlayer.OnPrepar
         TextView songAuthorsTextView = (TextView) rootView.findViewById(R.id.songAuthorsTV);
         TextView songSingersTextView = (TextView) rootView.findViewById(R.id.songSingersTV);
         TextView songContentTextView = (TextView) rootView.findViewById(R.id.songContent);
+        Button btnFullScreen = (Button) rootView.findViewById(R.id.btnFullScreen);
 
         songTitleTextView.setText(song.title);
         songAuthorsTextView.setText(song.getAuthorsString(activity.getApplicationContext()));
@@ -103,16 +111,14 @@ public class SongDetailFragment extends Fragment implements MediaPlayer.OnPrepar
         // Set song content
         // HacUtils.setSongFormatted(activity.getApplicationContext(), songContentTV, song.getContent(activity.getApplicationContext()), activity);
         songContentTextView.setText(song.getContent(activity.getApplicationContext()));
-        songContentTextView.setOnClickListener(new View.OnClickListener() {
+
+        btnFullScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openFullScreenSong();
             }
         });
-        songContentTextView.setSelected(true);
 
-        // Fullscreen button
-        ImageView fullScreenButton = (ImageView) rootView.findViewById(R.id.songFullScreen);
         // Star menu button
         final ImageView starMenuButton = (ImageView) rootView.findViewById(R.id.songMenuBtn);
 
@@ -121,13 +127,6 @@ public class SongDetailFragment extends Fragment implements MediaPlayer.OnPrepar
         } else {
             starMenuButton.setImageResource(R.drawable.star);
         }
-
-        fullScreenButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openFullScreenSong();
-            }
-        });
 
         // Event for star menu click
         final PopupWindow popupWindows = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
@@ -141,7 +140,7 @@ public class SongDetailFragment extends Fragment implements MediaPlayer.OnPrepar
             }
         });
 
-        setupMediaPlayer(rootView);
+//        setupMediaPlayer(rootView);
 
         return rootView;
     }

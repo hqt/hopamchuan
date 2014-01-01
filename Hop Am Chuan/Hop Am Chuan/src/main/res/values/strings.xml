@@ -218,5 +218,7 @@
     <string name="split_line">Tách dòng</string>
     <string name="song_detail_scroll_label">Cuộn trang</string>
     <string name="play_music">Nghe nhạc</string>
+    <string name="view_full_screen">Xem hợp âm</string>
+    <string name="remove_from_playlist">Xóa khỏi playlist</string>
 
 </resources>

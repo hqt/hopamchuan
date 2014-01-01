@@ -1,1 +1,3 @@
-delete playlist > go to playlist > back button: old playlist still here
+	delete playlist > go to playlist > back button: old playlist still here
+[DONE]	Open app > back button: white screen.
+	Extremly lag: Open app > playlist manager > playlist detail > song. (because of .hashcode maybe?)

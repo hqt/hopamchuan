@@ -1,8 +1,8 @@
 Song view:
-- Song view split into 2 lines
-- Chord view use popup windows
-- Convert to easy mode.
-- Auto scroll.
+X Song view split into 2 lines
+X Chord view use popup windows
+X Convert to easy mode.
+X Auto scroll.
 
 ChordDroid:
 - Draw base grid for default constructor.
@@ -12,7 +12,7 @@ X Playlist rename (name & description)
 X Playlist delete > delete playlist_song
 X Search: by song title, author, singer >> pagination?
 - Search by chord.
-- Update Last View
+X Update Last View
 - Artist autocomplete
 
 Synchronizer:
@@ -24,9 +24,9 @@ Design:
 - Update icons
 
 Server side:
-- Implemenet APIs
-- Login API
-- Plash screen
+X Implemenet APIs
+X Login API
+X Plash screen
 - Contact sidebar (chord view)
 - 
 

@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 
 import com.hqt.hac.helper.adapter.SongListAdapter;
+import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
@@ -25,24 +26,26 @@ import java.util.List;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class PlaylistDetailFragment extends  Fragment {
+public class PlaylistDetailFragment extends  Fragment implements IHacFragment {
 
     private static String TAG = makeLogTag(PlaylistDetailFragment.class);
 
     /** Main Activity for reference */
-    MainActivity activity;
+    private MainActivity activity;
 
     /** One popup menu for all items **/
-    PopupWindow popupWindows = null;
+    private PopupWindow popupWindows = null;
 
     /** ListView : contains all items of this fragment */
-    ListView mListView;
+    private ListView mListView;
 
     /** Adapter for this fragment */
-    SongListAdapter mAdapter;
+    private SongListAdapter mAdapter;
 
-    Playlist playlist;
-    List<Song> songs;
+    /** public for access in MainActivity.onBackPressed (get playlist name) **/
+    public Playlist playlist;
+
+    private List<Song> songs;
 
     /** empty constructor
      * must have for fragment
@@ -51,6 +54,10 @@ public class PlaylistDetailFragment extends  Fragment {
 
     }
 
+    @Override
+    public int getTitle() {
+        return 0;
+    }
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -106,7 +113,7 @@ public class PlaylistDetailFragment extends  Fragment {
             @Override
             public void onMenuClick(View view, Song song, ImageView theStar) {
                 // Show the popup menu and set selectedSong, theStar
-                SongListRightMenuHandler.openPopupMenu(view, song, theStar);
+                SongListRightMenuHandler.openPopupMenu(view, song, theStar, playlist.playlistId, mAdapter);
             }
         };
 
@@ -123,6 +130,7 @@ public class PlaylistDetailFragment extends  Fragment {
                 arguments.putParcelable("song", songs.get(position));
                 fragment.setArguments(arguments);
                 activity.switchFragmentNormal(fragment);
+                activity.changeTitleBar(songs.get(position).title);
             }
         });
 

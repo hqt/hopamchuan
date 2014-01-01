@@ -87,6 +87,8 @@ public class SyncSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
 
         // update favorite
         publishProgress(3);
+        // Delete old favorites
+        FavoriteDataAccessLayer.removeAllFavorites(context);
         res = FavoriteDataAccessLayer.syncFavorites(context, newFavorite);
         // res = FavoriteDataAccessLayer.addAllSongIdsToFavorite(mContext, newFavorite);
         if (!res) return 1;
