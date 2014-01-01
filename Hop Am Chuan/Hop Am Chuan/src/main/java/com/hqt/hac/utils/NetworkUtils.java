@@ -180,9 +180,9 @@ public class NetworkUtils {
     }
 
     /** sleep for predefine second as we working on slow network @_@ */
-    public static void stimulateNetwork(int second) {
+    public static void stimulateNetwork(int milisecond) {
         try {
-            Thread.sleep(second * 1000);
+            Thread.sleep(milisecond);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

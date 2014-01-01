@@ -52,6 +52,13 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     /** Adapter use for loading when go to ending list */
     private InfinityAdapter infAdapter;
 
+    /** song list mode
+     * 0: recent songs
+     * 1: new songs
+     * 2: rand songs
+     * **/
+    private int songListMode = 0;
+
     public SongListFragment() {
     }
 
@@ -107,7 +114,8 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
          */
         mListView.setLoader(this);
         mListView.setFirstProcessLoading(true);
-        mListView.setGreedyMode(false);
+        mListView.setNumPerLoading(10);
+        mListView.setGreedyMode(true);
         mListView.setRunningBackground(true);
         mListView.setAdapter(songlistAdapter);
 
@@ -146,22 +154,28 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
             case 0:
                 // Moi xem gan day
                 //songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), 0, Config.DEFAULT_SONG_LIST_COUNT);
-                //songlistAdapter.setSongs(songs);
+                songs = new ArrayList<Song>();
+                songlistAdapter.setSongs(songs);
                 break;
             case 1:
                 // Moi cap nhat
-                songs = SongDataAccessLayer.getNewSongs(activity.getApplicationContext(), 0, Config.DEFAULT_SONG_LIST_COUNT);
+                // songs = SongDataAccessLayer.getNewSongs(activity.getApplicationContext(), 0, Config.DEFAULT_SONG_LIST_COUNT);
+                songs = new ArrayList<Song>();
                 songlistAdapter.setSongs(songs);
                 break;
             case 2:
                 // Bai hat ngau nhien
-                songs = SongDataAccessLayer.getRandSongs(activity.getApplicationContext(), Config.DEFAULT_SONG_LIST_COUNT);
+                // songs = SongDataAccessLayer.getRandSongs(activity.getApplicationContext(), Config.DEFAULT_SONG_LIST_COUNT);
+                songs = new ArrayList<Song>();
                 songlistAdapter.setSongs(songs);
                 break;
             default:
                 // do nothing
         }
-
+        // Set mode
+        songListMode = position;
+        // Reset the listview
+        mListView.resetListView(songlistAdapter);
         songlistAdapter.notifyDataSetChanged();
     }
 
@@ -170,29 +184,45 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
 
     }
 
+    private List<Song> getSongAsMode(int offset, int count) {
+        List<Song> result;
+        switch (songListMode) {
+            case 0:
+                result = SongDataAccessLayer.getRecentSongs(getActivity().getApplicationContext(), offset, count);
+                break;
+            case 1:
+                result = SongDataAccessLayer.getNewSongs(getActivity().getApplicationContext(), offset, count);
+                break;
+            case 2:
+                result = SongDataAccessLayer.getRandSongs(getActivity().getApplicationContext(), count);
+                break;
+            default:
+                result = new ArrayList<Song>();
+        }
+        return result;
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     ///////////////////// METHOD FOR ENDLESS LOADING //////////////////////////
-    Song s;
-    int cth = 0;
-    int limit = 20;
+    List<Song> loadedSongs = new ArrayList<Song>();
     @Override
     public boolean load(int index) {
-        NetworkUtils.stimulateNetwork(4);
-        LOGE(TAG, "Add a Song to Inf ListView");
-        s = SongDataAccessLayer.getSongById(getActivity().getApplicationContext(), 1);
-        s.title = s.title + " " + cth++;
-        if (cth == limit) return false;
-        else return true;
+        NetworkUtils.stimulateNetwork(400);
+        loadedSongs = getSongAsMode(index, 1);
+        return loadedSongs.size() > 0;
     }
 
     @Override
     public boolean load(int from, int to) {
-        return false;
+        NetworkUtils.stimulateNetwork(400);
+        loadedSongs = getSongAsMode(from, to - from);
+        return loadedSongs.size() > 0;
     }
-
 
     @Override
     public void append() {
-        songs.add(s);
+        for (Song song : loadedSongs) {
+            songs.add(song);
+        }
     }
 }
