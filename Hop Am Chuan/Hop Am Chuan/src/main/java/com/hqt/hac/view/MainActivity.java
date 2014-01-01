@@ -338,7 +338,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
     /**
      * when search dialog is active. mActivity will lost input focus
      * so. do some stuffs (such as saving state) before search
-     * Unless passing search context data.
+     * Unless passing search mAppContext data.
      * should end method by calling super class implementation
      */
     @Override

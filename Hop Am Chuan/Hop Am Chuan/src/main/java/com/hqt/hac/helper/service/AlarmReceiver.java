@@ -1,4 +1,4 @@
-package com.hqt.hac.helper;
+package com.hqt.hac.helper.service;
 
 import java.io.IOException;
 import android.content.BroadcastReceiver;
@@ -10,6 +10,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.XmlResourceParser;
+import com.hqt.hac.helper.service.WakefulIntentService;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 

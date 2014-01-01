@@ -27,7 +27,8 @@ import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class SongDetailFragment extends Fragment implements MediaPlayer.OnPreparedListener,
+public class SongDetailFragment extends Fragment implements
+        MediaPlayer.OnPreparedListener,
         MusicPlayerController.IMediaPlayerControl,
         IHacFragment {
 
@@ -62,10 +63,6 @@ public class SongDetailFragment extends Fragment implements MediaPlayer.OnPrepar
 
     }
 
-    @Override
-    public int getTitle() {
-        return 0;
-    }
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -118,6 +115,8 @@ public class SongDetailFragment extends Fragment implements MediaPlayer.OnPrepar
                 openFullScreenSong();
             }
         });
+        songContentTextView.setSelected(true);
+
 
         // Star menu button
         final ImageView starMenuButton = (ImageView) rootView.findViewById(R.id.songMenuBtn);
@@ -140,7 +139,7 @@ public class SongDetailFragment extends Fragment implements MediaPlayer.OnPrepar
             }
         });
 
-//        setupMediaPlayer(rootView);
+        setupMediaPlayer(rootView);
 
         return rootView;
     }
@@ -262,5 +261,10 @@ public class SongDetailFragment extends Fragment implements MediaPlayer.OnPrepar
     @Override
     public void toggleFullScreen() {
 
+    }
+
+    @Override
+    public int getTitle() {
+        return 0;
     }
 }
