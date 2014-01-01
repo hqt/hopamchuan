@@ -30,7 +30,6 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
  */
 public class SongListFragment extends Fragment implements AdapterView.OnItemSelectedListener,
         InfinityListView.ILoaderContent,
-        InfinityAdapter.ILoaderContent,
         IHacFragment {
 
     public static final String TAG = makeLogTag(SongListFragment.class);
@@ -101,8 +100,8 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         mListView = (InfinityListView) rootView.findViewById(R.id.list_view);
         mListView.setLoader(this);
         songlistAdapter = new SongListAdapter(activity, songs);
-        infAdapter = new InfinityAdapter(activity.getApplicationContext(), songlistAdapter);
-        infAdapter.setLoader(this);
+        //infAdapter = new InfinityAdapter(activity.getApplicationContext(), songlistAdapter);
+        //infAdapter.setLoader(this);
 
         // Event for right menu click
         popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
@@ -151,19 +150,6 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
             }
         });
 
-       /* mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            int id = 1;
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                LOGE(TAG, "On Scroll State Changed");
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                LOGE(TAG, "On Scroll");
-            }
-        });*/
-
         return rootView;
     }
 
@@ -201,18 +187,22 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     ///////////////////// METHOD FOR ENDLESS LOADING //////////////////////////
     Song s;
     int cth = 0;
+    int limit = 10;
     @Override
-    public void load(int index) {
+    public int load(int index) {
         NetworkUtils.stimulateNetwork(1);
         LOGE(TAG, "Add a Song to Inf ListView");
         s = SongDataAccessLayer.getSongById(getActivity().getApplicationContext(), 1);
         s.title = s.title + " " + cth++;
+        if (cth == limit) return 1;
+        else return 0;
     }
 
     @Override
-    public void load(int from, int to) {
-
+    public int load(int from, int to) {
+        return 0;
     }
+
 
     @Override
     public void append() {

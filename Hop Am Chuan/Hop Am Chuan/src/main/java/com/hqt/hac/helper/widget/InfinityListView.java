@@ -169,6 +169,8 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
             LOGE(TAG, "Has come to limit. Set All State to Finish");
             if (isExistFooter.get()) {
                 removeFooterView(footer);
+                setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
                 isExistFooter.set(false);
             }
             //setAdapter(mAdapter);
@@ -188,7 +190,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
                 public void run() {
                     LOGE(TAG, "New Thread is running on " + NetworkUtils.getThreadSignature());
                     // run background
-                   longRunningTask(10);
+                    res = longRunningTask(10);
                     // notify data set to UI
                     mHandler.sendMessage(mHandler.obtainMessage());
                 }
@@ -197,12 +199,16 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         }
     }
 
-    private void longRunningTask(int index) {
+    int res = 0;
+
+    private int  longRunningTask(int index) {
+        int res;
         if (isGreedy) {
-            mLoader.load(index, index + numPerLoading);
+            res = mLoader.load(index, index + numPerLoading);
         } else {
-            mLoader.load(index);
+            res = mLoader.load(index);
         }
+        return res;
     }
 
     private Dictionary<Integer, Integer> listViewItemHeights = new Hashtable<Integer, Integer>();
@@ -223,8 +229,8 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     /** Using this interface for loading data and append data to new Adapter */
     /** Notes that load should perform on different thread and append must be perform on UI Thread */
     public interface ILoaderContent {
-        void load(int index);
-        void load(int from, int to);
+        int  load(int index);
+        int  load(int from, int to);
         void append();
     }
 
@@ -239,16 +245,17 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
             LOGE(TAG, "Update Adapter on " + NetworkUtils.getThreadSignature());
             // update data
             mLoader.append();
-            smallHack();
-            // after change adapter. notify to adapter
-            /*int x = getScrollX();
-            int y1 = getScrollY();
-            int y2 = getScrollY();
-            LOGE(TAG, "y1: " + y1 + "\ty2" + y2);*/
-            mAdapter.notifyDataSetChanged();
-            //setSelection(getCount());
-            // restore state
-            isLoading.set(false);
+            if (res == 1) {
+                removeFooterView(footer);
+                setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
+                isLoading.set(false);
+            } else {
+                mAdapter.notifyDataSetChanged();
+                // restore state
+                isLoading.set(false);
+            }
+
         }
 
         private void smallHack() {
