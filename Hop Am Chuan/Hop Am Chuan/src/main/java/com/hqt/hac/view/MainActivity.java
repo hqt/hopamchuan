@@ -89,11 +89,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
      */
     long mTimePressBackBtn = 0;
 
-    /**
-     * Variable to help process that user can only exit in welcome fragment *
-     */
-    boolean isLevelZero = true;
-
     /////////////////////////////////////////////////////////////////
     ////////////////// LIFE CYCLE ACTIVITY METHOD ///////////////////
 
@@ -197,7 +192,28 @@ public class MainActivity extends SlidingMenuActionBarActivity
     }
 
     //////////////////////////////////////////////////////////////////////
-    ////////////////////// CONFIGURATION METHOD /////////////////////////
+    ////////////////////// CONFIGURATION METHOD //////////////////////////
+    //////////////////////////////////////////////////////////////////////
+    // Back button navigation flow and title bar text change            //
+    // 1. Every fragment is added to the stack. Use hashCode as name    //
+    //    and tag.                                                      //
+    //                                                                  //
+    //     PlaylistManagerFragment                                      //
+    //         PlaylistDetailFragment                                   //
+    //              SongDetailFragment                                  //
+    //                                                                  //
+    // 2. Back button navigation: follow the stack. Only exit in        //
+    //    WelcomeFragment (other level 0 fragment will change to        //
+    //    WelcomeFragment when tap Back button).                        //
+    //                                                                  //
+    // 3. Action bar title: use getCurrentFragment to get the fragment  //
+    //    after back button (afterBackFragment), then set title. If the //
+    //    fragment is PlaylistDetailFragment or SongDetailFragment we   //
+    //    need to set title as the playlist/song name.                  //
+    //                                                                  //
+    //                                                                  //
+    //                                                                  //
+    //                                                                  //
 
     @Override
     public void onBackPressed() {
@@ -205,12 +221,16 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // a missing magic number :)
         if (mTimePressBackBtn == 0) mTimePressBackBtn = -14181147;
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment currentFragment = getCurrentFragment(fragmentManager, 1);
-        LOGE("TRUNGDQ", "current fragment: " + currentFragment);
-//        if (fragmentManager.getBackStackEntryCount() == 0) {
+
+        // Variable to know if the current fragment is WelcomeFragment or not.
+        Fragment currentFragment = getCurrentFragment(fragmentManager, 0);
+        // LOGE("TRUNGDQ", "current fragment: " + currentFragment);
+
+        // If current fragment is level 0 (only 1 fragment left in the stack)
         if (fragmentManager.getBackStackEntryCount() == 1) {
-            // Only exit in welcome fragment.
-            if (isLevelZero || (currentFragment instanceof WelcomeFragment)) {
+            if (currentFragment instanceof WelcomeFragment) {
+                // If current fragment is WelcomeFragment, show the toast to user
+
                 // in Welcome Fragment. Just exit when double click back press as Zing MP3
                 long currentTime = Calendar.getInstance().getTimeInMillis();
                 LOGE(TAG, mTimePressBackBtn + "/" + currentTime);
@@ -222,33 +242,45 @@ public class MainActivity extends SlidingMenuActionBarActivity
                     Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
                     mTimePressBackBtn = currentTime;
                 }
+
             } else {
+                // If current fragment is not the WelcomeFragment, then navigate to WelcomeFragment
+
                 // Open welcome fragment
                 Fragment fragment = new WelcomeFragment();
                 switchFragmentClearStack(fragment);
                 changeTitleBar(getString(R.string.title_activity_welcome_fragment));
-                isLevelZero = true;
 
             }
         } else {
+            // If there is more than 1 entry in the stack, we just follow the stack to navigate
+            // fragments by call super.onBackPressed() method. But before that, we need to change
+            // the title in action bar.
 
-            Fragment afterBackFragment = getCurrentFragment(fragmentManager, 2);
+            // This will get the fragment after the back button (ignore the first fragment)
+            Fragment afterBackFragment = getCurrentFragment(fragmentManager, 1);
             // Change title bar after change fragment.
             if (afterBackFragment != null) {
-//                LOGE("TRUNGDQ", "current fragment: " + fragment);
                 int titleRes = ((IHacFragment) afterBackFragment).getTitle();
-//                LOGE("TRUNGDQ", "fragment title: " + titleRes);
                 if (titleRes > 0) {
+                    // If this fragment has title, then set it.
                     changeTitleBar(getString(titleRes));
                 } else {
+                    // If this fragment is PlaylistDetailFragment or SongDetailFragment or things
+                    // like that, we set the title as the playlist/song name.
+
+                    // For playlist
                     if (afterBackFragment instanceof PlaylistDetailFragment) {
                         changeTitleBar(((PlaylistDetailFragment) afterBackFragment).playlist.playlistName);
                     }
+                    // For song
+                    else if (afterBackFragment instanceof SongDetailFragment) {
+                        changeTitleBar(((SongDetailFragment) afterBackFragment).song.title);
+                    }
                 }
-            } else {
-//                LOGE("TRUNGDQ", "current fragment: NULL");
             }
 
+            // Do the back
             super.onBackPressed();
 
         }
@@ -258,19 +290,19 @@ public class MainActivity extends SlidingMenuActionBarActivity
      * Get current fragment using tag
      * http://stackoverflow.com/questions/15028527/is-there-a-way-to-get-fragment-from-top-of-stack
      * @param fragmentManager
-     * @param offset: just for test purpose, use 1 for default
+     * @param ignoreTop: ignore number of entry on the top. Use 0 to get the top entry.
      * @return
      */
-    private Fragment getCurrentFragment(FragmentManager fragmentManager, int offset){
+    private Fragment getCurrentFragment(FragmentManager fragmentManager, int ignoreTop){
         try {
-//            LOGE("TRUNGDQ", "count: " + fragmentManager.getBackStackEntryCount());
-//            LOGE("TRUNGDQ", "entry at count - 1: " + fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1));
-//            LOGE("TRUNGDQ", "name of entry at count - 1: " + fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName());
+            // LOGE("TRUNGDQ", "count: " + fragmentManager.getBackStackEntryCount());
+            // LOGE("TRUNGDQ", "entry at count - 1: " + fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1));
+            // LOGE("TRUNGDQ", "name of entry at count - 1: " + fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName());
 
-            String fragmentTag = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - offset).getName();
+            String fragmentTag = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - ignoreTop - 1).getName();
             Fragment currentFragment = getSupportFragmentManager()
                     .findFragmentByTag(fragmentTag);
-//            LOGE("TRUNGDQ", "result: " + currentFragment);
+            // LOGE("TRUNGDQ", "result: " + currentFragment);
             return currentFragment;
         } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
@@ -442,7 +474,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 .commit();
         slidingMenu.showContent();
         slidingMenu.setEnabled(false);
-        isLevelZero = false;
         int titleRes = ((IHacFragment) fragment).getTitle();
         if (titleRes > 0) {
             changeTitleBar(getString(titleRes));
@@ -461,7 +492,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 .commit();
         slidingMenu.showContent();
         slidingMenu.setEnabled(true);
-        isLevelZero = false;
         int titleRes = ((IHacFragment) fragment).getTitle();
         if (titleRes > 0) {
             changeTitleBar(getString(titleRes));

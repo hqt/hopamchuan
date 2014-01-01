@@ -37,18 +37,20 @@ public class SongDetailFragment extends Fragment implements
     /**
      * Main Activity for reference
      */
-    MainActivity activity;
+    private MainActivity activity;
 
     /**
      * ListView : contains all items of this fragment
      */
-    ListView mListView;
+    private ListView mListView;
 
     /**
      * Adapter for this fragment
      */
     // PlaylistDetailAdapter mAdapter;
-    Song song;
+
+    /** Need public for access in MainActivity.onBackPressed (change title bar) **/
+    public Song song;
 
     // Stuff for popup menu
     private PopupWindow mPopupMenu;
