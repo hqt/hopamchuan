@@ -61,7 +61,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/IcsSpinner.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/IcsSpinner.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/IcsToast.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/IcsToast.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/IcsView.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/IcsView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Research Projects/SmartSongView/src/sampleinput/InputData.java" afterPath="$PROJECT_DIR$/../../Research Projects/SmartSongView/src/sampleinput/InputData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/IntEvaluator.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/IntEvaluator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/IntKeyframeSet.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/IntKeyframeSet.java" />
@@ -96,7 +95,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/app/SherlockFragment.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/app/SherlockFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/app/SherlockFragmentActivity.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/app/SherlockFragmentActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/app/SherlockListFragment.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/app/SherlockListFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/StandaloneActionMode.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/view/StandaloneActionMode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Research Projects/SmartSongView/src/smartsongview/StringUtils.java" afterPath="$PROJECT_DIR$/../../Research Projects/SmartSongView/src/smartsongview/StringUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/view/SubMenu.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/view/SubMenu.java" />
@@ -284,7 +282,7 @@
       <file leaf-file-name="InfinityListView.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="256" column="1" selection-start="9647" selection-end="9647" vertical-scroll-proportion="0.0" vertical-offset="1187" max-vertical-offset="3519">
+            <state line="161" column="0" selection-start="5890" selection-end="5890" vertical-scroll-proportion="0.0" vertical-offset="1595" max-vertical-offset="3519">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1403#1446#0" expanded="false" />
@@ -305,9 +303,13 @@
       <file leaf-file-name="SongListFragment.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="181" column="0" selection-start="6579" selection-end="6579" vertical-scroll-proportion="2.4782608" vertical-offset="1034" max-vertical-offset="2907">
+            <state line="181" column="0" selection-start="6579" selection-end="6579" vertical-scroll-proportion="0.52538073" vertical-offset="2411" max-vertical-offset="3009">
               <folding>
                 <element signature="e#1221#1263#0" expanded="true" />
+                <element signature="e#4154#4461#0" expanded="true" />
+                <element signature="e#4450#4451#0" expanded="true" />
+                <element signature="e#4549#5099#0" expanded="true" />
+                <element signature="e#5088#5089#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1141,8 +1143,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/service/Mp3PlayerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongDetailFragment.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" />
       </list>
     </option>
   </component>
@@ -1951,12 +1953,12 @@
       <workItem from="1388060617166" duration="14605000" />
       <workItem from="1388086629381" duration="2405000" />
       <workItem from="1388109013505" duration="7770000" />
-      <workItem from="1388133488514" duration="154982000" />
+      <workItem from="1388133488514" duration="155347000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="236122000" />
+    <option name="totallyTimeSpent" value="236487000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -1980,7 +1982,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1988,7 +1990,7 @@
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290469" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32692307" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32371795" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2468,7 +2470,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="256" column="1" selection-start="9647" selection-end="9647" vertical-scroll-proportion="0.0" vertical-offset="1187" max-vertical-offset="3519">
+        <state line="161" column="0" selection-start="5890" selection-end="5890" vertical-scroll-proportion="0.0" vertical-offset="1595" max-vertical-offset="3519">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1403#1446#0" expanded="false" />
@@ -2487,9 +2489,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="181" column="0" selection-start="6579" selection-end="6579" vertical-scroll-proportion="2.4782608" vertical-offset="1034" max-vertical-offset="2907">
+        <state line="181" column="0" selection-start="6579" selection-end="6579" vertical-scroll-proportion="0.52538073" vertical-offset="2411" max-vertical-offset="3009">
           <folding>
             <element signature="e#1221#1263#0" expanded="true" />
+            <element signature="e#4154#4461#0" expanded="true" />
+            <element signature="e#4450#4451#0" expanded="true" />
+            <element signature="e#4549#5099#0" expanded="true" />
+            <element signature="e#5088#5089#0" expanded="true" />
           </folding>
         </state>
       </provider>
