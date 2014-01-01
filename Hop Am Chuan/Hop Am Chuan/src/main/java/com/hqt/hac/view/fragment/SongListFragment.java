@@ -117,7 +117,6 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         mListView.setNumPerLoading(10);
         mListView.setGreedyMode(true);
         mListView.setRunningBackground(true);
-        mListView.setAdapter(songlistAdapter);
 
         // Event for right menu click
         popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
@@ -174,9 +173,8 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         }
         // Set mode
         songListMode = position;
-        // Reset the listview
+        // Reset the ListView
         mListView.resetListView(songlistAdapter);
-        songlistAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -207,14 +205,16 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     List<Song> loadedSongs = new ArrayList<Song>();
     @Override
     public boolean load(int index) {
-        NetworkUtils.stimulateNetwork(400);
+        NetworkUtils.stimulateNetwork(2000);
+        LOGE(TAG, "Loading 1 songs");
         loadedSongs = getSongAsMode(index, 1);
-        return loadedSongs.size() > 0;
+        return loadedSongs.size() != 1;
     }
 
     @Override
     public boolean load(int from, int to) {
-        NetworkUtils.stimulateNetwork(400);
+        NetworkUtils.stimulateNetwork(5000);
+        LOGE(TAG, "Loading multi songs");
         loadedSongs = getSongAsMode(from, to - from);
         return loadedSongs.size() > 0;
     }

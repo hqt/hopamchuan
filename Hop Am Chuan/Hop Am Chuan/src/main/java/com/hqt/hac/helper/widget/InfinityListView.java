@@ -11,7 +11,6 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.hqt.hac.helper.adapter.InfinityAdapter;
 import com.hqt.hac.helper.adapter.SongListAdapter;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.view.R;
@@ -25,6 +24,19 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 /**
  * ListView that when scroll to bottom will load more data
+ *
+ * Usage : (Step by Step)
+ * 1. Initialize ListView
+ * 2. Set Mode for this ListView :
+ *      RunningBackground Mode : should hard work do on different thread
+ *      Greedy Mode            : each time scroll to end, should load one or multi items to save times and enhance usability
+ *      NumPerLoading          : decide number of items at each time load. just use when Greedy Mode is active
+ *      FirstProcessingLoading : should use lazy loading when first load ListView
+ * 3. Class use this Infinitive ListView should implement 3 methods :
+ *      a. boolean load (index)         : load a song at index. return true if can load. else. return false
+ *      b. boolean load (index, offset) : load list of song at index, total offset : return true if size >= 1. else return false
+ *      c. Append()            : Append Data() to Adapter. Should do separately because this method often done in different thread
+ *
  * Created by ThaoHQSE60963 on 12/27/13.
  */
 public class InfinityListView extends ListView implements AbsListView.OnScrollListener {
@@ -90,6 +102,13 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         // inflate footer
         LayoutInflater inflater = (LayoutInflater) super.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         footer = inflater.inflate(R.layout.list_item_loading, null);
+        footer.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // do nothing
+                // make this event to prevent NullPointException
+            }
+        });
         // create handler on same thread
         mHandler = new LoadingHandler();
         addFooterView(footer);
@@ -99,8 +118,9 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     public void resetListView(SongListAdapter adapter) {
         footer.setVisibility(VISIBLE);
         isComeToEnd.set(false);
-        mAdapter.notifyDataSetChanged();
+        isLoading.set(false);
         setAdapter(adapter);
+        mAdapter.notifyDataSetChanged();
     }
 
     //region Option for this Inf ListView
@@ -151,10 +171,15 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         super.setAdapter(adapter);
         mAdapter = (BaseAdapter) adapter;
         /** it will loading until full of ListView */
+        /** should make animation here for nicer view */
         if (isFirstProcessLoading) {
+            boolean holderIsGreedy = isGreedy;
+            isGreedy = false;
             for (int i = 0; i < MAXIMUM_FIRST_LOADING; i++) {
+                LOGE(TAG, "Load item: " + i);
                 scheduleWork(i);
             }
+            isGreedy = holderIsGreedy;
         }
     }
 
@@ -175,8 +200,8 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 
         // get the first Item that currently hide and need to show
         final int firstItemHide = firstVisibleItem + visibleItemCount;
-//        LOGE(TAG, "FirstVisibleItem:" + firstVisibleItem + "  VisibleItemCount:"
-//                + visibleItemCount + "  TotalItemCount:" + totalItemCount);
+        LOGE(TAG, "FirstVisibleItem:" + firstVisibleItem + "  VisibleItemCount:"
+                + visibleItemCount + "  TotalItemCount:" + totalItemCount);
         if (firstItemHide >= totalItemCount) {
             // scheduleWork(totalItemCount); << we don't count the loading item
             scheduleWork(totalItemCount - 1);
@@ -203,22 +228,24 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
                 t.start();
             } else {
                 longRunningTask(index);
+                cleanState();
             }
         } catch (NullPointerException e) {
-            // cause by when loading but change state. lead to NullPointerException
-            // clear this current ListView state to avoid memory leak
-            if (mAdapter != null) mAdapter = null;
-            if (mLoader != null) mLoader = null;
-            if (mHandler != null) mHandler = null;
+            // cause by when loading but activity change state (onPause() onDestroy() Configuration Change.
+            // lead to NullPointerException
         }
     }
 
     /** decide to use greedy mode (load multi data at once) or not */
     private void longRunningTask(int index) {
-        if (isGreedy) {
-            isSucceed = mLoader.load(index, index + numPerLoading);
-        } else {
-            isSucceed = mLoader.load(index);
+        try {
+            if (isGreedy) {
+                isSucceed = mLoader.load(index, index + numPerLoading);
+            } else {
+                isSucceed = mLoader.load(index);
+            }
+        } catch (NullPointerException e) {
+            // prevent thread is running. and we shut down it.
         }
     }
 
@@ -230,7 +257,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     public interface ILoaderContent {
         boolean  load(int index);
         boolean  load(int from, int to);
-        void append();
+        void     append();
     }
 
     /**
@@ -241,24 +268,28 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         /** this method will be called by send Message */
         @Override
         public void handleMessage(Message msg) {
-            // update data
-            mLoader.append();
-            // has come to end list
-            if (!isSucceed) {
-                LOGE(TAG, "Remove FootView because come to end list");
-                footer.setVisibility(INVISIBLE);
-                setAdapter(mAdapter);
-                mAdapter.notifyDataSetChanged();
-                setSelection(mAdapter.getCount() - 1);
-                isComeToEnd.set(true);
-                // restore state
-                isLoading.set(false);
-            } else {
-                // update data for user
-                mAdapter.notifyDataSetChanged();
-                // restore state
-                isLoading.set(false);
-            }
+           cleanState();
+        }
+    }
+
+    /** clean state after finish work */
+    private void cleanState() {
+        // update data
+        mLoader.append();
+        // has come to end list
+        if (!isSucceed) {
+            LOGE(TAG, "Remove FootView because come to end list");
+            footer.setVisibility(INVISIBLE);
+            setAdapter(mAdapter);
+            mAdapter.notifyDataSetChanged();
+            setSelection(mAdapter.getCount() - 1);
+            isComeToEnd.set(true);
+            isLoading.set(false);
+        } else {
+            // update data for user
+            mAdapter.notifyDataSetChanged();
+            // restore state
+            isLoading.set(false);
         }
     }
 }
