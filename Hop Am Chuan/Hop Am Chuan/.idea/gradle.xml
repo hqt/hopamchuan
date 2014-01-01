@@ -5,15 +5,7 @@
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="D:/Compiler/gradle-1.8" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$/.." />
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/Hop Am Chuan/libs" />
-            <option value="$PROJECT_DIR$/libs/SlidingMenu" />
-          </set>
-        </option>
+        <option name="gradleHome" value="D:/Compiler/gradle-1.9" />
       </GradleProjectSettings>
     </option>
   </component>

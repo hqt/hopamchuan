@@ -39,7 +39,7 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
     View rootView;
 
     /** Song object for this fragment */
-    Song song;
+    public Song song;
 
     /** resource for title int */
     int mResTitle = R.string.title_activity_song_list_fragment;
