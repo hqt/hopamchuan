@@ -205,7 +205,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     public void load(int index) {
         NetworkUtils.stimulateNetwork(1);
         LOGE(TAG, "Add a Song to Inf ListView");
-        s = SongDataAccessLayer.getSongById(getActivity().getApplicationContext(), 4384);
+        s = SongDataAccessLayer.getSongById(getActivity().getApplicationContext(), 1);
         s.title = s.title + " " + cth++;
     }
 
