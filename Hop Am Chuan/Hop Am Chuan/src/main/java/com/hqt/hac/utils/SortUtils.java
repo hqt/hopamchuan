@@ -2,7 +2,6 @@ package com.hqt.hac.utils;
 
 import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Song;
-import com.hqt.hac.model.dao.SongArtistDataAccessLayer;
 
 import java.util.Collections;
 import java.util.Comparator;

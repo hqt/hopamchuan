@@ -3,7 +3,6 @@ package com.hqt.hac.view.test;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.hqt.hac.model.dao.SongDataAccessLayer;
+import com.hqt.hac.model.dal.SongDataAccessLayer;
 import com.hqt.hac.utils.ParserUtils;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.view.R;
@@ -42,7 +41,7 @@ public class TestParser extends ActionBarActivity {
 
 //        List<Artist> arr = ParserUtils.getAllArtistsFromRescource(getApplicationContext());
 //
-//        String uri = ArtistDataAcessLayer.insertArtist(getApplicationContext(), arr.get(0));
+//        String uri = ArtistDataAccessLayer.insertArtist(getApplicationContext(), arr.get(0));
 
         List<Song> songs = ParserUtils.getAllSongsFromResource(getApplicationContext());
 //        SongDataAccessLayer.insertFullSongListSync(getApplicationContext(), songs);

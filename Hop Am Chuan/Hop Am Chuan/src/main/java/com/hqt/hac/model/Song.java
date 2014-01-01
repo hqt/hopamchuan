@@ -4,17 +4,16 @@ import android.content.Context;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.hqt.hac.model.dao.SongDataAccessLayer;
+import com.hqt.hac.model.dal.SongDataAccessLayer;
 import com.hqt.hac.utils.StringUtils;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import static com.hqt.hac.model.dao.SongDataAccessLayer.getAuthorsBySongId;
-import static com.hqt.hac.model.dao.SongDataAccessLayer.getChordsBySongId;
-import static com.hqt.hac.model.dao.SongDataAccessLayer.getSingersBySongId;
-import static com.hqt.hac.model.dao.SongDataAccessLayer.getSongContent;
+import static com.hqt.hac.model.dal.SongDataAccessLayer.getAuthorsBySongId;
+import static com.hqt.hac.model.dal.SongDataAccessLayer.getChordsBySongId;
+import static com.hqt.hac.model.dal.SongDataAccessLayer.getSingersBySongId;
+import static com.hqt.hac.model.dal.SongDataAccessLayer.getSongContent;
 
 public class Song implements Parcelable {
 

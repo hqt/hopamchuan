@@ -164,7 +164,7 @@ public class Mp3PlayerService extends Service implements
 
     @Override
     public void onCompletion(MediaPlayer mp) {
-        //stopSelf();
+        stopSelf();
     }
 
     @Override

@@ -15,7 +15,7 @@ import com.hqt.hac.helper.adapter.SongListAdapter;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
-import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
+import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;

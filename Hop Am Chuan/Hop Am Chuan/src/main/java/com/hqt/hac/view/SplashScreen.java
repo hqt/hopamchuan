@@ -6,11 +6,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import com.hqt.hac.model.Playlist;
-import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
+import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.utils.NetworkUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;

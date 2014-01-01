@@ -3,9 +3,8 @@ package com.hqt.hac.model;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
+import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
