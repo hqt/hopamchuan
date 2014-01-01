@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
+import com.hqt.hac.helper.service.Mp3PlayerService;
 import com.hqt.hac.view.fragment.IHacFragment;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
 import com.hqt.hac.model.Playlist;
@@ -190,6 +191,9 @@ public class MainActivity extends SlidingMenuActionBarActivity
         itemAdapter.setDelegate(null);
         playlistHeaderAdapter.setDelegate(null);
         playlistItemAdapter.setDelegate(null);
+        if (Mp3PlayerService.isRunning(getApplicationContext())) {
+            unbindService(SongDetailFragment.serviceConnection);
+        }
     }
 
     @Override

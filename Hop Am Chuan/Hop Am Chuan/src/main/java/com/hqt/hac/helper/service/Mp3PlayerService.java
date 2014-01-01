@@ -1,8 +1,10 @@
 package com.hqt.hac.helper.service;
 
+import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
@@ -128,6 +130,11 @@ public class Mp3PlayerService extends Service implements
         return iBinder;
     }
 
+    @Override
+    public boolean onUnbind(Intent intent) {
+        return super.onUnbind(intent);
+    }
+
     public void onDestroy() {
         LOGD(TAG, "On Destroy Service");
         if (player.isPlaying()) {
@@ -143,11 +150,21 @@ public class Mp3PlayerService extends Service implements
         }
     }
 
+    public static boolean isRunning(Context context) {
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (Mp3PlayerService.class.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     ////////////////////////////////////////////////////////////////////////
 
     @Override
     public void onCompletion(MediaPlayer mp) {
-        stopSelf();
+        //stopSelf();
     }
 
     @Override

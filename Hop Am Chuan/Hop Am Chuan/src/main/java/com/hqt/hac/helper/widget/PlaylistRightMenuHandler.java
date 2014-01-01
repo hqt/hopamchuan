@@ -19,6 +19,7 @@ import com.hqt.hac.view.R;
 import java.lang.ref.WeakReference;
 
 public class PlaylistRightMenuHandler {
+
     /*** Current selected playlist */
     public static Playlist selectedPlaylist;
 
@@ -39,7 +40,7 @@ public class PlaylistRightMenuHandler {
     private static EditText txtNewPlaylistDescription;
 
     public static Activity getActivity() {
-        return null;
+        return refActivity.get();
     }
 
     public static void setRightMenuEvents(final Activity _activity, final PopupWindow _pw, PlaylistManagerAdapter _adapter) {
@@ -62,7 +63,7 @@ public class PlaylistRightMenuHandler {
 
         Button saveBtn = (Button) renPlaylistDialog.findViewById(R.id.btnCreatePlaylist);
         saveBtn.setText(R.string.rename_playlist_button);
-        saveBtn.setOnClickListener(new RenPlaylistOnClick());
+        saveBtn.setOnClickListener(new RenamePlaylistEvent());
 
         // Rename button
         btnRenamePlaylist.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +88,7 @@ public class PlaylistRightMenuHandler {
                 if (activity == null) {
 
                 }
-                ConfirmDialogOnClick dialogClickListener = new ConfirmDialogOnClick();
+                ConfirmDialogEvent dialogClickListener = new ConfirmDialogEvent();
                 AlertDialog.Builder builder = new AlertDialog.Builder(_activity);
                 builder.setMessage(activity.getString(R.string.are_you_sure_delete_playlist)
                         + " \"" + selectedPlaylist.playlistName + "\"?")
@@ -102,7 +103,7 @@ public class PlaylistRightMenuHandler {
 
     }
 
-    private static class RenPlaylistOnClick implements View.OnClickListener {
+    private static class RenamePlaylistEvent implements View.OnClickListener {
         @Override
         public void onClick(View view) {
             Activity activity = refActivity.get();
@@ -139,7 +140,7 @@ public class PlaylistRightMenuHandler {
         }
     }
 
-    private static class ConfirmDialogOnClick implements DialogInterface.OnClickListener {
+    private static class ConfirmDialogEvent implements DialogInterface.OnClickListener {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             Activity activity = refActivity.get();

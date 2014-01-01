@@ -167,29 +167,29 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
     Intent mp3ServiceIntent;
     Mp3PlayerService mp3Service;
     /** ServiceConnection : use to bind with Activity */
-    ServiceConnection serviceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder iBinder) {
-            mp3Service = ((Mp3PlayerService.BackgroundAudioServiceBinder)iBinder).getService();
-            player = mp3Service.player;
-            controller = new MusicPlayerController(rootView);
-            // set player for this control
-            controller.setMediaPlayer(SongDetailFragment.this);
-            // set progress here. because maybe player has been started same song before
-            controller.setProgress();
-            if (player == null) {
-                LOGE(TAG, "PLAYER IS NULL WHEN BIND TO SERVICE");
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            mp3Service = null;
-        }
-    };
+    public static ServiceConnection serviceConnection;
 
     /** setup start from here */
     private void setupMediaPlayer() {
+        serviceConnection = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder iBinder) {
+                mp3Service = ((Mp3PlayerService.BackgroundAudioServiceBinder)iBinder).getService();
+                player = mp3Service.player;
+                controller = new MusicPlayerController(rootView);
+                // set player for this control
+                controller.setMediaPlayer(SongDetailFragment.this);
+                // set progress here. because maybe player has been started same song before
+                controller.setProgress();
+                if (player == null) {
+                    LOGE(TAG, "PLAYER IS NULL WHEN BIND TO SERVICE");
+                }
+            }
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                mp3Service = null;
+            }
+        };
         mp3ServiceIntent = new Intent(getActivity(), Mp3PlayerService.class);
         mp3ServiceIntent.putExtra("song", song);
         activity.bindService(mp3ServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);

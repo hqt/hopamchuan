@@ -171,7 +171,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
                 removeFooterView(footer);
                 isExistFooter.set(false);
             }
-            setAdapter(mAdapter);
+            //setAdapter(mAdapter);
             mAdapter.notifyDataSetChanged();
             isComeToEnd.set(true);
             return;
