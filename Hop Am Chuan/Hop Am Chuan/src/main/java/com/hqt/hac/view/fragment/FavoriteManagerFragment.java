@@ -99,17 +99,20 @@ public class FavoriteManagerFragment extends  Fragment implements
         spinner.setAdapter(choices);    // Apply the mAdapter to the spinner
         spinner.setOnItemSelectedListener(this);   // because this fragment has implemented method
 
+        songs = new ArrayList<Song>();
+        mAdapter = new SongListAdapter(getActivity(), songs);
+
         /** ListView Configure */
         mListView = (InfinityListView) rootView.findViewById(R.id.list_view);
-
-
+        InfinityListView.ListViewProperty property = new InfinityListView.ListViewProperty();
+        property.Loader(this).Adapter(mAdapter).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
+                .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
+        mListView.setListViewProperty(property);
+/*
         mListView.setLoader(this);
         mListView.setFirstProcessLoading(true);
         mListView.setNumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD);
-        mListView.setRunningBackground(true);
-
-        songs = new ArrayList<Song>();
-        mAdapter = new SongListAdapter(getActivity(), songs);
+        mListView.setRunningBackground(true);*/
 
         // Event for right menu click
         popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);

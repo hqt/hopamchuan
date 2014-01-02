@@ -6,17 +6,13 @@ import android.os.Message;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AbsListView;
-import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
+import android.widget.*;
 
 import com.hqt.hac.helper.adapter.IInfinityAdapter;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.view.R;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
@@ -43,8 +39,9 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
 public class InfinityListView extends ListView implements AbsListView.OnScrollListener {
 
     public static String TAG = makeLogTag(InfinityListView.class);
-    private final int DEFAULT_FIRST_LOADING_ITEMS = 4;
-    private final int DEFAULT_NUM_PER_LOAD = 1;
+
+    private static final int DEFAULT_FIRST_LOADING_ITEMS = 4;
+    private static final int DEFAULT_NUM_PER_LOAD = 1;
 
     //region State variable to control current state of ListView
     /** variable to control is in current loading state or not */
@@ -66,6 +63,8 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     LoadingHandler mHandler;
     /** Adapter for this ListView. Keep this Adapter, because there's a time should set Adapter to null */
     BaseAdapter mAdapter;
+    /** return data each time loading */
+    Collection loadedCollection;
     //endregion
 
     //region Configuration Variable control all Mode of Inf ListView
@@ -77,8 +76,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     boolean isFirstProcessLoading = false;
     //endregion
 
-    List loadedObjs = new ArrayList();
-
+    //region Constructor ListView
     public InfinityListView(Context context) {
         super(context);
         settingUpListView();
@@ -97,78 +95,27 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     public void settingUpListView() {
         LOGE(TAG, "Setting Up ListView");
         isLoading = new AtomicBoolean(false);
-        isRunningBackground = true;
-        isFirstProcessLoading = false;
         setOnScrollListener(this);
-        // inflate footer
-        LayoutInflater inflater = (LayoutInflater) super.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        footer = inflater.inflate(R.layout.list_item_loading, null);
-        footer.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // do nothing
-                // make this event to prevent NullPointException
-            }
-        });
         // create handler on same thread
         mHandler = new LoadingHandler();
-        addFooterView(footer);
     }
 
     /**
-     * Reset listview for reusable for example in a fragment with dropdown box, each
+     * Reset ListView for reusable for example in a fragment with dropdown box, each
      * dropdown item represent different kind of item in the list.
      * @param adapter
      */
     public void resetListView(BaseAdapter adapter) {
 //        footer.setVisibility(View.VISIBLE);
         // Remove first to make sure that there is no duplicate.
-        removeFooterView(footer);
+        if (footer != null) removeFooterView(footer);
         addFooterView(footer);
         isComeToEnd.set(false);
         isLoading.set(false);
         setAdapter(adapter);
         mAdapter.notifyDataSetChanged();
     }
-
-    //region Option for this Inf ListView
-    ////////////////////////////////////////////////////////////////////////
-    //////////////////// GETTER / SETTER ///////////////////////////////////
-
-    /**
-     * When set to false, task will be called directly, rather than from different thread.
-     *
-     * This is useful if for example have code to populate the adapter that already runs in a background thread,
-     * and simply don't need the built in background functionality.
-     *
-     * When using this you must remember to call onDataReady() once already appended data.
-     *
-     */
-    public void setRunningBackground(boolean isRunningBackground) {
-        this.isRunningBackground = isRunningBackground;
-    }
-
-    /** set Loader do action for this inf ListView (should implement ILoaderInterface) */
-    public void setLoader(ILoaderContent loader) {
-        this.mLoader = loader;
-    }
-
-
-    /** set for first process loading. this behavior helps decrease delay when loading */
-    public void setFirstProcessLoading(boolean state) { this.isFirstProcessLoading = state;}
-
-    /** set number of items per loading. just use when greedy mode is set to true */
-    public void setNumPerLoading(int num) {
-        this.numPerLoading = num;
-    }
-
-    /** Change Loading View */
-    public void changeLoadingView(View v) { this.footer = v; }
     //endregion
-
-    public void setFirstLoadingItems(int n) {
-        firstLoadingItems = n;
-    }
 
     ////////////////////////////////////////////////////////////////////////////////
     ////////////////////////// INTERNAL METHOD /////////////////////////////////////
@@ -183,13 +130,10 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         /** it will loading until full of ListView */
         /** should make animation here for nicer view */
         if (isFirstProcessLoading) {
-//            boolean holderIsGreedy = isGreedy;
-//            isGreedy = false;
             for (int i = 0; i < firstLoadingItems; i++) {
                 LOGE(TAG, "Load item: " + i);
                 scheduleWork(i);
             }
-//            isGreedy = holderIsGreedy;
         }
     }
 
@@ -210,8 +154,8 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 
         // get the first Item that currently hide and need to show
         final int firstItemHide = firstVisibleItem + visibleItemCount;
-        // LOGE(TAG, "FirstVisibleItem:" + firstVisibleItem + "  VisibleItemCount:"
-        //         + visibleItemCount + "  TotalItemCount:" + totalItemCount);
+        LOGE(TAG, "FirstVisibleItem:" + firstVisibleItem + "  VisibleItemCount:"
+                 + visibleItemCount + "  TotalItemCount:" + totalItemCount);
         if (firstItemHide >= totalItemCount) {
             // scheduleWork(totalItemCount); << we don't count the loading item
             scheduleWork(totalItemCount - 1);
@@ -249,9 +193,13 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     /** decide to use greedy mode (load multi data at once) or not */
     private void longRunningTask(int index) {
         try {
-            loadedObjs = mLoader.load(index, numPerLoading);
+            loadedCollection = mLoader.load(index, numPerLoading);
             // If there less than numPerLoad items, that mean the list is end.
-            isSucceed = loadedObjs.size() == numPerLoading;
+            if (loadedCollection == null || loadedCollection.size() < numPerLoading) {
+                isSucceed = false;
+            } else {
+                isSucceed = true;
+            }
         } catch (NullPointerException e) {
             // prevent thread is running. and we shut down it.
         }
@@ -263,7 +211,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     /** Using this interface for loading data and append data to new Adapter */
     /** Notes that load should perform on different thread and append must be perform on UI Thread */
     public interface ILoaderContent {
-        List load(int offset, int count);
+        Collection load(int offset, int count);
     }
 
     /**
@@ -286,7 +234,6 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         if (!isSucceed) {
             LOGE(TAG, "Remove FootView because come to end list");
             removeFooterView(footer);
-//            footer.setVisibility(View.GONE);
 //            setAdapter(mAdapter);
 //            mAdapter.notifyDataSetChanged();
 //            setSelection(mAdapter.getCount() - 1);
@@ -303,8 +250,111 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 
     /** Add the item into adapter **/
     private void append() {
-        for (Object obj : loadedObjs) {
+        for (Object obj : loadedCollection) {
             ((IInfinityAdapter) mAdapter).addItem(obj);
         }
     }
+
+    /////////////////////////////////////////////////////////////////////
+    ////////////////// CONFIGURATION METHOD /////////////////////////////
+
+    private View generateFooterView() {
+        LinearLayout layout = new LinearLayout(getContext());
+        ProgressBar loading = new ProgressBar(getContext());
+        layout.addView(loading);
+        return layout;
+    }
+
+    public void setListViewProperty(ListViewProperty property) {
+        this.footer = property.footer;
+        if (property.footerResourceId >= 0) {
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            footer = inflater.inflate(R.layout.list_item_loading, null);
+        }
+        if (footer == null) footer = generateFooterView();
+        footer.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // do nothing
+                // make this event to prevent NullPointException
+            }
+        });
+        addFooterView(footer);
+        this.mLoader = property.mLoader;
+        this.mAdapter = property.mAdapter;
+        this.isRunningBackground = property.isRunningBackground;
+        this.numPerLoading = property.numPerLoading;
+        this.isFirstProcessLoading = property.isFirstProcessLoading;
+        this.firstLoadingItems = property.firstLoadingItems;
+        // start running this ListView
+        if (mAdapter != null) setAdapter(mAdapter);
+    }
+
+    public static class ListViewProperty {
+        View footer = null;
+        ILoaderContent mLoader = null;
+        BaseAdapter mAdapter = null;
+        boolean isRunningBackground = true;
+        int numPerLoading = DEFAULT_NUM_PER_LOAD;
+        int firstLoadingItems = DEFAULT_FIRST_LOADING_ITEMS;
+        boolean isFirstProcessLoading = true;
+        int footerResourceId = -1;
+
+
+        /**
+         * When set to false, task will be called directly, rather than from different thread.
+         *
+         * This is useful if for example have code to populate the adapter that already runs in a background thread,
+         * and simply don't need the built in background functionality.
+         *
+         * When using this you must remember to call onDataReady() once already appended data.
+         *
+         */
+        public ListViewProperty RunningBackground(boolean isRunningBackground) {
+            this.isRunningBackground = isRunningBackground;
+            return this;
+        }
+
+        /** set Loader do action for this inf ListView (should implement ILoaderInterface) */
+        public ListViewProperty Loader(ILoaderContent loader) {
+            this.mLoader = loader;
+            return this;
+        }
+
+        /** set for first process loading. this behavior helps decrease delay when loading */
+        public ListViewProperty FirstProcessLoading(boolean state) {
+            this.isFirstProcessLoading = state;
+            return this;
+        }
+
+        /** set number of items per loading. just use when greedy mode is set to true */
+        public ListViewProperty NumPerLoading(int num) {
+            this.numPerLoading = num;
+            return this;
+        }
+
+        /** Set Adapter */
+        public ListViewProperty Adapter(BaseAdapter adapter) {
+            this.mAdapter = adapter;
+            return this;
+        }
+
+        public ListViewProperty FirstLoadingItems(int n) {
+            this.firstLoadingItems = n;
+            return this;
+        }
+
+        /** Change Loading View */
+        public ListViewProperty LoadingView(View v) {
+            this.footer = v;
+            return this;
+        }
+
+        public ListViewProperty LoadingView(int resourceId) {
+            // inflate footer
+            this.footerResourceId = resourceId;
+            return this;
+        }
+    }
 }
+

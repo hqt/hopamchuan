@@ -111,10 +111,10 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         /** config mode for this ListView.
          *  this ListView is full rich function. See document for more detail
          */
-        mListView.setLoader(this);
-        mListView.setFirstProcessLoading(true);
-        mListView.setNumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD);
-        mListView.setRunningBackground(true);
+        InfinityListView.ListViewProperty property = new InfinityListView.ListViewProperty();
+        property.Loader(this).Adapter(songlistAdapter).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
+                .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
+        mListView.setListViewProperty(property);
 
         // Event for right menu click
         popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);

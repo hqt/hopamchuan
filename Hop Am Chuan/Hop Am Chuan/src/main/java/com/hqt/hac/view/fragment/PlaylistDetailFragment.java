@@ -104,11 +104,16 @@ public class PlaylistDetailFragment extends  Fragment implements IHacFragment, I
 
         mListView = (InfinityListView) rootView.findViewById(R.id.list);
         mAdapter = new SongListAdapter(activity, songs);
-        mListView.setLoader(this);
+        InfinityListView.ListViewProperty property = new InfinityListView.ListViewProperty();
+        property.Loader(this).Adapter(mAdapter).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
+                .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
+        mListView.setListViewProperty(property);
+
+      /*  mListView.setLoader(this);
         mListView.setFirstProcessLoading(true);
         mListView.setNumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD);
         mListView.setRunningBackground(true);
-        mListView.setAdapter(mAdapter);
+        mListView.setAdapter(mAdapter);*/
 
         // Event for right menu click
         popupWindows = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
