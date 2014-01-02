@@ -1,6 +1,7 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -114,24 +115,6 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
             public void onMenuClick(View view, Song song, ImageView theStar) {
                 // Show the popup menu and set selectedSong, theStar
                 SongListRightMenuHandler.openPopupMenu(view, song, theStar);
-//
-// TrungDQ: moved TO SongListRightMenuHandler.openPopupMenu
-/***************************************************************************************
-//                int availableHeight = popupWindow.getMaxAvailableHeight(view);
-//                popupWindow.showAsDropDown(view);
-//                int height = popupWindow.getHeight();
-//                LOGE(TAG, "HQT POPUP Height: " + height);
-//                if (availableHeight < popupWindow.getHeight()) {
-//                    int[] loc_int = new int[2];
-//                    // popupWindow.showAsDropDown(view, 10, 10);
-//                    LOGE(TAG, "Not Enough Room Space");
-//                    popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 35, 35);
-//                } else {
-//
-//                }
-//                popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 35, 35);
-//**************************************************************************************/
-
             }
         };
 

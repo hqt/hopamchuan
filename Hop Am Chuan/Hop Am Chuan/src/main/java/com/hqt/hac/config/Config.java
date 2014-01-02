@@ -38,4 +38,6 @@ public class Config {
     public static final int SONG_AUTO_SCROLL_DEGREE = 10;
 
     public static final String HAC_POWERMANAGER_SCREEN_TAG = "HAC TAG";
+    public static final int FRAGMENT_TAG_MIN = 10000;
+    public static final int FRAGMENT_TAG_MAX = 10000;
 }

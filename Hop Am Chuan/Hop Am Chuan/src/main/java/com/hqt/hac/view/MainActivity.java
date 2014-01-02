@@ -21,6 +21,7 @@ import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
 import com.hqt.hac.model.Song;
+import com.hqt.hac.utils.StringUtils;
 import com.hqt.hac.view.fragment.IHacFragment;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
 import com.hqt.hac.model.Playlist;
@@ -467,12 +468,16 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
     public void switchFragmentNormal(Fragment fragment) {
         if (fragment == null) return;
+
+        String tag = String.valueOf(StringUtils.randInt(
+                Config.FRAGMENT_TAG_MIN, Config.FRAGMENT_TAG_MAX));
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 // Add tag for back button tracking
-                .replace(R.id.content_frame, fragment, String.valueOf(fragment.hashCode()))
+                .replace(R.id.content_frame, fragment, tag)
                         // Add this transaction to the back stack
-                .addToBackStack(String.valueOf(fragment.hashCode()))
+                .addToBackStack(tag)
                 .commit();
         slidingMenu.showContent();
         slidingMenu.setEnabled(false);
@@ -484,13 +489,17 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
     public void switchFragmentClearStack(Fragment fragment) {
         if (fragment == null) return;
+
+        String tag = String.valueOf(StringUtils.randInt(
+                Config.FRAGMENT_TAG_MIN, Config.FRAGMENT_TAG_MAX));
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         // clear whole stack before add new fragment to stack
         fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fragmentManager.beginTransaction()
                 // Add tag for back button tracking
-                .replace(R.id.content_frame, fragment, String.valueOf(fragment.hashCode()))
-                .addToBackStack(String.valueOf(fragment.hashCode()))
+                .replace(R.id.content_frame, fragment, tag)
+                .addToBackStack(tag)
                 .commit();
         slidingMenu.showContent();
         slidingMenu.setEnabled(true);
