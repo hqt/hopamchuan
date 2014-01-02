@@ -4,8 +4,10 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.*;
 
 import com.hqt.hac.helper.adapter.IInfinityAdapter;
@@ -195,7 +197,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         try {
             loadedCollection = mLoader.load(index, numPerLoading);
             // If there less than numPerLoad items, that mean the list is end.
-            if (loadedCollection == null || loadedCollection.size() < numPerLoading) {
+            if (loadedCollection == null || loadedCollection.size() < numPerLoading) { // include return zero
                 isSucceed = false;
             } else {
                 isSucceed = true;
@@ -237,7 +239,6 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 //            setAdapter(mAdapter);
 //            mAdapter.notifyDataSetChanged();
 //            setSelection(mAdapter.getCount() - 1);
-
             isComeToEnd.set(true);
             isLoading.set(false);
         } else {
@@ -260,7 +261,10 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 
     private View generateFooterView() {
         LinearLayout layout = new LinearLayout(getContext());
+        layout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        layout.setOrientation(LinearLayout.VERTICAL);
         ProgressBar loading = new ProgressBar(getContext());
+        loading.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, Gravity.CENTER));
         layout.addView(loading);
         return layout;
     }
