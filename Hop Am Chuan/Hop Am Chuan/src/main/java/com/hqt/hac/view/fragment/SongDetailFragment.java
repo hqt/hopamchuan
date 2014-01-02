@@ -162,38 +162,11 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
     MusicPlayerController controller;
     /** Android Built-in Media Player : reference object from service object */
     MediaPlayer player;
-
-    /** Intent to start Background service*/
-    Intent mp3ServiceIntent;
     /** ref to current Service */
     Mp3PlayerService mp3Service;
-    /** ServiceConnection : use to bind with Activity */
-    public ServiceConnection serviceConnection;
 
     /** setup start from here */
     private void setupMediaPlayer() {
-       /* serviceConnection = new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName name, IBinder iBinder) {
-                mp3Service = ((Mp3PlayerService.BackgroundAudioServiceBinder)iBinder).getService();
-                player = mp3Service.player;
-                controller = new MusicPlayerController(rootView);
-                // set player for this control
-                controller.setMediaPlayer(SongDetailFragment.this);
-                // set progress here. because maybe player has been started same song before
-                controller.setProgress();
-                if (player == null) {
-                    LOGE(TAG, "PLAYER IS NULL WHEN BIND TO SERVICE");
-                }
-            }
-            @Override
-            public void onServiceDisconnected(ComponentName name) {
-                mp3Service = null;
-            }
-        };*/
-        // mp3ServiceIntent = new Intent(getActivity(), Mp3PlayerService.class);
-        // mp3ServiceIntent.putExtra("song", song);
-        // activity.bindService(mp3ServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
         mp3Service = MainActivity.mp3Service;
         player = MainActivity.player;
         controller = new MusicPlayerController(rootView);
