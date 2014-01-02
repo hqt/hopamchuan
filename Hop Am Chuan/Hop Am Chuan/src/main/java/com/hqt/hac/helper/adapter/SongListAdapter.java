@@ -16,7 +16,7 @@ import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 
-public class SongListAdapter extends BaseAdapter {
+public class SongListAdapter extends BaseAdapter implements IInfinityAdapter {
 
     Context mContext;
 
@@ -104,6 +104,15 @@ public class SongListAdapter extends BaseAdapter {
             }
         });
         return row;
+    }
+
+    @Override
+    public void addItem(Object obj) {
+        try {
+            songs.add((Song) obj);
+        } catch (ClassCastException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

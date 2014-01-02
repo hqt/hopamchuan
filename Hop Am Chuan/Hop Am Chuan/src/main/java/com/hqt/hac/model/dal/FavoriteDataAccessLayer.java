@@ -87,6 +87,30 @@ public class FavoriteDataAccessLayer {
         return songs;
     }
 
+    public static List<Song> getSongsFromFavorite(Context context, String orderby, int offset, int count) {
+        LOGD(TAG, "get Songs From Favorite");
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Songs.CONTENT_URI;
+        Cursor c = resolver.query(uri,
+                Query.Projections.SONG_ID_PROJECTION,       // projection
+                Songs.SONG_ISFAVORITE + " > 0",             // selection string
+                null,                                       // selection args of strings
+                orderby + " LIMIT " + offset + ", " + count);
+
+        int songIdCol = 0;
+        List<Song> songs = new ArrayList<Song>();
+        if (c != null) {
+            songIdCol = c.getColumnIndex(Songs.SONG_ID);
+            for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+                int songId = c.getInt(songIdCol);
+                songs.add(SongDataAccessLayer.getSongById(context, songId));
+            }
+            c.close();
+
+        }
+        return songs;
+    }
+
     public static int removeSongFromFavorite(Context context, int songId) {
         LOGD(TAG, "remove song " + songId + " from favorite");
 

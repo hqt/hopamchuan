@@ -11,10 +11,12 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.hqt.hac.helper.adapter.SongListAdapter;
+import com.hqt.hac.helper.adapter.IInfinityAdapter;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.view.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
@@ -29,19 +31,20 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
  * 1. Initialize ListView
  * 2. Set Mode for this ListView :
  *      RunningBackground Mode : should hard work do on different thread
- *      Greedy Mode            : each time scroll to end, should load one or multi items to save times and enhance usability
- *      NumPerLoading          : decide number of items at each time load. just use when Greedy Mode is active
+ *      NumPerLoading          : decide number of items at each time load.
+ *      setFirstLoadingItems   : number of item to load after initiate the ListView.
  *      FirstProcessingLoading : should use lazy loading when first load ListView
- * 3. Class use this Infinitive ListView should implement 3 methods :
- *      a. boolean load (index)         : load a song at index. return true if can load. else. return false
- *      b. boolean load (index, offset) : load list of song at index, total offset : return true if size >= 1. else return false
- *      c. Append()            : Append Data() to Adapter. Should do separately because this method often done in different thread
+ * 3. Don't forget to set adapter after all.
+ * 4. Class use this Infinitive ListView should implement 1 method :
+ *      b. List load (offset, count) : load list of song at `offset`, total `count` : return a list of object
  *
  * Created by ThaoHQSE60963 on 12/27/13.
  */
 public class InfinityListView extends ListView implements AbsListView.OnScrollListener {
 
     public static String TAG = makeLogTag(InfinityListView.class);
+    private final int DEFAULT_FIRST_LOADING_ITEMS = 4;
+    private final int DEFAULT_NUM_PER_LOAD = 1;
 
     //region State variable to control current state of ListView
     /** variable to control is in current loading state or not */
@@ -51,7 +54,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     /** boolean variable to control should list view will load more or has come to end */
     AtomicBoolean isComeToEnd = new AtomicBoolean(false);
     /** maximum items first display */
-    final int MAXIMUM_FIRST_LOADING = 4;
+    int firstLoadingItems = DEFAULT_FIRST_LOADING_ITEMS;
     //endregion
 
     //region Structure Object for this ListView
@@ -68,14 +71,13 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     //region Configuration Variable control all Mode of Inf ListView
     /** variable to control should loading data should be on different thread or not */
     boolean isRunningBackground = true;
-    /** variable to control should load multi data in one time or just only one */
-    boolean isGreedy = false;
     /** variable to control number of items one time will be loading. just use when isGreedy set to true */
-    int numPerLoading = 0;
+    int numPerLoading = DEFAULT_NUM_PER_LOAD;
     /** should this ListView process first loading for adapter */
     boolean isFirstProcessLoading = false;
     //endregion
 
+    List loadedObjs = new ArrayList();
 
     public InfinityListView(Context context) {
         super(context);
@@ -95,7 +97,6 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     public void settingUpListView() {
         LOGE(TAG, "Setting Up ListView");
         isLoading = new AtomicBoolean(false);
-        isGreedy = false;
         isRunningBackground = true;
         isFirstProcessLoading = false;
         setOnScrollListener(this);
@@ -114,9 +115,16 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         addFooterView(footer);
     }
 
-
-    public void resetListView(SongListAdapter adapter) {
-        footer.setVisibility(VISIBLE);
+    /**
+     * Reset listview for reusable for example in a fragment with dropdown box, each
+     * dropdown item represent different kind of item in the list.
+     * @param adapter
+     */
+    public void resetListView(BaseAdapter adapter) {
+//        footer.setVisibility(View.VISIBLE);
+        // Remove first to make sure that there is no duplicate.
+        removeFooterView(footer);
+        addFooterView(footer);
         isComeToEnd.set(false);
         isLoading.set(false);
         setAdapter(adapter);
@@ -145,10 +153,6 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         this.mLoader = loader;
     }
 
-    /** set for Greedy Mode or not */
-    public void setGreedyMode(boolean mode) {
-        this.isGreedy = mode;
-    }
 
     /** set for first process loading. this behavior helps decrease delay when loading */
     public void setFirstProcessLoading(boolean state) { this.isFirstProcessLoading = state;}
@@ -162,10 +166,16 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     public void changeLoadingView(View v) { this.footer = v; }
     //endregion
 
+    public void setFirstLoadingItems(int n) {
+        firstLoadingItems = n;
+    }
+
     ////////////////////////////////////////////////////////////////////////////////
     ////////////////////////// INTERNAL METHOD /////////////////////////////////////
 
-    /** just override again this method to get Adapter */
+    /** just override again this method to get Adapter
+     * The adapter must implement IInfinityAdapter for dynamic adding items
+     **/
     @Override
     public void setAdapter(ListAdapter adapter) {
         super.setAdapter(adapter);
@@ -173,13 +183,13 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         /** it will loading until full of ListView */
         /** should make animation here for nicer view */
         if (isFirstProcessLoading) {
-            boolean holderIsGreedy = isGreedy;
-            isGreedy = false;
-            for (int i = 0; i < MAXIMUM_FIRST_LOADING; i++) {
+//            boolean holderIsGreedy = isGreedy;
+//            isGreedy = false;
+            for (int i = 0; i < firstLoadingItems; i++) {
                 LOGE(TAG, "Load item: " + i);
                 scheduleWork(i);
             }
-            isGreedy = holderIsGreedy;
+//            isGreedy = holderIsGreedy;
         }
     }
 
@@ -239,11 +249,9 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     /** decide to use greedy mode (load multi data at once) or not */
     private void longRunningTask(int index) {
         try {
-            if (isGreedy) {
-                isSucceed = mLoader.load(index, index + numPerLoading);
-            } else {
-                isSucceed = mLoader.load(index);
-            }
+            loadedObjs = mLoader.load(index, numPerLoading);
+            // If there less than numPerLoad items, that mean the list is end.
+            isSucceed = loadedObjs.size() == numPerLoading;
         } catch (NullPointerException e) {
             // prevent thread is running. and we shut down it.
         }
@@ -255,9 +263,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     /** Using this interface for loading data and append data to new Adapter */
     /** Notes that load should perform on different thread and append must be perform on UI Thread */
     public interface ILoaderContent {
-        boolean  load(int index);
-        boolean  load(int from, int to);
-        void     append();
+        List load(int offset, int count);
     }
 
     /**
@@ -275,14 +281,16 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     /** clean state after finish work */
     private void cleanState() {
         // update data
-        mLoader.append();
+        append();
         // has come to end list
         if (!isSucceed) {
             LOGE(TAG, "Remove FootView because come to end list");
-            footer.setVisibility(INVISIBLE);
-            setAdapter(mAdapter);
-            mAdapter.notifyDataSetChanged();
-            setSelection(mAdapter.getCount() - 1);
+            removeFooterView(footer);
+//            footer.setVisibility(View.GONE);
+//            setAdapter(mAdapter);
+//            mAdapter.notifyDataSetChanged();
+//            setSelection(mAdapter.getCount() - 1);
+
             isComeToEnd.set(true);
             isLoading.set(false);
         } else {
@@ -290,6 +298,13 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
             mAdapter.notifyDataSetChanged();
             // restore state
             isLoading.set(false);
+        }
+    }
+
+    /** Add the item into adapter **/
+    private void append() {
+        for (Object obj : loadedObjs) {
+            ((IInfinityAdapter) mAdapter).addItem(obj);
         }
     }
 }
