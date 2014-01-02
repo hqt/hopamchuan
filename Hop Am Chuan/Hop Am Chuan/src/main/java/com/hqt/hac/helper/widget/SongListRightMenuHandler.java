@@ -40,13 +40,13 @@ public class SongListRightMenuHandler {
     public static ImageView theStar;
 
     /*** The list view control for Playlist */
-    private static ListView mListView;
+    public static ListView mListView;
 
     /*** Playlist list for "Add to playlist" dialog */
-    private static List<Playlist> playlists;
+    public static List<Playlist> playlists;
 
     /*** Activity for dialogs */
-    private static Activity activity;
+    public static Activity activity;
 
     /*** The popup window */
     private static PopupWindow popupWindow;
@@ -61,11 +61,11 @@ public class SongListRightMenuHandler {
     private static Dialog playlistListDialog;
 
     /*** Dialog for new playlist */
-    private static Dialog newPlaylistDialog;
+    public static Dialog newPlaylistDialog;
 
     /*** New playlist dialog controls */
-    private static EditText txtNewPlaylistName;
-    private static EditText txtNewPlaylistDescription;
+    public static EditText txtNewPlaylistName;
+    public static EditText txtNewPlaylistDescription;
 
     /*** Adapter for playlist list */
     private static PlaylistListAdapter playlistAdapter;
@@ -195,7 +195,7 @@ public class SongListRightMenuHandler {
         }
     }
 
-    private static class NewPlaylistOnClick implements View.OnClickListener {
+    public static class NewPlaylistOnClick implements View.OnClickListener {
 
         @Override
         public void onClick(View view) {
