@@ -157,7 +157,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         LOGI(TAG, "On Scroll State Changed");
     }
 
-    int limit = 9;
+    int limit = 90;
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         if (getAdapter() == null) return;

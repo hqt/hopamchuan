@@ -21,6 +21,7 @@ import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
@@ -100,6 +101,8 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
 
         /** ListView Configure */
         mListView = (InfinityListView) rootView.findViewById(R.id.list_view);
+        mListView.setGreedyMode(true);
+        mListView.setNumPerLoading(3);
         mListView.setLoader(this);
         songlistAdapter = new SongListAdapter(activity, songs);
         infAdapter = new InfinityAdapter(activity.getApplicationContext(), songlistAdapter);
@@ -182,23 +185,35 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
 
     ///////////////////////////////////////////////////////////////////////////
     ///////////////////// METHOD FOR ENDLESS LOADING //////////////////////////
-    Song s;
+    List<Song> loadedSongs = new ArrayList<Song>();
+    Song tempSong;
     int cth = 0;
     @Override
     public void load(int index) {
         NetworkUtils.stimulateNetwork(1);
         LOGE(TAG, "Add a Song to Inf ListView");
-        s = SongDataAccessLayer.getSongById(getActivity().getApplicationContext(), 1);
-        s.title = s.title + " " + cth++;
+        loadedSongs.clear();
+        tempSong = SongDataAccessLayer.getSongById(getActivity().getApplicationContext(), 4384);
+        tempSong.title += " " + cth++ + "";
+        loadedSongs.add(tempSong);
     }
 
     @Override
     public void load(int from, int to) {
-
+        NetworkUtils.stimulateNetwork(1);
+        loadedSongs.clear();
+        for (int i = from; i <= to; ++i) {
+            tempSong = SongDataAccessLayer.getSongById(getActivity().getApplicationContext(), 4384);
+            tempSong.title += " " + cth++ + "";
+            loadedSongs.add(tempSong);
+        }
     }
 
     @Override
     public void append() {
-        songs.add(s);
+        LOGE("TRUNGDQ", "Add " + loadedSongs.size() + " songs to inf list");
+        for (Song song : loadedSongs) {
+            songs.add(song);
+        }
     }
 }
