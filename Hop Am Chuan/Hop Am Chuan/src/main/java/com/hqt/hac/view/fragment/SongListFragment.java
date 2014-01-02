@@ -184,7 +184,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     ///////////////////// METHOD FOR ENDLESS LOADING //////////////////////////
     @Override
     public List load(int offset, int count) {
-        NetworkUtils.stimulateNetwork(Config.SONG_LOAD_SMOOTHING_DELAY);
+        NetworkUtils.stimulateNetwork(Config.LOADING_SMOOTHING_DELAY);
         List<Song> result;
         switch (songListMode) {
             case 0:

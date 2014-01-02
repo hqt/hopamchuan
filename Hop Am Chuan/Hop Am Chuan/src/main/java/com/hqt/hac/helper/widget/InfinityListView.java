@@ -210,8 +210,8 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 
         // get the first Item that currently hide and need to show
         final int firstItemHide = firstVisibleItem + visibleItemCount;
-        LOGE(TAG, "FirstVisibleItem:" + firstVisibleItem + "  VisibleItemCount:"
-                + visibleItemCount + "  TotalItemCount:" + totalItemCount);
+        // LOGE(TAG, "FirstVisibleItem:" + firstVisibleItem + "  VisibleItemCount:"
+        //         + visibleItemCount + "  TotalItemCount:" + totalItemCount);
         if (firstItemHide >= totalItemCount) {
             // scheduleWork(totalItemCount); << we don't count the loading item
             scheduleWork(totalItemCount - 1);

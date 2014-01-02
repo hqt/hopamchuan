@@ -88,6 +88,43 @@ public class PlaylistDataAccessLayer {
         return songs;
     }
 
+    /**
+     * Get songs from playlist
+     * Use offset and count for pagination, infinity scrolling...
+     * @param context
+     * @param playlistId
+     * @param offset
+     * @param count
+     * @return
+     */
+    public static List<Song> getSongsFromPlaylist(Context context, int playlistId, int offset, int count) {
+        LOGD(TAG, "get "+count+" Songs From Playlist" + playlistId);
+
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.PlaylistSongs.CONTENT_URI;
+        Cursor c = resolver.query(uri,
+                Query.Projections.PLAYLISTSONG_PROJECTION,              // projection
+                HopAmChuanDBContract.PlaylistSongs.PLAYLIST_ID + " = ?",// selection string
+                new String[]{String.valueOf(playlistId)},               // selection args of strings
+                HopAmChuanDBContract.PlaylistSongs._ID + " DESC LIMIT  " + offset + ", " + count);                    //  sort order
+
+        List<Song> songs = new ArrayList<Song>();
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            try {
+                // int id = c.getInt(c.getColumnIndex(HopAmChuanDBContract.PlaylistSongs._ID));
+                int songId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.PlaylistSongs.SONG_ID));
+                // int _playlistId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.PlaylistSongs.PLAYLIST_ID));
+
+                songs.add(SongDataAccessLayer.getSongById(context, songId));
+            }
+            catch(Exception e) {
+                LOGE(TAG, "error when parse song " + e.getMessage());
+            }
+        }
+        c.close();
+        return songs;
+    }
+
     public static Playlist getPlaylistById(Context context, int playlistId) {
         LOGD(TAG, "Get Playist By Id");
         ContentResolver resolver = context.getContentResolver();

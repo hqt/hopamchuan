@@ -177,7 +177,7 @@ public class FavoriteManagerFragment extends  Fragment implements
 
     @Override
     public List load(int offset, int count) {
-        NetworkUtils.stimulateNetwork(Config.SONG_LOAD_SMOOTHING_DELAY);
+        NetworkUtils.stimulateNetwork(Config.LOADING_SMOOTHING_DELAY);
         return FavoriteDataAccessLayer.getSongsFromFavorite(
                 getActivity().getApplicationContext(),
                 orderMode,

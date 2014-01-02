@@ -8,24 +8,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 
+import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.SongListAdapter;
+import com.hqt.hac.helper.widget.InfinityListView;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
+import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class PlaylistDetailFragment extends  Fragment implements IHacFragment {
+public class PlaylistDetailFragment extends  Fragment implements IHacFragment, InfinityListView.ILoaderContent {
 
     private static String TAG = makeLogTag(PlaylistDetailFragment.class);
 
@@ -36,7 +39,7 @@ public class PlaylistDetailFragment extends  Fragment implements IHacFragment {
     private PopupWindow popupWindows = null;
 
     /** ListView : contains all items of this fragment */
-    private ListView mListView;
+    private InfinityListView mListView;
 
     /** Adapter for this fragment */
     private SongListAdapter mAdapter;
@@ -79,8 +82,6 @@ public class PlaylistDetailFragment extends  Fragment implements IHacFragment {
             return;
         }
 
-        songs = PlaylistDataAccessLayer.getAllSongsFromPlaylist(activity.getApplicationContext(),
-                playlist.playlistId);
     }
 
     @Override
@@ -99,9 +100,15 @@ public class PlaylistDetailFragment extends  Fragment implements IHacFragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_playlist_detail, container, false);
 
-        mListView = (ListView) rootView.findViewById(R.id.list);
-        mAdapter = new SongListAdapter(activity, songs);
+        songs = new ArrayList<Song>();
 
+        mListView = (InfinityListView) rootView.findViewById(R.id.list);
+        mAdapter = new SongListAdapter(activity, songs);
+        mListView.setLoader(this);
+        mListView.setFirstProcessLoading(true);
+        mListView.setNumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD);
+        mListView.setRunningBackground(true);
+        mListView.setAdapter(mAdapter);
 
         // Event for right menu click
         popupWindows = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
@@ -117,9 +124,8 @@ public class PlaylistDetailFragment extends  Fragment implements IHacFragment {
         };
 
 
-        mListView.setAdapter(mAdapter);
-        View emptyView = inflater.inflate(R.layout.list_item_playlist_empty, container, false);
-        mListView.setEmptyView(emptyView);
+//        View emptyView = inflater.inflate(R.layout.list_item_playlist_empty, container, false);
+//        mListView.setEmptyView(emptyView);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -138,4 +144,13 @@ public class PlaylistDetailFragment extends  Fragment implements IHacFragment {
     }
 
 
+    @Override
+    public List load(int offset, int count) {
+        NetworkUtils.stimulateNetwork(Config.LOADING_SMOOTHING_DELAY);
+        return PlaylistDataAccessLayer.getSongsFromPlaylist(
+                getActivity().getApplicationContext(),
+                playlist.playlistId,
+                offset,
+                count);
+    }
 }
