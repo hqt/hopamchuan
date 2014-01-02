@@ -14,52 +14,21 @@ import com.hac_library.helper.DrawHelper;
 import com.hqt.hac.config.Config;
 import com.hqt.hac.view.R;
 
+import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 
-public class ChordViewImageAdapter extends BaseAdapter implements SectionIndexer, IChordView {
+public class ChordViewImageAdapter extends ChordViewAdapter {
+
     public static String TAG = makeLogTag(ChordViewAdapter.class);
 
-    Context mContext;
-
-    /** List all chords that adapter contains */
-    String[] chords;
-
-    /** currently index of chord */
-    int[] index;
-
-    /** String that using for SectionIndexer */
-    private static String sections = "cdefgab";
-
     public ChordViewImageAdapter(Context mContext, String[] chords) {
-        this.mContext = mContext.getApplicationContext();
-        this.chords = chords;
-        index = new int[chords.length];
-    }
-
-    public void setChordList(String[] chords) {
-        this.chords = chords;
-        index = new int[chords.length];
-    }
-
-    @Override
-    public int getCount() {
-        return chords.length;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return chords[position];
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
+        super(mContext, chords);
     }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
+        ViewHolder holder;
         View row = convertView;
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -76,19 +45,7 @@ public class ChordViewImageAdapter extends BaseAdapter implements SectionIndexer
             holder = (ViewHolder) row.getTag();
         }
 
-        /**
-         * set height for this view base on screen
-         */
-
-        /**
-         * set Width for SurfaceView
-         * make it square will result nicer
-         */
-
         // set data
-        // holder.imageChord.drawChord(chords[position], index[position]);
-        int width = holder.imageChord.getWidth();
-        int height = holder.imageChord.getHeight();
         holder.imageChord.setImageDrawable(DrawHelper.getBitmapDrawable(mContext.getResources(), 100, 100, chords[position], index[position], 0));
         holder.signTextView.setText(index[position] + "");
 
@@ -118,28 +75,6 @@ public class ChordViewImageAdapter extends BaseAdapter implements SectionIndexer
         return row;
     }
 
-    @Override
-    public Object[] getSections() {
-        String[] sectionsArr = new String[sections.length()];
-        for (int i=0; i < sections.length(); i++)
-            sectionsArr[i] = "" + sections.charAt(i);
-        return sectionsArr;
-    }
-
-    @Override
-    public int getPositionForSection(int section) {
-        for (int i=0; i < chords.length; i++) {
-            String item = chords[i];
-            if (item.charAt(0) == sections.charAt(section))
-                return i;
-        }
-        return 0;
-    }
-
-    @Override
-    public int getSectionForPosition(int position) {
-        return 0;
-    }
 
     public static class ViewHolder {
         ImageView imageChord;
