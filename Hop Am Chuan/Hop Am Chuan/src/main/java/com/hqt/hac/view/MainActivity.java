@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.StrictMode;
@@ -94,8 +95,13 @@ public class MainActivity extends SlidingMenuActionBarActivity
     long mTimePressBackBtn = 0;
 
     /** ServiceConnection : use to bind with Activity */
-    public ServiceConnection serviceConnection;
-
+    public static ServiceConnection serviceConnection;
+    /** Mp3 Service Reference */
+    public static Mp3PlayerService mp3Service;
+    /** Mp3 Service Intent */
+    public static Intent mp3ServiceIntent;
+    /** Android Built-in Mp3 Player */
+    public static MediaPlayer player;
 
     //region Activity Life Cycle Method
     /////////////////////////////////////////////////////////////////
@@ -186,6 +192,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
     @Override
     protected void onResume() {
         super.onResume();
+        bindService(mp3ServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
         headerAdapter.setDelegate(this);
         itemAdapter.setDelegate(this);
         playlistHeaderAdapter.setDelegate(this);
@@ -199,9 +206,9 @@ public class MainActivity extends SlidingMenuActionBarActivity
         itemAdapter.setDelegate(null);
         playlistHeaderAdapter.setDelegate(null);
         playlistItemAdapter.setDelegate(null);
-       /* if (Mp3PlayerService.isRunning(getApplicationContext())) {
-            unbindService(SongDetailFragment.serviceConnection);
-        }*/
+        if (Mp3PlayerService.isRunning(getApplicationContext())) {
+            unbindService(serviceConnection);
+        }
     }
 
     @Override
@@ -212,6 +219,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
     }
     //endregion
 
+    //region Configuration Method
     //////////////////////////////////////////////////////////////////////
     ////////////////////// CONFIGURATION METHOD //////////////////////////
 
@@ -459,17 +467,11 @@ public class MainActivity extends SlidingMenuActionBarActivity
      *  So easily to unbind later
      */
     public void setUpMp3Service() {
-        // TODO 
-      /*  serviceConnection = new ServiceConnection() {
+        serviceConnection = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder iBinder) {
                 mp3Service = ((Mp3PlayerService.BackgroundAudioServiceBinder)iBinder).getService();
                 player = mp3Service.player;
-                controller = new MusicPlayerController(rootView);
-                // set player for this control
-                controller.setMediaPlayer(SongDetailFragment.this);
-                // set progress here. because maybe player has been started same song before
-                controller.setProgress();
                 if (player == null) {
                     LOGE(TAG, "PLAYER IS NULL WHEN BIND TO SERVICE");
                 }
@@ -479,11 +481,11 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 mp3Service = null;
             }
         };
-        mp3ServiceIntent = new Intent(getActivity(), Mp3PlayerService.class);
-        mp3ServiceIntent.putExtra("song", song);
-        activity.bindService(mp3ServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);*/
+        mp3ServiceIntent = new Intent(this, Mp3PlayerService.class);
+        //mp3ServiceIntent.putExtra("song", song);
+        startService(mp3ServiceIntent);
     }
-
+    //endregion
 
     //region Main Activity Helper
     ////////////////////////////////////////////////////////////////////////
@@ -576,7 +578,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
     //endregion
 
     ////////////////////////////////////////////////////////////////
-    //////////////// METHOD OVERRIDE USE FOR ADAPTER //////////////
+    //////////////// METHOD OVERRIDE USE FOR ADAPTER ///////////////
 
     @Override
     public void gotoCategoryPage(NavigationDrawerAdapter.ItemAdapter.TYPE pageType) {

@@ -172,7 +172,7 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
 
     /** setup start from here */
     private void setupMediaPlayer() {
-        serviceConnection = new ServiceConnection() {
+       /* serviceConnection = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder iBinder) {
                 mp3Service = ((Mp3PlayerService.BackgroundAudioServiceBinder)iBinder).getService();
@@ -190,10 +190,14 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
             public void onServiceDisconnected(ComponentName name) {
                 mp3Service = null;
             }
-        };
-        mp3ServiceIntent = new Intent(getActivity(), Mp3PlayerService.class);
-        mp3ServiceIntent.putExtra("song", song);
-        activity.bindService(mp3ServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
+        };*/
+        // mp3ServiceIntent = new Intent(getActivity(), Mp3PlayerService.class);
+        // mp3ServiceIntent.putExtra("song", song);
+        // activity.bindService(mp3ServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
+        mp3Service = MainActivity.mp3Service;
+        player = MainActivity.player;
+        controller = new MusicPlayerController(rootView);
+        controller.setMediaPlayer(SongDetailFragment.this);
     }
 
     @Override
