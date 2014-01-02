@@ -11,11 +11,16 @@ import android.widget.TextView;
 
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.view.R;
+import com.hqt.hac.view.fragment.PlaylistManagerFragment;
 
 import java.util.List;
 
+import static com.hqt.hac.utils.LogUtils.LOGE;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
+
 public class PlaylistManagerAdapter extends BaseAdapter {
 
+    private static final String TAG = makeLogTag(PlaylistManagerAdapter.class);
     Context mContext;
     List<Playlist> playLists;
 
@@ -73,9 +78,13 @@ public class PlaylistManagerAdapter extends BaseAdapter {
         holder.playListNameTxt.setText(rowItem.playlistName);
         holder.descriptionTxt.setText(rowItem.playlistDescription);
 
+        final ViewHolder finalHolder = holder;
         holder.optionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int x = finalHolder.optionBtn.getLeft();
+                int y = finalHolder.optionBtn.getBottom();
+                LOGE(TAG, "FFF Location On Screen Of View: " + x + "\t" + y);
                 rightMenuClick.onRightMenuClick(view, rowItem);
             }
         });

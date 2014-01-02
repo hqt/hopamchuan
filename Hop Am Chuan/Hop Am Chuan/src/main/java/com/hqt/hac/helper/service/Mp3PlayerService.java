@@ -1,6 +1,10 @@
 package com.hqt.hac.helper.service;
 
+import android.app.ActivityManager;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
@@ -8,6 +12,8 @@ import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
 import com.hqt.hac.model.Song;
+import com.hqt.hac.view.MainActivity;
+import com.hqt.hac.view.R;
 
 import java.io.IOException;
 
@@ -67,8 +73,24 @@ public class Mp3PlayerService extends Service implements
             e.printStackTrace();
         }
 
-        // buildingNotification();
-        // DialogUtils.createNotification(getApplicationContext(), MainActivity.class, "Mp3 Player", "Tran Kim Du", NOTIFICATION_ID);
+        /*Notification note=new Notification(R.drawable.ic_launcher,
+                "Can you hear the music?",
+                System.currentTimeMillis());
+        Intent i=new Intent(this, MainActivity.class);
+
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
+                Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+        PendingIntent pi= PendingIntent.getActivity(this, 0,
+                i, 0);
+
+        note.setLatestEventInfo(this, "Fake Player",
+                "Now Playing: \"Ummmm, Nothing\"",
+                pi);
+        note.flags|= Notification.FLAG_NO_CLEAR;
+
+        startForeground(1337, note);*/
+
     }
 
     /**
@@ -108,6 +130,11 @@ public class Mp3PlayerService extends Service implements
         return iBinder;
     }
 
+    @Override
+    public boolean onUnbind(Intent intent) {
+        return super.onUnbind(intent);
+    }
+
     public void onDestroy() {
         LOGD(TAG, "On Destroy Service");
         if (player.isPlaying()) {
@@ -121,6 +148,16 @@ public class Mp3PlayerService extends Service implements
         public Mp3PlayerService getService() {
             return Mp3PlayerService.this;
         }
+    }
+
+    public static boolean isRunning(Context context) {
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (Mp3PlayerService.class.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     ////////////////////////////////////////////////////////////////////////

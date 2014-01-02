@@ -16,12 +16,15 @@ import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.view.R;
 
+import java.lang.ref.WeakReference;
+
 public class PlaylistRightMenuHandler {
+
     /*** Current selected playlist */
     public static Playlist selectedPlaylist;
 
     /*** Activity for dialogs */
-    private static Activity activity;
+    private static WeakReference<Activity> refActivity;
 
     /*** The popup window */
     private static PopupWindow pw;
@@ -36,9 +39,13 @@ public class PlaylistRightMenuHandler {
     private static EditText txtNewPlaylistName;
     private static EditText txtNewPlaylistDescription;
 
+    public static Activity getActivity() {
+        return refActivity.get();
+    }
+
     public static void setRightMenuEvents(final Activity _activity, final PopupWindow _pw, PlaylistManagerAdapter _adapter) {
 
-        activity = _activity;
+        refActivity = new WeakReference<Activity>(_activity);
         pw = _pw;
         adapter = _adapter;
 
@@ -47,8 +54,8 @@ public class PlaylistRightMenuHandler {
         final Button btnDeletePlaylist = (Button) pw.getContentView().findViewById(R.id.btnDeletePlaylist);
 
         // "Rename playlist" button
-        renPlaylistDialog = DialogUtils.createDialog(activity, R.string.rename_playlist,
-                activity.getLayoutInflater(), R.layout.dialog_newplaylist);
+        renPlaylistDialog = DialogUtils.createDialog(_activity, R.string.rename_playlist,
+                _activity.getLayoutInflater(), R.layout.dialog_newplaylist);
 
         // Load for existing data
         txtNewPlaylistName = (EditText) renPlaylistDialog.findViewById(R.id.txtNewPlaylistName);
@@ -56,7 +63,7 @@ public class PlaylistRightMenuHandler {
 
         Button saveBtn = (Button) renPlaylistDialog.findViewById(R.id.btnCreatePlaylist);
         saveBtn.setText(R.string.rename_playlist_button);
-        saveBtn.setOnClickListener(new RenPlaylistOnClick());
+        saveBtn.setOnClickListener(new RenamePlaylistEvent());
 
         // Rename button
         btnRenamePlaylist.setOnClickListener(new View.OnClickListener() {
@@ -77,8 +84,12 @@ public class PlaylistRightMenuHandler {
         btnDeletePlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ConfirmDialogOnClick dialogClickListener = new ConfirmDialogOnClick();
-                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                Activity activity = refActivity.get();
+                if (activity == null) {
+
+                }
+                ConfirmDialogEvent dialogClickListener = new ConfirmDialogEvent();
+                AlertDialog.Builder builder = new AlertDialog.Builder(_activity);
                 builder.setMessage(activity.getString(R.string.are_you_sure_delete_playlist)
                         + " \"" + selectedPlaylist.playlistName + "\"?")
                         .setPositiveButton(activity.getString(R.string.delete_playlist), dialogClickListener)
@@ -92,9 +103,13 @@ public class PlaylistRightMenuHandler {
 
     }
 
-    private static class RenPlaylistOnClick implements View.OnClickListener {
+    private static class RenamePlaylistEvent implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            Activity activity = refActivity.get();
+            if (activity == null) {
+
+            }
 
             if (txtNewPlaylistName.getText().toString().isEmpty()) {
                 Toast msg = Toast.makeText(activity.getApplicationContext(),
@@ -125,9 +140,14 @@ public class PlaylistRightMenuHandler {
         }
     }
 
-    private static class ConfirmDialogOnClick implements DialogInterface.OnClickListener {
+    private static class ConfirmDialogEvent implements DialogInterface.OnClickListener {
         @Override
         public void onClick(DialogInterface dialog, int which) {
+            Activity activity = refActivity.get();
+            if (activity == null) {
+
+            }
+
             switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
                     // "Yes" button clicked

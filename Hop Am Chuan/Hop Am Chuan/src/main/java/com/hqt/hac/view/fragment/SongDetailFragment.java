@@ -1,17 +1,20 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
-import android.media.AudioManager;
+import android.content.ServiceConnection;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 
+import com.hqt.hac.helper.service.Mp3PlayerService;
 import com.hqt.hac.helper.widget.MusicPlayerController;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.utils.DialogUtils;
@@ -20,23 +23,18 @@ import com.hqt.hac.view.FullscreenSongActivity;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
-import java.io.IOException;
-
 import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class SongDetailFragment extends Fragment implements
-        MediaPlayer.OnPreparedListener,
-        MusicPlayerController.IMediaPlayerControl,
-        IHacFragment {
+public class SongDetailFragment extends Fragment implements MusicPlayerController.IMediaPlayerControl, IHacFragment {
 
     private static String TAG = makeLogTag(PlaylistDetailFragment.class);
 
     /**
      * Main Activity for reference
      */
-    private MainActivity activity;
+    MainActivity activity;
 
     View rootView;
 
@@ -57,6 +55,11 @@ public class SongDetailFragment extends Fragment implements
      */
     public SongDetailFragment() {
 
+    }
+
+    @Override
+    public int getTitle() {
+        return mResTitle;
     }
 
     @Override
@@ -88,14 +91,13 @@ public class SongDetailFragment extends Fragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_song_detail, container, false);
+        rootView = inflater.inflate(R.layout.fragment_song_detail, container, false);
 
         // Set song info
         TextView songTitleTextView = (TextView) rootView.findViewById(R.id.songTitle);
         TextView songAuthorsTextView = (TextView) rootView.findViewById(R.id.songAuthorsTV);
         TextView songSingersTextView = (TextView) rootView.findViewById(R.id.songSingersTV);
         TextView songContentTextView = (TextView) rootView.findViewById(R.id.songContent);
-        Button btnFullScreen = (Button) rootView.findViewById(R.id.btnFullScreen);
 
         songTitleTextView.setText(song.title);
         songAuthorsTextView.setText(song.getAuthorsString(activity.getApplicationContext()));
@@ -104,8 +106,7 @@ public class SongDetailFragment extends Fragment implements
         // Set song content
         // HacUtils.setSongFormatted(activity.getApplicationContext(), songContentTV, song.getContent(activity.getApplicationContext()), activity);
         songContentTextView.setText(song.getContent(activity.getApplicationContext()));
-
-        btnFullScreen.setOnClickListener(new View.OnClickListener() {
+        songContentTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openFullScreenSong();
@@ -113,7 +114,8 @@ public class SongDetailFragment extends Fragment implements
         });
         songContentTextView.setSelected(true);
 
-
+        // Fullscreen button
+        ImageView fullScreenButton = (ImageView) rootView.findViewById(R.id.fullscreen);
         // Star menu button
         final ImageView starMenuButton = (ImageView) rootView.findViewById(R.id.songMenuBtn);
 
@@ -122,6 +124,13 @@ public class SongDetailFragment extends Fragment implements
         } else {
             starMenuButton.setImageResource(R.drawable.star);
         }
+
+        fullScreenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openFullScreenSong();
+            }
+        });
 
         // Event for star menu click
         final PopupWindow popupWindows = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
@@ -135,7 +144,7 @@ public class SongDetailFragment extends Fragment implements
             }
         });
 
-        setupMediaPlayer(rootView);
+        setupMediaPlayer();
 
         return rootView;
     }
@@ -149,62 +158,58 @@ public class SongDetailFragment extends Fragment implements
     ////////////////////////////////////////////////////////////////////
     /////////////////// CONFIG MP3 PLAYER //////////////////////////////
 
-    /**
-     * Reference link  :
-     * http://developer.android.com/reference/android/media/MediaPlayer.html
-     * Using State Machine on this page to prevent IllegalStateException
-     */
-
-    /** Android Built-in Media Player */
-    MediaPlayer player;
     /** Controller for Media Player */
     MusicPlayerController controller;
+    /** Android Built-in Media Player : reference object from service object */
+    MediaPlayer player;
 
-    private void setupMediaPlayer(View rootView) {
-        player = new MediaPlayer();
-        controller = new MusicPlayerController(rootView);
-        try {
-            player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    /** Intent to start Background service*/
+    Intent mp3ServiceIntent;
+    Mp3PlayerService mp3Service;
+    /** ServiceConnection : use to bind with Activity */
+    public static ServiceConnection serviceConnection;
 
-            // testing for source
-            AssetFileDescriptor afd = getActivity().getApplicationContext().getAssets().openFd("aaa.mp3");
-            player.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
-            // this line should put after set DataSource
-            player.prepareAsync();
-            player.setOnPreparedListener(this);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onPrepared(MediaPlayer mp) {
-        // set player for this control
-        controller.setMediaPlayer(this);
-        // father view that this media controller belongs too
-        // controller.setAnchorView(mediaPlayerContainer);
-        // after set AnchorView. can show Media Controller
-        // controller.show();
-        // after get into prepare state. call start() to go to started state
-        player.start();
+    /** setup start from here */
+    private void setupMediaPlayer() {
+        serviceConnection = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder iBinder) {
+                mp3Service = ((Mp3PlayerService.BackgroundAudioServiceBinder)iBinder).getService();
+                player = mp3Service.player;
+                controller = new MusicPlayerController(rootView);
+                // set player for this control
+                controller.setMediaPlayer(SongDetailFragment.this);
+                // set progress here. because maybe player has been started same song before
+                controller.setProgress();
+                if (player == null) {
+                    LOGE(TAG, "PLAYER IS NULL WHEN BIND TO SERVICE");
+                }
+            }
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                mp3Service = null;
+            }
+        };
+        mp3ServiceIntent = new Intent(getActivity(), Mp3PlayerService.class);
+        mp3ServiceIntent.putExtra("song", song);
+        activity.bindService(mp3ServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
     public void start() {
         LOGD(TAG, "Start Player");
         player.start();
+        Bundle arguments = new Bundle();
+        arguments.putParcelable("song", song);
+        DialogUtils.createNotification(activity.getApplicationContext(), MainActivity.class, arguments,
+                song.title, song.getAuthors(getActivity().getApplicationContext()).get(0).artistName, Mp3PlayerService.NOTIFICATION_ID);
     }
 
     @Override
     public void pause() {
         LOGD(TAG, "Pause Player");
         player.pause();
+        DialogUtils.closeNotification(activity.getApplicationContext(), Mp3PlayerService.NOTIFICATION_ID);
     }
 
     @Override
@@ -257,10 +262,5 @@ public class SongDetailFragment extends Fragment implements
     @Override
     public void toggleFullScreen() {
 
-    }
-
-    @Override
-    public int getTitle() {
-        return 0;
     }
 }

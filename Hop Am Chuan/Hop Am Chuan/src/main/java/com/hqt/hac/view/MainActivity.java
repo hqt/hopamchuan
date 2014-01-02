@@ -186,6 +186,9 @@ public class MainActivity extends SlidingMenuActionBarActivity
         itemAdapter.setDelegate(null);
         playlistHeaderAdapter.setDelegate(null);
         playlistItemAdapter.setDelegate(null);
+       /* if (Mp3PlayerService.isRunning(getApplicationContext())) {
+            unbindService(SongDetailFragment.serviceConnection);
+        }*/
     }
 
     @Override
