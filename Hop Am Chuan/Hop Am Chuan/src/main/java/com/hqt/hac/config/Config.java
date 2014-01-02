@@ -40,4 +40,9 @@ public class Config {
     public static final String HAC_POWERMANAGER_SCREEN_TAG = "HAC TAG";
     public static final int FRAGMENT_TAG_MIN = 10000;
     public static final int FRAGMENT_TAG_MAX = 10000;
+
+    /** Timeout **/
+    public static final int LOADING_SMOOTHING_DELAY = 300;
+    public static final int SPLASH_SCREEN_TIMEOUT = 2000;
+    public static final int DEFAULT_SONG_NUM_PER_LOAD = 10;
 }

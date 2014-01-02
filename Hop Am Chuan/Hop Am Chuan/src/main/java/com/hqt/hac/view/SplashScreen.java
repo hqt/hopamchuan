@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+
+import com.hqt.hac.config.Config;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.utils.NetworkUtils;
@@ -20,7 +22,7 @@ public class SplashScreen extends Activity {
     private static final String TAG = makeLogTag(SplashScreen.class);
 
     // Splash screen timer
-    private static int SPLASH_TIME_OUT = 2;
+    private static int SPLASH_TIME_OUT = Config.SPLASH_SCREEN_TIMEOUT;
     /** pre-load playlist list */
     ArrayList<Playlist> playlistList;
     /** variable control when finish time wait */

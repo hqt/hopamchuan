@@ -9,25 +9,31 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 
+import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.SongListAdapter;
+import com.hqt.hac.helper.widget.InfinityListView;
+import com.hqt.hac.provider.HopAmChuanDBContract;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.FavoriteDataAccessLayer;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
-import com.hqt.hac.utils.SortUtils;
+import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 
-public class FavoriteManagerFragment extends  Fragment implements AdapterView.OnItemSelectedListener, IHacFragment {
+public class FavoriteManagerFragment extends  Fragment implements
+        AdapterView.OnItemSelectedListener,
+        InfinityListView.ILoaderContent,
+        IHacFragment {
 
     public int titleRes = R.string.title_activity_my_favorite_fragment;
 
@@ -35,7 +41,7 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
     private MainActivity activity;
 
     /** ListView : contains all items of this fragment */
-    private ListView mListView;
+    private InfinityListView mListView;
 
     /** List of All songs in favorite */
     private List<Song> songs;
@@ -50,6 +56,7 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
      * use for user select display setting
      */
     Spinner spinner;
+    private String orderMode = HopAmChuanDBContract.Songs.SONG_ISFAVORITE;
 
     public FavoriteManagerFragment() {
     }
@@ -63,7 +70,6 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         this.activity = (MainActivity) activity;
-        songs = FavoriteDataAccessLayer.getAllFavoriteSongs(getActivity().getApplicationContext());
     }
 
     @Override
@@ -94,7 +100,15 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
         spinner.setOnItemSelectedListener(this);   // because this fragment has implemented method
 
         /** ListView Configure */
-        mListView = (ListView) rootView.findViewById(R.id.list_view);
+        mListView = (InfinityListView) rootView.findViewById(R.id.list_view);
+
+
+        mListView.setLoader(this);
+        mListView.setFirstProcessLoading(true);
+        mListView.setNumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD);
+        mListView.setRunningBackground(true);
+
+        songs = new ArrayList<Song>();
         mAdapter = new SongListAdapter(getActivity(), songs);
 
         // Event for right menu click
@@ -110,9 +124,9 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
             }
         };
 
-        mListView.setAdapter(mAdapter);
-        View emptyView = inflater.inflate(R.layout.list_item_playlist_empty, container, false);
-        mListView.setEmptyView(emptyView);
+//        mListView.setAdapter(mAdapter);
+//        View emptyView = inflater.inflate(R.layout.list_item_playlist_empty, container, false);
+//        mListView.setEmptyView(emptyView);
 
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -137,23 +151,41 @@ public class FavoriteManagerFragment extends  Fragment implements AdapterView.On
         switch(position) {
             case 0:
                 // sort by times
-                SortUtils.sortSongByDate(songs);
+                orderMode = HopAmChuanDBContract.Songs.SONG_ISFAVORITE + " DESC";
+                songs = new ArrayList<Song>();
+                mAdapter.setSongs(songs);
                 break;
             case 1:
                 // sort by ABC
-                SortUtils.sortSongByABC(songs);
+                orderMode = HopAmChuanDBContract.Songs.SONG_TITLE;
+                songs = new ArrayList<Song>();
+                mAdapter.setSongs(songs);
                 break;
             default:
                 // do nothing
         }
         // refresh ListView
-        mAdapter.notifyDataSetChanged();
+        mListView.resetListView(mAdapter);
+//        mAdapter.notifyDataSetChanged();
 
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+    @Override
+    public List load(int offset, int count) {
+        NetworkUtils.stimulateNetwork(Config.LOADING_SMOOTHING_DELAY);
+        return FavoriteDataAccessLayer.getSongsFromFavorite(
+                getActivity().getApplicationContext(),
+                orderMode,
+                offset,
+                count);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////////////// METHOD FOR ENDLESS LOADING //////////////////////////
 
 }

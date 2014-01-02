@@ -1,7 +1,6 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -114,8 +113,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
          */
         mListView.setLoader(this);
         mListView.setFirstProcessLoading(true);
-        mListView.setNumPerLoading(10);
-        mListView.setGreedyMode(true);
+        mListView.setNumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD);
         mListView.setRunningBackground(true);
 
         // Event for right menu click
@@ -182,7 +180,11 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
 
     }
 
-    private List<Song> getSongAsMode(int offset, int count) {
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////////////// METHOD FOR ENDLESS LOADING //////////////////////////
+    @Override
+    public List load(int offset, int count) {
+        NetworkUtils.stimulateNetwork(Config.LOADING_SMOOTHING_DELAY);
         List<Song> result;
         switch (songListMode) {
             case 0:
@@ -200,29 +202,4 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         return result;
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    ///////////////////// METHOD FOR ENDLESS LOADING //////////////////////////
-    List<Song> loadedSongs = new ArrayList<Song>();
-    @Override
-    public boolean load(int index) {
-        NetworkUtils.stimulateNetwork(2000);
-        LOGE(TAG, "Loading 1 songs");
-        loadedSongs = getSongAsMode(index, 1);
-        return loadedSongs.size() != 1;
-    }
-
-    @Override
-    public boolean load(int from, int to) {
-        NetworkUtils.stimulateNetwork(5000);
-        LOGE(TAG, "Loading multi songs");
-        loadedSongs = getSongAsMode(from, to - from);
-        return loadedSongs.size() > 0;
-    }
-
-    @Override
-    public void append() {
-        for (Song song : loadedSongs) {
-            songs.add(song);
-        }
-    }
 }
