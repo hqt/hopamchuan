@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 
-import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.helper.widget.MusicPlayerController;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.utils.DialogUtils;
@@ -39,18 +38,13 @@ public class SongDetailFragment extends Fragment implements
      */
     private MainActivity activity;
 
-    /**
-     * ListView : contains all items of this fragment
-     */
-    private ListView mListView;
+    View rootView;
 
-    /**
-     * Adapter for this fragment
-     */
-    // PlaylistDetailAdapter mAdapter;
-
-    /** Need public for access in MainActivity.onBackPressed (change title bar) **/
+    /** Song object for this fragment */
     public Song song;
+
+    /** resource for title int */
+    int mResTitle = R.string.title_activity_song_list_fragment;
 
     // Stuff for popup menu
     private PopupWindow mPopupMenu;

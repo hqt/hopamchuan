@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-
 import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dal.FavoriteDataAccessLayer;

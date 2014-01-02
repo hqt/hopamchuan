@@ -1,11 +1,13 @@
 package com.hqt.hac.utils;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
+import android.app.*;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 
+import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
 public class DialogUtils {
@@ -40,13 +43,10 @@ public class DialogUtils {
                 return false;
             }
         });
-
         return popupWindow;
     }
 
-    /**
-     * Create popup dialog
-     */
+    /** Create popup dialog  */
     public static Dialog createDialog(Activity theActivity, int titleStringResource, LayoutInflater inflater, int dialogLayout) {
         View layout = inflater.inflate(dialogLayout, null);
         Dialog dialog = new Dialog(theActivity);
@@ -69,12 +69,37 @@ public class DialogUtils {
         return alert;
     }
 
-    /**
-     * decide location to show
-     */
-    public void location(PopupWindow popupWindow) {
-        int height = popupWindow.getHeight();
-        int width = popupWindow.getWidth();
+    public static void createNotification(Context context, Class activity, Bundle arguments, String title, String content, int notificationId) {
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(context)
+                        .setSmallIcon(R.drawable.ic_launcher)
+                        .setContentTitle(title)
+                        .setContentText(content);
+
+        // Creates an explicit intent for an Activity in your app
+        Intent resultIntent = new Intent(context, activity);
+        resultIntent.putExtra("notification", arguments);
+
+        // The stack builder object will contain an artificial back stack for the started Activity.
+        // This ensures that navigating backward from the Activity leads out of your application to the Home screen.
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+
+        // Adds the back stack for the Intent (but not the Intent itself)
+        stackBuilder.addParentStack(activity);
+
+        // Adds the Intent that starts the Activity to the top of the stack
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        mBuilder.setContentIntent(resultPendingIntent);
+
+        NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        // mId allows you to update the notification later on.
+        mNotificationManager.notify(notificationId, mBuilder.build());
     }
 
+    public static void closeNotification(Context context, int notificationId) {
+        NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        // mId allows you to update the notification later on.
+        mNotificationManager.cancel(notificationId);
+    }
 }

@@ -11,7 +11,6 @@ import android.widget.*;
 import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.InfinityAdapter;
 import com.hqt.hac.helper.adapter.SongListAdapter;
-import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.helper.widget.InfinityListView;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Song;

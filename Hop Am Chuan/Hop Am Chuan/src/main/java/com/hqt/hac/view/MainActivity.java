@@ -20,7 +20,8 @@ import android.widget.Toast;
 import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
-import com.hqt.hac.helper.widget.IHacFragment;
+import com.hqt.hac.model.Song;
+import com.hqt.hac.view.fragment.IHacFragment;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
@@ -135,14 +136,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
         if (playlistList == null) {
             playlistList = PlaylistDataAccessLayer.getAllPlayLists(getApplicationContext());
         }
-        LOGE(TAG, "Size of Playlist: " + playlistList.size());
-        int count = 0;
-        for (int i = 0; i < playlistList.size(); i++) {
-            if (playlistList.get(i) == null) {
-                count++;
-            }
-        }
-        LOGE(TAG, "Null Elements: " + count);
 
         mTitle = getTitle();
 
@@ -155,12 +148,25 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // set up the ListView
         setUpListView();
 
-        if (savedInstanceState == null) {
-            // Load default fragment
+        // implement first fragment for MainActivity
+        Bundle arguments = getIntent().getBundleExtra("notification");
+        if (arguments != null) {
+            Song s;
+            try {
+                s = (Song) arguments.get("song");
+            } catch (ClassCastException e) {
+                s = null;
+            }
+            if (s!= null) {
+                SongDetailFragment fragment = new SongDetailFragment();
+                fragment.setArguments(arguments);
+                switchFragmentClearStack(fragment);
+            }
+        } else if (savedInstanceState == null) {
+            // Load default fragment in this case. else. maybe configuration change, android will do their work
             Fragment fragment = new WelcomeFragment();
-            switchFragmentNormal(fragment);
+            switchFragmentClearStack(fragment);
         }
-
     }
 
     @Override
@@ -318,7 +324,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
-
 
     /**
      * Create ActionBar items
