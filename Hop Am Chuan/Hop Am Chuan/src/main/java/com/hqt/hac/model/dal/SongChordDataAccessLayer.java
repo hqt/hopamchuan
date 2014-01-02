@@ -1,4 +1,4 @@
-package com.hqt.hac.model.dao;
+package com.hqt.hac.model.dal;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;

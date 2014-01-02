@@ -1,4 +1,4 @@
-package com.hqt.hac.model.dao;
+package com.hqt.hac.model.dal;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -6,7 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
-import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Chord;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.HopAmChuanDBContract;

@@ -23,14 +23,11 @@ import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
 import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
 import com.hqt.hac.model.Playlist;
-import com.hqt.hac.model.Song;
-import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
+import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.fragment.*;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.unittest.DatabaseTest;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -239,7 +236,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
                     // super.onBackPressed(); // << This will cause a blank screen (as described in BUG.txt)
                     finish();
                 } else {
-                    Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), getString(R.string.press_back_again), Toast.LENGTH_SHORT).show();
                     mTimePressBackBtn = currentTime;
                 }
 

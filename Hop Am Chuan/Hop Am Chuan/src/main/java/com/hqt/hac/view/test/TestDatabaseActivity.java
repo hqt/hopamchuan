@@ -6,10 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
-import com.hqt.hac.provider.HopAmChuanDatabase;
+import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.view.R;
-import com.unittest.DatabaseTest;
 
 public class TestDatabaseActivity extends ActionBarActivity {
 
@@ -27,17 +25,17 @@ public class TestDatabaseActivity extends ActionBarActivity {
 
 //        // test 1 : Get Songs By Author
 //        res += "All Songs By Author Huynh Quang Thao (should be 2):\n";
-//        List<Song> songs = ArtistDataAcessLayer.findAllSongsByAuthor(getApplicationContext(), 1);
+//        List<Song> songs = ArtistDataAccessLayer.findAllSongsByAuthor(getApplicationContext(), 1);
 //        res += String.format("Size of Songs: %d\n", songs.size());
 //        res += Helper.arrayToString(songs) + "\n";
 //
 //        // test 2 : Get Songs By Singer
 //        res += "All Songs By Singer Pham Thi Thu Hoa (should be 2) and different from above:\n";
-//        songs = ArtistDataAcessLayer.findAllSongsBySinger(getApplicationContext(), 3);
+//        songs = ArtistDataAccessLayer.findAllSongsBySinger(getApplicationContext(), 3);
 //        res += Helper.arrayToString(songs) + "\n";
 //
 //        // test 3 : test get artist by id
-//        Artist artist = ArtistDataAcessLayer.getArtistById(getApplicationContext(), 2);
+//        Artist artist = ArtistDataAccessLayer.getArtistById(getApplicationContext(), 2);
 //        res += artist + "\n";
 //
 //        List<Playlist> playlists = PlaylistDataAccessLayer.getAllPlayLists(getApplicationContext());

@@ -1,7 +1,6 @@
 package com.hqt.hac.view.test;
 
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,13 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.hqt.hac.model.Song;
-import com.hqt.hac.model.dao.SongDataAccessLayer;
+import com.hqt.hac.model.dal.SongDataAccessLayer;
 import com.hqt.hac.provider.HopAmChuanDatabase;
 import com.hqt.hac.view.R;
 import com.unittest.DatabaseTest;

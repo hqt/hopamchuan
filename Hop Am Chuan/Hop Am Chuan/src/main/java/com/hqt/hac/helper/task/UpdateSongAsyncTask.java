@@ -8,10 +8,9 @@ import android.os.AsyncTask;
 import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.model.json.DBVersion;
 import com.hqt.hac.model.Song;
-import com.hqt.hac.model.dao.SongDataAccessLayer;
+import com.hqt.hac.model.dal.SongDataAccessLayer;
 import com.hqt.hac.utils.APIUtils;
 import com.hqt.hac.utils.DialogUtils;
-import com.hqt.hac.utils.UIUtils;
 
 import java.util.List;
 

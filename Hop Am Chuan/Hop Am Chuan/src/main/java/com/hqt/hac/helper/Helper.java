@@ -1,20 +1,5 @@
 package com.hqt.hac.helper;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-
-import com.hqt.hac.model.Artist;
-import com.hqt.hac.model.Chord;
-import com.hqt.hac.model.Playlist;
-import com.hqt.hac.model.Song;
-import com.hqt.hac.model.dao.ArtistDataAcessLayer;
-import com.hqt.hac.model.dao.ChordDataAccessLayer;
-import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
-import com.hqt.hac.model.dao.SongArtistDataAccessLayer;
-import com.hqt.hac.model.dao.SongDataAccessLayer;
-import com.hqt.hac.utils.ParserUtils;
-
-import java.util.Date;
 import java.util.List;
 
 public class Helper {
@@ -32,7 +17,7 @@ public class Helper {
 
         // create artist database
         List<Artist> artists = ParserUtils.getAllArtistsFromRescource(context);
-        ArtistDataAcessLayer.insertListOfArtists(context, artists);
+        ArtistDataAccessLayer.insertListOfArtists(context, artists);
 
         // create chord database
         List<Chord> chords = ParserUtils.getAllChordsFromResource(context);
@@ -44,9 +29,9 @@ public class Helper {
         Artist a1 = new Artist(1, "Huynh Quang Thao", "Huynh Quang Thao");
         Artist a2 = new Artist(2, "Dinh Quang Trung", "Dinh Quang Tring");
         Artist a3 = new Artist(3, "Pham Thi Thu Hoa", "Pham Thi Thu Hoa");
-        ArtistDataAcessLayer.insertArtist(context, a1);
-        ArtistDataAcessLayer.insertArtist(context, a2);
-        ArtistDataAcessLayer.insertArtist(context, a3);
+        ArtistDataAccessLayer.insertArtist(context, a1);
+        ArtistDataAccessLayer.insertArtist(context, a2);
+        ArtistDataAccessLayer.insertArtist(context, a3);
 
         // create two songs
         Song s1 = new Song(1, "Chau Len ba", "www.google.com", "chau len ba chau vo mau giao", "chau len ba", new Date());

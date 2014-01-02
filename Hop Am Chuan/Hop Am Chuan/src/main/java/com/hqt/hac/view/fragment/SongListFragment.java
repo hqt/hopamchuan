@@ -15,7 +15,7 @@ import com.hqt.hac.helper.widget.IHacFragment;
 import com.hqt.hac.helper.widget.InfinityListView;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Song;
-import com.hqt.hac.model.dao.SongDataAccessLayer;
+import com.hqt.hac.model.dal.SongDataAccessLayer;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.view.MainActivity;

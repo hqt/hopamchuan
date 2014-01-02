@@ -220,5 +220,6 @@
     <string name="play_music">Nghe nhạc</string>
     <string name="view_full_screen">Xem hợp âm</string>
     <string name="remove_from_playlist">Xóa khỏi playlist</string>
+    <string name="press_back_again">Nhấn nút Back lần nữa để thoát</string>
 
 </resources>

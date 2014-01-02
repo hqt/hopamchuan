@@ -9,14 +9,14 @@ import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Chord;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
-import com.hqt.hac.model.dao.ArtistDataAcessLayer;
-import com.hqt.hac.model.dao.ChordDataAccessLayer;
-import com.hqt.hac.model.dao.FavoriteDataAccessLayer;
-import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
-import com.hqt.hac.model.dao.PlaylistSongDataAccessLayer;
-import com.hqt.hac.model.dao.SongArtistDataAccessLayer;
-import com.hqt.hac.model.dao.SongChordDataAccessLayer;
-import com.hqt.hac.model.dao.SongDataAccessLayer;
+import com.hqt.hac.model.dal.ArtistDataAccessLayer;
+import com.hqt.hac.model.dal.ChordDataAccessLayer;
+import com.hqt.hac.model.dal.FavoriteDataAccessLayer;
+import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
+import com.hqt.hac.model.dal.PlaylistSongDataAccessLayer;
+import com.hqt.hac.model.dal.SongArtistDataAccessLayer;
+import com.hqt.hac.model.dal.SongChordDataAccessLayer;
+import com.hqt.hac.model.dal.SongDataAccessLayer;
 import com.hqt.hac.utils.ParserUtils;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class DatabaseTest {
     public static void prepareLocalDatabase(Context context) {
         // create artist database
         List<Artist> artists = ParserUtils.getAllArtistsFromRescource(context);
-        ArtistDataAcessLayer.insertListOfArtists(context, artists);
+        ArtistDataAccessLayer.insertListOfArtists(context, artists);
 
         // create chord database
         List<Chord> chords = ParserUtils.getAllChordsFromResource(context);
@@ -90,9 +90,9 @@ public class DatabaseTest {
         Artist a1 = new Artist(1, "Huynh Quang Thao", "Huynh Quang Thao");
         Artist a2 = new Artist(2, "Dinh Quang Trung", "Dinh Quang Tring");
         Artist a3 = new Artist(3, "Pham Thi Thu Hoa", "Pham Thi Thu Hoa");
-        ArtistDataAcessLayer.insertArtist(context, a1);
-        ArtistDataAcessLayer.insertArtist(context, a2);
-        ArtistDataAcessLayer.insertArtist(context, a3);
+        ArtistDataAccessLayer.insertArtist(context, a1);
+        ArtistDataAccessLayer.insertArtist(context, a2);
+        ArtistDataAccessLayer.insertArtist(context, a3);
 
 
         // create songs
@@ -220,8 +220,8 @@ public class DatabaseTest {
             // Insert
             SongDataAccessLayer.insertSong(context, song);
 
-            ArtistDataAcessLayer.insertListOfArtists(context, inputA);
-            ArtistDataAcessLayer.insertListOfArtists(context, inputS);
+            ArtistDataAccessLayer.insertListOfArtists(context, inputA);
+            ArtistDataAccessLayer.insertListOfArtists(context, inputS);
 
             ChordDataAccessLayer.insertListOfChords(context, inputC);
 
@@ -252,10 +252,10 @@ public class DatabaseTest {
         // Delete
         SongDataAccessLayer.removeSongById(context, 4);
 
-        ArtistDataAcessLayer.removeArtistByid(context, 1);
-        ArtistDataAcessLayer.removeArtistByid(context, 2);
-        ArtistDataAcessLayer.removeArtistByid(context, 3);
-        ArtistDataAcessLayer.removeArtistByid(context, 4);
+        ArtistDataAccessLayer.removeArtistByid(context, 1);
+        ArtistDataAccessLayer.removeArtistByid(context, 2);
+        ArtistDataAccessLayer.removeArtistByid(context, 3);
+        ArtistDataAccessLayer.removeArtistByid(context, 4);
 
         ChordDataAccessLayer.removeChord(context, 1);
         ChordDataAccessLayer.removeChord(context, 2);
@@ -330,10 +330,10 @@ public class DatabaseTest {
         // Delete
         SongDataAccessLayer.removeSongById(context, 4);
 
-        ArtistDataAcessLayer.removeArtistByid(context, 1);
-        ArtistDataAcessLayer.removeArtistByid(context, 2);
-        ArtistDataAcessLayer.removeArtistByid(context, 3);
-        ArtistDataAcessLayer.removeArtistByid(context, 4);
+        ArtistDataAccessLayer.removeArtistByid(context, 1);
+        ArtistDataAccessLayer.removeArtistByid(context, 2);
+        ArtistDataAccessLayer.removeArtistByid(context, 3);
+        ArtistDataAccessLayer.removeArtistByid(context, 4);
 
         ChordDataAccessLayer.removeChord(context, 1);
         ChordDataAccessLayer.removeChord(context, 2);
@@ -363,8 +363,8 @@ public class DatabaseTest {
 
             // Insert (set Trung & Thao is the authors of Lang toi)
             SongDataAccessLayer.insertSong(context, s2);
-            ArtistDataAcessLayer.insertArtist(context, a1);
-            ArtistDataAcessLayer.insertArtist(context, a2);
+            ArtistDataAccessLayer.insertArtist(context, a1);
+            ArtistDataAccessLayer.insertArtist(context, a2);
             SongArtistDataAccessLayer.insertSong_Author(context, 2, 1);
             SongArtistDataAccessLayer.insertSong_Author(context, 2, 2);
 
@@ -384,8 +384,8 @@ public class DatabaseTest {
 
         // Delete
         SongDataAccessLayer.removeSongById(context, 2);
-        ArtistDataAcessLayer.removeArtistByid(context, 1);
-        ArtistDataAcessLayer.removeArtistByid(context, 2);
+        ArtistDataAccessLayer.removeArtistByid(context, 1);
+        ArtistDataAccessLayer.removeArtistByid(context, 2);
         SongArtistDataAccessLayer.removeSong_Author(context, 2, 1);
         SongArtistDataAccessLayer.removeSong_Author(context, 2, 2);
 
@@ -406,8 +406,8 @@ public class DatabaseTest {
 
             // Insert (set Trung & Thao is the singers of Lang toi)
             SongDataAccessLayer.insertSong(context, s2);
-            ArtistDataAcessLayer.insertArtist(context, a1);
-            ArtistDataAcessLayer.insertArtist(context, a2);
+            ArtistDataAccessLayer.insertArtist(context, a1);
+            ArtistDataAccessLayer.insertArtist(context, a2);
             SongArtistDataAccessLayer.insertSong_Singer(context, 2, 1);
             SongArtistDataAccessLayer.insertSong_Singer(context, 2, 2);
 
@@ -427,8 +427,8 @@ public class DatabaseTest {
 
         // Delete
         SongDataAccessLayer.removeSongById(context, 2);
-        ArtistDataAcessLayer.removeArtistByid(context, 1);
-        ArtistDataAcessLayer.removeArtistByid(context, 2);
+        ArtistDataAccessLayer.removeArtistByid(context, 1);
+        ArtistDataAccessLayer.removeArtistByid(context, 2);
         SongArtistDataAccessLayer.removeSong_Singer(context, 2, 1);
         SongArtistDataAccessLayer.removeSong_Singer(context, 2, 2);
         return res;
@@ -483,10 +483,10 @@ public class DatabaseTest {
             Artist a1 = new Artist(1, "Đinh Quang Trung", "Dinh Quang Trung");
 
             // Insert (set Am & E is the chords of Quoc Ca)
-            ArtistDataAcessLayer.insertArtist(context, a1);
+            ArtistDataAccessLayer.insertArtist(context, a1);
 
             // Get
-            Artist result = ArtistDataAcessLayer.getArtistById(context, 1);
+            Artist result = ArtistDataAccessLayer.getArtistById(context, 1);
 
             // Compare
             if (result != null && result.equals(a1)) {
@@ -500,7 +500,7 @@ public class DatabaseTest {
         }
 
         // Delete
-        ArtistDataAcessLayer.removeArtistByid(context, 1);
+        ArtistDataAccessLayer.removeArtistByid(context, 1);
         return res;
     }
 
@@ -534,8 +534,8 @@ public class DatabaseTest {
             SongDataAccessLayer.insertSong(context, song1);
             SongDataAccessLayer.insertSong(context, song2);
 
-            ArtistDataAcessLayer.insertListOfArtists(context, inputA);
-            ArtistDataAcessLayer.insertListOfArtists(context, inputS);
+            ArtistDataAccessLayer.insertListOfArtists(context, inputA);
+            ArtistDataAccessLayer.insertListOfArtists(context, inputS);
 
             ChordDataAccessLayer.insertListOfChords(context, inputC);
 
@@ -553,7 +553,7 @@ public class DatabaseTest {
 
             // Get
             // should be song 4 and 5
-            List<Song> result = ArtistDataAcessLayer.findAllSongsByAuthor(context, 2);
+            List<Song> result = ArtistDataAccessLayer.findAllSongsByAuthor(context, 2);
 
             // Compare
             if (result.size() == 2 && result.get(0).equals(song1) && result.get(1).equals(song2)) {
@@ -571,10 +571,10 @@ public class DatabaseTest {
         SongDataAccessLayer.removeSongById(context, 4);
         SongDataAccessLayer.removeSongById(context, 5);
 
-        ArtistDataAcessLayer.removeArtistByid(context, 1);
-        ArtistDataAcessLayer.removeArtistByid(context, 2);
-        ArtistDataAcessLayer.removeArtistByid(context, 3);
-        ArtistDataAcessLayer.removeArtistByid(context, 4);
+        ArtistDataAccessLayer.removeArtistByid(context, 1);
+        ArtistDataAccessLayer.removeArtistByid(context, 2);
+        ArtistDataAccessLayer.removeArtistByid(context, 3);
+        ArtistDataAccessLayer.removeArtistByid(context, 4);
 
         ChordDataAccessLayer.removeChord(context, 1);
         ChordDataAccessLayer.removeChord(context, 2);
@@ -622,8 +622,8 @@ public class DatabaseTest {
             SongDataAccessLayer.insertSong(context, song1);
             SongDataAccessLayer.insertSong(context, song2);
 
-            ArtistDataAcessLayer.insertListOfArtists(context, inputA);
-            ArtistDataAcessLayer.insertListOfArtists(context, inputS);
+            ArtistDataAccessLayer.insertListOfArtists(context, inputA);
+            ArtistDataAccessLayer.insertListOfArtists(context, inputS);
 
             ChordDataAccessLayer.insertListOfChords(context, inputC);
 
@@ -641,7 +641,7 @@ public class DatabaseTest {
 
             // Get
             // should be song 4 and 5
-            List<Song> result = ArtistDataAcessLayer.findAllSongsBySinger(context, 4);
+            List<Song> result = ArtistDataAccessLayer.findAllSongsBySinger(context, 4);
 
             // Compare
             if (result.size() == 2 && result.get(0).equals(song1) && result.get(1).equals(song2)) {
@@ -658,10 +658,10 @@ public class DatabaseTest {
         SongDataAccessLayer.removeSongById(context, 4);
         SongDataAccessLayer.removeSongById(context, 5);
 
-        ArtistDataAcessLayer.removeArtistByid(context, 1);
-        ArtistDataAcessLayer.removeArtistByid(context, 2);
-        ArtistDataAcessLayer.removeArtistByid(context, 3);
-        ArtistDataAcessLayer.removeArtistByid(context, 4);
+        ArtistDataAccessLayer.removeArtistByid(context, 1);
+        ArtistDataAccessLayer.removeArtistByid(context, 2);
+        ArtistDataAccessLayer.removeArtistByid(context, 3);
+        ArtistDataAccessLayer.removeArtistByid(context, 4);
 
         ChordDataAccessLayer.removeChord(context, 1);
         ChordDataAccessLayer.removeChord(context, 2);
@@ -709,8 +709,8 @@ public class DatabaseTest {
             SongDataAccessLayer.insertSong(context, song1);
             SongDataAccessLayer.insertSong(context, song2);
 
-            ArtistDataAcessLayer.insertListOfArtists(context, inputA);
-            ArtistDataAcessLayer.insertListOfArtists(context, inputS);
+            ArtistDataAccessLayer.insertListOfArtists(context, inputA);
+            ArtistDataAccessLayer.insertListOfArtists(context, inputS);
 
             ChordDataAccessLayer.insertListOfChords(context, inputC);
 
@@ -729,7 +729,7 @@ public class DatabaseTest {
             // Get
             for (int i = 0; i < 10; i++) {
                 // Should be song 4 or 5 unpredictable
-                List<Song> result = ArtistDataAcessLayer.getRandomSongsByAuthor(context, 2, 1);
+                List<Song> result = ArtistDataAccessLayer.getRandomSongsByAuthor(context, 2, 1);
 
                 // Compare
                 if (result.size() == 1 && result.get(0).equals(song1)) {
@@ -749,10 +749,10 @@ public class DatabaseTest {
         SongDataAccessLayer.removeSongById(context, 4);
         SongDataAccessLayer.removeSongById(context, 5);
 
-        ArtistDataAcessLayer.removeArtistByid(context, 1);
-        ArtistDataAcessLayer.removeArtistByid(context, 2);
-        ArtistDataAcessLayer.removeArtistByid(context, 3);
-        ArtistDataAcessLayer.removeArtistByid(context, 4);
+        ArtistDataAccessLayer.removeArtistByid(context, 1);
+        ArtistDataAccessLayer.removeArtistByid(context, 2);
+        ArtistDataAccessLayer.removeArtistByid(context, 3);
+        ArtistDataAccessLayer.removeArtistByid(context, 4);
 
         ChordDataAccessLayer.removeChord(context, 1);
         ChordDataAccessLayer.removeChord(context, 2);
@@ -800,8 +800,8 @@ public class DatabaseTest {
             SongDataAccessLayer.insertSong(context, song1);
             SongDataAccessLayer.insertSong(context, song2);
 
-            ArtistDataAcessLayer.insertListOfArtists(context, inputA);
-            ArtistDataAcessLayer.insertListOfArtists(context, inputS);
+            ArtistDataAccessLayer.insertListOfArtists(context, inputA);
+            ArtistDataAccessLayer.insertListOfArtists(context, inputS);
 
             ChordDataAccessLayer.insertListOfChords(context, inputC);
 
@@ -820,7 +820,7 @@ public class DatabaseTest {
             // Get
             for (int i = 0; i < 10; i++) {
                 // Should be song 4 and 5 with unpredictable order
-                List<Song> result = ArtistDataAcessLayer.getRandomSongsBySinger(context, 4, 1);
+                List<Song> result = ArtistDataAccessLayer.getRandomSongsBySinger(context, 4, 1);
 
                 // Compare
                 if (result.size() == 1 && result.get(0).equals(song1)) {
@@ -841,10 +841,10 @@ public class DatabaseTest {
         SongDataAccessLayer.removeSongById(context, 4);
         SongDataAccessLayer.removeSongById(context, 5);
 
-        ArtistDataAcessLayer.removeArtistByid(context, 1);
-        ArtistDataAcessLayer.removeArtistByid(context, 2);
-        ArtistDataAcessLayer.removeArtistByid(context, 3);
-        ArtistDataAcessLayer.removeArtistByid(context, 4);
+        ArtistDataAccessLayer.removeArtistByid(context, 1);
+        ArtistDataAccessLayer.removeArtistByid(context, 2);
+        ArtistDataAccessLayer.removeArtistByid(context, 3);
+        ArtistDataAccessLayer.removeArtistByid(context, 4);
 
         ChordDataAccessLayer.removeChord(context, 1);
         ChordDataAccessLayer.removeChord(context, 2);
@@ -1182,12 +1182,12 @@ public class DatabaseTest {
             Artist a2 = new Artist(2, "Ngô Trắc Kiện", "Ngo Trac Kien");
 
             // Insert
-            ArtistDataAcessLayer.insertArtist(context, a1);
-            ArtistDataAcessLayer.insertArtist(context, a2);
+            ArtistDataAccessLayer.insertArtist(context, a1);
+            ArtistDataAccessLayer.insertArtist(context, a2);
 
             // Get
-            Artist result1 = ArtistDataAcessLayer.getArtistByName(context, "huynh quang thao");
-            Artist result2 = ArtistDataAcessLayer.getArtistByName(context, "ngo trac kien");
+            Artist result1 = ArtistDataAccessLayer.getArtistByName(context, "huynh quang thao");
+            Artist result2 = ArtistDataAccessLayer.getArtistByName(context, "ngo trac kien");
 
             // Compare
             if (result1 != null && result2 != null && result1.equals(a1) && result2.equals(a2)) {
@@ -1201,8 +1201,8 @@ public class DatabaseTest {
         }
 
         // Delete
-        ArtistDataAcessLayer.removeArtistByid(context, 1);
-        ArtistDataAcessLayer.removeArtistByid(context, 2);
+        ArtistDataAccessLayer.removeArtistByid(context, 1);
+        ArtistDataAccessLayer.removeArtistByid(context, 2);
         return res;
     }
 
@@ -1236,8 +1236,8 @@ public class DatabaseTest {
             SongDataAccessLayer.insertSong(context, song1);
             SongDataAccessLayer.insertSong(context, song2);
 
-            ArtistDataAcessLayer.insertListOfArtists(context, inputA);
-            ArtistDataAcessLayer.insertListOfArtists(context, inputS);
+            ArtistDataAccessLayer.insertListOfArtists(context, inputA);
+            ArtistDataAccessLayer.insertListOfArtists(context, inputS);
 
             ChordDataAccessLayer.insertListOfChords(context, inputC);
 
@@ -1257,7 +1257,7 @@ public class DatabaseTest {
 
             // Get
             // should be song1
-            List<Song> result = ArtistDataAcessLayer.searchSongByArtist(context, "dinh quang trung", Config.DEFAULT_SEARCH_ARTIST_LIMIT);
+            List<Song> result = ArtistDataAccessLayer.searchSongByArtist(context, "dinh quang trung", Config.DEFAULT_SEARCH_ARTIST_LIMIT);
 
             // Compare
             if (result.size() == 1 && (result.get(0).equals(song1) || result.get(0).equals(song2))) {
@@ -1268,7 +1268,7 @@ public class DatabaseTest {
 
             // Get
             // should be song1 and song2
-            List<Song> result2 = ArtistDataAcessLayer.searchSongByArtist(context, "huynh quang thao", Config.DEFAULT_SEARCH_ARTIST_LIMIT);
+            List<Song> result2 = ArtistDataAccessLayer.searchSongByArtist(context, "huynh quang thao", Config.DEFAULT_SEARCH_ARTIST_LIMIT);
 
             // Compare
             if (result2.size() == 2 && ((result2.get(0).equals(song1) && result2.get(1).equals(song2)) ||
@@ -1288,10 +1288,10 @@ public class DatabaseTest {
         SongDataAccessLayer.removeSongById(context, 4);
         SongDataAccessLayer.removeSongById(context, 5);
 
-        ArtistDataAcessLayer.removeArtistByid(context, 1);
-        ArtistDataAcessLayer.removeArtistByid(context, 2);
-        ArtistDataAcessLayer.removeArtistByid(context, 3);
-        ArtistDataAcessLayer.removeArtistByid(context, 4);
+        ArtistDataAccessLayer.removeArtistByid(context, 1);
+        ArtistDataAccessLayer.removeArtistByid(context, 2);
+        ArtistDataAccessLayer.removeArtistByid(context, 3);
+        ArtistDataAccessLayer.removeArtistByid(context, 4);
 
         ChordDataAccessLayer.removeChord(context, 1);
         ChordDataAccessLayer.removeChord(context, 2);

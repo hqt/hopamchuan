@@ -1,4 +1,4 @@
-package com.hqt.hac.model.dao;
+package com.hqt.hac.model.dal;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -22,9 +22,9 @@ import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class ArtistDataAcessLayer {
+public class ArtistDataAccessLayer {
 
-    private static final String TAG = makeLogTag(ArtistDataAcessLayer.class);
+    private static final String TAG = makeLogTag(ArtistDataAccessLayer.class);
 
     public static String insertArtist(Context context, Artist artist) {
         LOGD(TAG, "Adding an artist");
@@ -64,7 +64,7 @@ public class ArtistDataAcessLayer {
 
         Cursor c = resolver.query(uri,
                 Projections.ARTIST_PROJECTION,                      // projection
-                HopAmChuanDBContract.Artists.ARTIST_ASCII + " LIKE ?",   // selection string
+                HopAmChuanDBContract.Artists.ARTIST_ASCII + " = ?",   // selection string
                 new String[]{artistName},                             // selection args of strings
                 null);                            //  sort order
 
@@ -84,6 +84,45 @@ public class ArtistDataAcessLayer {
         c.close();
         return null;
     }
+
+    /**
+     * Search artist by name, use offset and count for pagination or infinity scrolling...
+     * @param context
+     * @param name
+     * @param offset
+     * @param count
+     * @return
+     */
+    public static List<Artist> searchArtistByName(Context context, String name, int offset, int count) {
+        LOGD(TAG, "search " + count + " Artist(s) with name '" + name + "' from position " + offset);
+        String artistName = StringUtils.removeAcients(name);
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Artists.CONTENT_URI;
+
+        Cursor c = resolver.query(uri,
+                Projections.ARTIST_PROJECTION,                          // projection
+                HopAmChuanDBContract.Artists.ARTIST_ASCII + " LIKE ?",  // selection string
+                new String[]{"%" + artistName + "%"},                   // selection args of strings
+                "LENGTH(" + HopAmChuanDBContract.Artists.ARTIST_ASCII + ") LIMIT " + offset + ", " + count); //  sort order
+
+        int idCol = c.getColumnIndex(HopAmChuanDBContract.Artists._ID);
+        int artistidCol = c.getColumnIndex(HopAmChuanDBContract.Artists.ARTIST_ID);
+        int nameCol = c.getColumnIndex(HopAmChuanDBContract.Artists.ARTIST_NAME);
+        int asciiCol = c.getColumnIndex(HopAmChuanDBContract.Artists.ARTIST_ASCII);
+
+        List<Artist> result = new ArrayList<Artist>();
+
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            int _id = c.getInt(idCol);
+            int _artistId = c.getInt(artistidCol);
+            String _name = c.getString(nameCol);
+            String _ascii = c.getString(asciiCol);
+            result.add(new Artist(_id, _artistId, _name, _ascii));
+        }
+        c.close();
+        return result;
+    }
+
 
     public static Artist getArtistById(Context context, int artistId) {
         LOGD(TAG, "Get Artist By Id");
@@ -231,7 +270,7 @@ public class ArtistDataAcessLayer {
     public static List<Song> searchSongByAuthor(Context context, String name, int limit) {
         LOGD(TAG, "search Song By Author");
 
-        Artist artist = ArtistDataAcessLayer.getArtistByName(context, name);
+        Artist artist = ArtistDataAccessLayer.getArtistByName(context, name);
 
         ContentResolver resolver = context.getContentResolver();
         Uri uri = SongsAuthors.CONTENT_URI;
@@ -254,7 +293,7 @@ public class ArtistDataAcessLayer {
     public static List<Song> searchSongBySinger(Context context, String name, int limit) {
         LOGD(TAG, "search Song By Singer");
 
-        Artist artist = ArtistDataAcessLayer.getArtistByName(context, name);
+        Artist artist = ArtistDataAccessLayer.getArtistByName(context, name);
 
         ContentResolver resolver = context.getContentResolver();
         Uri uri = SongsSingers.CONTENT_URI;

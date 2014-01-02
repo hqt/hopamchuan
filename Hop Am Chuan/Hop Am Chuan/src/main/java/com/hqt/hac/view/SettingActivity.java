@@ -14,14 +14,12 @@ import android.widget.TextView;
 
 import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.helper.task.AsyncActivity;
-import com.hqt.hac.helper.task.SyncSongAsyncTask;
-import com.hqt.hac.helper.task.UpdateSongAsyncTask;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
-import com.hqt.hac.model.dao.FavoriteDataAccessLayer;
-import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
-import com.hqt.hac.model.dao.PlaylistSongDataAccessLayer;
-import com.hqt.hac.model.dao.SongDataAccessLayer;
+import com.hqt.hac.model.dal.FavoriteDataAccessLayer;
+import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
+import com.hqt.hac.model.dal.PlaylistSongDataAccessLayer;
+import com.hqt.hac.model.dal.SongDataAccessLayer;
 import com.hqt.hac.model.json.DBVersion;
 import com.hqt.hac.model.json.JsonPlaylist;
 import com.hqt.hac.utils.APIUtils;

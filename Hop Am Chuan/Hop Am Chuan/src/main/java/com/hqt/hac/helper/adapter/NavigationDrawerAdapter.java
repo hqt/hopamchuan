@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.model.Playlist;
-import com.hqt.hac.model.dao.PlaylistDataAccessLayer;
+import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.utils.EncodingUtils;
 import com.hqt.hac.view.LoginActivity;
 import com.hqt.hac.view.R;
