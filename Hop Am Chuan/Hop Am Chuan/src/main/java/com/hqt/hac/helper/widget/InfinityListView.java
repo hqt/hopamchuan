@@ -10,6 +10,9 @@ import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+
+import com.hqt.hac.helper.adapter.InfinityAdapter;
+import com.hqt.hac.helper.adapter.SongListAdapter;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.view.R;
 
@@ -92,6 +95,14 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         addFooterView(footer);
     }
 
+
+    public void resetListView(SongListAdapter adapter) {
+        footer.setVisibility(VISIBLE);
+        isComeToEnd.set(false);
+        mAdapter.notifyDataSetChanged();
+        setAdapter(adapter);
+    }
+
     //region Option for this Inf ListView
     ////////////////////////////////////////////////////////////////////////
     //////////////////// GETTER / SETTER ///////////////////////////////////
@@ -164,15 +175,16 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         if (getAdapter() == null) return;
         if (isComeToEnd.get()) return;
-        LOGI(TAG, "On Scroll : Number of Items: " + getAdapter().getCount());
+//        LOGI(TAG, "On Scroll : Number of Items: " + getAdapter().getCount());
         if (getAdapter().getCount() == 0) return;
 
         // get the first Item that currently hide and need to show
         final int firstItemHide = firstVisibleItem + visibleItemCount;
-        LOGE(TAG, "FirstVisibleItem:" + firstVisibleItem + "  VisibleItemCount:"
-                + visibleItemCount + "  TotalItemCount:" + totalItemCount);
+//        LOGE(TAG, "FirstVisibleItem:" + firstVisibleItem + "  VisibleItemCount:"
+//                + visibleItemCount + "  TotalItemCount:" + totalItemCount);
         if (firstItemHide >= totalItemCount) {
-            scheduleWork(totalItemCount);
+            // scheduleWork(totalItemCount); << we don't count the loading item
+            scheduleWork(totalItemCount - 1);
         }
     }
 
@@ -239,7 +251,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
             // has come to end list
             if (!isSucceed) {
                 LOGE(TAG, "Remove FootView because come to end list");
-                removeFooterView(footer);
+                footer.setVisibility(INVISIBLE);
                 setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
                 setSelection(mAdapter.getCount() - 1);
