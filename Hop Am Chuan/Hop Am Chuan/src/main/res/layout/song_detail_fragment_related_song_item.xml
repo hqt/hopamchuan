@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativelayout"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:background="@drawable/dropmenu_item"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
+
+        <TextView
+            android:id="@+id/txtSongName"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="Nếu Như Anh Đến"
+            android:layout_marginRight="40dp"
+            android:textSize="22sp"
+            android:textColor="#333" />
+
+        <TextView
+            android:id="@+id/txtLyrics"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/MarqueeText"
+            android:layout_marginRight="40dp"
+            android:textSize="15sp"
+            android:textColor="#999"
+            android:text="Làn tóc rối bờ môi khô hàng mi..." />
+
+        <TextView
+            android:id="@+id/txtChord"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/MarqueeText"
+            android:layout_marginRight="40dp"
+            android:textSize="15sp"
+            android:textColor="#999"
+            android:text="Am, C, Dm, G, F" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageFavorite"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="20dp"
+        android:paddingRight="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_action_not_important" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="#ccc" />
+</RelativeLayout>

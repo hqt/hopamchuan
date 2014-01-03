@@ -6,7 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * Using this class for performance. put it just app
+ * Using this class for performance. put it just apply for API >= 11
  * Created by Huynh Quang Thao on 11/21/13.
  */
 public class PrefStoreUtils {

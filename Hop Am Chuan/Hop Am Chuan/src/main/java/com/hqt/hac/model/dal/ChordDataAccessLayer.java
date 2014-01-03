@@ -11,6 +11,7 @@ import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.HopAmChuanDBContract;
 import com.hqt.hac.provider.helper.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
@@ -79,5 +80,17 @@ public class ChordDataAccessLayer {
         Uri uri = HopAmChuanDBContract.Chords.CONTENT_URI;
         Uri deleteUri = Uri.withAppendedPath(uri, chordId + "");
         resolver.delete(deleteUri, null, null);
+    }
+
+    /**
+     * Get random song with chords
+     * TODO: implement this like getAllSongsByChordArrays
+     * @param context
+     * @param chords
+     * @param limit
+     * @return
+     */
+    public static List<Song> getRandomSongsByChords(Context context, List<Chord> chords, int limit) {
+        return new ArrayList<Song>();
     }
 }

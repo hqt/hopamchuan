@@ -57,7 +57,6 @@
                 android:singleLine="true"
                 android:imeOptions="actionSearch"
                 android:padding="10dp"
-                android:focusable="false"
                 android:id="@+id/insert_chord_edit_text"
                 android:background="@drawable/text_box"
                 android:hint="@string/search_box_placeholder"/>
