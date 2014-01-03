@@ -91,11 +91,11 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
 
         // load all chord to memory
         String[] _chordStr;
-        _chordStr = ResourceUtils.loadStringArray(getActivity().getApplicationContext(), R.array.simple_chord);
+        _chordStr = ResourceUtils.loadStringArray(R.array.simple_chord);
         typeOfChords.add(_chordStr);
-        _chordStr = ResourceUtils.loadStringArray(getActivity().getApplicationContext(), R.array.advanced_chord);
+        _chordStr = ResourceUtils.loadStringArray(R.array.advanced_chord);
         typeOfChords.add(_chordStr);
-        _chordStr = ResourceUtils.loadStringArray(getActivity().getApplicationContext(), R.array.all_chord);
+        _chordStr = ResourceUtils.loadStringArray(R.array.all_chord);
         typeOfChords.add(_chordStr);
 
         /**

@@ -63,7 +63,7 @@ public class SettingActivity extends AsyncActivity {
         autoUpdateSongChkbox = (CheckBox) findViewById(R.id.checkbox_auto_update);
 
         // set value and action for widget
-        currentVersionTxt.setText(getString(R.string.current_version) + " " + PrefStore.getLatestVersion(getApplicationContext()));
+        currentVersionTxt.setText(getString(R.string.current_version) + " " + PrefStore.getLatestVersion());
 
         updateSongBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -225,15 +225,15 @@ public class SettingActivity extends AsyncActivity {
     private int updateSongTask() {
         // check version
         publishProgress(STATUS_CODE.CHECKING_VERSION);
-        DBVersion version = APIUtils.getLatestDatabaseVersion(PrefStore.getLatestVersion(mAppContext));
+        DBVersion version = APIUtils.getLatestDatabaseVersion(PrefStore.getLatestVersion());
         // no update need
-        if (version == null || version.no == PrefStore.getLatestVersion(getApplicationContext())) {
+        if (version == null || version.no == PrefStore.getLatestVersion()) {
             return STATUS_CODE.LATEST_VERSION;
         }
 
         // update songs
         publishProgress(STATUS_CODE.DOWNLOADING);
-        List<Song> songs = APIUtils.getAllSongsFromVersion(PrefStore.getLatestVersion(mAppContext));
+        List<Song> songs = APIUtils.getAllSongsFromVersion(PrefStore.getLatestVersion());
         if (songs == null) {
             return STATUS_CODE.NETWORK_ERROR;
         }
@@ -244,7 +244,7 @@ public class SettingActivity extends AsyncActivity {
         if (status) return STATUS_CODE.SYSTEM_ERROR;
         else {
             // set latest version to system after all step has successfully update
-            PrefStore.setLatestVersion(mAppContext, version.no);
+            PrefStore.setLatestVersion(version.no);
             return STATUS_CODE.SUCCESS;
         }
     }
@@ -253,8 +253,8 @@ public class SettingActivity extends AsyncActivity {
     /////////////////// SYNC SONG TASK /////////////////////////////
 
     private int syncSongTask() {
-        String username = PrefStore.getLoginUsername(mAppContext);
-        String password = PrefStore.getLoginPassword(mAppContext);
+        String username = PrefStore.getLoginUsername();
+        String password = PrefStore.getLoginPassword();
         boolean res;
 
         // sync playlist

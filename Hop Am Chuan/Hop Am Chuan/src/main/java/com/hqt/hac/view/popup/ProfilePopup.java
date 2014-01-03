@@ -41,9 +41,9 @@ public class ProfilePopup {
         TextView txtMail = (TextView) dialog.findViewById(R.id.mail);
         ImageView imgAvatar = (ImageView) dialog.findViewById(R.id.imageView);
 
-        txtName.setText(PrefStore.getLoginUsername(activity.getApplicationContext()));
-        txtMail.setText(PrefStore.getEmail(activity.getApplicationContext()));
-        Bitmap imageAvatar = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage(activity.getApplicationContext()));
+        txtName.setText(PrefStore.getLoginUsername());
+        txtMail.setText(PrefStore.getEmail());
+        Bitmap imageAvatar = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage());
 
         if (imageAvatar != null) {
             imgAvatar.setImageBitmap(imageAvatar);
@@ -80,10 +80,10 @@ public class ProfilePopup {
 
     private void logout() {
         Context context = activity.getApplicationContext();
-        PrefStore.setLoginUsername(context, null);
-        PrefStore.setLoginPassword(context, null);
-        PrefStore.setEmail(context, null);
-        PrefStore.setUserImage(context, null);
+        PrefStore.setLoginUsername( null);
+        PrefStore.setLoginPassword(null);
+        PrefStore.setEmail(null);
+        PrefStore.setUserImage(null);
 
         // Remove all playlist, favorites
         PlaylistDataAccessLayer.removeAllPlaylists(context);

@@ -38,8 +38,8 @@ public class SyncSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
 
     @Override
     protected Integer doInBackground(Void... params) {
-        String username = PrefStore.getLoginUsername(context);
-        String password = PrefStore.getLoginPassword(context);
+        String username = PrefStore.getLoginUsername();
+        String password = PrefStore.getLoginPassword();
         boolean res;
 
        // sync playlist

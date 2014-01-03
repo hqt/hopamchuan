@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 import com.hqt.hac.utils.EncodingUtils;
+import com.hqt.hac.view.BunnyApplication;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
@@ -60,29 +61,34 @@ public class PrefStore {
 
     ////////////////////////////////////////////////////////////////////
     /////////////////////////////  GETTER //////////////////////////////
-    public static SharedPreferences getSharedPreferences(Context ctx) {
+    public static SharedPreferences getSharedPreferencesWithContext(Context ctx) {
         return PreferenceManager.getDefaultSharedPreferences(ctx);
     }
-    public static String getLoginUsername(Context ctx) {
-        return getSharedPreferences(ctx).getString(PREF_LOGIN_USER, DEFAULT_LOGIN_USER);
+
+    public static SharedPreferences getSharedPreferences() {
+        return PreferenceManager.getDefaultSharedPreferences(BunnyApplication.getAppContext());
     }
 
-    public static String getEmail(Context ctx) {
-        return getSharedPreferences(ctx).getString(PREF_LOGIN_EMAIL, DEFAULT_LOGIN_EMAIL);
+    public static String getLoginUsername() {
+        return getSharedPreferences().getString(PREF_LOGIN_USER, DEFAULT_LOGIN_USER);
     }
 
-    public static String getLoginPassword(Context ctx) {
-        return getSharedPreferences(ctx).getString(PREF_LOGIN_PASSWORD, DEFAULT_LOGIN_PASSWORD);
+    public static String getEmail() {
+        return getSharedPreferences().getString(PREF_LOGIN_EMAIL, DEFAULT_LOGIN_EMAIL);
     }
 
-    public static byte[] getUserImage(Context ctx) {
-        String strImg =  getSharedPreferences(ctx).getString(PREF_USER_IMAGE, DEFAULT_USER_IMAGE);
+    public static String getLoginPassword() {
+        return getSharedPreferences().getString(PREF_LOGIN_PASSWORD, DEFAULT_LOGIN_PASSWORD);
+    }
+
+    public static byte[] getUserImage() {
+        String strImg =  getSharedPreferences().getString(PREF_USER_IMAGE, DEFAULT_USER_IMAGE);
         return EncodingUtils.decodeDataUsingBase64(strImg);
     }
 
-    public static void setUserImage(Context ctx, byte[] image) {
+    public static void setUserImage(byte[] image) {
 //        LOGE(TAG, "OLD LENGTH: " + image.length);
-        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        SharedPreferences.Editor editor = getSharedPreferences().edit();
         String strImg = EncodingUtils.encodeByteArrUsingBase64(image);
         editor.putString(PREF_USER_IMAGE, strImg);
         editor.commit();
@@ -90,40 +96,40 @@ public class PrefStore {
     }
 
 
-    public static int getLatestVersion(Context ctx) {
-        return getSharedPreferences(ctx).getInt(PREF_LATEST_VERSION, DEFAULT_LATEST_VERSION);
+    public static int getLatestVersion() {
+        return getSharedPreferences().getInt(PREF_LATEST_VERSION, DEFAULT_LATEST_VERSION);
     }
 
     ////////////////////////////////////////////////////////////////////
     /////////////////////////////  SETTER //////////////////////////////
-    public static void setLoginUsername(Context ctx, String username) {
-        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+    public static void setLoginUsername(String username) {
+        SharedPreferences.Editor editor = getSharedPreferences().edit();
         editor.putString(PREF_LOGIN_USER, username);
         editor.commit();
     }
 
-    public static void setEmail(Context ctx, String email) {
-        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+    public static void setEmail(String email) {
+        SharedPreferences.Editor editor = getSharedPreferences().edit();
         editor.putString(PREF_LOGIN_EMAIL, email);
         editor.commit();
     }
 
-    public static void setLoginPassword(Context ctx, String password) {
-        Editor editor = getSharedPreferences(ctx).edit();
+    public static void setLoginPassword(String password) {
+        Editor editor = getSharedPreferences().edit();
         editor.putString(PREF_LOGIN_PASSWORD, password);
         editor.commit();
     }
 
 
-    public static void setLatestVersion(Context ctx, int version) {
-        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+    public static void setLatestVersion(int version) {
+        SharedPreferences.Editor editor = getSharedPreferences().edit();
         editor.putInt(PREF_LATEST_VERSION, version);
         // editor.putInt(PREF_LATEST_VERSION, 1);      // debugging purpose
         editor.commit();
     }
 
-    public static void setDeployedApp(Context ctx) {
-        Editor editor = getSharedPreferences(ctx).edit();
+    public static void setDeployedApp() {
+        Editor editor = getSharedPreferences().edit();
         editor.putBoolean(PREF_IS_FIRST_RUN, false);
         editor.commit();
     }
@@ -131,15 +137,15 @@ public class PrefStore {
 
     //////////////////////////////////////////////////////////////////////
     ///////////////////// QUERY DATA EXIST ///////////////////////////////
-    public static boolean isLoginUsernameSet(Context ctx) {
-        return getLoginUsername(ctx) != null;
+    public static boolean isLoginUsernameSet() {
+        return getLoginUsername() != null;
     }
 
-    public static boolean isLoginInformationSet(Context ctx) {
-        return isLoginUsernameSet(ctx) && getLoginPassword(ctx) != null;
+    public static boolean isLoginInformationSet() {
+        return isLoginUsernameSet() && getLoginPassword() != null;
     }
 
-    public static boolean isFirstRun(Context ctx) {
-        return getSharedPreferences(ctx).getBoolean(PREF_IS_FIRST_RUN, DEFAULT_FIRST_RUN);
+    public static boolean isFirstRun() {
+        return getSharedPreferences().getBoolean(PREF_IS_FIRST_RUN, DEFAULT_FIRST_RUN);
     }
 }

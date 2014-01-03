@@ -75,14 +75,14 @@ public class NavigationDrawerAdapter {
                 holder = (ViewHolderHeader) row.getTag();
             }
 
-            holder.txtName.setText(PrefStore.getLoginUsername(mContext));
-            holder.txtMail.setText(PrefStore.getEmail(mContext));
+            holder.txtName.setText(PrefStore.getLoginUsername());
+            holder.txtMail.setText(PrefStore.getEmail());
 
             // Makes the marquee running
             holder.txtMail.setSelected(true);
             holder.txtName.setSelected(true);
 
-            Bitmap imageAvatar = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage(mContext));
+            Bitmap imageAvatar = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage());
             if (imageAvatar != null) {
                 holder.imgAvatar.setImageBitmap(imageAvatar);
             } else {
@@ -93,7 +93,7 @@ public class NavigationDrawerAdapter {
                 @Override
                 public void onClick(View v) {
                     // TrungDQ: if you user has logged in, then display Logout popup
-                    Bitmap checkLoggedIn = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage(mContext));
+                    Bitmap checkLoggedIn = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage());
                     if (checkLoggedIn == null) {
                         // start Login Activity
                         Intent intent = new Intent(activity, LoginActivity.class);

@@ -80,8 +80,42 @@
         android:src="@drawable/ic_menu_refresh"
         android:id="@+id/sync_song_button" />
 
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/the_blue"
+            android:text="Download"
+            />
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="10dp"
+            android:background="#ccc"
+            />
 
     <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/the_blue"
+            android:text="Misc"
+            />
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="10dp"
+            android:background="#ccc"
+            />
+
+
+
+
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -165,7 +199,7 @@
         android:layout_height="wrap_content"
         android:text="@string/profile_logout"
         />
-
+-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

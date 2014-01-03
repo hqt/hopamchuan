@@ -59,7 +59,6 @@ public abstract class ChordViewAdapter extends BaseAdapter implements SectionInd
         for (int i=0; i < chords.length; i++) {
             String item = chords[i];
             if (item.length() >= 2) item = item.substring(0, 2);
-            LOGE(TAG, "SubString: " + item);
             if (item.toLowerCase().equals(sections[section].toLowerCase())) {
                 return i;
             }

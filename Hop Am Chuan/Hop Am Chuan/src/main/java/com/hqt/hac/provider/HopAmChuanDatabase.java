@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
 import com.hqt.hac.provider.helper.Query;
+import com.hqt.hac.provider.helper.SQLiteAssetHelper;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
@@ -19,14 +20,14 @@ import static com.hqt.hac.provider.helper.Query.References;
  * helper for managing {@link SQLiteDatabase} that stores data for
  * {@link com.hqt.hac.provider.HopAmChuanProvider}.
  */
-public class HopAmChuanDatabase extends SQLiteOpenHelper {
+public class HopAmChuanDatabase extends SQLiteAssetHelper {
 
     private static final String TAG = makeLogTag(HopAmChuanDatabase.class);
 
     private final Context mContext;
 
-    private static final String DATABASE_NAME = "hopamchuan.db";
-    private static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "hopamchuan.db";
+    public static final int DATABASE_VERSION = 1;
 
     // NOTE: carefully update onUpgrade() when bumping database versions
     // to make sure user data is saved
@@ -68,13 +69,13 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
      * Called when database is created for the first time
      * create all suitable tables here
      */
-    @Override
+   /* @Override
     public synchronized void  onCreate(SQLiteDatabase db) {
 
-        /**
-         * base table :
-         * Artist Chords Songs
-         */
+        *//**
+     * base table :
+     * Artist Chords Songs
+     *//*
         db.execSQL("CREATE TABLE " + Tables.ARTIST + " ("
                 + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + ArtistsColumns.ARTIST_ID + " INTEGER,"
@@ -103,10 +104,10 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
                 + SongsColumns.SONG_RHYTHM + " TEXT,"
                 + "UNIQUE (" + SongsColumns.SONG_ID + ") ON CONFLICT REPLACE)");
 
-        /**
-         * Derivative tables :
-         * Songs - Authors   ||    Songs - Chords  ||   Songs - Singers
-         */
+        *//**
+     * Derivative tables :
+     * Songs - Authors   ||    Songs - Chords  ||   Songs - Singers
+     *//*
         db.execSQL("CREATE TABLE " + Tables.SONG_AUTHOR + " ("
                 + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + SongsColumns.SONG_ID + " INTEGER " + References.SONG_ID + ","
@@ -128,9 +129,9 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
                 + "UNIQUE (" + SongsColumns.SONG_ID + ","
                         + ChordsColumns.CHORD_ID + ") ON CONFLICT REPLACE)");
 
-        /**
-         * Playlist table and Playlist-Songs table
-         */
+        *//**
+     * Playlist table and Playlist-Songs table
+     *//*
         db.execSQL("CREATE TABLE " + Tables.PLAYLIST + " ("
                 + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + HopAmChuanDBContract.PlaylistColumns.PLAYLIST_ID + " INTEGER,"
@@ -151,7 +152,7 @@ public class HopAmChuanDatabase extends SQLiteOpenHelper {
         // Full-text search index. Update using updateSessionSearchIndex method.
         // Use the porter tokenizer for simple stemming, so that "frustration" matches "frustrated."
 
-    }
+    }*/
 
     /**
      * Work when upgrade database version (update database schema)

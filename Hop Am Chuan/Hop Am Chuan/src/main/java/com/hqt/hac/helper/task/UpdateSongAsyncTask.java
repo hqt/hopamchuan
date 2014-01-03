@@ -36,15 +36,15 @@ public class UpdateSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
     protected Integer doInBackground(Void... params) {
         // check version
         publishProgress(1);
-        DBVersion version = APIUtils.getLatestDatabaseVersion(PrefStore.getLatestVersion(context));
+        DBVersion version = APIUtils.getLatestDatabaseVersion(PrefStore.getLatestVersion());
         // no update need
-        if (version == null || version.no == PrefStore.getLatestVersion(context)) {
+        if (version == null || version.no == PrefStore.getLatestVersion()) {
             return 1;
         }
 
         // update songs
         publishProgress(2);
-        List<Song> songs = APIUtils.getAllSongsFromVersion(PrefStore.getLatestVersion(context));
+        List<Song> songs = APIUtils.getAllSongsFromVersion(PrefStore.getLatestVersion());
         if (songs == null) {
             return 2;
         }
@@ -55,7 +55,7 @@ public class UpdateSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
         if (status) return 3;
         else {
             // set latest version to system after all step has successfully update
-            PrefStore.setLatestVersion(context, version.no);
+            PrefStore.setLatestVersion(version.no);
             return 4;
         }
 

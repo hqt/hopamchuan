@@ -132,10 +132,10 @@ public class LoginActivity extends AsyncActivity {
         // byte[] oldImage = account.image;
 
         // save this account to database and set image for MainActivity
-        PrefStore.setLoginUsername(context, account.username);
-        PrefStore.setLoginPassword(context, account.password);
-        PrefStore.setEmail(context, account.email);
-        PrefStore.setUserImage(context, account.image);
+        PrefStore.setLoginUsername(account.username);
+        PrefStore.setLoginPassword(account.password);
+        PrefStore.setEmail(account.email);
+        PrefStore.setUserImage(account.image);
 
         return 0;
     }
