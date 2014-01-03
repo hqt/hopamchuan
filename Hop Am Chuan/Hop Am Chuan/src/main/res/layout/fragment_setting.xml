@@ -1,13 +1,34 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    tools:context=".SettingFragment$PlaceholderFragment"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="#fff"
+>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".SettingFragment$PlaceholderFragment"
-    android:background="#e6e7e5">
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/the_blue"
+        android:text="@string/version"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="10dp"
+        android:background="#ccc"
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -18,139 +39,176 @@
         android:textSize="17sp"
         android:id="@+id/current_version" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="#ccc"
-        android:id="@+id/sperateline1"
-        android:layout_below="@+id/current_version" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:id="@+id/relativelayout1"
-        android:layout_below="@+id/sperateline1">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/relativelayout11">
+        >
 
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:layout_marginBottom="10dp"
                 android:id="@+id/checkbox_auto_update"
                 android:text="@string/setting_auto_update" />
 
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/ic_menu_refresh"
-                android:padding="10dp"
-                android:id="@+id/update_song_button" />
 
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/relativelayout11">
 
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:layout_marginBottom="10dp"
                 android:id="@+id/checkbox_auto_sync"
                 android:text="@string/setting_auto_sync" />
+    </LinearLayout>
 
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentRight="true"
-                android:padding="10dp"
-                android:src="@drawable/ic_menu_refresh"
-                android:id="@+id/sync_song_button" />
 
-        </RelativeLayout>
 
-    </RelativeLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/update_songs"
+        android:padding="10dp"
+        android:id="@+id/update_song_button" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sync_playlist"
+        android:padding="10dp"
+        android:src="@drawable/ic_menu_refresh"
+        android:id="@+id/sync_song_button" />
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:textColor="@color/the_blue"
+        android:text="@string/account"
+        />
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="2dp"
         android:layout_marginBottom="10dp"
         android:background="#ccc"
-        android:id="@+id/sperateline2"
-        android:layout_below="@+id/relativelayout1" />
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:id="@+id/relativelayout2"
-        android:layout_below="@+id/sperateline2">
+        >
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/relativelayout"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            >
+            android:paddingLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="9dp"
+                android:layout_marginTop="9dp"
+                android:src="@drawable/abc_ab_solid_light_holo" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_toRightOf="@id/relativelayout"
+            android:paddingLeft="6dp"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true">
 
             <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:textSize="19sp"
-                android:layout_marginBottom="5dp"
-                android:text="Phiên bản mới nhất"
-                android:id="@+id/textview2" />
+                android:layout_width="wrap_content"
+                android:text="@string/login_account"
+                android:textColor="#333"
+                android:textSize="20sp"
+                android:id="@+id/name"
+                style="@style/MarqueeText"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textview2"
-                android:layout_centerHorizontal="true"
-                android:textSize="17sp"
-                android:text="2013/12/18 14:25:00"
-                android:id="@+id/textview3" />
-
-            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textview3"
-                android:layout_centerHorizontal="true"
-                android:textSize="17sp"
-                android:text="Số bài hát mới: 49 bài"
-                android:id="@+id/textview4"
-                android:layout_marginBottom="5dp" />
-
-        </RelativeLayout>
-
+                android:maxLines="1"
+                android:textSize="18sp"
+                android:id="@+id/mail"
+                android:textColor="#333"
+                style="@style/MarqueeText"
+                android:text="@string/login_account_description" />
+        </LinearLayout>
     </RelativeLayout>
 
-
-    <Button
+    <TextView
+        android:id="@+id/btnLogout"
+        android:layout_gravity="center"
+        android:textSize="17sp"
+        android:clickable="true"
+        android:textColor="@color/plus_color"
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativelayout2"
-        android:layout_centerHorizontal="true"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:id="@+id/update_now_button"
-        android:text="@string/update_now_button" />
+        android:text="@string/profile_logout"
+        />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:textColor="@color/the_blue"
+        android:text="@string/app_info_other"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="10dp"
+        android:background="#ccc"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/ClickableTextView"
+        android:text="@string/language"
+        />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:background="#ccc"
-        android:id="@+id/sperateline3"
-        android:layout_below="@+id/update_now_button" />
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/ClickableTextView"
+        android:text="@string/app_info"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ccc"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/ClickableTextView"
+        android:text="@string/app_vote"
+        />
 
-</RelativeLayout>
+</LinearLayout>
+</ScrollView>

@@ -453,4 +453,15 @@
     </style>
     <style name="ButtonBarButton" />
 
+    <style name="ClickableTextView">
+        <item name="android:paddingTop">13dp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingBottom">17dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">@drawable/dropmenu_item</item>
+        <item name="android:clickable">true</item>
+
+    </style>
+
 </resources>

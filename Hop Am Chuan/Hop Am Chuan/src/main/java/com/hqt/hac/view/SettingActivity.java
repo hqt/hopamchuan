@@ -35,8 +35,8 @@ public class SettingActivity extends AsyncActivity {
 
     /** Screen Widget */
     TextView currentVersionTxt;
-    ImageButton updateSongBtn;
-    ImageButton syncSongBtn;
+    Button updateSongBtn;
+    Button syncSongBtn;
     Button updateAllBtn;
     CheckBox autoUpdateSongChkbox;
     CheckBox autoSyncSongChkbox;
@@ -56,9 +56,9 @@ public class SettingActivity extends AsyncActivity {
 
         /** find id of all widget */
         currentVersionTxt = (TextView) findViewById(R.id.current_version);
-        updateSongBtn = (ImageButton) findViewById(R.id.update_song_button);
-        syncSongBtn = (ImageButton) findViewById(R.id.sync_song_button);
-        updateAllBtn = (Button) findViewById(R.id.update_now_button);
+        updateSongBtn = (Button) findViewById(R.id.update_song_button);
+        syncSongBtn = (Button) findViewById(R.id.sync_song_button);
+//        updateAllBtn = (Button) findViewById(R.id.update_now_button);
         autoSyncSongChkbox = (CheckBox) findViewById(R.id.checkbox_auto_sync);
         autoUpdateSongChkbox = (CheckBox) findViewById(R.id.checkbox_auto_update);
 
@@ -79,12 +79,12 @@ public class SettingActivity extends AsyncActivity {
             }
         });
 
-        updateAllBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                update(2);
-            }
-        });
+//        updateAllBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                update(2);
+//            }
+//        });
 
         autoSyncSongChkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
