@@ -20,7 +20,7 @@ public abstract class ChordViewAdapter extends BaseAdapter implements SectionInd
     protected int[] index;
 
     /** String that using for SectionIndexer */
-    protected static String sectionStr = "A,Am,B,Bm,C,Cm";
+    protected static String sectionStr = "C,Cm,D,Dm,E,Em,F,Fm,G,Gm,A,Am,B,Bm";
     protected String[] sections = sectionStr.split(",");
 
     public ChordViewAdapter(Context mContext, String[] chords) {
@@ -59,7 +59,7 @@ public abstract class ChordViewAdapter extends BaseAdapter implements SectionInd
         for (int i=0; i < chords.length; i++) {
             String item = chords[i];
             if (item.length() >= 2) item = item.substring(0, 2);
-            LOGE(TAG, "SubString: " + item);
+            // LOGE(TAG, "SubString: " + item);
             if (item.toLowerCase().equals(sections[section].toLowerCase())) {
                 return i;
             }

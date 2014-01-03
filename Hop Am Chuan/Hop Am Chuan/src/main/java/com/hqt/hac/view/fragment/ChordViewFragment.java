@@ -24,6 +24,7 @@ import com.hqt.hac.view.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 public class ChordViewFragment extends Fragment implements AdapterView.OnItemSelectedListener, IHacFragment {
@@ -113,6 +114,13 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
         }
         mChordSurfaceListView.setAdapter((BaseAdapter)adapter);
         mChordSurfaceListView.setFastScrollEnabled(true);
+
+        mChordSurfaceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                LOGE("TRUNGDQ", "view: " + view);
+            }
+        });
 
         return rootView;
     }
