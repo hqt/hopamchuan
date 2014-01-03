@@ -118,7 +118,7 @@ public class PrefStore {
     public static void setLatestVersion(Context ctx, int version) {
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.putInt(PREF_LATEST_VERSION, version);
-        editor.putInt(PREF_LATEST_VERSION, 1);      // debugging purpose
+        // editor.putInt(PREF_LATEST_VERSION, 1);      // debugging purpose
         editor.commit();
     }
 

@@ -1,16 +1,22 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.*;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import com.hqt.hac.helper.adapter.PlaylistManagerAdapter;
+import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.helper.widget.PlaylistRightMenuHandler;
 import com.hqt.hac.model.Playlist;
@@ -50,6 +56,7 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
      */
     PlaylistManagerAdapter adapter;
 
+
     public PlaylistManagerFragment() {
     }
 
@@ -72,9 +79,26 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.playlist_manager, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_new_playlist:
+                createPlaylist();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         allPlaylists = PlaylistDataAccessLayer.getAllPlayLists(getActivity().getApplicationContext());
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -95,11 +119,7 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
                 // Show the popup menu and set selectedSong
                 /** Store the song that user clicked on the right menu (the star) **/
                 PlaylistRightMenuHandler.selectedPlaylist = playlist;
-                // popupWindow.showAsDropDown(view);
-                int x = view.getLeft();
-                int y = view.getBottom();
-                LOGE(TAG, "Location On Screen Of View: " + x + "\t" + y);
-                popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, x, y);
+                popupWindow.showAsDropDown(view);
             }
         };
 
@@ -114,8 +134,8 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
         });*/
 
         mListView.setAdapter(adapter);
-        View emptyView = inflater.inflate(R.layout.list_item_playlist_empty, container, false);
-        mListView.setEmptyView(emptyView);
+//        View emptyView = inflater.inflate(R.layout.list_item_playlist_empty, container, false);
+//        mListView.setEmptyView(emptyView);
 
         // add click event item for this ListView
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -130,6 +150,19 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
             }
         });
 
+
+        /***** New playlist dialog *****/
+        SongListRightMenuHandler.mListView = mListView;
+        SongListRightMenuHandler.activity = getActivity();
+        SongListRightMenuHandler.newPlaylistDialog = DialogUtils.createDialog(activity, R.string.new_playlist,
+                activity.getLayoutInflater(), R.layout.dialog_newplaylist);
+        Button createPlaylistBtn = (Button) SongListRightMenuHandler.newPlaylistDialog.findViewById(R.id.btnCreatePlaylist);
+        createPlaylistBtn.setOnClickListener(new SongListRightMenuHandler.NewPlaylistOnClick());
+        /**************/
+        // Event to add new playlist
+        SongListRightMenuHandler.txtNewPlaylistName = (EditText) SongListRightMenuHandler.newPlaylistDialog.findViewById(R.id.txtNewPlaylistName);
+        SongListRightMenuHandler.txtNewPlaylistDescription = (EditText) SongListRightMenuHandler.newPlaylistDialog.findViewById(R.id.txtNewPlaylistDescription);
+
         return rootView;
     }
 
@@ -139,6 +172,13 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
         } else {
             v.getViewTreeObserver().removeOnGlobalLayoutListener(listener);
         }
+    }
+
+    public void createPlaylist() {
+        SongListRightMenuHandler.txtNewPlaylistName.setText("");
+        SongListRightMenuHandler.txtNewPlaylistDescription.setText("");
+        SongListRightMenuHandler.txtNewPlaylistName.requestFocus();
+        SongListRightMenuHandler.newPlaylistDialog.show();
     }
 
     @Override

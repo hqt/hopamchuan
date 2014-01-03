@@ -370,8 +370,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
             case android.R.id.home:
                 toggle();
                 return true;
-            case R.id.action_settings:
-                return true;
             case R.id.search_bar:
                 return true;
         }

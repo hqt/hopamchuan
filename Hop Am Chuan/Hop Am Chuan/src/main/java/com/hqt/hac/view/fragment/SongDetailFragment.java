@@ -98,6 +98,7 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
         TextView songAuthorsTextView = (TextView) rootView.findViewById(R.id.songAuthorsTV);
         TextView songSingersTextView = (TextView) rootView.findViewById(R.id.songSingersTV);
         TextView songContentTextView = (TextView) rootView.findViewById(R.id.songContent);
+        Button btnFullScreen = (Button) rootView.findViewById(R.id.btnFullScreen);
 
         songTitleTextView.setText(song.title);
         songAuthorsTextView.setText(song.getAuthorsString(activity.getApplicationContext()));
@@ -106,7 +107,7 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
         // Set song content
         // HacUtils.setSongFormatted(activity.getApplicationContext(), songContentTV, song.getContent(activity.getApplicationContext()), activity);
         songContentTextView.setText(song.getContent(activity.getApplicationContext()));
-        songContentTextView.setOnClickListener(new View.OnClickListener() {
+        btnFullScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openFullScreenSong();
