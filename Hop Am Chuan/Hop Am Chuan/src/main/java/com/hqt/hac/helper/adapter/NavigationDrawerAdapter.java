@@ -99,10 +99,6 @@ public class NavigationDrawerAdapter {
                         Intent intent = new Intent(activity, LoginActivity.class);
                         activity.startActivity(intent);
                         activity.finish();
-
-                        // TrungDQ: Prefer popup than an mActivity
-//                        LoginPopup loginPopup = new LoginPopup(mActivity);
-//                        loginPopup.show();
                     } else {
                         // Start logout mActivity or popup here.
                         ProfilePopup profilePopup = new ProfilePopup(activity);
@@ -184,44 +180,44 @@ public class NavigationDrawerAdapter {
             catch (Exception e) {
                 if (holder == null) Log.e("Huynh Quang Thao", "Silly Error");
             }
-
-            switch(position) {
-                case 0:
-                    // Trang chu
-                    holder.imageView.setImageResource(R.drawable.home_icon);
-                    type = TYPE.HOME;
-                    break;
-                case 1:
-                    // Bài hát
-                    holder.imageView.setImageResource(R.drawable.songs_icon);
-                    type = TYPE.SONGS;
-                    break;
-                case 2:
-                    // Playlist cua toi
-                    holder.imageView.setImageResource(R.drawable.playlist_icon);
-                    type = TYPE.MYPLAYLIST;
-                    break;
-                case 3:
-                    // Yeu Thich
-                    holder.imageView.setImageResource(R.drawable.favorite_icon);
-                    type = TYPE.FAVORITE;
-                    break;
-                case 4:
-                    // Tim Theo Hop Am
-                    holder.imageView.setImageResource(R.drawable.search_icon);
-                    type = TYPE.FIND_BY_CHORD;
-                    break;
-                case 5:
-                    // Tra cuu hop am
-                    holder.imageView.setImageResource(R.drawable.chord_icon);
-                    type = TYPE.SEARCH_CHORD;
-                    break;
-                case 6:
-                    // Cai dat
-                    holder.imageView.setImageResource(R.drawable.setting_icon);
-                    type = TYPE.SETTING;
-                    break;
-
+            if (holder != null) {
+                switch(position) {
+                    case 0:
+                        // Trang chu
+                        holder.imageView.setImageResource(R.drawable.home_icon);
+                        type = TYPE.HOME;
+                        break;
+                    case 1:
+                        // Bài hát
+                        holder.imageView.setImageResource(R.drawable.songs_icon);
+                        type = TYPE.SONGS;
+                        break;
+                    case 2:
+                        // Playlist cua toi
+                        holder.imageView.setImageResource(R.drawable.playlist_icon);
+                        type = TYPE.MYPLAYLIST;
+                        break;
+                    case 3:
+                        // Yeu Thich
+                        holder.imageView.setImageResource(R.drawable.favorite_icon);
+                        type = TYPE.FAVORITE;
+                        break;
+                    case 4:
+                        // Tim Theo Hop Am
+                        holder.imageView.setImageResource(R.drawable.search_icon);
+                        type = TYPE.FIND_BY_CHORD;
+                        break;
+                    case 5:
+                        // Tra cuu hop am
+                        holder.imageView.setImageResource(R.drawable.chord_icon);
+                        type = TYPE.SEARCH_CHORD;
+                        break;
+                    case 6:
+                        // Cai dat
+                        holder.imageView.setImageResource(R.drawable.setting_icon);
+                        type = TYPE.SETTING;
+                        break;
+                }
             }
 
             final TYPE finalType = type;

@@ -14,14 +14,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 
+import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.service.Mp3PlayerService;
 import com.hqt.hac.helper.widget.MusicPlayerController;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
+import com.hqt.hac.model.dal.ArtistDataAccessLayer;
+import com.hqt.hac.model.dal.ChordDataAccessLayer;
+import com.hqt.hac.model.dal.SongDataAccessLayer;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.view.FullscreenSongActivity;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
+
+import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
@@ -48,6 +54,11 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
     private PopupWindow mPopupMenu;
     private View mMenuLayout;
     private boolean isPopupOpened = false;
+
+    /** Related songs layout **/
+    private LinearLayout sameAuthorLayout;
+    private LinearLayout sameSingerLayout;
+    private LinearLayout sameChordLayout;
 
     /**
      * empty constructor
@@ -98,7 +109,7 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
         TextView songAuthorsTextView = (TextView) rootView.findViewById(R.id.songAuthorsTV);
         TextView songSingersTextView = (TextView) rootView.findViewById(R.id.songSingersTV);
         TextView songContentTextView = (TextView) rootView.findViewById(R.id.songContent);
-        Button btnFullScreen = (Button) rootView.findViewById(R.id.btnFullScreen);
+        TextView btnFullScreen = (TextView) rootView.findViewById(R.id.btnFullScreen);
 
         songTitleTextView.setText(song.title);
         songAuthorsTextView.setText(song.getAuthorsString(activity.getApplicationContext()));
@@ -147,6 +158,8 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
 
         setupMediaPlayer();
 
+        setUpRelatedSongs();
+
         return rootView;
     }
 
@@ -154,6 +167,109 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
         Intent intent = new Intent(activity, FullscreenSongActivity.class);
         intent.putExtra("song", song);
         activity.startActivity(intent);
+    }
+
+    /**
+     * TODO: do this in another thread to maintain performance
+     */
+    private void setUpRelatedSongs() {
+
+        sameAuthorLayout = (LinearLayout) rootView.findViewById(R.id.linear_layout_same_author);
+        sameSingerLayout = (LinearLayout) rootView.findViewById(R.id.linear_layout_same_singer);
+        sameChordLayout = (LinearLayout) rootView.findViewById(R.id.linear_layout_same_chord);
+
+        /** Same author **/
+        addSameAuthorSongs();
+
+        /** Same singer **/
+        addSameSingerSongs();
+
+        /** Same chords **/
+        addSameChordSongs();
+
+        // Action for buttons
+        TextView sameChordBtn = (TextView) rootView.findViewById(R.id.same_chord_btn);
+        TextView sameAuthorBtn = (TextView) rootView.findViewById(R.id.same_author_btn);
+        TextView sameSingerBtn = (TextView) rootView.findViewById(R.id.same_singer_btn);
+
+        sameChordBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addSameChordSongs();
+            }
+        });
+        sameSingerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addSameSingerSongs();
+            }
+        });
+        sameAuthorBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addSameAuthorSongs();
+            }
+        });
+
+
+
+    }
+    private void addSameChordSongs() {
+        List<Song> sameChord = ChordDataAccessLayer.getRandomSongsByChords(
+                activity.getApplicationContext(),
+                song.getChords(activity.getApplicationContext()),
+                Config.DEFAULT_RELATED_SONGS_COUNT);
+        addSongsToLayout(sameChord, sameChordLayout);
+    }
+    private void addSameSingerSongs() {
+        List<Song> sameSinger = ArtistDataAccessLayer.getRandomSongsBySinger(
+                activity.getApplicationContext(),
+                song.getSingers(activity.getApplicationContext()).get(0).artistId,
+                Config.DEFAULT_RELATED_SONGS_COUNT);
+        addSongsToLayout(sameSinger, sameSingerLayout);
+    }
+    private void addSameAuthorSongs() {
+        List<Song> sameAuthor = ArtistDataAccessLayer.getRandomSongsByAuthor(
+                activity.getApplicationContext(),
+                song.getAuthors(activity.getApplicationContext()).get(0).artistId,
+                Config.DEFAULT_RELATED_SONGS_COUNT);
+        addSongsToLayout(sameAuthor, sameAuthorLayout);
+    }
+
+    /**
+     * Dynamically add songs to the layout.
+     * @param songs
+     * @param layout
+     */
+    private void addSongsToLayout(List<Song> songs, ViewGroup layout) {
+        for (Song song : songs) {
+
+            View songView = activity.getLayoutInflater().inflate(R.layout.song_detail_fragment_related_song_item, null);
+
+            RelativeLayout songItemHolder = (RelativeLayout) songView.findViewById(R.id.relativelayout);
+
+            TextView songTitle = (TextView) songItemHolder.findViewById(R.id.txtSongName);
+            TextView songLyric = (TextView) songItemHolder.findViewById(R.id.txtLyrics);
+            TextView songChords = (TextView) songItemHolder.findViewById(R.id.txtChord);
+            ImageView songStar = (ImageView) songItemHolder.findViewById(R.id.imageFavorite);
+
+
+            songTitle.setText(song.title);
+            songLyric.setText(song.firstLyric);
+            songChords.setText(song.getChordString(activity.getApplicationContext()));
+
+            if (song.isFavorite > 0) {
+                songStar.setImageResource(R.drawable.star_liked);
+            } else {
+                songStar.setImageResource(R.drawable.star);
+            }
+
+            // TODO: Bind event to the star
+
+            // TODO: Bind event to the song
+
+            layout.addView(songItemHolder);
+        }
     }
 
     ////////////////////////////////////////////////////////////////////

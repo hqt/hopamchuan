@@ -216,7 +216,7 @@
     <string name="split_line">Tách dòng</string>
     <string name="song_detail_scroll_label">Cuộn trang</string>
     <string name="play_music">Nghe nhạc</string>
-    <string name="view_full_screen">Xem hợp âm</string>
+    <string name="view_full_screen">XEM HỢP ÂM</string>
     <string name="remove_from_playlist">Xóa khỏi playlist</string>
     <string name="press_back_again">Nhấn nút Back lần nữa để thoát</string>
     <string name="version">PHIÊN BẢN</string>
@@ -227,5 +227,8 @@
     <string name="language">Cài đặt ngôn ngữ</string>
     <string name="app_info">Thông tin ứng dụng</string>
     <string name="app_vote">Bình chọn trên Play Store</string>
+    <string name="view_same_singer_songs">BÀI HÁT CÙNG CA SĨ</string>
+    <string name="view_same_author_songs">BÀI HÁT CÙNG TÁC GIẢ</string>
+    <string name="view_same_chord_songs">BÀI HÁT CÙNG HỢP ÂM</string>
 
 </resources>

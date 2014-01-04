@@ -28,5 +28,6 @@
     <color name="plus_empty_image_background_color">#888</color>
     <color name="black_overlay">#66000000</color>
     <color name="the_blue">#546da3</color>
+    <color name="the_blue_lighter">#ff568eda</color>
 
 </resources>

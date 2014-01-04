@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    android:exitFadeDuration="@android:integer/config_mediumAnimTime">
+
+    <item android:drawable="@color/plus_color" android:state_pressed="true"/>
+    <item android:drawable="@color/map_info_2" android:state_selected="true"/>
+    <item android:drawable="@color/accent_1" android:state_activated="true"/>
+
+</selector>

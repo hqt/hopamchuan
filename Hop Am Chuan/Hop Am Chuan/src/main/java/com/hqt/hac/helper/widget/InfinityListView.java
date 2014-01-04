@@ -156,8 +156,8 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 
         // get the first Item that currently hide and need to show
         final int firstItemHide = firstVisibleItem + visibleItemCount;
-        LOGE(TAG, "FirstVisibleItem:" + firstVisibleItem + "  VisibleItemCount:"
-                 + visibleItemCount + "  TotalItemCount:" + totalItemCount);
+        // LOGE(TAG, "FirstVisibleItem:" + firstVisibleItem + "  VisibleItemCount:"
+        //          + visibleItemCount + "  TotalItemCount:" + totalItemCount);
         if (firstItemHide >= totalItemCount) {
             // scheduleWork(totalItemCount); << we don't count the loading item
             scheduleWork(totalItemCount - 1);
@@ -264,7 +264,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         layout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         layout.setOrientation(LinearLayout.VERTICAL);
         ProgressBar loading = new ProgressBar(getContext());
-        loading.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, Gravity.CENTER));
+        loading.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, Gravity.CENTER));
         layout.addView(loading);
         return layout;
     }

@@ -29,6 +29,8 @@ public class Config {
     /** Default song count to display in SongListFragment **/
     public static final int DEFAULT_SONG_LIST_COUNT = 3;
 
+    /** Song detail fragment **/
+    public static final int DEFAULT_RELATED_SONGS_COUNT = 2;
 
     /** Song full view config **/
     public static final float SONG_CONTENT_DEFAULT_FONT_SIZE = 30;
@@ -37,7 +39,7 @@ public class Config {
     public static final int SONG_AUTO_SCROLL_MAX_NEV_SPEED = 10;
     public static final int SONG_AUTO_SCROLL_DEGREE = 10;
 
-    public static final String HAC_POWERMANAGER_SCREEN_TAG = "HAC TAG";
+    /** Fragment manager **/
     public static final int FRAGMENT_TAG_MIN = 10000;
     public static final int FRAGMENT_TAG_MAX = 99999;
 
