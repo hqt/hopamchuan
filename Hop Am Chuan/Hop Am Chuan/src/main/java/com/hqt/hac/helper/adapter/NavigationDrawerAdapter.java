@@ -16,6 +16,7 @@ import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.utils.EncodingUtils;
+import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.view.LoginActivity;
 import com.hqt.hac.view.R;
 import com.hqt.hac.view.popup.ProfilePopup;
@@ -93,8 +94,7 @@ public class NavigationDrawerAdapter {
                 @Override
                 public void onClick(View v) {
                     // TrungDQ: if you user has logged in, then display Logout popup
-                    Bitmap checkLoggedIn = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage());
-                    if (checkLoggedIn == null) {
+                    if (!HacUtils.isLoggedIn()) {
                         // start Login Activity
                         Intent intent = new Intent(activity, LoginActivity.class);
                         activity.startActivity(intent);
@@ -104,7 +104,6 @@ public class NavigationDrawerAdapter {
                         ProfilePopup profilePopup = new ProfilePopup(activity);
                         profilePopup.show();
                     }
-
                 }
             });
 

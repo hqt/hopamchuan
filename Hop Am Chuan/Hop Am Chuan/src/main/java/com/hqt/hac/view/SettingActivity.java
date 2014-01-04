@@ -1,15 +1,19 @@
 package com.hqt.hac.view;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hqt.hac.config.PrefStore;
@@ -24,7 +28,10 @@ import com.hqt.hac.model.json.DBVersion;
 import com.hqt.hac.model.json.JsonPlaylist;
 import com.hqt.hac.utils.APIUtils;
 import com.hqt.hac.utils.DialogUtils;
+import com.hqt.hac.utils.EncodingUtils;
+import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.utils.NetworkUtils;
+import com.hqt.hac.view.popup.ProfilePopup;
 
 import java.util.List;
 
@@ -99,6 +106,62 @@ public class SettingActivity extends AsyncActivity {
 
             }
         });
+
+
+        // Account info
+        loadAccountInfo();
+
+        // Login / Logout Buttons
+        TextView btnLogout = (TextView) findViewById(R.id.btnLogout);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
+            }
+        });
+
+        RelativeLayout loginBtn = (RelativeLayout) findViewById(R.id.loginBtn);
+        final Activity finalActivity = this;
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!HacUtils.isLoggedIn()) {
+                    // start Login Activity
+                    Intent intent = new Intent(finalActivity, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    // Start logout mActivity or popup here.
+                    ProfilePopup profilePopup = new ProfilePopup(finalActivity);
+                    profilePopup.show();
+                }
+            }
+        });
+
+
+    }
+    private void logout() {
+        HacUtils.logout(getApplicationContext());
+        // Reload the mActivity
+        loadAccountInfo();
+    }
+
+    private void loadAccountInfo() {
+        // Account info
+
+        TextView txtName = (TextView) findViewById(R.id.name);
+        TextView txtMail = (TextView) findViewById(R.id.mail);
+        ImageView imgAvatar = (ImageView) findViewById(R.id.imageView);
+
+        txtName.setText(PrefStore.getLoginUsername());
+        txtMail.setText(PrefStore.getEmail());
+        Bitmap imageAvatar = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage());
+
+        if (imageAvatar != null) {
+            imgAvatar.setImageBitmap(imageAvatar);
+        } else {
+            imgAvatar.setImageResource(R.drawable.default_avatar);
+        }
     }
 
     private void update(int method) {

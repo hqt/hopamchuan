@@ -244,6 +244,7 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
      * @param layout
      */
     private void addSongsToLayout(List<Song> songs, ViewGroup layout) {
+        if (songs == null) return;
         for (final Song song : songs) {
 
             View songView = activity.getLayoutInflater().inflate(R.layout.song_detail_fragment_related_song_item, null);

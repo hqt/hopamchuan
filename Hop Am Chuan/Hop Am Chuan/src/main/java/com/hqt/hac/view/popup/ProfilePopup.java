@@ -14,6 +14,7 @@ import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.model.dal.FavoriteDataAccessLayer;
 import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.utils.EncodingUtils;
+import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 import com.hqt.hac.view.SettingActivity;
@@ -79,16 +80,7 @@ public class ProfilePopup {
     }
 
     private void logout() {
-        Context context = activity.getApplicationContext();
-        PrefStore.setLoginUsername( null);
-        PrefStore.setLoginPassword(null);
-        PrefStore.setEmail(null);
-        PrefStore.setUserImage(null);
-
-        // Remove all playlist, favorites
-        PlaylistDataAccessLayer.removeAllPlaylists(context);
-        FavoriteDataAccessLayer.removeAllFavorites(context);
-
+        HacUtils.logout(activity.getApplicationContext());
         // Reload the mActivity
         dialog.dismiss();
         Intent intent = new Intent(activity, MainActivity.class);

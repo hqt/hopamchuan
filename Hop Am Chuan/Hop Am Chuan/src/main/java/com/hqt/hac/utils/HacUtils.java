@@ -2,13 +2,17 @@ package com.hqt.hac.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.widget.TextView;
 
 import com.hac_library.helper.ChordHelper;
+import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.helper.widget.ChordClickableSpan;
+import com.hqt.hac.model.dal.FavoriteDataAccessLayer;
+import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -92,4 +96,24 @@ public class HacUtils {
         setSongFormatted(applicationContext, testTextView, songContent, theActivity);
     }
 
+    /**
+     * Logout current user, reset all favorite, playlist
+     * @param context
+     */
+    public static void logout(Context context){
+        PrefStore.setLoginUsername(null);
+        PrefStore.setLoginPassword(null);
+        PrefStore.setEmail(null);
+        PrefStore.setUserImage(null);
+
+        // Remove all playlist, favorites
+        PlaylistDataAccessLayer.removeAllPlaylists(context);
+        FavoriteDataAccessLayer.removeAllFavorites(context);
+
+    }
+
+    public static boolean isLoggedIn() {
+        Bitmap checkLoggedIn = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage());
+        return checkLoggedIn != null;
+    }
 }
