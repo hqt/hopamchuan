@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 
 import com.hqt.hac.config.Config;
+import com.hqt.hac.helper.adapter.IContextMenu;
 import com.hqt.hac.helper.adapter.InfinityAdapter;
 import com.hqt.hac.helper.adapter.SongListAdapter;
 import com.hqt.hac.helper.widget.InfinityListView;
@@ -121,7 +122,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         SongListRightMenuHandler.setRightMenuEvents(activity, popupWindow);
 
         // Event received from mAdapter.
-        songlistAdapter.contextMenuDelegate = new SongListAdapter.IContextMenu() {
+        songlistAdapter.contextMenuDelegate = new IContextMenu() {
             @Override
             public void onMenuClick(View view, Song song, ImageView theStar) {
                 // Show the popup menu and set selectedSong, theStar

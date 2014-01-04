@@ -9,6 +9,8 @@ import android.net.Uri;
 import com.hqt.hac.model.Chord;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.HopAmChuanDBContract;
+import com.hqt.hac.provider.HopAmChuanDatabase;
+import com.hqt.hac.provider.HopAmChuanProvider;
 import com.hqt.hac.provider.helper.Query;
 
 import java.util.ArrayList;
@@ -91,6 +93,16 @@ public class ChordDataAccessLayer {
      * @return
      */
     public static List<Song> getRandomSongsByChords(Context context, List<Chord> chords, int limit) {
-        return new ArrayList<Song>();
+
+        /*
+        SELECT rs.song_id, COUNT(*) AS c FROM (SELECT s.song_id FROM   song s JOIN
+		  song_chord sc USING (song_id) WHERE  sc.chord_id IN (".implode(",", $chords).") GROUP
+		   BY 1 HAVING COUNT(*) = ".count($chords).") AS rs JOIN song_chord ssc USING (song_id)
+			GROUP BY song_id ORDER BY c LIMIT 0, 90
+
+         */
+
+        return null;
+
     }
 }

@@ -4,7 +4,6 @@
     android:id="@+id/relativelayout"
     android:orientation="horizontal"
     android:layout_width="fill_parent"
-    android:background="@drawable/dropmenu_item"
     android:layout_height="wrap_content">
 
     <LinearLayout
@@ -17,6 +16,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
         android:orientation="vertical"
+        android:clickable="true"
+        android:background="@drawable/dropmenu_item"
         android:id="@+id/linearLayout">
 
         <TextView
@@ -52,6 +53,7 @@
 
     <ImageView
         android:id="@+id/imageFavorite"
+        android:clickable="true"
         android:layout_width="50dp"
         android:layout_height="60dp"
         android:paddingLeft="15dp"

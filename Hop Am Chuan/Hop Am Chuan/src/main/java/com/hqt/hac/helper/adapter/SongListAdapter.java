@@ -125,9 +125,5 @@ public class SongListAdapter extends BaseAdapter implements IInfinityAdapter {
         ImageView imgFavorite;
     }
 
-    /** interface */
-    public interface IContextMenu {
-        public void onMenuClick(View view, Song song, ImageView theStar);
-    }
 
 }

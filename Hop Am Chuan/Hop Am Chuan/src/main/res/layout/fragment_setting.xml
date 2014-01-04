@@ -26,7 +26,6 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="2dp"
-        android:layout_marginBottom="10dp"
         android:background="#ccc"
         />
 
@@ -86,7 +85,7 @@
             android:layout_marginTop="20dp"
             android:textSize="18sp"
             android:textColor="@color/the_blue"
-            android:text="Download"
+            android:text="DOWNLOAD"
             />
     <View
             android:layout_width="match_parent"
@@ -102,7 +101,7 @@
             android:layout_marginTop="20dp"
             android:textSize="18sp"
             android:textColor="@color/the_blue"
-            android:text="Misc"
+            android:text="MISC"
             />
     <View
             android:layout_width="match_parent"
@@ -115,7 +114,7 @@
 
 
 
-    <!--<TextView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -199,7 +198,7 @@
         android:layout_height="wrap_content"
         android:text="@string/profile_logout"
         />
--->
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -212,7 +211,6 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="2dp"
-        android:layout_marginBottom="10dp"
         android:background="#ccc"
         />
     <TextView
@@ -243,6 +241,5 @@
         style="@style/ClickableTextView"
         android:text="@string/app_vote"
         />
-
 </LinearLayout>
 </ScrollView>

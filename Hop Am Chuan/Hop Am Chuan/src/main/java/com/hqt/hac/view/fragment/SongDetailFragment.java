@@ -1,28 +1,27 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.service.Mp3PlayerService;
 import com.hqt.hac.helper.widget.MusicPlayerController;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
+import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.ArtistDataAccessLayer;
 import com.hqt.hac.model.dal.ChordDataAccessLayer;
-import com.hqt.hac.model.dal.SongDataAccessLayer;
 import com.hqt.hac.utils.DialogUtils;
-import com.hqt.hac.model.Song;
 import com.hqt.hac.view.FullscreenSongActivity;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
@@ -59,6 +58,9 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
     private LinearLayout sameAuthorLayout;
     private LinearLayout sameSingerLayout;
     private LinearLayout sameChordLayout;
+
+    /** Popup window for related songs stars **/
+    private PopupWindow popupWindow;
 
     /**
      * empty constructor
@@ -242,16 +244,17 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
      * @param layout
      */
     private void addSongsToLayout(List<Song> songs, ViewGroup layout) {
-        for (Song song : songs) {
+        for (final Song song : songs) {
 
             View songView = activity.getLayoutInflater().inflate(R.layout.song_detail_fragment_related_song_item, null);
 
             RelativeLayout songItemHolder = (RelativeLayout) songView.findViewById(R.id.relativelayout);
+            LinearLayout songLinearLayout = (LinearLayout) songView.findViewById(R.id.linearLayout);
 
             TextView songTitle = (TextView) songItemHolder.findViewById(R.id.txtSongName);
             TextView songLyric = (TextView) songItemHolder.findViewById(R.id.txtLyrics);
             TextView songChords = (TextView) songItemHolder.findViewById(R.id.txtChord);
-            ImageView songStar = (ImageView) songItemHolder.findViewById(R.id.imageFavorite);
+            final ImageView songStar = (ImageView) songItemHolder.findViewById(R.id.imageFavorite);
 
 
             songTitle.setText(song.title);
@@ -264,9 +267,29 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
                 songStar.setImageResource(R.drawable.star);
             }
 
-            // TODO: Bind event to the star
+            // Bind event to the star
+            popupWindow = DialogUtils.createPopup(activity.getLayoutInflater(), R.layout.popup_songlist_menu);
+            SongListRightMenuHandler.setRightMenuEvents(activity, popupWindow);
 
-            // TODO: Bind event to the song
+            songStar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SongListRightMenuHandler.openPopupMenu(view, song, songStar);
+                }
+            });
+
+            // Bind event to the song
+            songLinearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SongDetailFragment fragment = new SongDetailFragment();
+                    Bundle arguments = new Bundle();
+                    arguments.putParcelable("song", song);
+                    fragment.setArguments(arguments);
+                    activity.switchFragmentNormal(fragment);
+                    activity.changeTitleBar(song.title);
+                }
+            });
 
             layout.addView(songItemHolder);
         }
