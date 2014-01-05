@@ -37,6 +37,9 @@ public class PrefStore {
     /** Preference key containg currently image of account */
     public static final String PREF_USER_IMAGE = "user_image";
 
+    /** Preference key containg currently language */
+    public static final String PREF_LANGUAGE = "system_language";
+
     ///////////////////////////////////////////////////////////////
     /////////////////   DEFAULT VALUE   ///////////////////////////
     /** Default value for {@link PrefStore#PREF_IS_FIRST_RUN} */
@@ -56,6 +59,9 @@ public class PrefStore {
 
     /** Default value for {@link PrefStore#PREF_USER_IMAGE} */
     public static final String DEFAULT_USER_IMAGE = "image_data";
+
+    /** Default value for {@link PrefStore#PREF_LANGUAGE} */
+    public static final String DEFAULT_LANGUAGE = "en";
 
 
     ////////////////////////////////////////////////////////////////////
@@ -85,18 +91,12 @@ public class PrefStore {
         return EncodingUtils.decodeDataUsingBase64(strImg);
     }
 
-    public static void setUserImage(byte[] image) {
-//        LOGE(TAG, "OLD LENGTH: " + image.length);
-        SharedPreferences.Editor editor = getSharedPreferences().edit();
-        String strImg = EncodingUtils.encodeByteArrUsingBase64(image);
-        editor.putString(PREF_USER_IMAGE, strImg);
-        editor.commit();
-//        LOGE(TAG, "NEW LENGTH: " + PrefStore.getUserImage(ctx).length);
-    }
-
-
     public static int getLatestVersion() {
         return getSharedPreferences().getInt(PREF_LATEST_VERSION, DEFAULT_LATEST_VERSION);
+    }
+
+    public static String getSystemLanguage() {
+        return getSharedPreferences().getString(PREF_LANGUAGE, DEFAULT_LANGUAGE);
     }
 
     ////////////////////////////////////////////////////////////////////
@@ -119,7 +119,6 @@ public class PrefStore {
         editor.commit();
     }
 
-
     public static void setLatestVersion(int version) {
         SharedPreferences.Editor editor = getSharedPreferences().edit();
         editor.putInt(PREF_LATEST_VERSION, version);
@@ -133,6 +132,20 @@ public class PrefStore {
         editor.commit();
     }
 
+    public static void setUserImage(byte[] image) {
+//        LOGE(TAG, "OLD LENGTH: " + image.length);
+        SharedPreferences.Editor editor = getSharedPreferences().edit();
+        String strImg = EncodingUtils.encodeByteArrUsingBase64(image);
+        editor.putString(PREF_USER_IMAGE, strImg);
+        editor.commit();
+//        LOGE(TAG, "NEW LENGTH: " + PrefStore.getUserImage(ctx).length);
+    }
+
+    public static void setSystemLanguage(String language) {
+        SharedPreferences.Editor editor = getSharedPreferences().edit();
+        editor.putString(PREF_LANGUAGE, language);
+        editor.commit();
+    }
 
     //////////////////////////////////////////////////////////////////////
     ///////////////////// QUERY DATA EXIST ///////////////////////////////

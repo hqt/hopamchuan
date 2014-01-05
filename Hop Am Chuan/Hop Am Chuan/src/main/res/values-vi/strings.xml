@@ -17,13 +17,13 @@
 
     <!-- default items for navigation drawer -->
     <string-array name="navigation_drawer_default_items">
-        <item>Main Page</item>
-        <item>Song</item>
-        <item>My Playlist</item>
-        <item>My Favorite</item>
-        <item>Search Chords</item>
-        <item>Chord Dictionary</item>
-        <item>Sync Data</item>
+        <item>Trang chủ</item>
+        <item>Bài hát</item>
+        <item>Playlist của tôi</item>
+        <item>Yêu thích</item>
+        <item>Tìm theo hợp âm</item>
+        <item>Tra cứu hợp âm</item>
+        <item>Đồng bộ</item>
     </string-array>
 
     <!-- list all method to view songs -->
@@ -157,7 +157,7 @@
     <string name="title_activity_test">Activity Test</string>
     <string name="chord_finger_position">Cách bấm hợp âm</string>
     <string name="search_box_placeholder">Tên bài hát, tác giả, ca sĩ...</string>
-    <string name="current_version">Last Update:</string>
+    <string name="current_version">Lần cập nhật cuối:</string>
     <string name="setting_auto_update">Tự động cập nhật bài hát mới</string>
     <string name="setting_auto_update_button">Cập nhật bài hát mới</string>
     <string name="setting_auto_sync">Tự động đồng bộ playlist</string>

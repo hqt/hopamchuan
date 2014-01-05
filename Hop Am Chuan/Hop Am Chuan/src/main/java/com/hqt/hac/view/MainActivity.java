@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.hqt.hac.config.Config;
+import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
 import com.hqt.hac.helper.service.Mp3PlayerService;
@@ -36,8 +38,12 @@ import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.fragment.*;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
@@ -127,8 +133,14 @@ public class MainActivity extends SlidingMenuActionBarActivity
                     .build());*/
         }
 
-
         super.onCreate(savedInstanceState);
+
+        Locale locale = new Locale(PrefStore.getSystemLanguage());
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
 
         // delete all database
 //        HopAmChuanDatabase.deleteDatabase(getApplicationContext());

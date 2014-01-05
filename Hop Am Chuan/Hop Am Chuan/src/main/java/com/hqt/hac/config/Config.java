@@ -47,4 +47,9 @@ public class Config {
     public static final int LOADING_SMOOTHING_DELAY = 300;
     public static final int SPLASH_SCREEN_TIMEOUT = 2000;
     public static final int DEFAULT_SONG_NUM_PER_LOAD = 10;
+
+    /** Language Locale Code */
+    public static final String LANGUAGE_DEFAULT = "en";
+    public static final String LANGUAGE_VIETNAMESE = "vi";
+    public static final String LANGUAGE_ENGLISH = "en";
 }

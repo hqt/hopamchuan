@@ -8,14 +8,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.*;
 
+import com.hqt.hac.config.Config;
 import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.helper.task.AsyncActivity;
 import com.hqt.hac.model.Playlist;
@@ -35,16 +30,14 @@ import com.hqt.hac.view.popup.ProfilePopup;
 
 import java.util.List;
 
-import static com.hqt.hac.utils.LogUtils.LOGD;
-
 public class SettingActivity extends AsyncActivity {
 
 
     /** Screen Widget */
     TextView currentVersionTxt;
+    TextView languageSettingTxt;
     Button updateSongBtn;
     Button syncSongBtn;
-    Button updateAllBtn;
     CheckBox autoUpdateSongChkbox;
     CheckBox autoSyncSongChkbox;
 
@@ -65,49 +58,93 @@ public class SettingActivity extends AsyncActivity {
         currentVersionTxt = (TextView) findViewById(R.id.current_version);
         updateSongBtn = (Button) findViewById(R.id.update_song_button);
         syncSongBtn = (Button) findViewById(R.id.sync_song_button);
-//        updateAllBtn = (Button) findViewById(R.id.update_now_button);
         autoSyncSongChkbox = (CheckBox) findViewById(R.id.checkbox_auto_sync);
         autoUpdateSongChkbox = (CheckBox) findViewById(R.id.checkbox_auto_update);
+        languageSettingTxt = (TextView) findViewById(R.id.language_setting_txt);
 
-        // set value and action for widget
-        currentVersionTxt.setText(getString(R.string.current_version) + " " + PrefStore.getLatestVersion());
+        setUpAccountInfo();
+        setUpSync();
+        setUpSettingLanguage();
+    }
 
-        updateSongBtn.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    //region Language Setting Function
+    int currentLanguageId = 0;
+    String currentTitle = "";
+    CharSequence[] currentOption;
+    String currentNotifyText;
+    private void setUpSettingLanguage() {
+        if (PrefStore.getSystemLanguage().equals(Config.LANGUAGE_VIETNAMESE)) {
+            currentLanguageId = 0;
+        } else {
+            currentLanguageId = 1;
+        }
+       settingOptionString();
+        languageSettingTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                update(0);
+                showListDialog();
             }
         });
+    }
 
-        syncSongBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                update(1);
-            }
-        });
+    private void settingOptionString() {
+        if (currentLanguageId == 0) {
+            currentLanguageId = 0;
+            currentTitle = "Ngôn Ngữ";
+            currentOption = new CharSequence[]{"Tiếng Việt", "English", "Mặc Định"};
+            currentNotifyText = "Restart HopAmChuan app to apply change";
+        } else {
+            currentLanguageId = 1;
+            currentTitle = "Language";
+            currentOption = new CharSequence[]{"Tiếng Việt", "English", "Default"};
+            currentNotifyText = "Thoát và khởi động lại ứng dụng Hợp Âm Chuẩn để thay đổi có hiệu lực";
+        }
+        languageSettingTxt.setText(currentTitle);
+    }
 
-//        updateAllBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                update(2);
-//            }
-//        });
+    private void showListDialog() {
+        final int[] changeLanguageId = {0};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(currentTitle)
+                .setItems(currentOption, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int choice) {
+                        switch (choice) {
+                            case 0:
+                                PrefStore.setSystemLanguage(Config.LANGUAGE_VIETNAMESE);
+                                changeLanguageId[0] = 0;
+                                break;
+                            case 1:
+                                PrefStore.setSystemLanguage(Config.LANGUAGE_ENGLISH);
+                                changeLanguageId[0] = 1;
+                                break;
+                            case 2:
+                                PrefStore.setSystemLanguage(Config.LANGUAGE_DEFAULT);
+                                changeLanguageId[0] = 1;
+                                break;
+                        }
+                        if (changeLanguageId[0] != currentLanguageId) {
+                            Toast.makeText(getBaseContext(), currentNotifyText, Toast.LENGTH_SHORT).show();
+                            currentLanguageId = changeLanguageId[0];
+                            settingOptionString();
+                        }
+                    }
+                })
+                .setCancelable(false);
+        builder.create().show();
+    }
+    //endregion
 
-        autoSyncSongChkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+    //region Account Function
 
-            }
-        });
-
-        autoUpdateSongChkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-            }
-        });
-
-
+    private void setUpAccountInfo() {
         // Account info
         loadAccountInfo();
 
@@ -137,9 +174,8 @@ public class SettingActivity extends AsyncActivity {
                 }
             }
         });
-
-
     }
+
     private void logout() {
         HacUtils.logout(getApplicationContext());
         // Reload the mActivity
@@ -163,6 +199,41 @@ public class SettingActivity extends AsyncActivity {
             imgAvatar.setImageResource(R.drawable.default_avatar);
         }
     }
+    //endregion
+
+    //region Sync Function
+    private void setUpSync() {
+        // set value and action for widget
+        currentVersionTxt.setText(getString(R.string.current_version) + " " + PrefStore.getLatestVersion());
+
+        updateSongBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                update(0);
+            }
+        });
+
+        syncSongBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                update(1);
+            }
+        });
+
+        autoSyncSongChkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+            }
+        });
+
+        autoUpdateSongChkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+            }
+        });
+    }
 
     private void update(int method) {
         // check network
@@ -174,13 +245,6 @@ public class SettingActivity extends AsyncActivity {
         this.method = method;
         // just call this method. all magic things will be happened
         runningLongTask();
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
     }
 
     /////////////////////////////////////////////////////////////////
@@ -369,4 +433,5 @@ public class SettingActivity extends AsyncActivity {
         static final int SYNC_PLAYLIST = 7;
         static final int SYNC_FAVORITE  = 8;
     }
+    //endregion
 }

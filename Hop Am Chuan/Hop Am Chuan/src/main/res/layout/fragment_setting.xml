@@ -96,25 +96,6 @@
             />
 
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textSize="18sp"
-            android:textColor="@color/the_blue"
-            android:text="MISC"
-            />
-    <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="10dp"
-            android:background="#ccc"
-            />
-
-
-
-
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -218,6 +199,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/ClickableTextView"
+        android:id="@+id/language_setting_txt"
         android:text="@string/language"
         />
     <View
