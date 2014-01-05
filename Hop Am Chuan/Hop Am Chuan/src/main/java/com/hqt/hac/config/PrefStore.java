@@ -37,8 +37,18 @@ public class PrefStore {
     /** Preference key containg currently image of account */
     public static final String PREF_USER_IMAGE = "user_image";
 
-    /** Preference key containg currently language */
+    /** Preference key contain currently language */
     public static final String PREF_LANGUAGE = "system_language";
+
+    /** Preference key contain auto update or not */
+    public static final String PREF_AUTO_UPDATE = "auto_update";
+
+    /** Preference key contain auto sync or not */
+    public static final String PREF_AUTO_SYNC = "auto_sync";
+
+    /** Preference key contain is 3g or not */
+    public static final String PREF_IS_MOBILE_NETWORK = "is_mobile_network";
+
 
     ///////////////////////////////////////////////////////////////
     /////////////////   DEFAULT VALUE   ///////////////////////////
@@ -63,6 +73,12 @@ public class PrefStore {
     /** Default value for {@link PrefStore#PREF_LANGUAGE} */
     public static final String DEFAULT_LANGUAGE = "en";
 
+    /** Default value for {@link PrefStore#PREF_AUTO_UPDATE} */
+    public static final boolean DEFAULT_AUTO_UPDATE = false;
+    /** Default value for {@link PrefStore#PREF_AUTO_SYNC} */
+    public static final boolean DEFAULT_AUTO_SYNC = false;
+    /** Default value for {@link PrefStore#PREF_IS_MOBILE_NETWORK} */
+    public static final boolean DEFAULT_AUTO_MOBILE_NETWORK = false;
 
     ////////////////////////////////////////////////////////////////////
     /////////////////////////////  GETTER //////////////////////////////
@@ -97,6 +113,17 @@ public class PrefStore {
 
     public static String getSystemLanguage() {
         return getSharedPreferences().getString(PREF_LANGUAGE, DEFAULT_LANGUAGE);
+    }
+
+    public static boolean isAutoUpdate() {
+        return getSharedPreferences().getBoolean(PREF_AUTO_UPDATE, DEFAULT_AUTO_UPDATE);
+    }
+
+    public static boolean isAutoSync() {
+        return getSharedPreferences().getBoolean(PREF_AUTO_SYNC, DEFAULT_AUTO_SYNC);
+    }
+    public static boolean isMobileNetwork() {
+        return getSharedPreferences().getBoolean(PREF_IS_MOBILE_NETWORK, DEFAULT_AUTO_MOBILE_NETWORK);
     }
 
     ////////////////////////////////////////////////////////////////////
@@ -144,6 +171,24 @@ public class PrefStore {
     public static void setSystemLanguage(String language) {
         SharedPreferences.Editor editor = getSharedPreferences().edit();
         editor.putString(PREF_LANGUAGE, language);
+        editor.commit();
+    }
+
+    public static void setAutoUpdate(boolean state) {
+        SharedPreferences.Editor editor = getSharedPreferences().edit();
+        editor.putBoolean(PREF_AUTO_UPDATE, state);
+        editor.commit();
+    }
+
+    public static void setAutoSyc(boolean state) {
+        SharedPreferences.Editor editor = getSharedPreferences().edit();
+        editor.putBoolean(PREF_AUTO_SYNC, state);
+        editor.commit();
+    }
+
+    public static void setCanMobileNetwork(boolean state) {
+        SharedPreferences.Editor editor = getSharedPreferences().edit();
+        editor.putBoolean(PREF_IS_MOBILE_NETWORK, state);
         editor.commit();
     }
 

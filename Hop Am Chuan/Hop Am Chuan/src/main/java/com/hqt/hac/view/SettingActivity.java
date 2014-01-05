@@ -206,6 +206,31 @@ public class SettingActivity extends AsyncActivity {
         // set value and action for widget
         currentVersionTxt.setText(getString(R.string.current_version) + " " + PrefStore.getLatestVersion());
 
+        CheckBox autoUpdateChkBox = (CheckBox) findViewById(R.id.checkbox_auto_update);
+        CheckBox autoSyncChkBox = (CheckBox) findViewById(R.id.checkbox_auto_sync);
+        CheckBox connectionTypeChkBox = (CheckBox) findViewById(R.id.checkbox_network_type);
+
+        autoUpdateChkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                PrefStore.setAutoUpdate(isChecked);
+            }
+        });
+
+        autoSyncChkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                PrefStore.setAutoSyc(isChecked);
+            }
+        });
+
+        connectionTypeChkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                PrefStore.setCanMobileNetwork(isChecked);
+            }
+        });
+
         updateSongBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

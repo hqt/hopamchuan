@@ -53,14 +53,20 @@
                 android:id="@+id/checkbox_auto_update"
                 android:text="@string/setting_auto_update" />
 
-
-
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/checkbox_auto_sync"
                 android:text="@string/setting_auto_sync" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/checkbox_network_type"
+                android:text="Download via 3G" />
+
     </LinearLayout>
 
 
