@@ -32,7 +32,7 @@ import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class SongDetailFragment extends Fragment implements MusicPlayerController.IMediaPlayerControl, IHacFragment {
+public class SongDetailFragment extends Fragment implements IHacFragment {
 
     private static String TAG = makeLogTag(PlaylistDetailFragment.class);
 
@@ -128,8 +128,6 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
         });
         songContentTextView.setSelected(true);
 
-        // Fullscreen button
-        ImageView fullScreenButton = (ImageView) rootView.findViewById(R.id.fullscreen);
         // Star menu button
         final ImageView starMenuButton = (ImageView) rootView.findViewById(R.id.songMenuBtn);
 
@@ -138,13 +136,6 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
         } else {
             starMenuButton.setImageResource(R.drawable.star);
         }
-
-        fullScreenButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openFullScreenSong();
-            }
-        });
 
         // Event for star menu click
         final PopupWindow popupWindows = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
@@ -158,7 +149,6 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
             }
         });
 
-        setupMediaPlayer();
 
         setUpRelatedSongs();
 
@@ -244,6 +234,7 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
      * @param layout
      */
     private void addSongsToLayout(List<Song> songs, ViewGroup layout) {
+        if (songs == null) return;
         for (final Song song : songs) {
 
             View songView = activity.getLayoutInflater().inflate(R.layout.song_detail_fragment_related_song_item, null);
@@ -295,90 +286,4 @@ public class SongDetailFragment extends Fragment implements MusicPlayerControlle
         }
     }
 
-    ////////////////////////////////////////////////////////////////////
-    /////////////////// CONFIG MP3 PLAYER //////////////////////////////
-
-    /** Controller for Media Player */
-    MusicPlayerController controller;
-    /** Android Built-in Media Player : reference object from service object */
-    MediaPlayer player;
-    /** ref to current Service */
-    Mp3PlayerService mp3Service;
-
-    /** setup start from here */
-    private void setupMediaPlayer() {
-        mp3Service = MainActivity.mp3Service;
-        player = MainActivity.player;
-        controller = new MusicPlayerController(rootView);
-        controller.setMediaPlayer(SongDetailFragment.this);
-    }
-
-    @Override
-    public void start() {
-        LOGD(TAG, "Start Player");
-        player.start();
-        Bundle arguments = new Bundle();
-        arguments.putParcelable("song", song);
-        DialogUtils.createNotification(activity.getApplicationContext(), MainActivity.class, arguments,
-                song.title, song.getAuthors(getActivity().getApplicationContext()).get(0).artistName, Mp3PlayerService.NOTIFICATION_ID);
-    }
-
-    @Override
-    public void pause() {
-        LOGD(TAG, "Pause Player");
-        player.pause();
-        DialogUtils.closeNotification(activity.getApplicationContext(), Mp3PlayerService.NOTIFICATION_ID);
-    }
-
-    @Override
-    public int getDuration() {
-        return player.getDuration();
-    }
-
-    @Override
-    public int getCurrentPosition() {
-        return player.getCurrentPosition();
-    }
-
-    @Override
-    public void seekTo(int pos) {
-        player.seekTo(pos);
-    }
-
-    @Override
-    public boolean isPlaying() {
-        return player.isPlaying();
-    }
-
-    @Override
-    public int getBufferPercentage() {
-        return 0;
-    }
-
-    /** Choosing Component here */
-
-    @Override
-    public boolean canPause() {
-        return true;
-    }
-
-    @Override
-    public boolean canSeekBackward() {
-        return true;
-    }
-
-    @Override
-    public boolean canSeekForward() {
-        return true;
-    }
-
-    @Override
-    public boolean isFullScreen() {
-        return false;
-    }
-
-    @Override
-    public void toggleFullScreen() {
-
-    }
 }

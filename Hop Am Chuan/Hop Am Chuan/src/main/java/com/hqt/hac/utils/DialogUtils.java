@@ -66,6 +66,16 @@ public class DialogUtils {
         return dialog;
     }
 
+    /**
+     * Overload in case of user want to use view
+     */
+    public static Dialog createDialog(Activity theActivity, int titleStringResource, View layout) {
+        Dialog dialog = new Dialog(theActivity);
+        dialog.setContentView(layout);
+        dialog.setTitle(titleStringResource);
+        return dialog;
+    }
+
     public static AlertDialog showAlertDialog(Activity activity, String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle(title)
