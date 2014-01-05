@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ChordLibrary {
-	public static HashMap<String, Position[]> baseChords = new HashMap<String, Position[]>();
+	public static SimpleArrayMap<String, Position[]> baseChords = new SimpleArrayMap<String, Position[]>();
 	public static String[] N = new String[]{"C", "A", "G", "E", "D"};
 	public static int[] F =       new int[]{ 3,   2,   3,   2,   2};
-	public static HashMap<String, String> Bname = new HashMap<String, String>();
-	public static HashMap<String, Integer> Bfret = new HashMap<String, Integer>();
+	public static SimpleArrayMap<String, String> Bname = new SimpleArrayMap<String, String>();
+	public static SimpleArrayMap<String, Integer> Bfret = new SimpleArrayMap<String, Integer>();
 	
 	static {
 		
