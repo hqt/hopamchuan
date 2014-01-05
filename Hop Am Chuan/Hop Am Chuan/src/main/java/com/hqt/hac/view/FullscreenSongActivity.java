@@ -4,6 +4,7 @@ package com.hqt.hac.view;
 import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,6 +19,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.hqt.hac.config.Config;
+import com.hqt.hac.helper.service.Mp3PlayerService;
+import com.hqt.hac.helper.widget.MusicPlayerController;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.utils.DialogUtils;
@@ -27,9 +30,11 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 
-public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
+public class FullscreenSongActivity extends SlidingMenuActionBarActivity
+        implements MusicPlayerController.IMediaPlayerControl {
     /**
      * My self *
      */
@@ -134,6 +139,8 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
         // Keep the screen always on
         setScreenOn();
 
+        // Set up player
+        setupMediaPlayer();
     }
 
     private void setScreenOn() {
@@ -255,10 +262,10 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
 
         // Set sidebar controls
         Button btnFont = (Button) findViewById(R.id.btnFont);
-//        Button btnFontDown = (Button) findViewById(R.id.btnFontDown);
         Button btnLineModeToggle = (Button) findViewById(R.id.btnLineModeToggle);
         Button btnScroll = (Button) findViewById(R.id.btnScroll);
         Button btnTrans = (Button) findViewById(R.id.btnTrans);
+        Button btnPlayMusic = (Button) findViewById(R.id.btnPlayMusic);
         ImageButton toTopShortcutBtn = (ImageButton) findViewById(R.id.toTopShortcutBtn);
 
         // Events for controls
@@ -324,6 +331,18 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
                 scrollView.scrollTo(0, 0);
             }
         });
+
+        btnPlayMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Close sliding menu
+                sidebar.showContent();
+                sidebar.setEnabled(false);
+
+                // Show dialog
+                dialogMusic.show();
+            }
+        });
     }
 
     private void setUpContent() {
@@ -382,4 +401,96 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
             scrollView.smoothScrollBy(0, velocitySpeed);
         }
     }
+
+
+    ////////////////////////////////////////////////////////////////////
+    /////////////////// CONFIG MP3 PLAYER //////////////////////////////
+
+    /** Controller for Media Player */
+    MusicPlayerController controller;
+    /** Android Built-in Media Player : reference object from service object */
+    MediaPlayer player;
+    /** ref to current Service */
+    Mp3PlayerService mp3Service;
+
+    /** setup start from here */
+    private void setupMediaPlayer() {
+        mp3Service = MainActivity.mp3Service;
+        player = MainActivity.player;
+        View layout = getLayoutInflater().inflate(R.layout.dialog_songdetail_music, null);
+        dialogMusic = DialogUtils.createDialog(this, R.string.play_music, layout);
+
+        controller = new MusicPlayerController(layout);
+        controller.setMediaPlayer(this);
+    }
+
+    @Override
+    public void start() {
+        // LOGD(TAG, "Start Player");
+        player.start();
+        Bundle arguments = new Bundle();
+        arguments.putParcelable("song", song);
+        DialogUtils.createNotification(getApplicationContext(), MainActivity.class, arguments,
+                song.title, song.getAuthors(getApplicationContext()).get(0).artistName, Mp3PlayerService.NOTIFICATION_ID);
+    }
+
+    @Override
+    public void pause() {
+        // LOGD(TAG, "Pause Player");
+        player.pause();
+        DialogUtils.closeNotification(getApplicationContext(), Mp3PlayerService.NOTIFICATION_ID);
+    }
+
+    @Override
+    public int getDuration() {
+        return player.getDuration();
+    }
+
+    @Override
+    public int getCurrentPosition() {
+        return player.getCurrentPosition();
+    }
+
+    @Override
+    public void seekTo(int pos) {
+        player.seekTo(pos);
+    }
+
+    @Override
+    public boolean isPlaying() {
+        return player.isPlaying();
+    }
+
+    @Override
+    public int getBufferPercentage() {
+        return 0;
+    }
+
+    /** Choosing Component here */
+
+    @Override
+    public boolean canPause() {
+        return true;
+    }
+
+    @Override
+    public boolean canSeekBackward() {
+        return true;
+    }
+
+    @Override
+    public boolean canSeekForward() {
+        return true;
+    }
+
+    @Override
+    public boolean isFullScreen() {
+        return false;
+    }
+
+    @Override
+    public void toggleFullScreen() {
+
+    }
+
 }

@@ -196,7 +196,8 @@ public class MusicPlayerController {
         mFormatBuilder = new StringBuilder();
         mFormatter = new Formatter(mFormatBuilder, Locale.getDefault());
 
-        setupPreviousNextListeners();
+        // TrungDQ: We don't need these button in this app
+        // setupPreviousNextListeners();
     }
     //endregion
 
