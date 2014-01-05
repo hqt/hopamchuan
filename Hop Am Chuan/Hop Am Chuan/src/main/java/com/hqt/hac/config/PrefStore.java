@@ -7,7 +7,6 @@ import android.preference.PreferenceManager;
 import com.hqt.hac.utils.EncodingUtils;
 import com.hqt.hac.view.BunnyApplication;
 
-import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 /**
