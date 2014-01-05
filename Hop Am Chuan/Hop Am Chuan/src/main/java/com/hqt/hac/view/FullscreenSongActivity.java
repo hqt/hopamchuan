@@ -69,6 +69,10 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
 
     private Dialog dialogMusic;
 
+    /**
+     *
+     */
+    private Thread scrollThread;
 
     /**
      * Controls *
@@ -86,8 +90,10 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
     private int speed = Config.SONG_AUTO_SCROLL_MIN_NEV_SPEED;
     private AtomicBoolean isAutoScroll = new AtomicBoolean(false);
 
-    /** velocity speed */
-    int velocitySpeed =  velocitySpeedFormula();
+    /**
+     * velocity speed
+     */
+    int velocitySpeed = velocitySpeedFormula();
 
     ScrollHandler mHandler;
 
@@ -193,27 +199,30 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
             }
         });
 
+
         /** add Event for check box of Turn On */
         turnOnChk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean state) {
                 isAutoScroll.set(state);
-                if (isAutoScroll.get()) {
-                    Thread t = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(Config.SONG_AUTO_SCROLL_MAX_NEV_SPEED / speed * Config.SONG_AUTO_SCROLL_DEGREE);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                if (!isAutoScroll.get()) return;
+                if (scrollThread != null) return;
+                scrollThread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while (true) {
+                            if (isAutoScroll.get()) {
+                                try {
+                                    Thread.sleep(Config.SONG_AUTO_SCROLL_MAX_NEV_SPEED / speed * Config.SONG_AUTO_SCROLL_DEGREE);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                mHandler.sendMessage(mHandler.obtainMessage());
                             }
-                            mHandler.sendMessage(mHandler.obtainMessage());
                         }
-                    });
-                    t.start();
-                } else {
-
-                }
+                    }
+                });
+                scrollThread.start();
             }
         });
 
@@ -364,7 +373,7 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity {
     }
 
     private int velocitySpeedFormula() {
-        return (int)Math.sqrt(Math.sqrt(speed));
+        return (int) Math.sqrt(Math.sqrt(speed));
     }
 
     private class ScrollHandler extends Handler {
