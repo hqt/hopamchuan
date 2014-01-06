@@ -262,7 +262,7 @@ public class SettingActivity extends AsyncActivity {
 
     private void update(int method) {
         // check network
-        if (!NetworkUtils.isNetworkConnected(getApplicationContext())) {
+        if (!NetworkUtils.isDeviceNetworkConnected()) {
             AlertDialog dialog = DialogUtils.showAlertDialog(SettingActivity.this, "Network Problem", "Check Your Wifi or 3G Network Again");
             dialog.show();
             return;

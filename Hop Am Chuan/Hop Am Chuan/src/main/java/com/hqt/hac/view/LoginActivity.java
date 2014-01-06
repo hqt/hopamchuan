@@ -79,7 +79,7 @@ public class LoginActivity extends AsyncActivity {
     }
 
     private void syncAccount() {
-        /*if (!NetworkUtils.isNetworkConnected(getBaseContext())) {
+        /*if (!NetworkUtils.isDeviceNetworkConnected(getBaseContext())) {
             AlertDialog dialog = DialogUtils.showAlertDialog(this, "Network Problem", "Check Your Wifi or 3G Network Again");
             dialog.show();
             return;

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
+import com.hqt.hac.config.PrefStore;
+import com.hqt.hac.view.BunnyApplication;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -30,8 +32,8 @@ public class NetworkUtils {
      * "http://developer.android.com/training/monitoring-device-state/connectivity-monitoring.html"
      * >Android Developer</a>} Using to detect network on Android Device if Wifi | 3G -> can synchronize data
      */
-    public static boolean isNetworkConnected(Context ctx) {
-
+    public static boolean isNetworkConnected() {
+        Context ctx = BunnyApplication.getAppContext();
         ConnectivityManager connectivityManager = (ConnectivityManager) ctx
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -52,8 +54,18 @@ public class NetworkUtils {
         }
     }
 
+    /** should use this method. because base on user setting */
+    public static boolean isDeviceNetworkConnected() {
+        if (PrefStore.isMobileNetwork()) {
+            return isWifiConnect();
+        } else {
+            return isNetworkConnected();
+        }
+    }
+
     /** wifi connect or not (not including 3G) */
-    public static boolean isWifiConnect(Context ctx) {
+    public static boolean isWifiConnect() {
+        Context ctx = BunnyApplication.getAppContext();
         ConnectivityManager connectivityManager = (ConnectivityManager) ctx
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
 
