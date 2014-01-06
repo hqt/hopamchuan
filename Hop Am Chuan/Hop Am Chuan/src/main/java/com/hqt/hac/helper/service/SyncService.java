@@ -1,5 +1,7 @@
 package com.hqt.hac.helper.service;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import com.hqt.hac.config.PrefStore;
@@ -60,5 +62,22 @@ public class SyncService extends WakefulIntentService {
 
         // update favorite
         FavoriteDataAccessLayer.syncFavorites(mAppContext, newFavorite);
+    }
+}
+
+class SyncServiceAlarm implements WakefulIntentService.AlarmListener {
+
+    @Override
+    public void scheduleAlarms(AlarmManager mgr, PendingIntent pi, Context ctxt) {
+    }
+
+    @Override
+    public void sendWakefulWork(Context ctx) {
+        WakefulIntentService.sendWakefulWork(ctx, SyncService.class);
+    }
+
+    @Override
+    public long getMaxAge() {
+        return 0;
     }
 }
