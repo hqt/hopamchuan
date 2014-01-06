@@ -36,10 +36,12 @@ public class SettingActivity extends AsyncActivity {
     /** Screen Widget */
     TextView currentVersionTxt;
     TextView languageSettingTxt;
+    TextView currentLanguageTxt;
     Button updateSongBtn;
     Button syncSongBtn;
     CheckBox autoUpdateSongChkbox;
     CheckBox autoSyncSongChkbox;
+    View languageView;
 
     Context mAppContext;
 
@@ -61,6 +63,8 @@ public class SettingActivity extends AsyncActivity {
         autoSyncSongChkbox = (CheckBox) findViewById(R.id.checkbox_auto_sync);
         autoUpdateSongChkbox = (CheckBox) findViewById(R.id.checkbox_auto_update);
         languageSettingTxt = (TextView) findViewById(R.id.language_setting_txt);
+        currentLanguageTxt = (TextView) findViewById(R.id.current_language_txt);
+        languageView = findViewById(R.id.linear_layout_language_setting);
 
         setUpAccountInfo();
         setUpSync();
@@ -86,7 +90,7 @@ public class SettingActivity extends AsyncActivity {
             currentLanguageId = 1;
         }
        settingOptionString();
-        languageSettingTxt.setOnClickListener(new View.OnClickListener() {
+        languageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showListDialog();
