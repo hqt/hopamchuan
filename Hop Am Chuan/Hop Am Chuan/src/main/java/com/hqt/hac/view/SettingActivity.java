@@ -393,7 +393,7 @@ public class SettingActivity extends AsyncActivity {
         // save to database
         publishProgress(STATUS_CODE.UPDATING);
         boolean status = SongDataAccessLayer.insertFullSongListSync(mAppContext, songs);
-        if (status) return STATUS_CODE.SYSTEM_ERROR;
+        if (!status) return STATUS_CODE.SYSTEM_ERROR;
         else {
             // set latest version to system after all step has successfully update
             PrefStore.setLatestVersion(version.no);
