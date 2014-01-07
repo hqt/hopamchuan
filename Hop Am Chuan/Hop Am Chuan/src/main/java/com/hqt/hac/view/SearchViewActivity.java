@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.provider.SearchRecentSuggestions;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,6 +17,7 @@ import com.hqt.hac.helper.widget.InfinityListView;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.ArtistDataAccessLayer;
 import com.hqt.hac.model.dal.SongDataAccessLayer;
+import com.hqt.hac.provider.SearchRecentProvider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -111,7 +113,13 @@ public class SearchViewActivity extends ActionBarActivity implements InfinityLis
         // Verify the action and get the query
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             queryStr = intent.getStringExtra(SearchManager.QUERY);
-            type = 0;   // default is search by song
+            // default is search by song
+            type = 0;
+            // cache data for searching
+            SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+                    SearchRecentProvider.AUTHORITY, SearchRecentProvider.MODE);
+            suggestions.saveRecentQuery(queryStr, null);
+            // handle this search
             doSearch(queryStr);
         }
     }

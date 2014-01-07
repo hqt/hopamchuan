@@ -229,6 +229,17 @@
         android:background="#ccc"
         />
     <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ClickableTextView"
+            android:id="@+id/clear_cache_data_text_view"
+            android:text="Clear Search History"/>
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#ccc"
+            />
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/ClickableTextView"

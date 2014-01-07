@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.SearchRecentSuggestions;
 import android.view.View;
 import android.widget.*;
 
@@ -22,6 +23,7 @@ import com.hqt.hac.model.dal.PlaylistSongDataAccessLayer;
 import com.hqt.hac.model.dal.SongDataAccessLayer;
 import com.hqt.hac.model.json.DBVersion;
 import com.hqt.hac.model.json.JsonPlaylist;
+import com.hqt.hac.provider.SearchRecentProvider;
 import com.hqt.hac.utils.APIUtils;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.utils.EncodingUtils;
@@ -39,6 +41,7 @@ public class SettingActivity extends AsyncActivity {
     TextView languageSettingTxt;
     TextView currentLanguageTxt;
     TextView appDetailTxt;
+    TextView clearSearchHistoryTxt;
     Button updateSongBtn;
     Button syncSongBtn;
     CheckBox autoUpdateSongChkbox;
@@ -68,6 +71,14 @@ public class SettingActivity extends AsyncActivity {
         currentLanguageTxt = (TextView) findViewById(R.id.current_language_txt);
         languageView = findViewById(R.id.linear_layout_language_setting);
         appDetailTxt = (TextView) findViewById(R.id.app_detail);
+        clearSearchHistoryTxt = (TextView) findViewById(R.id.clear_cache_data_text_view);
+
+        clearSearchHistoryTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showConfirmDialog();
+            }
+        });
 
         appDetailTxt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +91,23 @@ public class SettingActivity extends AsyncActivity {
         setUpAccountInfo();
         setUpSync();
         setUpSettingLanguage();
+    }
+
+    private void showConfirmDialog() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Confirm")
+                .setMessage("Are you sure you want to clear search history?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SearchRecentSuggestions suggestions = new SearchRecentSuggestions(SettingActivity.this,
+                                SearchRecentProvider.AUTHORITY, SearchRecentProvider.MODE);
+                        suggestions.clearHistory();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     @Override
