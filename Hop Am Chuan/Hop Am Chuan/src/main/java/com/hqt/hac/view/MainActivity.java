@@ -267,7 +267,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
         // Variable to know if the current fragment is WelcomeFragment or not.
         Fragment currentFragment = getCurrentFragment(fragmentManager, 0);
-        // LOGE("TRUNGDQ", "current fragment: " + currentFragment);
 
         // If current fragment is level 0 (only 1 fragment left in the stack)
         if (fragmentManager.getBackStackEntryCount() == 1) {
@@ -359,14 +358,17 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // if version is lower. We use SearchDialog instead
         // TODO: search google. Find SearchWidget library for APIUtils Lower than 11
         MenuItem searchItem = menu.findItem(R.id.search_bar);
-        if (searchItem != null && UIUtils.hasHoneycomb()) {
+        if (searchItem != null) {
             // Get the SearchView and set the Search Configuration
             SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+            // Use MenuItemCompat for comparable backward with API 10
             mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
             // Assumes current mActivity is the searchable mActivity
             mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
             // Do not icon the widget. expand it.
             mSearchView.setIconifiedByDefault(false);
+            // enable submit button
+            mSearchView.setSubmitButtonEnabled(true);
         }
 
         restoreActionBar();
@@ -398,6 +400,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
     @Override
     public boolean onSearchRequested() {
         // doing some stuff before here
+        LOGE(TAG, "On Search request");
         return super.onSearchRequested();
     }
 
@@ -574,14 +577,9 @@ public class MainActivity extends SlidingMenuActionBarActivity
      */
     private Fragment getCurrentFragment(FragmentManager fragmentManager, int ignoreTop){
         try {
-            // LOGE("TRUNGDQ", "count: " + fragmentManager.getBackStackEntryCount());
-            // LOGE("TRUNGDQ", "entry at count - 1: " + fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1));
-            // LOGE("TRUNGDQ", "name of entry at count - 1: " + fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName());
-
             String fragmentTag = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - ignoreTop - 1).getName();
             Fragment currentFragment = getSupportFragmentManager()
                     .findFragmentByTag(fragmentTag);
-            // LOGE("TRUNGDQ", "result: " + currentFragment);
             return currentFragment;
         } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();

@@ -1,11 +1,12 @@
 package com.hqt.hac.view;
 
 import android.app.SearchManager;
+import android.support.v7.app.ActionBarActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.provider.SearchRecentSuggestions;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,7 +46,7 @@ public class SearchViewActivity extends ActionBarActivity implements InfinityLis
     BaseAdapter mAdapter;
 
     /** current type of search query */
-    int type;
+    int type = 0;
 
     /** current query string */
     String queryStr;
@@ -113,6 +114,7 @@ public class SearchViewActivity extends ActionBarActivity implements InfinityLis
         // Verify the action and get the query
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             queryStr = intent.getStringExtra(SearchManager.QUERY);
+            LOGE(TAG, "Search query: " + queryStr);
             // default is search by song
             type = 0;
             // cache data for searching
@@ -161,7 +163,10 @@ public class SearchViewActivity extends ActionBarActivity implements InfinityLis
             default:
                 // do nothing
         }
-        mListView.resetListView(mAdapter);
+        //mListView.resetListView(mAdapter);
+        mListView.setAdapter(mAdapter);
+
+
     }
 
     @Override
