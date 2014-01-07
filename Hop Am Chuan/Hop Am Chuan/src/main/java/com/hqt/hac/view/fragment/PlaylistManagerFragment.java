@@ -143,9 +143,9 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 PlaylistDetailFragment fragment = new PlaylistDetailFragment();
                 Bundle arguments = new Bundle();
-                arguments.putParcelable("playlist", allPlaylists.get(position));
+                arguments.putParcelable("playlist", adapter.playLists.get(position));
                 fragment.setArguments(arguments);
-                activity.changeTitleBar(allPlaylists.get(position).playlistName);
+                activity.changeTitleBar(adapter.playLists.get(position).playlistName);
                 activity.switchFragmentNormal(fragment);
             }
         });
@@ -154,6 +154,7 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
         /***** New playlist dialog *****/
         SongListRightMenuHandler.mListView = mListView;
         SongListRightMenuHandler.activity = getActivity();
+        SongListRightMenuHandler.playlistManagerAdapter = adapter;
         SongListRightMenuHandler.newPlaylistDialog = DialogUtils.createDialog(activity, R.string.new_playlist,
                 activity.getLayoutInflater(), R.layout.dialog_newplaylist);
         Button createPlaylistBtn = (Button) SongListRightMenuHandler.newPlaylistDialog.findViewById(R.id.btnCreatePlaylist);

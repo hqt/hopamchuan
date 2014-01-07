@@ -251,8 +251,13 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 
     /** Add the item into adapter **/
     private void append() {
-        for (Object obj : loadedCollection) {
-            ((IInfinityAdapter) mAdapter).addItem(obj);
+        try {
+            for (Object obj : loadedCollection) {
+                ((IInfinityAdapter) mAdapter).addItem(obj);
+            }
+        } catch (NullPointerException e) {
+            // In case of user press back button and quit the app before the list is loaded
+            e.printStackTrace();
         }
     }
 

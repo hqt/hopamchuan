@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.PlaylistListAdapter;
+import com.hqt.hac.helper.adapter.PlaylistManagerAdapter;
 import com.hqt.hac.helper.adapter.SongListAdapter;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
@@ -69,6 +70,9 @@ public class SongListRightMenuHandler {
 
     /*** Adapter for playlist list */
     private static PlaylistListAdapter playlistAdapter;
+
+    /** Adapter for PlaylistManagerFragment (for feedback effect when data changed) **/
+    public static PlaylistManagerAdapter playlistManagerAdapter;
 
 
     public static void setRightMenuEvents(final Activity _activity, final PopupWindow _pw) {
@@ -223,6 +227,12 @@ public class SongListRightMenuHandler {
                 // We have to re-set the adapter for onItemClick event.
                 playlists = PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext());
                 playlistAdapter = new PlaylistListAdapter(activity, playlists);
+
+                if (playlistManagerAdapter != null) {
+                    playlistManagerAdapter.playLists = playlists;
+                    playlistManagerAdapter.notifyDataSetChanged();
+                }
+
                 mListView.setAdapter(playlistAdapter);
                 mListView.setOnItemClickListener(new AddToPlaylistOnClick());
 

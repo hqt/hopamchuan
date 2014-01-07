@@ -22,7 +22,7 @@ public class PlaylistManagerAdapter extends BaseAdapter {
 
     private static final String TAG = makeLogTag(PlaylistManagerAdapter.class);
     Context mContext;
-    List<Playlist> playLists;
+    public List<Playlist> playLists;
 
     public interface RightMenuClick {
         public void onRightMenuClick(View view, Playlist playlist);

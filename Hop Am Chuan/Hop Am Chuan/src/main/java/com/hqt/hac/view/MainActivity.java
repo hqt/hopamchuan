@@ -515,8 +515,11 @@ public class MainActivity extends SlidingMenuActionBarActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 // Add tag for back button tracking
-                .replace(R.id.content_frame, fragment, tag)
-                        // Add this transaction to the back stack
+                .add(R.id.content_frame, fragment, tag)
+                // Hide the fragment instead of replace.
+                // This will increase RAM usage but helpful for back button nav and infinity list view.
+                .hide(getCurrentFragment(fragmentManager, 0))
+                // Add this transaction to the back stack
                 .addToBackStack(tag)
                 .commit();
         slidingMenu.showContent();

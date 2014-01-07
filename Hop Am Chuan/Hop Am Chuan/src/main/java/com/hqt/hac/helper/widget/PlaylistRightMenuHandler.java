@@ -132,7 +132,8 @@ public class PlaylistRightMenuHandler {
                 msg.show();
 
                 // Refresh playlist list
-                adapter.setPlayLists(PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext()));
+                adapter.playLists = PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext());
+                adapter.notifyDataSetChanged();
 
                 // Close dialog
                 renPlaylistDialog.dismiss();
@@ -154,7 +155,7 @@ public class PlaylistRightMenuHandler {
                     PlaylistDataAccessLayer.removePlaylistById(activity.getApplicationContext(), selectedPlaylist.playlistId);
 
                     // Refresh playlist list
-                    adapter.setPlayLists(PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext()));
+                    adapter.playLists = PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext());
                     adapter.notifyDataSetChanged();
 
                     // Show notification

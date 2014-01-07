@@ -116,6 +116,7 @@ public class Mp3PlayerService extends Service implements
     public int onStartCommand(Intent intent, int flags, int startId) {
         /** loading data from intent */
         LOGD(TAG, "OnStartCommand Service");
+        if (intent == null) return START_STICKY;
         Song intentSong = intent.getParcelableExtra("song");
         if (currentSong == null) currentSong = intentSong;
         if (currentSong == null) return START_STICKY;
