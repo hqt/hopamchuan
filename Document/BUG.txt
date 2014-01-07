@@ -2,5 +2,6 @@
 [DONE]	Open app > back button: white screen.
 	Extremly delay: Open app > playlist manager > playlist detail > song. (because of .hashcode maybe?)
 	Add/Remove/Update playlist > update in navigation drawer.
-	Song Full Screen View: auto scroll
+[DONE]	Song Full Screen View: auto scroll
 	Update song > Fail, restart application.
+	Song List Fragment (Infinity scroll): refresh when changing orientation, back button.

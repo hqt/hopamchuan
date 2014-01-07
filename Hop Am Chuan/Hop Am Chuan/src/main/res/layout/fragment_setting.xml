@@ -206,15 +206,19 @@
             android:layout_height="wrap_content"
             style="@style/ClickableTextView"
             android:id="@+id/linear_layout_language_setting"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
             android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/language_setting_txt"
+                android:textSize="16sp"
                 android:text="@string/language"/>
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="#888"
                     android:id="@+id/current_language_txt"
                     android:text="English"/>
 
