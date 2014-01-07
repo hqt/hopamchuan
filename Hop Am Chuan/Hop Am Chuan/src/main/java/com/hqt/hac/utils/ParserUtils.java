@@ -105,8 +105,9 @@ public class ParserUtils {
      */
     public static List<Artist> getAllArtistsFromRescource(Context context) {
         Reader reader;
-        InputStream stream = context.getResources()
-                .openRawResource(R.raw.artist);
+        /*InputStream stream = context.getResources()
+                .openRawResource(R.raw.artist);*/
+        InputStream stream = null;
         reader = new BufferedReader(new InputStreamReader(stream), 8092);
 
         JsonParser parser = new JsonParser();
@@ -122,8 +123,9 @@ public class ParserUtils {
     public static List<Song> getAllSongsFromResource(Context context) {
         Reader reader;
 
-        InputStream stream = context.getResources()
-                .openRawResource(R.raw.update);
+       /* InputStream stream = context.getResources()
+                .openRawResource(R.raw.update);*/
+        InputStream stream = null;
 
         reader = new BufferedReader(new InputStreamReader(stream), 8092);
 
@@ -138,8 +140,9 @@ public class ParserUtils {
      */
     public static List<Chord> getAllChordsFromResource(Context context) {
         Reader reader;
-        InputStream stream = context.getResources()
-                .openRawResource(R.raw.chord);
+        /*InputStream stream = context.getResources()
+                .openRawResource(R.raw.chord);*/
+        InputStream stream = null;
         reader = new BufferedReader(new InputStreamReader(stream), 8092);
 
         JsonParser parser = new JsonParser();

@@ -432,7 +432,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
     }
 
     /**
-     * set up adapter for list view
+     * set up mAdapter for list view
      * include add all views and adapters to currently ListView
      *
      * @return
@@ -451,7 +451,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
          */
         mergeAdapter = new MergeAdapter();
 
-        /** setup adapter
+        /** setup mAdapter
          * create all adapters as we want
          * set delegate in onResume()
          * remove delegate on onPause()
@@ -462,13 +462,13 @@ public class MainActivity extends SlidingMenuActionBarActivity
         playlistHeaderAdapter = new NavigationDrawerAdapter.PlaylistHeaderAdapter(getApplicationContext());
         playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(getApplicationContext(), playlistList);
 
-        /** assign each adapter to this composite adapter */
+        /** assign each mAdapter to this composite mAdapter */
         mergeAdapter.addAdapter(headerAdapter);
         mergeAdapter.addAdapter(itemAdapter);
         mergeAdapter.addAdapter(playlistHeaderAdapter);
         mergeAdapter.addAdapter(playlistItemAdapter);
 
-        /** assign this complex adapter to navigation drawer list*/
+        /** assign this complex mAdapter to navigation drawer list*/
         mDrawerListView.setAdapter(mergeAdapter);
 
     }

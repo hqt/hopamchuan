@@ -1142,7 +1142,7 @@ public class DatabaseTest {
             SongDataAccessLayer.insertSong(context, song3);
 
             // Get
-            List<Song> results = SongDataAccessLayer.searchSongByTitle(context, "Chau", 0, Config.DEFAULT_SEARCH_LIMIT);
+            List<Song> results = SongDataAccessLayer.searchSongByTitle("Chau", 0, Config.DEFAULT_SEARCH_LIMIT);
 
             // Compare
             if (results.size() == 2 && results.get(0).equals(song2) && results.get(1).equals(song1)) {
@@ -1152,7 +1152,7 @@ public class DatabaseTest {
             }
 
             // Get 2
-            List<Song> results2 = SongDataAccessLayer.searchSongByTitle(context, "m", 0, Config.DEFAULT_SEARCH_LIMIT);
+            List<Song> results2 = SongDataAccessLayer.searchSongByTitle("m", 0, Config.DEFAULT_SEARCH_LIMIT);
 
             // Compare 2
             if (results2.size() == 1 && results2.get(0).equals(song3)) {
@@ -1257,7 +1257,7 @@ public class DatabaseTest {
 
             // Get
             // should be song1
-            List<Song> result = ArtistDataAccessLayer.searchSongByArtist(context, "dinh quang trung", Config.DEFAULT_SEARCH_ARTIST_LIMIT);
+            List<Song> result = ArtistDataAccessLayer.searchSongByArtist("dinh quang trung", Config.DEFAULT_SEARCH_ARTIST_LIMIT);
 
             // Compare
             if (result.size() == 1 && (result.get(0).equals(song1) || result.get(0).equals(song2))) {
@@ -1268,7 +1268,7 @@ public class DatabaseTest {
 
             // Get
             // should be song1 and song2
-            List<Song> result2 = ArtistDataAccessLayer.searchSongByArtist(context, "huynh quang thao", Config.DEFAULT_SEARCH_ARTIST_LIMIT);
+            List<Song> result2 = ArtistDataAccessLayer.searchSongByArtist("huynh quang thao", Config.DEFAULT_SEARCH_ARTIST_LIMIT);
 
             // Compare
             if (result2.size() == 2 && ((result2.get(0).equals(song1) && result2.get(1).equals(song2)) ||
