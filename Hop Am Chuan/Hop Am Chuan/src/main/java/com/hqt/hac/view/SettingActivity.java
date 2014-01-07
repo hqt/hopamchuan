@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -37,6 +38,7 @@ public class SettingActivity extends AsyncActivity {
     TextView currentVersionTxt;
     TextView languageSettingTxt;
     TextView currentLanguageTxt;
+    TextView appDetailTxt;
     Button updateSongBtn;
     Button syncSongBtn;
     CheckBox autoUpdateSongChkbox;
@@ -65,6 +67,15 @@ public class SettingActivity extends AsyncActivity {
         languageSettingTxt = (TextView) findViewById(R.id.language_setting_txt);
         currentLanguageTxt = (TextView) findViewById(R.id.current_language_txt);
         languageView = findViewById(R.id.linear_layout_language_setting);
+        appDetailTxt = (TextView) findViewById(R.id.app_detail);
+
+        appDetailTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingActivity.this, SecondarySettingActivity.class);
+                startActivity(intent);
+            }
+        });
 
         setUpAccountInfo();
         setUpSync();
