@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
+import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 public class ChordDataAccessLayer {
@@ -66,16 +67,49 @@ public class ChordDataAccessLayer {
     }
 
     /**
-     * TODO: re-used query from web version
+     *
      * @param context
      * @param chords
      * @return
      */
     public static List<Song> getAllSongsByChordArrays(Context context, List<Chord> chords) {
-        throw new UnsupportedOperationException();
+
+        // LOGE("TRUNGDQ", "get random songs by chords: " + offset + " : " + limit);
+
+        /** Get chord id list **/
+        StringBuilder chordIds = new StringBuilder();
+        for (Chord chord : chords) {
+            chordIds.append(getChordByName(context, chord.name).chordId + ", ");
+        }
+
+        String ids = chordIds.toString().substring(0, chordIds.length() - 2);
+        // LOGE("TRUNGDQ", "ids: " + ids);
+
+        HopAmChuanDatabase db = new HopAmChuanDatabase(context);
+        if (db.getReadableDatabase() == null) return new ArrayList<Song>();
+        Cursor c = db.getReadableDatabase().rawQuery(
+                "SELECT rs." + HopAmChuanDBContract.Songs.SONG_ID + ", COUNT(*) AS c FROM (SELECT s."
+                        + HopAmChuanDBContract.Songs.SONG_ID + " FROM " + HopAmChuanDBContract.Tables.SONG + " s JOIN " +
+                        "  " + HopAmChuanDBContract.Tables.SONG_CHORD + " sc USING (" + HopAmChuanDBContract.Songs.SONG_ID
+                        + ") WHERE  sc." + HopAmChuanDBContract.Chords.CHORD_ID + " IN (" + ids + ") GROUP " +
+                        "  BY 1 HAVING COUNT(*) = "+chords.size()+") AS rs JOIN " + HopAmChuanDBContract.Tables.SONG_CHORD + " ssc USING ("
+                        + HopAmChuanDBContract.Songs.SONG_ID + ") " +
+                        "  GROUP BY " + HopAmChuanDBContract.Songs.SONG_ID
+                        + " ORDER BY c ",
+                new String[]{});
+
+        List<Song> songs = new ArrayList<Song>();
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            int songId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID));
+            songs.add(SongDataAccessLayer.getSongById(context, songId));
+        }
+        // LOGE("TRUNGDQ", "size: " + songs.size());
+        c.close();
+
+        return songs;
     }
 
-    public static void removeChord(Context context, int chordId){
+    public static void removeChord(Context context, int chordId) {
         LOGD(TAG, "Delete Chord");
 
         ContentResolver resolver = context.getContentResolver();
@@ -86,23 +120,53 @@ public class ChordDataAccessLayer {
 
     /**
      * Get random song with chords
-     * TODO: implement this like getAllSongsByChordArrays
+     *
      * @param context
      * @param chords
      * @param limit
      * @return
      */
-    public static List<Song> getRandomSongsByChords(Context context, List<Chord> chords, int limit) {
+    public static List<Song> getRandomSongsByChords(Context context, List<Chord> chords, int offset, int limit) {
 
         /*
         SELECT rs.song_id, COUNT(*) AS c FROM (SELECT s.song_id FROM   song s JOIN
 		  song_chord sc USING (song_id) WHERE  sc.chord_id IN (".implode(",", $chords).") GROUP
 		   BY 1 HAVING COUNT(*) = ".count($chords).") AS rs JOIN song_chord ssc USING (song_id)
 			GROUP BY song_id ORDER BY c LIMIT 0, 90
-
          */
 
-        return null;
+        // LOGE("TRUNGDQ", "get random songs by chords: " + offset + " : " + limit);
 
+        /** Get chord id list **/
+        StringBuilder chordIds = new StringBuilder();
+        for (Chord chord : chords) {
+            chordIds.append(getChordByName(context, chord.name).chordId + ", ");
+        }
+
+        String ids = chordIds.toString().substring(0, chordIds.length() - 2);
+        // LOGE("TRUNGDQ", "ids: " + ids);
+
+        HopAmChuanDatabase db = new HopAmChuanDatabase(context);
+        if (db.getReadableDatabase() == null) return new ArrayList<Song>();
+        Cursor c = db.getReadableDatabase().rawQuery(
+                "SELECT rs." + HopAmChuanDBContract.Songs.SONG_ID + ", COUNT(*) AS c FROM (SELECT s."
+                        + HopAmChuanDBContract.Songs.SONG_ID + " FROM " + HopAmChuanDBContract.Tables.SONG + " s JOIN " +
+                        "  " + HopAmChuanDBContract.Tables.SONG_CHORD + " sc USING (" + HopAmChuanDBContract.Songs.SONG_ID
+                        + ") WHERE  sc." + HopAmChuanDBContract.Chords.CHORD_ID + " IN (" + ids + ") GROUP " +
+                        "  BY 1 HAVING COUNT(*) = "+chords.size()+") AS rs JOIN " + HopAmChuanDBContract.Tables.SONG_CHORD + " ssc USING ("
+                        + HopAmChuanDBContract.Songs.SONG_ID + ") " +
+                        "  GROUP BY " + HopAmChuanDBContract.Songs.SONG_ID
+                        + " ORDER BY c LIMIT "+offset+", " + limit,
+                new String[]{});
+
+        List<Song> songs = new ArrayList<Song>();
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            int songId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID));
+            songs.add(SongDataAccessLayer.getSongById(context, songId));
+        }
+        // LOGE("TRUNGDQ", "size: " + songs.size());
+        c.close();
+
+        return songs;
     }
 }

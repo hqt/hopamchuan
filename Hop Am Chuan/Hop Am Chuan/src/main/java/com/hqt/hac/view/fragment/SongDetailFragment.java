@@ -58,6 +58,7 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
     private LinearLayout sameAuthorLayout;
     private LinearLayout sameSingerLayout;
     private LinearLayout sameChordLayout;
+    private int currentSameChordSongsCount = 0;
 
     /** Popup window for related songs stars **/
     private PopupWindow popupWindow;
@@ -210,7 +211,9 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
         List<Song> sameChord = ChordDataAccessLayer.getRandomSongsByChords(
                 activity.getApplicationContext(),
                 song.getChords(activity.getApplicationContext()),
+                currentSameChordSongsCount,
                 Config.DEFAULT_RELATED_SONGS_COUNT);
+        currentSameChordSongsCount += sameChord.size();
         addSongsToLayout(sameChord, sameChordLayout);
     }
     private void addSameSingerSongs() {
