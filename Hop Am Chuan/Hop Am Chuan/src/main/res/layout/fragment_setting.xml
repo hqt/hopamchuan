@@ -232,18 +232,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/ClickableTextView"
-        android:text="@string/app_info"
-        />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#ccc"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/ClickableTextView"
-        android:text="@string/app_vote"
-        />
+        android:id="@+id/app_detail"
+        android:text="@string/app_info"/>
 </LinearLayout>
 </ScrollView>
