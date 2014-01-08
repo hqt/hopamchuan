@@ -230,5 +230,6 @@
     <string name="view_same_singer_songs">BÀI HÁT CÙNG CA SĨ</string>
     <string name="view_same_author_songs">BÀI HÁT CÙNG TÁC GIẢ</string>
     <string name="view_same_chord_songs">BÀI HÁT CÙNG HỢP ÂM</string>
+    <string name="title_activity_artist_view">Artist</string>
 
 </resources>

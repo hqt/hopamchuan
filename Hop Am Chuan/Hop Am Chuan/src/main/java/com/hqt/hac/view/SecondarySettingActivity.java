@@ -42,7 +42,6 @@ public class SecondarySettingActivity extends Activity {
         try {
             String versionName = getBaseContext().getPackageManager()
                     .getPackageInfo(getBaseContext().getPackageName(), 0).versionName;
-            if (version != null)
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
