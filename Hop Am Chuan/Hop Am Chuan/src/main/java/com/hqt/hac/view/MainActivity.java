@@ -12,6 +12,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.StrictMode;
+import android.provider.SearchRecentSuggestions;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
@@ -29,6 +30,7 @@ import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
 import com.hqt.hac.helper.service.Mp3PlayerService;
 import com.hqt.hac.helper.widget.MusicPlayerController;
 import com.hqt.hac.model.Song;
+import com.hqt.hac.provider.SearchRecentProvider;
 import com.hqt.hac.utils.StringUtils;
 import com.hqt.hac.view.fragment.IHacFragment;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
@@ -428,6 +430,34 @@ public class MainActivity extends SlidingMenuActionBarActivity
         slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
         // just use this option if want include both two sidebar as some apps on Android App
         // slidingMenu.setMode(SlidingMenu.LEFT_RIGHT);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        handleIntent(intent);
+    }
+
+    /**
+     * private helper method. So both way will do the same for Search Activity
+     */
+    private void handleIntent(Intent intent) {
+        // Verify the action and get the query
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String queryStr = intent.getStringExtra(SearchManager.QUERY);
+            LOGE(TAG, "Search query: " + queryStr);
+            // default is search by song
+            // cache data for searching
+            SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+                    SearchRecentProvider.AUTHORITY, SearchRecentProvider.MODE);
+            suggestions.saveRecentQuery(queryStr, null);
+            // handle this search to fragment
+            SearchViewFragment fragment = new SearchViewFragment();
+            Bundle arguments = new Bundle();
+            arguments.putString("search_key_word", queryStr);
+            fragment.setArguments(arguments);
+            switchFragmentClearStack(fragment);
+        }
     }
 
     /**

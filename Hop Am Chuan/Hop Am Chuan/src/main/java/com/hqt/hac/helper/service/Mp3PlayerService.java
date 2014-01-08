@@ -123,7 +123,7 @@ public class Mp3PlayerService extends Service implements
                 // prepare
                 playsongLocal();
                 // start from new
-                player.start();
+                // player.start();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -208,7 +208,7 @@ public class Mp3PlayerService extends Service implements
 
     @Override
     public void onPrepared(MediaPlayer mp) {
-        player.start();
+        // player.start();
     }
 
     @Override

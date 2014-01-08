@@ -418,6 +418,7 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     /** ref to current Service */
     Mp3PlayerService mp3Service;
 
+
     /** setup start from here */
     private void setupMediaPlayer() {
         // get reference from Activity
