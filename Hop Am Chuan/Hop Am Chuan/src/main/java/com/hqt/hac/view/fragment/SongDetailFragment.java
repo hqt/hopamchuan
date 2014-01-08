@@ -2,8 +2,9 @@ package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hqt.hac.config.Config;
-import com.hqt.hac.helper.service.Mp3PlayerService;
-import com.hqt.hac.helper.widget.MusicPlayerController;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.ArtistDataAccessLayer;
@@ -62,6 +61,10 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
 
     /** Popup window for related songs stars **/
     private PopupWindow popupWindow;
+
+
+    private Thread relatedSongLoad;
+    private RelatedSongHandler mHandler;
 
     /**
      * empty constructor
@@ -150,7 +153,7 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
             }
         });
 
-
+        // Load related songs, asynchronously.
         setUpRelatedSongs();
 
         return rootView;
@@ -167,44 +170,19 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
      */
     private void setUpRelatedSongs() {
 
-        sameAuthorLayout = (LinearLayout) rootView.findViewById(R.id.linear_layout_same_author);
-        sameSingerLayout = (LinearLayout) rootView.findViewById(R.id.linear_layout_same_singer);
-        sameChordLayout = (LinearLayout) rootView.findViewById(R.id.linear_layout_same_chord);
-
-        /** Same author **/
-        addSameAuthorSongs();
-
-        /** Same singer **/
-        addSameSingerSongs();
-
-        /** Same chords **/
-        addSameChordSongs();
-
-        // Action for buttons
-        TextView sameChordBtn = (TextView) rootView.findViewById(R.id.same_chord_btn);
-        TextView sameAuthorBtn = (TextView) rootView.findViewById(R.id.same_author_btn);
-        TextView sameSingerBtn = (TextView) rootView.findViewById(R.id.same_singer_btn);
-
-        sameChordBtn.setOnClickListener(new View.OnClickListener() {
+        mHandler = new RelatedSongHandler();
+        relatedSongLoad = new Thread(new Runnable() {
             @Override
-            public void onClick(View view) {
-                addSameChordSongs();
+            public void run() {
+                try {
+                    Thread.sleep(Config.LOADING_SMOOTHING_DELAY);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                mHandler.sendMessage(mHandler.obtainMessage());
             }
         });
-        sameSingerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addSameSingerSongs();
-            }
-        });
-        sameAuthorBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addSameAuthorSongs();
-            }
-        });
-
-
+        relatedSongLoad.start();
 
     }
     private void addSameChordSongs() {
@@ -288,5 +266,45 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
             layout.addView(songItemHolder);
         }
     }
+    private class RelatedSongHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            sameAuthorLayout = (LinearLayout) rootView.findViewById(R.id.linear_layout_same_author);
+            sameSingerLayout = (LinearLayout) rootView.findViewById(R.id.linear_layout_same_singer);
+            sameChordLayout = (LinearLayout) rootView.findViewById(R.id.linear_layout_same_chord);
 
+            /** Same author **/
+            addSameAuthorSongs();
+
+            /** Same singer **/
+            addSameSingerSongs();
+
+            /** Same chords **/
+            addSameChordSongs();
+
+            // Action for buttons
+            TextView sameChordBtn = (TextView) rootView.findViewById(R.id.same_chord_btn);
+            TextView sameAuthorBtn = (TextView) rootView.findViewById(R.id.same_author_btn);
+            TextView sameSingerBtn = (TextView) rootView.findViewById(R.id.same_singer_btn);
+
+            sameChordBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    addSameChordSongs();
+                }
+            });
+            sameSingerBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    addSameSingerSongs();
+                }
+            });
+            sameAuthorBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    addSameAuthorSongs();
+                }
+            });
+        }
+    }
 }

@@ -6,7 +6,7 @@
     <item android:id="@+id/add_new_playlist"
         android:title="@string/new_playlist"
         android:icon="@drawable/content_new"
-        android:orderInCategory="1"
+        android:orderInCategory="10"
         app:showAsAction="ifRoom|collapseActionView"
         />
 </menu>

@@ -269,7 +269,7 @@ public class ArtistDataAccessLayer {
     }
 
 
-    public static List<Song> searchSongByAuthor(String name, int limit) {
+    public static List<Song> searchSongByAuthor(String name, int offset, int count) {
         LOGD(TAG, "search Song By Author");
         Context context = BunnyApplication.getAppContext();
         Artist artist = ArtistDataAccessLayer.getArtistByName(context, name);
@@ -280,7 +280,7 @@ public class ArtistDataAccessLayer {
                 Query.Projections.SONGAUTHOR_PROJECTION,                 // projection
                 SongsAuthors.ARTIST_ID + "=?",                           // selection string
                 new String[]{String.valueOf(artist.artistId)},           // selection args of strings
-                "RANDOM()  LIMIT " + limit);                             //  sort order
+                "RANDOM()  LIMIT " + offset + ", " + count);                             //  sort order
 
         int songIdCol = c.getColumnIndex(SongsAuthors.SONG_ID);
         List<Song> songs = new ArrayList<Song>();
@@ -292,7 +292,7 @@ public class ArtistDataAccessLayer {
         return songs;
     }
 
-    public static List<Song> searchSongBySinger(String name, int limit) {
+    public static List<Song> searchSongBySinger(String name, int offset, int count) {
         LOGD(TAG, "search Song By Singer");
 
         Context context = BunnyApplication.getAppContext();
@@ -304,7 +304,7 @@ public class ArtistDataAccessLayer {
                 Query.Projections.SONGAUTHOR_PROJECTION,                 // projection
                 SongsSingers.ARTIST_ID + "=?",                           // selection string
                 new String[]{String.valueOf(artist.artistId)},           // selection args of strings
-                "RANDOM()  LIMIT " + limit);                             //  sort order
+                "RANDOM()  LIMIT " + offset + ", " + count);                             //  sort order
 
         int songIdCol = c.getColumnIndex(SongsSingers.SONG_ID);
         List<Song> songs = new ArrayList<Song>();
@@ -317,8 +317,8 @@ public class ArtistDataAccessLayer {
     }
     public static List<Song> searchSongByArtist(String name, int limit) {
         List<Song> songs = new ArrayList<Song>();
-        songs.addAll(searchSongByAuthor(name, limit / 2));
-        songs.addAll(searchSongBySinger(name, limit / 2));
+        songs.addAll(searchSongByAuthor(name, 0, limit / 2));
+        songs.addAll(searchSongBySinger(name, 0, limit / 2));
         return songs;
     }
 
