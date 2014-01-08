@@ -74,7 +74,14 @@ public class ChordDataAccessLayer {
      */
     public static List<Song> getAllSongsByChordArrays(Context context, List<Chord> chords) {
 
-        // LOGE("TRUNGDQ", "get random songs by chords: " + offset + " : " + limit);
+        /*
+        Magic happened in this query, just don't touch. I will update a stackoverflow link later.
+
+        SELECT rs.song_id, COUNT(*) AS c FROM (SELECT s.song_id FROM   song s JOIN
+		  song_chord sc USING (song_id) WHERE  sc.chord_id IN (".implode(",", $chords).") GROUP
+		   BY 1 HAVING COUNT(*) = ".count($chords).") AS rs JOIN song_chord ssc USING (song_id)
+			GROUP BY song_id ORDER BY c LIMIT 0, 90
+         */
 
         /** Get chord id list **/
         StringBuilder chordIds = new StringBuilder();
@@ -83,8 +90,6 @@ public class ChordDataAccessLayer {
         }
 
         String ids = chordIds.toString().substring(0, chordIds.length() - 2);
-        // LOGE("TRUNGDQ", "ids: " + ids);
-
         HopAmChuanDatabase db = new HopAmChuanDatabase(context);
         if (db.getReadableDatabase() == null) return new ArrayList<Song>();
         Cursor c = db.getReadableDatabase().rawQuery(
@@ -103,7 +108,6 @@ public class ChordDataAccessLayer {
             int songId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID));
             songs.add(SongDataAccessLayer.getSongById(context, songId));
         }
-        // LOGE("TRUNGDQ", "size: " + songs.size());
         c.close();
 
         return songs;
@@ -129,13 +133,13 @@ public class ChordDataAccessLayer {
     public static List<Song> getRandomSongsByChords(Context context, List<Chord> chords, int offset, int limit) {
 
         /*
+        Magic happened in this query, just don't touch. I will update a stackoverflow link later.
+
         SELECT rs.song_id, COUNT(*) AS c FROM (SELECT s.song_id FROM   song s JOIN
 		  song_chord sc USING (song_id) WHERE  sc.chord_id IN (".implode(",", $chords).") GROUP
 		   BY 1 HAVING COUNT(*) = ".count($chords).") AS rs JOIN song_chord ssc USING (song_id)
 			GROUP BY song_id ORDER BY c LIMIT 0, 90
          */
-
-        // LOGE("TRUNGDQ", "get random songs by chords: " + offset + " : " + limit);
 
         /** Get chord id list **/
         StringBuilder chordIds = new StringBuilder();
@@ -144,8 +148,6 @@ public class ChordDataAccessLayer {
         }
 
         String ids = chordIds.toString().substring(0, chordIds.length() - 2);
-        // LOGE("TRUNGDQ", "ids: " + ids);
-
         HopAmChuanDatabase db = new HopAmChuanDatabase(context);
         if (db.getReadableDatabase() == null) return new ArrayList<Song>();
         Cursor c = db.getReadableDatabase().rawQuery(
@@ -164,7 +166,6 @@ public class ChordDataAccessLayer {
             int songId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID));
             songs.add(SongDataAccessLayer.getSongById(context, songId));
         }
-        // LOGE("TRUNGDQ", "size: " + songs.size());
         c.close();
 
         return songs;
