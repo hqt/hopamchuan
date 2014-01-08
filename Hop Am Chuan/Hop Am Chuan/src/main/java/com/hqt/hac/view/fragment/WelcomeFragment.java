@@ -49,13 +49,13 @@ public class WelcomeFragment extends  Fragment implements IHacFragment {
         SearchManager searchManager = (SearchManager) BunnyApplication.getAppContext()
                 .getSystemService(Context.SEARCH_SERVICE);
         // Use MenuItemCompat for comparable backward with API 10
-        SearchView mSearchView = (SearchView) MenuItemCompat.getActionView(searchBox);
+        // SearchView mSearchView = (SearchView) MenuItemCompat.getActionView(searchBox);
         // Assumes current mActivity is the searchable mActivity
-        mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        // mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         // Do not icon the widget. expand it.
-        mSearchView.setIconifiedByDefault(false);
+        // mSearchView.setIconifiedByDefault(false);
         // enable submit button
-        mSearchView.setSubmitButtonEnabled(true);
+        // mSearchView.setSubmitButtonEnabled(true);
 
 
         return rootView;

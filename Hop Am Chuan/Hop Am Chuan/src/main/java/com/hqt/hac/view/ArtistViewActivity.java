@@ -115,7 +115,7 @@ public class ArtistViewActivity extends ActionBarActivity implements InfinityLis
 
     @Override
     public Collection load(int offset, int count) {
-        return ArtistDataAccessLayer.searchSongByArtist(getApplicationContext(), artist.artistName, count);
+        return ArtistDataAccessLayer.searchSongByArtist(artist.artistName, count);
     }
 
 }
