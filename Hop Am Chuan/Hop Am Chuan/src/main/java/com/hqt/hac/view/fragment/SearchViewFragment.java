@@ -24,6 +24,7 @@ import com.hqt.hac.view.R;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 /**
@@ -61,6 +62,7 @@ public class SearchViewFragment extends Fragment implements IHacFragment, Infini
         Bundle arguments = getArguments();
         if ((arguments.getString("search_key_word") != null)) {
             queryStr = arguments.getString("search_key_word");
+            LOGE(TAG, "Query String: " + queryStr);
         }
     }
 
@@ -138,7 +140,6 @@ public class SearchViewFragment extends Fragment implements IHacFragment, Infini
         }
         // mListView.resetListView(mAdapter);
         mListView.setAdapter(mAdapter);
-
 
     }
 
