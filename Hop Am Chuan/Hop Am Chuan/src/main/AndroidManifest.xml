@@ -123,8 +123,13 @@
                 android:label="@string/title_activity_setting" >
         </activity>
         <activity
-                android:name=".FullscreenSongActivity"
-                android:label="Full Screen Activity">
+            android:name="com.hqt.hac.view.FullscreenSongActivity"
+            android:label="Full Screen Activity" >
+        </activity>
+        <activity
+            android:name="com.hqt.hac.view.ArtistViewActivity"
+            android:exported="true"
+            android:label="@string/title_activity_artist_view" >
         </activity>
     </application>
 

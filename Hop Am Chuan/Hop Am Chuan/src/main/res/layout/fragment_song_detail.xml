@@ -117,7 +117,8 @@
                     android:layout_height="200dp"
                     android:background="#fff"
                     android:textColor="#666"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
+                    android:fontFamily="@string/font_light"
                     android:id="@+id/songContent"
                     android:padding="10dp" />
                 <View

@@ -16,6 +16,7 @@
         android:paddingBottom="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
+        android:fontFamily="@string/font_light"
         android:orientation="vertical"
         android:id="@+id/linearLayout">
 

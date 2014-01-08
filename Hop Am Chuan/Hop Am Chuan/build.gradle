@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.6.+'
+        classpath 'com.android.tools.build:gradle:0.7.+'
     }
 }
 apply plugin: 'android'
@@ -24,7 +24,8 @@ android {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:19.0.0'
-    // compile 'com.android.support:support-v4:18.0.0'
+    compile 'com.android.support:support-v4:18.0.0'
+    // 
 
     compile files('libs/google-gson-2.2.4/gson-2.2.4.jar')
     compile files('libs/google-gson-2.2.4/gson-2.2.4-javadoc.jar')
