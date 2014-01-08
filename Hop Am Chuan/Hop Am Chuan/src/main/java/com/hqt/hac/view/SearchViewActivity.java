@@ -163,7 +163,7 @@ public class SearchViewActivity extends ActionBarActivity implements InfinityLis
             default:
                 // do nothing
         }
-        //mListView.resetListView(mAdapter);
+        // mListView.resetListView(mAdapter);
         mListView.setAdapter(mAdapter);
 
 

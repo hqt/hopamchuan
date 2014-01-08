@@ -44,7 +44,7 @@ public class WelcomeFragment extends  Fragment implements IHacFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_welcome, container, false);
-        TextView searchBox = (TextView) rootView.findViewById(R.id.insert_chord_edit_text);
+        /*TextView searchBox = (TextView) rootView.findViewById(R.id.insert_chord_edit_text);
         // Get the SearchView and set the Search Configuration
         SearchManager searchManager = (SearchManager) BunnyApplication.getAppContext()
                 .getSystemService(Context.SEARCH_SERVICE);
@@ -55,7 +55,7 @@ public class WelcomeFragment extends  Fragment implements IHacFragment {
         // Do not icon the widget. expand it.
         mSearchView.setIconifiedByDefault(false);
         // enable submit button
-        mSearchView.setSubmitButtonEnabled(true);
+        mSearchView.setSubmitButtonEnabled(true);*/
 
 
         return rootView;

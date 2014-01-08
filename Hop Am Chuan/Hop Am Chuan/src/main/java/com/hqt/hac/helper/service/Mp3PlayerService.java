@@ -18,6 +18,7 @@ import com.hqt.hac.view.R;
 import java.io.IOException;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
+import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 /**
@@ -58,10 +59,10 @@ public class Mp3PlayerService extends Service implements
         try {
             player.setAudioStreamType(AudioManager.STREAM_MUSIC);
             // testing for source
-            AssetFileDescriptor afd = getApplicationContext().getAssets().openFd("aaa.mp3");
-            player.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
+            // AssetFileDescriptor afd = getApplicationContext().getAssets().openFd("aaa.mp3");
+            // player.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
             // this line should put after set DataSource and should use prepareAsync() rather than just only prepare()
-            player.prepareAsync();
+            // player.prepareAsync();
             player.setOnPreparedListener(this);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
@@ -69,28 +70,7 @@ public class Mp3PlayerService extends Service implements
             e.printStackTrace();
         } catch (IllegalStateException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-
-        /*Notification note=new Notification(R.drawable.ic_launcher,
-                "Can you hear the music?",
-                System.currentTimeMillis());
-        Intent i=new Intent(this, MainActivity.class);
-
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
-                Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-        PendingIntent pi= PendingIntent.getActivity(this, 0,
-                i, 0);
-
-        note.setLatestEventInfo(this, "Fake Player",
-                "Now Playing: \"Ummmm, Nothing\"",
-                pi);
-        note.flags|= Notification.FLAG_NO_CLEAR;
-
-        startForeground(1337, note);*/
-
     }
 
     /**
@@ -115,19 +95,73 @@ public class Mp3PlayerService extends Service implements
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         /** loading data from intent */
-        LOGD(TAG, "OnStartCommand Service");
         if (intent == null) return START_STICKY;
-        Song intentSong = intent.getParcelableExtra("song");
-        if (currentSong == null) currentSong = intentSong;
-        if (currentSong == null) return START_STICKY;
 
-        if (intentSong.songId != currentSong.songId) {
-            currentSong = intentSong;
-            if (!player.isPlaying()) {
+        LOGE(TAG, "OnStartCommand Service New Coming");
+        boolean stateIsNew = false;
+        try {
+            Song intentSong = intent.getParcelableExtra("song");
+            if (currentSong == null) {
+                currentSong = intentSong;
+                stateIsNew = true;
+                LOGE(TAG, "State is new");
+            }
+            if (currentSong == null) return START_STICKY;
+
+            LOGE(TAG, "Question check state and new/old song");
+            if (stateIsNew) LOGE(TAG, "State is new");
+            if (intentSong.songId != currentSong.songId) LOGE(TAG, "Different song");
+            else LOGE(TAG, "Same song!!!!!!");
+            // if different song. start to listen new song
+            if (stateIsNew || (intentSong.songId != currentSong.songId)) {
+                LOGD(TAG, "Start new song");
+                currentSong = intentSong;
+                // stop currently song. if is playing
+                if (player.isPlaying()) {
+                    player.pause();
+                }
+                // prepare
+                playsongLocal();
+                // start from new
                 player.start();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return START_STICKY;
+    }
+
+    int oddState = 0;
+    private void playsongLocal() {
+        LOGE(TAG, "Play song local");
+        AssetFileDescriptor afd;
+        player.reset();
+        try {
+            if ((oddState++ % 2) == 0) {
+                LOGE(TAG, "playing aaa.mp3");
+                afd = getApplicationContext().getAssets().openFd("aaa.mp3");
+            } else {
+                LOGE(TAG, "Playing bbb.mp3");
+                afd = getApplicationContext().getAssets().openFd("bbb.mp3");
+                //afd = getApplicationContext().getAssets().openFd("aaa.mp3");
+            }
+            player.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
+            // this line should put after set DataSource and should use prepareAsync() rather than just only prepare()
+            player.prepareAsync();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void playsongNetwork() {
+        try {
+            player.setDataSource(currentSong.link);
+            // this line should put after set DataSource and should use prepareAsync()
+            // rather than just only prepare()
+            player.prepareAsync();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -174,11 +208,12 @@ public class Mp3PlayerService extends Service implements
 
     @Override
     public void onPrepared(MediaPlayer mp) {
-        // player.start();
+        player.start();
     }
 
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
+        LOGE(TAG, "On error: " + "code: " + what + "bundle: " + extra);
         return false;
     }
 

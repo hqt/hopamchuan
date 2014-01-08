@@ -147,7 +147,10 @@ public class ChordDataAccessLayer {
         // LOGE("TRUNGDQ", "ids: " + ids);
 
         HopAmChuanDatabase db = new HopAmChuanDatabase(context);
-        if (db.getReadableDatabase() == null) return new ArrayList<Song>();
+        if (db.getReadableDatabase() == null) {
+            db.close();
+            return new ArrayList<Song>();
+        }
         Cursor c = db.getReadableDatabase().rawQuery(
                 "SELECT rs." + HopAmChuanDBContract.Songs.SONG_ID + ", COUNT(*) AS c FROM (SELECT s."
                         + HopAmChuanDBContract.Songs.SONG_ID + " FROM " + HopAmChuanDBContract.Tables.SONG + " s JOIN " +
