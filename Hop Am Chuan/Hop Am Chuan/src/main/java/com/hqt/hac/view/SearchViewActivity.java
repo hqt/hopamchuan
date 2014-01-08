@@ -1,17 +1,30 @@
 package com.hqt.hac.view;
 
-import android.annotation.TargetApi;
 import android.app.SearchManager;
-import android.content.Intent;
-import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.SearchView;
 
-import com.hqt.hac.utils.ReflectionUtils;
-import com.hqt.hac.utils.UIUtils;
+import android.content.Intent;
+import android.os.Bundle;
+
+import android.provider.SearchRecentSuggestions;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.Spinner;
+import com.hqt.hac.config.Config;
+import com.hqt.hac.helper.adapter.SongListAdapter;
+import com.hqt.hac.helper.widget.InfinityListView;
+import com.hqt.hac.model.Song;
+import com.hqt.hac.model.dal.ArtistDataAccessLayer;
+import com.hqt.hac.model.dal.SongDataAccessLayer;
+import com.hqt.hac.provider.SearchRecentProvider;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import static com.hqt.hac.utils.LogUtils.LOGE;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 /**
  * Search Activity acts as Search Dialog
@@ -19,23 +32,53 @@ import com.hqt.hac.utils.UIUtils;
  * See this link for more Detail:
  *
  * @see <a href="http://developer.android.com/guide/topics/search/search-dialog.html#UsingSearchWidget">
-        * // Using Search Widget</a>
  */
-public class SearchViewActivity extends ActionBarActivity {
+public class SearchViewActivity extends ActionBarActivity implements InfinityListView.ILoaderContent, AdapterView.OnItemSelectedListener {
+
+    private static String TAG = makeLogTag(SearchViewActivity.class);
+
+    /** List contains search data */
+    InfinityListView mListView;
+
+    /** Adapter for ListView
+     * use old ones become it's same
+     */
+    BaseAdapter mAdapter;
+
+    /** current type of search query */
+    int type = 0;
+
+    /** current query string */
+    String queryStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_view);
 
-       /* if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }*/
+
+        mListView = (InfinityListView) findViewById(R.id.list_view);
+
+        /** Spinner : create mAdapter for Spinner */
+        Spinner spinner = (Spinner) findViewById(R.id.spinner_method_list);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.
+                createFromResource(getApplicationContext(),
+                        R.array.song_list_method, R.layout.custom_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
+        spinner.setAdapter(adapter);    // Apply the mAdapter to the spinner
+        spinner.setOnItemSelectedListener(this);    // because this fragment has implemented method
 
         handleIntent(getIntent());
 
+        /** config mode for this ListView.
+         *  this ListView is full rich function. See document for more detail
+         */
+        InfinityListView.ListViewProperty property = new InfinityListView.ListViewProperty();
+        property.Loader(this).Adapter(mAdapter).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
+                .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
+        mListView.setListViewProperty(property);
 
     }
 
@@ -70,9 +113,65 @@ public class SearchViewActivity extends ActionBarActivity {
     private void handleIntent(Intent intent) {
         // Verify the action and get the query
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            // perform search base on query here
+            queryStr = intent.getStringExtra(SearchManager.QUERY);
+            LOGE(TAG, "Search query: " + queryStr);
+            // default is search by song
+            type = 0;
+            // cache data for searching
+            SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+                    SearchRecentProvider.AUTHORITY, SearchRecentProvider.MODE);
+            suggestions.saveRecentQuery(queryStr, null);
+            // handle this search
+            doSearch(queryStr);
         }
+    }
+
+    private void doSearch(String queryStr) {
+        // assign work for inf ListView
+    }
+
+
+    @Override
+    public Collection load(int offset, int count) {
+        Collection res = null;
+        switch (type) {
+            case 0:
+                res = SongDataAccessLayer.searchSongByTitle(queryStr, offset, count);
+                break;
+            case 1:
+                res = ArtistDataAccessLayer.searchSongBySinger(queryStr, 100);
+                break;
+            case 2:
+                res = ArtistDataAccessLayer.searchSongByAuthor(queryStr, 100);
+        }
+        return res;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch(position) {
+            case 0:
+                // search by artist
+                mAdapter = new SongListAdapter(getApplicationContext(), new ArrayList<Song>());
+                break;
+            case 1:
+                // search by author
+                break;
+            case 2:
+                // search by singer
+                break;
+            default:
+                // do nothing
+        }
+        //mListView.resetListView(mAdapter);
+        mListView.setAdapter(mAdapter);
+
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
   /*  @Override

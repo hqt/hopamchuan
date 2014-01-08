@@ -13,6 +13,7 @@ import com.hqt.hac.provider.HopAmChuanDBContract.SongsAuthors;
 import com.hqt.hac.provider.HopAmChuanDBContract.SongsSingers;
 import com.hqt.hac.provider.helper.Query;
 import com.hqt.hac.utils.StringUtils;
+import com.hqt.hac.view.BunnyApplication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +94,8 @@ public class ArtistDataAccessLayer {
      * @param count
      * @return
      */
-    public static List<Artist> searchArtistByName(Context context, String name, int offset, int count) {
+    public static List<Artist> searchArtistByName(String name, int offset, int count) {
+        Context context = BunnyApplication.mContext;
         LOGD(TAG, "search " + count + " Artist(s) with name '" + name + "' from position " + offset);
         String artistName = StringUtils.removeAcients(name);
         ContentResolver resolver = context.getContentResolver();
@@ -267,9 +269,9 @@ public class ArtistDataAccessLayer {
     }
 
 
-    public static List<Song> searchSongByAuthor(Context context, String name, int limit) {
+    public static List<Song> searchSongByAuthor(String name, int limit) {
         LOGD(TAG, "search Song By Author");
-
+        Context context = BunnyApplication.getAppContext();
         Artist artist = ArtistDataAccessLayer.getArtistByName(context, name);
 
         ContentResolver resolver = context.getContentResolver();
@@ -290,9 +292,10 @@ public class ArtistDataAccessLayer {
         return songs;
     }
 
-    public static List<Song> searchSongBySinger(Context context, String name, int limit) {
+    public static List<Song> searchSongBySinger(String name, int limit) {
         LOGD(TAG, "search Song By Singer");
 
+        Context context = BunnyApplication.getAppContext();
         Artist artist = ArtistDataAccessLayer.getArtistByName(context, name);
 
         ContentResolver resolver = context.getContentResolver();
@@ -312,11 +315,10 @@ public class ArtistDataAccessLayer {
         c.close();
         return songs;
     }
-
-    public static List<Song> searchSongByArtist(Context context, String name, int limit) {
+    public static List<Song> searchSongByArtist(String name, int limit) {
         List<Song> songs = new ArrayList<Song>();
-        songs.addAll(searchSongByAuthor(context, name, limit / 2));
-        songs.addAll(searchSongBySinger(context, name, limit / 2));
+        songs.addAll(searchSongByAuthor(name, limit / 2));
+        songs.addAll(searchSongBySinger(name, limit / 2));
         return songs;
     }
 

@@ -3,7 +3,6 @@ package com.hqt.hac.view;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -42,8 +41,15 @@ public class SecondarySettingActivity extends Activity {
         try {
             String versionName = getBaseContext().getPackageManager()
                     .getPackageInfo(getBaseContext().getPackageName(), 0).versionName;
+            if (versionName != null) {
+                currentAppTextView.setText(versionName);
+            } else {
+                currentAppTextView.setText("1.0");
+            }
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            currentAppTextView.setText("1.0");
         }
 
         feedBackTextView.setOnClickListener(new View.OnClickListener() {

@@ -13,6 +13,7 @@ import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.HopAmChuanDBContract;
 import com.hqt.hac.provider.helper.Query;
 import com.hqt.hac.utils.StringUtils;
+import com.hqt.hac.view.BunnyApplication;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -377,13 +378,13 @@ public class SongDataAccessLayer {
 
     /**
      * Search by title, use offset and count for pagination, infinity scrolling...
-     * @param context
      * @param title
      * @param offset
      * @param count
      * @return
      */
-    public static List<Song> searchSongByTitle(Context context, String title, int offset, int count) {
+    public static List<Song> searchSongByTitle(String title, int offset, int count) {
+        Context context = BunnyApplication.mContext;
         LOGD(TAG, "search Song Title: " + title);
         String keyword = StringUtils.removeAcients(title);
         ContentResolver resolver = context.getContentResolver();
@@ -403,6 +404,5 @@ public class SongDataAccessLayer {
         c.close();
         return songs;
     }
-
 
 }
