@@ -17,6 +17,8 @@ import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.ArtistDataAccessLayer;
 import com.hqt.hac.model.dal.SongDataAccessLayer;
 import com.hqt.hac.utils.DialogUtils;
+import com.hqt.hac.utils.NetworkUtils;
+import com.hqt.hac.utils.StringUtils;
 import com.hqt.hac.view.BunnyApplication;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
@@ -31,7 +33,10 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
  * Fragment to show search result
  * Created by ThaoHQSE60963 on 1/8/14.
  */
-public class SearchResultFragment extends Fragment implements IHacFragment, InfinityListView.ILoaderContent, AdapterView.OnItemSelectedListener {
+public class SearchResultFragment extends Fragment implements
+        IHacFragment,
+        InfinityListView.ILoaderContent,
+        AdapterView.OnItemSelectedListener {
 
     private static String TAG = makeLogTag(SearchResultFragment.class);
 
@@ -71,8 +76,12 @@ public class SearchResultFragment extends Fragment implements IHacFragment, Infi
         // get arguments from main mActivity
         Bundle arguments = getArguments();
         if ((arguments.getString("search_key_word") != null)) {
-            queryStr = arguments.getString("search_key_word");
-            LOGE(TAG, "Query String: " + queryStr);
+            String tmpQueryStr = arguments.getString("search_key_word");
+
+            this.activity.changeTitleBar(getString(R.string.search_title) + " \"" + tmpQueryStr + "\"");
+
+            queryStr = StringUtils.removeAcients(tmpQueryStr);
+            LOGE(TAG, "Query String::: " + queryStr);
         }
     }
 
@@ -120,6 +129,7 @@ public class SearchResultFragment extends Fragment implements IHacFragment, Infi
 
     @Override
     public Collection load(int offset, int count) {
+        NetworkUtils.stimulateNetwork(Config.LOADING_SMOOTHING_DELAY);
         Collection res = null;
         switch (type) {
             case 0:
@@ -167,7 +177,7 @@ public class SearchResultFragment extends Fragment implements IHacFragment, Infi
             default:
                 // do nothing
         }
-        mListView.setAdapter(mAdapter);
+        mListView.resetListView(mAdapter);
     }
 
     @Override
@@ -177,7 +187,7 @@ public class SearchResultFragment extends Fragment implements IHacFragment, Infi
 
     @Override
     public int getTitle() {
-        return 0;
+        return R.string.search_title;
     }
 
     private void bindEventListView() {

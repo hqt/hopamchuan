@@ -1257,7 +1257,7 @@ public class DatabaseTest {
 
             // Get
             // should be song1
-            List<Song> result = ArtistDataAccessLayer.searchSongByArtist("dinh quang trung", Config.DEFAULT_SEARCH_ARTIST_LIMIT);
+            List<Song> result = ArtistDataAccessLayer.searchSongByArtist("dinh quang trung", 0, Config.DEFAULT_SEARCH_ARTIST_LIMIT);
 
             // Compare
             if (result.size() == 1 && (result.get(0).equals(song1) || result.get(0).equals(song2))) {
@@ -1268,7 +1268,7 @@ public class DatabaseTest {
 
             // Get
             // should be song1 and song2
-            List<Song> result2 = ArtistDataAccessLayer.searchSongByArtist("huynh quang thao", Config.DEFAULT_SEARCH_ARTIST_LIMIT);
+            List<Song> result2 = ArtistDataAccessLayer.searchSongByArtist("huynh quang thao", 0, Config.DEFAULT_SEARCH_ARTIST_LIMIT);
 
             // Compare
             if (result2.size() == 2 && ((result2.get(0).equals(song1) && result2.get(1).equals(song2)) ||

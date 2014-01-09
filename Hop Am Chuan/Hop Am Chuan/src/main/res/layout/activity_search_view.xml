@@ -4,15 +4,34 @@
                 android:orientation="vertical" android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinner_method_list"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:paddingTop="59dp"
+        >
     <com.hqt.hac.helper.widget.InfinityListView
             android:layout_height="fill_parent"
             android:layout_width="fill_parent"
-            android:layout_below="@+id/spinner_method_list"
             android:id="@+id/list_view"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_height="65dp"
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="5dp"
+        android:paddingBottom="0dp"
+        android:background="@drawable/ffff"
+        >
 
+        <Spinner
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:textColor="#0e0e0e"
+            android:paddingBottom="0dp"
+            android:id="@+id/spinner_method_list"/>
+    </RelativeLayout>
 </RelativeLayout>

@@ -35,8 +35,8 @@
 
     <!-- list all method to search -->
     <string-array name="search_method">
-        <item>Search by Song</item>
-        <item>Search by Artist</item>
+        <item>Tìm theo bài hát</item>
+        <item>Tác giả / ca sĩ</item>
     </string-array>
 
     <!-- list all method to view songs in favorite -->
@@ -270,5 +270,6 @@
     <string name="get_account_info">Đang lấy thông tin</string>
     <string name="logout_button">Đăng xuất</string>
     <string name="logout_confirm">Ngắt kết nối tài khoản hiện tại? (Playlist trên thiết bị của bạn sẽ bị xóa)</string>
+    <string name="first_running">Đang cài đặt cho lần chạy đầu tiên...</string>
 
 </resources>
