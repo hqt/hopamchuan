@@ -30,6 +30,7 @@ import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
 import com.hqt.hac.helper.service.Mp3PlayerService;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.SearchRecentProvider;
+import com.hqt.hac.utils.ReflectionUtils;
 import com.hqt.hac.utils.StringUtils;
 import com.hqt.hac.view.fragment.IHacFragment;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
@@ -350,7 +351,9 @@ public class MainActivity extends SlidingMenuActionBarActivity
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
 
-        MenuItem searchItem = menu.findItem(R.id.search_bar);
+        final MenuItem searchItem = menu.findItem(R.id.search_bar);
+
+        /** Setup SearchView */
         if (searchItem != null) {
             // Get the SearchView and set the Search Configuration
             SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
@@ -362,8 +365,34 @@ public class MainActivity extends SlidingMenuActionBarActivity
             mSearchView.setIconifiedByDefault(false);
             // enable submit button
             mSearchView.setSubmitButtonEnabled(true);
-        }
+            // Returns whether query refinement is enabled for all items or only specific ones.
+            mSearchView.setQueryRefinementEnabled(true);
+            // setup SearchView that lost focus after search. Secret code that ... use by Google Developer */
+            mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    ReflectionUtils.tryInvoke(searchItem, "collapseActionView");
+                    return false;
+                }
 
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    return false;
+                }
+            });
+            mSearchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
+                @Override
+                public boolean onSuggestionSelect(int i) {
+                    return false;
+                }
+
+                @Override
+                public boolean onSuggestionClick(int i) {
+                    ReflectionUtils.tryInvoke(searchItem, "collapseActionView");
+                    return false;
+                }
+            });
+        }
         restoreActionBar();
         return true;
     }

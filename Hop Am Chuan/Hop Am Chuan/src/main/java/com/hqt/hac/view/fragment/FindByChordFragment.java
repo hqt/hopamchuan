@@ -95,9 +95,9 @@ public class FindByChordFragment extends Fragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_find_by_chord, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_find_by_chord, container, true);
 
-       mBackgroundContainer = (BackgroundContainer) rootView.findViewById(R.id.listViewBackground);
+       //mBackgroundContainer = (BackgroundContainer) rootView.findViewById(R.id.listViewBackground);
 
         /** using chord base from resource */
         chordBase = activity.getApplicationContext().getResources().getStringArray(R.array.chords_base_chord);
