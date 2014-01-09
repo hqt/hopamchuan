@@ -62,9 +62,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/gen/com/actionbarsherlock/BuildConfig.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/gen/com/actionbarsherlock/BuildConfig.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/CapitalizingButton.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/CapitalizingButton.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/CapitalizingTextView.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/CapitalizingTextView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/model/dal/ChordDataAccessLayer.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/model/dal/ChordDataAccessLayer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/view/CollapsibleActionView.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/view/CollapsibleActionView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/CollapsibleActionViewWrapper.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/CollapsibleActionViewWrapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/FindByChordFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/FindByChordFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/FloatEvaluator.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/FloatEvaluator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/FloatKeyframeSet.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/nineoldandroids/animation/FloatKeyframeSet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/IcsAbsSpinner.java" afterPath="$PROJECT_DIR$/../../Actionbarsherlock Library/src/com/actionbarsherlock/internal/widget/IcsAbsSpinner.java" />
@@ -210,7 +210,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Research Projects/SmartSongView/build.xml" afterPath="$PROJECT_DIR$/../../Research Projects/SmartSongView/build.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/res/values/dimens.xml" afterPath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/res/values/dimens.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/res/values-w820dp/dimens.xml" afterPath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/res/values-w820dp/dimens.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_find_by_chord.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_find_by_chord.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/res/layout/fragment_main.xml" afterPath="$PROJECT_DIR$/../../GraphicExampleProjectProject/GraphicExampleProject/src/main/res/layout/fragment_main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Research Projects/SmartSongView/nbproject/genfiles.properties" afterPath="$PROJECT_DIR$/../../Research Projects/SmartSongView/nbproject/genfiles.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../GraphicExampleProjectProject/gradlew" afterPath="$PROJECT_DIR$/../../GraphicExampleProjectProject/gradlew" />
@@ -239,6 +238,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+    <option name="PARALLEL_COMPILATION" value="true" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -312,19 +315,8 @@
       <file leaf-file-name="SettingActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="0" selection-start="2104" selection-end="2104" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="7854">
+            <state line="537" column="0" selection-start="20128" selection-end="20128" vertical-scroll-proportion="0.0" vertical-offset="7209" max-vertical-offset="7854">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArtistViewFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/ArtistViewFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="28" selection-start="3108" selection-end="3108" vertical-scroll-proportion="0.0" vertical-offset="1306" max-vertical-offset="2159">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -332,7 +324,7 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="367" column="95" selection-start="14766" selection-end="14766" vertical-scroll-proportion="0.22735043" vertical-offset="1618" max-vertical-offset="3893">
+            <state line="652" column="11" selection-start="25628" selection-end="25628" vertical-scroll-proportion="0.28093645" vertical-offset="2586" max-vertical-offset="3706">
               <folding>
                 <element signature="docComment;field#mSearchView#0;class#MainActivity#0" expanded="false" />
                 <element signature="docComment;field#mDrawerListView#0;class#MainActivity#0" expanded="false" />
@@ -346,54 +338,73 @@
                 <element signature="docComment;field#mp3Service#0;class#MainActivity#0" expanded="false" />
                 <element signature="docComment;field#mp3ServiceIntent#0;class#MainActivity#0" expanded="false" />
                 <element signature="docComment;field#player#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#3490#3555#0" expanded="false" />
+                <element signature="e#3415#3450#0" expanded="false" />
+                <element signature="e#3455#3520#0" expanded="false" />
                 <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#4811#4833#0" expanded="false" />
+                <element signature="e#4776#4798#0" expanded="false" />
+                <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#onSaveInstanceState#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#7933#8003#0" expanded="false" />
+                <element signature="e#7898#7968#0" expanded="false" />
                 <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#9713#9787#0" expanded="false" />
-                <element signature="e#10336#10401#0" expanded="false" />
-                <element signature="e#10740#10760#0" expanded="false" />
-                <element signature="e#10978#11014#0" expanded="true" />
-                <element signature="e#11153#11236#0" expanded="false" />
-                <element signature="e#11421#11472#0" expanded="true" />
-                <element signature="e#11519#11602#0" expanded="false" />
-                <element signature="e#12295#12372#0" expanded="false" />
+                <element signature="e#9678#9752#0" expanded="false" />
+                <element signature="e#10301#10366#0" expanded="false" />
+                <element signature="e#10705#10725#0" expanded="false" />
+                <element signature="e#10943#10979#0" expanded="true" />
+                <element signature="e#11118#11201#0" expanded="false" />
+                <element signature="e#11386#11437#0" expanded="true" />
+                <element signature="e#11484#11567#0" expanded="false" />
+                <element signature="e#12260#12337#0" expanded="false" />
                 <element signature="method#changeTitleBar#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#restoreActionBar#0;class#MainActivity#0" expanded="false" />
                 <element signature="docComment;method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#13660#13720#0" expanded="false" />
+                <element signature="e#13651#13711#0" expanded="false" />
+                <element signature="e#16025#16269#0" expanded="true" />
+                <element signature="e#16254#16255#0" expanded="true" />
+                <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#16494#16552#0" expanded="false" />
+                <element signature="docComment;method#onSearchRequested#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onSearchRequested#0;class#MainActivity#0" expanded="false" />
+                <element signature="docComment;method#setUpActionBar#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#setUpActionBar#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#16996#17071#0" expanded="false" />
+                <element signature="e#17552#17627#0" expanded="false" />
                 <element signature="method#setUpSlidingMenu#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#17465#17485#0" expanded="true" />
-                <element signature="e#17661#17692#0" expanded="true" />
-                <element signature="e#17864#17948#0" expanded="false" />
+                <element signature="e#18021#18041#0" expanded="true" />
+                <element signature="e#18217#18248#0" expanded="true" />
+                <element signature="e#18420#18504#0" expanded="false" />
                 <element signature="method#onNewIntent#0;class#MainActivity#0" expanded="false" />
                 <element signature="docComment;method#handleIntent#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#handleIntent#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#18528#18556#0" expanded="false" />
                 <element signature="docComment;method#setUpListView#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#setUpListView#0;class#MainActivity#0" expanded="false" />
                 <element signature="docComment;method#setUpMp3Service#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#setUpMp3Service#0;class#MainActivity#0" expanded="false" />
-                <element signature="class#20888:21446" expanded="false" />
-                <element signature="method#onServiceConnected#0;class#20888:21446" expanded="false" />
-                <element signature="method#onServiceDisconnected#0;class#20888:21446" expanded="false" />
+                <element signature="class#21534:22092" expanded="false" />
+                <element signature="method#onServiceConnected#0;class#21534:22092" expanded="false" />
+                <element signature="method#onServiceDisconnected#0;class#21534:22092" expanded="false" />
+                <element signature="e#22315#22387#0" expanded="false" />
                 <element signature="class#COMMIT_TYPE#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#switchFragmentNormal#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#22351#22391#0" expanded="false" />
+                <element signature="e#22997#23037#0" expanded="false" />
                 <element signature="method#switchFragmentClearStack#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#switchFragment#0;class#MainActivity#0" expanded="false" />
                 <element signature="docComment;method#getCurrentFragment#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#getCurrentFragment#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#24983#25047#0" expanded="false" />
+                <element signature="e#25870#26099#0" expanded="true" />
+                <element signature="e#26084#26085#0" expanded="true" />
                 <element signature="method#gotoCategoryPage#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#gotoPlayList#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#26905#26971#0" expanded="false" />
+                <element signature="e#28431#28497#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReflectionUtils.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ReflectionUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="25" selection-start="323" selection-end="323" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -410,7 +421,7 @@
       <file leaf-file-name="SearchResultFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchResultFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="205" column="55" selection-start="7615" selection-end="7615" vertical-scroll-proportion="0.0" vertical-offset="2985" max-vertical-offset="3723">
+            <state line="205" column="55" selection-start="7615" selection-end="7615" vertical-scroll-proportion="0.0" vertical-offset="1034" max-vertical-offset="3723">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1224,7 +1235,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java" />
         <option value="$PROJECT_DIR$/src/main/res/menu/main.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_search_view.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/model/dal/ChordDataAccessLayer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/service/Mp3PlayerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/FullscreenSongActivity.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/fragment_welcome.xml" />
@@ -1238,7 +1248,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/ArtistAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/SongListAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchResultFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/DecoratorAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/MergeAdapter.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
@@ -1246,6 +1255,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/FindByChordFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/ArtistViewFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/WelcomeFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchResultFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/model/dal/ChordDataAccessLayer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" />
       </list>
     </option>
@@ -1493,7 +1504,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.lastSelected" value="editor.preferences.completion" />
+    <property name="options.lastSelected" value="gradle.compiler" />
     <property name="options.splitter.main.proportions" value="0.30083334" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -1711,12 +1722,12 @@
       <workItem from="1388930000339" duration="44655000" />
       <workItem from="1389114434705" duration="9473000" />
       <workItem from="1389146395451" duration="27384000" />
-      <workItem from="1389226353316" duration="18502000" />
+      <workItem from="1389226353316" duration="26491000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143477000" />
+    <option name="totallyTimeSpent" value="151466000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1744,28 +1755,29 @@
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2549168" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2031722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2031722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24093656" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24093656" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.67628205" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32250756" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42948717" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2549168" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24093656" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.67628205" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1823,46 +1835,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/unittest/DatabaseTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="264" column="0" selection-start="12832" selection-end="12832" vertical-scroll-proportion="3.4119658" vertical-offset="2135" max-vertical-offset="22032" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/xml/searchable.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="29" selection-start="269" selection-end="269" vertical-scroll-proportion="0.14214046" vertical-offset="0" max-vertical-offset="598" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_setting.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="234" column="55" selection-start="8249" selection-end="8275" vertical-scroll-proportion="0.70331585" vertical-offset="3575" max-vertical-offset="4318">
-          <folding>
-            <element signature="e#415#450#0" expanded="false" />
-            <element signature="e#476#511#0" expanded="false" />
-            <element signature="e#535#568#0" expanded="false" />
-            <element signature="e#595#628#0" expanded="false" />
-            <element signature="e#874#891#0" expanded="false" />
-            <element signature="e#1285#1310#0" expanded="false" />
-            <element signature="e#1851#1880#0" expanded="false" />
-            <element signature="e#2145#2172#0" expanded="false" />
-            <element signature="e#4347#4364#0" expanded="false" />
-            <element signature="e#6065#6088#0" expanded="false" />
-            <element signature="e#7124#7148#0" expanded="false" />
-            <element signature="e#7409#7433#0" expanded="false" />
-            <element signature="e#8213#8231#0" expanded="false" />
-            <element signature="e#9299#9317#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/DialogUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="0" selection-start="2815" selection-end="2815" vertical-scroll-proportion="0.4940171" vertical-offset="0" max-vertical-offset="585" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/provider/HopAmChuanProvider.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="176" column="35" selection-start="7234" selection-end="7234" vertical-scroll-proportion="-2.409699" vertical-offset="3770" max-vertical-offset="9520">
@@ -1933,18 +1905,6 @@
         <state line="27" column="23" selection-start="762" selection-end="762" vertical-scroll-proportion="0.33229813" vertical-offset="318" max-vertical-offset="1462">
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongDetailFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="225" column="39" selection-start="7749" selection-end="7749" vertical-scroll-proportion="-0.94700855" vertical-offset="3444" max-vertical-offset="4029">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/model/dal/ChordDataAccessLayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="0" selection-start="5025" selection-end="5025" vertical-scroll-proportion="-0.23247863" vertical-offset="1989" max-vertical-offset="2771" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_song_fullscreen.xml">
@@ -2213,22 +2173,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="0" selection-start="2104" selection-end="2104" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="7854">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchResultFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="205" column="55" selection-start="7615" selection-end="7615" vertical-scroll-proportion="0.0" vertical-offset="2985" max-vertical-offset="3723">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/ArtistViewFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="91" column="28" selection-start="3108" selection-end="3108" vertical-scroll-proportion="0.0" vertical-offset="1306" max-vertical-offset="2159">
@@ -2247,14 +2191,72 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ReflectionUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="280" selection-end="280" vertical-scroll-proportion="0.46363637" vertical-offset="0" max-vertical-offset="833">
+        <state line="10" column="25" selection-start="323" selection-end="323" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/build/exploded-bundles/ComAndroidSupportAppcompatV71900.aar/classes.jar!/android/support/v7/widget/SearchView.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="78" column="16" selection-start="4021" selection-end="4021" vertical-scroll-proportion="0.34879407" vertical-offset="1121" max-vertical-offset="4658">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchResultFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="205" column="55" selection-start="7615" selection-end="7615" vertical-scroll-proportion="0.0" vertical-offset="1034" max-vertical-offset="3723">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/model/dal/ChordDataAccessLayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="143" column="27" selection-start="5919" selection-end="5919" vertical-scroll-proportion="0.39716312" vertical-offset="1901" max-vertical-offset="2890">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongDetailFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="188" column="0" selection-start="6085" selection-end="6085" vertical-scroll-proportion="0.083333336" vertical-offset="2435" max-vertical-offset="4301">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/provider/helper/SQLiteAssetHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="334" column="0" selection-start="13128" selection-end="13128" vertical-scroll-proportion="0.083333336" vertical-offset="5257" max-vertical-offset="8432">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/config/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="33" selection-start="2910" selection-end="2910" vertical-scroll-proportion="1.7677643" vertical-offset="0" max-vertical-offset="1173">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SecondarySettingActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.25585285" vertical-offset="153" max-vertical-offset="1428">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="537" column="0" selection-start="20128" selection-end="20128" vertical-scroll-proportion="0.0" vertical-offset="7209" max-vertical-offset="7854">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="367" column="95" selection-start="14766" selection-end="14766" vertical-scroll-proportion="0.22735043" vertical-offset="1618" max-vertical-offset="3893">
+        <state line="652" column="11" selection-start="25628" selection-end="25628" vertical-scroll-proportion="0.28093645" vertical-offset="2586" max-vertical-offset="3706">
           <folding>
             <element signature="docComment;field#mSearchView#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;field#mDrawerListView#0;class#MainActivity#0" expanded="false" />
@@ -2268,53 +2270,63 @@
             <element signature="docComment;field#mp3Service#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;field#mp3ServiceIntent#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;field#player#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#3490#3555#0" expanded="false" />
+            <element signature="e#3415#3450#0" expanded="false" />
+            <element signature="e#3455#3520#0" expanded="false" />
             <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#4811#4833#0" expanded="false" />
+            <element signature="e#4776#4798#0" expanded="false" />
+            <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onSaveInstanceState#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7933#8003#0" expanded="false" />
+            <element signature="e#7898#7968#0" expanded="false" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#9713#9787#0" expanded="false" />
-            <element signature="e#10336#10401#0" expanded="false" />
-            <element signature="e#10740#10760#0" expanded="false" />
-            <element signature="e#10978#11014#0" expanded="true" />
-            <element signature="e#11153#11236#0" expanded="false" />
-            <element signature="e#11421#11472#0" expanded="true" />
-            <element signature="e#11519#11602#0" expanded="false" />
-            <element signature="e#12295#12372#0" expanded="false" />
+            <element signature="e#9678#9752#0" expanded="false" />
+            <element signature="e#10301#10366#0" expanded="false" />
+            <element signature="e#10705#10725#0" expanded="false" />
+            <element signature="e#10943#10979#0" expanded="true" />
+            <element signature="e#11118#11201#0" expanded="false" />
+            <element signature="e#11386#11437#0" expanded="true" />
+            <element signature="e#11484#11567#0" expanded="false" />
+            <element signature="e#12260#12337#0" expanded="false" />
             <element signature="method#changeTitleBar#0;class#MainActivity#0" expanded="false" />
             <element signature="method#restoreActionBar#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#13660#13720#0" expanded="false" />
+            <element signature="e#13651#13711#0" expanded="false" />
+            <element signature="e#16025#16269#0" expanded="true" />
+            <element signature="e#16254#16255#0" expanded="true" />
+            <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#16494#16552#0" expanded="false" />
+            <element signature="docComment;method#onSearchRequested#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#onSearchRequested#0;class#MainActivity#0" expanded="false" />
+            <element signature="docComment;method#setUpActionBar#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setUpActionBar#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#16996#17071#0" expanded="false" />
+            <element signature="e#17552#17627#0" expanded="false" />
             <element signature="method#setUpSlidingMenu#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#17465#17485#0" expanded="true" />
-            <element signature="e#17661#17692#0" expanded="true" />
-            <element signature="e#17864#17948#0" expanded="false" />
+            <element signature="e#18021#18041#0" expanded="true" />
+            <element signature="e#18217#18248#0" expanded="true" />
+            <element signature="e#18420#18504#0" expanded="false" />
             <element signature="method#onNewIntent#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;method#handleIntent#0;class#MainActivity#0" expanded="false" />
             <element signature="method#handleIntent#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#18528#18556#0" expanded="false" />
             <element signature="docComment;method#setUpListView#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setUpListView#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;method#setUpMp3Service#0;class#MainActivity#0" expanded="false" />
             <element signature="method#setUpMp3Service#0;class#MainActivity#0" expanded="false" />
-            <element signature="class#20888:21446" expanded="false" />
-            <element signature="method#onServiceConnected#0;class#20888:21446" expanded="false" />
-            <element signature="method#onServiceDisconnected#0;class#20888:21446" expanded="false" />
+            <element signature="class#21534:22092" expanded="false" />
+            <element signature="method#onServiceConnected#0;class#21534:22092" expanded="false" />
+            <element signature="method#onServiceDisconnected#0;class#21534:22092" expanded="false" />
+            <element signature="e#22315#22387#0" expanded="false" />
             <element signature="class#COMMIT_TYPE#0;class#MainActivity#0" expanded="false" />
             <element signature="method#switchFragmentNormal#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#22351#22391#0" expanded="false" />
+            <element signature="e#22997#23037#0" expanded="false" />
             <element signature="method#switchFragmentClearStack#0;class#MainActivity#0" expanded="false" />
             <element signature="method#switchFragment#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;method#getCurrentFragment#0;class#MainActivity#0" expanded="false" />
             <element signature="method#getCurrentFragment#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#24983#25047#0" expanded="false" />
+            <element signature="e#25870#26099#0" expanded="true" />
+            <element signature="e#26084#26085#0" expanded="true" />
             <element signature="method#gotoCategoryPage#0;class#MainActivity#0" expanded="false" />
             <element signature="method#gotoPlayList#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#26905#26971#0" expanded="false" />
+            <element signature="e#28431#28497#0" expanded="false" />
           </folding>
         </state>
       </provider>

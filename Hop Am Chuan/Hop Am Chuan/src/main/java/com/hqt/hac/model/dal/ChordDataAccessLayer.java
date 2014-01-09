@@ -139,6 +139,9 @@ public class ChordDataAccessLayer {
 		  song_chord sc USING (song_id) WHERE  sc.chord_id IN (".implode(",", $chords).") GROUP
 		   BY 1 HAVING COUNT(*) = ".count($chords).") AS rs JOIN song_chord ssc USING (song_id)
 			GROUP BY song_id ORDER BY c LIMIT 0, 90
+
+			ThaoHQ : I have try-catch this method. to close database. Doesn't touch somewhere else
+			         just a painful experience
          */
 
         /** Get chord id list **/
@@ -149,28 +152,31 @@ public class ChordDataAccessLayer {
 
         String ids = chordIds.toString().substring(0, chordIds.length() - 2);
         HopAmChuanDatabase db = new HopAmChuanDatabase(context);
-        if (db.getReadableDatabase() == null) {
-            db.close();
+        try {
+            if (db.getReadableDatabase() == null) return new ArrayList<Song>();
+            Cursor c = db.getReadableDatabase().rawQuery(
+                    "SELECT rs." + HopAmChuanDBContract.Songs.SONG_ID + ", COUNT(*) AS c FROM (SELECT s."
+                            + HopAmChuanDBContract.Songs.SONG_ID + " FROM " + HopAmChuanDBContract.Tables.SONG + " s JOIN " +
+                            "  " + HopAmChuanDBContract.Tables.SONG_CHORD + " sc USING (" + HopAmChuanDBContract.Songs.SONG_ID
+                            + ") WHERE  sc." + HopAmChuanDBContract.Chords.CHORD_ID + " IN (" + ids + ") GROUP " +
+                            "  BY 1 HAVING COUNT(*) = "+chords.size()+") AS rs JOIN " + HopAmChuanDBContract.Tables.SONG_CHORD + " ssc USING ("
+                            + HopAmChuanDBContract.Songs.SONG_ID + ") " +
+                            "  GROUP BY " + HopAmChuanDBContract.Songs.SONG_ID
+                            + " ORDER BY c LIMIT "+offset+", " + limit,
+                    new String[]{});
+
+            List<Song> songs = new ArrayList<Song>();
+            for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+                int songId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID));
+                songs.add(SongDataAccessLayer.getSongById(context, songId));
+            }
+            c.close();
+
+            return songs;
+        } catch (Exception e) {
             return new ArrayList<Song>();
+        } finally {
+            db.close();
         }
-        Cursor c = db.getReadableDatabase().rawQuery(
-                "SELECT rs." + HopAmChuanDBContract.Songs.SONG_ID + ", COUNT(*) AS c FROM (SELECT s."
-                        + HopAmChuanDBContract.Songs.SONG_ID + " FROM " + HopAmChuanDBContract.Tables.SONG + " s JOIN " +
-                        "  " + HopAmChuanDBContract.Tables.SONG_CHORD + " sc USING (" + HopAmChuanDBContract.Songs.SONG_ID
-                        + ") WHERE  sc." + HopAmChuanDBContract.Chords.CHORD_ID + " IN (" + ids + ") GROUP " +
-                        "  BY 1 HAVING COUNT(*) = "+chords.size()+") AS rs JOIN " + HopAmChuanDBContract.Tables.SONG_CHORD + " ssc USING ("
-                        + HopAmChuanDBContract.Songs.SONG_ID + ") " +
-                        "  GROUP BY " + HopAmChuanDBContract.Songs.SONG_ID
-                        + " ORDER BY c LIMIT "+offset+", " + limit,
-                new String[]{});
-
-        List<Song> songs = new ArrayList<Song>();
-        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-            int songId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID));
-            songs.add(SongDataAccessLayer.getSongById(context, songId));
-        }
-        c.close();
-
-        return songs;
     }
 }

@@ -30,7 +30,6 @@ import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
 import com.hqt.hac.helper.service.Mp3PlayerService;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.SearchRecentProvider;
-import com.hqt.hac.utils.ReflectionUtils;
 import com.hqt.hac.utils.StringUtils;
 import com.hqt.hac.view.fragment.IHacFragment;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
@@ -55,7 +54,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
     /**
      * SearchView widget
      */
-    SearchView mSearchView;
+    public SearchView mSearchView;
 
     /**
      * ListView contains all item categories
@@ -338,6 +337,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         actionBar.setTitle(mTitle);
     }
 
+    MenuItem  searchItem;
     /**
      * Create ActionBar items
      * Items of Activity will be created before
@@ -351,7 +351,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
 
-        final MenuItem searchItem = menu.findItem(R.id.search_bar);
+        searchItem = menu.findItem(R.id.search_bar);
 
         /** Setup SearchView */
         if (searchItem != null) {
@@ -361,38 +361,22 @@ public class MainActivity extends SlidingMenuActionBarActivity
             mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
             // Assumes current mActivity is the searchable mActivity
             mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-            // Do not icon the widget. expand it.
-            mSearchView.setIconifiedByDefault(false);
+            // always iconic the search view
+            mSearchView.setIconifiedByDefault(true);
             // enable submit button
             mSearchView.setSubmitButtonEnabled(true);
             // Returns whether query refinement is enabled for all items or only specific ones.
             mSearchView.setQueryRefinementEnabled(true);
-            // setup SearchView that lost focus after search. Secret code that ... use by Google Developer */
-            mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            // setup SearchView that lost focus after search
+            mSearchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
-                public boolean onQueryTextSubmit(String s) {
-                    ReflectionUtils.tryInvoke(searchItem, "collapseActionView");
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String s) {
-                    return false;
-                }
-            });
-            mSearchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
-                @Override
-                public boolean onSuggestionSelect(int i) {
-                    return false;
-                }
-
-                @Override
-                public boolean onSuggestionClick(int i) {
-                    ReflectionUtils.tryInvoke(searchItem, "collapseActionView");
-                    return false;
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (!hasFocus) MenuItemCompat.collapseActionView(searchItem);
                 }
             });
         }
+        // use this method for convenience
+        bindCLoseSearchViewEvent(getWindow().getDecorView().getRootView());
         restoreActionBar();
         return true;
     }
@@ -407,6 +391,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 toggle();
                 return true;
             case R.id.search_bar:
+                startSearch(null, false, Bundle.EMPTY, false);
                 return true;
         }
 
@@ -468,9 +453,11 @@ public class MainActivity extends SlidingMenuActionBarActivity
     private void handleIntent(Intent intent) {
         // Verify the action and get the query
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            // should close search view
+            MenuItemCompat.collapseActionView(searchItem);
+            // get query string
             String queryStr = intent.getStringExtra(SearchManager.QUERY);
             LOGE(TAG, "Search query: " + queryStr);
-            // default is search by song
             // cache data for searching
             SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
                     SearchRecentProvider.AUTHORITY, SearchRecentProvider.MODE);
@@ -636,6 +623,31 @@ public class MainActivity extends SlidingMenuActionBarActivity
         }
         return null;
     }
+
+    /**
+     * Nice function base on method have learnt at TMA Solution
+     * recursive all view to bind event :)
+     * */
+    private void bindCLoseSearchViewEvent(View view) {
+
+        if(!(view instanceof SearchView)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    MenuItemCompat.collapseActionView(searchItem);
+                    return false;
+                }
+            });
+        }
+
+        // If currently layout is a layout container
+        // iterate over its children and call recursive
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                bindCLoseSearchViewEvent(innerView);
+            }
+        }
+    }
     //endregion
 
     ////////////////////////////////////////////////////////////////
@@ -709,4 +721,5 @@ public class MainActivity extends SlidingMenuActionBarActivity
      *      (can do this because mActivity must be implements this method)
      *  on NavigationDrawer, when event arises. use mCallback
      */
+
 }
