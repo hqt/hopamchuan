@@ -28,7 +28,6 @@ import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
 import com.hqt.hac.helper.service.Mp3PlayerService;
-import com.hqt.hac.helper.widget.MusicPlayerController;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.SearchRecentProvider;
 import com.hqt.hac.utils.StringUtils;
@@ -36,13 +35,9 @@ import com.hqt.hac.view.fragment.IHacFragment;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
-import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.fragment.*;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -452,7 +447,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
                     SearchRecentProvider.AUTHORITY, SearchRecentProvider.MODE);
             suggestions.saveRecentQuery(queryStr, null);
             // handle this search to fragment
-            SearchViewFragment fragment = new SearchViewFragment();
+            SearchResultFragment fragment = new SearchResultFragment();
             Bundle arguments = new Bundle();
             arguments.putString("search_key_word", queryStr);
             fragment.setArguments(arguments);

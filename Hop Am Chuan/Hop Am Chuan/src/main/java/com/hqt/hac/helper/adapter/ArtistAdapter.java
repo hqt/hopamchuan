@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import com.hqt.hac.helper.widget.InfinityListView;
 import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.view.R;
@@ -20,7 +21,7 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
  * Use this Adapter both for Singer and Author
  * Created by ThaoHQSE60963 on 1/8/14.
  */
-public class ArtistAdapter extends BaseAdapter {
+public class ArtistAdapter extends BaseAdapter implements InfinityListView.IInfinityAdapter {
 
     public static String TAG = makeLogTag(ArtistAdapter.class);
 
@@ -35,6 +36,11 @@ public class ArtistAdapter extends BaseAdapter {
 
     public void setArtists(List<Artist> artists) {
         this.artists = artists;
+    }
+
+    @Override
+    public void addItem(Object obj) {
+        artists.add((Artist)obj);
     }
 
     @Override
@@ -54,7 +60,7 @@ public class ArtistAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
+        ViewHolder holder;
         View row = convertView;
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);

@@ -1,19 +1,15 @@
-package com.hqt.hac.view;
+package com.hqt.hac.view.fragment;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
-
 import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.IContextMenu;
 import com.hqt.hac.helper.adapter.SongListAdapter;
@@ -22,21 +18,24 @@ import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.ArtistDataAccessLayer;
-import com.hqt.hac.model.dal.SongArtistDataAccessLayer;
-import com.hqt.hac.model.dal.SongDataAccessLayer;
+import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.utils.DialogUtils;
-import com.hqt.hac.view.fragment.SongDetailFragment;
+import com.hqt.hac.view.BunnyApplication;
+import com.hqt.hac.view.MainActivity;
+import com.hqt.hac.view.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static com.hqt.hac.utils.LogUtils.LOGE;
-
 /**
- * TODO: change this to fragment
+ * Fragment to show Artist Song's
+ * Created by ThaoHQSE60963 on 1/9/14.
  */
-public class ArtistViewActivity extends ActionBarActivity implements InfinityListView.ILoaderContent {
+public class ArtistViewFragment extends Fragment implements InfinityListView.ILoaderContent, IHacFragment {
+
+    /** Activity running this fragment */
+    MainActivity activity;
 
     List<Song> songs;
     SongListAdapter songlistAdapter;
@@ -44,20 +43,43 @@ public class ArtistViewActivity extends ActionBarActivity implements InfinityLis
     private PopupWindow popupWindow;
     private Artist artist;
 
+    public ArtistViewFragment() {
+
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_artist_view);
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        this.activity = (MainActivity) activity;
 
-        // TODO: load artist here
-        artist = ArtistDataAccessLayer.getArtistByName(getApplicationContext(), "N/A");
+        // get artist from arguments of main mActivity
+        Bundle arguments = getArguments();
+        if ((arguments.get("artist") != null)) {
+            artist = arguments.getParcelable("artist");
+        }
+    }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.activity = null;
+    }
+
+    @Override
+    public void onCreate(Bundle onSavedInstanceState) {
+        super.onCreate(onSavedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_artist_view, container, false);
 
         songs = new ArrayList<Song>();
-        songlistAdapter = new SongListAdapter(this, songs);
+        songlistAdapter = new SongListAdapter(BunnyApplication.getAppContext(), songs);
 
         /** ListView Configure */
-        mListView = (InfinityListView) findViewById(R.id.listview);
+        mListView = (InfinityListView) rootView.findViewById(R.id.listview);
         /** config mode for this ListView.
          *  this ListView is full rich function. See document for more detail
          */
@@ -68,8 +90,8 @@ public class ArtistViewActivity extends ActionBarActivity implements InfinityLis
         mListView.resetListView(songlistAdapter);
 
         // Event for right menu click
-        popupWindow = DialogUtils.createPopup(getLayoutInflater(), R.layout.popup_songlist_menu);
-        SongListRightMenuHandler.setRightMenuEvents(this, popupWindow);
+        popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
+        SongListRightMenuHandler.setRightMenuEvents(getActivity(), popupWindow);
 
         // Event received from mAdapter.
         songlistAdapter.contextMenuDelegate = new IContextMenu() {
@@ -84,36 +106,10 @@ public class ArtistViewActivity extends ActionBarActivity implements InfinityLis
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                SongDetailFragment fragment = new SongDetailFragment();
-//                Bundle arguments = new Bundle();
-//                arguments.putParcelable("song", songs.get(position));
-//                fragment.setArguments(arguments);
-//                switchFragmentNormal(fragment);
-//                changeTitleBar(songs.get(position).title);
-                LOGE("TRUNGDQ", "song: " + songs.get(position));
             }
         });
-    }
+        return rootView;
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        
-        // Inflate the menu; this adds items to the action bar if it is present.
-        // getMenuInflater().inflate(R.menu.artist_view, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        // int id = item.getItemId();
-        // if (id == R.id.action_settings) {
-        //     return true;
-        // }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -121,4 +117,8 @@ public class ArtistViewActivity extends ActionBarActivity implements InfinityLis
         return ArtistDataAccessLayer.searchSongByArtist(artist.artistName, count);
     }
 
+    @Override
+    public int getTitle() {
+        return 0;
+    }
 }

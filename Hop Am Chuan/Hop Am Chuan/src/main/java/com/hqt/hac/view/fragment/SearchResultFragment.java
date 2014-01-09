@@ -31,9 +31,9 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
  * Fragment to show search result
  * Created by ThaoHQSE60963 on 1/8/14.
  */
-public class SearchViewFragment extends Fragment implements IHacFragment, InfinityListView.ILoaderContent, AdapterView.OnItemSelectedListener {
+public class SearchResultFragment extends Fragment implements IHacFragment, InfinityListView.ILoaderContent, AdapterView.OnItemSelectedListener {
 
-    private static String TAG = makeLogTag(SearchViewFragment.class);
+    private static String TAG = makeLogTag(SearchResultFragment.class);
 
     /** Activity running this fragment */
     MainActivity activity;
@@ -61,7 +61,7 @@ public class SearchViewFragment extends Fragment implements IHacFragment, Infini
     /** empty constructor
      * must have for fragment
      */
-    public SearchViewFragment() {
+    public SearchResultFragment() {
     }
 
     @Override
@@ -100,7 +100,7 @@ public class SearchViewFragment extends Fragment implements IHacFragment, Infini
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.
                 createFromResource(BunnyApplication.getAppContext(),
-                        R.array.song_list_method, R.layout.custom_spinner_item);
+                        R.array.search_method, R.layout.custom_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
         spinner.setAdapter(adapter);    // Apply the mAdapter to the spinner
@@ -128,8 +128,6 @@ public class SearchViewFragment extends Fragment implements IHacFragment, Infini
             case 1:
                 res = ArtistDataAccessLayer.searchArtistByName(queryStr, offset, count);
                 break;
-            case 2:
-                res = ArtistDataAccessLayer.searchArtistByName(queryStr, offset, count);
         }
         return res;
     }
@@ -139,6 +137,7 @@ public class SearchViewFragment extends Fragment implements IHacFragment, Infini
         switch(position) {
             case 0:
                 // search by artist
+                type = 0;
                 mAdapter = new SongListAdapter(BunnyApplication.getAppContext(), new ArrayList<Song>());
                 // Event for right menu click
                 popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
@@ -155,20 +154,20 @@ public class SearchViewFragment extends Fragment implements IHacFragment, Infini
                 bindEventListView();
                 break;
             case 1:
-                // search by author
+                // search by author and song
+                type  = 1;
                 mAdapter = new ArtistAdapter(BunnyApplication.getAppContext());
                 bindEventListView();
                 break;
             case 2:
                 // search by singer
-                mAdapter = new ArtistAdapter(BunnyApplication.getAppContext());
-                bindEventListView();
+                // currently no need this option
+                type = 2;
                 break;
             default:
                 // do nothing
         }
         mListView.setAdapter(mAdapter);
-
     }
 
     @Override
@@ -196,22 +195,30 @@ public class SearchViewFragment extends Fragment implements IHacFragment, Infini
                         activity.changeTitleBar(((SongListAdapter)mAdapter).songs.get(position).title);
                     }
                 });
+                break;
             }
             case 1: {
                 mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        ArtistViewFragment fragment = new ArtistViewFragment();
+                        Bundle arguments = new Bundle();
+                        arguments.putParcelable("artist", ((ArtistAdapter) mAdapter).artists.get(position));
+                        fragment.setArguments(arguments);
+                        activity.switchFragmentNormal(fragment);
+                        activity.changeTitleBar(((ArtistAdapter)mAdapter).artists.get(position).artistName);
                     }
                 });
+                break;
             }
             case 2: {
                 mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                        // currently no need this option
                     }
                 });
-
+                break;
             }
         }
     }
