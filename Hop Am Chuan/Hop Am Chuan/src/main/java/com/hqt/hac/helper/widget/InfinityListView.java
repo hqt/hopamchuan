@@ -7,10 +7,8 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.*;
 
-import com.hqt.hac.helper.adapter.IInfinityAdapter;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.view.R;
 
@@ -215,6 +213,11 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     /** Notes that load should perform on different thread and append must be perform on UI Thread */
     public interface ILoaderContent {
         Collection load(int offset, int count);
+    }
+
+    /** Adapter should implement this method to add item to collection */
+    public static interface IInfinityAdapter {
+        public void addItem(Object obj);
     }
 
     /**

@@ -33,6 +33,12 @@
         <item>Bài hát ngẫu nhiên</item>
     </string-array>
 
+    <!-- list all method to search -->
+    <string-array name="search_method">
+        <item>Search by Song</item>
+        <item>Search by Artist</item>
+    </string-array>
+
     <!-- list all method to view songs in favorite -->
     <string-array name="favorite_sort_method">
         <item>Gần đây</item>

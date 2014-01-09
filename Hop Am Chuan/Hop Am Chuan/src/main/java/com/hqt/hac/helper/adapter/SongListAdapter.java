@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hqt.hac.helper.widget.InfinityListView;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.view.R;
 
@@ -16,7 +17,7 @@ import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 
-public class SongListAdapter extends BaseAdapter implements IInfinityAdapter {
+public class SongListAdapter extends BaseAdapter implements InfinityListView.IInfinityAdapter {
 
     Context mContext;
 
@@ -68,7 +69,7 @@ public class SongListAdapter extends BaseAdapter implements IInfinityAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
-        ViewHolder holder = null;
+        ViewHolder holder;
         View row = convertView;
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
