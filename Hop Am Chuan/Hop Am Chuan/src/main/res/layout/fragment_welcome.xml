@@ -48,9 +48,9 @@
 
             </RelativeLayout>
 
-            <EditText
+            <android.support.v7.widget.SearchView
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/linearLayout"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="0dp"

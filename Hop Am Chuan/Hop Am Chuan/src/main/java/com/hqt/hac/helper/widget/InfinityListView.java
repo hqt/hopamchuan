@@ -137,6 +137,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
                 scheduleWork(i);
             }
         }
+        mAdapter.notifyDataSetChanged();
     }
 
     ///////////////////////////////////////////////////////////////////////////
