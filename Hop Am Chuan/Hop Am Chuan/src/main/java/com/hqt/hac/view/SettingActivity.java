@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.SearchRecentSuggestions;
 import android.view.View;
@@ -51,7 +50,7 @@ public class SettingActivity extends AsyncActivity {
     Context mAppContext;
 
     /** method to know which type of update */
-    int method = 0;
+    int method = METHOD_CODE.UPDATE_SONG;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -96,8 +95,8 @@ public class SettingActivity extends AsyncActivity {
     private void showConfirmDialog() {
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Confirm")
-                .setMessage("Are you sure you want to clear search history?")
+                .setTitle(getString(R.string.notif_title_info))
+                .setMessage(getString(R.string.clear_history_msg))
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -220,9 +219,13 @@ public class SettingActivity extends AsyncActivity {
     }
 
     private void logout() {
-        HacUtils.logout(getApplicationContext());
-        // Reload the mActivity
-        loadAccountInfo();
+        HacUtils.logout(this, new HacUtils.AfterLogoutDelegate() {
+            @Override
+            public void onAfterLogout() {
+                // Reload the mActivity
+                loadAccountInfo();
+            }
+        });
     }
 
     private void loadAccountInfo() {
@@ -306,10 +309,24 @@ public class SettingActivity extends AsyncActivity {
     private void update(int method) {
         // check network
         if (!NetworkUtils.isDeviceNetworkConnected()) {
-            AlertDialog dialog = DialogUtils.showAlertDialog(SettingActivity.this, "Network Problem", "Check Your Wifi or 3G Network Again");
+            AlertDialog dialog = DialogUtils.showAlertDialog(SettingActivity.this,
+                    getString(R.string.notif_title_error),
+                    getString(R.string.no_connection));
             dialog.show();
             return;
         }
+
+        // If the user wanted to sync songs, then check if user have logged in
+        if (method >= METHOD_CODE.SYNC_SONG) {
+            if (!HacUtils.isLoggedIn()) {
+                AlertDialog dialog = DialogUtils.showAlertDialog(SettingActivity.this,
+                        getString(R.string.notif_title_error),
+                        getString(R.string.need_login));
+                dialog.show();
+                return;
+            }
+        }
+
         this.method = method;
         // just call this method. all magic things will be happened
         runningLongTask();
@@ -325,11 +342,11 @@ public class SettingActivity extends AsyncActivity {
     @Override
     public Integer doInBackground() {
         switch (method) {
-            case 0 :
+            case METHOD_CODE.UPDATE_SONG :
                 return updateSongTask();
-            case 1:
+            case METHOD_CODE.SYNC_SONG:
                 return syncSongTask();
-            case 2:
+            case METHOD_CODE.UPDATE_AND_SYNC_SONG:
                 int statusCode = updateSongTask();
                 if (statusCode != STATUS_CODE.SUCCESS) return statusCode;
                 return syncSongTask();
@@ -342,23 +359,25 @@ public class SettingActivity extends AsyncActivity {
     public void onProgressUpdate(Integer... values) {
         switch (values[0]) {
             case STATUS_CODE.CHECKING_VERSION:
-                dialog.setMessage("Checking Version ...");
+                dialog.setMessage(getString(R.string.checking_version));
                 break;
             case STATUS_CODE.DOWNLOADING:
-                dialog.setMessage("Downloading ...");
+                dialog.setMessage(getString(R.string.downloading));
                 break;
             case STATUS_CODE.UPDATING:
-                dialog.setMessage("Updating ...");
+                dialog.setMessage(getString(R.string.updating_remote_song_to_local));
                 break;
             case STATUS_CODE.SYNC_FAVORITE:
-                dialog.setMessage("Sync Favorite ...");
+                dialog.setMessage(getString(R.string.synching_favorite));
                 break;
             case STATUS_CODE.SYNC_PLAYLIST:
-                dialog.setMessage("Sync Playlist ...");
+                dialog.setMessage(getString(R.string.synching_playlist));
                 break;
             default:
                 throw new UnsupportedOperationException();
         }
+        // To prevent accidentally close the popup.
+        dialog.setCancelable(false);
         dialog.show();
     }
 
@@ -374,21 +393,27 @@ public class SettingActivity extends AsyncActivity {
         switch (result) {
             // latest version
             case STATUS_CODE.LATEST_VERSION: {
-                AlertDialog dialog = DialogUtils.showAlertDialog(this, "Notify", "Already newest version");
+                AlertDialog dialog = DialogUtils.showAlertDialog(this,
+                        getString(R.string.notif_title_info),
+                        getString(R.string.already_lasted_version));
                 dialog.show();
                 break;
             }
 
             // download or parse fail
             case STATUS_CODE.NETWORK_ERROR: {
-                AlertDialog dialog = DialogUtils.showAlertDialog(this, "Error", "Network Error. Try again");
+                AlertDialog dialog = DialogUtils.showAlertDialog(this,
+                        getString(R.string.notif_title_error),
+                        getString(R.string.network_error));
                 dialog.show();
                 break;
             }
 
             // update to database fail
             case STATUS_CODE.SYSTEM_ERROR: {
-                AlertDialog dialog = DialogUtils.showAlertDialog(this, "Error", "System Fail. Restart Application");
+                AlertDialog dialog = DialogUtils.showAlertDialog(this,
+                        getString(R.string.notif_title_error),
+                        getString(R.string.system_fail_error));
                 dialog.show();
                 break;
             }
@@ -397,8 +422,8 @@ public class SettingActivity extends AsyncActivity {
             case STATUS_CODE.SUCCESS: {
                 // notify to user
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Notify")
-                        .setMessage("Update Finish")
+                builder.setTitle(getString(R.string.notif_title_info))
+                        .setMessage(getString(R.string.update_susscess))
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -407,6 +432,7 @@ public class SettingActivity extends AsyncActivity {
                         });
                 AlertDialog alert = builder.create();
                 alert.show();
+                break;
             }
 
             default:
@@ -500,6 +526,12 @@ public class SettingActivity extends AsyncActivity {
         static final int CHECKING_VERSION = 6;
         static final int SYNC_PLAYLIST = 7;
         static final int SYNC_FAVORITE  = 8;
+    }
+
+    private static class METHOD_CODE {
+        static final int UPDATE_SONG = 0;
+        static final int SYNC_SONG = 1;
+        static final int UPDATE_AND_SYNC_SONG = 2;
     }
     //endregion
 }

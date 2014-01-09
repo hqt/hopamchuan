@@ -143,13 +143,13 @@ public class LoginActivity extends AsyncActivity {
     @Override
     public void onProgressUpdate(Integer... progress) {
         if (progress[0] == 1) {
-            dialog.setTitle("Đăng nhập");
-            dialog.setMessage("Đang kiểm tra...");
+            dialog.setTitle(getString(R.string.login_account_title));
+            dialog.setMessage(getString(R.string.checking_account));
         }
 
         if (progress[0] == 2) {
-            dialog.setTitle("Đăng nhập");
-            dialog.setMessage("Đang lấy thông tin...");
+            dialog.setTitle(getString(R.string.login_account_title));
+            dialog.setMessage(getString(R.string.get_account_info));
         }
 
         dialog.show();
@@ -165,10 +165,14 @@ public class LoginActivity extends AsyncActivity {
         dialog.dismiss();
 
         if (result == -1L) {
-            AlertDialog dialog = DialogUtils.showAlertDialog(this, "Lỗi!", "Kết nối bị lỗi, vui lòng thử lại sau!");
+            AlertDialog dialog = DialogUtils.showAlertDialog(this,
+                    getString(R.string.notif_title_error),
+                    getString(R.string.network_error));
             dialog.show();
         } else if (result == -2L) {
-            AlertDialog dialog = DialogUtils.showAlertDialog(this, "Lỗi!", "Tài khoản hoặc mật khẩu không đúng!");
+            AlertDialog dialog = DialogUtils.showAlertDialog(this,
+                    getString(R.string.notif_title_error),
+                    getString(R.string.wrong_password));
             dialog.show();
         }
 
@@ -177,13 +181,13 @@ public class LoginActivity extends AsyncActivity {
         // *NOTE* Cannot use General Method here
         if (result == 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Thành công")
-                    .setMessage("Đăng nhập thành công, nhấn OK để bắt đầu đồng bộ.")
+            builder.setTitle(getString(R.string.notif_title_success))
+                    .setMessage(getString(R.string.login_success_click_to_sync))
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, SettingActivity.class);
                             LoginActivity.this.startActivity(intent);
                             LoginActivity.this.finish();
                         }

@@ -90,7 +90,8 @@ public class PlaylistRightMenuHandler {
                 }
                 ConfirmDialogEvent dialogClickListener = new ConfirmDialogEvent();
                 AlertDialog.Builder builder = new AlertDialog.Builder(_activity);
-                builder.setMessage(activity.getString(R.string.are_you_sure_delete_playlist)
+                builder.setTitle(activity.getString(R.string.confirm_msg))
+                        .setMessage(activity.getString(R.string.are_you_sure_delete_playlist)
                         + " \"" + selectedPlaylist.playlistName + "\"?")
                         .setPositiveButton(activity.getString(R.string.delete_playlist), dialogClickListener)
                         .setNegativeButton(activity.getString(R.string.login_cancelbtn), dialogClickListener).show();

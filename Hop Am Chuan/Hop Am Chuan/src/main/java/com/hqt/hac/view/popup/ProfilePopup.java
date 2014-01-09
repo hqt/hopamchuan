@@ -80,12 +80,16 @@ public class ProfilePopup {
     }
 
     private void logout() {
-        HacUtils.logout(activity.getApplicationContext());
-        // Reload the mActivity
-        dialog.dismiss();
-        Intent intent = new Intent(activity, MainActivity.class);
-        activity.startActivity(intent);
-        activity.finish();
+        HacUtils.logout(activity, new HacUtils.AfterLogoutDelegate() {
+            @Override
+            public void onAfterLogout() {
+                // Reload the mActivity
+                dialog.dismiss();
+                Intent intent = new Intent(activity, MainActivity.class);
+                activity.startActivity(intent);
+                activity.finish();
+            }
+        });
     }
 
     // caller call this method for display LoginPopup

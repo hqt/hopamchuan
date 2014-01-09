@@ -65,25 +65,42 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/checkbox_network_type"
-                android:text="Download via 3G" />
+                android:text="@string/allow_3g_download" />
 
     </LinearLayout>
 
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="2dp"
+        android:background="#ccc"
+        />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/update_songs"
-        android:padding="10dp"
+        style="@style/ClickableTextViewHighlight"
         android:id="@+id/update_song_button" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="2dp"
+        android:background="#ccc"
+        />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/sync_playlist"
-        android:padding="10dp"
-        android:src="@drawable/ic_menu_refresh"
+        style="@style/ClickableTextViewHighlight"
         android:id="@+id/sync_song_button" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="20dp"
+        android:background="#ccc"
+        />
 
     <TextView
             android:layout_width="match_parent"
@@ -91,7 +108,7 @@
             android:layout_marginTop="20dp"
             android:textSize="18sp"
             android:textColor="@color/the_blue_lighter"
-            android:text="DOWNLOAD"
+            android:text="@string/download_label"
             />
     <View
             android:layout_width="match_parent"
@@ -233,7 +250,7 @@
             android:layout_height="wrap_content"
             style="@style/ClickableTextView"
             android:id="@+id/clear_cache_data_text_view"
-            android:text="Clear Search History"/>
+            android:text="@string/delete_search_history"/>
     <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

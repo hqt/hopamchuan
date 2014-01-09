@@ -1,7 +1,9 @@
 package com.hqt.hac.utils;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
@@ -13,6 +15,7 @@ import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.helper.widget.ChordClickableSpan;
 import com.hqt.hac.model.dal.FavoriteDataAccessLayer;
 import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
+import com.hqt.hac.view.R;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -98,22 +101,49 @@ public class HacUtils {
 
     /**
      * Logout current user, reset all favorite, playlist
-     * @param context
+     * @param activity
      */
-    public static void logout(Context context){
-        PrefStore.setLoginUsername(null);
-        PrefStore.setLoginPassword(null);
-        PrefStore.setEmail(null);
-        PrefStore.setUserImage(null);
+    public static void logout(final Activity activity, final AfterLogoutDelegate callback){
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle(activity.getString(R.string.logout_button))
+                .setMessage(activity.getString(R.string.logout_confirm))
+                .setCancelable(true)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        PrefStore.setLoginUsername(null);
+                        PrefStore.setLoginPassword(null);
+                        PrefStore.setEmail(null);
+                        PrefStore.setUserImage(null);
 
-        // Remove all playlist, favorites
-        PlaylistDataAccessLayer.removeAllPlaylists(context);
-        FavoriteDataAccessLayer.removeAllFavorites(context);
+                        // Remove all playlist, favorites
+                        PlaylistDataAccessLayer.removeAllPlaylists(activity.getApplicationContext());
+                        FavoriteDataAccessLayer.removeAllFavorites(activity.getApplicationContext());
 
+                        // Callback
+                        if (callback != null) {
+                            callback.onAfterLogout();
+                        }
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     public static boolean isLoggedIn() {
         Bitmap checkLoggedIn = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage());
         return checkLoggedIn != null;
+    }
+
+    /////////////////////////////
+    // Interface
+    /////////////////////////////
+    public interface AfterLogoutDelegate {
+        public void onAfterLogout();
     }
 }

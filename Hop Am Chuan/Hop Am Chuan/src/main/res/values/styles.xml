@@ -464,4 +464,16 @@
 
     </style>
 
+    <style name="ClickableTextViewHighlight">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/the_blue_lighter</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:background">@drawable/dropmenu_item</item>
+        <item name="android:clickable">true</item>
+    </style>
+
 </resources>

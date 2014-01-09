@@ -130,11 +130,9 @@
                     android:id="@+id/btnFullScreen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/ClickableTextView"
+                    style="@style/ClickableTextViewHighlight"
                     android:text="@string/view_full_screen"
-                    android:gravity="center"
-                    android:textSize="17sp"
-                    android:textColor="@color/the_blue_lighter"
+
                     />
             </LinearLayout>
 
@@ -160,11 +158,7 @@
                     android:id="@+id/same_chord_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/ClickableTextView"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textSize="17sp"
-                    android:textColor="@color/the_blue_lighter"
+                    style="@style/ClickableTextViewHighlight"
                     android:text="@string/view_same_chord_songs"
                     />
             </LinearLayout>
@@ -190,11 +184,7 @@
                     android:id="@+id/same_singer_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/ClickableTextView"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textSize="17sp"
-                    android:textColor="@color/the_blue_lighter"
+                    style="@style/ClickableTextViewHighlight"
                     android:text="@string/view_same_singer_songs"
                     />
             </LinearLayout>
@@ -220,11 +210,7 @@
                     android:id="@+id/same_author_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/ClickableTextView"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textSize="17sp"
-                    android:textColor="@color/the_blue_lighter"
+                    style="@style/ClickableTextViewHighlight"
                     android:text="@string/view_same_author_songs"
                     />
             </LinearLayout>

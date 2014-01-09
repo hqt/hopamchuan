@@ -9,72 +9,66 @@
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingBottom="@dimen/activity_vertical_margin"
             android:orientation="vertical">
 
         <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                style="@style/ClickableTextView"
+                android:paddingBottom="10dp"
                 android:orientation="vertical">
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="App Version"
+                    android:text="@string/app_version"
                     android:textSize="17sp"/>
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="3.5.5"
-                    android:textSize="17sp"
+                    android:textColor="#888"
                     android:id="@+id/current_app_version" />
         </LinearLayout>
 
         <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:layout_marginTop="2dp"
                 android:background="#ccc"/>
 
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
                 style="@style/ClickableTextView"
-                android:text="Feedback and Error Reporting"
+                android:text="@string/feedback_report"
                 android:textSize="17sp"
                 android:id="@+id/feed_back_txt" />
 
         <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:layout_marginTop="2dp"
                 android:background="#ccc"/>
 
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 style="@style/ClickableTextView"
-                android:layout_marginTop="10dp"
-                android:text="Rate this App"
+                android:text="@string/rate_this_app"
                 android:textSize="17sp"
                 android:id="@+id/rate_app_txt" />
 
         <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:layout_marginTop="2dp"
                 android:background="#ccc"/>
 
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
                 style="@style/ClickableTextView"
-                android:text="HopAmChuan on Facebook Group"
+                android:text="@string/this_app_on_facebook"
                 android:textSize="17sp"
                 android:id="@+id/facebook_group_txt" />
 

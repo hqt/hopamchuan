@@ -392,7 +392,7 @@ public class SongDataAccessLayer {
         Cursor c = resolver.query(uri,
                 Query.Projections.SONG_ID_PROJECTION,                      // projection
                 HopAmChuanDBContract.Songs.SONG_TITLE_ASCII + " LIKE ?", // selection string
-                new String[]{keyword + "%"},                   // selection args of strings
+                new String[]{"%" + keyword + "%"},                   // selection args of strings
                 "LENGTH(" + HopAmChuanDBContract.Songs.SONG_TITLE_ASCII + ") LIMIT " + offset + ", " + count);
 
         int songIdCol = c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID);

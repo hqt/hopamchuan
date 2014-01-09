@@ -25,7 +25,6 @@ public class Config {
     public static final String SERVICE_SYNC_FAVORITE = SITE + "/api/put_favorite";
     public static final String SERVICE_GET_PROFILE = SITE + "/api/get_profile";
     public static final String SERVICE_GET_MP3_LINK = SITE  + "/api/get_mp3_link";
-    public static final String FACEBOOK_GROUP = "https://www.facebook.com/HopAmChuan";
 
     /** Default song count to display in SongListFragment **/
     public static final int DEFAULT_SONG_LIST_COUNT = 3;
@@ -56,4 +55,9 @@ public class Config {
 
     /** Bundle keys **/
     public static final String BUNDLE_STREAM_LINK_NAME = "STREAM_URL";
+
+    /** App Info **/
+    public static final String GOOGLE_PLAY_REF_LINK = "http://play.google.com/store/apps/details?id=";
+    public static final String[] SUPPORT_EMAILS = new String[]{"huynhquangthao@gmail.com", "trungdq88@gmail.com"};
+    public static final String FACEBOOK_LINK = "https://www.facebook.com/HopAmChuan";
 }

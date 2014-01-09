@@ -230,5 +230,26 @@
     <string name="view_same_singer_songs">BÀI HÁT CÙNG CA SĨ</string>
     <string name="view_same_author_songs">BÀI HÁT CÙNG TÁC GIẢ</string>
     <string name="view_same_chord_songs">BÀI HÁT CÙNG HỢP ÂM</string>
+    <string name="already_lasted_version">Bạn đang sử dụng phiên bản mới nhất</string>
+    <string name="notif_title_error">Lỗi</string>
+    <string name="network_error">Lỗi kết nối Internet, vui lòng thử lại sau!</string>
+    <string name="update_susscess">Cập nhật thành công</string>
+    <string name="clear_history_msg">Bạn chắc chắn muốn xóa toàn bộ lịch sử tìm kiếm?</string>
+    <string name="delete_search_history">Xóa lịch sử tìm kiếm</string>
+    <string name="app_version">Phiên bản ứng dụng</string>
+    <string name="feedback_report">Báo lỗi - Góp ý</string>
+    <string name="rate_this_app">Bình chọn trên Play Store</string>
+    <string name="this_app_on_facebook">Hợp Âm Chuẩn trên Facebook</string>
+    <string name="allow_3g_download">Cho phép download bằng 3G</string>
+    <string name="checking_version">Đang kiểm tra phiên bản</string>
+    <string name="downloading">Đang tải dữ liệu...</string>
+    <string name="updating_remote_song_to_local">Đang xử lý...</string>
+    <string name="synching_playlist">Đang đồng bộ playlist...</string>
+    <string name="need_login">Bạn cần phải đăng nhập để sử dụng chức năng này.</string>
+    <string name="notif_title_success">Thành công</string>
+    <string name="login_success_click_to_sync">Đăng nhập thành công, nhấn OK để bắt đầu đồng bộ.</string>
+    <string name="login_account_title">Đăng nhập</string>
+    <string name="checking_account">Đang kiểm tra...</string>
+    <string name="get_account_info">Đang lấy thông tin</string>
 
 </resources>

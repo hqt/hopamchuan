@@ -32,6 +32,7 @@ public class SecondarySettingActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting_second);
+        setTitle(getString(R.string.app_info));
 
         currentAppTextView = (TextView) findViewById(R.id.current_app_version);
         feedBackTextView = (TextView) findViewById(R.id.feed_back_txt);
@@ -57,8 +58,8 @@ public class SecondarySettingActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("plain/text");
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "huynhquangthao@gmail.com", "trungdq88@gmail.com" });
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Feedback for Hợp Âm Chuẩn");
+                intent.putExtra(Intent.EXTRA_EMAIL, Config.SUPPORT_EMAILS);
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Feedback for " + getString(R.string.app_name));
                 intent.putExtra(Intent.EXTRA_TEXT, "");
                 startActivity(Intent.createChooser(intent, ""));
             }
@@ -72,7 +73,7 @@ public class SecondarySettingActivity extends Activity {
                 try {
                     startActivity(goToMarket);
                 } catch (ActivityNotFoundException e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id="
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Config.GOOGLE_PLAY_REF_LINK
                             + getApplicationContext().getPackageName())));
                 }
             }
@@ -81,7 +82,7 @@ public class SecondarySettingActivity extends Activity {
         facebookTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Config.FACEBOOK_GROUP));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Config.FACEBOOK_LINK));
                 startActivity(browserIntent);
             }
         });
