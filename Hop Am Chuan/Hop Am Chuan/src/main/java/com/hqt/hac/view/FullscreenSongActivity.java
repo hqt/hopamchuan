@@ -3,6 +3,7 @@ package com.hqt.hac.view;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -32,9 +33,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 public class FullscreenSongActivity extends SlidingMenuActionBarActivity
         implements MusicPlayerController.IMediaPlayerControl {
+
+    private static String TAG = makeLogTag(FullscreenSongActivity.class);
+
     /**
      * My self *
      */
@@ -138,9 +143,6 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
 
         // Keep the screen always on
         setScreenOn();
-
-        // Set up player
-        setupMediaPlayer();
     }
 
     private void setScreenOn() {
@@ -339,6 +341,8 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
                 sidebar.showContent();
                 sidebar.setEnabled(false);
 
+                setupMediaPlayer();
+
                 // Show dialog
                 dialogMusic.show();
             }
@@ -403,6 +407,7 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     }
 
 
+    //region Mp3 Player Control Configuration
     ////////////////////////////////////////////////////////////////////
     /////////////////// CONFIG MP3 PLAYER //////////////////////////////
 
@@ -413,20 +418,28 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     /** ref to current Service */
     Mp3PlayerService mp3Service;
 
+
     /** setup start from here */
     private void setupMediaPlayer() {
+        // get reference from Activity
         mp3Service = MainActivity.mp3Service;
         player = MainActivity.player;
+        // parse view
         View layout = getLayoutInflater().inflate(R.layout.dialog_songdetail_music, null);
         dialogMusic = DialogUtils.createDialog(this, R.string.play_music, layout);
-
+        // set controller for Android Built-in Media Player
         controller = new MusicPlayerController(layout);
         controller.setMediaPlayer(this);
+        // start currently song (not new song)
+        Intent mp3ServiceIntent = new Intent(this, Mp3PlayerService.class);
+        mp3ServiceIntent.putExtra("song", song);
+        LOGE(TAG, "Start music Dialog");
+        startService(mp3ServiceIntent);
     }
 
     @Override
     public void start() {
-        // LOGD(TAG, "Start Player");
+        LOGD(TAG, "Start Player");
         player.start();
         Bundle arguments = new Bundle();
         arguments.putParcelable("song", song);
@@ -436,7 +449,7 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
 
     @Override
     public void pause() {
-        // LOGD(TAG, "Pause Player");
+        LOGD(TAG, "Pause Player");
         player.pause();
         DialogUtils.closeNotification(getApplicationContext(), Mp3PlayerService.NOTIFICATION_ID);
     }
@@ -492,5 +505,6 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     public void toggleFullScreen() {
 
     }
+    //endregion
 
 }

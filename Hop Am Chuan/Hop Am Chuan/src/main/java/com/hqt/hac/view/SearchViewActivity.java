@@ -70,7 +70,6 @@ public class SearchViewActivity extends ActionBarActivity implements InfinityLis
         spinner.setAdapter(adapter);    // Apply the mAdapter to the spinner
         spinner.setOnItemSelectedListener(this);    // because this fragment has implemented method
 
-        handleIntent(getIntent());
 
         /** config mode for this ListView.
          *  this ListView is full rich function. See document for more detail
@@ -163,7 +162,7 @@ public class SearchViewActivity extends ActionBarActivity implements InfinityLis
             default:
                 // do nothing
         }
-        //mListView.resetListView(mAdapter);
+        // mListView.resetListView(mAdapter);
         mListView.setAdapter(mAdapter);
 
 
