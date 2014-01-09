@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.SectionIndexer;
 
-import com.commonsware.cwac.sacklist.SackOfViewsAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -99,7 +98,7 @@ public class MergeAdapter extends BaseAdapter implements SectionIndexer {
             addAdapter(new EnabledSackAdapter(views));
         }
         else {
-            addAdapter(new SackOfViewsAdapter(views));
+            addAdapter(new DecoratorAdapter(views));
         }
     }
 
@@ -410,8 +409,8 @@ public class MergeAdapter extends BaseAdapter implements SectionIndexer {
 
         void setActive(View v, boolean isActive) {
             for (PieceState state : pieces) {
-                if (state.adapter instanceof SackOfViewsAdapter &&
-                        ((SackOfViewsAdapter)state.adapter).hasView(v)) {
+                if (state.adapter instanceof DecoratorAdapter &&
+                        ((DecoratorAdapter)state.adapter).hasView(v)) {
                     state.isActive=isActive;
                     active=null;
                     break;
@@ -438,7 +437,7 @@ public class MergeAdapter extends BaseAdapter implements SectionIndexer {
         }
     }
 
-    private static class EnabledSackAdapter extends SackOfViewsAdapter {
+    private static class EnabledSackAdapter extends DecoratorAdapter {
         public EnabledSackAdapter(List<View> views) {
             super(views);
         }
