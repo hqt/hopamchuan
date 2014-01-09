@@ -33,6 +33,9 @@ import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 
+/**
+ * TODO: change this to fragment
+ */
 public class ArtistViewActivity extends ActionBarActivity implements InfinityListView.ILoaderContent {
 
     List<Song> songs;
@@ -97,7 +100,7 @@ public class ArtistViewActivity extends ActionBarActivity implements InfinityLis
     public boolean onCreateOptionsMenu(Menu menu) {
         
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.artist_view, menu);
+        // getMenuInflater().inflate(R.menu.artist_view, menu);
         return true;
     }
 
@@ -106,10 +109,10 @@ public class ArtistViewActivity extends ActionBarActivity implements InfinityLis
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        // int id = item.getItemId();
+        // if (id == R.id.action_settings) {
+        //     return true;
+        // }
         return super.onOptionsItemSelected(item);
     }
 

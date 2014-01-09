@@ -1,4 +1,4 @@
-	delete playlist > go to playlist > back button: old playlist still here
+[DONE]	delete playlist > go to playlist > back button: old playlist still here
 [DONE]	Open app > back button: white screen.
 	Extremly delay: Open app > playlist manager > playlist detail > song. (because of .hashcode maybe?)
 	Add/Remove/Update playlist > update in navigation drawer.
