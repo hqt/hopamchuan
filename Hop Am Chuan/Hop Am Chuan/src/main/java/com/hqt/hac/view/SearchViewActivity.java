@@ -138,10 +138,10 @@ public class SearchViewActivity extends ActionBarActivity implements InfinityLis
                 res = SongDataAccessLayer.searchSongByTitle(queryStr, offset, count);
                 break;
             case 1:
-                res = ArtistDataAccessLayer.searchSongBySinger(queryStr, 100);
+                // res = ArtistDataAccessLayer.searchSongBySinger(queryStr, 100);
                 break;
             case 2:
-                res = ArtistDataAccessLayer.searchSongByAuthor(queryStr, 100);
+                // res = ArtistDataAccessLayer.searchSongByAuthor(queryStr, 100);
         }
         return res;
     }

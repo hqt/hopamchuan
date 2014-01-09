@@ -231,5 +231,8 @@
     <string name="view_same_author_songs">BÀI HÁT CÙNG TÁC GIẢ</string>
     <string name="view_same_chord_songs">BÀI HÁT CÙNG HỢP ÂM</string>
     <string name="title_activity_artist_view">Artist</string>
+    <string name="media_getting_url">Đang lấy URL...</string>
+    <string name="media_buffering_file">Đang tải file nhạc...</string>
+    <string name="media_url_fail">Lỗi: Bài hát không có link nhạc!</string>
 
 </resources>

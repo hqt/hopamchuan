@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import com.hqt.hac.helper.service.Mp3PlayerService;
 import com.hqt.hac.helper.widget.MusicPlayerController;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
 import com.hqt.hac.model.Song;
+import com.hqt.hac.utils.APIUtils;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.utils.ScreenUtils;
@@ -46,11 +48,6 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     private Activity that = this;
 
     /**
-     * View for side bar
-     */
-    private View sidebarView;
-
-    /**
      * Sliding Menu for Right View
      */
     private SlidingMenu sidebar;
@@ -70,14 +67,11 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     private Dialog dialogScroll;
     private TextView scrollTextView;
     private SeekBar scrollSeekBar;
-    private Button toTopBtn;
-    private CheckBox turnOnChk;
 
     private Dialog dialogTranspose;
-    private Button transUpBtn;
-    private Button transDownBtn;
 
     private Dialog dialogMusic;
+    private View dialogMusicLayout;
 
     /**
      *
@@ -107,6 +101,10 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
 
     ScrollHandler mHandler;
 
+    /** Handler & Thread for play music using network **/
+    private PlayMusicHandler playMusicHandler;
+    private Thread playMusicLoad;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,7 +119,9 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
 
         // behind view
         LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        sidebarView = inflater.inflate(R.layout.song_right_bar, null);
+
+        /* View for side bar */
+        View sidebarView = inflater.inflate(R.layout.song_right_bar, null);
         setBehindContentView(sidebarView);
 
         mHandler = new ScrollHandler();
@@ -178,8 +178,8 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
                 getLayoutInflater(), R.layout.dialog_songdetail_autoscroll);
         scrollTextView = (TextView) dialogScroll.findViewById(R.id.scrollTV);
         scrollSeekBar = (SeekBar) dialogScroll.findViewById(R.id.scrollSB);
-        toTopBtn = (Button) dialogScroll.findViewById(R.id.toTopBtn);
-        turnOnChk = (CheckBox) dialogScroll.findViewById(R.id.turnOnChk);
+        Button toTopBtn = (Button) dialogScroll.findViewById(R.id.toTopBtn);
+        CheckBox turnOnChk = (CheckBox) dialogScroll.findViewById(R.id.turnOnChk);
 
         scrollSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -237,8 +237,8 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
 
         dialogTranspose = DialogUtils.createDialog(this, R.string.song_detail_transpose,
                 getLayoutInflater(), R.layout.dialog_songdetail_transpose);
-        transUpBtn = (Button) dialogTranspose.findViewById(R.id.btnTransUp);
-        transDownBtn = (Button) dialogTranspose.findViewById(R.id.btnTransDown);
+        Button transUpBtn = (Button) dialogTranspose.findViewById(R.id.btnTransUp);
+        Button transDownBtn = (Button) dialogTranspose.findViewById(R.id.btnTransDown);
 
 
         transUpBtn.setOnClickListener(new View.OnClickListener() {
@@ -253,8 +253,28 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
                 HacUtils.transposeTextView(getApplicationContext(), songContentTextView, -1, that);
             }
         });
-    }
 
+
+        // Music dialog
+        dialogMusicLayout = getLayoutInflater().inflate(R.layout.dialog_songdetail_music, null);
+        dialogMusic = DialogUtils.createDialog(this, R.string.play_music, dialogMusicLayout);
+        setMediaPlayerState(true, getString(R.string.media_getting_url));
+
+    }
+    private void setMediaPlayerState(boolean isLoading, String statusMessage) {
+        LinearLayout playerLayout = (LinearLayout) dialogMusic.findViewById(R.id.media_player_control);
+        LinearLayout loadingLayout = (LinearLayout) dialogMusic.findViewById(R.id.loadingLinearLayout);
+        TextView statusText = (TextView) dialogMusic.findViewById(R.id.playerStatus);
+        statusText.setText(statusMessage);
+        if (isLoading) {
+            playerLayout.setVisibility(View.GONE);
+            loadingLayout.setVisibility(View.VISIBLE);
+        } else {
+            playerLayout.setVisibility(View.VISIBLE);
+            loadingLayout.setVisibility(View.GONE);
+        }
+
+    }
     private void setUpControlsAndEvents() {
         // Set content controls
         songContentTextView = (TextView) findViewById(R.id.songContent);
@@ -341,7 +361,21 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
                 sidebar.showContent();
                 sidebar.setEnabled(false);
 
-                setupMediaPlayer();
+                // Setup media player, in another thread
+                playMusicHandler = new PlayMusicHandler();
+                playMusicLoad = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(Config.LOADING_SMOOTHING_DELAY);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        LOGE("TRUNGDQ", "playMusicHandler.sendMessage");
+                        playMusicHandler.sendMessage(playMusicHandler.obtainMessage());
+                    }
+                });
+                playMusicLoad.start();
 
                 // Show dialog
                 dialogMusic.show();
@@ -421,20 +455,43 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
 
     /** setup start from here */
     private void setupMediaPlayer() {
+
+
         // get reference from Activity
         mp3Service = MainActivity.mp3Service;
         player = MainActivity.player;
-        // parse view
-        View layout = getLayoutInflater().inflate(R.layout.dialog_songdetail_music, null);
-        dialogMusic = DialogUtils.createDialog(this, R.string.play_music, layout);
-        // set controller for Android Built-in Media Player
-        controller = new MusicPlayerController(layout);
-        controller.setMediaPlayer(this);
-        // start currently song (not new song)
-        Intent mp3ServiceIntent = new Intent(this, Mp3PlayerService.class);
-        mp3ServiceIntent.putExtra("song", song);
-        LOGE(TAG, "Start music Dialog");
-        startService(mp3ServiceIntent);
+
+        // On buffered
+        player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                // LOGE("TRUNGDQ", "current song prepared!");
+                setMediaPlayerState(false, "");
+                player.start();
+                // set controller for Android Built-in Media Player
+                controller = new MusicPlayerController(dialogMusicLayout);
+                controller.setMediaPlayer(FullscreenSongActivity.this);
+            }
+        });
+
+        // Only get link if this is a new song
+        if (mp3Service.currentSong == null || mp3Service.currentSong.songId != song.songId) {
+            // Get stream url
+            song.link = APIUtils.getMp3Link(song.link);
+
+            // Set status
+            setMediaPlayerState(true, getString(R.string.media_buffering_file));
+
+            if (song.link.isEmpty()) {
+                setMediaPlayerState(true, getString(R.string.media_url_fail));
+            } else {
+                // start currently song (not new song)
+                Intent mp3ServiceIntent = new Intent(this, Mp3PlayerService.class);
+                mp3ServiceIntent.putExtra("song", song);
+                LOGE(TAG, "Start music Dialog");
+                startService(mp3ServiceIntent);
+            }
+        }
     }
 
     @Override
@@ -507,4 +564,12 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     }
     //endregion
 
+    /** Handler for media player to prevent UI freezing when get mp3 data from network. **/
+    private class PlayMusicHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            LOGE("TRUNGDQ", "setupMediaPlayer");
+            setupMediaPlayer();
+        }
+    }
 }

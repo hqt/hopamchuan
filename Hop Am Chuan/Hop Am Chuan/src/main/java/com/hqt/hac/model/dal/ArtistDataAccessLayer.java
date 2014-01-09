@@ -88,7 +88,6 @@ public class ArtistDataAccessLayer {
 
     /**
      * Search artist by name, use offset and count for pagination or infinity scrolling...
-     * @param context
      * @param name
      * @param offset
      * @param count
