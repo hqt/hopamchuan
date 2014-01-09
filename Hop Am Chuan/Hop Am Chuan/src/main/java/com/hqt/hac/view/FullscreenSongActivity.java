@@ -143,6 +143,9 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
 
         // Keep the screen always on
         setScreenOn();
+
+        // Media player service
+        setUpMediaPlayer();
     }
 
     private void setScreenOn() {
@@ -258,8 +261,7 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
         // Music dialog
         dialogMusicLayout = getLayoutInflater().inflate(R.layout.dialog_songdetail_music, null);
         dialogMusic = DialogUtils.createDialog(this, R.string.play_music, dialogMusicLayout);
-        setMediaPlayerState(true, getString(R.string.media_getting_url));
-
+        setMediaPlayerState(false, "");
     }
     private void setMediaPlayerState(boolean isLoading, String statusMessage) {
         LinearLayout playerLayout = (LinearLayout) dialogMusic.findViewById(R.id.media_player_control);
@@ -361,26 +363,48 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
                 sidebar.showContent();
                 sidebar.setEnabled(false);
 
-                // Setup media player, in another thread
-                playMusicHandler = new PlayMusicHandler();
-                playMusicLoad = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(Config.LOADING_SMOOTHING_DELAY);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        LOGE("TRUNGDQ", "playMusicHandler.sendMessage");
-                        playMusicHandler.sendMessage(playMusicHandler.obtainMessage());
-                    }
-                });
-                playMusicLoad.start();
+                // Only get link if this is a new song
+                if (MainActivity.mp3Service.currentSong == null
+                        || MainActivity.mp3Service.currentSong.songId != song.songId) {
 
+                    LOGE("TRUNGDQ", "Got here: currentSong: " + MainActivity.mp3Service.currentSong
+                    + " activity song id: " + song.songId);
+
+                    setMediaPlayerState(true, getString(R.string.media_getting_url));
+
+                    // Setup media player, in another thread
+                    playMusicHandler = new PlayMusicHandler();
+                    playMusicLoad = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            // Get url from network
+                            String streamUrl = APIUtils.getMp3Link(song.link);
+
+                            // Put to message
+                            Bundle bundle = new Bundle();
+                            bundle.putString(Config.BUNDLE_STREAM_LINK_NAME, streamUrl);
+                            Message message = new Message();
+                            message.setData(bundle);
+
+                            // Send message
+                            playMusicHandler.sendMessage(message);
+                        }
+                    });
+                    playMusicLoad.start();
+                } else {
+                    // If this is the openning song, then just need to update controls
+                    setUpMediaControls();
+                }
                 // Show dialog
                 dialogMusic.show();
             }
         });
+    }
+
+    private void setUpMediaControls() {
+        controller = new MusicPlayerController(dialogMusicLayout);
+        controller.setMediaPlayer(FullscreenSongActivity.this);
     }
 
     private void setUpContent() {
@@ -448,37 +472,32 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     /** Controller for Media Player */
     MusicPlayerController controller;
     /** Android Built-in Media Player : reference object from service object */
-    MediaPlayer player;
+    // MediaPlayer player;
     /** ref to current Service */
-    Mp3PlayerService mp3Service;
+    // Mp3PlayerService mp3Service;
 
-
-    /** setup start from here */
-    private void setupMediaPlayer() {
-
-
+    private void setUpMediaPlayer() {
         // get reference from Activity
-        mp3Service = MainActivity.mp3Service;
-        player = MainActivity.player;
+        MainActivity.player.setLooping(true);
 
         // On buffered
-        player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        MainActivity.player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
                 // LOGE("TRUNGDQ", "current song prepared!");
                 setMediaPlayerState(false, "");
-                player.start();
+                MainActivity.player.start();
                 // set controller for Android Built-in Media Player
-                controller = new MusicPlayerController(dialogMusicLayout);
-                controller.setMediaPlayer(FullscreenSongActivity.this);
+                setUpMediaControls();
             }
         });
 
-        // Only get link if this is a new song
-        if (mp3Service.currentSong == null || mp3Service.currentSong.songId != song.songId) {
-            // Get stream url
-            song.link = APIUtils.getMp3Link(song.link);
+    }
 
+    /** setup start from here */
+    private void startMediaPlayer() {
+        // Only get link if this is a new song
+        if (MainActivity.mp3Service.currentSong == null || MainActivity.mp3Service.currentSong.songId != song.songId) {
             // Set status
             setMediaPlayerState(true, getString(R.string.media_buffering_file));
 
@@ -497,7 +516,7 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     @Override
     public void start() {
         LOGD(TAG, "Start Player");
-        player.start();
+        MainActivity.player.start();
         Bundle arguments = new Bundle();
         arguments.putParcelable("song", song);
         DialogUtils.createNotification(getApplicationContext(), MainActivity.class, arguments,
@@ -507,28 +526,28 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     @Override
     public void pause() {
         LOGD(TAG, "Pause Player");
-        player.pause();
+        MainActivity.player.pause();
         DialogUtils.closeNotification(getApplicationContext(), Mp3PlayerService.NOTIFICATION_ID);
     }
 
     @Override
     public int getDuration() {
-        return player.getDuration();
+        return MainActivity.player.getDuration();
     }
 
     @Override
     public int getCurrentPosition() {
-        return player.getCurrentPosition();
+        return MainActivity.player.getCurrentPosition();
     }
 
     @Override
     public void seekTo(int pos) {
-        player.seekTo(pos);
+        MainActivity.player.seekTo(pos);
     }
 
     @Override
     public boolean isPlaying() {
-        return player.isPlaying();
+        return MainActivity.player.isPlaying();
     }
 
     @Override
@@ -568,8 +587,12 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     private class PlayMusicHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
-            LOGE("TRUNGDQ", "setupMediaPlayer");
-            setupMediaPlayer();
+            // LOGE("TRUNGDQ", "startMediaPlayer");
+            // Update song link
+            if (msg != null && msg.getData() != null) {
+                song.link = msg.getData().getString(Config.BUNDLE_STREAM_LINK_NAME);
+            }
+            startMediaPlayer();
         }
     }
 }

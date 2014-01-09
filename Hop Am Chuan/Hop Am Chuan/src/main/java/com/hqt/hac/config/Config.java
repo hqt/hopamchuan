@@ -53,4 +53,7 @@ public class Config {
     public static final String LANGUAGE_DEFAULT = "en";
     public static final String LANGUAGE_VIETNAMESE = "vi";
     public static final String LANGUAGE_ENGLISH = "en";
+
+    /** Bundle keys **/
+    public static final String BUNDLE_STREAM_LINK_NAME = "STREAM_URL";
 }
