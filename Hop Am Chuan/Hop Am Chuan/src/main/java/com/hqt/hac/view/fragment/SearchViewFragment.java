@@ -1,6 +1,5 @@
 package com.hqt.hac.view.fragment;
 
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.hqt.hac.config.Config;
+import com.hqt.hac.helper.adapter.ArtistAdapter;
 import com.hqt.hac.helper.adapter.IContextMenu;
 import com.hqt.hac.helper.adapter.SongListAdapter;
 import com.hqt.hac.helper.widget.InfinityListView;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.model.Song;
+import com.hqt.hac.model.dal.ArtistDataAccessLayer;
 import com.hqt.hac.model.dal.SongDataAccessLayer;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.view.BunnyApplication;
@@ -22,7 +23,6 @@ import com.hqt.hac.view.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.zip.Inflater;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
@@ -126,10 +126,10 @@ public class SearchViewFragment extends Fragment implements IHacFragment, Infini
                 res = SongDataAccessLayer.searchSongByTitle(queryStr, offset, count);
                 break;
             case 1:
-                //res = ArtistDataAccessLayer.searchSongBySinger(queryStr, 100);
+                res = ArtistDataAccessLayer.searchArtistByName(queryStr, offset, count);
                 break;
             case 2:
-                //res = ArtistDataAccessLayer.searchSongByAuthor(queryStr, 100);
+                res = ArtistDataAccessLayer.searchArtistByName(queryStr, offset, count);
         }
         return res;
     }
@@ -156,10 +156,12 @@ public class SearchViewFragment extends Fragment implements IHacFragment, Infini
                 break;
             case 1:
                 // search by author
+                mAdapter = new ArtistAdapter(BunnyApplication.getAppContext());
                 bindEventListView();
                 break;
             case 2:
                 // search by singer
+                mAdapter = new ArtistAdapter(BunnyApplication.getAppContext());
                 bindEventListView();
                 break;
             default:
@@ -196,9 +198,19 @@ public class SearchViewFragment extends Fragment implements IHacFragment, Infini
                 });
             }
             case 1: {
-
+                mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    }
+                });
             }
             case 2: {
+                mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    }
+                });
 
             }
         }

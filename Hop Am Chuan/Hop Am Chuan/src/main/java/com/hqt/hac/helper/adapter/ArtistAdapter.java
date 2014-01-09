@@ -1,10 +1,15 @@
 package com.hqt.hac.helper.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 import com.hqt.hac.model.Artist;
+import com.hqt.hac.model.Playlist;
+import com.hqt.hac.view.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,10 +54,30 @@ public class ArtistAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+        ViewHolder holder = null;
+        View row = convertView;
+
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        if (row == null) {
+            row = inflater.inflate(R.layout.list_item_artist, null);
+            holder = new ViewHolder();
+            holder.artistNameTxt = (TextView) row.findViewById(R.id.artist_name_txt);
+            holder.tempTxt = (TextView) row.findViewById(R.id.temp_txt);
+            row.setTag(holder);
+        }
+        else {
+            holder = (ViewHolder) row.getTag();
+        }
+
+        Artist s = artists.get(position);
+        holder.artistNameTxt.setText(s.artistName);
+        holder.tempTxt.setText("Currently no thing");
+
+        return row;
     }
 
-    private static class Holder {
-
+    private static class ViewHolder {
+        TextView artistNameTxt;
+        TextView tempTxt;
     }
 }
