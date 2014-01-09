@@ -12,8 +12,6 @@ import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
 import com.hqt.hac.model.Song;
-import com.hqt.hac.view.MainActivity;
-import com.hqt.hac.view.R;
 
 import java.io.IOException;
 
@@ -42,7 +40,7 @@ public class Mp3PlayerService extends Service implements
     public MediaPlayer player;
 
     /** to know which song that service is holding */
-    Song currentSong;
+    public Song currentSong;
 
     /** Notification Id for this service */
     public static final int NOTIFICATION_ID = 147141;
@@ -121,7 +119,8 @@ public class Mp3PlayerService extends Service implements
                     player.pause();
                 }
                 // prepare
-                playsongLocal();
+                // playsongLocal();
+                playsongNetwork();
                 // start from new
                 // player.start();
             }
@@ -154,6 +153,7 @@ public class Mp3PlayerService extends Service implements
     }
 
     private void playsongNetwork() {
+        player.reset();
         try {
             player.setDataSource(currentSong.link);
             // this line should put after set DataSource and should use prepareAsync()

@@ -139,6 +139,8 @@ public class MusicPlayerController {
             isPauseFunction = true;
             mPauseButton.requestFocus();
             mPauseButton.setOnClickListener(mPauseListener);
+        } else {
+            isPauseFunction = false;
         }
 
         fullscreenButton = (ImageButton) mRootView.findViewById(R.id.fullscreen);
@@ -147,6 +149,8 @@ public class MusicPlayerController {
             isFullScreenFunction = true;
             fullscreenButton.requestFocus();
             fullscreenButton.setOnClickListener(mFullscreenListener);
+        } else {
+            isFullScreenFunction = false;
         }
 
         mFastForwardButton = (ImageButton) mRootView.findViewById(R.id.ffwd);
@@ -155,6 +159,8 @@ public class MusicPlayerController {
             isFastForwardFunction = true;
             mFastForwardButton.setOnClickListener(mFastForwardListener);
             mFastForwardButton.setVisibility(mUseFastForward ? View.VISIBLE : View.GONE);
+        } else {
+            isFastForwardFunction = false;
         }
 
         mRewindButton = (ImageButton) mRootView.findViewById(R.id.rew);
@@ -163,6 +169,8 @@ public class MusicPlayerController {
             isReWindFunction = true;
             mRewindButton.setOnClickListener(mRewindListener);
             mRewindButton.setVisibility(mUseFastForward ? View.VISIBLE : View.GONE);
+        } else {
+            isReWindFunction = false;
         }
 
         // By default these are hidden. They will be enabled when setupPreviousNextListeners() is called
@@ -171,6 +179,8 @@ public class MusicPlayerController {
             LOGD(TAG, "Next Button: " + mNextButton);
             isNextFunction = true;
             mNextButton.setVisibility(View.VISIBLE);
+        } else {
+            isNextFunction = false;
         }
 
         prevButton = (ImageButton) mRootView.findViewById(R.id.prev);
@@ -178,6 +188,8 @@ public class MusicPlayerController {
             LOGD(TAG, "Previous Button: " + prevButton);
             isPreviousFunction = true;
             prevButton.setVisibility(View.VISIBLE);
+        } else {
+            isPreviousFunction = false;
         }
 
         mProgress = (ProgressBar) mRootView.findViewById(R.id.mediacontroller_progress);
@@ -196,8 +208,7 @@ public class MusicPlayerController {
         mFormatBuilder = new StringBuilder();
         mFormatter = new Formatter(mFormatBuilder, Locale.getDefault());
 
-        // TrungDQ: We don't need these button in this app
-        // setupPreviousNextListeners();
+        setupPreviousNextListeners();
     }
     //endregion
 
