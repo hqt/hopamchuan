@@ -52,6 +52,9 @@ public class SettingActivity extends AsyncActivity {
     /** method to know which type of update */
     int method = METHOD_CODE.UPDATE_SONG;
 
+    /** Variable to know how many song have been updated **/
+    private int updatedSongs = 0;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -234,9 +237,14 @@ public class SettingActivity extends AsyncActivity {
         TextView txtName = (TextView) findViewById(R.id.name);
         TextView txtMail = (TextView) findViewById(R.id.mail);
         ImageView imgAvatar = (ImageView) findViewById(R.id.imageView);
+        String username = PrefStore.getLoginUsername();
+        String email = PrefStore.getEmail();
 
-        txtName.setText(PrefStore.getLoginUsername());
-        txtMail.setText(PrefStore.getEmail());
+        if (username.isEmpty()) username = getString(R.string.login_account);
+        if (email.isEmpty()) email = getString(R.string.login_account_description);
+
+        txtName.setText(username);
+        txtMail.setText(email);
         Bitmap imageAvatar = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage());
 
         if (imageAvatar != null) {
@@ -249,8 +257,13 @@ public class SettingActivity extends AsyncActivity {
 
     //region Sync Function
     private void setUpSync() {
+
+        String lastedDate = PrefStore.getLastedUpdateDate();
+
+        if (lastedDate.isEmpty()) lastedDate = getString(R.string.default_last_update);
+
         // set value and action for widget
-        currentVersionTxt.setText(getString(R.string.current_version) + " " + PrefStore.getLatestVersion());
+        currentVersionTxt.setText(getString(R.string.current_version) + " " + lastedDate);
 
         CheckBox autoUpdateChkBox = (CheckBox) findViewById(R.id.checkbox_auto_update);
         CheckBox autoSyncChkBox = (CheckBox) findViewById(R.id.checkbox_auto_sync);
@@ -328,6 +341,9 @@ public class SettingActivity extends AsyncActivity {
         }
 
         this.method = method;
+
+        // Reset new songs count status to zero
+        updatedSongs = 0;
         // just call this method. all magic things will be happened
         runningLongTask();
     }
@@ -420,10 +436,12 @@ public class SettingActivity extends AsyncActivity {
 
             // successfully
             case STATUS_CODE.SUCCESS: {
+
+                String newSongs = updatedSongs > 0 ? "\n" + getString(R.string.song_updated_count) + " " + updatedSongs : "";
                 // notify to user
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle(getString(R.string.notif_title_info))
-                        .setMessage(getString(R.string.update_susscess))
+                        .setMessage(getString(R.string.update_susscess) + newSongs)
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -465,7 +483,9 @@ public class SettingActivity extends AsyncActivity {
         if (!status) return STATUS_CODE.SYSTEM_ERROR;
         else {
             // set latest version to system after all step has successfully update
-            PrefStore.setLatestVersion(version.no);
+            PrefStore.setLastestVersion(version.no);
+            PrefStore.setLastedUpdate(version.date);
+            updatedSongs = songs.size();
             return STATUS_CODE.SUCCESS;
         }
     }

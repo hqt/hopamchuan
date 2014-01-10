@@ -2,6 +2,7 @@ package com.hqt.hac.helper.widget;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -111,7 +112,6 @@ public class SongListRightMenuHandler {
         createPlaylistBtn.setOnClickListener(new NewPlaylistOnClick());
         /**************/
 
-
         // Event to add new playlist
         LinearLayout addNewPlaylistBtn = (LinearLayout) playlistListDialog.findViewById(R.id.playlist_list_header);
 
@@ -128,6 +128,7 @@ public class SongListRightMenuHandler {
             }
         });
 
+        // Playlist button
         playlistBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,6 +138,24 @@ public class SongListRightMenuHandler {
                 // Refresh playlists
                 playlistAdapter.setPlaylists(PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext()));
                 playlistListDialog.show();
+            }
+        });
+
+        // Share button
+        shareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String shareText = String.format(activity.getString(R.string.share_text_template),
+                        selectedSong.title,
+                        selectedSong.songId + "/" + selectedSong.titleAscii.replaceAll(" ", "-"),
+                        Config.GOOGLE_PLAY_REF_LINK + activity.getApplicationContext().getPackageName());
+
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, shareText);
+                sendIntent.setType("text/plain");
+                activity.startActivity(Intent.createChooser(sendIntent, activity.getString(R.string.send_to)));
+                popupWindow.dismiss();
             }
         });
     }

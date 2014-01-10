@@ -4,7 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.os.SystemClock;
+
 import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.SongDataAccessLayer;
@@ -48,7 +48,7 @@ public class UpdateService extends WakefulIntentService {
         boolean status = SongDataAccessLayer.insertFullSongListSync(getApplicationContext(), songs);
         if (status) {
             // set latest version to system after all step has successfully update
-            PrefStore.setLatestVersion(version.no);
+            PrefStore.setLastestVersion(version.no);
         }
     }
 }

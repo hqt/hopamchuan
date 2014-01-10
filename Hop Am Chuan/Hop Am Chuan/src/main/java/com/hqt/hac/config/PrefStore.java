@@ -7,6 +7,9 @@ import android.preference.PreferenceManager;
 import com.hqt.hac.utils.EncodingUtils;
 import com.hqt.hac.view.BunnyApplication;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 /**
@@ -34,6 +37,9 @@ public class PrefStore {
     /** Preference key containing currently latest version on system */
     public static final String PREF_LATEST_VERSION = "latest_database_version";
 
+    /** Preference key containing currently latest date on system */
+    public static final String PREF_LATEST_UPDATE_DATE = "latest_update_date";
+
     /** Preference key containg currently image of account */
     public static final String PREF_USER_IMAGE = "user_image";
 
@@ -55,17 +61,20 @@ public class PrefStore {
     /** Default value for {@link PrefStore#PREF_IS_FIRST_RUN} */
     public static final boolean DEFAULT_FIRST_RUN = true;
 
-    /** Default value for {@link PrefStore#PREF_LOGIN_USER} */
-    public static final String DEFAULT_LOGIN_USER = "ĐĂNG NHẬP";
+    /** Default value for {@link PrefStore#PREF_LOGIN_USER} (return empty string for multi-language concept) */
+    public static final String DEFAULT_LOGIN_USER = "";
 
-    /** Default value for {@link PrefStore#PREF_LOGIN_EMAIL} */
-    public static final String DEFAULT_LOGIN_EMAIL= "Bằng tài khoản hopamchuan.com";
+    /** Default value for {@link PrefStore#PREF_LOGIN_EMAIL} (return empty string for multi-language concept) */
+    public static final String DEFAULT_LOGIN_EMAIL= "";
 
     /** Default value for {@link PrefStore#PREF_LOGIN_PASSWORD} */
     public static final String DEFAULT_LOGIN_PASSWORD = "@password";
 
     /** Default value for {@link PrefStore#PREF_LATEST_VERSION} */
     public static final int DEFAULT_LATEST_VERSION = 2;
+
+    /** Default value for {@link PrefStore#PREF_LATEST_UPDATE_DATE} (return empty string for multi-language concept) */
+    public static final String DEFAULT_PREF_LATEST_UPDATE_DATE = "";
 
     /** Default value for {@link PrefStore#PREF_USER_IMAGE} */
     public static final String DEFAULT_USER_IMAGE = "image_data";
@@ -111,6 +120,10 @@ public class PrefStore {
         return getSharedPreferences().getInt(PREF_LATEST_VERSION, DEFAULT_LATEST_VERSION);
     }
 
+    public static String getLastedUpdateDate() {
+        return getSharedPreferences().getString(PREF_LATEST_UPDATE_DATE, DEFAULT_PREF_LATEST_UPDATE_DATE);
+    }
+
     public static String getSystemLanguage() {
         return getSharedPreferences().getString(PREF_LANGUAGE, DEFAULT_LANGUAGE);
     }
@@ -146,10 +159,15 @@ public class PrefStore {
         editor.commit();
     }
 
-    public static void setLatestVersion(int version) {
+    public static void setLastestVersion(int version) {
         SharedPreferences.Editor editor = getSharedPreferences().edit();
         editor.putInt(PREF_LATEST_VERSION, version);
-        // editor.putInt(PREF_LATEST_VERSION, 1);      // debugging purpose
+        editor.commit();
+    }
+
+    public static void setLastedUpdate(Date date) {
+        SharedPreferences.Editor editor = getSharedPreferences().edit();
+        editor.putString(PREF_LATEST_UPDATE_DATE, (new SimpleDateFormat(Config.UPDATE_DATE_FORMAT)).format(date));
         editor.commit();
     }
 

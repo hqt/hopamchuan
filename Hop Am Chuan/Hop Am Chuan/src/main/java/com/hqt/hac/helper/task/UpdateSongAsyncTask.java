@@ -55,7 +55,7 @@ public class UpdateSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
         if (status) return 3;
         else {
             // set latest version to system after all step has successfully update
-            PrefStore.setLatestVersion(version.no);
+            PrefStore.setLastestVersion(version.no);
             return 4;
         }
 
