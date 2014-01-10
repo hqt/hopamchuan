@@ -177,7 +177,9 @@ public class SearchResultFragment extends Fragment implements
             default:
                 // do nothing
         }
-        mListView.setAdapter(mAdapter);
+        // mListView.setAdapter(mAdapter);
+        // TrungDQ: We NEED this for footer and stuffs when changing dropdown menu item.
+        mListView.resetListView(mAdapter);
     }
 
     @Override

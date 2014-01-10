@@ -588,8 +588,11 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 .commit();
         slidingMenu.showContent();
         slidingMenu.setEnabled(true);
-        // should close search view
-        MenuItemCompat.collapseActionView(searchItem);
+
+        if (searchItem != null) { // << Could not run without this.
+            // should close search view
+            MenuItemCompat.collapseActionView(searchItem);
+        }
         int titleRes = ((IHacFragment) fragment).getTitle();
         if (titleRes > 0) {
             changeTitleBar(getString(titleRes));
