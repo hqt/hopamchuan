@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.SystemClock;
 import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dal.FavoriteDataAccessLayer;
@@ -14,6 +15,7 @@ import com.hqt.hac.utils.APIUtils;
 
 import java.util.List;
 
+import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 /**
@@ -30,7 +32,7 @@ public class SyncService extends WakefulIntentService {
 
     @Override
     protected void doWakefulWork(Intent intent) {
-        String username = PrefStore.getLoginUsername();
+        /*String username = PrefStore.getLoginUsername();
         String password = PrefStore.getLoginPassword();
         boolean res;
         Context mAppContext = getApplicationContext();
@@ -62,22 +64,28 @@ public class SyncService extends WakefulIntentService {
 
         // update favorite
         FavoriteDataAccessLayer.syncFavorites(mAppContext, newFavorite);
+        */
+        LOGE(TAG, "Hard Working Work @@@");
+    }
+
+    public static class SyncServiceAlarm implements WakefulIntentService.AlarmListener {
+
+        @Override
+        public void scheduleAlarms(AlarmManager mgr, PendingIntent pi, Context ctxt) {
+            mgr.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime()+600,
+                    AlarmManager.INTERVAL_FIFTEEN_MINUTES, pi);
+        }
+
+        @Override
+        public void sendWakefulWork(Context ctx) {
+            WakefulIntentService.sendWakefulWork(ctx, SyncService.class);
+        }
+
+        @Override
+        public long getMaxAge() {
+            return(AlarmManager.INTERVAL_FIFTEEN_MINUTES*2);
+        }
     }
 }
 
-class SyncServiceAlarm implements WakefulIntentService.AlarmListener {
-
-    @Override
-    public void scheduleAlarms(AlarmManager mgr, PendingIntent pi, Context ctxt) {
-    }
-
-    @Override
-    public void sendWakefulWork(Context ctx) {
-        WakefulIntentService.sendWakefulWork(ctx, SyncService.class);
-    }
-
-    @Override
-    public long getMaxAge() {
-        return 0;
-    }
-}
