@@ -35,8 +35,8 @@
 
     <!-- list all method to search -->
     <string-array name="search_method">
-        <item>Search by Song</item>
-        <item>Search by Artist</item>
+        <item>Tìm theo bài hát</item>
+        <item>Tác giả / ca sĩ</item>
     </string-array>
 
     <!-- list all method to view songs in favorite -->

@@ -65,7 +65,7 @@ public class ArtistDataAccessLayer {
 
         Cursor c = resolver.query(uri,
                 Projections.ARTIST_PROJECTION,                      // projection
-                HopAmChuanDBContract.Artists.ARTIST_ASCII + " = ?",   // selection string
+                HopAmChuanDBContract.Artists.ARTIST_ASCII + " LIKE ?",   // selection string
                 new String[]{artistName},                             // selection args of strings
                 null);                            //  sort order
 
@@ -272,14 +272,14 @@ public class ArtistDataAccessLayer {
         LOGD(TAG, "search Song By Author");
         Context context = BunnyApplication.getAppContext();
         Artist artist = ArtistDataAccessLayer.getArtistByName(context, name);
-
+        LOGE("TRUNGDQ", "artist: " + artist);
         ContentResolver resolver = context.getContentResolver();
         Uri uri = SongsAuthors.CONTENT_URI;
         Cursor c = resolver.query(uri,
                 Query.Projections.SONGAUTHOR_PROJECTION,                 // projection
                 SongsAuthors.ARTIST_ID + "=?",                           // selection string
                 new String[]{String.valueOf(artist.artistId)},           // selection args of strings
-                "RANDOM()  LIMIT " + offset + ", " + count);                             //  sort order
+                SongsAuthors.ARTIST_ID + " LIMIT " + offset + ", " + count);                      //  sort order
 
         int songIdCol = c.getColumnIndex(SongsAuthors.SONG_ID);
         List<Song> songs = new ArrayList<Song>();
@@ -296,14 +296,14 @@ public class ArtistDataAccessLayer {
 
         Context context = BunnyApplication.getAppContext();
         Artist artist = ArtistDataAccessLayer.getArtistByName(context, name);
-
+        LOGE("TRUNGDQ", "artist: " + artist);
         ContentResolver resolver = context.getContentResolver();
         Uri uri = SongsSingers.CONTENT_URI;
         Cursor c = resolver.query(uri,
                 Query.Projections.SONGAUTHOR_PROJECTION,                 // projection
                 SongsSingers.ARTIST_ID + "=?",                           // selection string
                 new String[]{String.valueOf(artist.artistId)},           // selection args of strings
-                "RANDOM()  LIMIT " + offset + ", " + count);                             //  sort order
+                SongsAuthors.ARTIST_ID + " LIMIT " + offset + ", " + count);                      // sort order
 
         int songIdCol = c.getColumnIndex(SongsSingers.SONG_ID);
         List<Song> songs = new ArrayList<Song>();
@@ -314,10 +314,30 @@ public class ArtistDataAccessLayer {
         c.close();
         return songs;
     }
-    public static List<Song> searchSongByArtist(String name, int limit) {
+    public static List<Song> searchSongByArtist(String name, int offset, int limit) {
         List<Song> songs = new ArrayList<Song>();
-        songs.addAll(searchSongByAuthor(name, 0, limit / 2));
-        songs.addAll(searchSongBySinger(name, 0, limit / 2));
+        List<Song> sAuthor;
+        List<Song> sSinger;
+
+        int authorShift = 0;
+        int singerShift = 0;
+
+        int loopCount = 0;
+
+        while (songs.size() < limit) {
+            sAuthor = searchSongByAuthor(name, offset + authorShift, limit / 2);
+            songs.addAll(sAuthor);
+            authorShift += sAuthor.size();
+
+            sSinger = searchSongBySinger(name, offset + singerShift, limit / 2);
+            songs.addAll(sSinger);
+            singerShift += sSinger.size();
+
+            if (++loopCount > limit) {
+                break;
+            }
+        }
+
         return songs;
     }
 

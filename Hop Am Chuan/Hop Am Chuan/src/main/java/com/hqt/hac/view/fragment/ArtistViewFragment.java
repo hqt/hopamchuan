@@ -28,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import static com.hqt.hac.utils.LogUtils.LOGE;
+
 /**
  * Fragment to show Artist Song's
  * Created by ThaoHQSE60963 on 1/9/14.
@@ -114,7 +116,7 @@ public class ArtistViewFragment extends Fragment implements InfinityListView.ILo
 
     @Override
     public Collection load(int offset, int count) {
-        return ArtistDataAccessLayer.searchSongByArtist(artist.artistName, count);
+        return ArtistDataAccessLayer.searchSongByArtist(artist.artistName, offset, count);
     }
 
     @Override

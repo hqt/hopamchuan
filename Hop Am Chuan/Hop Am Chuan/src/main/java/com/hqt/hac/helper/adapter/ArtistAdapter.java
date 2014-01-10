@@ -77,7 +77,7 @@ public class ArtistAdapter extends BaseAdapter implements InfinityListView.IInfi
 
         Artist s = artists.get(position);
         holder.artistNameTxt.setText(s.artistName);
-        holder.tempTxt.setText("Currently no thing");
+        holder.tempTxt.setText("123 bài");
 
         return row;
     }
