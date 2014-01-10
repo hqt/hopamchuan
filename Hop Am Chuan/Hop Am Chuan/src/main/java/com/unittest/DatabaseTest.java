@@ -38,7 +38,7 @@ public class DatabaseTest {
 
         // create song database
         List<Song> songs = ParserUtils.getAllSongsFromResource(context);
-        SongDataAccessLayer.insertFullSongListSync(context, songs);
+        SongDataAccessLayer.insertFullSongListSync(context, songs, null);
 
     }
 

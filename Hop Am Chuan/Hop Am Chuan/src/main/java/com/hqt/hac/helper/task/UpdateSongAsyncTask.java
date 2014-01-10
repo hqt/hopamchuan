@@ -51,7 +51,7 @@ public class UpdateSongAsyncTask extends AsyncTask<Void, Integer, Integer> {
 
         // save to database
         publishProgress(3);
-        boolean status = SongDataAccessLayer.insertFullSongListSync(context, songs);
+        boolean status = SongDataAccessLayer.insertFullSongListSync(context, songs, null);
         if (status) return 3;
         else {
             // set latest version to system after all step has successfully update

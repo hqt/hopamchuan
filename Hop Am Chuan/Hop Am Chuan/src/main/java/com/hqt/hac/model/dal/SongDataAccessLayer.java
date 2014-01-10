@@ -51,10 +51,13 @@ public class SongDataAccessLayer {
         return false;
     }
 
-    public static boolean insertFullSongListSync(Context context, List<Song> songs) {
+    public static boolean insertFullSongListSync(Context context, List<Song> songs, InsertChangeListener listener) {
         boolean status = true;
-        for (Song song : songs) {
-            status = status && insertFullSongSync(context, song);
+        for (int i = 0; i < songs.size(); ++i) {
+            status = status && insertFullSongSync(context, songs.get(i));
+            if (listener != null) {
+                listener.onInsertChangeInstener(i + 1);
+            }
         }
         return status;
     }
@@ -405,4 +408,10 @@ public class SongDataAccessLayer {
         return songs;
     }
 
+    ///////
+    // Additional interface for tracking insert process
+    //////
+    public interface InsertChangeListener {
+        void onInsertChangeInstener(int count);
+    }
 }

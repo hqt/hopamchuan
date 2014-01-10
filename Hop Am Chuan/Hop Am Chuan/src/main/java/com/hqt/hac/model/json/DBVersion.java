@@ -8,7 +8,7 @@ import java.util.Date;
 public class DBVersion {
     public int no;
     public Date date;
-    int numbers;
+    public int numbers;
 
     public DBVersion(int no, Date date, int numbers) {
         this.no = no;

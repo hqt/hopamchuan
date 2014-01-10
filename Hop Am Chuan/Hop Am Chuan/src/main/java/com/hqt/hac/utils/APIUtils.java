@@ -140,7 +140,7 @@ public class APIUtils {
         return jsonString;
     }
 
-    private static String generateRequestLink(String url, Map<String, String> parameters) {
+    public static String generateRequestLink(String url, Map<String, String> parameters) {
         StringBuilder builder = new StringBuilder(url);
         // convert json object to string
         String jsonData = EncodingUtils.encodeMapToJSONString(parameters);
@@ -152,9 +152,7 @@ public class APIUtils {
         String signature = EncodingUtils.encodeDataUsingHMAC_MD5(encodeJsonData, Config.PRIVATE_KEY);
 
         // append public key
-        builder.append("?publicKey=" + Config.PUBLIC_KEY);
-        // append private key
-        builder.append("&privateKey=" + Config.PRIVATE_KEY);
+        builder.append("publicKey=" + Config.PUBLIC_KEY);
         // append signature
         builder.append("&signature=").append(signature);
         // append Json Data that already encode
@@ -174,7 +172,6 @@ public class APIUtils {
 
         Map<String, String> params = new HashMap<String, String>();
         params.put("publicKey", Config.PUBLIC_KEY);
-        params.put("privateKey", Config.PRIVATE_KEY);
         params.put("signature", signature);
         params.put("jsondata", encodeJsonData);
 
