@@ -275,5 +275,6 @@
     <string name="my_playlists_drawer_title">MY PLAYLISTS</string>
     <string name="send_to">Share song to…</string>
     <string name="share_text_template">%1$s chords: http://hopamchuan.com/song/%2$s.\nGet Hợp Âm Chuẩn App for Android: %3$s</string>
+    <string name="default_last_update">Never</string>
 
 </resources>

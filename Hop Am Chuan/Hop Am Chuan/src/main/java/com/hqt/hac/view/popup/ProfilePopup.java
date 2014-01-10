@@ -42,8 +42,14 @@ public class ProfilePopup {
         TextView txtMail = (TextView) dialog.findViewById(R.id.mail);
         ImageView imgAvatar = (ImageView) dialog.findViewById(R.id.imageView);
 
-        txtName.setText(PrefStore.getLoginUsername());
-        txtMail.setText(PrefStore.getEmail());
+        String username = PrefStore.getLoginUsername();
+        String email = PrefStore.getEmail();
+
+        if (username.isEmpty()) username = activity.getString(R.string.login_account);
+        if (email.isEmpty()) email = activity.getString(R.string.login_account_description);
+
+        txtName.setText(username);
+        txtMail.setText(email);
         Bitmap imageAvatar = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage());
 
         if (imageAvatar != null) {

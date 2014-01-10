@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.SearchRecentSuggestions;
 import android.view.View;
 import android.widget.*;
@@ -238,9 +237,14 @@ public class SettingActivity extends AsyncActivity {
         TextView txtName = (TextView) findViewById(R.id.name);
         TextView txtMail = (TextView) findViewById(R.id.mail);
         ImageView imgAvatar = (ImageView) findViewById(R.id.imageView);
+        String username = PrefStore.getLoginUsername();
+        String email = PrefStore.getEmail();
 
-        txtName.setText(PrefStore.getLoginUsername());
-        txtMail.setText(PrefStore.getEmail());
+        if (username.isEmpty()) username = getString(R.string.login_account);
+        if (email.isEmpty()) email = getString(R.string.login_account_description);
+
+        txtName.setText(username);
+        txtMail.setText(email);
         Bitmap imageAvatar = EncodingUtils.decodeByteToBitmap(PrefStore.getUserImage());
 
         if (imageAvatar != null) {
@@ -253,8 +257,13 @@ public class SettingActivity extends AsyncActivity {
 
     //region Sync Function
     private void setUpSync() {
+
+        String lastedDate = PrefStore.getLastedUpdateDate();
+
+        if (lastedDate.isEmpty()) lastedDate = getString(R.string.default_last_update);
+
         // set value and action for widget
-        currentVersionTxt.setText(getString(R.string.current_version) + " " + PrefStore.getLatestVersion());
+        currentVersionTxt.setText(getString(R.string.current_version) + " " + lastedDate);
 
         CheckBox autoUpdateChkBox = (CheckBox) findViewById(R.id.checkbox_auto_update);
         CheckBox autoSyncChkBox = (CheckBox) findViewById(R.id.checkbox_auto_sync);
@@ -474,7 +483,8 @@ public class SettingActivity extends AsyncActivity {
         if (!status) return STATUS_CODE.SYSTEM_ERROR;
         else {
             // set latest version to system after all step has successfully update
-            PrefStore.setLatestVersion(version.no);
+            PrefStore.setLastestVersion(version.no);
+            PrefStore.setLastedUpdate(version.date);
             updatedSongs = songs.size();
             return STATUS_CODE.SUCCESS;
         }

@@ -60,4 +60,5 @@ public class Config {
     public static final String GOOGLE_PLAY_REF_LINK = "http://play.google.com/store/apps/details?id=";
     public static final String[] SUPPORT_EMAILS = new String[]{"huynhquangthao@gmail.com", "trungdq88@gmail.com"};
     public static final String FACEBOOK_LINK = "https://www.facebook.com/HopAmChuan";
+    public static final String UPDATE_DATE_FORMAT = "dd MMM yyyy";
 }

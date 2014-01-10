@@ -34,9 +34,15 @@ public class ParserUtils {
     /////////////// PARSE DATA FROM STRING ////////////////////////
 
     public static List<Song> parseAllSongsFromJSONString(String json) {
-        JsonParser parser = new JsonParser();
-        JsonArray jsonArray = parser.parse(json).getAsJsonArray();
-        return parseSongsFromJsonArray(jsonArray);
+        try {
+            JsonParser parser = new JsonParser();
+            JsonArray jsonArray = parser.parse(json).getAsJsonArray();
+            return parseSongsFromJsonArray(jsonArray);
+        } catch (IllegalStateException e) {
+            // The response is not a JSON array. (May be the response is too big or null
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static List<Playlist> parseAllPlaylistFromJSONString(String json) {

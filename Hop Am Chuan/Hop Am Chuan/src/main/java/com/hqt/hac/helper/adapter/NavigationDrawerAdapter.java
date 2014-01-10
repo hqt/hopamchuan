@@ -75,9 +75,14 @@ public class NavigationDrawerAdapter {
             else {
                 holder = (ViewHolderHeader) row.getTag();
             }
+            String username = PrefStore.getLoginUsername();
+            String email = PrefStore.getEmail();
 
-            holder.txtName.setText(PrefStore.getLoginUsername());
-            holder.txtMail.setText(PrefStore.getEmail());
+            if (username.isEmpty()) username = activity.getString(R.string.login_account);
+            if (email.isEmpty()) email = activity.getString(R.string.login_account_description);
+
+            holder.txtName.setText(username);
+            holder.txtMail.setText(email);
 
             // Makes the marquee running
             holder.txtMail.setSelected(true);
