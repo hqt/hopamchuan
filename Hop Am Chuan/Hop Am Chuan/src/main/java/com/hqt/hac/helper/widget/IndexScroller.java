@@ -15,6 +15,10 @@ import android.widget.Adapter;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
 
+/**
+ * Building an IndexScroller using for Indexer of Adapter
+ * Because Android doesn't have base class for this. we should built by hand
+ */
 public class IndexScroller {
 
     private float mIndexbarWidth;

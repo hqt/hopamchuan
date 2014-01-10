@@ -13,6 +13,12 @@ import java.util.Locale;
 import static com.hqt.hac.utils.LogUtils.*;
 
 /**
+ * Controller for Media Player. include play/pause/ffast/fwind/ ... function
+ * and control time seeker, event when click each button etc ...
+ *
+ * Usage:
+ *      //TODO add usage here
+ *
  * Created by ThaoHQSE60963 on 12/29/13.
  */
 public class MusicPlayerController {

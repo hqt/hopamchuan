@@ -25,14 +25,16 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
  *
  * Usage : (Step by Step)
  * 1. Initialize ListView
- * 2. Set Mode for this ListView :
+ * 2. Set Mode for this ListView through out ListViewProperty Object
  *      RunningBackground Mode : should hard work do on different thread
  *      NumPerLoading          : decide number of items at each time load.
  *      setFirstLoadingItems   : number of item to load after initiate the ListView.
  *      FirstProcessingLoading : should use lazy loading when first load ListView
- * 3. Don't forget to set adapter after all.
+ *      setAdapter             : use to know which dapter behind this ListView. must implement IInfinityAdapter
+ *
  * 4. Class use this Infinitive ListView should implement 1 method :
- *      b. List load (offset, count) : load list of song at `offset`, total `count` : return a list of object
+ *      a. List load (offset, count) : load list of song at `offset`, total `count` : return a list of object
+ *      b. Adapter for this ListView must implement interface IInfinityAdapter
  *
  * Created by ThaoHQSE60963 on 12/27/13.
  */

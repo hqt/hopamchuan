@@ -1,26 +1,36 @@
-package com.hqt.hac.helper.widget;
+/*
+ * Copyright (C) 2013 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package temp;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
-
+import com.hqt.hac.view.BunnyApplication;
 import com.hqt.hac.view.R;
 
-
-/**
- * A FrameLayout get drawable images as background
- * Use this class for some purpose as using in Deleting ListView (when remove a line will appear background)
- * this image often use 9-patch image, and should put into drawable folder rather than others
- */
 public class BackgroundContainer extends FrameLayout {
 
     boolean mShowing = false;
     Drawable mShadowedBackground;
     int mOpenAreaTop, mOpenAreaBottom, mOpenAreaHeight;
     boolean mUpdateBounds = false;
-
+    
     public BackgroundContainer(Context context) {
         super(context);
         init();
@@ -37,8 +47,7 @@ public class BackgroundContainer extends FrameLayout {
     }
 
     private void init() {
-        mShadowedBackground =
-                getContext().getResources().getDrawable(R.drawable.shadowed_background);
+        mShadowedBackground = BunnyApplication.getAppContext().getResources().getDrawable(R.drawable.shadowed_background);
     }
 
     public void showBackground(int top, int bottom) {
@@ -48,12 +57,12 @@ public class BackgroundContainer extends FrameLayout {
         mShowing = true;
         mUpdateBounds = true;
     }
-
+    
     public void hideBackground() {
         setWillNotDraw(true);
         mShowing = false;
     }
-
+    
     @Override
     protected void onDraw(Canvas canvas) {
         if (mShowing) {

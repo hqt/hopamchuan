@@ -32,6 +32,9 @@ import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 
+/**
+ * Control action when click popup menu on Songlist Fragment
+ */
 public class SongListRightMenuHandler {
     /**
      * Current selected song for song lists (favorite fragment, song list fragment,

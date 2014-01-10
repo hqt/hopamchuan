@@ -85,6 +85,9 @@ public class FastSearchListView extends ListView {
         return super.onTouchEvent(ev);
     }
 
+    /** should return false. so that other event on item of ListView can itercept
+     * if return true. so any specific event on item will take no effect
+     */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         return false;

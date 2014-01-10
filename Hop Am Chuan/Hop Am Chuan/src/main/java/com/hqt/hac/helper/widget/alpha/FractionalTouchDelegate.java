@@ -1,4 +1,4 @@
-package com.hqt.hac.helper;
+package com.hqt.hac.helper.widget.alpha;
 
 import android.graphics.Rect;
 import android.graphics.RectF;

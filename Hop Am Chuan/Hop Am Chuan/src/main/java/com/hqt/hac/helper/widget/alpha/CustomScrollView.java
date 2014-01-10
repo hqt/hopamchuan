@@ -1,4 +1,4 @@
-package com.hqt.hac.helper.widget;
+package com.hqt.hac.helper.widget.alpha;
 
 import android.content.Context;
 import android.util.AttributeSet;

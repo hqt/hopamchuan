@@ -18,6 +18,9 @@ import com.hqt.hac.view.R;
 
 import java.lang.ref.WeakReference;
 
+/**
+ *  Control action when click popup menu on Playlist Fragment
+ */
 public class PlaylistRightMenuHandler {
 
     /*** Current selected playlist */
