@@ -277,7 +277,7 @@ public class NavigationDrawerAdapter {
             }
 
             // assign value to view
-            holder.txtHeader.setText("PLAYLIST CỦA TÔI");
+            holder.txtHeader.setText(R.string.my_playlists_drawer_title);
 
             return row;
         }

@@ -8,41 +8,41 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
-    <string name="action_settings">Cài đặt</string>
-    <string name="search_title">Tìm kiếm</string>
-    <string name="title_activity_search_view">Tìm kiếm</string>
+    <string name="action_settings">Settings</string>
+    <string name="search_title">Search</string>
+    <string name="title_activity_search_view">Search</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_test_database">Database Access Layer Test</string>
-    <string name="title_activity_song_list_fragment">Bài hát</string>
+    <string name="title_activity_song_list_fragment">Song</string>
 
     <!-- default items for navigation drawer -->
     <string-array name="navigation_drawer_default_items">
         <item>Main Page</item>
-        <item>Song</item>
+        <item>Browse Song</item>
         <item>My Playlist</item>
-        <item>My Favorite</item>
-        <item>Search Chords</item>
+        <item>Favorites</item>
+        <item>Search by Chords</item>
         <item>Chord Dictionary</item>
-        <item>Sync Data</item>
+        <item>Synchronize</item>
     </string-array>
 
     <!-- list all method to view songs -->
     <string-array name="song_list_method">
-        <item>Mới xem gần đây</item>
-        <item>Mới cập nhật</item>
-        <item>Bài hát ngẫu nhiên</item>
+        <item>Recent view</item>
+        <item>Just updated</item>
+        <item>Random</item>
     </string-array>
 
     <!-- list all method to search -->
     <string-array name="search_method">
-        <item>Tìm theo bài hát</item>
-        <item>Tác giả / ca sĩ</item>
+        <item>Song name</item>
+        <item>Author / Singer</item>
     </string-array>
 
     <!-- list all method to view songs in favorite -->
     <string-array name="favorite_sort_method">
-        <item>Gần đây</item>
-        <item>Sắp xếp ABC</item>
+        <item>Recent</item>
+        <item>ABC order</item>
     </string-array>
 
     <!-- list all base chords in search chord mActivity -->
@@ -142,134 +142,136 @@
     </string-array>
     <string-array name="all_chord" />
     <string-array name="type_of_chord_view">
-        <item>Hợp âm thông dụng</item>
-        <item>Hợp âm nâng cao</item>
-        <item>Tất cả hợp âm</item>
+        <item>Standard chords</item>
+        <item>Advanced chords</item>
+        <item>All chords</item>
     </string-array>
 
     <string name="example_text">Example Text</string>
     <string name="example_number">10</string>
     <string name="title_activity_test_text_view">Test TextView</string>
     <string name="title_activity_test_surface_view">MainActivity</string>
-    <string name="title_activity_welcome_fragment">Trang chủ</string>
-    <string name="title_activity_my_playlist_fragment">Playlist của tôi</string>
-    <string name="title_activity_my_favorite_fragment">Yêu thích</string>
+    <string name="title_activity_welcome_fragment">Home</string>
+    <string name="title_activity_my_playlist_fragment">My Playlists</string>
+    <string name="title_activity_my_favorite_fragment">Favorites</string>
     <string name="title_activity_playlist_detail_fragment">MainActivity</string>
     <string name="title_activity_playlist_manager_fragment">Playlist Manager</string>
-    <string name="title_activity_find_by_chord">Tìm theo hợp âm</string>
-    <string name="chord_search_search_button_text">Tìm kiếm</string>
-    <string name="chord_search_add_chord_text">Thêm</string>
-    <string name="title_activity_chord_view">Tra cứu hợp âm</string>
+    <string name="title_activity_find_by_chord">Search by chords</string>
+    <string name="chord_search_search_button_text">Search</string>
+    <string name="chord_search_add_chord_text">Add</string>
+    <string name="title_activity_chord_view">Chord dictionary</string>
     <string name="title_activity_test">Activity Test</string>
-    <string name="chord_finger_position">Cách bấm hợp âm</string>
-    <string name="search_box_placeholder">Tên bài hát, tác giả, ca sĩ...</string>
-    <string name="current_version">Last Update:</string>
-    <string name="setting_auto_update">Tự động cập nhật bài hát mới</string>
-    <string name="setting_auto_update_button">Cập nhật bài hát mới</string>
-    <string name="setting_auto_sync">Tự động đồng bộ playlist</string>
-    <string name="update_now_button">Cập nhật ngay</string>
+    <string name="chord_finger_position">Finger positions</string>
+    <string name="search_box_placeholder">Song name, author, singer…</string>
+    <string name="current_version">Last Updated:</string>
+    <string name="setting_auto_update">Auto update new songs</string>
+    <string name="setting_auto_update_button">Update new songs</string>
+    <string name="setting_auto_sync">Auto sync playlist/favorite</string>
+    <string name="update_now_button">Update now</string>
     <string name="title_activity_splash_screen">Hợp Âm Chuẩn</string>
     <string name="title_activity_test_list_song">TestListSong</string>
-    <string name="login_activity_title">Đăng nhập</string>
-    <string name="login_account">ĐĂNG NHẬP</string>
-    <string name="login_account_description">Dùng tài khoản HAC</string>
+    <string name="login_activity_title">Login</string>
+    <string name="login_account">LOGIN</string>
+    <string name="login_account_description">Use HAC account</string>
     <string name="font_light">sans-serif-light</string>
-    <string name="login_username">Tài khoản</string>
-    <string name="login_password">Mật khẩu</string>
-    <string name="login_loginbtn">Đăng nhập</string>
-    <string name="login_cancelbtn">Hủy</string>
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_loginbtn">Login</string>
+    <string name="login_cancelbtn">Cancel</string>
     <string name="default_artistname">N/A</string>
-    <string name="profile_logout"><u>Ngắt kết nối tài khoản</u></string>
-    <string name="proile_account_label">Tài khoản đang kết nối:</string>
-    <string name="profile_sync_now">Đồng bộ dữ liệu</string>
+    <string name="profile_logout"><u>Disconnect account</u></string>
+    <string name="proile_account_label">Connected account:</string>
+    <string name="profile_sync_now">Synchronize data</string>
     <string name="title_activity_song_play_full_screen">SongPlayFullScreen</string>
-    <string name="song_detail_click_to_fullscreen">Nhấn để xem toàn bộ</string>
-    <string name="title_activity_setting">Cài đặt</string>
-    <string name="song_detail_menu_favorite">Yêu thích</string>
-    <string name="song_detail_menu_addtoplaylist">Thêm vào playlist</string>
-    <string name="song_detail_menu_share">Chia sẻ</string>
-    <string name="playlist_menu_rename">Đổi tên</string>
-    <string name="playlist_menu_delete">Xóa playlist</string>
+    <string name="song_detail_click_to_fullscreen">Press to view all</string>
+    <string name="title_activity_setting">Settings</string>
+    <string name="song_detail_menu_favorite">Like</string>
+    <string name="song_detail_menu_addtoplaylist">Add to playlist</string>
+    <string name="song_detail_menu_share">Share</string>
+    <string name="playlist_menu_rename">Rename</string>
+    <string name="playlist_menu_delete">Delete playlist</string>
     <string name="app_website">www.hopamchuan.com</string>
-    <string name="app_website_reg_link"><u>Đăng ký tài khoản</u></string>
+    <string name="app_website_reg_link"><u>Register</u></string>
     <string name="register_link">http://hopamchuan.com/auth/register</string>
-    <string name="title_add_to_playlist_dialog">Thêm vào playlist...</string>
-    <string name="add_playlist">Thêm playlist mới</string>
-    <string name="new_playlist">Playlist mới</string>
-    <string name="playlist_name">Tên playlist...</string>
-    <string name="playlist_description">Mô tả ngắn...</string>
-    <string name="add_to_playlist_success">Đã thêm vào playlist</string>
-    <string name="create_playlist">Tạo playlist</string>
-    <string name="please_enter_playlist_name">Vui lòng nhập tên playlist</string>
-    <string name="create_playlist_success">Đã tạo playlist</string>
-    <string name="rename_playlist_button">Lưu thay đổi</string>
-    <string name="rename_playlist_success">Đã cập nhật playlist</string>
-    <string name="rename_playlist">Cập nhật playlist</string>
-    <string name="playlist_deleted_success">Đã xóa playlist</string>
-    <string name="are_you_sure_delete_playlist">Bạn có chắc chắn muốn xóa playlist</string>
-    <string name="delete_playlist">Xóa playlist</string>
-    <string name="remove_from_favorite">Bỏ yêu thích</string>
-    <string name="removed_from_favorite">Đã xóa ra khỏi danh sách Yêu thích</string>
-    <string name="added_to_favorite">Đã thêm vào Yêu thích</string>
-    <string name="song_detail_menu_unfavorite">Bỏ yêu thích</string>
-    <string name="song_detail_fontsize">Cỡ chữ</string>
-    <string name="song_detail_scroll">Tự động cuộn</string>
-    <string name="turn_on_auto_scroll">Bật tự động cuộn</string>
-    <string name="to_top">Lên đầu trang</string>
-    <string name="song_detail_transpose">Đổi tông</string>
-    <string name="transpose_down">Hạ tông</string>
-    <string name="transpose_up">Nâng tông</string>
-    <string name="split_line">Tách dòng</string>
-    <string name="song_detail_scroll_label">Cuộn trang</string>
-    <string name="play_music">Nghe nhạc</string>
-    <string name="view_full_screen">XEM HỢP ÂM</string>
-    <string name="remove_from_playlist">Xóa khỏi playlist</string>
-    <string name="press_back_again">Nhấn nút Back lần nữa để thoát</string>
-    <string name="version">PHIÊN BẢN</string>
-    <string name="update_songs">Cập nhật bài hát mới</string>
-    <string name="sync_playlist">Đồng bộ playlist/favorite</string>
-    <string name="account">TÀI KHOẢN</string>
-    <string name="app_info_other">KHÁC</string>
-    <string name="language">Cài đặt ngôn ngữ</string>
-    <string name="app_info">Thông tin ứng dụng</string>
-    <string name="app_vote">Bình chọn trên Play Store</string>
-    <string name="view_same_singer_songs">BÀI HÁT CÙNG CA SĨ</string>
-    <string name="view_same_author_songs">BÀI HÁT CÙNG TÁC GIẢ</string>
-    <string name="view_same_chord_songs">BÀI HÁT CÙNG HỢP ÂM</string>
+    <string name="title_add_to_playlist_dialog">Add to playlist…</string>
+    <string name="add_playlist">Create playlist</string>
+    <string name="new_playlist">New Playlist</string>
+    <string name="playlist_name">Playlist name…</string>
+    <string name="playlist_description">Short description…</string>
+    <string name="add_to_playlist_success">Added to playlist:</string>
+    <string name="create_playlist">Create playlist</string>
+    <string name="please_enter_playlist_name">Please enter playlist name</string>
+    <string name="create_playlist_success">Playlist created:</string>
+    <string name="rename_playlist_button">Save changes</string>
+    <string name="rename_playlist_success">Playlist updated:</string>
+    <string name="rename_playlist">Update playlist</string>
+    <string name="playlist_deleted_success">Playlist removed!</string>
+    <string name="are_you_sure_delete_playlist">Are you sure to delete this playlist?</string>
+    <string name="delete_playlist">Delete playlist</string>
+    <string name="remove_from_favorite">Unlike</string>
+    <string name="removed_from_favorite">Removed from Favorite!</string>
+    <string name="added_to_favorite">Added to Favorite</string>
+    <string name="song_detail_menu_unfavorite">Unlike</string>
+    <string name="song_detail_fontsize">Font size</string>
+    <string name="song_detail_scroll">Auto Scroll</string>
+    <string name="turn_on_auto_scroll">Turn on auto scroll</string>
+    <string name="to_top">Go to top</string>
+    <string name="song_detail_transpose">Transpose</string>
+    <string name="transpose_down">Decrease</string>
+    <string name="transpose_up">Increase</string>
+    <string name="split_line">Split lines</string>
+    <string name="song_detail_scroll_label">Scrolling</string>
+    <string name="play_music">Play music</string>
+    <string name="view_full_screen">VIEW LYRICS</string>
+    <string name="remove_from_playlist">Remove from playlist</string>
+    <string name="press_back_again">Press Back again to exit!</string>
+    <string name="version">VERSION</string>
+    <string name="update_songs">Download new songs</string>
+    <string name="sync_playlist">Synchronize playlist/favorite</string>
+    <string name="account">ACCOUNT</string>
+    <string name="app_info_other">MISC</string>
+    <string name="language">Language settings</string>
+    <string name="app_info">Application information</string>
+    <string name="app_vote">Vote this App on Play Store</string>
+    <string name="view_same_singer_songs">SAME SINGER SONGS…</string>
+    <string name="view_same_author_songs">SAME AUTHOR SONGS…</string>
+    <string name="view_same_chord_songs">SAME CHORDS SONGS…</string>
     <string name="title_activity_artist_view">Artist</string>
-    <string name="media_getting_url">Đang lấy URL…</string>
-    <string name="media_buffering_file">Đang tải file nhạc…</string>
-    <string name="media_url_fail">Lỗi: Bài hát không có link nhạc!</string>
-    <string name="notif_title_info">Thông báo</string>
-    <string name="already_lasted_version">Bạn đang sử dụng phiên bản mới nhất</string>
-    <string name="notif_title_error">Lỗi</string>
-    <string name="network_error">Lỗi kết nối Internet, vui lòng thử lại sau!</string>
-    <string name="system_fail_error">Lỗi hệ thống! Vui lòng khởi động lại ứng dụng.</string>
-    <string name="update_susscess">Cập nhật thành công</string>
-    <string name="clear_history_msg">Bạn chắc chắn muốn xóa toàn bộ lịch sử tìm kiếm?</string>
-    <string name="confirm_msg">Xác nhận</string>
-    <string name="delete_search_history">Xóa lịch sử tìm kiếm</string>
-    <string name="app_version">Phiên bản ứng dụng</string>
-    <string name="feedback_report">Báo lỗi - Góp ý</string>
-    <string name="rate_this_app">Bình chọn trên Play Store</string>
-    <string name="this_app_on_facebook">Hợp Âm Chuẩn trên Facebook</string>
-    <string name="allow_3g_download">Cho phép download bằng 3G</string>
+    <string name="media_getting_url">Getting URL…</string>
+    <string name="media_buffering_file">Buffering…</string>
+    <string name="media_url_fail">Error: music link is not available!</string>
+    <string name="notif_title_info">Info</string>
+    <string name="already_lasted_version">You are using the lasted database!</string>
+    <string name="notif_title_error">Error</string>
+    <string name="network_error">Network error, please try again!</string>
+    <string name="system_fail_error">System fail! Please restart application.</string>
+    <string name="update_susscess">Update successfully!</string>
+    <string name="clear_history_msg">Are you sure to delete all search history?</string>
+    <string name="confirm_msg">Confirm</string>
+    <string name="delete_search_history">Delete search history</string>
+    <string name="app_version">App version</string>
+    <string name="feedback_report">Report</string>
+    <string name="rate_this_app">Vote this app on Play Store</string>
+    <string name="this_app_on_facebook">Hợp Âm Chuẩn on Facebook</string>
+    <string name="allow_3g_download">Use 3G to download</string>
     <string name="download_label">DOWNLOAD</string>
-    <string name="checking_version">Đang kiểm tra phiên bản</string>
-    <string name="downloading">Đang tải dữ liệu...</string>
-    <string name="updating_remote_song_to_local">Đang xử lý...</string>
-    <string name="synching_favorite">Đang đồng bộ bài hát yêu thích...</string>
-    <string name="synching_playlist">Đang đồng bộ playlist...</string>
-    <string name="no_connection">Không thể kết nối Internet. Vui lòng kiểm tra lại Wifi/3G</string>
-    <string name="need_login">Bạn cần phải đăng nhập để sử dụng chức năng này.</string>
-    <string name="notif_title_success">Thành công</string>
-    <string name="login_success_click_to_sync">Đăng nhập thành công, nhấn OK để bắt đầu đồng bộ.</string>
-    <string name="wrong_password">Tài khoản hoặc mật khẩu không đúng!</string>
-    <string name="login_account_title">Đăng nhập</string>
-    <string name="checking_account">Đang kiểm tra...</string>
-    <string name="get_account_info">Đang lấy thông tin</string>
-    <string name="logout_button">Đăng xuất</string>
-    <string name="logout_confirm">Ngắt kết nối tài khoản hiện tại? (Playlist trên thiết bị của bạn sẽ bị xóa)</string>
-    <string name="first_running">Đang cài đặt cho lần chạy đầu tiên...</string>
+    <string name="checking_version">Checking version...</string>
+    <string name="downloading">Downloading data…</string>
+    <string name="updating_remote_song_to_local">Processing… Please wait…</string>
+    <string name="synching_favorite">Synchronizing favorites…</string>
+    <string name="synching_playlist">Synchronizing playlist…</string>
+    <string name="no_connection">Could not connect to the Internet. Please check your Wifi/3G</string>
+    <string name="need_login">You have to Login first!</string>
+    <string name="notif_title_success">Success</string>
+    <string name="login_success_click_to_sync">You are logged in, press OK to start synchronizing.</string>
+    <string name="wrong_password">Username/Password is incorrect!</string>
+    <string name="login_account_title">Login</string>
+    <string name="checking_account">Logging in…</string>
+    <string name="get_account_info">Check your account info…</string>
+    <string name="logout_button">Logout</string>
+    <string name="logout_confirm">Are you sure to disconnect with current account? (All playlists will be deleted)</string>
+    <string name="first_running">Setting for the first run…</string>
+    <string name="song_updated_count">New songs:</string>
+    <string name="my_playlists_drawer_title">MY PLAYLISTS</string>
 
 </resources>

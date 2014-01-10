@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.SearchRecentSuggestions;
 import android.view.View;
 import android.widget.*;
@@ -51,6 +52,9 @@ public class SettingActivity extends AsyncActivity {
 
     /** method to know which type of update */
     int method = METHOD_CODE.UPDATE_SONG;
+
+    /** Variable to know how many song have been updated **/
+    private int updatedSongs = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -328,6 +332,9 @@ public class SettingActivity extends AsyncActivity {
         }
 
         this.method = method;
+
+        // Reset new songs count status to zero
+        updatedSongs = 0;
         // just call this method. all magic things will be happened
         runningLongTask();
     }
@@ -420,10 +427,12 @@ public class SettingActivity extends AsyncActivity {
 
             // successfully
             case STATUS_CODE.SUCCESS: {
+
+                String newSongs = updatedSongs > 0 ? "\n" + getString(R.string.song_updated_count) + " " + updatedSongs : "";
                 // notify to user
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle(getString(R.string.notif_title_info))
-                        .setMessage(getString(R.string.update_susscess))
+                        .setMessage(getString(R.string.update_susscess) + newSongs)
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -466,6 +475,7 @@ public class SettingActivity extends AsyncActivity {
         else {
             // set latest version to system after all step has successfully update
             PrefStore.setLatestVersion(version.no);
+            updatedSongs = songs.size();
             return STATUS_CODE.SUCCESS;
         }
     }

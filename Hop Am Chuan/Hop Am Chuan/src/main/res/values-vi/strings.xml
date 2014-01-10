@@ -33,6 +33,12 @@
         <item>Bài hát ngẫu nhiên</item>
     </string-array>
 
+    <!-- list all method to search -->
+    <string-array name="search_method">
+        <item>Tìm theo bài hát</item>
+        <item>Tác giả / ca sĩ</item>
+    </string-array>
+
     <!-- list all method to view songs in favorite -->
     <string-array name="favorite_sort_method">
         <item>Gần đây</item>
@@ -156,8 +162,8 @@
     <string name="title_activity_chord_view">Tra cứu hợp âm</string>
     <string name="title_activity_test">Activity Test</string>
     <string name="chord_finger_position">Cách bấm hợp âm</string>
-    <string name="search_box_placeholder">Tên bài hát, tác giả, ca sĩ...</string>
-    <string name="current_version">Lần cập nhật cuối:</string>
+    <string name="search_box_placeholder">Tên bài hát, tác giả, ca sĩ…</string>
+    <string name="current_version">Cập nhật lần cuối:</string>
     <string name="setting_auto_update">Tự động cập nhật bài hát mới</string>
     <string name="setting_auto_update_button">Cập nhật bài hát mới</string>
     <string name="setting_auto_sync">Tự động đồng bộ playlist</string>
@@ -178,7 +184,7 @@
     <string name="profile_sync_now">Đồng bộ dữ liệu</string>
     <string name="title_activity_song_play_full_screen">SongPlayFullScreen</string>
     <string name="song_detail_click_to_fullscreen">Nhấn để xem toàn bộ</string>
-    <string name="title_activity_setting">Đồng bộ</string>
+    <string name="title_activity_setting">Cài đặt</string>
     <string name="song_detail_menu_favorite">Yêu thích</string>
     <string name="song_detail_menu_addtoplaylist">Thêm vào playlist</string>
     <string name="song_detail_menu_share">Chia sẻ</string>
@@ -187,11 +193,11 @@
     <string name="app_website">www.hopamchuan.com</string>
     <string name="app_website_reg_link"><u>Đăng ký tài khoản</u></string>
     <string name="register_link">http://hopamchuan.com/auth/register</string>
-    <string name="title_add_to_playlist_dialog">Thêm vào playlist...</string>
+    <string name="title_add_to_playlist_dialog">Thêm vào playlist…</string>
     <string name="add_playlist">Thêm playlist mới</string>
     <string name="new_playlist">Playlist mới</string>
-    <string name="playlist_name">Tên playlist...</string>
-    <string name="playlist_description">Mô tả ngắn...</string>
+    <string name="playlist_name">Tên playlist…</string>
+    <string name="playlist_description">Mô tả ngắn…</string>
     <string name="add_to_playlist_success">Đã thêm vào playlist</string>
     <string name="create_playlist">Tạo playlist</string>
     <string name="please_enter_playlist_name">Vui lòng nhập tên playlist</string>
@@ -230,27 +236,42 @@
     <string name="view_same_singer_songs">BÀI HÁT CÙNG CA SĨ</string>
     <string name="view_same_author_songs">BÀI HÁT CÙNG TÁC GIẢ</string>
     <string name="view_same_chord_songs">BÀI HÁT CÙNG HỢP ÂM</string>
-    <string name="already_lasted_version">Bạn đang sử dụng phiên bản mới nhất</string>
+    <string name="title_activity_artist_view">Artist</string>
+    <string name="media_getting_url">Đang lấy URL…</string>
+    <string name="media_buffering_file">Đang tải file nhạc…</string>
+    <string name="media_url_fail">Lỗi: Bài hát không có link nhạc!</string>
+    <string name="notif_title_info">Thông báo</string>
+    <string name="already_lasted_version">Bạn đang sử dụng dữ liệu mới nhất!</string>
     <string name="notif_title_error">Lỗi</string>
     <string name="network_error">Lỗi kết nối Internet, vui lòng thử lại sau!</string>
+    <string name="system_fail_error">Lỗi hệ thống! Vui lòng khởi động lại ứng dụng.</string>
     <string name="update_susscess">Cập nhật thành công</string>
     <string name="clear_history_msg">Bạn chắc chắn muốn xóa toàn bộ lịch sử tìm kiếm?</string>
+    <string name="confirm_msg">Xác nhận</string>
     <string name="delete_search_history">Xóa lịch sử tìm kiếm</string>
     <string name="app_version">Phiên bản ứng dụng</string>
     <string name="feedback_report">Báo lỗi - Góp ý</string>
     <string name="rate_this_app">Bình chọn trên Play Store</string>
     <string name="this_app_on_facebook">Hợp Âm Chuẩn trên Facebook</string>
     <string name="allow_3g_download">Cho phép download bằng 3G</string>
+    <string name="download_label">DOWNLOAD</string>
     <string name="checking_version">Đang kiểm tra phiên bản</string>
-    <string name="downloading">Đang tải dữ liệu...</string>
-    <string name="updating_remote_song_to_local">Đang xử lý...</string>
-    <string name="synching_playlist">Đang đồng bộ playlist...</string>
+    <string name="downloading">Đang tải dữ liệu…</string>
+    <string name="updating_remote_song_to_local">Đang xử lý… Vui lòng chờ trong giây lát…</string>
+    <string name="synching_favorite">Đang đồng bộ bài hát yêu thích…</string>
+    <string name="synching_playlist">Đang đồng bộ playlist…</string>
+    <string name="no_connection">Không thể kết nối Internet. Vui lòng kiểm tra lại Wifi/3G</string>
     <string name="need_login">Bạn cần phải đăng nhập để sử dụng chức năng này.</string>
     <string name="notif_title_success">Thành công</string>
     <string name="login_success_click_to_sync">Đăng nhập thành công, nhấn OK để bắt đầu đồng bộ.</string>
+    <string name="wrong_password">Tài khoản hoặc mật khẩu không đúng!</string>
     <string name="login_account_title">Đăng nhập</string>
-    <string name="checking_account">Đang kiểm tra...</string>
+    <string name="checking_account">Đang kiểm tra…</string>
     <string name="get_account_info">Đang lấy thông tin</string>
-    <string name="first_running">Đang cài đặt cho lần chạy đầu tiên...</string>
+    <string name="logout_button">Đăng xuất</string>
+    <string name="logout_confirm">Ngắt kết nối tài khoản hiện tại? (Playlist trên thiết bị của bạn sẽ bị xóa)</string>
+    <string name="first_running">Đang cài đặt cho lần chạy đầu tiên…</string>
+    <string name="song_updated_count">Số bài hát mới:</string>
+    <string name="my_playlists_drawer_title">PLAYLIST CỦA TÔI</string>
 
 </resources>
