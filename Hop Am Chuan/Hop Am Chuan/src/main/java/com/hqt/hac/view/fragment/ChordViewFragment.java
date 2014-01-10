@@ -38,12 +38,7 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
 
     /** ListView : contains all ChordSurfaceView for current type of query */
     private List<String[]> typeOfChords = new ArrayList<String[]>();
-    private ListView mChordSurfaceListView;
-
-    /** ListView : contains all chords in system (defined in string resource) */
-    private String[] mChordStrList;
-    private ListView mChordListView;
-
+    private FastSearchListView mChordSurfaceListView;
 
     /** Adapter for this fragment */
     private IChordView adapter;
