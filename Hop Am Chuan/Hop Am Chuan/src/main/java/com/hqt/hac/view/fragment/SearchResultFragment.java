@@ -76,9 +76,12 @@ public class SearchResultFragment extends Fragment implements
         // get arguments from main mActivity
         Bundle arguments = getArguments();
         if ((arguments.getString("search_key_word") != null)) {
-            queryStr = arguments.getString("search_key_word");
-            queryStr = StringUtils.removeAcients(queryStr);
-            LOGE(TAG, "Query String: " + queryStr);
+            String tmpQueryStr = arguments.getString("search_key_word");
+
+            this.activity.changeTitleBar(getString(R.string.search_title) + " \"" + tmpQueryStr + "\"");
+
+            queryStr = StringUtils.removeAcients(tmpQueryStr);
+            LOGE(TAG, "Query String::: " + queryStr);
         }
     }
 
@@ -174,7 +177,7 @@ public class SearchResultFragment extends Fragment implements
             default:
                 // do nothing
         }
-        mListView.setAdapter(mAdapter);
+        mListView.resetListView(mAdapter);
     }
 
     @Override

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.hqt.hac.helper.widget.InfinityListView;
 import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Playlist;
+import com.hqt.hac.view.BunnyApplication;
 import com.hqt.hac.view.R;
 
 import java.util.ArrayList;
@@ -77,7 +78,8 @@ public class ArtistAdapter extends BaseAdapter implements InfinityListView.IInfi
 
         Artist s = artists.get(position);
         holder.artistNameTxt.setText(s.artistName);
-        holder.tempTxt.setText("123 bài");
+
+        holder.tempTxt.setText(s.getNumOfSongs(BunnyApplication.mContext) + " bài");
 
         return row;
     }

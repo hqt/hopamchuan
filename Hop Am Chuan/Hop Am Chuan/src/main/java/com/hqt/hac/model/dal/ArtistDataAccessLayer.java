@@ -214,6 +214,10 @@ public class ArtistDataAccessLayer {
 
     }
 
+    public static int getArtistSongsCount(Context context, int artistId) {
+        return findAllSongsByAuthor(context, artistId).size() + findAllSongsBySinger(context, artistId).size();
+    }
+
     public static List<Song> getRandomSongsByAuthor(Context context, int artistId, int limit) {
         LOGD(TAG, "get Random Songs By Author");
 

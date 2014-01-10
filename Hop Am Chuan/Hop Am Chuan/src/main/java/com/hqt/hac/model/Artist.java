@@ -1,7 +1,10 @@
 package com.hqt.hac.model;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.hqt.hac.model.dal.ArtistDataAccessLayer;
 
 
 public class Artist implements Parcelable
@@ -11,6 +14,7 @@ public class Artist implements Parcelable
     public int artistId;
     public String artistName;
     public String artistAscii;
+    public int numOfSongs = -1;
 
     public Artist(int id, int artistId, String artistName, String artistAscii) {
         this.id = id;
@@ -27,6 +31,13 @@ public class Artist implements Parcelable
 
     public Artist(Parcel artist) {
         readFromParcel(artist);
+    }
+
+    public int getNumOfSongs(Context context) {
+        if (numOfSongs == -1) {
+            numOfSongs = ArtistDataAccessLayer.getArtistSongsCount(context, artistId);
+        }
+        return numOfSongs;
     }
 
     @Override

@@ -72,8 +72,8 @@ public class SplashScreen extends AsyncActivity {
     ProgressDialog dialog;
     /** loading long work before come to main screen */
     private void onLongWork() {
-        dialog.setMessage("First Running App");
-
+        dialog.setMessage(getString(R.string.first_running));
+        dialog.setCancelable(false);
         /** Check is first use. if true. copy database */
         if (PrefStore.isFirstRun() || (!ResourceUtils.isDatabaseFileExist())) {
             LOGE(TAG, "First Running Database. Create new Database");

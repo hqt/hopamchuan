@@ -270,5 +270,6 @@
     <string name="get_account_info">Đang lấy thông tin</string>
     <string name="logout_button">Đăng xuất</string>
     <string name="logout_confirm">Ngắt kết nối tài khoản hiện tại? (Playlist trên thiết bị của bạn sẽ bị xóa)</string>
+    <string name="first_running">Đang cài đặt cho lần chạy đầu tiên...</string>
 
 </resources>
