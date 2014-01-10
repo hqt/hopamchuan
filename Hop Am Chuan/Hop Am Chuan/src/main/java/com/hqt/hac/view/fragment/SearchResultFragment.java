@@ -177,7 +177,7 @@ public class SearchResultFragment extends Fragment implements
             default:
                 // do nothing
         }
-        mListView.resetListView(mAdapter);
+        mListView.setAdapter(mAdapter);
     }
 
     @Override

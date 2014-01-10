@@ -453,11 +453,11 @@ public class MainActivity extends SlidingMenuActionBarActivity
     private void handleIntent(Intent intent) {
         // Verify the action and get the query
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            // should close search view
-            MenuItemCompat.collapseActionView(searchItem);
             // get query string
             String queryStr = intent.getStringExtra(SearchManager.QUERY);
             LOGE(TAG, "Search query: " + queryStr);
+            // should close search view
+            MenuItemCompat.collapseActionView(searchItem);
             // cache data for searching
             SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
                     SearchRecentProvider.AUTHORITY, SearchRecentProvider.MODE);
@@ -564,6 +564,8 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 .commit();
         slidingMenu.showContent();
         slidingMenu.setEnabled(false);
+        // should close search view
+        MenuItemCompat.collapseActionView(searchItem);
         int titleRes = ((IHacFragment) fragment).getTitle();
         if (titleRes > 0) {
             changeTitleBar(getString(titleRes));
@@ -586,6 +588,8 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 .commit();
         slidingMenu.showContent();
         slidingMenu.setEnabled(true);
+        // should close search view
+        MenuItemCompat.collapseActionView(searchItem);
         int titleRes = ((IHacFragment) fragment).getTitle();
         if (titleRes > 0) {
             changeTitleBar(getString(titleRes));
