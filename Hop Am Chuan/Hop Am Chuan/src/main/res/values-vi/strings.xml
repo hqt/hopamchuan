@@ -273,5 +273,7 @@
     <string name="first_running">Đang cài đặt cho lần chạy đầu tiên…</string>
     <string name="song_updated_count">Số bài hát mới:</string>
     <string name="my_playlists_drawer_title">PLAYLIST CỦA TÔI</string>
+    <string name="send_to">Chia sẻ bài hát…</string>
+    <string name="share_text_template">Hợp âm chuẩn bài hát %1$s: http://hopamchuan.com/song/%2$s.\nTải ứng dụng Hợp Âm Chuẩn trên Android: %3$s</string>
 
 </resources>

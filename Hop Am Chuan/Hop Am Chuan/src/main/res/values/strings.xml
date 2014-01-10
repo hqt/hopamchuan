@@ -255,7 +255,7 @@
     <string name="this_app_on_facebook">Hợp Âm Chuẩn on Facebook</string>
     <string name="allow_3g_download">Use 3G to download</string>
     <string name="download_label">DOWNLOAD</string>
-    <string name="checking_version">Checking version...</string>
+    <string name="checking_version">Checking version…</string>
     <string name="downloading">Downloading data…</string>
     <string name="updating_remote_song_to_local">Processing… Please wait…</string>
     <string name="synching_favorite">Synchronizing favorites…</string>
@@ -273,5 +273,7 @@
     <string name="first_running">Setting for the first run…</string>
     <string name="song_updated_count">New songs:</string>
     <string name="my_playlists_drawer_title">MY PLAYLISTS</string>
+    <string name="send_to">Share song to…</string>
+    <string name="share_text_template">%1$s chords: http://hopamchuan.com/song/%2$s.\nGet Hợp Âm Chuẩn App for Android: %3$s</string>
 
 </resources>

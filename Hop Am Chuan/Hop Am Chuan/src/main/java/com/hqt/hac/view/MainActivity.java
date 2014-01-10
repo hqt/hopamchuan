@@ -710,6 +710,8 @@ public class MainActivity extends SlidingMenuActionBarActivity
         if (mDrawerListView != null) {
             //mDrawerListView.setItemChecked(position, true);
         }
+
+        changeTitleBar(playlist.playlistName);
         switchFragmentNormal(fragment);
     }
 
