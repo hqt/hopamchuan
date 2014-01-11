@@ -15,7 +15,8 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 public class AlarmReceiver extends BroadcastReceiver {
-    private static final String WAKEFUL_META_DATA="AlarmReceiver";
+    // private static final String WAKEFUL_META_DATA="com.commonsware.cwac.wakeful";
+    private static final String WAKEFUL_META_DATA="com.hqt.hac.con.gau.tho";
 
     @Override
     public void onReceive(Context ctxt, Intent intent) {

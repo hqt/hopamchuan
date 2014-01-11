@@ -119,8 +119,8 @@ public class Mp3PlayerService extends Service implements
                     player.pause();
                 }
                 // prepare
-                // playsongLocal();
-                playsongNetwork();
+                playsongLocal();
+                //playsongNetwork();
                 // start from new
                 // player.start();
             }

@@ -56,8 +56,9 @@ public class FastSearchListView extends ListView {
         super.draw(canvas);
 
         // Overlay index bar
-        if (mScroller != null)
+        if (mScroller != null) {
             mScroller.draw(canvas);
+        }
     }
 
     @Override
@@ -86,7 +87,7 @@ public class FastSearchListView extends ListView {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return true;
+        return false;
     }
 
     @Override

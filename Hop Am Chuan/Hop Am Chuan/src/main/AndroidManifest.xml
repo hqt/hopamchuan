@@ -47,6 +47,9 @@
         <receiver android:name="com.hqt.hac.helper.service.AlarmReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <meta-data
+                        android:name="com.hqt.hac.con.gau.tho"
+                        android:resource="@xml/wakeful"/>
             </intent-filter>
         </receiver>
 

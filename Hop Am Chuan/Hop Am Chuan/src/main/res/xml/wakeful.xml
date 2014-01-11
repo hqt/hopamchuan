@@ -1,0 +1,3 @@
+<WakefulIntentService
+  listener="com.hqt.hac.con.gau.tho.key"
+/>

@@ -1,6 +1,5 @@
 package com.hqt.hac.view;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,14 +9,14 @@ import android.os.Message;
 
 import com.hqt.hac.config.Config;
 import com.hqt.hac.config.PrefStore;
+import com.hqt.hac.helper.service.SyncService;
+import com.hqt.hac.helper.service.WakefulIntentService;
 import com.hqt.hac.helper.task.AsyncActivity;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.provider.HopAmChuanDatabase;
-import com.hqt.hac.provider.helper.SQLiteAssetHelper;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.utils.ResourceUtils;
-import com.hqt.hac.utils.ScreenUtils;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -93,6 +92,10 @@ public class SplashScreen extends AsyncActivity {
         /** load all playlist here for performance */
         playlistList = (ArrayList)PlaylistDataAccessLayer.getAllPlayLists(getApplicationContext());
         dialog.dismiss();
+
+        LOGE(TAG, "Alarm Service");
+        WakefulIntentService.scheduleAlarms(new SyncService.SyncServiceAlarm(), this, false);
+
     }
 
     @Override
