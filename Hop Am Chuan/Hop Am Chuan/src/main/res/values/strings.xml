@@ -276,5 +276,8 @@
     <string name="send_to">Share song to…</string>
     <string name="share_text_template">%1$s chords: http://hopamchuan.com/song/%2$s.\nGet Hợp Âm Chuẩn App for Android: %3$s</string>
     <string name="default_last_update">Never</string>
+    <string name="update_new_songs">Lasted version:\n%1$s\nSongs: %2$s\n\nPress OK to start download.</string>
+    <string name="processing_data">Processing data…</string>
+    <string name="please_wait">Please wait a little more…</string>
 
 </resources>

@@ -243,7 +243,7 @@
     <string name="notif_title_info">Thông báo</string>
     <string name="already_lasted_version">Bạn đang sử dụng dữ liệu mới nhất!</string>
     <string name="notif_title_error">Lỗi</string>
-    <string name="network_error">Lỗi kết nối Internet, vui lòng thử lại sau!</string>
+    <string name="network_error">Lỗi kết nối, vui lòng thử lại sau!</string>
     <string name="system_fail_error">Lỗi hệ thống! Vui lòng khởi động lại ứng dụng.</string>
     <string name="update_susscess">Cập nhật thành công</string>
     <string name="clear_history_msg">Bạn chắc chắn muốn xóa toàn bộ lịch sử tìm kiếm?</string>
@@ -276,5 +276,8 @@
     <string name="send_to">Chia sẻ bài hát…</string>
     <string name="share_text_template">Hợp âm chuẩn bài hát %1$s: http://hopamchuan.com/song/%2$s.\nTải ứng dụng Hợp Âm Chuẩn trên Android: %3$s</string>
     <string name="default_last_update">Chưa bao giờ</string>
+    <string name="update_new_songs">Phiên bản mới nhất:\n%1$s\nBài hát mới: %2$s bài\n\nNhấn OK để tải về.</string>
+    <string name="processing_data">Đang nạp dữ liệu…</string>
+    <string name="please_wait">Vui lòng chờ trong giây lát…</string>
 
 </resources>

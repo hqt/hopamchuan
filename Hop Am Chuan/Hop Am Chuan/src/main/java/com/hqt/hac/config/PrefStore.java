@@ -71,7 +71,7 @@ public class PrefStore {
     public static final String DEFAULT_LOGIN_PASSWORD = "@password";
 
     /** Default value for {@link PrefStore#PREF_LATEST_VERSION} */
-    public static final int DEFAULT_LATEST_VERSION = 2;
+    public static final int DEFAULT_LATEST_VERSION = 1;
 
     /** Default value for {@link PrefStore#PREF_LATEST_UPDATE_DATE} (return empty string for multi-language concept) */
     public static final String DEFAULT_PREF_LATEST_UPDATE_DATE = "";

@@ -61,4 +61,8 @@ public class Config {
     public static final String[] SUPPORT_EMAILS = new String[]{"huynhquangthao@gmail.com", "trungdq88@gmail.com"};
     public static final String FACEBOOK_LINK = "https://www.facebook.com/HopAmChuan";
     public static final String UPDATE_DATE_FORMAT = "dd MMM yyyy";
+
+    /** Paths **/
+    public static final String TEMPLATE_FILE_NAME = "song.tmp";
+    public static final String DATABASE_PATH_NAME = "databases";
 }

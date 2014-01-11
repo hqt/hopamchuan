@@ -44,8 +44,9 @@ public class UpdateService extends WakefulIntentService {
             return;
         }
 
+        // TODO: this will cause lag with large data. Think later.
         // save to database
-        boolean status = SongDataAccessLayer.insertFullSongListSync(getApplicationContext(), songs);
+        boolean status = SongDataAccessLayer.insertFullSongListSync(getApplicationContext(), songs, null);
         if (status) {
             // set latest version to system after all step has successfully update
             PrefStore.setLastestVersion(version.no);

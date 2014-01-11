@@ -2,11 +2,14 @@ package com.hqt.hac.view;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.provider.SearchRecentSuggestions;
 import android.view.View;
 import android.widget.*;
@@ -28,9 +31,27 @@ import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.utils.EncodingUtils;
 import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.utils.NetworkUtils;
+import com.hqt.hac.utils.ParserUtils;
+import com.hqt.hac.utils.PrefStoreUtils;
+import com.hqt.hac.utils.ResourceUtils;
 import com.hqt.hac.view.popup.ProfilePopup;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static com.hqt.hac.utils.LogUtils.LOGE;
 
 public class SettingActivity extends AsyncActivity {
 
@@ -54,6 +75,9 @@ public class SettingActivity extends AsyncActivity {
 
     /** Variable to know how many song have been updated **/
     private int updatedSongs = 0;
+
+    /** Variable to access across threads **/
+    DBVersion version;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -374,19 +398,19 @@ public class SettingActivity extends AsyncActivity {
     @Override
     public void onProgressUpdate(Integer... values) {
         switch (values[0]) {
-            case STATUS_CODE.CHECKING_VERSION:
+            case STATUS_CODE.STATE_CHECKING_VERSION:
                 dialog.setMessage(getString(R.string.checking_version));
                 break;
-            case STATUS_CODE.DOWNLOADING:
+            case STATUS_CODE.STATE_DOWNLOADING:
                 dialog.setMessage(getString(R.string.downloading));
                 break;
-            case STATUS_CODE.UPDATING:
+            case STATUS_CODE.STATE_UPDATING:
                 dialog.setMessage(getString(R.string.updating_remote_song_to_local));
                 break;
-            case STATUS_CODE.SYNC_FAVORITE:
+            case STATUS_CODE.STATE_SYNC_FAVORITE:
                 dialog.setMessage(getString(R.string.synching_favorite));
                 break;
-            case STATUS_CODE.SYNC_PLAYLIST:
+            case STATUS_CODE.STATE_SYNC_PLAYLIST:
                 dialog.setMessage(getString(R.string.synching_playlist));
                 break;
             default:
@@ -453,6 +477,32 @@ public class SettingActivity extends AsyncActivity {
                 break;
             }
 
+            // new version available
+            case STATUS_CODE.NEW_VERSION_AVAILABLE: {
+                String mess = String.format(getString(R.string.update_new_songs),
+                        (new SimpleDateFormat(Config.UPDATE_DATE_FORMAT)).format(version.date),
+                        version.numbers);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(getString(R.string.notif_title_info))
+                        .setMessage(mess)
+                        .setCancelable(true)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                initDownloadDialog();
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                LOGE("TRUNGDQ", "cancel");
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+
+                break;
+            }
+
             default:
                 throw new UnsupportedOperationException();
         }
@@ -463,31 +513,13 @@ public class SettingActivity extends AsyncActivity {
 
     private int updateSongTask() {
         // check version
-        publishProgress(STATUS_CODE.CHECKING_VERSION);
-        DBVersion version = APIUtils.getLatestDatabaseVersion(PrefStore.getLatestVersion());
+        publishProgress(STATUS_CODE.STATE_CHECKING_VERSION);
+        version = APIUtils.getLatestDatabaseVersion(PrefStore.getLatestVersion());
         // no update need
         if (version == null || version.no == PrefStore.getLatestVersion()) {
             return STATUS_CODE.LATEST_VERSION;
         }
-
-        // update songs
-        publishProgress(STATUS_CODE.DOWNLOADING);
-        List<Song> songs = APIUtils.getAllSongsFromVersion(PrefStore.getLatestVersion());
-        if (songs == null) {
-            return STATUS_CODE.NETWORK_ERROR;
-        }
-
-        // save to database
-        publishProgress(STATUS_CODE.UPDATING);
-        boolean status = SongDataAccessLayer.insertFullSongListSync(mAppContext, songs);
-        if (!status) return STATUS_CODE.SYSTEM_ERROR;
-        else {
-            // set latest version to system after all step has successfully update
-            PrefStore.setLastestVersion(version.no);
-            PrefStore.setLastedUpdate(version.date);
-            updatedSongs = songs.size();
-            return STATUS_CODE.SUCCESS;
-        }
+        return STATUS_CODE.NEW_VERSION_AVAILABLE;
     }
 
     ////////////////////////////////////////////////////////////////
@@ -499,13 +531,13 @@ public class SettingActivity extends AsyncActivity {
         boolean res;
 
         // sync playlist
-        publishProgress(STATUS_CODE.SYNC_PLAYLIST);
+        publishProgress(STATUS_CODE.STATE_SYNC_PLAYLIST);
         List<Playlist> oldPlaylists = PlaylistDataAccessLayer.getAllPlayLists(mAppContext);
         List<JsonPlaylist> jsonPlaylists = JsonPlaylist.convert(oldPlaylists, mAppContext);
         List<Playlist> newPlaylists = APIUtils.syncPlaylist(username, password, jsonPlaylists);
 
         // update playlist
-        publishProgress(STATUS_CODE.UPDATING);
+        publishProgress(STATUS_CODE.STATE_UPDATING);
         if (newPlaylists != null) {
             // delete all playlist in system
             PlaylistDataAccessLayer.removeAllPlaylists(mAppContext);
@@ -522,12 +554,12 @@ public class SettingActivity extends AsyncActivity {
         }
 
         // sync favorite
-        publishProgress(STATUS_CODE.SYNC_FAVORITE);
+        publishProgress(STATUS_CODE.STATE_SYNC_FAVORITE);
         int[] favorite = FavoriteDataAccessLayer.getAllFavoriteSongIds(mAppContext);
         List<Integer> newFavorite = APIUtils.syncFavorite(username, password, favorite);
 
         // update favorite
-        publishProgress(STATUS_CODE.UPDATING);
+        publishProgress(STATUS_CODE.STATE_UPDATING);
         res = FavoriteDataAccessLayer.syncFavorites(mAppContext, newFavorite);
         // res = FavoriteDataAccessLayer.addAllSongIdsToFavorite(mContext, newFavorite);
         if (!res) return STATUS_CODE.SYSTEM_ERROR;
@@ -540,12 +572,15 @@ public class SettingActivity extends AsyncActivity {
         static final int SYSTEM_ERROR = 1;
         static final int NETWORK_ERROR = 2;
         static final int SUCCESS = 3;
+        static final int NEW_VERSION_AVAILABLE = 4;
         /** status code for in-progress */
-        static final int UPDATING = 4;
-        static final int DOWNLOADING = 5;
-        static final int CHECKING_VERSION = 6;
-        static final int SYNC_PLAYLIST = 7;
-        static final int SYNC_FAVORITE  = 8;
+        static final int STATE_UPDATING = 4;
+        static final int STATE_DOWNLOADING = 5;
+        static final int STATE_CHECKING_VERSION = 6;
+        static final int STATE_SYNC_PLAYLIST = 7;
+        static final int STATE_SYNC_FAVORITE = 8;
+        static final int STATE2_DOWNLOADING = 9;
+        static final int STATE2_PROCESSING = 10;
     }
 
     private static class METHOD_CODE {
@@ -553,5 +588,213 @@ public class SettingActivity extends AsyncActivity {
         static final int SYNC_SONG = 1;
         static final int UPDATE_AND_SYNC_SONG = 2;
     }
+    //endregion
+
+    //region Download Songs Function
+    //////////////////////////////////////////////////////////////////
+    // Download Async task for large updates
+    //////////////////////////////////////////////////////////////////
+
+    int downloaderStatus = STATUS_CODE.STATE2_DOWNLOADING;
+    ProgressDialog mProgressDialog;
+    String tmpFilePath;
+    String urlParameters;
+    private void initDownloadDialog() {
+        // instantiate it within the onCreate method
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage(getString(R.string.downloading));
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        mProgressDialog.setCancelable(false);
+
+        tmpFilePath = getApplicationContext().getCacheDir().getAbsolutePath() + "/" + Config.TEMPLATE_FILE_NAME;
+
+        LOGE("TRUNGDQ", "Temp file path: " + tmpFilePath);
+
+        // execute this when the downloader must be fired
+        final DownloadTask downloadTask = new DownloadTask(this);
+
+        mProgressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                downloadTask.cancel(true);
+            }
+        });
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("from_ver", PrefStore.getLatestVersion() + "");
+        urlParameters = APIUtils.generateRequestLink("", params);
+
+        LOGE("TRUNGDQ", "url: " + Config.SERVICE_GET_SONGS_FROM_DATE + urlParameters);
+        downloadTask.execute(Config.SERVICE_GET_SONGS_FROM_DATE);
+    }
+
+
+    // Download Async task. Put here to easily update UI
+    private class DownloadTask extends AsyncTask<String, Integer, String> {
+
+        private Context context;
+
+        public DownloadTask(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected String doInBackground(String... sUrl) {
+            // take CPU lock to prevent CPU from going off if the user
+            // presses the power button during download
+            PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+            PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+                    getClass().getName());
+            wl.acquire();
+            downloaderStatus = STATUS_CODE.STATE2_DOWNLOADING;
+            /** Download file **/
+            //region Download file
+            try {
+                InputStream input = null;
+                OutputStream output = null;
+                HttpURLConnection connection = null;
+                try {
+                    URL url = new URL(sUrl[0]);
+                    connection = (HttpURLConnection) url.openConnection();
+                    connection.setDoOutput(true);
+                    connection.setRequestMethod("POST");
+                    connection.setRequestProperty("Accept-Charset", "utf-8");
+                    connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+
+                    OutputStream out = connection.getOutputStream();
+                    try {
+                        out.write(urlParameters.getBytes("utf-8"));
+                    } finally {
+                        try { out.close(); } catch (IOException logOrIgnore) {}
+                    }
+                    // expect HTTP 200 OK, so we don't mistakenly save error report
+                    // instead of the file
+                    if (connection.getResponseCode() != HttpURLConnection.HTTP_OK)
+                        return "Server returned HTTP " + connection.getResponseCode()
+                                + " " + connection.getResponseMessage();
+
+                    // this will be useful to display download percentage
+                    // might be -1: server did not report the length
+                    int fileLength = connection.getContentLength();
+
+                    // download the file
+                    input = connection.getInputStream();
+                    output = new FileOutputStream(tmpFilePath);
+
+                    byte data[] = new byte[4096];
+                    long total = 0;
+                    int count;
+                    while ((count = input.read(data)) != -1) {
+                        // allow canceling with back button
+                        if (isCancelled())
+                            return null;
+                        total += count;
+                        // publishing the progress....
+                        if (fileLength > 0) // only if total length is known
+                            publishProgress((int) (total * 100 / fileLength));
+                        output.write(data, 0, count);
+                    }
+                } catch (Exception e) {
+                    return e.toString();
+                } finally {
+                    try {
+                        if (output != null)
+                            output.close();
+                        if (input != null)
+                            input.close();
+                    }
+                    catch (IOException ignored) { }
+
+                    if (connection != null)
+                        connection.disconnect();
+                }
+            } finally {
+                wl.release();
+            }
+            //endregion
+
+            downloaderStatus = STATUS_CODE.STATE2_PROCESSING;
+            //region Process file
+
+            // Read file
+            String jsonSongs = ResourceUtils.readFile(tmpFilePath);
+
+            if (jsonSongs == null || jsonSongs.isEmpty()) {
+                return getString(R.string.network_error);
+            }
+
+            // Parse
+            List<Song> songs = ParserUtils.parseAllSongsFromJSONString(jsonSongs);
+            final int totalItemCount = songs.size();
+
+            // save to database
+            boolean status = SongDataAccessLayer.insertFullSongListSync(
+                    mAppContext,
+                    songs,
+                    new SongDataAccessLayer.InsertChangeListener() {
+                @Override
+                public void onInsertChangeInstener(int count) {
+                    publishProgress((int) (count * 100 / totalItemCount));
+                }
+            });
+
+            if (!status) return getString(R.string.system_fail_error);
+
+            // set latest version to system after all step has successfully update
+            PrefStore.setLastestVersion(version.no);
+            PrefStore.setLastedUpdate(version.date);
+            updatedSongs = songs.size();
+
+            //endregion
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mProgressDialog.show();
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... progress) {
+            super.onProgressUpdate(progress);
+            // if we get here, length is known, now set indeterminate to false
+            mProgressDialog.setIndeterminate(false);
+            mProgressDialog.setMax(100);
+            mProgressDialog.setProgress(progress[0]);
+            switch (downloaderStatus) {
+                case STATUS_CODE.STATE2_DOWNLOADING: {
+                    mProgressDialog.setMessage(getString(R.string.downloading));
+                    break;
+                }
+                case STATUS_CODE.STATE2_PROCESSING: {
+                    mProgressDialog.setMessage(getString(R.string.processing_data));
+
+                    // Remove cancel button.
+                    // TODO: if there is too much song and use want to do other stuff while.
+                    mProgressDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setVisibility(View.GONE);
+                    break;
+                }
+                default:
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            mProgressDialog.dismiss();
+            AlertDialog alertDialog;
+            if (result != null) {
+                alertDialog = DialogUtils.showAlertDialog(SettingActivity.this, getString(R.string.notif_title_error), result);
+            } else {
+                String newSongs = updatedSongs > 0 ? "\n" + getString(R.string.song_updated_count) + " " + updatedSongs : "";
+
+                alertDialog = DialogUtils.showAlertDialog(SettingActivity.this,
+                        getString(R.string.notif_title_info),
+                        getString(R.string.update_susscess) + newSongs);
+            }
+            alertDialog.show();
+
+        }
+    } // End class
     //endregion
 }
