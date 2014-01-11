@@ -14,6 +14,8 @@ import android.provider.SearchRecentSuggestions;
 import android.view.View;
 import android.widget.*;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 import com.hqt.hac.config.Config;
 import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.helper.task.AsyncActivity;
@@ -38,7 +40,9 @@ import com.hqt.hac.view.popup.ProfilePopup;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -599,8 +603,18 @@ public class SettingActivity extends AsyncActivity {
     ProgressDialog mProgressDialog;
     String tmpFilePath;
     String urlParameters;
+    // take CPU lock to prevent CPU from going off if the user
+    // presses the power button during download
+    PowerManager pm;
+    PowerManager.WakeLock wl;
+
+
     private void initDownloadDialog() {
         // instantiate it within the onCreate method
+        pm = (PowerManager) mAppContext.getSystemService(Context.POWER_SERVICE);
+        wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+                getClass().getName());
+
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage(getString(R.string.downloading));
         mProgressDialog.setIndeterminate(true);
@@ -640,12 +654,7 @@ public class SettingActivity extends AsyncActivity {
 
         @Override
         protected String doInBackground(String... sUrl) {
-            // take CPU lock to prevent CPU from going off if the user
-            // presses the power button during download
-            PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-            PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
-                    getClass().getName());
-            wl.acquire();
+
             downloaderStatus = STATUS_CODE.STATE2_DOWNLOADING;
             /** Download file **/
             //region Download file
@@ -667,6 +676,9 @@ public class SettingActivity extends AsyncActivity {
                     } finally {
                         try { out.close(); } catch (IOException logOrIgnore) {}
                     }
+
+                    connection.connect();
+
                     // expect HTTP 200 OK, so we don't mistakenly save error report
                     // instead of the file
                     if (connection.getResponseCode() != HttpURLConnection.HTTP_OK)
@@ -691,9 +703,12 @@ public class SettingActivity extends AsyncActivity {
                         total += count;
                         // publishing the progress....
                         if (fileLength > 0) // only if total length is known
-                            publishProgress((int) (total * 100 / fileLength));
+                            publishProgress((int) total, fileLength);
                         output.write(data, 0, count);
                     }
+                } catch (EOFException e) {
+                    // Empty response
+                    return getString(R.string.network_error);
                 } catch (Exception e) {
                     return e.toString();
                 } finally {
@@ -708,8 +723,8 @@ public class SettingActivity extends AsyncActivity {
                     if (connection != null)
                         connection.disconnect();
                 }
-            } finally {
-                wl.release();
+            } catch (Exception e) {
+                return e.toString();
             }
             //endregion
 
@@ -717,33 +732,42 @@ public class SettingActivity extends AsyncActivity {
             //region Process file
 
             // Read file
-            String jsonSongs = ResourceUtils.readFile(tmpFilePath);
+            // String jsonSongs = ResourceUtils.readFile(tmpFilePath);
 
-            if (jsonSongs == null || jsonSongs.isEmpty()) {
+            // if (jsonSongs == null || jsonSongs.isEmpty()) {
+            //     return getString(R.string.network_error);
+            // }
+
+            File file = new File(tmpFilePath);
+            BufferedReader br;
+            try {
+                br = new BufferedReader(new FileReader(file));
+            } catch (FileNotFoundException e) {
                 return getString(R.string.network_error);
             }
 
             // Parse
-            List<Song> songs = ParserUtils.parseAllSongsFromJSONString(jsonSongs);
-            final int totalItemCount = songs.size();
+            JsonParser parser = new JsonParser();
+            JsonArray jsonArray = parser.parse(br).getAsJsonArray();
 
-            // save to database
-            boolean status = SongDataAccessLayer.insertFullSongListSync(
-                    mAppContext,
-                    songs,
-                    new SongDataAccessLayer.InsertChangeListener() {
+            final int totalItemCount = version.numbers;
+
+            ParserUtils.parseSongsFromJsonArrayNoReturn(jsonArray, new ParserUtils.ParseListItemDoneListener() {
                 @Override
-                public void onInsertChangeInstener(int count) {
-                    publishProgress((int) (count * 100 / totalItemCount));
+                public void onParseListItemDone(Object obj, int index) {
+                    try {
+                        SongDataAccessLayer.insertFullSongSync(mAppContext, (Song) obj);
+                        publishProgress(index, totalItemCount);
+                    } catch (ClassCastException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
-
-            if (!status) return getString(R.string.system_fail_error);
 
             // set latest version to system after all step has successfully update
             PrefStore.setLastestVersion(version.no);
             PrefStore.setLastedUpdate(version.date);
-            updatedSongs = songs.size();
+            updatedSongs = totalItemCount;
 
             //endregion
             return null;
@@ -752,15 +776,17 @@ public class SettingActivity extends AsyncActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            wl.acquire();
             mProgressDialog.show();
         }
 
         @Override
         protected void onProgressUpdate(Integer... progress) {
             super.onProgressUpdate(progress);
+            LOGE("TRUNGDQ", "process: " + progress);
             // if we get here, length is known, now set indeterminate to false
             mProgressDialog.setIndeterminate(false);
-            mProgressDialog.setMax(100);
+            mProgressDialog.setMax(progress[1]);
             mProgressDialog.setProgress(progress[0]);
             switch (downloaderStatus) {
                 case STATUS_CODE.STATE2_DOWNLOADING: {
@@ -781,6 +807,7 @@ public class SettingActivity extends AsyncActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            wl.release();
             mProgressDialog.dismiss();
             AlertDialog alertDialog;
             if (result != null) {

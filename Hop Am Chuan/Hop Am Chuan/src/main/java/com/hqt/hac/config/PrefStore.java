@@ -80,7 +80,7 @@ public class PrefStore {
     public static final String DEFAULT_USER_IMAGE = "image_data";
 
     /** Default value for {@link PrefStore#PREF_LANGUAGE} */
-    public static final String DEFAULT_LANGUAGE = "en";
+    public static final String DEFAULT_LANGUAGE = "vi";
 
     /** Default value for {@link PrefStore#PREF_AUTO_UPDATE} */
     public static final boolean DEFAULT_AUTO_UPDATE = false;
