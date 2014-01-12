@@ -78,13 +78,8 @@ public class FindByChordAdapter extends ArrayAdapter<String> {
 
     @Override
     public long getItemId(int position) {
-        try {
-            String item = getItem(position);
-            return mIdMap.get(item);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return -1;
+        String item = getItem(position);
+        return mIdMap.get(item);
     }
 
     @Override
