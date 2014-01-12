@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlaylistDetailFragment$PlaceholderFragment">
+    tools:context=".PlaylistDetailFragment$PlaceholderFragment"
+    android:background="#fff">
 
     <com.hqt.hac.helper.widget.InfinityListView
         android:id="@+id/list"

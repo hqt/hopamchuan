@@ -15,6 +15,7 @@ import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.hqt.hac.config.Config;
+import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
 import com.hqt.hac.helper.adapter.PlaylistListAdapter;
 import com.hqt.hac.helper.adapter.PlaylistManagerAdapter;
 import com.hqt.hac.helper.adapter.SongListAdapter;
@@ -77,6 +78,9 @@ public class SongListRightMenuHandler {
 
     /** Adapter for PlaylistManagerFragment (for feedback effect when data changed) **/
     public static PlaylistManagerAdapter playlistManagerAdapter;
+
+    /** Adapter in NavigationDrawerFragment to update changes of playlists **/
+    public static NavigationDrawerAdapter.PlaylistItemAdapter navDrawerPlaylistItemAdapter;
 
 
     public static void setRightMenuEvents(final Activity _activity, final PopupWindow _pw) {
@@ -216,6 +220,8 @@ public class SongListRightMenuHandler {
                     Toast.LENGTH_LONG);
             msg.show();
 
+            updateNavDrawerPlaylistList(PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext()));
+
             // Close dialog
             playlistListDialog.dismiss();
         }
@@ -248,15 +254,20 @@ public class SongListRightMenuHandler {
                 // Refresh playlist list
                 // We have to re-set the adapter for onItemClick event.
                 playlists = PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext());
-                playlistAdapter = new PlaylistListAdapter(activity, playlists);
 
+                // If the dialog is called in Playlist Manager, then reset the right adapter
                 if (playlistManagerAdapter != null) {
                     playlistManagerAdapter.playLists = playlists;
                     playlistManagerAdapter.notifyDataSetChanged();
+                } else {
+                    // If the dialog is called in Add to playlist popu. Then reset the adapter.
+                    playlistAdapter = new PlaylistListAdapter(activity, playlists);
+                    mListView.setAdapter(playlistAdapter);
+                    mListView.setOnItemClickListener(new AddToPlaylistOnClick());
                 }
 
-                mListView.setAdapter(playlistAdapter);
-                mListView.setOnItemClickListener(new AddToPlaylistOnClick());
+                // Update item on navigation drawer adapter
+                updateNavDrawerPlaylistList(playlists);
 
                 // Close dialog
                 newPlaylistDialog.dismiss();
@@ -297,6 +308,14 @@ public class SongListRightMenuHandler {
             }
 
             popupWindow.dismiss();
+        }
+    }
+
+    public static void updateNavDrawerPlaylistList(List<Playlist> playlists) {
+        LOGE("TRUNGDQ", "nav: " + navDrawerPlaylistItemAdapter);
+        if (navDrawerPlaylistItemAdapter != null) {
+            navDrawerPlaylistItemAdapter.playlists = playlists;
+            navDrawerPlaylistItemAdapter.notifyDataSetChanged();
         }
     }
 }

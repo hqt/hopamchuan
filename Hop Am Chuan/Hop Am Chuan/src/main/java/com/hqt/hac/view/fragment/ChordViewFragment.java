@@ -109,14 +109,6 @@ public class ChordViewFragment extends Fragment implements AdapterView.OnItemSel
         }
         mChordSurfaceListView.setAdapter((BaseAdapter)adapter);
         mChordSurfaceListView.setFastScrollEnabled(true);
-
-        mChordSurfaceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                LOGE("TRUNGDQ", "view: " + view);
-            }
-        });
-
         return rootView;
     }
 

@@ -139,6 +139,8 @@ public class PlaylistRightMenuHandler {
                 adapter.playLists = PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext());
                 adapter.notifyDataSetChanged();
 
+                SongListRightMenuHandler.updateNavDrawerPlaylistList(adapter.playLists);
+
                 // Close dialog
                 renPlaylistDialog.dismiss();
             }
@@ -162,6 +164,8 @@ public class PlaylistRightMenuHandler {
                     adapter.playLists = PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext());
                     adapter.notifyDataSetChanged();
 
+                    SongListRightMenuHandler.updateNavDrawerPlaylistList(adapter.playLists);
+
                     // Show notification
                     Toast msg = Toast.makeText(activity.getApplicationContext(),
                             activity.getString(R.string.playlist_deleted_success) + " " + selectedPlaylist.playlistName,
@@ -176,6 +180,4 @@ public class PlaylistRightMenuHandler {
             }
         }
     }
-
-    ;
 }

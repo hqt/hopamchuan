@@ -25,10 +25,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.view.BuildConfig;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
@@ -252,5 +254,14 @@ public class UIUtils {
         if (hasHoneycomb()) {
             view.setActivated(activated);
         }
+    }
+
+    public static void setLanguage(Context context) {
+        Locale locale = new Locale(PrefStore.getSystemLanguage());
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        context.getResources().updateConfiguration(config,
+                context.getResources().getDisplayMetrics());
     }
 }

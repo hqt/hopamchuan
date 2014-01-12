@@ -23,6 +23,7 @@ import android.widget.ListView;
 
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
+import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.view.R;
@@ -34,6 +35,7 @@ import static com.hqt.hac.helper.adapter.NavigationDrawerAdapter.IItemDelegate;
 import static com.hqt.hac.helper.adapter.NavigationDrawerAdapter.IPlaylistHeaderDelegate;
 import static com.hqt.hac.helper.adapter.NavigationDrawerAdapter.IPlaylistItemDelegate;
 import static com.hqt.hac.helper.adapter.NavigationDrawerAdapter.ItemAdapter.TYPE;
+import static com.hqt.hac.utils.LogUtils.LOGE;
 
 ;
 

@@ -17,6 +17,7 @@ import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.provider.HopAmChuanDatabase;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.utils.ResourceUtils;
+import com.hqt.hac.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -42,6 +43,10 @@ public class SplashScreen extends AsyncActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Language setting
+        UIUtils.setLanguage(getBaseContext());
+
         setContentView(R.layout.activity_splash_screen);
         mHandler = new Handler() {
             @Override
@@ -93,8 +98,8 @@ public class SplashScreen extends AsyncActivity {
         playlistList = (ArrayList)PlaylistDataAccessLayer.getAllPlayLists(getApplicationContext());
         dialog.dismiss();
 
-        LOGE(TAG, "Alarm Service");
-        WakefulIntentService.scheduleAlarms(new SyncService.SyncServiceAlarm(), this, false);
+        // LOGE(TAG, "Alarm Service");
+        // WakefulIntentService.scheduleAlarms(new SyncService.SyncServiceAlarm(), this, false);
 
     }
 

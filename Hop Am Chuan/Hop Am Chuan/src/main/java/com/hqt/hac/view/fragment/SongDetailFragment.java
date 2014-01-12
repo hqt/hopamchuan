@@ -186,27 +186,39 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
 
     }
     private void addSameChordSongs() {
-        List<Song> sameChord = ChordDataAccessLayer.getRandomSongsByChords(
-                activity.getApplicationContext(),
-                song.getChords(activity.getApplicationContext()),
-                currentSameChordSongsCount,
-                Config.DEFAULT_RELATED_SONGS_COUNT);
-        currentSameChordSongsCount += sameChord.size();
-        addSongsToLayout(sameChord, sameChordLayout);
+        try {
+            List<Song> sameChord = ChordDataAccessLayer.getRandomSongsByChords(
+                    activity.getApplicationContext(),
+                    song.getChords(activity.getApplicationContext()),
+                    currentSameChordSongsCount,
+                    Config.DEFAULT_RELATED_SONGS_COUNT);
+            currentSameChordSongsCount += sameChord.size();
+            addSongsToLayout(sameChord, sameChordLayout);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     private void addSameSingerSongs() {
-        List<Song> sameSinger = ArtistDataAccessLayer.getRandomSongsBySinger(
-                activity.getApplicationContext(),
-                song.getSingers(activity.getApplicationContext()).get(0).artistId,
-                Config.DEFAULT_RELATED_SONGS_COUNT);
-        addSongsToLayout(sameSinger, sameSingerLayout);
+        try {
+            List<Song> sameSinger = ArtistDataAccessLayer.getRandomSongsBySinger(
+                    activity.getApplicationContext(),
+                    song.getSingers(activity.getApplicationContext()).get(0).artistId,
+                    Config.DEFAULT_RELATED_SONGS_COUNT);
+            addSongsToLayout(sameSinger, sameSingerLayout);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     private void addSameAuthorSongs() {
-        List<Song> sameAuthor = ArtistDataAccessLayer.getRandomSongsByAuthor(
-                activity.getApplicationContext(),
-                song.getAuthors(activity.getApplicationContext()).get(0).artistId,
-                Config.DEFAULT_RELATED_SONGS_COUNT);
-        addSongsToLayout(sameAuthor, sameAuthorLayout);
+        try {
+            List<Song> sameAuthor = ArtistDataAccessLayer.getRandomSongsByAuthor(
+                    activity.getApplicationContext(),
+                    song.getAuthors(activity.getApplicationContext()).get(0).artistId,
+                    Config.DEFAULT_RELATED_SONGS_COUNT);
+            addSongsToLayout(sameAuthor, sameAuthorLayout);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

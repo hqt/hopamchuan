@@ -13,8 +13,10 @@ import com.hqt.hac.helper.adapter.IContextMenu;
 import com.hqt.hac.helper.adapter.SongListAdapter;
 import com.hqt.hac.helper.widget.InfinityListView;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
+import com.hqt.hac.model.Chord;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.ArtistDataAccessLayer;
+import com.hqt.hac.model.dal.ChordDataAccessLayer;
 import com.hqt.hac.model.dal.SongDataAccessLayer;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.utils.NetworkUtils;
@@ -25,6 +27,7 @@ import com.hqt.hac.view.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
@@ -63,6 +66,8 @@ public class SearchResultFragment extends Fragment implements
     /** current query string */
     String queryStr;
 
+    private List<Chord> chords;
+
     /** empty constructor
      * must have for fragment
      */
@@ -75,13 +80,24 @@ public class SearchResultFragment extends Fragment implements
         this.activity = (MainActivity) activity;
         // get arguments from main mActivity
         Bundle arguments = getArguments();
-        if ((arguments.getString("search_key_word") != null)) {
-            String tmpQueryStr = arguments.getString("search_key_word");
-
+        if ((arguments.getString(Config.BUNDLE_KEYWORD) != null)) {
+            String tmpQueryStr = arguments.getString(Config.BUNDLE_KEYWORD);
             this.activity.changeTitleBar(getString(R.string.search_title) + " \"" + tmpQueryStr + "\"");
+            queryStr = StringUtils.removeAcients(tmpQueryStr).trim();
+            // LOGE(TAG, "Query String::: " + queryStr);
+        }
 
-            queryStr = StringUtils.removeAcients(tmpQueryStr);
-            LOGE(TAG, "Query String::: " + queryStr);
+        if (arguments.getString(Config.BUNDLE_IS_CHORD_SEARCH) != null) {
+            // Search chords: hide spinner.
+            String chordsStr = arguments.getString(Config.BUNDLE_IS_CHORD_SEARCH);
+            if (chordsStr != null) {
+                chords = new ArrayList<Chord>();
+                String[] strChords = chordsStr.split(",");
+                for (String chord : strChords) {
+                    chords.add(ChordDataAccessLayer.getChordByName(
+                            getActivity().getApplicationContext(), chord));
+                }
+            }
         }
     }
 
@@ -104,18 +120,6 @@ public class SearchResultFragment extends Fragment implements
 
         mListView = (InfinityListView) rootView.findViewById(R.id.list_view);
 
-        /** Spinner : create mAdapter for Spinner */
-        Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner_method_list);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.
-                createFromResource(BunnyApplication.getAppContext(),
-                        R.array.search_method, R.layout.custom_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
-        spinner.setAdapter(adapter);    // Apply the mAdapter to the spinner
-        spinner.setOnItemSelectedListener(this);    // because this fragment has implemented method
-
-
         /** config mode for this ListView.
          *  this ListView is full rich function. See document for more detail
          */
@@ -124,6 +128,45 @@ public class SearchResultFragment extends Fragment implements
                 .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
         mListView.setListViewProperty(property);
 
+        if (chords == null) {
+            /** Spinner : create mAdapter for Spinner */
+            Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner_method_list);
+            // Create an ArrayAdapter using the string array and a default spinner layout
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.
+                    createFromResource(BunnyApplication.getAppContext(),
+                            R.array.search_method, R.layout.custom_spinner_item);
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
+            spinner.setAdapter(adapter);    // Apply the mAdapter to the spinner
+            spinner.setOnItemSelectedListener(this);    // because this fragment has implemented method
+        } else {
+            /** Hide the spinner **/
+            RelativeLayout layout = (RelativeLayout) rootView.findViewById(R.id.relative_layout_spinner);
+            RelativeLayout layoutListView = (RelativeLayout) rootView.findViewById(R.id.relative_layout_listview);
+            layout.setVisibility(View.GONE);
+            layoutListView.setPadding(0,0,0,0);
+
+            /** Set SongListAdapter as adapter **/
+            mAdapter = new SongListAdapter(BunnyApplication.getAppContext(), new ArrayList<Song>());
+            // Event for right menu click
+            popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
+            SongListRightMenuHandler.setRightMenuEvents(activity, popupWindow);
+
+            // Event received from mAdapter.
+            ((SongListAdapter)mAdapter).contextMenuDelegate = new IContextMenu() {
+                @Override
+                public void onMenuClick(View view, Song song, ImageView theStar) {
+                    // Show the popup menu and set selectedSong, theStar
+                    SongListRightMenuHandler.openPopupMenu(view, song, theStar);
+                }
+            };
+            bindEventListView();
+
+            mListView.setAdapter(mAdapter);
+        }
+
+
+
         return rootView;
     }
 
@@ -131,13 +174,21 @@ public class SearchResultFragment extends Fragment implements
     public Collection load(int offset, int count) {
         NetworkUtils.stimulateNetwork(Config.LOADING_SMOOTHING_DELAY);
         Collection res = null;
-        switch (type) {
-            case 0:
-                res = SongDataAccessLayer.searchSongByTitle(queryStr, offset, count);
-                break;
-            case 1:
-                res = ArtistDataAccessLayer.searchArtistByName(queryStr, offset, count);
-                break;
+        if (chords == null) {
+            switch (type) {
+                case 0:
+                    res = SongDataAccessLayer.searchSongByTitle(queryStr, offset, count);
+                    break;
+                case 1:
+                    res = ArtistDataAccessLayer.searchArtistByName(queryStr, offset, count);
+                    break;
+            }
+        } else {
+            res = ChordDataAccessLayer.getAllSongsByChordArrays(
+                    getActivity().getApplicationContext(),
+                    chords,
+                    offset,
+                    count);
         }
         return res;
     }

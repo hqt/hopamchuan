@@ -298,7 +298,7 @@ public class NavigationDrawerAdapter {
 
         private Context mContext;
         IPlaylistItemDelegate delegate;
-        List<Playlist> playlists;
+        public List<Playlist> playlists;
 
         public PlaylistItemAdapter(Context context) {
             this.mContext = context.getApplicationContext();

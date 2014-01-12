@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.*;
@@ -15,6 +17,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.PlaylistManagerAdapter;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.utils.DialogUtils;
@@ -56,6 +59,10 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
      */
     PlaylistManagerAdapter adapter;
 
+
+    private ComponentLoadHandler mHandler;
+    private View rootView;
+    private LayoutInflater inflater;
 
     public PlaylistManagerFragment() {
     }
@@ -104,8 +111,27 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_playlist_manager, container, false);
+        rootView = inflater.inflate(R.layout.fragment_playlist_manager, container, false);
+        this.inflater = inflater;
 
+        // Load component with a delay to reduce lag
+        mHandler = new ComponentLoadHandler();
+        Thread componentLoad = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(Config.LOADING_SMOOTHING_DELAY);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                mHandler.sendMessage(mHandler.obtainMessage());
+            }
+        });
+        componentLoad.start();
+        return rootView;
+    }
+
+    private void setUpComponents() {
         mListView = (ListView) rootView.findViewById(R.id.list);
         adapter = new PlaylistManagerAdapter(activity.getApplicationContext(), allPlaylists);
 
@@ -122,16 +148,6 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
                 popupWindow.showAsDropDown(view);
             }
         };
-
-       /* ViewTreeObserver vto = rootView.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                Log.d("TEST", "Height = " + rootView.getHeight() + " Width = " + rootView.getWidth());
-                ViewTreeObserver obs = rootView.getViewTreeObserver();
-                obs.removeGlobalOnLayoutListener(this);
-            }
-        });*/
 
         mListView.setAdapter(adapter);
 //        View emptyView = inflater.inflate(R.layout.list_item_playlist_empty, container, false);
@@ -157,14 +173,18 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
         SongListRightMenuHandler.playlistManagerAdapter = adapter;
         SongListRightMenuHandler.newPlaylistDialog = DialogUtils.createDialog(activity, R.string.new_playlist,
                 activity.getLayoutInflater(), R.layout.dialog_newplaylist);
-        Button createPlaylistBtn = (Button) SongListRightMenuHandler.newPlaylistDialog.findViewById(R.id.btnCreatePlaylist);
+        Button createPlaylistBtn =
+                (Button) SongListRightMenuHandler.newPlaylistDialog
+                        .findViewById(R.id.btnCreatePlaylist);
         createPlaylistBtn.setOnClickListener(new SongListRightMenuHandler.NewPlaylistOnClick());
         /**************/
         // Event to add new playlist
-        SongListRightMenuHandler.txtNewPlaylistName = (EditText) SongListRightMenuHandler.newPlaylistDialog.findViewById(R.id.txtNewPlaylistName);
-        SongListRightMenuHandler.txtNewPlaylistDescription = (EditText) SongListRightMenuHandler.newPlaylistDialog.findViewById(R.id.txtNewPlaylistDescription);
-
-        return rootView;
+        SongListRightMenuHandler.txtNewPlaylistName =
+                (EditText) SongListRightMenuHandler.newPlaylistDialog
+                        .findViewById(R.id.txtNewPlaylistName);
+        SongListRightMenuHandler.txtNewPlaylistDescription =
+                (EditText) SongListRightMenuHandler.newPlaylistDialog
+                        .findViewById(R.id.txtNewPlaylistDescription);
     }
 
     public static void removeOnGlobalLayoutListener(View v, ViewTreeObserver.OnGlobalLayoutListener listener){
@@ -194,5 +214,16 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
 
     @Override
     public void deletePlaylist() {
+    }
+
+
+    /////////////////
+    //
+    /////////////////
+    private class ComponentLoadHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            setUpComponents();
+        }
     }
 }

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,9 @@ import com.hqt.hac.helper.task.AsyncActivity;
 import com.hqt.hac.model.json.HACAccount;
 import com.hqt.hac.utils.APIUtils;
 import com.hqt.hac.utils.DialogUtils;
+import com.hqt.hac.utils.UIUtils;
+
+import java.util.Locale;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
@@ -47,6 +51,9 @@ public class LoginActivity extends AsyncActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        // Language setting
+        UIUtils.setLanguage(getBaseContext());
 
         setContentView(R.layout.popup_login);
         context = getBaseContext();

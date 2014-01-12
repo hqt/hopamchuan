@@ -18,7 +18,6 @@ import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.ArtistDataAccessLayer;
-import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.view.BunnyApplication;
 import com.hqt.hac.view.MainActivity;
@@ -27,8 +26,6 @@ import com.hqt.hac.view.R;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import static com.hqt.hac.utils.LogUtils.LOGE;
 
 /**
  * Fragment to show Artist Song's

@@ -4,11 +4,16 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import com.hqt.hac.config.Config;
+import com.hqt.hac.config.PrefStore;
+import com.hqt.hac.utils.UIUtils;
+
+import java.util.Locale;
 
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
@@ -31,6 +36,11 @@ public class SecondarySettingActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        // Language setting
+        UIUtils.setLanguage(getBaseContext());
+
         setContentView(R.layout.activity_setting_second);
         setTitle(getString(R.string.app_info));
 

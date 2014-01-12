@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.hqt.hac.view.ArtistViewActivity"
     tools:ignore="MergeRootFrame"
+    android:background="#fff"
     android:orientation="vertical">
         <com.hqt.hac.helper.widget.InfinityListView
             android:id="@+id/mListView"

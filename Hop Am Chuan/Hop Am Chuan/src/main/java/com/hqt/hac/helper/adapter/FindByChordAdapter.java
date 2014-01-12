@@ -21,7 +21,7 @@ public class FindByChordAdapter extends ArrayAdapter<String> {
     /** delegate is the callback to fragment / mActivity */
     IFindByChordAdapter delegate;
 
-    public List<String> chords;
+    private List<String> chords;
 
     HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
 
@@ -33,6 +33,35 @@ public class FindByChordAdapter extends ArrayAdapter<String> {
         this.delegate = delegate;
         this.chords = chords;
         // building stable id
+        buildIdMap();
+    }
+
+    public void setChords(List<String> chords) {
+        this.chords = chords;
+        buildIdMap();
+    }
+
+    public String getChords() {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < chords.size() - 1; ++i) {
+            builder.append(chords.get(i) + ",");
+        }
+        builder.append(chords.get(chords.size() - 1));
+        return builder.toString();
+    }
+
+    public void addChord(String chord) {
+        chords.add(chord);
+        buildIdMap();
+    }
+
+    public void removeChord(int position) {
+        chords.remove(position);
+        buildIdMap();
+    }
+
+    private void buildIdMap() {
+        mIdMap = new HashMap<String, Integer>();
         for (int i = 0; i < chords.size(); ++i) {
             mIdMap.put(chords.get(i), i);
         }
@@ -49,8 +78,9 @@ public class FindByChordAdapter extends ArrayAdapter<String> {
 
     @Override
     public long getItemId(int position) {
-        String item = getItem(position);
-        return mIdMap.get(item);
+        // String item = getItem(position);
+        // return mIdMap.get(item);
+        return position;
     }
 
     @Override

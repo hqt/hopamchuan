@@ -144,7 +144,7 @@
     <string-array name="type_of_chord_view">
         <item>Standard chords</item>
         <item>Advanced chords</item>
-        <item>All chords</item>
+        <!--<item>All chords</item>-->
     </string-array>
 
     <string name="example_text">Example Text</string>
@@ -279,5 +279,11 @@
     <string name="update_new_songs">Lasted version:\n%1$s\nSongs: %2$s\n\nPress OK to start download.</string>
     <string name="processing_data">Processing data…</string>
     <string name="please_wait">Please wait a little more…</string>
+    <string name="current_database_song">Songs:</string>
+    <string name="invalid_chord_name">Chord name is not available</string>
+    <string name="auto_update">Update songs</string>
+    <string name="auto_update_message">%1$s new songs available. Press OK to update.</string>
+    <string name="sync_success">Your playlist/favorite is synchronized with hopamchuan.com</string>
+    <string name="auto_sync_error">Could not synchronize your playlist/favorite with hopamchuan.com</string>
 
 </resources>

@@ -72,7 +72,7 @@ public class ChordDataAccessLayer {
      * @param chords
      * @return
      */
-    public static List<Song> getAllSongsByChordArrays(Context context, List<Chord> chords) {
+    public static List<Song> getAllSongsByChordArrays(Context context, List<Chord> chords, int offset, int count) {
 
         /*
         Magic happened in this query, just don't touch. I will update a stackoverflow link later.
@@ -91,26 +91,31 @@ public class ChordDataAccessLayer {
 
         String ids = chordIds.toString().substring(0, chordIds.length() - 2);
         HopAmChuanDatabase db = new HopAmChuanDatabase(context);
-        if (db.getReadableDatabase() == null) return new ArrayList<Song>();
-        Cursor c = db.getReadableDatabase().rawQuery(
-                "SELECT rs." + HopAmChuanDBContract.Songs.SONG_ID + ", COUNT(*) AS c FROM (SELECT s."
-                        + HopAmChuanDBContract.Songs.SONG_ID + " FROM " + HopAmChuanDBContract.Tables.SONG + " s JOIN " +
-                        "  " + HopAmChuanDBContract.Tables.SONG_CHORD + " sc USING (" + HopAmChuanDBContract.Songs.SONG_ID
-                        + ") WHERE  sc." + HopAmChuanDBContract.Chords.CHORD_ID + " IN (" + ids + ") GROUP " +
-                        "  BY 1 HAVING COUNT(*) = "+chords.size()+") AS rs JOIN " + HopAmChuanDBContract.Tables.SONG_CHORD + " ssc USING ("
-                        + HopAmChuanDBContract.Songs.SONG_ID + ") " +
-                        "  GROUP BY " + HopAmChuanDBContract.Songs.SONG_ID
-                        + " ORDER BY c ",
-                new String[]{});
+        try {
+            if (db.getReadableDatabase() == null) return new ArrayList<Song>();
+            Cursor c = db.getReadableDatabase().rawQuery(
+                    "SELECT rs." + HopAmChuanDBContract.Songs.SONG_ID + ", COUNT(*) AS c FROM (SELECT s."
+                            + HopAmChuanDBContract.Songs.SONG_ID + " FROM " + HopAmChuanDBContract.Tables.SONG + " s JOIN " +
+                            "  " + HopAmChuanDBContract.Tables.SONG_CHORD + " sc USING (" + HopAmChuanDBContract.Songs.SONG_ID
+                            + ") WHERE  sc." + HopAmChuanDBContract.Chords.CHORD_ID + " IN (" + ids + ") GROUP " +
+                            "  BY 1 HAVING COUNT(*) = "+chords.size()+") AS rs JOIN " + HopAmChuanDBContract.Tables.SONG_CHORD + " ssc USING ("
+                            + HopAmChuanDBContract.Songs.SONG_ID + ") " +
+                            "  GROUP BY " + HopAmChuanDBContract.Songs.SONG_ID
+                            + " ORDER BY c LIMIT " + offset + ", " + count,
+                    new String[]{});
 
-        List<Song> songs = new ArrayList<Song>();
-        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-            int songId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID));
-            songs.add(SongDataAccessLayer.getSongById(context, songId));
+            List<Song> songs = new ArrayList<Song>();
+            for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+                int songId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID));
+                songs.add(SongDataAccessLayer.getSongById(context, songId));
+            }
+            c.close();
+            return songs;
+        } catch (Exception e) {
+            return new ArrayList<Song>();
+        } finally {
+            db.close();
         }
-        c.close();
-
-        return songs;
     }
 
     public static void removeChord(Context context, int chordId) {
