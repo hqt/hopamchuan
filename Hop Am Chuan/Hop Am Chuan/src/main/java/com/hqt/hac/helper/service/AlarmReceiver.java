@@ -45,22 +45,30 @@ public class AlarmReceiver extends BroadcastReceiver {
         ComponentName cn=new ComponentName(ctxt, getClass());
 
         try {
-            ActivityInfo ai=pm.getReceiverInfo(cn,
-                    PackageManager.GET_META_DATA);
-            XmlResourceParser xpp=ai.loadXmlMetaData(pm,
-                    WAKEFUL_META_DATA);
+            ActivityInfo ai= null;
+            if (pm != null) {
+                ai = pm.getReceiverInfo(cn,
+                        PackageManager.GET_META_DATA);
+            }
+            XmlResourceParser xpp= null;
+            if (ai != null) {
+                xpp = ai.loadXmlMetaData(pm,
+                        WAKEFUL_META_DATA);
+            }
 
-            while (xpp.getEventType()!=XmlPullParser.END_DOCUMENT) {
-                if (xpp.getEventType()==XmlPullParser.START_TAG) {
-                    if (xpp.getName().equals("WakefulIntentService")) {
-                        String clsName=xpp.getAttributeValue(null, "listener");
-                        Class<WakefulIntentService.AlarmListener> cls=(Class<WakefulIntentService.AlarmListener>)Class.forName(clsName);
+            if (xpp != null) {
+                while (xpp.getEventType()!=XmlPullParser.END_DOCUMENT) {
+                    if (xpp.getEventType()==XmlPullParser.START_TAG) {
+                        if (xpp.getName().equals("WakefulIntentService")) {
+                            String clsName=xpp.getAttributeValue(null, "listener");
+                            Class<WakefulIntentService.AlarmListener> cls=(Class<WakefulIntentService.AlarmListener>)Class.forName(clsName);
 
-                        return(cls.newInstance());
+                            return(cls.newInstance());
+                        }
                     }
-                }
 
-                xpp.next();
+                    xpp.next();
+                }
             }
         }
         catch (NameNotFoundException e) {

@@ -689,6 +689,9 @@ public class SettingActivity extends AsyncActivity {
                     // might be -1: server did not report the length
                     int fileLength = connection.getContentLength();
 
+                    // If fileLength is not available, estimate a length for processbar
+                    if (fileLength < 0) fileLength = version.numbers * Config.ESTIMATE_SIZE_PER_SONG;
+
                     // download the file
                     input = connection.getInputStream();
                     output = new FileOutputStream(tmpFilePath);
@@ -703,7 +706,7 @@ public class SettingActivity extends AsyncActivity {
                         total += count;
                         // publishing the progress....
                         if (fileLength > 0) // only if total length is known
-                            publishProgress((int) total, fileLength);
+                            publishProgress((int) (total / 1000), (int) (fileLength / 1000));
                         output.write(data, 0, count);
                     }
                 } catch (EOFException e) {
@@ -728,15 +731,9 @@ public class SettingActivity extends AsyncActivity {
             }
             //endregion
 
+            /** Add data to database **/
             downloaderStatus = STATUS_CODE.STATE2_PROCESSING;
             //region Process file
-
-            // Read file
-            // String jsonSongs = ResourceUtils.readFile(tmpFilePath);
-
-            // if (jsonSongs == null || jsonSongs.isEmpty()) {
-            //     return getString(R.string.network_error);
-            // }
 
             File file = new File(tmpFilePath);
             BufferedReader br;
@@ -783,7 +780,6 @@ public class SettingActivity extends AsyncActivity {
         @Override
         protected void onProgressUpdate(Integer... progress) {
             super.onProgressUpdate(progress);
-            LOGE("TRUNGDQ", "process: " + progress);
             // if we get here, length is known, now set indeterminate to false
             mProgressDialog.setIndeterminate(false);
             mProgressDialog.setMax(progress[1]);
