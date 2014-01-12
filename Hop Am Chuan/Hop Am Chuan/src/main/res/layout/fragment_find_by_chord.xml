@@ -16,7 +16,7 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:layout_below="@+id/spinnerLayout">
 
-       <!-- <view
+        <view
             class="com.hqt.hac.helper.widget.BackgroundContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -24,21 +24,23 @@
             android:layout_above="@+id/linear_layout"
             android:id="@+id/listViewBackground">
 
-            <ListView
-                android:id="@+id/list_view"
-                android:divider="@null"
-                android:dividerHeight="0dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            <com.hqt.hac.helper.widget.DeleteAnimListView
+                    android:id="@+id/list_view"
+                    android:divider="@null"
+                    android:dividerHeight="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-        </view>-->
+        </view>
 
+<!--
          <ListView
              android:layout_width="fill_parent"
              android:layout_height="fill_parent"
              android:id="@+id/list_view"
              android:layout_alignParentLeft="true"
              android:layout_above="@+id/linear_layout" />
+-->
 
 
         <LinearLayout

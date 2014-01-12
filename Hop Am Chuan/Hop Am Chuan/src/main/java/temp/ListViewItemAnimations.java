@@ -69,7 +69,7 @@ public class ListViewItemAnimations extends Activity {
         setContentView(R.layout.activity_list_view_item_animations);
         
         mBackgroundContainer = (BackgroundContainer) findViewById(R.id.listViewBackground);
-        mListView = (ListView) findViewById(R.id.listview);
+        mListView = (ListView) findViewById(R.id.mListView);
         final ArrayList<String> cheeseList = new ArrayList<String>();
         for (int i = 0; i < Cheeses.sCheeseStrings.length; ++i) {
             cheeseList.add(Cheeses.sCheeseStrings[i]);

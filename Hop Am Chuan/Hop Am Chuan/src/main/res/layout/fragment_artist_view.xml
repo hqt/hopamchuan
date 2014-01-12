@@ -7,7 +7,7 @@
     tools:ignore="MergeRootFrame"
     android:orientation="vertical">
         <com.hqt.hac.helper.widget.InfinityListView
-            android:id="@+id/listview"
+            android:id="@+id/mListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>

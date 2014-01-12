@@ -52,6 +52,7 @@ public class FractionalTouchDelegate extends TouchDelegate {
      * @param target Smaller target {@link View} which will receive
      *            {@link MotionEvent} that land in requested fractional area.
      * @param sourceFraction Fractional area projected onto source {@link View}
+     *                              `
      *            which determines when {@link MotionEvent} will be passed to
      *            target {@link View}.
      */
