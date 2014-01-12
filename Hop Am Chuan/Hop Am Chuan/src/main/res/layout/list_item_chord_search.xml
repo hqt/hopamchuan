@@ -4,8 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" 
     android:layout_height="wrap_content"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
     >
     
     <TextView
@@ -14,6 +12,7 @@
         android:layout_alignParentLeft="true"
         android:id="@+id/text_view"
         android:text="Am"
+        android:layout_marginLeft="30dp"
         android:textColor="#555"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
@@ -27,13 +26,19 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:id="@+id/image_view"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:clickable="true"
+        android:background="@drawable/dropmenu_item"
         android:layout_alignParentRight="true"/>
 
 
     <View android:layout_width="match_parent"
         android:layout_height="2dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_alignBottom="@id/image_view"
         android:background="#ccc"
         />
