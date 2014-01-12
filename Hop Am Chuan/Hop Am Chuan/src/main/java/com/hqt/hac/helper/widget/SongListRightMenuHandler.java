@@ -248,16 +248,17 @@ public class SongListRightMenuHandler {
                 // Refresh playlist list
                 // We have to re-set the adapter for onItemClick event.
                 playlists = PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext());
-                playlistAdapter = new PlaylistListAdapter(activity, playlists);
 
+                // If the dialog is called in Playlist Manager, then reset the right adapter
                 if (playlistManagerAdapter != null) {
                     playlistManagerAdapter.playLists = playlists;
                     playlistManagerAdapter.notifyDataSetChanged();
+                } else {
+                    // If the dialog is called in Add to playlist popu. Then reset the adapter.
+                    playlistAdapter = new PlaylistListAdapter(activity, playlists);
+                    mListView.setAdapter(playlistAdapter);
+                    mListView.setOnItemClickListener(new AddToPlaylistOnClick());
                 }
-
-                mListView.setAdapter(playlistAdapter);
-                mListView.setOnItemClickListener(new AddToPlaylistOnClick());
-
                 // Close dialog
                 newPlaylistDialog.dismiss();
             }

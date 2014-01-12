@@ -5,13 +5,13 @@ X Convert to easy mode.
 X Auto scroll.
 
 ChordDroid:
-- Draw base grid for default constructor.
+X Draw base grid for default constructor.
 
 DAL:
 X Playlist rename (name & description)
 X Playlist delete > delete playlist_song
 X Search: by song title, author, singer >> pagination?
-- Search by chord.
+X Search by chord.
 X Update Last View
 - Artist autocomplete
 
@@ -19,16 +19,15 @@ Synchronizer:
 - 
 
 Design:
-- Update & Synchronize
-- Setting
-- Update icons
+X Update & Synchronize
+X Setting
+X Update icons
 
 Server side:
 X Implemenet APIs
 X Login API
 X Plash screen
-- Contact sidebar (chord view)
-- 
+X Contact sidebar (chord view)
 
 Performance:
 - Lag when go to Chord View

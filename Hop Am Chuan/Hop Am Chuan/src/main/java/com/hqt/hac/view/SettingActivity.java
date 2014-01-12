@@ -62,6 +62,7 @@ public class SettingActivity extends AsyncActivity {
 
     /** Screen Widget */
     TextView currentVersionTxt;
+    TextView currentDatabaseSongTxt;
     TextView languageSettingTxt;
     TextView currentLanguageTxt;
     TextView appDetailTxt;
@@ -93,6 +94,7 @@ public class SettingActivity extends AsyncActivity {
 
         /** find id of all widget */
         currentVersionTxt = (TextView) findViewById(R.id.current_version);
+        currentDatabaseSongTxt = (TextView) findViewById(R.id.current_database_song);
         updateSongBtn = (Button) findViewById(R.id.update_song_button);
         syncSongBtn = (Button) findViewById(R.id.sync_song_button);
         autoSyncSongChkbox = (CheckBox) findViewById(R.id.checkbox_auto_sync);
@@ -172,14 +174,15 @@ public class SettingActivity extends AsyncActivity {
             currentLanguageId = 0;
             currentTitle = "Ngôn Ngữ";
             currentOption = new CharSequence[]{"Tiếng Việt", "English", "Mặc Định"};
-            currentNotifyText = "Restart HopAmChuan app to apply change";
+            currentNotifyText = "Restart Hợp Âm Chuẩn app to apply changes";
         } else {
             currentLanguageId = 1;
             currentTitle = "Language";
             currentOption = new CharSequence[]{"Tiếng Việt", "English", "Default"};
-            currentNotifyText = "Thoát và khởi động lại ứng dụng Hợp Âm Chuẩn để thay đổi có hiệu lực";
+            currentNotifyText = "Khởi động lại ứng dụng Hợp Âm Chuẩn để thay đổi có hiệu lực";
         }
         languageSettingTxt.setText(currentTitle);
+        currentLanguageTxt.setText(currentOption[currentLanguageId]);
     }
 
     private void showListDialog() {
@@ -292,6 +295,8 @@ public class SettingActivity extends AsyncActivity {
 
         // set value and action for widget
         currentVersionTxt.setText(getString(R.string.current_version) + " " + lastedDate);
+        currentDatabaseSongTxt.setText(getString(R.string.current_database_song)
+                + " " + SongDataAccessLayer.getSongCount());
 
         CheckBox autoUpdateChkBox = (CheckBox) findViewById(R.id.checkbox_auto_update);
         CheckBox autoSyncChkBox = (CheckBox) findViewById(R.id.checkbox_auto_sync);
@@ -420,9 +425,13 @@ public class SettingActivity extends AsyncActivity {
             default:
                 throw new UnsupportedOperationException();
         }
-        // To prevent accidentally close the popup.
-        dialog.setCancelable(false);
-        dialog.show();
+        try {
+            // To prevent accidentally close the popup.
+            dialog.setCancelable(false);
+            dialog.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -441,6 +450,8 @@ public class SettingActivity extends AsyncActivity {
                         getString(R.string.notif_title_info),
                         getString(R.string.already_lasted_version));
                 dialog.show();
+
+                resetStats();
                 break;
             }
 
@@ -521,9 +532,27 @@ public class SettingActivity extends AsyncActivity {
         version = APIUtils.getLatestDatabaseVersion(PrefStore.getLatestVersion());
         // no update need
         if (version == null || version.no == PrefStore.getLatestVersion()) {
+            if (version != null) {
+                PrefStore.setLastestVersion(version.no);
+                PrefStore.setLastedUpdate(version.date);
+            }
             return STATUS_CODE.LATEST_VERSION;
         }
         return STATUS_CODE.NEW_VERSION_AVAILABLE;
+    }
+
+    /**
+     * Update lasted version and songs number
+     */
+    private void resetStats() {
+        String lastedDate = PrefStore.getLastedUpdateDate();
+
+        if (lastedDate.isEmpty()) lastedDate = getString(R.string.default_last_update);
+
+        // set value and action for widget
+        currentVersionTxt.setText(getString(R.string.current_version) + " " + lastedDate);
+        currentDatabaseSongTxt.setText(getString(R.string.current_database_song)
+                + " " + SongDataAccessLayer.getSongCount());
     }
 
     ////////////////////////////////////////////////////////////////
@@ -623,7 +652,7 @@ public class SettingActivity extends AsyncActivity {
 
         tmpFilePath = getApplicationContext().getCacheDir().getAbsolutePath() + "/" + Config.TEMPLATE_FILE_NAME;
 
-        LOGE("TRUNGDQ", "Temp file path: " + tmpFilePath);
+        // LOGE("TRUNGDQ", "Temp file path: " + tmpFilePath);
 
         // execute this when the downloader must be fired
         final DownloadTask downloadTask = new DownloadTask(this);
@@ -638,7 +667,7 @@ public class SettingActivity extends AsyncActivity {
         params.put("from_ver", PrefStore.getLatestVersion() + "");
         urlParameters = APIUtils.generateRequestLink("", params);
 
-        LOGE("TRUNGDQ", "url: " + Config.SERVICE_GET_SONGS_FROM_DATE + urlParameters);
+        // LOGE("TRUNGDQ", "url: " + Config.SERVICE_GET_SONGS_FROM_DATE + urlParameters);
         downloadTask.execute(Config.SERVICE_GET_SONGS_FROM_DATE);
     }
 
@@ -807,14 +836,20 @@ public class SettingActivity extends AsyncActivity {
             mProgressDialog.dismiss();
             AlertDialog alertDialog;
             if (result != null) {
-                alertDialog = DialogUtils.showAlertDialog(SettingActivity.this, getString(R.string.notif_title_error), result);
+                alertDialog = DialogUtils.showAlertDialog(SettingActivity.this,
+                        getString(R.string.notif_title_error), result);
             } else {
-                String newSongs = updatedSongs > 0 ? "\n" + getString(R.string.song_updated_count) + " " + updatedSongs : "";
+                String newSongs = updatedSongs > 0 ? "\n"
+                        + getString(R.string.song_updated_count)
+                        + " " + updatedSongs : "";
 
                 alertDialog = DialogUtils.showAlertDialog(SettingActivity.this,
                         getString(R.string.notif_title_info),
                         getString(R.string.update_susscess) + newSongs);
             }
+
+            resetStats();
+
             alertDialog.show();
 
         }

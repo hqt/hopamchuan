@@ -11,6 +11,7 @@ import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Chord;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.HopAmChuanDBContract;
+import com.hqt.hac.provider.HopAmChuanDatabase;
 import com.hqt.hac.provider.helper.Query;
 import com.hqt.hac.utils.StringUtils;
 import com.hqt.hac.view.BunnyApplication;
@@ -406,6 +407,34 @@ public class SongDataAccessLayer {
         }
         c.close();
         return songs;
+    }
+
+    /**
+     * Get number of song in database.
+     * @return
+     */
+    public static int getSongCount() {
+        Context context = BunnyApplication.mContext;
+        HopAmChuanDatabase db = new HopAmChuanDatabase(context);
+        try {
+            if (db.getReadableDatabase() == null) return 0;
+            Cursor c = db.getReadableDatabase().rawQuery(
+                    "SELECT COUNT(" + HopAmChuanDBContract.Songs.SONG_ID
+                            + ") AS c FROM " + HopAmChuanDBContract.Tables.SONG,
+                    new String[]{});
+
+            for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+                int count = c.getInt(c.getColumnIndex("c"));
+                c.close();
+                return count;
+            }
+            c.close();
+            return 0;
+        } catch (Exception e) {
+            return 0;
+        } finally {
+            db.close();
+        }
     }
 
     ///////

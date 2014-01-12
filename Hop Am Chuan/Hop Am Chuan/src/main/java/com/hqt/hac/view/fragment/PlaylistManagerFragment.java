@@ -157,12 +157,18 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
         SongListRightMenuHandler.playlistManagerAdapter = adapter;
         SongListRightMenuHandler.newPlaylistDialog = DialogUtils.createDialog(activity, R.string.new_playlist,
                 activity.getLayoutInflater(), R.layout.dialog_newplaylist);
-        Button createPlaylistBtn = (Button) SongListRightMenuHandler.newPlaylistDialog.findViewById(R.id.btnCreatePlaylist);
+        Button createPlaylistBtn =
+                (Button) SongListRightMenuHandler.newPlaylistDialog
+                        .findViewById(R.id.btnCreatePlaylist);
         createPlaylistBtn.setOnClickListener(new SongListRightMenuHandler.NewPlaylistOnClick());
         /**************/
         // Event to add new playlist
-        SongListRightMenuHandler.txtNewPlaylistName = (EditText) SongListRightMenuHandler.newPlaylistDialog.findViewById(R.id.txtNewPlaylistName);
-        SongListRightMenuHandler.txtNewPlaylistDescription = (EditText) SongListRightMenuHandler.newPlaylistDialog.findViewById(R.id.txtNewPlaylistDescription);
+        SongListRightMenuHandler.txtNewPlaylistName =
+                (EditText) SongListRightMenuHandler.newPlaylistDialog
+                        .findViewById(R.id.txtNewPlaylistName);
+        SongListRightMenuHandler.txtNewPlaylistDescription =
+                (EditText) SongListRightMenuHandler.newPlaylistDialog
+                        .findViewById(R.id.txtNewPlaylistDescription);
 
         return rootView;
     }

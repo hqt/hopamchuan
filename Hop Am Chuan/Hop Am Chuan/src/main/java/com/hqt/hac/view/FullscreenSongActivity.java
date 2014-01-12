@@ -367,9 +367,6 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
                 if (MainActivity.mp3Service.currentSong == null
                         || MainActivity.mp3Service.currentSong.songId != song.songId) {
 
-                    LOGE("TRUNGDQ", "Got here: currentSong: " + MainActivity.mp3Service.currentSong
-                    + " activity song id: " + song.songId);
-
                     setMediaPlayerState(true, getString(R.string.media_getting_url));
 
                     // Setup media player, in another thread
@@ -429,8 +426,6 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
 
     @Override
     public void onBackPressed() {
-//        Intent intent = new Intent(this, MainActivity.class);
-//        startActivity(intent);
         finish();
     }
 
@@ -486,7 +481,7 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
             public void onPrepared(MediaPlayer mediaPlayer) {
                 // LOGE("TRUNGDQ", "current song prepared!");
                 setMediaPlayerState(false, "");
-                MainActivity.player.start();
+                start();
                 // set controller for Android Built-in Media Player
                 setUpMediaControls();
             }
@@ -587,8 +582,6 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     private class PlayMusicHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
-            // LOGE("TRUNGDQ", "startMediaPlayer");
-            // Update song link
             if (msg != null && msg.getData() != null) {
                 song.link = msg.getData().getString(Config.BUNDLE_STREAM_LINK_NAME);
             }

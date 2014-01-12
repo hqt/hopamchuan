@@ -26,9 +26,6 @@ public class Config {
     public static final String SERVICE_GET_PROFILE = SITE + "/api/get_profile";
     public static final String SERVICE_GET_MP3_LINK = SITE  + "/api/get_mp3_link";
 
-    /** Default song count to display in SongListFragment **/
-    public static final int DEFAULT_SONG_LIST_COUNT = 3;
-
     /** Song detail fragment **/
     public static final int DEFAULT_RELATED_SONGS_COUNT = 2;
 
@@ -49,7 +46,7 @@ public class Config {
     public static final int DEFAULT_SONG_NUM_PER_LOAD = 10;
 
     /** Language Locale Code */
-    public static final String LANGUAGE_DEFAULT = "en";
+    public static final String LANGUAGE_DEFAULT = "vi";
     public static final String LANGUAGE_VIETNAMESE = "vi";
     public static final String LANGUAGE_ENGLISH = "en";
 
@@ -64,5 +61,7 @@ public class Config {
 
     /** Paths **/
     public static final String TEMPLATE_FILE_NAME = "song.tmp";
+
+
     public static final int ESTIMATE_SIZE_PER_SONG = 2500;
 }
