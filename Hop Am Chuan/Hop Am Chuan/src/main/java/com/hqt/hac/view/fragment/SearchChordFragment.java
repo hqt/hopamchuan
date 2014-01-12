@@ -22,6 +22,8 @@ import com.hqt.hac.view.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.hqt.hac.utils.LogUtils.LOGE;
+
 public class SearchChordFragment extends Fragment implements
         AdapterView.OnItemSelectedListener,
         FindByChordAdapter.IFindByChordAdapter,
@@ -57,11 +59,6 @@ public class SearchChordFragment extends Fragment implements
      * List all chords base
      */
     private String[] chordBase;
-
-    /**
-     * List all current chords need to search in listview
-     */
-    private List<String> chords;
 
     private BackgroundContainer mBackgroundContainer;
 
@@ -133,8 +130,7 @@ public class SearchChordFragment extends Fragment implements
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         try {
-            chords = convertChordsToArray(chordBase[position]);
-            adapter.chords = chords;
+            adapter.setChords(convertChordsToArray(chordBase[position]));
             adapter.notifyDataSetChanged();
         } catch (Exception e) {
             e.printStackTrace();
@@ -148,8 +144,7 @@ public class SearchChordFragment extends Fragment implements
     /** this action happen when user click [X] on list item */
     @Override
     public void removeChordFromList(int position) {
-        chords.remove(position);
-        adapter.chords = chords;
+        adapter.removeChord(position);
         adapter.notifyDataSetChanged();
     }
 
@@ -180,8 +175,6 @@ public class SearchChordFragment extends Fragment implements
         /** using chord base from resource */
         chordBase = activity.getApplicationContext().getResources().getStringArray(R.array.chords_base_chord);
         /* get first result for default ListView*/
-        chords = convertChordsToArray(chordBase[0]);
-
         // load all views
         insertChordTextView = (TextView) rootView.findViewById(R.id.insert_chord_edit_text);
         insertChordBtn = (Button) rootView.findViewById(R.id.add_chord_button);
@@ -189,7 +182,7 @@ public class SearchChordFragment extends Fragment implements
 
         // ListView Configure
         mListView = (DeleteAnimListView) rootView.findViewById(R.id.list_view);
-        adapter = new FindByChordAdapter(getActivity().getApplicationContext(), this, chords);
+        adapter = new FindByChordAdapter(getActivity().getApplicationContext(), this, convertChordsToArray(chordBase[0]));
         // adapter.setTouchListener(((DeleteAnimListView)mListView).getTouchListener());
         ((DeleteAnimListView)mListView).setmBackgroundContainer(mBackgroundContainer);
         ((DeleteAnimListView)mListView).setAdapter(adapter);
@@ -200,7 +193,6 @@ public class SearchChordFragment extends Fragment implements
         insertChordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 // remove focus of EditText
                 // by hiding soft keyboard
                 insertChordTextView.clearFocus();
@@ -211,8 +203,8 @@ public class SearchChordFragment extends Fragment implements
 
                 String chord = insertChordTextView.getText().toString();
 
-                if (chord != null || chord.trim().length() > 0) {
-                    chords.add(chord);
+                if (chord != null && chord.trim().length() > 0) {
+                    adapter.addChord(chord);
                     adapter.notifyDataSetChanged();
                 }
 
@@ -226,6 +218,11 @@ public class SearchChordFragment extends Fragment implements
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SearchResultFragment fragment = new SearchResultFragment();
+                Bundle arguments = new Bundle();
+                arguments.putString("search_key_word", adapter.getChords());
+                fragment.setArguments(arguments);
+                activity.switchFragmentNormal(fragment);
             }
         });
     }
