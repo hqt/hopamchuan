@@ -80,7 +80,7 @@ public class SearchResultFragment extends Fragment implements
 
             this.activity.changeTitleBar(getString(R.string.search_title) + " \"" + tmpQueryStr + "\"");
 
-            queryStr = StringUtils.removeAcients(tmpQueryStr);
+            queryStr = StringUtils.removeAcients(tmpQueryStr).trim();
             LOGE(TAG, "Query String::: " + queryStr);
         }
     }
