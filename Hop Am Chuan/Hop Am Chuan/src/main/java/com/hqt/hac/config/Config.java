@@ -64,5 +64,5 @@ public class Config {
 
     /** Paths **/
     public static final String TEMPLATE_FILE_NAME = "song.tmp";
-    public static final String DATABASE_PATH_NAME = "databases";
+    public static final int ESTIMATE_SIZE_PER_SONG = 2500;
 }

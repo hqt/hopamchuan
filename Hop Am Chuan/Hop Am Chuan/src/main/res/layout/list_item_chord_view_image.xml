@@ -39,9 +39,10 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true">
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:clickable="true"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"
                 android:src="@drawable/ic_action_collapse"
@@ -56,9 +57,10 @@
                 android:textSize="20sp"
                 android:id="@+id/text_view" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:clickable="true"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/ic_action_expand"

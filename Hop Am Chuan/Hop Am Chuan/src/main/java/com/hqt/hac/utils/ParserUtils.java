@@ -45,6 +45,18 @@ public class ParserUtils {
         return null;
     }
 
+    public static List<Song> parseAllSongsFromJSONString(Reader jsonReader) {
+        try {
+            JsonParser parser = new JsonParser();
+            JsonArray jsonArray = parser.parse(jsonReader).getAsJsonArray();
+            return parseSongsFromJsonArray(jsonArray);
+        } catch (IllegalStateException e) {
+            // The response is not a JSON array. (May be the response is too big or null
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static List<Playlist> parseAllPlaylistFromJSONString(String json) {
         try {
             JsonParser parser = new JsonParser();
@@ -217,6 +229,46 @@ public class ParserUtils {
         return songs;
     }
 
+    /**
+     * TODO: Update comment later
+     * @param jsonArray
+     * @param listner
+     */
+    public static void parseSongsFromJsonArrayNoReturn(JsonArray jsonArray, ParseListItemDoneListener listner) {
+        int i = 0;
+        for (JsonElement element : jsonArray) {
+            try{
+                JsonObject object = element.getAsJsonObject();
+                int songId = object.get("song_id").getAsInt();
+                String title = object.get("title").getAsString();
+                String link = object.get("link").getAsString();
+                String content = object.get("content").getAsString();
+                String lyric = object.get("firstlyric").getAsString();
+                Date date = new SimpleDateFormat(Config.DEFAULT_DATE_FORMAT).parse(object.get("date").getAsString());
+                Song song = new Song(Config.DEFAULT_SONG_ID, songId, title, link, content, lyric, date);
+
+                // TrungDQ: just a little more work to get it right.
+                JsonArray authorArray = object.get("authors").getAsJsonArray();
+                List<Artist> authors = parseArtistsFromJsonArray(authorArray);
+
+                JsonArray singerArray = object.get("singers").getAsJsonArray();
+                List<Artist> singers = parseArtistsFromJsonArray(singerArray);
+
+                JsonArray chordArray = object.get("chords").getAsJsonArray();
+                List<Chord> chords = parseChordsFromJsonArray(chordArray);
+
+                song.setAuthors(authors);
+                song.setSingers(singers);
+                song.setChords(chords);
+
+                listner.onParseListItemDone(song, ++i);
+            }
+            catch (Exception e) {
+                LOGE(TAG, element + " cannot parse to Song: " + e.toString());
+            }
+        }
+    }
+
     private static List<Chord> parseChordsFromJsonArray(JsonArray jsonArray) {
         List<Chord> chords = new ArrayList<Chord>();
         for (JsonElement element : jsonArray) {
@@ -271,4 +323,11 @@ public class ParserUtils {
         return ids;
     }
     //endregion
+
+    //////////
+    // Interface for NoReturn methods
+    //////////
+    public interface ParseListItemDoneListener {
+        void onParseListItemDone(Object obj, int index);
+    }
 }
