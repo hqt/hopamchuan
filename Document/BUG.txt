@@ -1,7 +1,7 @@
 	Find By Chord fragment: > Exception
 	Song Full Screen View: option menu button > NullPointerException
 	Song List Fragment (Infinity scroll): refresh when changing orientation, back button.
-	Add/Remove/Update playlist > update in navigation drawer.
+[DONE]	Add/Remove/Update playlist > update in navigation drawer.
 [DONE]	delete playlist > go to playlist > back button: old playlist still here
 [DONE]	Open app > back button: white screen.
 [DONE]	Extremly delay: Open app > playlist manager > playlist detail > song. (because of .hashcode maybe?)
