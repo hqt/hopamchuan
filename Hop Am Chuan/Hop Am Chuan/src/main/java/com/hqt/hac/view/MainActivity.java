@@ -28,9 +28,11 @@ import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
 import com.hqt.hac.helper.service.Mp3PlayerService;
+import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.provider.SearchRecentProvider;
 import com.hqt.hac.utils.StringUtils;
+import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.fragment.IHacFragment;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
 import com.hqt.hac.model.Playlist;
@@ -112,6 +114,17 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
     public static final boolean DEVELOPER_MODE = true;
 
+    /** Open sliding menu when press menu option **/
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ( keyCode == KeyEvent.KEYCODE_MENU ) {
+            // Open left menu
+            getSlidingMenu().toggle();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // add strict mode for searching performance issue
@@ -132,19 +145,8 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
         super.onCreate(savedInstanceState);
 
-        Locale locale = new Locale(PrefStore.getSystemLanguage());
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
-
-        // delete all database
-//        HopAmChuanDatabase.deleteDatabase(getApplicationContext());
-
-        // create sample database
-        // DatabaseTest.prepareLocalDatabaseWithSample(getApplicationContext());
-        // DatabaseTest.prepareLocalDatabaseByHand(getApplicationContext());
+        // Language setting
+        UIUtils.setLanguage(getBaseContext());
 
         // set Main View
         setContentView(R.layout.activity_main_frame);
@@ -505,6 +507,12 @@ public class MainActivity extends SlidingMenuActionBarActivity
         itemAdapter = new NavigationDrawerAdapter.ItemAdapter(getApplicationContext());
         playlistHeaderAdapter = new NavigationDrawerAdapter.PlaylistHeaderAdapter(getApplicationContext());
         playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(getApplicationContext(), playlistList);
+
+        /**
+         * Setting up for playlist changes callback.
+         * Where there is changes of playlists, call SongListRightMenuHandler.updateNavDrawerPlaylistList();
+         **/
+        SongListRightMenuHandler.navDrawerPlaylistItemAdapter = playlistItemAdapter;
 
         /** assign each mAdapter to this composite mAdapter */
         mergeAdapter.addAdapter(headerAdapter);

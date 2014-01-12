@@ -19,6 +19,7 @@ import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.ArtistDataAccessLayer;
 import com.hqt.hac.model.dal.SongDataAccessLayer;
 import com.hqt.hac.provider.SearchRecentProvider;
+import com.hqt.hac.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -54,6 +55,10 @@ public class SearchViewActivity extends ActionBarActivity implements InfinityLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Language setting
+        UIUtils.setLanguage(getBaseContext());
+
         setContentView(R.layout.activity_search_view);
 
 

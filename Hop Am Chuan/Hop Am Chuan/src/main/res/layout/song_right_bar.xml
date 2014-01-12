@@ -13,41 +13,66 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/song_detail_fontsize"
                 android:textColor="#fff"
+                android:background="@drawable/dropmenu_item"
                 android:id="@+id/btnFont" />
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#aaffffff"
+                />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#fff"
                 android:text="@string/song_detail_scroll_label"
+                android:background="@drawable/dropmenu_item"
                 android:id="@+id/btnScroll" />
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#aaffffff"
+                />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#fff"
                 android:text="@string/song_detail_transpose"
+                android:background="@drawable/dropmenu_item"
                 android:id="@+id/btnTrans" />
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#aaffffff"
+                />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#fff"
                 android:text="@string/split_line"
+                android:background="@drawable/dropmenu_item"
                 android:id="@+id/btnLineModeToggle" />
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#aaffffff"
+                />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#fff"
                 android:text="@string/play_music"
+                android:background="@drawable/dropmenu_item"
                 android:id="@+id/btnPlayMusic" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#aaffffff"
+                />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

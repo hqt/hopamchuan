@@ -4,6 +4,7 @@ package com.hqt.hac.view;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.hqt.hac.config.Config;
+import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.helper.service.Mp3PlayerService;
 import com.hqt.hac.helper.widget.MusicPlayerController;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
@@ -29,8 +31,10 @@ import com.hqt.hac.utils.APIUtils;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.utils.ScreenUtils;
+import com.hqt.hac.utils.UIUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
@@ -105,6 +109,20 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     private PlayMusicHandler playMusicHandler;
     private Thread playMusicLoad;
 
+    /**
+     *  This override method is to prevent NullPointerException in this activity
+     *  see http://stackoverflow.com/questions/19275447/oncreateoptionsmenu-causing-error-in-an-activity-with-no-actionbar
+     **/
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ( keyCode == KeyEvent.KEYCODE_MENU ) {
+            // Open right menu
+            getSlidingMenu().toggle();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,6 +131,9 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        // Language setting
+        UIUtils.setLanguage(getBaseContext());
 
         // front view
         setContentView(R.layout.activity_song_fullscreen);

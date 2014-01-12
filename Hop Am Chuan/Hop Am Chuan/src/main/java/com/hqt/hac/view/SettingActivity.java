@@ -36,6 +36,7 @@ import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.utils.ParserUtils;
 import com.hqt.hac.utils.PrefStoreUtils;
 import com.hqt.hac.utils.ResourceUtils;
+import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.popup.ProfilePopup;
 
 import java.io.BufferedReader;
@@ -87,6 +88,9 @@ public class SettingActivity extends AsyncActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Language setting
+        UIUtils.setLanguage(getBaseContext());
 
         setContentView(R.layout.fragment_setting);
 
