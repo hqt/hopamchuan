@@ -45,6 +45,11 @@ public class ArtistAdapter extends BaseAdapter implements InfinityListView.IInfi
     }
 
     @Override
+    public ArrayList returnItems() {
+        return (ArrayList)artists;
+    }
+
+    @Override
     public int getCount() {
         return artists.size();
     }

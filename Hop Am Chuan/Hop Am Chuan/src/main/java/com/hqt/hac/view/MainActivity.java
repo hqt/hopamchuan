@@ -422,7 +422,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
         ActionBar actionBar = this.getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
-
     }
 
     public void setUpSlidingMenu() {

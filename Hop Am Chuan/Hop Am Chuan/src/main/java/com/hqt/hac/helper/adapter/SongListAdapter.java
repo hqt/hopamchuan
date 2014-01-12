@@ -13,6 +13,7 @@ import com.hqt.hac.helper.widget.InfinityListView;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.view.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
@@ -116,6 +117,11 @@ public class SongListAdapter extends BaseAdapter implements InfinityListView.IIn
         }
     }
 
+    @Override
+    public ArrayList returnItems() {
+        return (ArrayList) songs;
+    }
+
     /**
      * ViewHolder pattern
      */
@@ -125,6 +131,4 @@ public class SongListAdapter extends BaseAdapter implements InfinityListView.IIn
         TextView txtChord;
         ImageView imgFavorite;
     }
-
-
 }

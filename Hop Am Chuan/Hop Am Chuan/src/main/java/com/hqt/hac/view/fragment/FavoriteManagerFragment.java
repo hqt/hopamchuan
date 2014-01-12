@@ -169,8 +169,8 @@ public class FavoriteManagerFragment extends  Fragment implements
                 // do nothing
         }
         // refresh ListView
-        mListView.resetListView(mAdapter);
-//        mAdapter.notifyDataSetChanged();
+        // mListView.resetListView(mAdapter);
+        mAdapter.notifyDataSetChanged();
 
     }
 

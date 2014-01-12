@@ -49,8 +49,6 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     /** Adapter for this fragment */
     private SongListAdapter songlistAdapter;
 
-    /** Adapter use for loading when go to ending list */
-    private InfinityAdapter infAdapter;
 
     /** song list mode
      * 0: recent songs
@@ -70,6 +68,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     }
     @Override
     public void onAttach(Activity activity) {
+        LOGE(TAG, "On Attach");
         super.onAttach(activity);
         this.activity = (MainActivity) activity;
     }
@@ -88,6 +87,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        LOGE(TAG, "OnCreateView");
         View rootView = inflater.inflate(R.layout.fragment_song_list, container, false);
 
         /** Spinner : create mAdapter for Spinner */
@@ -146,30 +146,13 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         return rootView;
     }
 
+    int defaultCurrentItemSelect = 0;
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch(position) {
-            case 0:
-                // Moi xem gan day
-                //songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), 0, Config.DEFAULT_SONG_LIST_COUNT);
-                songs = new ArrayList<Song>();
-                songlistAdapter.setSongs(songs);
-                break;
-            case 1:
-                // Moi cap nhat
-                // songs = SongDataAccessLayer.getNewSongs(activity.getApplicationContext(), 0, Config.DEFAULT_SONG_LIST_COUNT);
-                songs = new ArrayList<Song>();
-                songlistAdapter.setSongs(songs);
-                break;
-            case 2:
-                // Bai hat ngau nhien
-                // songs = SongDataAccessLayer.getRandSongs(activity.getApplicationContext(), Config.DEFAULT_SONG_LIST_COUNT);
-                songs = new ArrayList<Song>();
-                songlistAdapter.setSongs(songs);
-                break;
-            default:
-                // do nothing
-        }
+        LOGE(TAG, "On Item Selected");
+        if (position == defaultCurrentItemSelect) return;
+        songs = new ArrayList<Song>();
+        songlistAdapter.setSongs(songs);
         // Set mode
         songListMode = position;
         // Reset the ListView

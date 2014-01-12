@@ -1,18 +1,22 @@
 package com.hqt.hac.helper.widget;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
+import android.os.*;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.*;
 
+import com.hqt.hac.helper.adapter.InfinityAdapter;
+import com.hqt.hac.model.Artist;
 import com.hqt.hac.utils.NetworkUtils;
+import com.hqt.hac.utils.ReflectionUtils;
 import com.hqt.hac.view.R;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
@@ -108,8 +112,6 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
      * @param adapter
      */
     public void resetListView(BaseAdapter adapter) {
-//        footer.setVisibility(View.VISIBLE);
-        // Remove first to make sure that there is no duplicate.
         if (footer != null) removeFooterView(footer);
         addFooterView(footer);
         isComeToEnd.set(false);
@@ -128,16 +130,63 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     @Override
     public void setAdapter(ListAdapter adapter) {
         super.setAdapter(adapter);
+        if (adapter == null) return;
         mAdapter = (BaseAdapter) adapter;
         /** it will loading until full of ListView */
-        /** should make animation here for nicer view */
-        if (isFirstProcessLoading) {
+        /** TODO should make animation here for nicer view */
+        if (isFirstProcessLoading && mAdapter.getCount() < firstLoadingItems) {
             for (int i = 0; i < firstLoadingItems; i++) {
                 LOGE(TAG, "Load item: " + i);
                 scheduleWork(i);
             }
         }
         mAdapter.notifyDataSetChanged();
+    }
+
+    /** save state. This trick base on Android ListView Source Code implementation
+     *  with some modification for easily set up and prevent error prone :)
+     */
+    @Override
+    public Parcelable onSaveInstanceState() {
+        LOGE(TAG, "Current Adapter size: Before " + getAdapter().getCount());
+        LOGE(TAG, "Current Adapter size: Before " + mAdapter.getCount());
+
+        Parcelable superState = super.onSaveInstanceState();
+        SavedState ss = new SavedState(superState, mAdapter);
+        ss.items = ((IInfinityAdapter)mAdapter).returnItems();
+
+        // Using Bundle instead of implement own Parcelable for simplicity
+        // but not performance as Use Own Parcelable
+        // but I have optimize by combine those two method : package all states to SavedState. make it faster
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(SavedState.STATE, ss);
+        return bundle;
+    }
+
+    @Override
+    public void onRestoreInstanceState(Parcelable state) {
+        // if. currently state is not custom state
+        if(!(state instanceof Bundle)) {
+            LOGE(TAG, "Mal-well form");
+            super.onRestoreInstanceState(BaseSavedState.EMPTY_STATE);
+            return;
+        }
+
+        // get default state. and call super class to restore state they're want
+        Bundle bundle = (Bundle) state;
+        SavedState ss = bundle.getParcelable(SavedState.STATE);
+        super.onRestoreInstanceState(ss.getSuperState());
+
+        // restore current data  of current ListView
+        List<Parcelable> items = ss.items;
+        for (Parcelable item : items) {
+            ((IInfinityAdapter)mAdapter).addItem(item);
+        }
+
+        mAdapter.notifyDataSetChanged();
+
+        LOGE(TAG, "Current Adapter size: After " + getAdapter().getCount());
+        LOGE(TAG, "Current Adapter size: After " + mAdapter.getCount());
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -218,8 +267,9 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     }
 
     /** Adapter should implement this method to add item to collection */
-    public static interface IInfinityAdapter {
+    public static interface IInfinityAdapter<T extends Parcelable> {
         public void addItem(Object obj);
+        public ArrayList<T> returnItems();
     }
 
     /**
@@ -294,6 +344,8 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
                 // make this event to prevent NullPointException
             }
         });
+        // basically. when adding a view to another. MUST set the LayoutParams of the view to the LayoutParams type that parent uses
+        footer.setLayoutParams(new ListView.LayoutParams(LayoutParams.MATCH_PARENT, ListView.LayoutParams.WRAP_CONTENT));
         addFooterView(footer);
         this.mLoader = property.mLoader;
         this.mAdapter = property.mAdapter;
@@ -371,5 +423,44 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
             return this;
         }
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    ///////////////////// Implement Saved State /////////////////////////////
+
+    static class SavedState<T extends Parcelable> extends BaseSavedState {
+        public static final String STATE = "com.hqt.hac.SavedState";
+
+        public List<T> items;
+        private Adapter mAdapter;
+
+        SavedState(Parcelable superState, Adapter adapter) {
+            super(superState);
+            this.mAdapter = adapter;
+        }
+
+        private SavedState(Parcel in) {
+            super(in);
+        }
+
+        @Override
+        public void writeToParcel(Parcel out, int flags) {
+            super.writeToParcel(out, flags);
+            if (mAdapter instanceof IInfinityAdapter) {
+                out.writeTypedList(((IInfinityAdapter) mAdapter).returnItems());
+            }
+        }
+
+        //required field that makes Parcelables from a Parcel
+        public static final Parcelable.Creator<SavedState> CREATOR =
+                new Parcelable.Creator<SavedState>() {
+                    public SavedState createFromParcel(Parcel in) {
+                        return new SavedState(in);
+                    }
+                    public SavedState[] newArray(int size) {
+                        return new SavedState[size];
+                    }
+                };
+    }
 }
+
 
