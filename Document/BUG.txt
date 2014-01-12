@@ -1,3 +1,4 @@
+	Find By Chord fragment: > Exception
 	Song Full Screen View: option menu button > NullPointerException
 	Song List Fragment (Infinity scroll): refresh when changing orientation, back button.
 	Add/Remove/Update playlist > update in navigation drawer.
