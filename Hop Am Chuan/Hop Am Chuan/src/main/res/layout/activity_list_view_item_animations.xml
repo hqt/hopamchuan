@@ -26,7 +26,7 @@
         android:id="@+id/listViewBackground">
 
         <ListView
-            android:id="@+id/listview"
+            android:id="@+id/mListView"
             android:divider="@null"
             android:dividerHeight="0dp"
             android:layout_width="match_parent"

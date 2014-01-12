@@ -8,23 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.*;
 
 import com.hqt.hac.helper.adapter.FindByChordAdapter;
 import com.hqt.hac.helper.widget.BackgroundContainer;
-import com.hqt.hac.helper.widget.ListViewWidget;
+import com.hqt.hac.helper.widget.DeleteAnimListView;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FindByChordFragment extends Fragment implements
+public class SearchChordFragment extends Fragment implements
         AdapterView.OnItemSelectedListener,
         FindByChordAdapter.IFindByChordAdapter,
         IHacFragment {
@@ -67,7 +62,7 @@ public class FindByChordFragment extends Fragment implements
 
     private BackgroundContainer mBackgroundContainer;
 
-    public FindByChordFragment() {
+    public SearchChordFragment() {
     }
 
 
@@ -95,13 +90,13 @@ public class FindByChordFragment extends Fragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_find_by_chord, container, true);
+        View rootView = inflater.inflate(R.layout.fragment_find_by_chord, container, false);
 
-       //mBackgroundContainer = (BackgroundContainer) rootView.findViewById(R.id.listViewBackground);
+       mBackgroundContainer = (BackgroundContainer) rootView.findViewById(R.id.listViewBackground);
 
         /** using chord base from resource */
         chordBase = activity.getApplicationContext().getResources().getStringArray(R.array.chords_base_chord);
-        /** get first result for default ListView */
+        /* get first result for default ListView*/
         chords = convertChordsToArray(chordBase[0]);
 
         // load all views
@@ -109,7 +104,7 @@ public class FindByChordFragment extends Fragment implements
         insertChordBtn = (Button) rootView.findViewById(R.id.add_chord_button);
         searchBtn = (Button) rootView.findViewById(R.id.search_btn);
 
-        /** Spinner configure */
+        /* Spinner configure */
         spinner = (Spinner) rootView.findViewById(R.id.spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> choices = ArrayAdapter.
@@ -120,23 +115,24 @@ public class FindByChordFragment extends Fragment implements
         spinner.setAdapter(choices);    // Apply the mAdapter to the spinner
         spinner.setOnItemSelectedListener(this);   // because this fragment has implemented method
 
-        /** ListView Configure */
-        mListView = (ListView) rootView.findViewById(R.id.list_view);
+        // ListView Configure
+        mListView = (DeleteAnimListView) rootView.findViewById(R.id.list_view);
         adapter = new FindByChordAdapter(getActivity().getApplicationContext(), this, chords);
-        // building TouchListener Object
-        View.OnTouchListener mTouchListener = ListViewWidget.getTouchListener(getActivity().getApplicationContext(), mListView, adapter, mBackgroundContainer);
-        adapter.setTouchListener(mTouchListener);
+        // adapter.setTouchListener(((DeleteAnimListView)mListView).getTouchListener());
+        ((DeleteAnimListView)mListView).setmBackgroundContainer(mBackgroundContainer);
+        ((DeleteAnimListView)mListView).setAdapter(adapter);
         mListView.setAdapter(adapter);
 
-        /** add event for button */
+
+        /* add event for button */
         insertChordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 // remove focus of EditText
                 // by hiding soft keyboard
-               /* insertChordTextView.clearFocus();
-                insertChordTextView.requestFocus(EditText.FOCUS_DOWN);*/
+                insertChordTextView.clearFocus();
+                insertChordTextView.requestFocus(EditText.FOCUS_DOWN);
                 InputMethodManager in = (InputMethodManager) getActivity().getApplicationContext().
                         getSystemService(Context.INPUT_METHOD_SERVICE);
                 in.hideSoftInputFromWindow(insertChordTextView.getApplicationWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
@@ -160,7 +156,6 @@ public class FindByChordFragment extends Fragment implements
             public void onClick(View v) {
             }
         });
-
         return rootView;
     }
 
@@ -178,7 +173,7 @@ public class FindByChordFragment extends Fragment implements
     public void onNothingSelected(AdapterView<?> parent) {
     }
 
-    /** this action happend when user click [X] on list item */
+    /** this action happen when user click [X] on list item */
     @Override
     public void removeChordFromList(int position) {
         chords.remove(position);

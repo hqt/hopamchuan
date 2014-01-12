@@ -81,7 +81,7 @@ public class ArtistViewFragment extends Fragment implements InfinityListView.ILo
         songlistAdapter = new SongListAdapter(BunnyApplication.getAppContext(), songs);
 
         /** ListView Configure */
-        mListView = (InfinityListView) rootView.findViewById(R.id.listview);
+        mListView = (InfinityListView) rootView.findViewById(R.id.mListView);
         /** config mode for this ListView.
          *  this ListView is full rich function. See document for more detail
          */

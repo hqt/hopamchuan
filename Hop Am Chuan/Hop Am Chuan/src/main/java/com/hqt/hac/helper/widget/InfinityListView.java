@@ -30,7 +30,7 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
  *      NumPerLoading          : decide number of items at each time load.
  *      setFirstLoadingItems   : number of item to load after initiate the ListView.
  *      FirstProcessingLoading : should use lazy loading when first load ListView
- *      setAdapter             : use to know which dapter behind this ListView. must implement IInfinityAdapter
+ *      setAdapter             : use to know which adapter behind this ListView. must implement IInfinityAdapter
  *
  * 4. Class use this Infinitive ListView should implement 1 method :
  *      a. List load (offset, count) : load list of song at `offset`, total `count` : return a list of object

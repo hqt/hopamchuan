@@ -6,17 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hqt.hac.view.R;
-import com.hqt.hac.view.fragment.FindByChordFragment;
 
+import java.util.HashMap;
 import java.util.List;
 
-public class FindByChordAdapter extends ArrayAdapter {
+public class FindByChordAdapter extends ArrayAdapter<String> {
 
     Context mContext;
 
@@ -25,6 +23,8 @@ public class FindByChordAdapter extends ArrayAdapter {
 
     public List<String> chords;
 
+    HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
+
     private View.OnTouchListener mTouchListener;
 
     public FindByChordAdapter(Context context, IFindByChordAdapter delegate, List<String> chords) {
@@ -32,6 +32,10 @@ public class FindByChordAdapter extends ArrayAdapter {
         this.mContext = context.getApplicationContext();
         this.delegate = delegate;
         this.chords = chords;
+        // building stable id
+        for (int i = 0; i < chords.size(); ++i) {
+            mIdMap.put(chords.get(i), i);
+        }
     }
 
     public void setTouchListener(View.OnTouchListener mTouchListener) {
@@ -44,14 +48,16 @@ public class FindByChordAdapter extends ArrayAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return chords.get(position);
+    public long getItemId(int position) {
+        String item = getItem(position);
+        return mIdMap.get(item);
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
+    public boolean hasStableIds() {
+        return true;
     }
+
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -78,6 +84,8 @@ public class FindByChordAdapter extends ArrayAdapter {
                 delegate.removeChordFromList(position);
             }
         });
+
+        row.setOnTouchListener(mTouchListener);
 
         return row;
     }

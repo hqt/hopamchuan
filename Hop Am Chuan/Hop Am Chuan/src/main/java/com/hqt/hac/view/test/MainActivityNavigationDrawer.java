@@ -26,19 +26,14 @@ import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.provider.HopAmChuanDatabase;
 import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.R;
+import com.hqt.hac.view.fragment.*;
 import com.unittest.DatabaseTest;
 
 import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-import com.hqt.hac.view.fragment.ChordViewFragment;
-import com.hqt.hac.view.fragment.FavoriteManagerFragment;
-import com.hqt.hac.view.fragment.FindByChordFragment;
-import com.hqt.hac.view.fragment.PlaylistDetailFragment;
-import com.hqt.hac.view.fragment.PlaylistManagerFragment;
-import com.hqt.hac.view.fragment.SongListFragment;
-import com.hqt.hac.view.fragment.WelcomeFragment;
+import com.hqt.hac.view.fragment.SearchChordFragment;
 
 
 /**
@@ -339,7 +334,7 @@ public class MainActivityNavigationDrawer extends ActionBarActivity
                 fragment = new FavoriteManagerFragment();
                 break;
             case FIND_BY_CHORD:
-                fragment = new FindByChordFragment();
+                fragment = new SearchChordFragment();
                 break;
             case SEARCH_CHORD:
                 fragment = new ChordViewFragment();
