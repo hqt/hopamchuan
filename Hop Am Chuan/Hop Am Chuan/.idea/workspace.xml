@@ -31,14 +31,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c86a20-171e-468d-a200-2c04921d5076" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/ArtistAdapter.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/ArtistAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/FavoriteManagerFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/FavoriteManagerFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/SongListAdapter.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/SongListAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/unittest/DatabaseTest.java" />
     </list>
     <ignored path="Hop Am Chuan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -143,10 +136,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InfinityListView.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="InfinityListView.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="137" column="49" selection-start="5305" selection-end="5305" vertical-scroll-proportion="0.0" vertical-offset="2738" max-vertical-offset="6120">
+            <state line="137" column="49" selection-start="5305" selection-end="5305" vertical-scroll-proportion="-2.4681933" vertical-offset="2942" max-vertical-offset="6120">
               <folding>
                 <element signature="method#onScroll#0;class#InfinityListView#0" expanded="false" />
                 <element signature="method#scheduleWork#0;class#InfinityListView#0" expanded="false" />
@@ -158,10 +151,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="218" column="0" selection-start="7586" selection-end="7586" vertical-scroll-proportion="0.33206108" vertical-offset="2361" max-vertical-offset="9146">
+            <state line="218" column="0" selection-start="7586" selection-end="7586" vertical-scroll-proportion="0.0" vertical-offset="2361" max-vertical-offset="9146">
               <folding>
                 <element signature="docComment;field#mSearchView#0;class#MainActivity#0" expanded="false" />
                 <element signature="docComment;field#mDrawerListView#0;class#MainActivity#0" expanded="false" />
@@ -1783,12 +1776,12 @@
       <workItem from="1389114434705" duration="9473000" />
       <workItem from="1389146395451" duration="27384000" />
       <workItem from="1389226353316" duration="57974000" />
-      <workItem from="1389403775023" duration="57701000" />
+      <workItem from="1389403775023" duration="58038000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240650000" />
+    <option name="totallyTimeSpent" value="240987000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1812,7 +1805,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1825,17 +1818,17 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3074018" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3074018" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3301282" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32852563" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2549168" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24093656" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5176282" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5176282" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24924472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2307,22 +2300,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="137" column="49" selection-start="5305" selection-end="5305" vertical-scroll-proportion="0.0" vertical-offset="2738" max-vertical-offset="6120">
-          <folding>
-            <element signature="method#onScroll#0;class#InfinityListView#0" expanded="false" />
-            <element signature="method#scheduleWork#0;class#InfinityListView#0" expanded="false" />
-            <element signature="method#cleanState#0;class#InfinityListView#0" expanded="false" />
-            <element signature="method#append#0;class#InfinityListView#0" expanded="false" />
-            <element signature="method#setListViewProperty#0;class#InfinityListView#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="218" column="0" selection-start="7586" selection-end="7586" vertical-scroll-proportion="0.33206108" vertical-offset="2361" max-vertical-offset="9146">
+        <state line="218" column="0" selection-start="7586" selection-end="7586" vertical-scroll-proportion="0.0" vertical-offset="2361" max-vertical-offset="9146">
           <folding>
             <element signature="docComment;field#mSearchView#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;field#mDrawerListView#0;class#MainActivity#0" expanded="false" />
@@ -2365,6 +2345,19 @@
             <element signature="class#COMMIT_TYPE#0;class#MainActivity#0" expanded="false" />
             <element signature="e#21927#21967#0" expanded="false" />
             <element signature="e#27678#27744#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="137" column="49" selection-start="5305" selection-end="5305" vertical-scroll-proportion="-2.4681933" vertical-offset="2942" max-vertical-offset="6120">
+          <folding>
+            <element signature="method#onScroll#0;class#InfinityListView#0" expanded="false" />
+            <element signature="method#scheduleWork#0;class#InfinityListView#0" expanded="false" />
+            <element signature="method#cleanState#0;class#InfinityListView#0" expanded="false" />
+            <element signature="method#append#0;class#InfinityListView#0" expanded="false" />
+            <element signature="method#setListViewProperty#0;class#InfinityListView#0" expanded="false" />
           </folding>
         </state>
       </provider>
