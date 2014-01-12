@@ -1,6 +1,6 @@
-	Find By Chord fragment: > Exception
-	Song Full Screen View: option menu button > NullPointerException
+[DONE]	Find By Chord fragment: > Exception
 	Song List Fragment (Infinity scroll): refresh when changing orientation, back button.
+[DONE]	Song Full Screen View: option menu button > NullPointerException
 [DONE]	Add/Remove/Update playlist > update in navigation drawer.
 [DONE]	delete playlist > go to playlist > back button: old playlist still here
 [DONE]	Open app > back button: white screen.

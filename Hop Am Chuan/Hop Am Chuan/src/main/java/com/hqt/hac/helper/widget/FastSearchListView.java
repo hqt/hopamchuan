@@ -54,34 +54,40 @@ public class FastSearchListView extends ListView {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-
-        // Overlay index bar
-        if (mScroller != null) {
-            mScroller.draw(canvas);
+        try {
+            // Overlay index bar
+            if (mScroller != null) {
+                mScroller.draw(canvas);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        // Intercept ListView's touch event
-        if (mScroller != null && mScroller.onTouchEvent(ev))
-            return true;
+        try {
+            // Intercept ListView's touch event
+            if (mScroller != null && mScroller.onTouchEvent(ev))
+                return true;
 
-        if (mGestureDetector == null) {
-            mGestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
+            if (mGestureDetector == null) {
+                mGestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
 
-                @Override
-                public boolean onFling(MotionEvent e1, MotionEvent e2,
-                                       float velocityX, float velocityY) {
-                    // If fling happens, index bar shows
-                    mScroller.show();
-                    return super.onFling(e1, e2, velocityX, velocityY);
-                }
+                    @Override
+                    public boolean onFling(MotionEvent e1, MotionEvent e2,
+                                           float velocityX, float velocityY) {
+                        // If fling happens, index bar shows
+                        mScroller.show();
+                        return super.onFling(e1, e2, velocityX, velocityY);
+                    }
 
-            });
+                });
+            }
+            mGestureDetector.onTouchEvent(ev);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        mGestureDetector.onTouchEvent(ev);
-
         return super.onTouchEvent(ev);
     }
 

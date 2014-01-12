@@ -1,6 +1,8 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -59,6 +61,10 @@ public class FavoriteManagerFragment extends  Fragment implements
     Spinner spinner;
     private String orderMode = HopAmChuanDBContract.Songs.SONG_ISFAVORITE;
 
+    private ComponentLoadHandler mHandler;
+    private View rootView;
+    private LayoutInflater inflater;
+
     public FavoriteManagerFragment() {
     }
 
@@ -87,7 +93,8 @@ public class FavoriteManagerFragment extends  Fragment implements
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_myfavorite, container, false);
+        rootView = inflater.inflate(R.layout.fragment_myfavorite, container, false);
+        this.inflater = inflater;
 
         /** Spinner configure */
         spinner = (Spinner) rootView.findViewById(R.id.spinner);
@@ -100,6 +107,25 @@ public class FavoriteManagerFragment extends  Fragment implements
         spinner.setAdapter(choices);    // Apply the mAdapter to the spinner
         spinner.setOnItemSelectedListener(this);   // because this fragment has implemented method
 
+        // Load component with a delay to reduce lag
+        mHandler = new ComponentLoadHandler();
+        Thread componentLoad = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(Config.LOADING_SMOOTHING_DELAY);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                mHandler.sendMessage(mHandler.obtainMessage());
+            }
+        });
+        componentLoad.start();
+
+        return rootView;
+    }
+
+    private void setUpComponents() {
         songs = new ArrayList<Song>();
         mAdapter = new SongListAdapter(getActivity(), songs);
 
@@ -109,11 +135,6 @@ public class FavoriteManagerFragment extends  Fragment implements
         property.Loader(this).Adapter(mAdapter).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
                 .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
         mListView.setListViewProperty(property);
-/*
-        mListView.setLoader(this);
-        mListView.setFirstProcessLoading(true);
-        mListView.setNumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD);
-        mListView.setRunningBackground(true);*/
 
         // Event for right menu click
         popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
@@ -128,11 +149,6 @@ public class FavoriteManagerFragment extends  Fragment implements
             }
         };
 
-//        mListView.setAdapter(mAdapter);
-//        View emptyView = inflater.inflate(R.layout.list_item_playlist_empty, container, false);
-//        mListView.setEmptyView(emptyView);
-
-
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -144,34 +160,34 @@ public class FavoriteManagerFragment extends  Fragment implements
                 activity.changeTitleBar(songs.get(position).title);
             }
         });
-
-
-        return rootView;
     }
 
     /** if user click. the list will be sorted again base on choice */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch(position) {
-            case 0:
-                // sort by times
-                orderMode = HopAmChuanDBContract.Songs.SONG_ISFAVORITE + " DESC";
-                songs = new ArrayList<Song>();
-                mAdapter.setSongs(songs);
-                break;
-            case 1:
-                // sort by ABC
-                orderMode = HopAmChuanDBContract.Songs.SONG_TITLE;
-                songs = new ArrayList<Song>();
-                mAdapter.setSongs(songs);
-                break;
-            default:
-                // do nothing
+        try {
+            switch(position) {
+                case 0:
+                    // sort by times
+                    orderMode = HopAmChuanDBContract.Songs.SONG_ISFAVORITE + " DESC";
+                    songs = new ArrayList<Song>();
+                    mAdapter.setSongs(songs);
+                    break;
+                case 1:
+                    // sort by ABC
+                    orderMode = HopAmChuanDBContract.Songs.SONG_TITLE;
+                    songs = new ArrayList<Song>();
+                    mAdapter.setSongs(songs);
+                    break;
+                default:
+                    // do nothing
+            }
+            // refresh ListView
+            mListView.resetListView(mAdapter);
+            // mAdapter.notifyDataSetChanged();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        // refresh ListView
-        mListView.resetListView(mAdapter);
-//        mAdapter.notifyDataSetChanged();
-
     }
 
     @Override
@@ -192,4 +208,13 @@ public class FavoriteManagerFragment extends  Fragment implements
     ///////////////////////////////////////////////////////////////////////////
     ///////////////////// METHOD FOR ENDLESS LOADING //////////////////////////
 
+    /////////////////
+    //
+    /////////////////
+    private class ComponentLoadHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            setUpComponents();
+        }
+    }
 }
