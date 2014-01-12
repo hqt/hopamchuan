@@ -155,6 +155,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         songlistAdapter.setSongs(songs);
         // Set mode
         songListMode = position;
+        defaultCurrentItemSelect = position;
         // Reset the ListView
         mListView.resetListView(songlistAdapter);
     }
