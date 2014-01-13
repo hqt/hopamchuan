@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.view.BuildConfig;
+import com.hqt.hac.view.BunnyApplication;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -190,7 +191,8 @@ public class UIUtils {
 
     private static final long sAppLoadTime = System.currentTimeMillis();
 
-    public static long getCurrentTime(final Context context) {
+    public static long getCurrentTime() {
+        Context context = BunnyApplication.getAppContext();
         if (BuildConfig.DEBUG) {
             return context.getSharedPreferences("mock_data", Context.MODE_PRIVATE)
                     .getLong("mock_current_time", System.currentTimeMillis())
@@ -264,4 +266,12 @@ public class UIUtils {
         context.getResources().updateConfiguration(config,
                 context.getResources().getDisplayMetrics());
     }
+
+    public static boolean isSmallScreen() {
+        Context context = BunnyApplication.getAppContext();
+        int screenLayout = context.getResources().getConfiguration().screenLayout;
+        screenLayout &= Configuration.SCREENLAYOUT_SIZE_MASK;
+        return (screenLayout == Configuration.SCREENLAYOUT_SIZE_SMALL);
+    }
+
 }

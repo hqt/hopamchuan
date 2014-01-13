@@ -18,6 +18,7 @@ import com.hqt.hac.helper.widget.BackgroundContainer;
 import com.hqt.hac.helper.widget.DeleteAnimListView;
 import com.hqt.hac.model.Chord;
 import com.hqt.hac.model.dal.ChordDataAccessLayer;
+import com.hqt.hac.view.BunnyApplication;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
@@ -201,6 +202,10 @@ public class SearchChordFragment extends Fragment implements
                 }
                 /** Format chord name **/
                 chord = chord.toLowerCase();
+
+                // if user input nothing
+                if (chord.length() == 0) return;
+
                 // The first letter
                 chord = Character.toString(chord.charAt(0)).toUpperCase() + chord.substring(1);
 
@@ -218,8 +223,12 @@ public class SearchChordFragment extends Fragment implements
                             InputMethodManager.HIDE_NOT_ALWAYS);
 
                     if (chord.trim().length() > 0) {
-                        adapter.addChord(chord);
-                        adapter.notifyDataSetChanged();
+                        boolean res = adapter.addChord(chord);
+                        if (res) {
+                            adapter.notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(getActivity().getApplicationContext(), R.string.duplicate_chord, Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     // clear data of EditText
@@ -238,10 +247,15 @@ public class SearchChordFragment extends Fragment implements
             public void onClick(View v) {
                 SearchResultFragment fragment = new SearchResultFragment();
                 Bundle arguments = new Bundle();
-                arguments.putString(Config.BUNDLE_KEYWORD, adapter.getChords());
-                arguments.putString(Config.BUNDLE_IS_CHORD_SEARCH, adapter.getChords());
-                fragment.setArguments(arguments);
-                activity.switchFragmentNormal(fragment);
+                String chordSearch = adapter.getChords();
+                if (chordSearch.length() == 0) {
+                    Toast.makeText(BunnyApplication.getAppContext(), R.string.empty_list_search, Toast.LENGTH_SHORT).show();
+                } else {
+                    arguments.putString(Config.BUNDLE_KEYWORD, adapter.getChords());
+                    arguments.putString(Config.BUNDLE_IS_CHORD_SEARCH, adapter.getChords());
+                    fragment.setArguments(arguments);
+                    activity.switchFragmentNormal(fragment);
+                }
             }
         });
     }

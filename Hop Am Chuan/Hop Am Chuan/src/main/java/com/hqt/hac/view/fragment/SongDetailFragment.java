@@ -9,11 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.*;
 
 import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
@@ -21,11 +17,15 @@ import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.ArtistDataAccessLayer;
 import com.hqt.hac.model.dal.ChordDataAccessLayer;
 import com.hqt.hac.utils.DialogUtils;
+import com.hqt.hac.view.BunnyApplication;
 import com.hqt.hac.view.FullscreenSongActivity;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
@@ -53,11 +53,21 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
     private View mMenuLayout;
     private boolean isPopupOpened = false;
 
+    /** data structure to contains all ids. prevent random return duplicate */
+    Set<Integer> samechordSongs = new HashSet<Integer>();
+    Set<Integer> sameSingerSongs = new HashSet<Integer>();
+    Set<Integer> sameAuthorSongs = new HashSet<Integer>();
+
     /** Related songs layout **/
     private LinearLayout sameAuthorLayout;
     private LinearLayout sameSingerLayout;
     private LinearLayout sameChordLayout;
     private int currentSameChordSongsCount = 0;
+
+    /** Button to load more songs */
+    TextView sameChordBtn;
+    TextView sameAuthorBtn;
+    TextView sameSingerBtn;
 
     /** Popup window for related songs stars **/
     private PopupWindow popupWindow;
@@ -88,6 +98,10 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
         Bundle arguments = getArguments();
         if (arguments.get("song") != null) {
             this.song = (Song) arguments.get("song");
+            // set up data structure here. to prevent duplicate current song to suggestion
+            sameAuthorSongs.add(song.songId);
+            sameSingerSongs.add(song.songId);
+            samechordSongs.add(song.songId);
         } else {
             LOGE(TAG, "no suitable arguments to continues");
             return;
@@ -185,6 +199,7 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
         relatedSongLoad.start();
 
     }
+
     private void addSameChordSongs() {
         try {
             List<Song> sameChord = ChordDataAccessLayer.getRandomSongsByChords(
@@ -192,8 +207,15 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
                     song.getChords(activity.getApplicationContext()),
                     currentSameChordSongsCount,
                     Config.DEFAULT_RELATED_SONGS_COUNT);
-            currentSameChordSongsCount += sameChord.size();
-            addSongsToLayout(sameChord, sameChordLayout);
+            // avoid duplicate
+            sameChord = removeDuplicateSongs(samechordSongs, sameChord);
+            if (sameChord.size() == 0) {
+                Toast.makeText(BunnyApplication.getAppContext(), R.string.no_more_song, Toast.LENGTH_SHORT).show();
+                sameChordBtn.setVisibility(View.INVISIBLE);
+            } else {
+                currentSameChordSongsCount += sameChord.size();
+                addSongsToLayout(sameChord, sameChordLayout);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -204,7 +226,14 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
                     activity.getApplicationContext(),
                     song.getSingers(activity.getApplicationContext()).get(0).artistId,
                     Config.DEFAULT_RELATED_SONGS_COUNT);
-            addSongsToLayout(sameSinger, sameSingerLayout);
+            // avoid duplicate
+            sameSinger = removeDuplicateSongs(sameSingerSongs, sameSinger);
+            if (sameSinger.size() == 0) {
+                Toast.makeText(BunnyApplication.getAppContext(), R.string.no_more_song, Toast.LENGTH_SHORT).show();
+                sameSingerBtn.setVisibility(View.INVISIBLE);
+            } else {
+                addSongsToLayout(sameSinger, sameSingerLayout);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -215,10 +244,30 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
                     activity.getApplicationContext(),
                     song.getAuthors(activity.getApplicationContext()).get(0).artistId,
                     Config.DEFAULT_RELATED_SONGS_COUNT);
-            addSongsToLayout(sameAuthor, sameAuthorLayout);
+            // avoid duplicate
+            sameAuthor = removeDuplicateSongs(sameAuthorSongs, sameAuthor);
+            if (sameAuthor.size()== 0) {
+                Toast.makeText(BunnyApplication.getAppContext(), R.string.no_more_song, Toast.LENGTH_SHORT).show();
+                sameAuthorBtn.setVisibility(View.INVISIBLE);
+            } else {
+                addSongsToLayout(sameAuthor, sameAuthorLayout);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private List<Song> removeDuplicateSongs(Set<Integer> currentSongIds, List<Song> newSongs) {
+        List<Song> res = new ArrayList<Song>();
+        for (Song song : newSongs) {
+            if (!currentSongIds.contains(song.songId)) {
+                res.add(song);
+                // update data
+                currentSongIds.add(song.songId);
+            }
+        }
+        return res;
     }
 
     /**
@@ -278,6 +327,7 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
             layout.addView(songItemHolder);
         }
     }
+
     private class RelatedSongHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
@@ -295,9 +345,9 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
             addSameChordSongs();
 
             // Action for buttons
-            TextView sameChordBtn = (TextView) rootView.findViewById(R.id.same_chord_btn);
-            TextView sameAuthorBtn = (TextView) rootView.findViewById(R.id.same_author_btn);
-            TextView sameSingerBtn = (TextView) rootView.findViewById(R.id.same_singer_btn);
+            sameChordBtn = (TextView) rootView.findViewById(R.id.same_chord_btn);
+            sameAuthorBtn = (TextView) rootView.findViewById(R.id.same_author_btn);
+            sameSingerBtn = (TextView) rootView.findViewById(R.id.same_singer_btn);
 
             sameChordBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
