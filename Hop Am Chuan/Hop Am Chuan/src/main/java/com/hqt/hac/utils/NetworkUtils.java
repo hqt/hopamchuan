@@ -56,7 +56,8 @@ public class NetworkUtils {
 
     /** should use this method. because base on user setting */
     public static boolean isDeviceNetworkConnected() {
-        if (PrefStore.isMobileNetwork()) {
+        // TrungDQ: Bug 1: inverted setting for check box in SettingActivity
+        if (!PrefStore.isMobileNetwork()) {
             return isWifiConnect();
         } else {
             return isNetworkConnected();
