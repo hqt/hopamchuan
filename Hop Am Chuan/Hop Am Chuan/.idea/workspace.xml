@@ -31,15 +31,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c86a20-171e-468d-a200-2c04921d5076" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/values/ids.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/values-vi/ids.xml" />
-      <change type="DELETED" beforePath="E:\AndroidApp\Hop Am Chuan Project\Hop Am Chuan\Hop Am Chuan\src\main\java\com\hqt\hac\view\fragment\SearchChordResfragment.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/FindByChordAdapter.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/FindByChordAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchChordFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchChordFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongDetailFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongDetailFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/UIUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/UIUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/values-vi/strings.xml" afterPath="$PROJECT_DIR$/src/main/res/values-vi/strings.xml" />
     </list>
     <ignored path="Hop Am Chuan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -127,7 +119,7 @@
       <file leaf-file-name="SongDetailFragment.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongDetailFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="266" column="48" selection-start="9575" selection-end="9575" vertical-scroll-proportion="3.7844312" vertical-offset="2173" max-vertical-offset="3587">
+            <state line="214" column="46" selection-start="7345" selection-end="7345" vertical-scroll-proportion="0.93413174" vertical-offset="1765" max-vertical-offset="3638">
               <folding>
                 <element signature="e#1372#1414#0" expanded="true" />
                 <element signature="e#1679#1688#0" expanded="true" />
@@ -137,11 +129,23 @@
                 <element signature="method#openFullScreenSong#0;class#SongDetailFragment#0" expanded="false" />
                 <element signature="method#setUpRelatedSongs#0;class#SongDetailFragment#0" expanded="false" />
                 <element signature="e#7193#7214#0" expanded="true" />
-                <element signature="e#8094#8115#0" expanded="true" />
-                <element signature="e#8933#8954#0" expanded="true" />
-                <element signature="e#9361#9367#0" expanded="true" />
+                <element signature="e#8179#8200#0" expanded="true" />
+                <element signature="e#9105#9126#0" expanded="true" />
+                <element signature="e#9620#9626#0" expanded="true" />
                 <element signature="method#addSongsToLayout#0;class#SongDetailFragment#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_song_detail.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_song_detail.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="161" column="64" selection-start="6348" selection-end="6348" vertical-scroll-proportion="-13.08" vertical-offset="2410" max-vertical-offset="3876">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1664,12 +1668,12 @@
       <workItem from="1389114434705" duration="9473000" />
       <workItem from="1389146395451" duration="27384000" />
       <workItem from="1389226353316" duration="57974000" />
-      <workItem from="1389403775023" duration="74815000" />
+      <workItem from="1389403775023" duration="77767000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="257764000" />
+    <option name="totallyTimeSpent" value="260716000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1711,7 +1715,7 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2549168" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2545317" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24093656" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1777,13 +1781,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/ArtistViewFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="0" selection-start="3078" selection-end="3078" vertical-scroll-proportion="0.14893617" vertical-offset="987" max-vertical-offset="1717">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/FastSearchListView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="89" column="7" selection-start="2607" selection-end="2607" vertical-scroll-proportion="3.409091" vertical-offset="0" max-vertical-offset="1734">
@@ -2233,9 +2230,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_song_detail.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="161" column="64" selection-start="6348" selection-end="6348" vertical-scroll-proportion="-13.08" vertical-offset="2410" max-vertical-offset="3876">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongDetailFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="266" column="48" selection-start="9575" selection-end="9575" vertical-scroll-proportion="3.7844312" vertical-offset="2173" max-vertical-offset="3587">
+        <state line="214" column="46" selection-start="7345" selection-end="7345" vertical-scroll-proportion="0.93413174" vertical-offset="1765" max-vertical-offset="3638">
           <folding>
             <element signature="e#1372#1414#0" expanded="true" />
             <element signature="e#1679#1688#0" expanded="true" />
@@ -2245,9 +2252,9 @@
             <element signature="method#openFullScreenSong#0;class#SongDetailFragment#0" expanded="false" />
             <element signature="method#setUpRelatedSongs#0;class#SongDetailFragment#0" expanded="false" />
             <element signature="e#7193#7214#0" expanded="true" />
-            <element signature="e#8094#8115#0" expanded="true" />
-            <element signature="e#8933#8954#0" expanded="true" />
-            <element signature="e#9361#9367#0" expanded="true" />
+            <element signature="e#8179#8200#0" expanded="true" />
+            <element signature="e#9105#9126#0" expanded="true" />
+            <element signature="e#9620#9626#0" expanded="true" />
             <element signature="method#addSongsToLayout#0;class#SongDetailFragment#0" expanded="false" />
           </folding>
         </state>

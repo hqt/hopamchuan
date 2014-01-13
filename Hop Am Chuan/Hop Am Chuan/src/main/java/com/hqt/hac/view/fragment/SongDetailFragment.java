@@ -211,7 +211,8 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
             sameChord = removeDuplicateSongs(samechordSongs, sameChord);
             if (sameChord.size() == 0) {
                 Toast.makeText(BunnyApplication.getAppContext(), R.string.no_more_song, Toast.LENGTH_SHORT).show();
-                sameChordBtn.setVisibility(View.INVISIBLE);
+                sameChordBtn.setVisibility(View.GONE);
+                if (samechordSongs.size() == 1) sameChordLayout.setVisibility(View.GONE);
             } else {
                 currentSameChordSongsCount += sameChord.size();
                 addSongsToLayout(sameChord, sameChordLayout);
@@ -230,7 +231,8 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
             sameSinger = removeDuplicateSongs(sameSingerSongs, sameSinger);
             if (sameSinger.size() == 0) {
                 Toast.makeText(BunnyApplication.getAppContext(), R.string.no_more_song, Toast.LENGTH_SHORT).show();
-                sameSingerBtn.setVisibility(View.INVISIBLE);
+                sameSingerBtn.setVisibility(View.GONE);
+                if (sameSingerSongs.size() == 1) sameSingerLayout.setVisibility(View.GONE);
             } else {
                 addSongsToLayout(sameSinger, sameSingerLayout);
             }
@@ -248,7 +250,8 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
             sameAuthor = removeDuplicateSongs(sameAuthorSongs, sameAuthor);
             if (sameAuthor.size()== 0) {
                 Toast.makeText(BunnyApplication.getAppContext(), R.string.no_more_song, Toast.LENGTH_SHORT).show();
-                sameAuthorBtn.setVisibility(View.INVISIBLE);
+                sameAuthorBtn.setVisibility(View.GONE);
+                if (sameAuthorSongs.size() == 1) sameAuthorLayout.setVisibility(View.GONE);
             } else {
                 addSongsToLayout(sameAuthor, sameAuthorLayout);
             }
