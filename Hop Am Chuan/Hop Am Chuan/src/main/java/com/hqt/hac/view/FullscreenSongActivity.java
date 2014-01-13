@@ -517,13 +517,13 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
             // Set status
             setMediaPlayerState(true, getString(R.string.media_buffering_file));
 
-            if (song.link.isEmpty()) {
+            if (song == null || song.link == null || song.link.isEmpty()) {
                 setMediaPlayerState(true, getString(R.string.media_url_fail));
             } else {
                 // start currently song (not new song)
                 Intent mp3ServiceIntent = new Intent(this, Mp3PlayerService.class);
                 mp3ServiceIntent.putExtra("song", song);
-                LOGE(TAG, "Start music Dialog");
+                // LOGE(TAG, "Start music Dialog");
                 startService(mp3ServiceIntent);
             }
         }

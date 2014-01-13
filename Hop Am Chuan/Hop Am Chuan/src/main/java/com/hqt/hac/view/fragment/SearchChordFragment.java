@@ -16,6 +16,8 @@ import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.adapter.FindByChordAdapter;
 import com.hqt.hac.helper.widget.BackgroundContainer;
 import com.hqt.hac.helper.widget.DeleteAnimListView;
+import com.hqt.hac.model.Chord;
+import com.hqt.hac.model.dal.ChordDataAccessLayer;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
@@ -193,25 +195,41 @@ public class SearchChordFragment extends Fragment implements
         insertChordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // remove focus of EditText
-                // by hiding soft keyboard
-                insertChordTextView.clearFocus();
-                insertChordTextView.requestFocus(EditText.FOCUS_DOWN);
-                InputMethodManager in = (InputMethodManager) getActivity().getApplicationContext().
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
-                in.hideSoftInputFromWindow(insertChordTextView.getApplicationWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
-
-                String chord = insertChordTextView.getText().toString();
-
-                if (chord != null && chord.trim().length() > 0) {
-                    adapter.addChord(chord);
-                    adapter.notifyDataSetChanged();
+                String chord = "";
+                if (insertChordTextView.getText() != null) {
+                    chord = insertChordTextView.getText().toString();
                 }
+                /** Format chord name **/
+                chord = chord.toLowerCase();
+                // The first letter
+                chord = Character.toString(chord.charAt(0)).toUpperCase() + chord.substring(1);
 
-                // clear data of EditText
-                insertChordTextView.setText("");
-                // go to end list
-                mListView.setSelection(adapter.getCount() - 1);
+                Chord checkChord = ChordDataAccessLayer.getChordByName(
+                        activity.getApplicationContext(), chord);
+
+                if (checkChord != null) {
+                    // remove focus of EditText
+                    // by hiding soft keyboard
+                    insertChordTextView.clearFocus();
+                    insertChordTextView.requestFocus(EditText.FOCUS_DOWN);
+                    InputMethodManager in = (InputMethodManager) activity.getApplicationContext().
+                            getSystemService(Context.INPUT_METHOD_SERVICE);
+                    in.hideSoftInputFromWindow(insertChordTextView.getApplicationWindowToken(),
+                            InputMethodManager.HIDE_NOT_ALWAYS);
+
+                    if (chord.trim().length() > 0) {
+                        adapter.addChord(chord);
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    // clear data of EditText
+                    insertChordTextView.setText("");
+                    // go to end list
+                    mListView.setSelection(adapter.getCount() - 1);
+                } else {
+                    Toast.makeText(activity.getApplicationContext(),
+                            activity.getString(R.string.invalid_chord_name), Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -220,7 +238,8 @@ public class SearchChordFragment extends Fragment implements
             public void onClick(View v) {
                 SearchResultFragment fragment = new SearchResultFragment();
                 Bundle arguments = new Bundle();
-                arguments.putString("search_key_word", adapter.getChords());
+                arguments.putString(Config.BUNDLE_KEYWORD, adapter.getChords());
+                arguments.putString(Config.BUNDLE_IS_CHORD_SEARCH, adapter.getChords());
                 fragment.setArguments(arguments);
                 activity.switchFragmentNormal(fragment);
             }

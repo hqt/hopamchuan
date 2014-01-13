@@ -6,6 +6,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/relative_layout_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff"
@@ -17,6 +18,7 @@
             android:id="@+id/list_view"/>
     </RelativeLayout>
     <RelativeLayout
+        android:id="@+id/relative_layout_spinner"
         android:layout_height="65dp"
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/activity_horizontal_margin"

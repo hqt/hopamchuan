@@ -193,5 +193,6 @@
     <string name="processing_data">Đang nạp dữ liệu…</string>
     <string name="please_wait">Vui lòng chờ trong giây lát…</string>
     <string name="current_database_song">Số bài hát hiện tại:</string>
+    <string name="invalid_chord_name">Tên hợp âm không tồn tại</string>
 
 </resources>

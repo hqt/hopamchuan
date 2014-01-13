@@ -72,7 +72,7 @@ public class ChordDataAccessLayer {
      * @param chords
      * @return
      */
-    public static List<Song> getAllSongsByChordArrays(Context context, List<Chord> chords) {
+    public static List<Song> getAllSongsByChordArrays(Context context, List<Chord> chords, int offset, int count) {
 
         /*
         Magic happened in this query, just don't touch. I will update a stackoverflow link later.
@@ -101,7 +101,7 @@ public class ChordDataAccessLayer {
                             "  BY 1 HAVING COUNT(*) = "+chords.size()+") AS rs JOIN " + HopAmChuanDBContract.Tables.SONG_CHORD + " ssc USING ("
                             + HopAmChuanDBContract.Songs.SONG_ID + ") " +
                             "  GROUP BY " + HopAmChuanDBContract.Songs.SONG_ID
-                            + " ORDER BY c ",
+                            + " ORDER BY c LIMIT " + offset + ", " + count,
                     new String[]{});
 
             List<Song> songs = new ArrayList<Song>();

@@ -109,21 +109,21 @@
         android:background="#ccc"
         />
 
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textSize="18sp"
-            android:textColor="@color/the_blue_lighter"
-            android:text="@string/download_label"
-            />
-    <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="10dp"
-            android:background="#ccc"
-            />
+    <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:textSize="18sp"-->
+            <!--android:textColor="@color/the_blue_lighter"-->
+            <!--android:text="@string/download_label"-->
+            <!--/>-->
+    <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="2dp"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:background="#ccc"-->
+            <!--/>-->
 
     <TextView
         android:layout_width="match_parent"

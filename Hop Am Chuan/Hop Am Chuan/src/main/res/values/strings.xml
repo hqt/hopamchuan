@@ -280,5 +280,6 @@
     <string name="processing_data">Processing data…</string>
     <string name="please_wait">Please wait a little more…</string>
     <string name="current_database_song">Songs:</string>
+    <string name="invalid_chord_name">Chord name is not available</string>
 
 </resources>
