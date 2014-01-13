@@ -315,7 +315,7 @@ public class SettingActivity extends AsyncActivity {
 
         autoUpdateChkBox.setChecked(PrefStore.isAutoUpdate());
         autoSyncChkBox.setChecked(PrefStore.isAutoSync());
-        autoSyncChkBox.setChecked(PrefStore.isMobileNetwork());
+        connectionTypeChkBox.setChecked(PrefStore.isMobileNetwork());
 
         autoUpdateChkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
