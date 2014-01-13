@@ -85,9 +85,9 @@ public class PrefStore {
     /** Default value for {@link PrefStore#PREF_AUTO_UPDATE} */
     public static final boolean DEFAULT_AUTO_UPDATE = true;
     /** Default value for {@link PrefStore#PREF_AUTO_SYNC} */
-    public static final boolean DEFAULT_AUTO_SYNC = false;
+    public static final boolean DEFAULT_AUTO_SYNC = true;
     /** Default value for {@link PrefStore#PREF_IS_MOBILE_NETWORK} */
-    public static final boolean DEFAULT_AUTO_MOBILE_NETWORK = false;
+    public static final boolean DEFAULT_AUTO_MOBILE_NETWORK = true;
 
     ////////////////////////////////////////////////////////////////////
     /////////////////////////////  GETTER //////////////////////////////
