@@ -281,5 +281,9 @@
     <string name="please_wait">Please wait a little more…</string>
     <string name="current_database_song">Songs:</string>
     <string name="invalid_chord_name">Chord name is not available</string>
+    <string name="auto_update">Update songs</string>
+    <string name="auto_update_message">%1$s new songs available. Press OK to update.</string>
+    <string name="sync_success">Your playlist/favorite is synchronized with hopamchuan.com</string>
+    <string name="auto_sync_error">Could not synchronize your playlist/favorite with hopamchuan.com</string>
 
 </resources>

@@ -1,16 +1,19 @@
 package com.hqt.hac.view;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.os.StrictMode;
 import android.provider.SearchRecentSuggestions;
 import android.support.v4.app.Fragment;
@@ -30,7 +33,13 @@ import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
 import com.hqt.hac.helper.service.Mp3PlayerService;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.model.Song;
+import com.hqt.hac.model.dal.FavoriteDataAccessLayer;
+import com.hqt.hac.model.dal.PlaylistSongDataAccessLayer;
+import com.hqt.hac.model.json.DBVersion;
+import com.hqt.hac.model.json.JsonPlaylist;
 import com.hqt.hac.provider.SearchRecentProvider;
+import com.hqt.hac.utils.APIUtils;
+import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.utils.StringUtils;
 import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.fragment.IHacFragment;
@@ -42,7 +51,6 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
@@ -107,6 +115,11 @@ public class MainActivity extends SlidingMenuActionBarActivity
     public static Intent mp3ServiceIntent;
     /** Android Built-in Mp3 Player */
     public static MediaPlayer player;
+
+    /** **/
+    private DBVersion version;
+    private AutoUpdateHandler updateHandler;
+    private AutoSyncHandler syncHandler;
 
     //region Activity Life Cycle Method
     /////////////////////////////////////////////////////////////////
@@ -179,6 +192,8 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // set up Mp3Service
         setUpMp3Service();
 
+        setUpAutoUpdate();
+
         // implement first fragment for MainActivity
         Bundle arguments = getIntent().getBundleExtra("notification");
         if (arguments != null) {
@@ -197,6 +212,45 @@ public class MainActivity extends SlidingMenuActionBarActivity
             // Load default fragment in this case. else. maybe configuration change, android will do their work
             Fragment fragment = new WelcomeFragment();
             switchFragmentClearStack(fragment);
+        }
+    }
+
+    private void setUpAutoUpdate() {
+        if (PrefStore.isAutoUpdate()) {
+            updateHandler = new AutoUpdateHandler();
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(Config.AUTO_UPDATE_SONGS_DELAY);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    version = APIUtils.getLatestDatabaseVersion(PrefStore.getLatestVersion());
+                    // no update need
+                    if (version != null && version.no != PrefStore.getLatestVersion()) {
+                        // New Version Available
+                        updateHandler.sendMessage(updateHandler.obtainMessage());
+                    }
+                }
+            });
+            t.start();
+        }
+
+        if (PrefStore.isAutoSync() && HacUtils.isLoggedIn()) {
+            syncHandler = new AutoSyncHandler();
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(Config.AUTO_SYNC_SONGS_DELAY);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    syncHandler.sendMessage(syncHandler.obtainMessage());
+                }
+            });
+            t.start();
         }
     }
 
@@ -743,4 +797,89 @@ public class MainActivity extends SlidingMenuActionBarActivity
      *  on NavigationDrawer, when event arises. use mCallback
      */
 
+    //region Auto Update Handlers
+    /**
+     * Handle Class for new version (auto update)
+     */
+    private class AutoUpdateHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            if (version == null) return;
+            try {
+                String message = String.format(getString(R.string.auto_update_message), version.numbers);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle(getString(R.string.auto_update))
+                        .setMessage(message)
+                        .setCancelable(true)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+                                intent.putExtra(Config.BUNDLE_AUTO_UPDATE_SONG, true);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                         }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            } catch (Exception e) {
+                // In case of the activity is reset or closed
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Handle Class for sync songs
+     */
+    private class AutoSyncHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            try {
+                if (!HacUtils.isLoggedIn()) return;
+                Context mAppContext = getApplicationContext();
+                if (mAppContext == null) return;
+
+                String username = PrefStore.getLoginUsername();
+                String password = PrefStore.getLoginPassword();
+                boolean res;
+
+                List<Playlist> oldPlaylists = PlaylistDataAccessLayer.getAllPlayLists(mAppContext);
+                List<JsonPlaylist> jsonPlaylists = JsonPlaylist.convert(oldPlaylists, mAppContext);
+                List<Playlist> newPlaylists = APIUtils.syncPlaylist(username, password, jsonPlaylists);
+
+                if (newPlaylists != null) {
+                    // delete all playlist in system
+                    PlaylistDataAccessLayer.removeAllPlaylists(mAppContext);
+
+                    // insert all song of its playlist to database
+                    for (Playlist playlist : newPlaylists) {
+                        // insert playlist
+                        PlaylistDataAccessLayer.insertPlaylist(mAppContext, playlist);
+                        // insert songs of playlist
+                        List<Integer> ids = playlist.getAllSongIds(mAppContext);
+                        res = PlaylistSongDataAccessLayer.insertPlaylist_Song(mAppContext, playlist.playlistId, ids);
+                    }
+                }
+                int[] favorite = FavoriteDataAccessLayer.getAllFavoriteSongIds(mAppContext);
+                List<Integer> newFavorite = APIUtils.syncFavorite(username, password, favorite);
+                res = FavoriteDataAccessLayer.syncFavorites(mAppContext, newFavorite);
+                SongListRightMenuHandler.updateNavDrawerPlaylistList(
+                        PlaylistDataAccessLayer.getAllPlayLists(mAppContext));
+
+                if (res) {
+                    Toast.makeText(mAppContext, getString(R.string.sync_success), Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(mAppContext, getString(R.string.auto_sync_error), Toast.LENGTH_LONG).show();
+                }
+            } catch (Exception e) {
+                // In case of the activity is reset or closed
+                e.printStackTrace();
+            }
+        }
+    }
+    //endregion
 }

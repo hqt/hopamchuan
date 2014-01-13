@@ -98,8 +98,8 @@ public class SplashScreen extends AsyncActivity {
         playlistList = (ArrayList)PlaylistDataAccessLayer.getAllPlayLists(getApplicationContext());
         dialog.dismiss();
 
-        LOGE(TAG, "Alarm Service");
-        WakefulIntentService.scheduleAlarms(new SyncService.SyncServiceAlarm(), this, false);
+        // LOGE(TAG, "Alarm Service");
+        // WakefulIntentService.scheduleAlarms(new SyncService.SyncServiceAlarm(), this, false);
 
     }
 

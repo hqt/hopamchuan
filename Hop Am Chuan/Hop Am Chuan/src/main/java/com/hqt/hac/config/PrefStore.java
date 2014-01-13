@@ -83,7 +83,7 @@ public class PrefStore {
     public static final String DEFAULT_LANGUAGE = "vi";
 
     /** Default value for {@link PrefStore#PREF_AUTO_UPDATE} */
-    public static final boolean DEFAULT_AUTO_UPDATE = false;
+    public static final boolean DEFAULT_AUTO_UPDATE = true;
     /** Default value for {@link PrefStore#PREF_AUTO_SYNC} */
     public static final boolean DEFAULT_AUTO_SYNC = false;
     /** Default value for {@link PrefStore#PREF_IS_MOBILE_NETWORK} */

@@ -66,4 +66,7 @@ public class Config {
     public static final int ESTIMATE_SIZE_PER_SONG = 2500;
     public static final String BUNDLE_IS_CHORD_SEARCH = "is_chord_search";
     public static final String BUNDLE_KEYWORD = "search_key_word";
+    public static final long AUTO_UPDATE_SONGS_DELAY = 10000;
+    public static final String BUNDLE_AUTO_UPDATE_SONG = "updateSong";
+    public static final long AUTO_SYNC_SONGS_DELAY = 15000;
 }

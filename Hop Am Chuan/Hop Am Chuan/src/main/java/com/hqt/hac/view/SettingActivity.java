@@ -127,6 +127,13 @@ public class SettingActivity extends AsyncActivity {
         setUpAccountInfo();
         setUpSync();
         setUpSettingLanguage();
+
+        // Handle auto update request
+        if (getIntent().getBooleanExtra(Config.BUNDLE_AUTO_UPDATE_SONG, false)) {
+            // Start download songs;
+            update(0);
+        }
+
     }
 
     private void showConfirmDialog() {
@@ -306,6 +313,9 @@ public class SettingActivity extends AsyncActivity {
         CheckBox autoSyncChkBox = (CheckBox) findViewById(R.id.checkbox_auto_sync);
         CheckBox connectionTypeChkBox = (CheckBox) findViewById(R.id.checkbox_network_type);
 
+        autoUpdateChkBox.setChecked(PrefStore.isAutoUpdate());
+        autoSyncChkBox.setChecked(PrefStore.isAutoSync());
+
         autoUpdateChkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -344,14 +354,14 @@ public class SettingActivity extends AsyncActivity {
         autoSyncSongChkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+                PrefStore.setAutoUpdate(isChecked);
             }
         });
 
         autoUpdateSongChkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+                PrefStore.setAutoSyc(isChecked);
             }
         });
     }

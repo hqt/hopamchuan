@@ -194,5 +194,9 @@
     <string name="please_wait">Vui lòng chờ trong giây lát…</string>
     <string name="current_database_song">Số bài hát hiện tại:</string>
     <string name="invalid_chord_name">Tên hợp âm không tồn tại</string>
+    <string name="auto_update">Cập nhật bài hát</string>
+    <string name="auto_update_message">Có %1$s bài hát mới. Nhấn OK để tải về.</string>
+    <string name="sync_success">Đã đồng bộ playlist/favorite.</string>
+    <string name="auto_sync_error">Không thể đồng bộ playlist/favorite</string>
 
 </resources>
