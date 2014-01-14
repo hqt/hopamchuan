@@ -34,13 +34,10 @@ import com.hqt.hac.utils.EncodingUtils;
 import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.utils.ParserUtils;
-import com.hqt.hac.utils.PrefStoreUtils;
-import com.hqt.hac.utils.ResourceUtils;
 import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.popup.ProfilePopup;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -55,6 +52,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
@@ -86,6 +84,7 @@ public class SettingActivity extends AsyncActivity {
 
     /** Variable to access across threads **/
     DBVersion version;
+    AtomicBoolean isCheckUpdateCancelled = new AtomicBoolean(false);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -225,8 +224,7 @@ public class SettingActivity extends AsyncActivity {
                             settingOptionString();
                         }
                     }
-                })
-                .setCancelable(false);
+                });
         builder.create().show();
     }
     //endregion
@@ -357,14 +355,14 @@ public class SettingActivity extends AsyncActivity {
         autoSyncSongChkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                PrefStore.setAutoUpdate(isChecked);
+                PrefStore.setAutoSyc(isChecked);
             }
         });
 
         autoUpdateSongChkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                PrefStore.setAutoSyc(isChecked);
+                PrefStore.setAutoUpdate(isChecked);
             }
         });
     }
@@ -442,13 +440,14 @@ public class SettingActivity extends AsyncActivity {
             default:
                 throw new UnsupportedOperationException();
         }
-        try {
-            // To prevent accidentally close the popup.
-            dialog.setCancelable(false);
-            dialog.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // Cancel task
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                isCheckUpdateCancelled.set(true);
+            }
+        });
+        dialog.show();
     }
 
     @Override
@@ -459,6 +458,10 @@ public class SettingActivity extends AsyncActivity {
     @Override
     public void onPostExecute(int result) {
         dialog.dismiss();
+
+        if (isCheckUpdateCancelled.get()) {
+            return;
+        }
 
         switch (result) {
             // latest version
@@ -838,9 +841,8 @@ public class SettingActivity extends AsyncActivity {
                 case STATUS_CODE.STATE2_PROCESSING: {
                     mProgressDialog.setMessage(getString(R.string.processing_data));
 
-                    // Remove cancel button.
-                    // TODO: if there is too much song and use want to do other stuff while.
-                    mProgressDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setVisibility(View.GONE);
+                    // Rename button to "Hide"
+                    mProgressDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setText(R.string.hide);
                     break;
                 }
                 default:

@@ -87,6 +87,7 @@ public class ArtistViewFragment extends Fragment implements InfinityListView.ILo
                 .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
         mListView.setListViewProperty(property);
         mListView.resetListView(songlistAdapter);
+        mListView.setEmptyView(rootView.findViewById(R.id.empty));
 
         // Event for right menu click
         popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);

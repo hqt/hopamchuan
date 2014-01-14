@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hqt.hac.config.Config;
@@ -131,7 +133,9 @@ public class SplashScreen extends AsyncActivity {
 
     @Override
     public void onBackPressed() {
-        // Yes, nothing here. Because we don't want user to exit our app in splash screen.
+        // Press back button to skip splash screen
+        startActivity();
+        finish();
     }
 
     private void startActivity() {
@@ -185,6 +189,9 @@ public class SplashScreen extends AsyncActivity {
 
     private void setUpAutoUpdate() {
         if (PrefStore.isAutoUpdate()) {
+            TextView statusTV = (TextView) findViewById(R.id.status);
+            statusTV.setVisibility(View.VISIBLE);
+
             version = APIUtils.getLatestDatabaseVersion(PrefStore.getLatestVersion());
             // no update need
             if (version != null && version.no != PrefStore.getLatestVersion()) {
@@ -235,6 +242,7 @@ public class SplashScreen extends AsyncActivity {
                 AlertDialog alert = builder.create();
                 alert.show();
             } catch (Exception e) {
+                // User have press Back button to skip updating
                 // In case of the activity is reset or closed
                 e.printStackTrace();
             }
@@ -285,6 +293,7 @@ public class SplashScreen extends AsyncActivity {
                     Toast.makeText(mAppContext, getString(R.string.auto_sync_error), Toast.LENGTH_LONG).show();
                 }
             } catch (Exception e) {
+                // User have press Back button to skip updating
                 // In case of the activity is reset or closed
                 e.printStackTrace();
             }

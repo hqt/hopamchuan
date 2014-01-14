@@ -15,6 +15,9 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -104,9 +107,11 @@ public class NetworkUtils {
     }
 
     /** Get Data Fom URL Using POST Method */
-    public static String getResponseFromPOSTRequest(String url, Map<String, String> params) {
+    public static String getResponseFromPOSTRequest(String url, Map<String, String> params, int timeout) {
 
-        HttpClient httpClient = new DefaultHttpClient();
+        final HttpParams httpParams = new BasicHttpParams();
+        HttpConnectionParams.setConnectionTimeout(httpParams, timeout);
+        HttpClient httpClient = new DefaultHttpClient(httpParams);
 
         /**
          * In a POST request, we don't pass the values in the URL.

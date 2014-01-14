@@ -11,4 +11,10 @@
             android:id="@+id/mListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/emptyView"
+        android:text="@string/no_song_available" />
+</LinearLayout>

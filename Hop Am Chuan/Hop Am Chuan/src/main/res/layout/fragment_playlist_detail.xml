@@ -11,4 +11,11 @@
         android:layout_height="match_parent"
         android:drawSelectorOnTop="false"/>
 
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/emptyView"
+        android:text="@string/no_song_available" />
+
 </RelativeLayout>

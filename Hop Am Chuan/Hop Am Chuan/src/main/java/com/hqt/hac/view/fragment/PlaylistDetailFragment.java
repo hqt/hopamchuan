@@ -109,6 +109,7 @@ public class PlaylistDetailFragment extends  Fragment implements IHacFragment, I
         property.Loader(this).Adapter(mAdapter).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
                 .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
         mListView.setListViewProperty(property);
+        mListView.setEmptyView(rootView.findViewById(R.id.empty));
 
       /*  mListView.setLoader(this);
         mListView.setFirstProcessLoading(true);

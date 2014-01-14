@@ -16,6 +16,13 @@
             android:layout_height="fill_parent"
             android:layout_width="fill_parent"
             android:id="@+id/list_view"/>
+
+        <TextView
+            android:id="@+id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/emptyView"
+            android:text="@string/no_result_found" />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/relative_layout_spinner"

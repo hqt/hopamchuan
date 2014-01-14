@@ -164,9 +164,9 @@
     <string name="chord_finger_position">Finger positions</string>
     <string name="search_box_placeholder">Song name, author, singer…</string>
     <string name="current_version">Last Updated:</string>
-    <string name="setting_auto_update">Auto update new songs</string>
+    <string name="setting_auto_update">Check for new songs when start</string>
     <string name="setting_auto_update_button">Update new songs</string>
-    <string name="setting_auto_sync">Auto sync playlist/favorite</string>
+    <string name="setting_auto_sync">Sync playlist/favorite when start</string>
     <string name="update_now_button">Update now</string>
     <string name="title_activity_splash_screen">Hợp Âm Chuẩn</string>
     <string name="title_activity_test_list_song">TestListSong</string>
@@ -270,7 +270,7 @@
     <string name="checking_account">Logging in…</string>
     <string name="get_account_info">Check your account info…</string>
     <string name="logout_button">Logout</string>
-    <string name="logout_confirm">Are you sure to disconnect with current account? (All playlists will be deleted)</string>
+    <string name="logout_confirm">Are you sure to disconnect with current account? (All playlists on your device will be deleted)</string>
     <string name="first_running">Setting for the first run…</string>
     <string name="song_updated_count">New songs:</string>
     <string name="my_playlists_drawer_title">MY PLAYLISTS</string>
@@ -289,5 +289,11 @@
     <string name="duplicate_chord">This chord is already in list</string>
     <string name="empty_list_search">Please add at least 1 chord</string>
     <string name="no_more_song">No more song to display</string>
+    <string name="no_song_available">No song available</string>
+    <string name="no_playlist_available">Press + button to create playlist</string>
+    <string name="no_result_found">No result found!</string>
+    <string name="loading">Loading…</string>
+    <string name="hide">Hide</string>
+    <string name="checking_version_press_back">Updating songs…\nPress Back skip.</string>
 
 </resources>
