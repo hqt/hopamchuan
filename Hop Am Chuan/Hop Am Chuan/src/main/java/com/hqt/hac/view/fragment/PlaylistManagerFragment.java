@@ -2,10 +2,9 @@ package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.os.*;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.*;
@@ -106,6 +105,7 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
         super.onCreate(savedInstanceState);
         allPlaylists = PlaylistDataAccessLayer.getAllPlayLists(getActivity().getApplicationContext());
         setHasOptionsMenu(true);
+        setRetainInstance(true);
     }
 
     @Override
@@ -121,19 +121,30 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
             public void run() {
                 try {
                     Thread.sleep(Config.LOADING_SMOOTHING_DELAY);
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 mHandler.sendMessage(mHandler.obtainMessage());
             }
         });
+        // getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
+        // activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
+        int currentOrientation = getResources().getConfiguration().orientation;
+        if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+        }
+        else {
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+        }
         componentLoad.start();
+
         return rootView;
     }
 
     private void setUpComponents() {
         mListView = (ListView) rootView.findViewById(R.id.list);
-        adapter = new PlaylistManagerAdapter(activity.getApplicationContext(), allPlaylists);
+        adapter = new PlaylistManagerAdapter(getActivity().getApplicationContext(), allPlaylists);
 
         popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_playlist_list_menu);
         PlaylistRightMenuHandler.setRightMenuEvents(activity, popupWindow, adapter);
@@ -185,6 +196,7 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
         SongListRightMenuHandler.txtNewPlaylistDescription =
                 (EditText) SongListRightMenuHandler.newPlaylistDialog
                         .findViewById(R.id.txtNewPlaylistDescription);
+
     }
 
     public static void removeOnGlobalLayoutListener(View v, ViewTreeObserver.OnGlobalLayoutListener listener){
@@ -224,6 +236,9 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
         @Override
         public void handleMessage(Message msg) {
             setUpComponents();
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+
         }
     }
+
 }

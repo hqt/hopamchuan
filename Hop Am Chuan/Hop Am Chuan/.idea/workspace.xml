@@ -31,7 +31,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c86a20-171e-468d-a200-2c04921d5076" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongDetailFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongDetailFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/PlaylistManagerFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/PlaylistManagerFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
     </list>
     <ignored path="Hop Am Chuan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -116,47 +119,67 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SongDetailFragment.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongDetailFragment.java">
+      <file leaf-file-name="PlaylistManagerFragment.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/PlaylistManagerFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="214" column="46" selection-start="7345" selection-end="7345" vertical-scroll-proportion="0.93413174" vertical-offset="1765" max-vertical-offset="3638">
+            <state line="138" column="9" selection-start="4305" selection-end="4305" vertical-scroll-proportion="0.75" vertical-offset="1642" max-vertical-offset="3621">
               <folding>
-                <element signature="e#1372#1414#0" expanded="true" />
-                <element signature="e#1679#1688#0" expanded="true" />
-                <element signature="e#1738#1747#0" expanded="true" />
-                <element signature="e#1797#1806#0" expanded="true" />
-                <element signature="method#onCreateView#0;class#SongDetailFragment#0" expanded="false" />
-                <element signature="method#openFullScreenSong#0;class#SongDetailFragment#0" expanded="false" />
-                <element signature="method#setUpRelatedSongs#0;class#SongDetailFragment#0" expanded="false" />
-                <element signature="e#7193#7214#0" expanded="true" />
-                <element signature="e#8179#8200#0" expanded="true" />
-                <element signature="e#9105#9126#0" expanded="true" />
-                <element signature="e#9620#9626#0" expanded="true" />
-                <element signature="method#addSongsToLayout#0;class#SongDetailFragment#0" expanded="false" />
+                <element signature="e#1278#1322#0" expanded="true" />
+                <element signature="e#3353#3749#0" expanded="true" />
+                <element signature="e#3738#3739#0" expanded="true" />
+                <element signature="e#6437#6458#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_song_detail.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_song_detail.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="161" column="64" selection-start="6348" selection-end="6348" vertical-scroll-proportion="-13.08" vertical-offset="2410" max-vertical-offset="3876">
-              <folding />
+            <state line="16" column="72" selection-start="811" selection-end="811" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="2397">
+              <folding>
+                <element signature="e#932#950#0" expanded="false" />
+                <element signature="e#1376#1394#0" expanded="false" />
+                <element signature="e#1542#1560#0" expanded="false" />
+                <element signature="e#1728#1746#0" expanded="false" />
+                <element signature="e#1851#1869#0" expanded="false" />
+                <element signature="e#1976#1994#0" expanded="false" />
+                <element signature="e#2478#2496#0" expanded="false" />
+                <element signature="e#3170#3206#0" expanded="false" />
+                <element signature="e#3509#3538#0" expanded="false" />
+                <element signature="e#3703#3742#0" expanded="false" />
+                <element signature="e#3910#3949#0" expanded="false" />
+                <element signature="e#4122#4160#0" expanded="false" />
+                <element signature="e#4293#4322#0" expanded="false" />
+                <element signature="e#5142#5172#0" expanded="false" />
+                <element signature="e#5299#5331#0" expanded="false" />
+                <element signature="e#5475#5507#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SearchChordFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchChordFragment.java">
+      <file leaf-file-name="SongListFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="251" column="89" selection-start="9263" selection-end="9263" vertical-scroll-proportion="0.0" vertical-offset="3938" max-vertical-offset="4539">
+            <state line="121" column="63" selection-start="3971" selection-end="3971" vertical-scroll-proportion="0.0" vertical-offset="966" max-vertical-offset="3298">
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#8261#8285#0" expanded="true" />
+                <element signature="e#1325#1367#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InfinityListView.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="182" column="0" selection-start="7076" selection-end="7076" vertical-scroll-proportion="0.0" vertical-offset="2637" max-vertical-offset="7565">
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#8792#9229#0" expanded="false" />
+                <element signature="e#9210#9211#0" expanded="false" />
+                <element signature="e#13369#13575#0" expanded="false" />
+                <element signature="e#13564#13565#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -940,7 +963,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/model/dal/ArtistDataAccessLayer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchViewFragment.java" />
         <option value="$PROJECT_DIR$/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/DecoratorAdapter.java" />
@@ -960,7 +982,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/StableArrayAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/temp/Cheeses.java" />
         <option value="$PROJECT_DIR$/src/main/java/temp/StableArrayAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_list_view_item_animations.xml" />
         <option value="$PROJECT_DIR$/src/main/java/temp/BackgroundContainer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/alpha/CustomScrollView.java" />
@@ -979,18 +1000,20 @@
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchChordResfragment.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/fragment_find_by_chord.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/DeleteAnimListView.java" />
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/ArtistAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/FavoriteManagerFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/SongListAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/UIUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/FindByChordAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchChordFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongDetailFragment.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/UIUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/PlaylistManagerFragment.java" />
       </list>
     </option>
   </component>
@@ -1026,7 +1049,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -1079,62 +1101,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="menu" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1320,126 +1286,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="helper" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hop Am Chuan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="helper" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="widget" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1669,11 +1518,13 @@
       <workItem from="1389146395451" duration="27384000" />
       <workItem from="1389226353316" duration="57974000" />
       <workItem from="1389403775023" duration="77767000" />
+      <workItem from="1389630578088" duration="1084000" />
+      <workItem from="1389633824597" duration="9817000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="260716000" />
+    <option name="totallyTimeSpent" value="271617000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1697,68 +1548,38 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5592949" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2031722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24093656" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24093656" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24093656" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45352563" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24924472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3074018" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3301282" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2545317" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24093656" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.6907051" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24924472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2545317" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2031722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3028701" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40384614" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2549168" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46474358" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USERS">
@@ -1781,93 +1602,27 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/FastSearchListView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="7" selection-start="2607" selection-end="2607" vertical-scroll-proportion="3.409091" vertical-offset="0" max-vertical-offset="1734">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/ChordClickableSpan.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="13" selection-start="582" selection-end="582" vertical-scroll-proportion="-3.8636363" vertical-offset="1564" max-vertical-offset="2142">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/IndexScroller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="57" selection-start="501" selection-end="501" vertical-scroll-proportion="-9.090909" vertical-offset="3502" max-vertical-offset="4216">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongViewFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="13" selection-start="417" selection-end="417" vertical-scroll-proportion="-0.09042553" vertical-offset="119" max-vertical-offset="3553">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_song_list.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="45" selection-start="535" selection-end="535" vertical-scroll-proportion="0.5604396" vertical-offset="0" max-vertical-offset="782">
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_find_by_chord.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_find_by_chord.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="49" selection-start="989" selection-end="989" vertical-scroll-proportion="0.5113438" vertical-offset="115" max-vertical-offset="1921">
-          <folding />
-        </state>
+        <state line="24" column="49" selection-start="989" selection-end="989" vertical-scroll-proportion="0.5113438" vertical-offset="115" max-vertical-offset="1921" />
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/DeleteAnimListView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="354" column="54" selection-start="15411" selection-end="15411" vertical-scroll-proportion="0.4068376" vertical-offset="4352" max-vertical-offset="5627">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2161#2176#0" expanded="true" />
-            <element signature="e#3076#3077#0" expanded="true" />
-            <element signature="e#3115#3116#0" expanded="true" />
-            <element signature="e#3189#3190#0" expanded="true" />
-            <element signature="e#3242#3243#0" expanded="true" />
-            <element signature="e#3291#3292#0" expanded="true" />
-            <element signature="e#3316#3317#0" expanded="true" />
-            <element signature="e#3933#9365#0" expanded="true" />
-            <element signature="e#9358#9359#0" expanded="true" />
-            <element signature="docComment;method#animateSwipe#0;class#DeleteAnimListView#0" expanded="false" />
-            <element signature="method#animateSwipe#0;class#DeleteAnimListView#0" expanded="false" />
-            <element signature="e#10623#11402#0" expanded="true" />
-            <element signature="e#11379#11380#0" expanded="true" />
-            <element signature="e#11910#12387#0" expanded="true" />
-            <element signature="e#12372#12373#0" expanded="true" />
-            <element signature="docComment;method#setSwipePosition#0;class#DeleteAnimListView#0" expanded="false" />
-            <element signature="method#setSwipePosition#0;class#DeleteAnimListView#0" expanded="false" />
-            <element signature="docComment;method#animateOtherViews#0;class#DeleteAnimListView#0" expanded="false" />
-            <element signature="e#15086#17440#0" expanded="true" />
-            <element signature="e#16680#17125#0" expanded="true" />
-            <element signature="e#17090#17091#0" expanded="true" />
-            <element signature="e#17429#17430#0" expanded="true" />
-            <element signature="method#moveView#0;class#DeleteAnimListView#0" expanded="false" />
-            <element signature="e#19029#19247#0" expanded="true" />
-            <element signature="e#19228#19229#0" expanded="true" />
-            <element signature="method#setAnimatorEndAction#0;class#DeleteAnimListView#0" expanded="false" />
-            <element signature="e#19588#19779#0" expanded="true" />
-            <element signature="e#19764#19765#0" expanded="true" />
-            <element signature="method#setAnimationEndAction#0;class#DeleteAnimListView#0" expanded="false" />
-            <element signature="e#19963#20156#0" expanded="true" />
-            <element signature="e#20141#20142#0" expanded="true" />
-            <element signature="class#AnimationListenerAdapter#0;class#DeleteAnimListView#0" expanded="false" />
-          </folding>
-        </state>
+        <state line="354" column="54" selection-start="15411" selection-end="15411" vertical-scroll-proportion="0.4068376" vertical-offset="4352" max-vertical-offset="5627" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/FullscreenSongActivity.java">
@@ -1879,16 +1634,12 @@
     </entry>
     <entry file="jar://D:/Compiler/Android SDK/extras/android/m2repository/com/android/support/support-v4/19.0.0/support-v4-19.0.0.jar!/android/support/v4/database/DatabaseUtilsCompat.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="170" selection-end="170" vertical-scroll-proportion="-3.4" vertical-offset="0" max-vertical-offset="289">
-          <folding />
-        </state>
+        <state line="6" column="13" selection-start="170" selection-end="170" vertical-scroll-proportion="-3.4" vertical-offset="0" max-vertical-offset="289" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/build/exploded-bundles/ComAndroidSupportAppcompatV71900.aar/classes.jar!/android/support/v7/app/ActionBarActivity.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="165" selection-end="165" vertical-scroll-proportion="0.15178572" vertical-offset="0" max-vertical-offset="1717">
-          <folding />
-        </state>
+        <state line="6" column="13" selection-start="165" selection-end="165" vertical-scroll-proportion="0.15178572" vertical-offset="0" max-vertical-offset="1717" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SearchViewActivity.java">
@@ -1905,13 +1656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="53" selection-start="134" selection-end="134" vertical-scroll-proportion="0.14731368" vertical-offset="0" max-vertical-offset="663">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="13" selection-start="942" selection-end="942" vertical-scroll-proportion="-1.2358156" vertical-offset="867" max-vertical-offset="2975">
@@ -1921,9 +1665,7 @@
     </entry>
     <entry file="file://D:/Compiler/Android SDK/sources/android-18/android/app/Activity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="641" column="13" selection-start="32033" selection-end="32033" vertical-scroll-proportion="-68.22735" vertical-offset="49450" max-vertical-offset="88706">
-          <folding />
-        </state>
+        <state line="641" column="13" selection-start="32033" selection-end="32033" vertical-scroll-proportion="-68.22735" vertical-offset="49450" max-vertical-offset="88706" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/config/Config.java">
@@ -1935,30 +1677,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/NetworkUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="13" selection-start="827" selection-end="827" vertical-scroll-proportion="-3.8093646" vertical-offset="2346" max-vertical-offset="3468">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/HeadlessFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="17" selection-start="3108" selection-end="3108" vertical-scroll-proportion="1.5685619" vertical-offset="439" max-vertical-offset="2108">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/AsyncActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="32" selection-start="990" selection-end="990" vertical-scroll-proportion="0.5117057" vertical-offset="102" max-vertical-offset="884">
-          <folding />
-        </state>
+        <state line="25" column="13" selection-start="827" selection-end="827" vertical-scroll-proportion="-3.8093646" vertical-offset="2346" max-vertical-offset="3468" />
       </provider>
     </entry>
     <entry file="jar://D:/Compiler/Android SDK/extras/android/m2repository/com/android/support/support-v4/19.0.0/support-v4-19.0.0.jar!/android/support/v4/app/FragmentActivity.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="42" selection-start="255" selection-end="255" vertical-scroll-proportion="0.18214285" vertical-offset="0" max-vertical-offset="2125">
-          <folding />
-        </state>
+        <state line="7" column="42" selection-start="255" selection-end="255" vertical-scroll-proportion="0.18214285" vertical-offset="0" max-vertical-offset="2125" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java">
@@ -1970,65 +1694,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/service/WakefulIntentService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="77" selection-start="825" selection-end="890" vertical-scroll-proportion="0.4832776" vertical-offset="0" max-vertical-offset="1853">
-          <folding />
-        </state>
+        <state line="23" column="77" selection-start="825" selection-end="890" vertical-scroll-proportion="0.4832776" vertical-offset="0" max-vertical-offset="1853" />
       </provider>
     </entry>
     <entry file="file://D:/Compiler/Android SDK/sources/android-18/android/database/Observable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="22" selection-start="1003" selection-end="1003" vertical-scroll-proportion="-0.4548495" vertical-offset="510" max-vertical-offset="1275">
-          <folding />
-        </state>
+        <state line="28" column="22" selection-start="1003" selection-end="1003" vertical-scroll-proportion="-0.4548495" vertical-offset="510" max-vertical-offset="1275" />
       </provider>
     </entry>
     <entry file="file://D:/Compiler/Android SDK/sources/android-18/android/database/DataSetObservable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="45" selection-start="871" selection-end="871" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="782">
-          <folding />
-        </state>
+        <state line="23" column="45" selection-start="871" selection-end="871" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="782" />
       </provider>
     </entry>
     <entry file="file://D:/Compiler/Android SDK/sources/android-18/android/widget/BaseAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="24" selection-start="1166" selection-end="1166" vertical-scroll-proportion="0.19063546" vertical-offset="107" max-vertical-offset="1258">
-          <folding />
-        </state>
+        <state line="30" column="24" selection-start="1166" selection-end="1166" vertical-scroll-proportion="0.19063546" vertical-offset="107" max-vertical-offset="1258" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/model/Artist.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="96" column="0" selection-start="2510" selection-end="2510" vertical-scroll-proportion="0.677643" vertical-offset="1173" max-vertical-offset="2125">
-          <folding />
-        </state>
+        <state line="96" column="0" selection-start="2510" selection-end="2510" vertical-scroll-proportion="0.677643" vertical-offset="1173" max-vertical-offset="2125" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/model/Playlist.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="27" selection-start="5204" selection-end="5204" vertical-scroll-proportion="0.0" vertical-offset="2380" max-vertical-offset="3383">
-          <folding />
-        </state>
+        <state line="160" column="27" selection-start="5204" selection-end="5204" vertical-scroll-proportion="0.0" vertical-offset="2380" max-vertical-offset="3383" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/model/Chord.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="128" selection-end="128" vertical-scroll-proportion="-0.7660312" vertical-offset="510" max-vertical-offset="1802">
-          <folding />
-        </state>
+        <state line="7" column="13" selection-start="128" selection-end="128" vertical-scroll-proportion="-0.7660312" vertical-offset="510" max-vertical-offset="1802" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/menu/main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="598">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="598" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/InfinityAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="25" selection-start="879" selection-end="879" vertical-scroll-proportion="-0.60535115" vertical-offset="600" max-vertical-offset="3825">
-          <folding />
-        </state>
+        <state line="30" column="25" selection-start="879" selection-end="879" vertical-scroll-proportion="-0.60535115" vertical-offset="600" max-vertical-offset="3825" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/model/Song.java">
@@ -2040,30 +1746,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/SortUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="267" selection-end="267" vertical-scroll-proportion="-0.41247833" vertical-offset="357" max-vertical-offset="1156">
-          <folding />
-        </state>
+        <state line="12" column="13" selection-start="267" selection-end="267" vertical-scroll-proportion="-0.41247833" vertical-offset="357" max-vertical-offset="1156" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ReflectionUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="280" selection-end="280" vertical-scroll-proportion="0.26516464" vertical-offset="0" max-vertical-offset="833">
-          <folding />
-        </state>
+        <state line="9" column="13" selection-start="280" selection-end="280" vertical-scroll-proportion="0.26516464" vertical-offset="0" max-vertical-offset="833" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/ArtistAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="26" selection-start="1251" selection-end="1251" vertical-scroll-proportion="0.0" vertical-offset="188" max-vertical-offset="1428">
-          <folding />
-        </state>
+        <state line="48" column="26" selection-start="1251" selection-end="1251" vertical-scroll-proportion="0.0" vertical-offset="188" max-vertical-offset="1428" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/SongListAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="37" selection-start="2054" selection-end="2054" vertical-scroll-proportion="0.56688964" vertical-offset="681" max-vertical-offset="2023">
-          <folding />
-        </state>
+        <state line="78" column="37" selection-start="2054" selection-end="2054" vertical-scroll-proportion="0.56688964" vertical-offset="681" max-vertical-offset="2023" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SplashScreen.java">
@@ -2089,41 +1787,17 @@
             <element signature="docComment;field#mp3ServiceIntent#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onSaveInstanceState#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#9761#9831#0" expanded="false" />
-            <element signature="e#12164#12229#0" expanded="false" />
-            <element signature="e#12568#12588#0" expanded="false" />
-            <element signature="e#12806#12842#0" expanded="false" />
-            <element signature="e#12981#13064#0" expanded="false" />
-            <element signature="e#13249#13300#0" expanded="false" />
-            <element signature="e#13347#13430#0" expanded="false" />
-            <element signature="e#14123#14200#0" expanded="false" />
             <element signature="method#onSearchRequested#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#15619#15679#0" expanded="false" />
-            <element signature="e#16881#17125#0" expanded="false" />
-            <element signature="e#17110#17111#0" expanded="false" />
-            <element signature="e#17393#17451#0" expanded="false" />
             <element signature="docComment;method#onSearchRequested#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onSearchRequested#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;method#setUpActionBar#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#18451#18526#0" expanded="false" />
             <element signature="method#setUpSlidingMenu#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#18919#18939#0" expanded="false" />
-            <element signature="e#19115#19146#0" expanded="false" />
-            <element signature="e#19318#19402#0" expanded="false" />
             <element signature="method#onNewIntent#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;method#handleIntent#0;class#MainActivity#0" expanded="false" />
             <element signature="method#handleIntent#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;method#setUpListView#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;method#setUpMp3Service#0;class#MainActivity#0" expanded="false" />
-            <element signature="class#22705:23263" expanded="false" />
-            <element signature="method#onServiceConnected#0;class#22705:23263" expanded="false" />
-            <element signature="method#onServiceDisconnected#0;class#22705:23263" expanded="false" />
-            <element signature="e#23486#23558#0" expanded="false" />
             <element signature="class#COMMIT_TYPE#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#24168#24208#0" expanded="false" />
-            <element signature="e#27310#27539#0" expanded="false" />
-            <element signature="e#27524#27525#0" expanded="false" />
-            <element signature="e#29919#29985#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2137,56 +1811,22 @@
     </entry>
     <entry file="file://D:/Compiler/Android SDK/sources/android-18/android/widget/ListView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="37" selection-start="2405" selection-end="2405" vertical-scroll-proportion="0.33277592" vertical-offset="311" max-vertical-offset="62560">
-          <folding />
-        </state>
+        <state line="72" column="37" selection-start="2405" selection-end="2405" vertical-scroll-proportion="0.33277592" vertical-offset="311" max-vertical-offset="62560" />
       </provider>
     </entry>
     <entry file="file://D:/Compiler/Android SDK/sources/android-18/android/widget/AbsListView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1722" column="18" selection-start="58169" selection-end="58169" vertical-scroll-proportion="0.9373849" vertical-offset="27303" max-vertical-offset="110245">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="43" selection-start="1680" selection-end="1680" vertical-scroll-proportion="-2.4882944" vertical-offset="1879" max-vertical-offset="6120">
-          <folding>
-            <element signature="method#onScroll#0;class#InfinityListView#0" expanded="false" />
-            <element signature="method#scheduleWork#0;class#InfinityListView#0" expanded="false" />
-            <element signature="method#cleanState#0;class#InfinityListView#0" expanded="false" />
-            <element signature="method#append#0;class#InfinityListView#0" expanded="false" />
-            <element signature="method#setListViewProperty#0;class#InfinityListView#0" expanded="false" />
-          </folding>
-        </state>
+        <state line="1722" column="18" selection-start="58169" selection-end="58169" vertical-scroll-proportion="0.9373849" vertical-offset="27303" max-vertical-offset="110245" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ScreenUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="193" selection-end="193" vertical-scroll-proportion="0.11371238" vertical-offset="0" max-vertical-offset="598">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
+        <state line="8" column="13" selection-start="193" selection-end="193" vertical-scroll-proportion="0.11371238" vertical-offset="0" max-vertical-offset="598" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ThemeUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="211" selection-end="211" vertical-scroll-proportion="0.22742476" vertical-offset="0" max-vertical-offset="646">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/UIUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="277" column="0" selection-start="10328" selection-end="10328" vertical-scroll-proportion="0.83362216" vertical-offset="2987" max-vertical-offset="3570">
-          <folding>
-            <element signature="method#enableDisableActivitiesByFormFactor#0;class#UIUtils#0" expanded="false" />
-          </folding>
-        </state>
+        <state line="9" column="13" selection-start="211" selection-end="211" vertical-scroll-proportion="0.22742476" vertical-offset="0" max-vertical-offset="646" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchResultFragment.java">
@@ -2198,19 +1838,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/adapter/FindByChordAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="27" selection-start="1178" selection-end="1187" vertical-scroll-proportion="0.2625418" vertical-offset="370" max-vertical-offset="1853">
-          <folding>
-            <element signature="e#636#653#0" expanded="true" />
-            <element signature="method#getView#0;class#FindByChordAdapter#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="0" selection-start="1770" selection-end="1770" vertical-scroll-proportion="0.028428094" vertical-offset="629" max-vertical-offset="2771">
-          <folding />
-        </state>
+        <state line="43" column="27" selection-start="1178" selection-end="1187" vertical-scroll-proportion="0.2625418" vertical-offset="370" max-vertical-offset="1853" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/values/ids.xml">
@@ -2223,39 +1851,129 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchChordFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="251" column="89" selection-start="9263" selection-end="9263" vertical-scroll-proportion="0.0" vertical-offset="3938" max-vertical-offset="4539">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#8261#8285#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_song_detail.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="161" column="64" selection-start="6348" selection-end="6348" vertical-scroll-proportion="-13.08" vertical-offset="2410" max-vertical-offset="3876">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_song_detail.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="161" column="64" selection-start="6348" selection-end="6348" vertical-scroll-proportion="0.5706806" vertical-offset="2410" max-vertical-offset="3876" />
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongDetailFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="214" column="46" selection-start="7345" selection-end="7345" vertical-scroll-proportion="0.93413174" vertical-offset="1765" max-vertical-offset="3638">
+        <state line="349" column="31" selection-start="13173" selection-end="13173" vertical-scroll-proportion="0.4464883" vertical-offset="3082" max-vertical-offset="3689">
           <folding>
-            <element signature="e#1372#1414#0" expanded="true" />
-            <element signature="e#1679#1688#0" expanded="true" />
-            <element signature="e#1738#1747#0" expanded="true" />
-            <element signature="e#1797#1806#0" expanded="true" />
             <element signature="method#onCreateView#0;class#SongDetailFragment#0" expanded="false" />
             <element signature="method#openFullScreenSong#0;class#SongDetailFragment#0" expanded="false" />
             <element signature="method#setUpRelatedSongs#0;class#SongDetailFragment#0" expanded="false" />
-            <element signature="e#7193#7214#0" expanded="true" />
-            <element signature="e#8179#8200#0" expanded="true" />
-            <element signature="e#9105#9126#0" expanded="true" />
-            <element signature="e#9620#9626#0" expanded="true" />
+            <element signature="e#7193#7214#0" expanded="false" />
+            <element signature="e#8255#8276#0" expanded="false" />
+            <element signature="e#9259#9280#0" expanded="false" />
             <element signature="method#addSongsToLayout#0;class#SongDetailFragment#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="30" selection-start="273" selection-end="273" vertical-scroll-proportion="0.34949833" vertical-offset="63" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/BunnyApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="13" selection-start="376" selection-end="376" vertical-scroll-proportion="0.31398416" vertical-offset="0" max-vertical-offset="612">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/HeadlessFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="17" selection-start="3108" selection-end="3108" vertical-scroll-proportion="0.0" vertical-offset="439" max-vertical-offset="2108">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/UIUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="275" column="0" selection-start="10325" selection-end="10325" vertical-scroll-proportion="0.77257526" vertical-offset="3618" max-vertical-offset="4216">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/task/AsyncActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="60" selection-start="1289" selection-end="1289" vertical-scroll-proportion="0.80100334" vertical-offset="31" max-vertical-offset="884">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="182" column="0" selection-start="7076" selection-end="7076" vertical-scroll-proportion="0.0" vertical-offset="2637" max-vertical-offset="7565">
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#8792#9229#0" expanded="false" />
+            <element signature="e#9210#9211#0" expanded="false" />
+            <element signature="e#13369#13575#0" expanded="false" />
+            <element signature="e#13564#13565#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="72" selection-start="811" selection-end="811" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="2397">
+          <folding>
+            <element signature="e#932#950#0" expanded="false" />
+            <element signature="e#1376#1394#0" expanded="false" />
+            <element signature="e#1542#1560#0" expanded="false" />
+            <element signature="e#1728#1746#0" expanded="false" />
+            <element signature="e#1851#1869#0" expanded="false" />
+            <element signature="e#1976#1994#0" expanded="false" />
+            <element signature="e#2478#2496#0" expanded="false" />
+            <element signature="e#3170#3206#0" expanded="false" />
+            <element signature="e#3509#3538#0" expanded="false" />
+            <element signature="e#3703#3742#0" expanded="false" />
+            <element signature="e#3910#3949#0" expanded="false" />
+            <element signature="e#4122#4160#0" expanded="false" />
+            <element signature="e#4293#4322#0" expanded="false" />
+            <element signature="e#5142#5172#0" expanded="false" />
+            <element signature="e#5299#5331#0" expanded="false" />
+            <element signature="e#5475#5507#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="121" column="63" selection-start="3971" selection-end="3971" vertical-scroll-proportion="0.0" vertical-offset="966" max-vertical-offset="3298">
+          <folding>
+            <element signature="e#1325#1367#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Compiler/Android SDK/sources/android-18/android/content/pm/ActivityInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="232" column="28" selection-start="9703" selection-end="9760" vertical-scroll-proportion="0.33277592" vertical-offset="3473" max-vertical-offset="10523">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/PlaylistManagerFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="138" column="9" selection-start="4305" selection-end="4305" vertical-scroll-proportion="0.75" vertical-offset="1642" max-vertical-offset="3621">
+          <folding>
+            <element signature="e#1278#1322#0" expanded="true" />
+            <element signature="e#3353#3749#0" expanded="true" />
+            <element signature="e#3738#3739#0" expanded="true" />
+            <element signature="e#6437#6458#0" expanded="true" />
           </folding>
         </state>
       </provider>
