@@ -10,11 +10,26 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/logo_header"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:src="@drawable/biglogo"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
+        <TextView
+            android:id="@+id/status"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="-50dp"
+            android:layout_alignBottom="@id/logo_header"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:fontFamily="@string/font_light"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checking_version_press_back"
+            />
         <TextView
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"

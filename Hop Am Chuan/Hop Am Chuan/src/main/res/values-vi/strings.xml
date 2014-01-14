@@ -77,9 +77,9 @@
     <string name="chord_finger_position">Cách bấm hợp âm</string>
     <string name="search_box_placeholder">Tên bài hát, tác giả, ca sĩ…</string>
     <string name="current_version">Cập nhật lần cuối:</string>
-    <string name="setting_auto_update">Tự động cập nhật bài hát mới</string>
+    <string name="setting_auto_update">Cập nhật bài hát mới khi khởi động</string>
     <string name="setting_auto_update_button">Cập nhật bài hát mới</string>
-    <string name="setting_auto_sync">Tự động đồng bộ playlist</string>
+    <string name="setting_auto_sync">Đồng bộ playlist khi khởi động</string>
     <string name="update_now_button">Cập nhật ngay</string>
     <string name="title_activity_splash_screen">Hợp Âm Chuẩn</string>
     <string name="title_activity_test_list_song">TestListSong</string>
@@ -202,5 +202,11 @@
     <string name="duplicate_chord">Hợp âm này đã có trong danh sách!</string>
     <string name="empty_list_search">Vui lòng thêm ít nhất 1 hợp âm vào danh sách</string>
     <string name="no_more_song">Không còn bài hát nào để hiển thị</string>
+    <string name="no_song_available">Chưa có bài hát nào!</string>
+    <string name="no_playlist_available">Chưa có playlist nào!\nNhấn nút + để tạo playlist</string>
+    <string name="no_result_found">Không tìm thấy kết quả nào!</string>
+    <string name="loading">Đang tải…</string>
+    <string name="hide">Ẩn đi</string>
+    <string name="checking_version_press_back">Đang cập nhật bài hát mới…\nNhấn Back để bỏ qua.</string>
 
 </resources>

@@ -120,7 +120,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
     /////////////////////////////////////////////////////////////////
     ////////////////// LIFE CYCLE ACTIVITY METHOD ///////////////////
 
-    public static final boolean DEVELOPER_MODE = false;
+    public static final boolean DEVELOPER_MODE = true;
 
     /** Open sliding menu when press menu option **/
     @Override

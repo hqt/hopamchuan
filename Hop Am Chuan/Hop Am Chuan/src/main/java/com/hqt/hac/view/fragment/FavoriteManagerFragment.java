@@ -135,6 +135,8 @@ public class FavoriteManagerFragment extends  Fragment implements
         property.Loader(this).Adapter(mAdapter).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
                 .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
         mListView.setListViewProperty(property);
+        mListView.setEmptyView(rootView.findViewById(R.id.empty));
+
 
         // Event for right menu click
         popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);

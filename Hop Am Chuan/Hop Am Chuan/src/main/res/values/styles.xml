@@ -437,7 +437,7 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
-    <style name="SplashTheme.FullScreen" parent="android:Theme">
+    <style name="SplashTheme.FullScreen" parent="android:Theme.DeviceDefault">
         <item name="android:windowBackground">@null</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
@@ -474,6 +474,15 @@
         <item name="android:paddingBottom">15dp</item>
         <item name="android:background">@drawable/dropmenu_item</item>
         <item name="android:clickable">true</item>
+    </style>
+
+    <style name="emptyView">
+        <item name="android:visibility">gone</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@string/font_light</item>
     </style>
 
 </resources>

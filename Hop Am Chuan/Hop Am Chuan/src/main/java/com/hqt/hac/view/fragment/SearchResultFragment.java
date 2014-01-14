@@ -127,6 +127,7 @@ public class SearchResultFragment extends Fragment implements
         property.Loader(this).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
                 .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
         mListView.setListViewProperty(property);
+        mListView.setEmptyView(rootView.findViewById(R.id.empty));
 
         if (chords == null) {
             /** Spinner : create mAdapter for Spinner */

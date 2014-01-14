@@ -37,7 +37,10 @@ public class APIUtils {
         // new code using POST
         Map<String, String> post_params = generatePostRequestParams(params);
 
-        String jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_GET_PROFILE, post_params);
+        String jsonString = NetworkUtils.getResponseFromPOSTRequest(
+                Config.SERVICE_GET_PROFILE,
+                post_params,
+                Config.DEFAULT_CONNECT_TIMEOUT);
 
         if (jsonString != null && jsonString.equals("-1")) {
             // Wrong password
@@ -61,7 +64,10 @@ public class APIUtils {
 
         // new code using POST
         Map<String, String> post_params = generatePostRequestParams(params);
-        String jsonData = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_LASTEST_VERSION_APP, post_params);
+        String jsonData = NetworkUtils.getResponseFromPOSTRequest(
+                Config.SERVICE_LASTEST_VERSION_APP,
+                post_params,
+                Config.DEFAULT_CONNECT_TIMEOUT);
 
         LOGE(TAG, "Version Json: " + jsonData);
         return ParserUtils.getDBVersionDetail(jsonData);
@@ -80,7 +86,10 @@ public class APIUtils {
 
         // new code using POST
         Map<String, String> post_params = generatePostRequestParams(params);
-        String jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_GET_SONGS_FROM_DATE, post_params);
+        String jsonString = NetworkUtils.getResponseFromPOSTRequest(
+                Config.SERVICE_GET_SONGS_FROM_DATE,
+                post_params,
+                Config.DEFAULT_CONNECT_TIMEOUT);
         LOGE("TRUNGDQ", "Song list: " + jsonString);
         return ParserUtils.parseAllSongsFromJSONString(jsonString);
     }
@@ -102,7 +111,10 @@ public class APIUtils {
 
         // new code using POST
         Map<String, String> post_params = generatePostRequestParams(params);
-        String jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_SYNC_PLAYLIST, post_params);
+        String jsonString = NetworkUtils.getResponseFromPOSTRequest(
+                Config.SERVICE_SYNC_PLAYLIST,
+                post_params,
+                Config.DEFAULT_CONNECT_TIMEOUT);
 
         LOGE(TAG, "Playlist JSON: " + jsonString);
         return ParserUtils.parseAllPlaylistFromJSONString(jsonString);
@@ -125,7 +137,10 @@ public class APIUtils {
 
         // new code using post request
         Map<String, String> post_params = generatePostRequestParams(params);
-        String jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_SYNC_FAVORITE, post_params);
+        String jsonString = NetworkUtils.getResponseFromPOSTRequest(
+                Config.SERVICE_SYNC_FAVORITE,
+                post_params,
+                Config.DEFAULT_CONNECT_TIMEOUT);
 
         LOGE(TAG, "Favorite JSON: " + jsonString);
         return ParserUtils.parseAllSongIdsFromJSONString(jsonString);
@@ -136,7 +151,10 @@ public class APIUtils {
         Map<String, String> params = new HashMap<String, String>();
         params.put("mp3Link", link);
         Map<String, String> post_params = generatePostRequestParams(params);
-        String jsonString = NetworkUtils.getResponseFromPOSTRequest(Config.SERVICE_GET_MP3_LINK, post_params);
+        String jsonString = NetworkUtils.getResponseFromPOSTRequest(
+                Config.SERVICE_GET_MP3_LINK,
+                post_params,
+                Config.DEFAULT_CONNECT_TIMEOUT);
         return jsonString;
     }
 
