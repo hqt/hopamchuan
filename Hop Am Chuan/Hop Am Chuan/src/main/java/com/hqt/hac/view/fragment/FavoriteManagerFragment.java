@@ -24,6 +24,7 @@ import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.FavoriteDataAccessLayer;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.utils.NetworkUtils;
+import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
@@ -120,6 +121,7 @@ public class FavoriteManagerFragment extends  Fragment implements
                 mHandler.sendMessage(mHandler.obtainMessage());
             }
         });
+        UIUtils.setOrientationLock(getActivity());
         componentLoad.start();
 
         return rootView;
@@ -217,6 +219,7 @@ public class FavoriteManagerFragment extends  Fragment implements
         @Override
         public void handleMessage(Message msg) {
             setUpComponents();
+            UIUtils.releaseOrientationLock(getActivity());
         }
     }
 }

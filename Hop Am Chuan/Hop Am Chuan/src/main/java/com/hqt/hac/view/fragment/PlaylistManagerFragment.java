@@ -23,6 +23,7 @@ import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.helper.widget.PlaylistRightMenuHandler;
 import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
+import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
@@ -121,22 +122,13 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
             public void run() {
                 try {
                     Thread.sleep(Config.LOADING_SMOOTHING_DELAY);
-                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 mHandler.sendMessage(mHandler.obtainMessage());
             }
         });
-        // getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
-        // activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
-        int currentOrientation = getResources().getConfiguration().orientation;
-        if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE) {
-            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
-        }
-        else {
-            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
-        }
+        UIUtils.setOrientationLock(getActivity());
         componentLoad.start();
 
         return rootView;
@@ -235,7 +227,7 @@ public class PlaylistManagerFragment extends Fragment implements PlaylistManager
         @Override
         public void handleMessage(Message msg) {
             setUpComponents();
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+            UIUtils.releaseOrientationLock(getActivity());
 
         }
     }

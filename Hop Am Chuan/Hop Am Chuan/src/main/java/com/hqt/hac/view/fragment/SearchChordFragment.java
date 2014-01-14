@@ -18,6 +18,7 @@ import com.hqt.hac.helper.widget.BackgroundContainer;
 import com.hqt.hac.helper.widget.DeleteAnimListView;
 import com.hqt.hac.model.Chord;
 import com.hqt.hac.model.dal.ChordDataAccessLayer;
+import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.BunnyApplication;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
@@ -122,6 +123,7 @@ public class SearchChordFragment extends Fragment implements
                 mHandler.sendMessage(mHandler.obtainMessage());
             }
         });
+        UIUtils.setOrientationLock(getActivity());
         componentLoad.start();
 
         return rootView;
@@ -266,6 +268,7 @@ public class SearchChordFragment extends Fragment implements
         @Override
         public void handleMessage(Message msg) {
             setUpComponents();
+            UIUtils.releaseOrientationLock(getActivity());
         }
     }
 

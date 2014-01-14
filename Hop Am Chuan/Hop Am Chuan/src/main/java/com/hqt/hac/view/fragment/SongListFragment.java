@@ -1,6 +1,8 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,6 +23,7 @@ import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.SongDataAccessLayer;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.utils.NetworkUtils;
+import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
@@ -122,6 +125,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
                 mHandler.sendMessage(mHandler.obtainMessage());
             }
         });
+        UIUtils.setOrientationLock(getActivity());
         componentLoad.start();
 
         return rootView;
@@ -223,6 +227,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         @Override
         public void handleMessage(Message msg) {
             setUpComponents();
+            UIUtils.releaseOrientationLock(getActivity());
         }
     }
 }
