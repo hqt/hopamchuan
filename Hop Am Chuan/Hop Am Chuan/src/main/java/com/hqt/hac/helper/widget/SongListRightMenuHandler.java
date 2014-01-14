@@ -60,7 +60,6 @@ public class SongListRightMenuHandler {
     /*** The popup window's controls */
     private static Button favoriteBtn;
     private static Button playlistBtn;
-    private static Button shareBtn;
 
 
     /*** Dialog for playlist list */
@@ -91,7 +90,7 @@ public class SongListRightMenuHandler {
         // Popup menu item
         favoriteBtn = (Button) popupWindow.getContentView().findViewById(R.id.song_list_menu_addtofavorite);
         playlistBtn = (Button) popupWindow.getContentView().findViewById(R.id.song_list_menu_addtoplaylist);
-        shareBtn = (Button) popupWindow.getContentView().findViewById(R.id.song_list_menu_share);
+        Button shareBtn = (Button) popupWindow.getContentView().findViewById(R.id.song_list_menu_share);
 
         // "Add to Favorite" button
         favoriteBtn.setOnClickListener(new ToggleFavorite());
@@ -143,6 +142,7 @@ public class SongListRightMenuHandler {
                 playlistListDialog.setTitle(R.string.title_add_to_playlist_dialog);
 
                 // Refresh playlists
+                playlistManagerAdapter = null;
                 playlistAdapter.setPlaylists(PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext()));
                 playlistListDialog.show();
             }
@@ -260,7 +260,7 @@ public class SongListRightMenuHandler {
                     playlistManagerAdapter.playLists = playlists;
                     playlistManagerAdapter.notifyDataSetChanged();
                 } else {
-                    // If the dialog is called in Add to playlist popu. Then reset the adapter.
+                    // If the dialog is called in Add to playlist popup. Then reset the adapter.
                     playlistAdapter = new PlaylistListAdapter(activity, playlists);
                     mListView.setAdapter(playlistAdapter);
                     mListView.setOnItemClickListener(new AddToPlaylistOnClick());
@@ -304,7 +304,7 @@ public class SongListRightMenuHandler {
 
                 // Update UI
                 theStar.setImageResource(R.drawable.star_liked);
-                selectedSong.isFavorite = (int) (new Date()).getTime();
+                selectedSong.isFavorite = (new Date()).getTime();
             }
 
             popupWindow.dismiss();
@@ -312,7 +312,7 @@ public class SongListRightMenuHandler {
     }
 
     public static void updateNavDrawerPlaylistList(List<Playlist> playlists) {
-        LOGE("TRUNGDQ", "nav: " + navDrawerPlaylistItemAdapter);
+        // LOGE("TRUNGDQ", "nav: " + navDrawerPlaylistItemAdapter);
         if (navDrawerPlaylistItemAdapter != null) {
             navDrawerPlaylistItemAdapter.playlists = playlists;
             navDrawerPlaylistItemAdapter.notifyDataSetChanged();

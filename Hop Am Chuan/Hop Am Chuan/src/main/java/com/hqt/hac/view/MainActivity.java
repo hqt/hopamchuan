@@ -718,7 +718,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
     @Override
     public void gotoPlayList(int playlistId) {
-        Playlist playlist = playlistList.get(playlistId);
+        Playlist playlist = playlistItemAdapter.playlists.get(playlistId);
         PlaylistDetailFragment fragment = new PlaylistDetailFragment();
 
         // setting parameters

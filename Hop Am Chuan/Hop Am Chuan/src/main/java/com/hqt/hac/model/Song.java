@@ -24,8 +24,8 @@ public class Song implements Parcelable {
     public String firstLyric;
     public Date date;
     public String titleAscii;
-    public int lastView;
-    public int isFavorite;
+    public long lastView;
+    public long isFavorite;
     public String rhythm;
 
     // private modifier for lazy loading
@@ -40,7 +40,7 @@ public class Song implements Parcelable {
      */
     public Song(int id, int songId, String title, String link, String content, String firstLyric, Date date,
                 List<Artist> authors, List<Chord> chords, List<Artist> singers,
-                String titleAscii, int lastView, int isFavorite, String rhythm) {
+                String titleAscii, long lastView, long isFavorite, String rhythm) {
         this.id = id;
         this.songId = songId;
         this.title = title;
@@ -82,7 +82,8 @@ public class Song implements Parcelable {
      * Constructor with no arrays and manual-set additional fields.
      * info - no - manual
      */
-    public Song(int id, int songId, String title, String link, String content, String firstLyric, Date date, String titleAscii, int lastView, int isFavorite, String rhythm) {
+    public Song(int id, int songId, String title, String link, String content, String firstLyric,
+                Date date, String titleAscii, long lastView, long isFavorite, String rhythm) {
         this.id = id;
         this.songId = songId;
         this.title = title;
@@ -117,7 +118,7 @@ public class Song implements Parcelable {
      * Constructor with no private fields, manual set additional fields
      */
     public Song(int id, int songId, String title, String link, String firstLyric, Date date,
-                String titleAscii, int lastView, int isFavorite, String rhythm) {
+                String titleAscii, long lastView, long isFavorite, String rhythm) {
         this.id = id;
         this.songId = songId;
         this.title = title;
@@ -324,8 +325,8 @@ public class Song implements Parcelable {
         dest.writeString(firstLyric);
         dest.writeLong(date.getTime());
         dest.writeString(titleAscii);
-        dest.writeInt(lastView);
-        dest.writeInt(isFavorite);
+        dest.writeLong(lastView);
+        dest.writeLong(isFavorite);
         dest.writeString(rhythm);
         dest.writeString(content);
         dest.writeTypedList(authors);
@@ -341,8 +342,8 @@ public class Song implements Parcelable {
         firstLyric = in.readString();
         date = new Date(in.readLong());
         titleAscii = in.readString();
-        lastView = in.readInt();
-        isFavorite = in.readInt();
+        lastView = in.readLong();
+        isFavorite = in.readLong();
         rhythm = in.readString();
         content = in.readString();
 

@@ -29,7 +29,7 @@ public class SortUtils {
             return new Comparator<Song>() {
                 @Override
                 public int compare(Song lhs, Song rhs) {
-                    return rhs.isFavorite - lhs.isFavorite;
+                    return (int) (rhs.isFavorite - lhs.isFavorite);
                 }
             };
         }

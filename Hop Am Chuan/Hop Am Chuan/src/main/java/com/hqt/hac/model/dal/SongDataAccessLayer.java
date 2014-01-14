@@ -135,8 +135,8 @@ public class SongDataAccessLayer {
 //                List<Chord> chords = getChordsBySongId(context, id);
                 String titleAscii = c.getString(titleAsciiCol);
                 String rhythm = c.getString(rhythmCol);
-                int isFavorite = c.getInt(isFavoriteCol);
-                int lastView = c.getInt(lastViewCol);
+                long isFavorite = c.getLong(isFavoriteCol);
+                long lastView = c.getLong(lastViewCol);
 
                 LOGD(TAG, "Get Song By Id: " + songId + ":" + title);
                 return new Song(_id, id, title, link, firstLyric, date,
