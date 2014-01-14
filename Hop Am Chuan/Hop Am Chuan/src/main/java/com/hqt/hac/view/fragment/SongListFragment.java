@@ -63,7 +63,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
      * **/
     private int songListMode = 0;
 
-    private ComponentLoadHandler mHandler;
+//    private ComponentLoadHandler mHandler;
     View rootView;
     LayoutInflater inflater;
 
@@ -113,21 +113,21 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         spinner.setOnItemSelectedListener(this);    // because this fragment has implemented method
 
         // Load component with a delay to reduce lag
-        mHandler = new ComponentLoadHandler();
-        Thread componentLoad = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(Config.LOADING_SMOOTHING_DELAY);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                mHandler.sendMessage(mHandler.obtainMessage());
-            }
-        });
-        UIUtils.setOrientationLock(getActivity());
-        componentLoad.start();
-
+//        mHandler = new ComponentLoadHandler();
+//        Thread componentLoad = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(Config.LOADING_SMOOTHING_DELAY);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                mHandler.sendMessage(mHandler.obtainMessage());
+//            }
+//        });
+//        UIUtils.setOrientationLock(getActivity());
+//        componentLoad.start();
+        setUpComponents();
         return rootView;
     }
 
@@ -223,11 +223,11 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     /////////////////
     //
     /////////////////
-    private class ComponentLoadHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            setUpComponents();
-            UIUtils.releaseOrientationLock(getActivity());
-        }
-    }
+//    private class ComponentLoadHandler extends Handler {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            setUpComponents();
+//            UIUtils.releaseOrientationLock(getActivity());
+//        }
+//    }
 }
