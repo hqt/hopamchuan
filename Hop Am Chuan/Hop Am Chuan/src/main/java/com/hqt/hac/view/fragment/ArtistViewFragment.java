@@ -31,7 +31,7 @@ import java.util.List;
  * Fragment to show Artist Song's
  * Created by ThaoHQSE60963 on 1/9/14.
  */
-public class ArtistViewFragment extends Fragment implements InfinityListView.ILoaderContent, IHacFragment {
+public class ArtistViewFragment extends CustomFragment implements InfinityListView.ILoaderContent {
 
     /** Activity running this fragment */
     MainActivity activity;

@@ -31,7 +31,7 @@ import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class SongDetailFragment extends Fragment implements IHacFragment {
+public class SongDetailFragment extends CustomFragment {
 
     private static String TAG = makeLogTag(PlaylistDetailFragment.class);
 

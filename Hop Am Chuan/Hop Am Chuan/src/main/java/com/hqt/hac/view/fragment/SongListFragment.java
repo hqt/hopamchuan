@@ -36,9 +36,8 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
 /**
  * Fragment uses for viewing songs as categories
  */
-public class SongListFragment extends Fragment implements AdapterView.OnItemSelectedListener,
-        InfinityListView.ILoaderContent,
-        IHacFragment {
+public class SongListFragment extends CustomFragment implements AdapterView.OnItemSelectedListener,
+        InfinityListView.ILoaderContent  {
 
     public static final String TAG = makeLogTag(SongListFragment.class);
 
@@ -129,6 +128,13 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
 //        componentLoad.start();
         setUpComponents();
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        activity.getSlidingMenu().showContent();
+        activity.getSlidingMenu().setEnabled(true);
     }
 
     private void setUpComponents() {

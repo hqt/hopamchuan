@@ -90,10 +90,9 @@ public class ProfilePopup {
             @Override
             public void onAfterLogout() {
                 // Reload the mActivity
-                dialog.dismiss();
-                Intent intent = new Intent(activity, MainActivity.class);
-                activity.startActivity(intent);
+                Intent intent = activity.getIntent();
                 activity.finish();
+                activity.startActivity(intent);
             }
         });
     }

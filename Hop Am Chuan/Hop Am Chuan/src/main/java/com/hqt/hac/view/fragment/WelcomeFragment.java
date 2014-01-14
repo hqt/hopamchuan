@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.hqt.hac.view.BunnyApplication;
 import com.hqt.hac.view.R;
 
-public class WelcomeFragment extends  Fragment implements IHacFragment {
+public class WelcomeFragment extends CustomFragment {
 
     public int titleRes = R.string.title_activity_welcome_fragment;
 

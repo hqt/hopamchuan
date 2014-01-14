@@ -34,10 +34,9 @@ import java.util.List;
 import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 
-public class FavoriteManagerFragment extends  Fragment implements
+public class FavoriteManagerFragment extends CustomFragment implements
         AdapterView.OnItemSelectedListener,
-        InfinityListView.ILoaderContent,
-        IHacFragment {
+        InfinityListView.ILoaderContent {
 
     public int titleRes = R.string.title_activity_my_favorite_fragment;
 

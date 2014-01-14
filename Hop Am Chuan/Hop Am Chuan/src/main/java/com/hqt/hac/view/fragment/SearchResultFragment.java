@@ -36,8 +36,7 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
  * Fragment to show search result
  * Created by ThaoHQSE60963 on 1/8/14.
  */
-public class SearchResultFragment extends Fragment implements
-        IHacFragment,
+public class SearchResultFragment extends CustomFragment implements
         InfinityListView.ILoaderContent,
         AdapterView.OnItemSelectedListener {
 

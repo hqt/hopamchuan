@@ -29,7 +29,7 @@ import java.util.List;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class PlaylistDetailFragment extends  Fragment implements IHacFragment, InfinityListView.ILoaderContent {
+public class PlaylistDetailFragment extends CustomFragment implements InfinityListView.ILoaderContent {
 
     private static String TAG = makeLogTag(PlaylistDetailFragment.class);
 

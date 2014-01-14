@@ -13,11 +13,10 @@ import com.hqt.hac.view.R;
 
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class SongViewFragment extends Fragment implements
+public class SongViewFragment extends CustomFragment implements
         SurfaceHolder.Callback,
         MediaPlayer.OnPreparedListener,
-        VideoControllerView.MediaPlayerControl,
-        IHacFragment {
+        VideoControllerView.MediaPlayerControl {
 
 
 public static String TAG = makeLogTag(SongViewFragment.class);

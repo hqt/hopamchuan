@@ -32,7 +32,8 @@ import java.util.List;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class PlaylistManagerFragment extends Fragment implements PlaylistManagerAdapter.IPlaylistManagerAdapter, IHacFragment {
+public class PlaylistManagerFragment extends CustomFragment implements
+        PlaylistManagerAdapter.IPlaylistManagerAdapter {
 
     private static final String TAG = makeLogTag(PlaylistManagerFragment.class);
 
