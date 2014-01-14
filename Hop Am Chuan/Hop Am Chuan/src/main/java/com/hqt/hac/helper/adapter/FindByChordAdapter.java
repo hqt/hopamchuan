@@ -42,6 +42,7 @@ public class FindByChordAdapter extends ArrayAdapter<String> {
     }
 
     public String getChords() {
+        if (chords.size() == 0) return "";
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < chords.size() - 1; ++i) {
             builder.append(chords.get(i) + ",");
@@ -50,9 +51,22 @@ public class FindByChordAdapter extends ArrayAdapter<String> {
         return builder.toString();
     }
 
-    public void addChord(String chord) {
-        chords.add(chord);
-        buildIdMap();
+    public boolean addChord(String chord) {
+        if (!isDuplicatedChord(chord)) {
+            chords.add(chord);
+            buildIdMap();
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public boolean isDuplicatedChord(String chord) {
+        for (int i = 0; i < chords.size(); i++) {
+            if (chords.get(i).equals(chord)) return true;
+        }
+        return false;
     }
 
     public void removeChord(int position) {
