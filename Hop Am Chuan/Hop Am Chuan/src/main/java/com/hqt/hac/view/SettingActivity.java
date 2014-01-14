@@ -57,9 +57,11 @@ import java.util.List;
 import java.util.Map;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 public class SettingActivity extends AsyncActivity {
 
+    private String TAG = makeLogTag(SettingActivity.class);
 
     /** Screen Widget */
     TextView currentVersionTxt;
@@ -657,7 +659,7 @@ public class SettingActivity extends AsyncActivity {
         // instantiate it within the onCreate method
         pm = (PowerManager) mAppContext.getSystemService(Context.POWER_SERVICE);
         wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
-                getClass().getName());
+                TAG);
 
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage(getString(R.string.downloading));
