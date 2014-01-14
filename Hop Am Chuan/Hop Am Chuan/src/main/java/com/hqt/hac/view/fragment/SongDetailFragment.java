@@ -210,10 +210,17 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
             // avoid duplicate
             sameChord = removeDuplicateSongs(sameChordSongs, sameChord);
             if (sameChord.size() == 0) {
-                Toast.makeText(BunnyApplication.getAppContext(), R.string.no_more_song, Toast.LENGTH_LONG).show();
-                sameChordBtn.setVisibility(View.GONE);
-                LOGE("TRUNGDQ", "sameChordSongs: " + sameChordSongs.size());
-                if (sameChordSongs.size() == 1) sameChordLayout.setVisibility(View.GONE);
+                if (sameChordSongs.size() > 1)
+                    Toast.makeText(
+                            BunnyApplication.getAppContext(),
+                            R.string.no_more_song,
+                            Toast.LENGTH_LONG).show();
+                // LOGE("TRUNGDQ", "sameChordSongs 2: " + sameChordSongs.size());
+                if (sameChordSongs.size() == 1) {
+                    (rootView.findViewById(R.id.chords_layout)).setVisibility(View.GONE);
+                } else {
+                    sameChordBtn.setVisibility(View.GONE);
+                }
             } else {
                 currentSameChordSongsCount += sameChord.size();
                 addSongsToLayout(sameChord, sameChordLayout);
@@ -231,10 +238,17 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
             // avoid duplicate
             sameSinger = removeDuplicateSongs(sameSingerSongs, sameSinger);
             if (sameSinger.size() == 0) {
-                Toast.makeText(BunnyApplication.getAppContext(), R.string.no_more_song, Toast.LENGTH_LONG).show();
-                sameSingerBtn.setVisibility(View.GONE);
+                if (sameSingerSongs.size() > 1)
+                    Toast.makeText(
+                            BunnyApplication.getAppContext(),
+                            R.string.no_more_song,
+                            Toast.LENGTH_LONG).show();
                 LOGE("TRUNGDQ", "sameSingerSongs: " + sameSingerSongs.size());
-                if (sameSingerSongs.size() == 1) sameSingerLayout.setVisibility(View.GONE);
+                if (sameSingerSongs.size() == 1) {
+                    (rootView.findViewById(R.id.singers_layout)).setVisibility(View.GONE);
+                } else {
+                    sameSingerBtn.setVisibility(View.GONE);
+                }
             } else {
                 addSongsToLayout(sameSinger, sameSingerLayout);
             }
@@ -251,10 +265,17 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
             // avoid duplicate
             sameAuthor = removeDuplicateSongs(sameAuthorSongs, sameAuthor);
             if (sameAuthor.size()== 0) {
-                Toast.makeText(BunnyApplication.getAppContext(), R.string.no_more_song, Toast.LENGTH_LONG).show();
-                sameAuthorBtn.setVisibility(View.GONE);
-                LOGE("TRUNGDQ", "sameAuthorSongs: " + sameAuthorSongs.size());
-                if (sameAuthorSongs.size() == 1) sameAuthorLayout.setVisibility(View.GONE);
+                if (sameAuthorSongs.size() > 1)
+                    Toast.makeText(
+                            BunnyApplication.getAppContext(),
+                            R.string.no_more_song,
+                            Toast.LENGTH_LONG).show();
+                // LOGE("TRUNGDQ", "sameAuthorSongs: " + sameAuthorSongs.size());
+                if (sameAuthorSongs.size() == 1) {
+                    (rootView.findViewById(R.id.authors_layout)).setVisibility(View.GONE);
+                } else {
+                    sameAuthorBtn.setVisibility(View.GONE);
+                }
             } else {
                 addSongsToLayout(sameAuthor, sameAuthorLayout);
             }
@@ -341,14 +362,14 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
             sameSingerLayout = (LinearLayout) rootView.findViewById(R.id.linear_layout_same_singer);
             sameChordLayout = (LinearLayout) rootView.findViewById(R.id.linear_layout_same_chord);
 
-            /** Same author **/
-            addSameAuthorSongs();
+            /** Same chords **/
+            addSameChordSongs();
 
             /** Same singer **/
             addSameSingerSongs();
 
-            /** Same chords **/
-            addSameChordSongs();
+            /** Same author **/
+            addSameAuthorSongs();
 
             // Action for buttons
             sameChordBtn = (TextView) rootView.findViewById(R.id.same_chord_btn);
