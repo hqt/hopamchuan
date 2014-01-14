@@ -286,8 +286,8 @@
     <string name="auto_update_message">%1$s new songs available. Press OK to update.</string>
     <string name="sync_success">Your playlist/favorite is synchronized with hopamchuan.com</string>
     <string name="auto_sync_error">Could not synchronize your playlist/favorite with hopamchuan.com</string>
-    <string name="duplicate_chord">duplicate chord in search</string>
-    <string name="empty_list_search">empty list search</string>
-    <string name="no_more_song">no more songs loading</string>
+    <string name="duplicate_chord">This chord is already in list</string>
+    <string name="empty_list_search">Please add at least 1 chord</string>
+    <string name="no_more_song">No more song to display</string>
 
 </resources>

@@ -105,6 +105,12 @@ public class ArtistViewFragment extends Fragment implements InfinityListView.ILo
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                SongDetailFragment fragment = new SongDetailFragment();
+                Bundle arguments = new Bundle();
+                arguments.putParcelable("song", songs.get(position));
+                fragment.setArguments(arguments);
+                activity.switchFragmentNormal(fragment);
+                activity.changeTitleBar(songs.get(position).title);
             }
         });
         return rootView;

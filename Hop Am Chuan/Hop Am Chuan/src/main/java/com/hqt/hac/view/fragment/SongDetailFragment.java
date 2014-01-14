@@ -54,7 +54,7 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
     private boolean isPopupOpened = false;
 
     /** data structure to contains all ids. prevent random return duplicate */
-    Set<Integer> samechordSongs = new HashSet<Integer>();
+    Set<Integer> sameChordSongs = new HashSet<Integer>();
     Set<Integer> sameSingerSongs = new HashSet<Integer>();
     Set<Integer> sameAuthorSongs = new HashSet<Integer>();
 
@@ -101,7 +101,7 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
             // set up data structure here. to prevent duplicate current song to suggestion
             sameAuthorSongs.add(song.songId);
             sameSingerSongs.add(song.songId);
-            samechordSongs.add(song.songId);
+            sameChordSongs.add(song.songId);
         } else {
             LOGE(TAG, "no suitable arguments to continues");
             return;
@@ -208,11 +208,12 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
                     currentSameChordSongsCount,
                     Config.DEFAULT_RELATED_SONGS_COUNT);
             // avoid duplicate
-            sameChord = removeDuplicateSongs(samechordSongs, sameChord);
+            sameChord = removeDuplicateSongs(sameChordSongs, sameChord);
             if (sameChord.size() == 0) {
-                Toast.makeText(BunnyApplication.getAppContext(), R.string.no_more_song, Toast.LENGTH_SHORT).show();
+                Toast.makeText(BunnyApplication.getAppContext(), R.string.no_more_song, Toast.LENGTH_LONG).show();
                 sameChordBtn.setVisibility(View.GONE);
-                if (samechordSongs.size() == 1) sameChordLayout.setVisibility(View.GONE);
+                LOGE("TRUNGDQ", "sameChordSongs: " + sameChordSongs.size());
+                if (sameChordSongs.size() == 1) sameChordLayout.setVisibility(View.GONE);
             } else {
                 currentSameChordSongsCount += sameChord.size();
                 addSongsToLayout(sameChord, sameChordLayout);
@@ -230,8 +231,9 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
             // avoid duplicate
             sameSinger = removeDuplicateSongs(sameSingerSongs, sameSinger);
             if (sameSinger.size() == 0) {
-                Toast.makeText(BunnyApplication.getAppContext(), R.string.no_more_song, Toast.LENGTH_SHORT).show();
+                Toast.makeText(BunnyApplication.getAppContext(), R.string.no_more_song, Toast.LENGTH_LONG).show();
                 sameSingerBtn.setVisibility(View.GONE);
+                LOGE("TRUNGDQ", "sameSingerSongs: " + sameSingerSongs.size());
                 if (sameSingerSongs.size() == 1) sameSingerLayout.setVisibility(View.GONE);
             } else {
                 addSongsToLayout(sameSinger, sameSingerLayout);
@@ -249,8 +251,9 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
             // avoid duplicate
             sameAuthor = removeDuplicateSongs(sameAuthorSongs, sameAuthor);
             if (sameAuthor.size()== 0) {
-                Toast.makeText(BunnyApplication.getAppContext(), R.string.no_more_song, Toast.LENGTH_SHORT).show();
+                Toast.makeText(BunnyApplication.getAppContext(), R.string.no_more_song, Toast.LENGTH_LONG).show();
                 sameAuthorBtn.setVisibility(View.GONE);
+                LOGE("TRUNGDQ", "sameAuthorSongs: " + sameAuthorSongs.size());
                 if (sameAuthorSongs.size() == 1) sameAuthorLayout.setVisibility(View.GONE);
             } else {
                 addSongsToLayout(sameAuthor, sameAuthorLayout);

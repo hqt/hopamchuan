@@ -2,6 +2,8 @@ package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +59,10 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
      * **/
     private int songListMode = 0;
 
+    private ComponentLoadHandler mHandler;
+    View rootView;
+    LayoutInflater inflater;
+
     public SongListFragment() {
     }
 
@@ -88,7 +94,8 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         LOGE(TAG, "OnCreateView");
-        View rootView = inflater.inflate(R.layout.fragment_song_list, container, false);
+        rootView = inflater.inflate(R.layout.fragment_song_list, container, false);
+        this.inflater = inflater;
 
         /** Spinner : create mAdapter for Spinner */
         Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner_method_list);
@@ -101,7 +108,25 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         spinner.setAdapter(adapter);    // Apply the mAdapter to the spinner
         spinner.setOnItemSelectedListener(this);    // because this fragment has implemented method
 
+        // Load component with a delay to reduce lag
+        mHandler = new ComponentLoadHandler();
+        Thread componentLoad = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(Config.LOADING_SMOOTHING_DELAY);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                mHandler.sendMessage(mHandler.obtainMessage());
+            }
+        });
+        componentLoad.start();
 
+        return rootView;
+    }
+
+    private void setUpComponents() {
         /** Default song list **/
         //songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), 0, 0);
         songs = new ArrayList<Song>();
@@ -142,22 +167,24 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
                 activity.changeTitleBar(songs.get(position).title);
             }
         });
-
-        return rootView;
     }
 
     int defaultCurrentItemSelect = 0;
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        LOGE(TAG, "On Item Selected");
-        if (position == defaultCurrentItemSelect) return;
-        songs = new ArrayList<Song>();
-        songlistAdapter.setSongs(songs);
-        // Set mode
-        songListMode = position;
-        defaultCurrentItemSelect = position;
-        // Reset the ListView
-        mListView.resetListView(songlistAdapter);
+        try {
+            LOGE(TAG, "On Item Selected");
+            if (position == defaultCurrentItemSelect) return;
+            songs = new ArrayList<Song>();
+            songlistAdapter.setSongs(songs);
+            // Set mode
+            songListMode = position;
+            defaultCurrentItemSelect = position;
+            // Reset the ListView
+            mListView.resetListView(songlistAdapter);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -187,4 +214,13 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         return result;
     }
 
+    /////////////////
+    //
+    /////////////////
+    private class ComponentLoadHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            setUpComponents();
+        }
+    }
 }

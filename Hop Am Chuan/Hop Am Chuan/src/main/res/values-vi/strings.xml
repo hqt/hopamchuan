@@ -199,6 +199,8 @@
     <string name="auto_update_message">Có %1$s bài hát mới. Nhấn OK để tải về.</string>
     <string name="sync_success">Đã đồng bộ playlist/favorite.</string>
     <string name="auto_sync_error">Không thể đồng bộ playlist/favorite</string>
-    <string name="duplicate_chord">duplicate chord in search</string>
+    <string name="duplicate_chord">Hợp âm này đã có trong danh sách!</string>
+    <string name="empty_list_search">Vui lòng thêm ít nhất 1 hợp âm vào danh sách</string>
+    <string name="no_more_song">Không còn bài hát nào để hiển thị</string>
 
 </resources>
