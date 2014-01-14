@@ -220,6 +220,7 @@
     <string name="transpose_down">Decrease</string>
     <string name="transpose_up">Increase</string>
     <string name="split_line">Split lines</string>
+    <string name="join_line">Join lines</string>
     <string name="song_detail_scroll_label">Scrolling</string>
     <string name="play_music">Play music</string>
     <string name="view_full_screen">VIEW LYRICS</string>

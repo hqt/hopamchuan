@@ -133,6 +133,7 @@
     <string name="transpose_down">Hạ tông</string>
     <string name="transpose_up">Nâng tông</string>
     <string name="split_line">Tách dòng</string>
+    <string name="join_line">Gộp dòng</string>
     <string name="song_detail_scroll_label">Cuộn trang</string>
     <string name="play_music">Nghe nhạc</string>
     <string name="view_full_screen">XEM HỢP ÂM</string>

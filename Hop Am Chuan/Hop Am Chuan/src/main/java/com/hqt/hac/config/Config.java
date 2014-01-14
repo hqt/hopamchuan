@@ -69,4 +69,5 @@ public class Config {
     public static final long AUTO_UPDATE_SONGS_DELAY = 10000;
     public static final String BUNDLE_AUTO_UPDATE_SONG = "updateSong";
     public static final long AUTO_SYNC_SONGS_DELAY = 15000;
+    public static final int MAX_LONG_WORK_TIMEOUT = 5000;
 }

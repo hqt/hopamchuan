@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.BitmapDrawable;
 import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -136,5 +137,13 @@ public class ChordClickableSpan extends ClickableSpan {
 
         dialog.show();
 
+    }
+
+    @Override
+    public void updateDrawState(TextPaint ds) {
+        super.updateDrawState(ds);
+
+        // Remove underline
+        ds.setUnderlineText(false);
     }
 }

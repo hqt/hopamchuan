@@ -56,7 +56,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="50dp"
             android:text="@string/example_text"
             android:textColor="#333"
             android:textSize="17sp"
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             style="@style/ListItemTitle"
             android:paddingBottom="5dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="50dp"
             android:textColor="#777"
             android:textSize="15sp"
             android:id="@+id/description"

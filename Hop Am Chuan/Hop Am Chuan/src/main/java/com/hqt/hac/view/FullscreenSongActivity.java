@@ -77,6 +77,8 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     private Dialog dialogMusic;
     private View dialogMusicLayout;
 
+    private Button btnLineModeToggle;
+
     /**
      *
      */
@@ -307,7 +309,7 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
 
         // Set sidebar controls
         Button btnFont = (Button) findViewById(R.id.btnFont);
-        Button btnLineModeToggle = (Button) findViewById(R.id.btnLineModeToggle);
+        btnLineModeToggle = (Button) findViewById(R.id.btnLineModeToggle);
         Button btnScroll = (Button) findViewById(R.id.btnScroll);
         Button btnTrans = (Button) findViewById(R.id.btnTrans);
         Button btnPlayMusic = (Button) findViewById(R.id.btnPlayMusic);
@@ -364,9 +366,11 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
                 if (singleLineMode) {
                     HacUtils.setSongFormatted(getApplicationContext(), songContentTextView, song.getContent(getApplicationContext()), that);
                     songContentTextView.setTypeface(Typeface.DEFAULT);
+                    btnLineModeToggle.setText(R.string.split_line);
                 } else {
                     HacUtils.setSongFormattedTwoLines(getApplicationContext(), songContentTextView, song.getContent(getApplicationContext()), that);
                     songContentTextView.setTypeface(Typeface.MONOSPACE);
+                    btnLineModeToggle.setText(R.string.join_line);
                 }
             }
         });
