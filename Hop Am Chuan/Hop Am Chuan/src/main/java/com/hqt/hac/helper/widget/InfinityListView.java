@@ -58,6 +58,10 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     AtomicBoolean isComeToEnd = new AtomicBoolean(false);
     /** maximum items first display */
     int firstLoadingItems = DEFAULT_FIRST_LOADING_ITEMS;
+    /** contains items should be persist after configuration change */
+    List<Parcelable> items;
+    /** Store state when new configuration change */
+    SavedState ss;
     //endregion
 
     //region Structure Object for this ListView
@@ -132,12 +136,21 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         super.setAdapter(adapter);
         if (adapter == null) return;
         mAdapter = (BaseAdapter) adapter;
-        /** it will loading until full of ListView */
-        /** TODO should make animation here for nicer view */
-        if (isFirstProcessLoading && mAdapter.getCount() < firstLoadingItems) {
-            for (int i = 0; i < firstLoadingItems; i++) {
-                LOGE(TAG, "Load item: " + i);
-                scheduleWork(i);
+        // prevent NPE on configuration change. We move code into setAdapter
+        if (items != null && items.size() > 0) {
+            super.onRestoreInstanceState(ss.getSuperState());
+            for (Parcelable item : items) {
+                ((IInfinityAdapter)mAdapter).addItem(item);
+            }
+            items = null;
+        } else {
+            /** Normal case. it will loading until full of ListView */
+            /** TODO should make animation here for nicer view */
+            if (isFirstProcessLoading && mAdapter.getCount() < firstLoadingItems) {
+                for (int i = 0; i < firstLoadingItems; i++) {
+                    LOGE(TAG, "Load item: " + i);
+                    scheduleWork(i);
+                }
             }
         }
         mAdapter.notifyDataSetChanged();
@@ -174,19 +187,19 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 
         // get default state. and call super class to restore state they're want
         Bundle bundle = (Bundle) state;
-        SavedState ss = bundle.getParcelable(SavedState.STATE);
+        ss = bundle.getParcelable(SavedState.STATE);
         super.onRestoreInstanceState(ss.getSuperState());
 
         // restore current data  of current ListView
-        List<Parcelable> items = ss.items;
-        for (Parcelable item : items) {
-            ((IInfinityAdapter)mAdapter).addItem(item);
+        items = ss.items;
+        if (mAdapter != null) {
+            for (Parcelable item : items) {
+                ((IInfinityAdapter)mAdapter).addItem(item);
+            }
+            mAdapter.notifyDataSetChanged();
+            LOGE(TAG, "Current Adapter size: After " + getAdapter().getCount());
+            LOGE(TAG, "Current Adapter size: After " + mAdapter.getCount());
         }
-
-        mAdapter.notifyDataSetChanged();
-
-        LOGE(TAG, "Current Adapter size: After " + getAdapter().getCount());
-        LOGE(TAG, "Current Adapter size: After " + mAdapter.getCount());
     }
 
     ///////////////////////////////////////////////////////////////////////////
