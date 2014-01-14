@@ -137,6 +137,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/chords_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -163,6 +164,7 @@
                     />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/singers_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -189,6 +191,7 @@
                     />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/authors_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"

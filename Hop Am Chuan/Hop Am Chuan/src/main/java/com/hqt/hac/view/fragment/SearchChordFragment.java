@@ -18,6 +18,7 @@ import com.hqt.hac.helper.widget.BackgroundContainer;
 import com.hqt.hac.helper.widget.DeleteAnimListView;
 import com.hqt.hac.model.Chord;
 import com.hqt.hac.model.dal.ChordDataAccessLayer;
+import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.BunnyApplication;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
@@ -65,7 +66,7 @@ public class SearchChordFragment extends Fragment implements
 
     private BackgroundContainer mBackgroundContainer;
 
-    private ComponentLoadHandler mHandler;
+//    private ComponentLoadHandler mHandler;
     private View rootView;
 
     public SearchChordFragment() {
@@ -110,20 +111,21 @@ public class SearchChordFragment extends Fragment implements
         spinner.setOnItemSelectedListener(this);   // because this fragment has implemented method
 
         // Load component with a delay to reduce lag
-        mHandler = new ComponentLoadHandler();
-        Thread componentLoad = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(Config.LOADING_SMOOTHING_DELAY);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                mHandler.sendMessage(mHandler.obtainMessage());
-            }
-        });
-        componentLoad.start();
-
+//        mHandler = new ComponentLoadHandler();
+//        Thread componentLoad = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(Config.LOADING_SMOOTHING_DELAY);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                mHandler.sendMessage(mHandler.obtainMessage());
+//            }
+//        });
+//        UIUtils.setOrientationLock(getActivity());
+//        componentLoad.start();
+        setUpComponents();
         return rootView;
     }
 
@@ -262,11 +264,12 @@ public class SearchChordFragment extends Fragment implements
     /////////////////
     //
     /////////////////
-    private class ComponentLoadHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            setUpComponents();
-        }
-    }
+//    private class ComponentLoadHandler extends Handler {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            setUpComponents();
+//            UIUtils.releaseOrientationLock(getActivity());
+//        }
+//    }
 
 }

@@ -1,6 +1,8 @@
 package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,6 +23,7 @@ import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.SongDataAccessLayer;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.utils.NetworkUtils;
+import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
@@ -60,7 +63,7 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
      * **/
     private int songListMode = 0;
 
-    private ComponentLoadHandler mHandler;
+//    private ComponentLoadHandler mHandler;
     View rootView;
     LayoutInflater inflater;
 
@@ -110,20 +113,21 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         spinner.setOnItemSelectedListener(this);    // because this fragment has implemented method
 
         // Load component with a delay to reduce lag
-        mHandler = new ComponentLoadHandler();
-        Thread componentLoad = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(Config.LOADING_SMOOTHING_DELAY);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                mHandler.sendMessage(mHandler.obtainMessage());
-            }
-        });
-        componentLoad.start();
-
+//        mHandler = new ComponentLoadHandler();
+//        Thread componentLoad = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(Config.LOADING_SMOOTHING_DELAY);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                mHandler.sendMessage(mHandler.obtainMessage());
+//            }
+//        });
+//        UIUtils.setOrientationLock(getActivity());
+//        componentLoad.start();
+        setUpComponents();
         return rootView;
     }
 
@@ -219,10 +223,11 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
     /////////////////
     //
     /////////////////
-    private class ComponentLoadHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            setUpComponents();
-        }
-    }
+//    private class ComponentLoadHandler extends Handler {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            setUpComponents();
+//            UIUtils.releaseOrientationLock(getActivity());
+//        }
+//    }
 }

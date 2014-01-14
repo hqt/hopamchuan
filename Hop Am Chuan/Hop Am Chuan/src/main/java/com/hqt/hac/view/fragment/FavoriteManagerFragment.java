@@ -24,6 +24,7 @@ import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.FavoriteDataAccessLayer;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
 import com.hqt.hac.utils.NetworkUtils;
+import com.hqt.hac.utils.UIUtils;
 import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
 
@@ -61,7 +62,7 @@ public class FavoriteManagerFragment extends  Fragment implements
     Spinner spinner;
     private String orderMode = HopAmChuanDBContract.Songs.SONG_ISFAVORITE;
 
-    private ComponentLoadHandler mHandler;
+//    private ComponentLoadHandler mHandler;
     private View rootView;
     private LayoutInflater inflater;
 
@@ -108,20 +109,21 @@ public class FavoriteManagerFragment extends  Fragment implements
         spinner.setOnItemSelectedListener(this);   // because this fragment has implemented method
 
         // Load component with a delay to reduce lag
-        mHandler = new ComponentLoadHandler();
-        Thread componentLoad = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(Config.LOADING_SMOOTHING_DELAY);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                mHandler.sendMessage(mHandler.obtainMessage());
-            }
-        });
-        componentLoad.start();
-
+//        mHandler = new ComponentLoadHandler();
+//        Thread componentLoad = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(Config.LOADING_SMOOTHING_DELAY);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                mHandler.sendMessage(mHandler.obtainMessage());
+//            }
+//        });
+//        UIUtils.setOrientationLock(getActivity());
+//        componentLoad.start();
+        setUpComponents();
         return rootView;
     }
 
@@ -213,10 +215,11 @@ public class FavoriteManagerFragment extends  Fragment implements
     /////////////////
     //
     /////////////////
-    private class ComponentLoadHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            setUpComponents();
-        }
-    }
+//    private class ComponentLoadHandler extends Handler {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            setUpComponents();
+//            UIUtils.releaseOrientationLock(getActivity());
+//        }
+//    }
 }
