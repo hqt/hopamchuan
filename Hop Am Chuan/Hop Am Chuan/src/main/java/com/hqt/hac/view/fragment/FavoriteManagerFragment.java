@@ -178,7 +178,7 @@ public class FavoriteManagerFragment extends CustomFragment implements
                     break;
                 case 1:
                     // sort by ABC
-                    orderMode = HopAmChuanDBContract.Songs.SONG_TITLE;
+                    orderMode = HopAmChuanDBContract.Songs.SONG_TITLE_ASCII;
                     songs = new ArrayList<Song>();
                     mAdapter.setSongs(songs);
                     break;
