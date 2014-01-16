@@ -27,7 +27,8 @@ import java.util.List;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class ChordViewFragment extends Fragment implements AdapterView.OnItemSelectedListener, IHacFragment {
+public class ChordViewFragment extends CustomFragment implements
+        AdapterView.OnItemSelectedListener {
 
     public static String TAG = makeLogTag(ChordViewFragment.class);
 

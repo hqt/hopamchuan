@@ -1,19 +1,15 @@
 package com.hqt.hac.view;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.os.StrictMode;
 import android.provider.SearchRecentSuggestions;
 import android.support.v4.app.Fragment;
@@ -22,31 +18,39 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
-import android.view.*;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.hqt.hac.config.Config;
-import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.helper.adapter.MergeAdapter;
 import com.hqt.hac.helper.adapter.NavigationDrawerAdapter;
 import com.hqt.hac.helper.service.Mp3PlayerService;
+import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
+import com.hqt.hac.model.Playlist;
 import com.hqt.hac.model.Song;
-import com.hqt.hac.model.dal.FavoriteDataAccessLayer;
-import com.hqt.hac.model.dal.PlaylistSongDataAccessLayer;
-import com.hqt.hac.model.json.DBVersion;
-import com.hqt.hac.model.json.JsonPlaylist;
+import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.provider.SearchRecentProvider;
-import com.hqt.hac.utils.APIUtils;
-import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.utils.StringUtils;
 import com.hqt.hac.utils.UIUtils;
-import com.hqt.hac.view.fragment.IHacFragment;
-import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
-import com.hqt.hac.model.Playlist;
-import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
-import com.hqt.hac.view.fragment.*;
+import com.hqt.hac.view.fragment.ChordViewFragment;
+import com.hqt.hac.view.fragment.CustomFragment;
+import com.hqt.hac.view.fragment.FavoriteManagerFragment;
+import com.hqt.hac.view.fragment.PlaylistDetailFragment;
+import com.hqt.hac.view.fragment.PlaylistManagerFragment;
+import com.hqt.hac.view.fragment.SearchChordFragment;
+import com.hqt.hac.view.fragment.SearchResultFragment;
+import com.hqt.hac.view.fragment.SongDetailFragment;
+import com.hqt.hac.view.fragment.SongListFragment;
+import com.hqt.hac.view.fragment.WelcomeFragment;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.util.Calendar;
@@ -311,7 +315,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
             Fragment afterBackFragment = getCurrentFragment(fragmentManager, 1);
             // Change title bar after change fragment.
             if (afterBackFragment != null) {
-                int titleRes = ((IHacFragment) afterBackFragment).getTitle();
+                int titleRes = ((CustomFragment) afterBackFragment).getTitle();
                 if (titleRes > 0) {
                     // If this fragment has title, then set it.
                     changeTitleBar(getString(titleRes));
@@ -514,7 +518,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         headerAdapter = new NavigationDrawerAdapter.HeaderAdapter(this);
         itemAdapter = new NavigationDrawerAdapter.ItemAdapter(getApplicationContext());
         playlistHeaderAdapter = new NavigationDrawerAdapter.PlaylistHeaderAdapter(getApplicationContext());
-        playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(getApplicationContext(), playlistList);
+        playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(this, playlistList);
 
         /**
          * Setting up for playlist changes callback.
@@ -586,13 +590,13 @@ public class MainActivity extends SlidingMenuActionBarActivity
         slidingMenu.setEnabled(false);
         // should close search view
         MenuItemCompat.collapseActionView(searchItem);
-        int titleRes = ((IHacFragment) fragment).getTitle();
+        int titleRes = ((CustomFragment) fragment).getTitle();
         if (titleRes > 0) {
             changeTitleBar(getString(titleRes));
         }
     }
 
-    public void switchFragmentClearStack(Fragment fragment) {
+    public void switchFragmentClearStack(final Fragment fragment) {
         if (fragment == null) return;
 
         String tag = String.valueOf(StringUtils.randInt(
@@ -606,17 +610,17 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 .replace(R.id.content_frame, fragment, tag)
                 .addToBackStack(tag)
                 .commit();
-        slidingMenu.showContent();
-        slidingMenu.setEnabled(true);
 
         if (searchItem != null) { // << Could not run without this.
             // should close search view
             MenuItemCompat.collapseActionView(searchItem);
         }
-        int titleRes = ((IHacFragment) fragment).getTitle();
+        int titleRes = ((CustomFragment) fragment).getTitle();
         if (titleRes > 0) {
             changeTitleBar(getString(titleRes));
         }
+
+
     }
 
     public void switchFragment(Fragment fragment, COMMIT_TYPE type) {

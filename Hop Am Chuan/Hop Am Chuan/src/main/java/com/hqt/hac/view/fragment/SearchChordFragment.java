@@ -28,10 +28,9 @@ import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGE;
 
-public class SearchChordFragment extends Fragment implements
+public class SearchChordFragment extends CustomFragment implements
         AdapterView.OnItemSelectedListener,
-        FindByChordAdapter.IFindByChordAdapter,
-        IHacFragment {
+        FindByChordAdapter.IFindByChordAdapter {
 
     public int titleRes = R.string.title_activity_find_by_chord;
 

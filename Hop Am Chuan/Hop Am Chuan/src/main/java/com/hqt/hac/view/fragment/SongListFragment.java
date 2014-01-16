@@ -36,9 +36,8 @@ import static com.hqt.hac.utils.LogUtils.makeLogTag;
 /**
  * Fragment uses for viewing songs as categories
  */
-public class SongListFragment extends Fragment implements AdapterView.OnItemSelectedListener,
-        InfinityListView.ILoaderContent,
-        IHacFragment {
+public class SongListFragment extends CustomFragment implements AdapterView.OnItemSelectedListener,
+        InfinityListView.ILoaderContent  {
 
     public static final String TAG = makeLogTag(SongListFragment.class);
 
@@ -131,6 +130,13 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        activity.getSlidingMenu().showContent();
+        activity.getSlidingMenu().setEnabled(true);
+    }
+
     private void setUpComponents() {
         /** Default song list **/
         //songs = SongDataAccessLayer.getRecentSongs(activity.getApplicationContext(), 0, 0);
@@ -175,22 +181,15 @@ public class SongListFragment extends Fragment implements AdapterView.OnItemSele
         });
     }
 
-    int defaultCurrentItemSelect = 0;
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        try {
-            LOGE(TAG, "On Item Selected");
-            if (position == defaultCurrentItemSelect) return;
-            songs = new ArrayList<Song>();
-            songlistAdapter.setSongs(songs);
-            // Set mode
-            songListMode = position;
-            defaultCurrentItemSelect = position;
-            // Reset the ListView
-            mListView.resetListView(songlistAdapter);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        LOGE(TAG, "On Item Selected");
+        songs = new ArrayList<Song>();
+        songlistAdapter.setSongs(songs);
+        // Set mode
+        songListMode = position;
+        // Reset the ListView
+        mListView.resetListView(songlistAdapter);
     }
 
     @Override

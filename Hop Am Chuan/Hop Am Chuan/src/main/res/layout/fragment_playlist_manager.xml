@@ -12,11 +12,24 @@
         android:layout_weight="1"
         android:drawSelectorOnTop="false"/>
 
-    <TextView
+    <LinearLayout
         android:id="@+id/empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/emptyView"
-        android:text="@string/no_playlist_available" />
+        android:orientation="vertical"
+        android:gravity="center">
+            <TextView
+                style="@style/emptyView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_playlist_available"
+                />
+        <Button
+            android:id="@+id/createPlaylistBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_new_playlist"
+            />
+        </LinearLayout>
 
 </RelativeLayout>

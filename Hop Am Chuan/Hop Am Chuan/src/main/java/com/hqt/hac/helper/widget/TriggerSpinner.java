@@ -1,15 +1,11 @@
 package com.hqt.hac.helper.widget;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.Spinner;
 
 import java.lang.reflect.Field;
-
-/**
- * Spinner that fires all cases
- * Created by ThaoHQSE60963 on 1/14/14.
- */
 
 public class TriggerSpinner extends Spinner {
 
@@ -17,11 +13,19 @@ public class TriggerSpinner extends Spinner {
         super(context);
     }
 
+    public TriggerSpinner(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle); }
+
+    public TriggerSpinner(Context context, AttributeSet attrs){
+        super(context,attrs);
+    }
+
     @Override
     public void setSelection(int position, boolean animate) {
         ignoreOldSelectionByReflection();
         super.setSelection(position, animate);
     }
+
 
     private void ignoreOldSelectionByReflection() {
         try {
@@ -39,7 +43,5 @@ public class TriggerSpinner extends Spinner {
         ignoreOldSelectionByReflection();
         super.setSelection(position);
     }
-
-
 
 }

@@ -34,44 +34,57 @@
                 android:id="@+id/songTitle" />
 
             <LinearLayout
+                android:paddingRight="10dp"
+                android:clickable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:background="@drawable/dropmenu_item"
                 android:layout_below="@id/songTitle"
+                tools:ignore="UseCompoundDrawables"
                 android:id="@+id/songAuthors">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginRight="5dp"
-                    android:src="@drawable/ic_action_edit" />
+                    android:src="@drawable/ic_action_edit"
+                    android:contentDescription="@string/view_same_author_songs" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@string/font_light"
                     android:id="@+id/songAuthorsTV"
+                    android:textSize="18sp"
                     android:textColor="#555"
                     android:text="@string/default_artistname" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/songSingers"
+                android:clickable="true"
+                android:paddingRight="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_below="@id/songAuthors">
+                android:layout_below="@id/songAuthors"
+                android:background="@drawable/dropmenu_item"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginRight="5dp"
+                    android:contentDescription="@string/view_same_singer_songs"
                     android:src="@drawable/ic_action_mic" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/songSingersTV"
+                    android:textSize="18sp"
                     android:textColor="#555"
                     android:fontFamily="@string/font_light"
                     android:text="@string/default_artistname" />

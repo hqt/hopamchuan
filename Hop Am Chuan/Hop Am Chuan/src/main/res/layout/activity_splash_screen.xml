@@ -20,7 +20,7 @@
             android:id="@+id/status"
             android:visibility="gone"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="-50dp"
+            android:layout_marginBottom="-25dp"
             android:layout_alignBottom="@id/logo_header"
             android:textColor="#fff"
             android:textSize="15sp"

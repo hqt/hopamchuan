@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,9 @@ import com.hqt.hac.model.dal.PlaylistDataAccessLayer;
 import com.hqt.hac.utils.EncodingUtils;
 import com.hqt.hac.utils.HacUtils;
 import com.hqt.hac.view.LoginActivity;
+import com.hqt.hac.view.MainActivity;
 import com.hqt.hac.view.R;
+import com.hqt.hac.view.fragment.PlaylistManagerFragment;
 import com.hqt.hac.view.popup.ProfilePopup;
 
 import java.util.List;
@@ -296,24 +299,25 @@ public class NavigationDrawerAdapter {
 
         private static String TAG = makeLogTag(PlaylistItemAdapter.class);
 
-        private Context mContext;
+        Activity activity;
         IPlaylistItemDelegate delegate;
         public List<Playlist> playlists;
 
-        public PlaylistItemAdapter(Context context) {
-            this.mContext = context.getApplicationContext();
+        public PlaylistItemAdapter(Activity activity) {
+            this.activity = activity;
             // load all playlist
-            playlists = PlaylistDataAccessLayer.getAllPlayLists(context);
+            playlists = PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext());
         }
 
         /** use this constructor for performance */
-        public PlaylistItemAdapter(Context context, List<Playlist> playlists) {
-            this.mContext = context.getApplicationContext();
+        public PlaylistItemAdapter(Activity activity, List<Playlist> playlists) {
+            this.activity = activity;
             this.playlists = playlists;
         }
 
         @Override
         public int getCount() {
+            if (playlists.size() == 0) return 1;
             return playlists.size();
         }
 
@@ -331,32 +335,49 @@ public class NavigationDrawerAdapter {
         public View getView(final int position, View convertView, ViewGroup parent) {
             ViewHolderPlaylistItem holder = null;
             View row = convertView;
-
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            if (row == null) {
-                row = inflater.inflate(R.layout.list_item_navigation_drawer_2, null);
-                holder = new ViewHolderPlaylistItem();
-                holder.txtTitle = (TextView) row.findViewById(R.id.title);
-                holder.txtDescription = (TextView) row.findViewById(R.id.description);
-                holder.txtNumberOfSong = (TextView) row.findViewById(R.id.countSongText);
-                row.setTag(holder);
-            }
-            else {
-                holder = (ViewHolderPlaylistItem) row.getTag();
-            }
-
-            // assign value to view
-            Playlist p = playlists.get(position);
-            holder.txtTitle.setText(p.playlistName);
-            holder.txtDescription.setText(p.playlistDescription);
-            holder.txtNumberOfSong.setText(p.numberOfSongs + "");
-
-            row.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    delegate.gotoPlayList(position);
+            LayoutInflater inflater = (LayoutInflater) activity.getApplicationContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            if (playlists.size() == 0) {
+                row = inflater.inflate(R.layout.list_item_navigation_drawer_empty, null);
+                if (row != null) {
+                    row.findViewById(R.id.createPlaylistLayout).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            PlaylistManagerFragment fragment = new PlaylistManagerFragment();
+                            Bundle arguments = new Bundle();
+                            arguments.putBoolean("createPlaylist", true);
+                            fragment.setArguments(arguments);
+                            ((MainActivity) activity).switchFragmentClearStack(fragment);
+                        }
+                    });
                 }
-            });
+            } else {
+                if (row != null && !(row.getTag() instanceof ViewHolderPlaylistItem)) row = null;
+                if (row == null) {
+                    row = inflater.inflate(R.layout.list_item_navigation_drawer_2, null);
+                    holder = new ViewHolderPlaylistItem();
+                    holder.txtTitle = (TextView) row.findViewById(R.id.title);
+                    holder.txtDescription = (TextView) row.findViewById(R.id.description);
+                    holder.txtNumberOfSong = (TextView) row.findViewById(R.id.countSongText);
+                    row.setTag(holder);
+                }
+                else {
+                    holder = (ViewHolderPlaylistItem) row.getTag();
+                }
+
+                // assign value to view
+                Playlist p = playlists.get(position);
+                holder.txtTitle.setText(p.playlistName);
+                holder.txtDescription.setText(p.playlistDescription);
+                holder.txtNumberOfSong.setText(p.numberOfSongs + "");
+
+                row.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        delegate.gotoPlayList(position);
+                    }
+                });
+            }
+
             return row;
         }
 

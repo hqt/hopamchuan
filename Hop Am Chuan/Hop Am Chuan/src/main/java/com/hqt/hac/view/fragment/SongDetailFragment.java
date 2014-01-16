@@ -2,6 +2,8 @@ package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,6 +15,7 @@ import android.widget.*;
 
 import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
+import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.ArtistDataAccessLayer;
 import com.hqt.hac.model.dal.ChordDataAccessLayer;
@@ -31,7 +34,7 @@ import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
 import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
-public class SongDetailFragment extends Fragment implements IHacFragment {
+public class SongDetailFragment extends CustomFragment {
 
     private static String TAG = makeLogTag(PlaylistDetailFragment.class);
 
@@ -136,7 +139,6 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
         songSingersTextView.setText(song.getSingersString(activity.getApplicationContext()));
 
         // Set song content
-        // HacUtils.setSongFormatted(activity.getApplicationContext(), songContentTV, song.getContent(activity.getApplicationContext()), activity);
         songContentTextView.setText(song.getContent(activity.getApplicationContext()));
         btnFullScreen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +150,6 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
 
         // Star menu button
         final ImageView starMenuButton = (ImageView) rootView.findViewById(R.id.songMenuBtn);
-
         if (song.isFavorite > 0) {
             starMenuButton.setImageResource(R.drawable.star_liked);
         } else {
@@ -158,12 +159,40 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
         // Event for star menu click
         final PopupWindow popupWindows = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
         SongListRightMenuHandler.setRightMenuEvents(activity, popupWindows);
-
         starMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Show the popup menu and set selectedSong, theStar
                 SongListRightMenuHandler.openPopupMenu(view, song, starMenuButton);
+            }
+        });
+
+        // View author, singer songs
+        LinearLayout songSingers = (LinearLayout) rootView.findViewById(R.id.songSingers);
+        LinearLayout songAuthors = (LinearLayout) rootView.findViewById(R.id.songAuthors);
+
+        songAuthors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Artist artist = song.getAuthors(activity.getApplicationContext()).get(0);
+                ArtistViewFragment fragment = new ArtistViewFragment();
+                Bundle arguments = new Bundle();
+                arguments.putParcelable("artist", artist);
+                fragment.setArguments(arguments);
+                activity.switchFragmentNormal(fragment);
+                activity.changeTitleBar(artist.artistName);
+            }
+        });
+        songSingers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Artist artist = song.getSingers(activity.getApplicationContext()).get(0);
+                ArtistViewFragment fragment = new ArtistViewFragment();
+                Bundle arguments = new Bundle();
+                arguments.putParcelable("artist", artist);
+                fragment.setArguments(arguments);
+                activity.switchFragmentNormal(fragment);
+                activity.changeTitleBar(artist.artistName);
             }
         });
 
@@ -219,7 +248,9 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
                 if (sameChordSongs.size() == 1) {
                     (rootView.findViewById(R.id.chords_layout)).setVisibility(View.GONE);
                 } else {
-                    sameChordBtn.setVisibility(View.GONE);
+                    // sameChordBtn.setVisibility(View.GONE);
+                    sameChordBtn.setEnabled(false);
+                    sameChordBtn.setTextColor(Color.GRAY);
                 }
             } else {
                 currentSameChordSongsCount += sameChord.size();
@@ -247,7 +278,9 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
                 if (sameSingerSongs.size() == 1) {
                     (rootView.findViewById(R.id.singers_layout)).setVisibility(View.GONE);
                 } else {
-                    sameSingerBtn.setVisibility(View.GONE);
+                    // sameSingerBtn.setVisibility(View.GONE);
+                    sameSingerBtn.setEnabled(false);
+                    sameSingerBtn.setTextColor(Color.GRAY);
                 }
             } else {
                 addSongsToLayout(sameSinger, sameSingerLayout);
@@ -274,7 +307,9 @@ public class SongDetailFragment extends Fragment implements IHacFragment {
                 if (sameAuthorSongs.size() == 1) {
                     (rootView.findViewById(R.id.authors_layout)).setVisibility(View.GONE);
                 } else {
-                    sameAuthorBtn.setVisibility(View.GONE);
+                    // sameAuthorBtn.setVisibility(View.GONE);
+                    sameAuthorBtn.setEnabled(false);
+                    sameAuthorBtn.setTextColor(Color.GRAY);
                 }
             } else {
                 addSongsToLayout(sameAuthor, sameAuthorLayout);

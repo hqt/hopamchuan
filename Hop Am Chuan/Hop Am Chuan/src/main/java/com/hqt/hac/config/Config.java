@@ -27,7 +27,7 @@ public class Config {
     public static final String SERVICE_GET_MP3_LINK = SITE  + "/api/get_mp3_link";
 
     /** Song detail fragment **/
-    public static final int DEFAULT_RELATED_SONGS_COUNT = 2;
+    public static final int DEFAULT_RELATED_SONGS_COUNT = 3;
 
     /** Song full view config **/
     public static final float SONG_CONTENT_DEFAULT_FONT_SIZE = 30;
@@ -71,4 +71,5 @@ public class Config {
     public static final long AUTO_SYNC_SONGS_DELAY = 15000;
     public static final int MAX_LONG_WORK_TIMEOUT = 5000;
     public static final int DEFAULT_CONNECT_TIMEOUT = 10000;
+    public static final int SONG_AUTO_SCROLL_DEFAULT_SPEED = 3;
 }
