@@ -4,13 +4,11 @@ package com.hqt.hac.view;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Parcelable;
 import android.util.TypedValue;
 import android.view.*;
 import android.widget.Button;
@@ -23,7 +21,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.hqt.hac.config.Config;
-import com.hqt.hac.config.PrefStore;
 import com.hqt.hac.helper.service.Mp3PlayerService;
 import com.hqt.hac.helper.widget.MusicPlayerController;
 import com.hqt.hac.helper.widget.SlidingMenuActionBarActivity;
@@ -35,7 +32,6 @@ import com.hqt.hac.utils.ScreenUtils;
 import com.hqt.hac.utils.UIUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
-import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
@@ -66,7 +62,7 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
      * Dialogs *
      */
     private Dialog dialogFontSize;
-    private float fontSizeValue;
+    private float fontSizeValue = Config.SONG_CONTENT_DEFAULT_FONT_SIZE;
 
     private TextView fontSizeTextView;
     private SeekBar fontSizeSeekBar;
@@ -98,8 +94,11 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
      */
     // The text view
     private TextView songContentTextView;
+
+    private ScaleGestureDetector mScaleDetector;
     // Scroll view for smoothie and auto scroll function
     private ScrollView scrollView;
+
 
 
     /**
@@ -176,11 +175,42 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
         // Set up content
         setUpContent();
 
+        // Set fingers zoom
+        setUpZoomByFingers();
+
         // Keep the screen always on
         setScreenOn();
 
         // Media player service
         setUpMediaPlayer();
+    }
+
+    private void setUpZoomByFingers() {
+        mScaleDetector = new ScaleGestureDetector(getApplicationContext(), new ScaleGestureDetector.OnScaleGestureListener() {
+            @Override
+            public void onScaleEnd(ScaleGestureDetector detector) {
+            }
+            @Override
+            public boolean onScaleBegin(ScaleGestureDetector detector) {
+                return true;
+            }
+            @Override
+            public boolean onScale(ScaleGestureDetector detector) {
+                LOGE(TAG, "zoom ongoing, scale: " + detector.getScaleFactor());
+                fontSizeValue = fontSizeValue * detector.getScaleFactor();
+                fontSizeTextView.setText(String.valueOf(fontSizeValue + 1));
+                songContentTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSizeValue + 1);
+                return false;
+            }
+        });
+
+        songContentTextView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                mScaleDetector.onTouchEvent(motionEvent);
+                return true;
+            }
+        });
     }
 
     @Override

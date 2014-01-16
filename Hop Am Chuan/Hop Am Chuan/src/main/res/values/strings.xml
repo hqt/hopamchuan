@@ -296,5 +296,6 @@
     <string name="hide">Hide</string>
     <string name="checking_version_press_back">Updating songs…\nPress Back skip.</string>
     <string name="create_new_playlist">Create new playlist</string>
+    <string name="song_unit">song(s)</string>
 
 </resources>

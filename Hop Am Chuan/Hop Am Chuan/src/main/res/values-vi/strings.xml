@@ -209,5 +209,6 @@
     <string name="hide">Ẩn đi</string>
     <string name="checking_version_press_back">Đang cập nhật bài hát mới…\nNhấn Back để bỏ qua.</string>
     <string name="create_new_playlist">Tạo playlist mới</string>
+    <string name="song_unit">bài</string>
 
 </resources>

@@ -84,7 +84,8 @@ public class ArtistAdapter extends BaseAdapter implements InfinityListView.IInfi
         Artist s = artists.get(position);
         holder.artistNameTxt.setText(s.artistName);
 
-        holder.tempTxt.setText(s.getNumOfSongs(BunnyApplication.mContext) + " bài");
+        holder.tempTxt.setText(s.getNumOfSongs(BunnyApplication.mContext) + " "
+                + mContext.getString(R.string.song_unit));
 
         return row;
     }

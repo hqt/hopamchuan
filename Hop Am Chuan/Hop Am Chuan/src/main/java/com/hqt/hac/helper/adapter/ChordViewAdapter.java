@@ -20,7 +20,7 @@ public abstract class ChordViewAdapter extends BaseAdapter implements SectionInd
     protected int[] index;
 
     /** String that using for SectionIndexer */
-    protected static String sectionStr = "A,Am,B,Bm,C,Cm,D,Dm,E,Em,F,Fm,G,Gm";
+    protected static String sectionStr = "C,Cm,D,Dm,E,Em,F,Fm,G,Gm,A,Am,B,Bm";
     protected String[] sections = sectionStr.split(",");
 
     public ChordViewAdapter(Context mContext, String[] chords) {
