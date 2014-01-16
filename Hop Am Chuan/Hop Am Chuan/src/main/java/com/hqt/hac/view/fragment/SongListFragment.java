@@ -149,7 +149,7 @@ public class SongListFragment extends CustomFragment implements AdapterView.OnIt
          *  this ListView is full rich function. See document for more detail
          */
         InfinityListView.ListViewProperty property = new InfinityListView.ListViewProperty();
-        property.Loader(this).Adapter(songlistAdapter).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
+        property.Loader(this).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
                 .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
         mListView.setListViewProperty(property);
         mListView.setEmptyView(rootView.findViewById(R.id.empty));

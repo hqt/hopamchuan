@@ -33,10 +33,13 @@ import java.util.List;
 
 import static com.hqt.hac.utils.LogUtils.LOGD;
 import static com.hqt.hac.utils.LogUtils.LOGE;
+import static com.hqt.hac.utils.LogUtils.makeLogTag;
 
 public class FavoriteManagerFragment extends CustomFragment implements
         AdapterView.OnItemSelectedListener,
         InfinityListView.ILoaderContent {
+
+    private static String TAG = makeLogTag(FavoriteManagerFragment.class);
 
     public int titleRes = R.string.title_activity_my_favorite_fragment;
 
@@ -133,7 +136,7 @@ public class FavoriteManagerFragment extends CustomFragment implements
         /** ListView Configure */
         mListView = (InfinityListView) rootView.findViewById(R.id.list_view);
         InfinityListView.ListViewProperty property = new InfinityListView.ListViewProperty();
-        property.Loader(this).Adapter(mAdapter).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
+        property.Loader(this).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
                 .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
         mListView.setListViewProperty(property);
         mListView.setEmptyView(rootView.findViewById(R.id.empty));
@@ -168,6 +171,7 @@ public class FavoriteManagerFragment extends CustomFragment implements
     /** if user click. the list will be sorted again base on choice */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        LOGE(TAG, "On Item Selected  : " + position);
         try {
             switch(position) {
                 case 0:
@@ -184,6 +188,7 @@ public class FavoriteManagerFragment extends CustomFragment implements
                     break;
                 default:
                     // do nothing
+                    break;
             }
             // refresh ListView
             mListView.resetListView(mAdapter);

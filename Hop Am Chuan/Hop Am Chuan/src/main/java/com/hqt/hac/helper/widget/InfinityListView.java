@@ -8,10 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.*;
 
-import com.hqt.hac.helper.adapter.InfinityAdapter;
-import com.hqt.hac.model.Artist;
 import com.hqt.hac.utils.NetworkUtils;
-import com.hqt.hac.utils.ReflectionUtils;
 import com.hqt.hac.view.R;
 
 import java.util.ArrayList;
@@ -57,7 +54,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     /** boolean variable to control should list view will load more or has come to end */
     AtomicBoolean isComeToEnd = new AtomicBoolean(false);
     /** maximum items first display */
-    int firstLoadingItems = DEFAULT_FIRST_LOADING_ITEMS;
+    int mFirstLoadingItems = DEFAULT_FIRST_LOADING_ITEMS;
     /** contains items should be persist after configuration change */
     List<Parcelable> items;
     /** Store state when new configuration change */
@@ -81,7 +78,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     /** variable to control should loading data should be on different thread or not */
     boolean isRunningBackground = true;
     /** variable to control number of items one time will be loading. just use when isGreedy set to true */
-    int numPerLoading = DEFAULT_NUM_PER_LOAD;
+    int mNumPerLoading = DEFAULT_NUM_PER_LOAD;
     /** should this ListView process first loading for adapter */
     boolean isFirstProcessLoading = false;
     //endregion
@@ -116,12 +113,14 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
      * @param adapter
      */
     public void resetListView(BaseAdapter adapter) {
-        if (footer != null) removeFooterView(footer);
+        LOGE(TAG, "Reset ListView");
+        // if (footer != null) removeFooterView(footer);
         addFooterView(footer);
         isComeToEnd.set(false);
         isLoading.set(false);
+        LOGE(TAG, "pre set adapter");
         setAdapter(adapter);
-        mAdapter.notifyDataSetChanged();
+        //mAdapter.notifyDataSetChanged();
     }
     //endregion
 
@@ -133,24 +132,31 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
      **/
     @Override
     public void setAdapter(ListAdapter adapter) {
+        LOGE(TAG, "Set Adapter");
         super.setAdapter(adapter);
         if (adapter == null) return;
         mAdapter = (BaseAdapter) adapter;
         // prevent NPE on configuration change. We move code into setAdapter
         if (items != null && items.size() > 0) {
+            LOGE(TAG, "Restore songs phrase");
             super.onRestoreInstanceState(ss.getSuperState());
             for (Parcelable item : items) {
                 ((IInfinityAdapter)mAdapter).addItem(item);
             }
             items = null;
         } else {
+            LOGE(TAG, "Add pre songs to list");
             /** Normal case. it will loading until full of ListView */
             /** TODO should make animation here for nicer view */
-            if (isFirstProcessLoading && mAdapter.getCount() < firstLoadingItems) {
-                for (int i = 0; i < firstLoadingItems; i++) {
-                    LOGE(TAG, "Load item: " + i);
+            if (isFirstProcessLoading && mAdapter.getCount() > 0) {
+                throw new UnsupportedOperationException();
+            }
+            if (isFirstProcessLoading && mAdapter.getCount() == 0) {
+                scheduleWork(0, mFirstLoadingItems);
+               /* for (int i = 0; i < mFirstLoadingItems; i++) {
+                    LOGE(TAG, "Load item: " + i  + " in first processing loading ...");
                     scheduleWork(i);
-                }
+                }*/
             }
         }
         mAdapter.notifyDataSetChanged();
@@ -161,10 +167,14 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
      */
     @Override
     public Parcelable onSaveInstanceState() {
-        LOGE(TAG, "Current Adapter size: Before " + getAdapter().getCount());
-        LOGE(TAG, "Current Adapter size: Before " + mAdapter.getCount());
+        LOGE(TAG, "onSaveInstanceState");
 
         Parcelable superState = super.onSaveInstanceState();
+        // first running. does not have Adapter
+        if (getAdapter() == null) return BaseSavedState.EMPTY_STATE;
+
+        LOGE(TAG, "Current Adapter size: Before " + getAdapter().getCount());
+        LOGE(TAG, "Current Adapter size: Before " + mAdapter.getCount());
         SavedState ss = new SavedState(superState, mAdapter);
         ss.items = ((IInfinityAdapter)mAdapter).returnItems();
 
@@ -224,12 +234,12 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         //          + visibleItemCount + "  TotalItemCount:" + totalItemCount);
         if (firstItemHide >= totalItemCount) {
             // scheduleWork(totalItemCount); << we don't count the loading item
-            scheduleWork(totalItemCount - 1);
+            scheduleWork(totalItemCount - 1, mNumPerLoading);
         }
     }
 
     /** decide to work on same thread or different thread */
-    private void scheduleWork(final int index) {
+    private void scheduleWork(final int index, final int numPerLoading) {
         try {
             /**  waiting for ending session */
             if (isLoading.get()) return;
@@ -240,14 +250,14 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
                     public void run() {
                         LOGE(TAG, "New Thread is running on " + NetworkUtils.getThreadSignature());
                         // run background
-                        longRunningTask(index);
+                        longRunningTask(index, numPerLoading);
                         // notify data set to UI
                         mHandler.sendMessage(mHandler.obtainMessage());
                     }
                 });
                 t.start();
             } else {
-                longRunningTask(index);
+                longRunningTask(index, numPerLoading);
                 cleanState();
             }
         } catch (NullPointerException e) {
@@ -257,7 +267,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     }
 
     /** decide to use greedy mode (load multi data at once) or not */
-    private void longRunningTask(int index) {
+    private void longRunningTask(int index, int numPerLoading) {
         try {
             loadedCollection = mLoader.load(index, numPerLoading);
             // If there less than numPerLoad items, that mean the list is end.
@@ -307,7 +317,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
             LOGE(TAG, "Remove FootView because come to end list");
             removeFooterView(footer);
 //            setAdapter(mAdapter);
-//            mAdapter.notifyDataSetChanged();
+              mAdapter.notifyDataSetChanged();
 //            setSelection(mAdapter.getCount() - 1);
             isComeToEnd.set(true);
             isLoading.set(false);
@@ -348,6 +358,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     }
 
     public void setListViewProperty(ListViewProperty property) {
+        LOGE(TAG, "Set up listview property");
         this.footer = property.footer;
         if (property.footerResourceId >= 0) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -367,9 +378,9 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         this.mLoader = property.mLoader;
         this.mAdapter = property.mAdapter;
         this.isRunningBackground = property.isRunningBackground;
-        this.numPerLoading = property.numPerLoading;
+        this.mNumPerLoading = property.numPerLoading;
         this.isFirstProcessLoading = property.isFirstProcessLoading;
-        this.firstLoadingItems = property.firstLoadingItems;
+        this.mFirstLoadingItems = property.firstLoadingItems;
         // start running this ListView
         if (mAdapter != null) setAdapter(mAdapter);
     }

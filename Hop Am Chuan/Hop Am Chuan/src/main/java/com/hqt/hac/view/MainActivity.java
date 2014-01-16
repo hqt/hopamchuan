@@ -277,6 +277,12 @@ public class MainActivity extends SlidingMenuActionBarActivity
         if (mTimePressBackBtn == 0) mTimePressBackBtn = -14181147;
         FragmentManager fragmentManager = getSupportFragmentManager();
 
+        // close search view
+        if (searchItem != null) {
+            // should close search view
+            MenuItemCompat.collapseActionView(searchItem);
+        }
+
         // Variable to know if the current fragment is WelcomeFragment or not.
         Fragment currentFragment = getCurrentFragment(fragmentManager, 0);
 
@@ -387,12 +393,12 @@ public class MainActivity extends SlidingMenuActionBarActivity
             // Returns whether query refinement is enabled for all items or only specific ones.
             mSearchView.setQueryRefinementEnabled(true);
             // setup SearchView that lost focus after search
-            mSearchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+           /* mSearchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     if (!hasFocus) MenuItemCompat.collapseActionView(searchItem);
                 }
-            });
+            });*/
         }
         // use this method for convenience
         bindCLoseSearchViewEvent(getWindow().getDecorView().getRootView());
