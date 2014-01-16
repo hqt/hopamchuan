@@ -181,22 +181,15 @@ public class SongListFragment extends CustomFragment implements AdapterView.OnIt
         });
     }
 
-    int defaultCurrentItemSelect = 0;
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        try {
-            LOGE(TAG, "On Item Selected");
-            if (position == defaultCurrentItemSelect) return;
-            songs = new ArrayList<Song>();
-            songlistAdapter.setSongs(songs);
-            // Set mode
-            songListMode = position;
-            defaultCurrentItemSelect = position;
-            // Reset the ListView
-            mListView.resetListView(songlistAdapter);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        LOGE(TAG, "On Item Selected");
+        songs = new ArrayList<Song>();
+        songlistAdapter.setSongs(songs);
+        // Set mode
+        songListMode = position;
+        // Reset the ListView
+        mListView.resetListView(songlistAdapter);
     }
 
     @Override

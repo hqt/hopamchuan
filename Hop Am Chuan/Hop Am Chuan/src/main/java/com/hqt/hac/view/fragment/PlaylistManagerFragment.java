@@ -189,6 +189,14 @@ public class PlaylistManagerFragment extends CustomFragment implements
                 (EditText) SongListRightMenuHandler.newPlaylistDialog
                         .findViewById(R.id.txtNewPlaylistDescription);
 
+        /** Create new playlist button (when playlist is empty) **/
+        Button createPlaylistBtnEmptyLayout = (Button) rootView.findViewById(R.id.createPlaylistBtn);
+        createPlaylistBtnEmptyLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createPlaylist();
+            }
+        });
     }
 
     public static void removeOnGlobalLayoutListener(View v, ViewTreeObserver.OnGlobalLayoutListener listener){

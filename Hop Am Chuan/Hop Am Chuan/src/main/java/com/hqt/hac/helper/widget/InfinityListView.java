@@ -196,6 +196,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
             for (Parcelable item : items) {
                 ((IInfinityAdapter)mAdapter).addItem(item);
             }
+            items = null;
             mAdapter.notifyDataSetChanged();
             LOGE(TAG, "Current Adapter size: After " + getAdapter().getCount());
             LOGE(TAG, "Current Adapter size: After " + mAdapter.getCount());

@@ -13,6 +13,7 @@ import android.widget.*;
 
 import com.hqt.hac.config.Config;
 import com.hqt.hac.helper.widget.SongListRightMenuHandler;
+import com.hqt.hac.model.Artist;
 import com.hqt.hac.model.Song;
 import com.hqt.hac.model.dal.ArtistDataAccessLayer;
 import com.hqt.hac.model.dal.ChordDataAccessLayer;
@@ -136,7 +137,6 @@ public class SongDetailFragment extends CustomFragment {
         songSingersTextView.setText(song.getSingersString(activity.getApplicationContext()));
 
         // Set song content
-        // HacUtils.setSongFormatted(activity.getApplicationContext(), songContentTV, song.getContent(activity.getApplicationContext()), activity);
         songContentTextView.setText(song.getContent(activity.getApplicationContext()));
         btnFullScreen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +148,6 @@ public class SongDetailFragment extends CustomFragment {
 
         // Star menu button
         final ImageView starMenuButton = (ImageView) rootView.findViewById(R.id.songMenuBtn);
-
         if (song.isFavorite > 0) {
             starMenuButton.setImageResource(R.drawable.star_liked);
         } else {
@@ -158,12 +157,40 @@ public class SongDetailFragment extends CustomFragment {
         // Event for star menu click
         final PopupWindow popupWindows = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
         SongListRightMenuHandler.setRightMenuEvents(activity, popupWindows);
-
         starMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Show the popup menu and set selectedSong, theStar
                 SongListRightMenuHandler.openPopupMenu(view, song, starMenuButton);
+            }
+        });
+
+        // View author, singer songs
+        LinearLayout songSingers = (LinearLayout) rootView.findViewById(R.id.songSingers);
+        LinearLayout songAuthors = (LinearLayout) rootView.findViewById(R.id.songAuthors);
+
+        songAuthors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Artist artist = song.getAuthors(activity.getApplicationContext()).get(0);
+                ArtistViewFragment fragment = new ArtistViewFragment();
+                Bundle arguments = new Bundle();
+                arguments.putParcelable("artist", artist);
+                fragment.setArguments(arguments);
+                activity.switchFragmentNormal(fragment);
+                activity.changeTitleBar(artist.artistName);
+            }
+        });
+        songSingers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Artist artist = song.getSingers(activity.getApplicationContext()).get(0);
+                ArtistViewFragment fragment = new ArtistViewFragment();
+                Bundle arguments = new Bundle();
+                arguments.putParcelable("artist", artist);
+                fragment.setArguments(arguments);
+                activity.switchFragmentNormal(fragment);
+                activity.changeTitleBar(artist.artistName);
             }
         });
 

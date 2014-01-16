@@ -30,12 +30,14 @@
         android:layout_alignTop="@+id/relvChordView"
         android:layout_alignBottom="@+id/relvChordView">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="30dp"
             android:paddingBottom="30dp"
             android:paddingRight="20dp"
+            android:gravity="center"
+            android:orientation="vertical"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true">
 
@@ -43,17 +45,16 @@
                 android:clickable="true"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentTop="true"
                 android:src="@drawable/ic_action_collapse"
                 android:id="@+id/up_button" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
                 android:text="0"
+                android:gravity="center"
+                android:textColor="#000"
+                android:layout_gravity="center"
                 android:textSize="20sp"
                 android:id="@+id/text_view" />
 
@@ -61,11 +62,9 @@
                 android:clickable="true"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
                 android:src="@drawable/ic_action_expand"
                 android:id="@+id/down_button" />
-        </RelativeLayout>
+        </LinearLayout>
 
 
     </RelativeLayout>

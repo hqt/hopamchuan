@@ -290,10 +290,11 @@
     <string name="empty_list_search">Please add at least 1 chord</string>
     <string name="no_more_song">No more song to display</string>
     <string name="no_song_available">No song available</string>
-    <string name="no_playlist_available">Press + button to create playlist</string>
+    <string name="no_playlist_available">No playlist yet!</string>
     <string name="no_result_found">No result found!</string>
     <string name="loading">Loading…</string>
     <string name="hide">Hide</string>
     <string name="checking_version_press_back">Updating songs…\nPress Back skip.</string>
+    <string name="create_new_playlist">Create new playlist</string>
 
 </resources>

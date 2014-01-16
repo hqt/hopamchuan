@@ -77,6 +77,7 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
 
     private TextView scrollTextView;
     private SeekBar scrollSeekBar;
+    private boolean firstScroll = true;
 
     private Dialog dialogTranspose;
 
@@ -534,10 +535,9 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
 
 
         outState.putFloat("fontSize", songContentTextView.getTextSize());
-        LOGE("TRUNGDQ", "scrollView.getScrollY: " + scrollView.getScrollY());
-        LOGE("TRUNGDQ", "scrollY: " + scrollY);
         outState.putInt("scrollPositionY", scrollView.getScrollY());
         outState.putBoolean("isAutoScroll", turnOnChk.isChecked());
+        outState.putBoolean("firstScroll", firstScroll);
         outState.putInt("autoScrollValue", scrollSeekBarValue);
         outState.putInt("transposeValue", transposePosition);
         outState.putBoolean("singleLineMode", singleLineMode);
@@ -562,10 +562,10 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
             songContentTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSizeValue + 1);
 
             // 4. Set scroll position
-            LOGE("TRUNGDQ", "scrollView.getScrollY() 2: " + scrollView.getScrollY());
             scrollView.scrollTo(0, savedInstanceState.getInt("scrollPositionY"));
 
             // 5. Set auto scroll control
+            firstScroll = savedInstanceState.getBoolean("firstScroll");
             turnOnChk.setChecked(savedInstanceState.getBoolean("isAutoScroll"));
             scrollSeekBarValue = savedInstanceState.getInt("autoScrollValue");
             scrollSeekBar.setProgress(scrollSeekBarValue);
