@@ -288,7 +288,7 @@ public class MainActivityNavigationDrawer extends ActionBarActivity
         headerAdapter = new NavigationDrawerAdapter.HeaderAdapter(this);
         itemAdapter = new NavigationDrawerAdapter.ItemAdapter(getApplicationContext());
         playlistHeaderAdapter = new NavigationDrawerAdapter.PlaylistHeaderAdapter(getApplicationContext());
-        playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(getApplicationContext(), playlistList);
+        playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(this, playlistList);
 
         /** assign each adapter to this composite adapter */
         mergeAdapter.addAdapter(headerAdapter);

@@ -2,6 +2,8 @@ package com.hqt.hac.view.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -246,7 +248,9 @@ public class SongDetailFragment extends CustomFragment {
                 if (sameChordSongs.size() == 1) {
                     (rootView.findViewById(R.id.chords_layout)).setVisibility(View.GONE);
                 } else {
-                    sameChordBtn.setVisibility(View.GONE);
+                    // sameChordBtn.setVisibility(View.GONE);
+                    sameChordBtn.setEnabled(false);
+                    sameChordBtn.setTextColor(Color.GRAY);
                 }
             } else {
                 currentSameChordSongsCount += sameChord.size();
@@ -274,7 +278,9 @@ public class SongDetailFragment extends CustomFragment {
                 if (sameSingerSongs.size() == 1) {
                     (rootView.findViewById(R.id.singers_layout)).setVisibility(View.GONE);
                 } else {
-                    sameSingerBtn.setVisibility(View.GONE);
+                    // sameSingerBtn.setVisibility(View.GONE);
+                    sameSingerBtn.setEnabled(false);
+                    sameSingerBtn.setTextColor(Color.GRAY);
                 }
             } else {
                 addSongsToLayout(sameSinger, sameSingerLayout);
@@ -301,7 +307,9 @@ public class SongDetailFragment extends CustomFragment {
                 if (sameAuthorSongs.size() == 1) {
                     (rootView.findViewById(R.id.authors_layout)).setVisibility(View.GONE);
                 } else {
-                    sameAuthorBtn.setVisibility(View.GONE);
+                    // sameAuthorBtn.setVisibility(View.GONE);
+                    sameAuthorBtn.setEnabled(false);
+                    sameAuthorBtn.setTextColor(Color.GRAY);
                 }
             } else {
                 addSongsToLayout(sameAuthor, sameAuthorLayout);

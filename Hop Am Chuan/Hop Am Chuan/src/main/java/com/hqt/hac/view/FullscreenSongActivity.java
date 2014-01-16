@@ -117,17 +117,19 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
 
     ScrollHandler mHandler;
 
-    /** Handler & Thread for play music using network **/
+    /**
+     * Handler & Thread for play music using network *
+     */
     private PlayMusicHandler playMusicHandler;
     private Thread playMusicLoad;
 
     /**
-     *  This override method is to prevent NullPointerException in this activity
-     *  see http://stackoverflow.com/questions/19275447/oncreateoptionsmenu-causing-error-in-an-activity-with-no-actionbar
-     **/
+     * This override method is to prevent NullPointerException in this activity
+     * see http://stackoverflow.com/questions/19275447/oncreateoptionsmenu-causing-error-in-an-activity-with-no-actionbar
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ( keyCode == KeyEvent.KEYCODE_MENU ) {
+        if (keyCode == KeyEvent.KEYCODE_MENU) {
             // Open right menu
             getSlidingMenu().toggle();
             return true;
@@ -326,6 +328,7 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
         }
 
     }
+
     private void setUpControlsAndEvents() {
         // Set content controls
         songContentTextView = (TextView) findViewById(R.id.songContent);
@@ -370,6 +373,18 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
 
                 // Show dialog
                 dialogScroll.show();
+
+
+                if (firstScroll) {
+                    firstScroll = false;
+                    scrollSeekBarValue = Config.SONG_AUTO_SCROLL_DEFAULT_SPEED;
+                    turnOnChk.setChecked(true);
+                    scrollSeekBar.setProgress(scrollSeekBarValue);
+                    speed = scrollSeekBarValue + Config.SONG_AUTO_SCROLL_MIN_NEV_SPEED;
+                    velocitySpeed = velocitySpeedFormula();
+                    scrollTextView.setText(String.valueOf(speed));
+                    activeScrollControl(true);
+                }
             }
         });
 
@@ -478,11 +493,9 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     @Override
     public void onResume() {
         super.onResume();
-        scrollView.post(new Runnable()
-        {
+        scrollView.post(new Runnable() {
             @Override
-            public void run()
-            {
+            public void run() {
                 scrollView.scrollTo(scrollX, scrollY);
             }
         });
@@ -583,13 +596,17 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     ////////////////////////////////////////////////////////////////////
     /////////////////// CONFIG MP3 PLAYER //////////////////////////////
 
-    /** Controller for Media Player */
+    /**
+     * Controller for Media Player
+     */
     MusicPlayerController controller;
     /** Android Built-in Media Player : reference object from service object */
     // MediaPlayer player;
-    /** ref to current Service */
-    // Mp3PlayerService mp3Service;
 
+    /**
+     * ref to current Service
+     */
+    // Mp3PlayerService mp3Service;
     private void setUpMediaPlayer() {
         // get reference from Activity
         MainActivity.player.setLooping(true);
@@ -608,7 +625,9 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
 
     }
 
-    /** setup start from here */
+    /**
+     * setup start from here
+     */
     private void startMediaPlayer() {
         // Only get link if this is a new song
         if (MainActivity.mp3Service.currentSong == null || MainActivity.mp3Service.currentSong.songId != song.songId) {
@@ -669,7 +688,9 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
         return 0;
     }
 
-    /** Choosing Component here */
+    /**
+     * Choosing Component here
+     */
 
     @Override
     public boolean canPause() {
@@ -697,7 +718,9 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     }
     //endregion
 
-    /** Handler for media player to prevent UI freezing when get mp3 data from network. **/
+    /**
+     * Handler for media player to prevent UI freezing when get mp3 data from network. *
+     */
     private class PlayMusicHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {

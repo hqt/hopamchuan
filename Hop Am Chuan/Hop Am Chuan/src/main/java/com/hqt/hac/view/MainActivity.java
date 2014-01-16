@@ -518,7 +518,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         headerAdapter = new NavigationDrawerAdapter.HeaderAdapter(this);
         itemAdapter = new NavigationDrawerAdapter.ItemAdapter(getApplicationContext());
         playlistHeaderAdapter = new NavigationDrawerAdapter.PlaylistHeaderAdapter(getApplicationContext());
-        playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(getApplicationContext(), playlistList);
+        playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(this, playlistList);
 
         /**
          * Setting up for playlist changes callback.

@@ -197,6 +197,13 @@ public class PlaylistManagerFragment extends CustomFragment implements
                 createPlaylist();
             }
         });
+
+
+        /** Call create playlist dialog if called **/
+        Bundle arguments = getArguments();
+        if (arguments.getBoolean("createPlaylist", false)) {
+            createPlaylist();
+        }
     }
 
     public static void removeOnGlobalLayoutListener(View v, ViewTreeObserver.OnGlobalLayoutListener listener){

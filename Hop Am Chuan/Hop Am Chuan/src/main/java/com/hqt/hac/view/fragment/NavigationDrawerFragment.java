@@ -167,7 +167,7 @@ public class NavigationDrawerFragment extends Fragment
          headerAdapter = new NavigationDrawerAdapter.HeaderAdapter(getActivity());
          itemAdapter = new NavigationDrawerAdapter.ItemAdapter(getActivity().getApplicationContext());
          playlistHeaderAdapter = new NavigationDrawerAdapter.PlaylistHeaderAdapter(getActivity().getApplicationContext());
-         playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(getActivity().getApplicationContext(),
+         playlistItemAdapter = new NavigationDrawerAdapter.PlaylistItemAdapter(getActivity(),
                  playlistList);
 
         // assign each adapters to this composite mAdapter

@@ -71,4 +71,5 @@ public class Config {
     public static final long AUTO_SYNC_SONGS_DELAY = 15000;
     public static final int MAX_LONG_WORK_TIMEOUT = 5000;
     public static final int DEFAULT_CONNECT_TIMEOUT = 10000;
+    public static final int SONG_AUTO_SCROLL_DEFAULT_SPEED = 3;
 }
