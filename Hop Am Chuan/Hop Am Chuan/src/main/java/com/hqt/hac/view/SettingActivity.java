@@ -237,6 +237,11 @@ public class SettingActivity extends AsyncActivity {
 
         // Login / Logout Buttons
         TextView btnLogout = (TextView) findViewById(R.id.btnLogout);
+        if (HacUtils.isLoggedIn()) {
+            btnLogout.setVisibility(View.VISIBLE);
+        } else {
+            btnLogout.setVisibility(View.GONE);
+        }
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -268,7 +273,8 @@ public class SettingActivity extends AsyncActivity {
             @Override
             public void onAfterLogout() {
                 // Reload the mActivity
-                loadAccountInfo();
+                setUpAccountInfo();
+                setUpSync();
             }
         });
     }

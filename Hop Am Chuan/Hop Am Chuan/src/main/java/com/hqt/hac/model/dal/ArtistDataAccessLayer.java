@@ -276,7 +276,6 @@ public class ArtistDataAccessLayer {
         LOGD(TAG, "search Song By Author");
         Context context = BunnyApplication.getAppContext();
         Artist artist = ArtistDataAccessLayer.getArtistByName(context, name);
-        LOGE("TRUNGDQ", "artist: " + artist);
         ContentResolver resolver = context.getContentResolver();
         Uri uri = SongsAuthors.CONTENT_URI;
         Cursor c = resolver.query(uri,
@@ -300,7 +299,6 @@ public class ArtistDataAccessLayer {
 
         Context context = BunnyApplication.getAppContext();
         Artist artist = ArtistDataAccessLayer.getArtistByName(context, name);
-        LOGE("TRUNGDQ", "artist: " + artist);
         ContentResolver resolver = context.getContentResolver();
         Uri uri = SongsSingers.CONTENT_URI;
         Cursor c = resolver.query(uri,
