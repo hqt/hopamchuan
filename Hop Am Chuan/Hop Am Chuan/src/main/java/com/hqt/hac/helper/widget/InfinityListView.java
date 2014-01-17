@@ -122,7 +122,13 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
             ignoreFirstChange = false;
             return;
         }
-        if (footer != null && getAdapter() != null && getFooterViewsCount() > 0) removeFooterView(footer);
+//        if (footer != null && getAdapter() != null && getFooterViewsCount() > 0) removeFooterView(footer);
+        try {
+            removeFooterView(footer);
+        } catch (Exception e) {
+            // Configuration change, no footer,... and more reasons.
+            e.printStackTrace();
+        }
         if (getFooterViewsCount() == 0) {
             addFooterView(footer);
         }
@@ -340,7 +346,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 //            setSelection(mAdapter.getCount() - 1);
             isComeToEnd.set(true);
             isLoading.set(false);
-            updateEmptyView(true);
+            updateEmptyView(true, true);
         } else {
             // update data for user
             mAdapter.notifyDataSetChanged();
@@ -355,11 +361,11 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     /**
      * Empty view description later
      */
-    private void updateEmptyView(boolean showMessage) {
+    private void updateEmptyView(boolean showMessage, boolean ignoreCount) {
         try {
             if (getEmptyView() != null) {
                 if (showMessage) {
-                    if (mAdapter.getCount() == 0) {
+                    if (mAdapter.getCount() == 0 || ignoreCount) {
                         getEmptyView().findViewById(R.id.emptyMessage).setVisibility(View.VISIBLE);
                         getEmptyView().findViewById(R.id.loadingImg).setVisibility(View.GONE);
                     }
@@ -372,6 +378,9 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
             // Incorrect layout structure
             e.printStackTrace();
         }
+    }
+    private void updateEmptyView(boolean showMessage) {
+       updateEmptyView(showMessage, false);
     }
 
     /** Add the item into adapter **/

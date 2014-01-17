@@ -127,8 +127,8 @@ public class NavigationDrawerFragment extends Fragment
         /**
          * setCacheColorHint : color background when scroll
          */
-        mDrawerListView.setSelector(android.R.color.transparent);
-        mDrawerListView.setCacheColorHint(Color.TRANSPARENT);
+        mDrawerListView.setSelector(R.drawable.menu_item);
+        mDrawerListView.setCacheColorHint(R.drawable.menu_item);
 
 
         // Simple view for drawer listview
@@ -371,7 +371,7 @@ public class NavigationDrawerFragment extends Fragment
      * When user click a category in listview
      */
         @Override
-        public void gotoCategoryPage(TYPE pageType) {
+        public void gotoCategoryPage(TYPE pageType, int position) {
             Log.e("DEBUG", "category: " + pageType);
             Fragment fragment = null;
             Bundle arguments = new Bundle();
@@ -405,7 +405,8 @@ public class NavigationDrawerFragment extends Fragment
 
         // close Drawer List View
         if (mDrawerListView != null) {
-            //mDrawerListView.setItemChecked(position, true);
+            LOGE("TRUNGDQ", "NavDrawer set category: " + position);
+            mDrawerListView.setItemChecked(position, true);
         }
         if (mDrawerLayout != null) {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
@@ -431,7 +432,8 @@ public class NavigationDrawerFragment extends Fragment
 
         // setting for Drawer List View
         if (mDrawerListView != null) {
-            //mDrawerListView.setItemChecked(position, true);
+            LOGE("TRUNGDQ", "NavDrawer set playlist: " + playlistId);
+            mDrawerListView.setItemChecked(playlistId, true);
         }
         if (mDrawerLayout != null) {
             mDrawerLayout.closeDrawer(mFragmentContainerView);

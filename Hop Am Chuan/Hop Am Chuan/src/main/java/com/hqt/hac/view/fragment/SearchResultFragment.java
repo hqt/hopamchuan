@@ -155,7 +155,7 @@ public class SearchResultFragment extends CustomFragment implements
             };
             bindEventListView();
 
-            mListView.setAdapter(mAdapter);
+            reloadInfListView();
         }
 
 

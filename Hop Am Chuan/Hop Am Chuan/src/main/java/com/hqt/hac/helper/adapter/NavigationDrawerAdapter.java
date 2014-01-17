@@ -221,17 +221,17 @@ public class NavigationDrawerAdapter {
                         break;
                     case 6:
                         // Cai dat
-                        holder.imageView.setImageResource(R.drawable.setting_icon);
+                        holder.imageView.setImageResource(R.drawable.ic_action_settings);
                         type = TYPE.SETTING;
                         break;
                 }
             }
-
             final TYPE finalType = type;
+            final int finalPosition = position;
             row.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mDelegate.gotoCategoryPage(finalType);
+                    mDelegate.gotoCategoryPage(finalType, finalPosition);
                 }
             });
             return row;
@@ -419,7 +419,7 @@ public class NavigationDrawerAdapter {
     }
 
     public static interface IItemDelegate {
-        void gotoCategoryPage(ItemAdapter.TYPE type);
+        void gotoCategoryPage(ItemAdapter.TYPE type, int position);
 
     }
 

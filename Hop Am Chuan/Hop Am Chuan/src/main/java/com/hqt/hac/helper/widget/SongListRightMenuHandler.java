@@ -199,6 +199,8 @@ public class SongListRightMenuHandler {
 
                 // Update UI
                 mAdapter.remove(_song.songId);
+                updateNavDrawerPlaylistList(PlaylistDataAccessLayer.getAllPlayLists(activity.getApplicationContext()));
+
             }
         });
 

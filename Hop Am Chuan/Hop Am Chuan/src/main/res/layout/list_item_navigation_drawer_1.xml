@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.hqt.hac.helper.widget.CheckableRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="fill_parent"
+    android:background="@drawable/menu_item"
     android:layout_height="wrap_content"
     >
 
@@ -56,4 +57,4 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
 
-</RelativeLayout>
+</com.hqt.hac.helper.widget.CheckableRelativeLayout>
