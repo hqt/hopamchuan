@@ -3,11 +3,11 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hqt.hac.view.ArtistViewActivity"
+    tools:context="com.hac.android.guitarchord.ArtistViewActivity"
     tools:ignore="MergeRootFrame"
     android:background="#fff"
     android:orientation="vertical">
-        <com.hqt.hac.helper.widget.InfinityListView
+        <com.hac.android.helper.widget.InfinityListView
             android:id="@+id/mListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

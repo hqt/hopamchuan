@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.hqt.hac.view.ArtistViewActivity" >
+    tools:context="com.hac.android.guitarchord.ArtistViewActivity" >
     
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"

@@ -5,7 +5,7 @@
     tools:context=".PlaylistDetailFragment$PlaceholderFragment"
     android:background="#fff">
 
-    <com.hqt.hac.helper.widget.InfinityListView
+    <com.hac.android.helper.widget.InfinityListView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

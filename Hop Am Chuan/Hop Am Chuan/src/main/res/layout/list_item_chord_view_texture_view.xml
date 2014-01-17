@@ -14,7 +14,7 @@
         android:padding="10dp"
         android:background="@drawable/box_shadow"
         android:id="@+id/relvChordView">
-        <com.hac_library.components.ChordTextureView
+        <com.hac.chorddroid.components.ChordTextureView
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginLeft="20dp"

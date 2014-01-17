@@ -15,7 +15,7 @@
         android:paddingRight="8dp"
         >
 
-        <com.hqt.hac.helper.widget.FastSearchListView
+        <com.hac.android.helper.widget.FastSearchListView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:id="@+id/list_chord_graphic"

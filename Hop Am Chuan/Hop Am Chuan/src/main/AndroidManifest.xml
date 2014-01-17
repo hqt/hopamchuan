@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hqt.hac.view"
+    package="com.hac.android.guitarchord"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -20,49 +20,49 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:name=".BunnyApplication"
+        android:name="com.hac.android.guitarchord.BunnyApplication"
         android:theme="@style/AppTheme"
         android:hardwareAccelerated="true"
         >
 
         <meta-data
             android:name="android.app.default_searchable"
-            android:value="com.hqt.hac.view.MainActivity" />
+            android:value="com.hac.android.guitarchord.MainActivity" />
 
         <provider
-            android:name="com.hqt.hac.provider.HopAmChuanProvider"
-            android:authorities="com.hqt.hac.provider"
+            android:name="com.hac.android.provider.HopAmChuanProvider"
+            android:authorities="com.hac.android.provider"
             android:exported="true"
             android:label="@string/app_name"
             android:syncable="true" />
 
-        <provider android:name="com.hqt.hac.provider.SearchRecentProvider"
+        <provider android:name="com.hac.android.provider.SearchRecentProvider"
                   android:label="@string/app_name"
-                  android:authorities="com.con.gau.tho" />
+                  android:authorities="com.meta.data" />
 
-        <service android:name="com.hqt.hac.helper.service.Mp3PlayerService"
+        <service android:name="com.hac.android.helper.service.Mp3PlayerService"
                  android:label="@string/app_name"/>
-        <service android:name="com.hqt.hac.helper.service.SyncService"
+        <service android:name="com.hac.android.helper.service.SyncService"
                  android:label="@string/app_name"/>
-        <service android:name="com.hqt.hac.helper.service.UpdateService"
+        <service android:name="com.hac.android.helper.service.UpdateService"
                  android:label="@string/app_name"/>
 
-        <receiver android:name="com.hqt.hac.helper.service.AlarmReceiver">
+        <receiver android:name="com.hac.android.helper.service.AlarmReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <meta-data
-                        android:name="com.hqt.hac.con.gau.tho"
+                        android:name="com.hac.android.guitarchord.meta.data"
                         android:resource="@xml/wakeful"/>
             </intent-filter>
         </receiver>
 
         <activity
-            android:name="com.hqt.hac.view.MainActivity"
+            android:name="com.hac.android.guitarchord.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop">
             <meta-data
                     android:name="android.app.default_searchable"
-                    android:value="com.hqt.hac.view.MainActivity" />
+                    android:value="com.hac.android.guitarchord.MainActivity" />
             <meta-data
                     android:name="android.app.searchable"
                     android:resource="@xml/searchable" />
@@ -73,7 +73,7 @@
 
         </activity>
         <activity
-            android:name="com.hqt.hac.view.SearchViewActivity"
+            android:name="com.hac.android.guitarchord.SearchViewActivity"
             android:label="@string/title_activity_search_view"
             android:launchMode="singleTop">
             <meta-data
@@ -81,30 +81,30 @@
                 android:value="MainActivity" />
         </activity>
         <activity
-            android:name="com.hqt.hac.view.test.TestParser"
+            android:name="com.hac.android.guitarchord.test.TestParser"
             android:label="@string/title_activity_test" >
         </activity>
         <activity
-            android:name="com.hqt.hac.view.test.TestTextView"
+            android:name="com.hac.android.guitarchord.test.TestTextView"
             android:exported="true"
             android:label="@string/title_activity_test_text_view" >
         </activity>
         <activity
-            android:name="com.hqt.hac.view.test.TestSurfaceView"
+            android:name="com.hac.android.guitarchord.test.TestSurfaceView"
             android:exported="true"
             android:label="@string/title_activity_test_text_view" >
         </activity>
         <activity
-            android:name="com.hqt.hac.view.test.TestDatabaseActivity"
+            android:name="com.hac.android.guitarchord.test.TestDatabaseActivity"
             android:exported="true"
             android:label="@string/title_activity_test_database" >
         </activity>
         <activity
-            android:name="com.hqt.hac.view.test.MainActivityTest"
+            android:name="com.hac.android.guitarchord.test.MainActivityTest"
             android:label="@string/title_activity_test" >
         </activity>
         <activity
-            android:name="com.hqt.hac.view.SplashScreen"
+            android:name="com.hac.android.guitarchord.SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/SplashTheme.FullScreen"
             android:windowSoftInputMode="stateHidden|adjustResize" >
@@ -117,19 +117,19 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:windowSoftInputMode="stateHidden|adjustResize"
             android:theme="@style/FullscreenTheme"
-            android:name="com.hqt.hac.view.LoginActivity"
+            android:name="com.hac.android.guitarchord.LoginActivity"
             android:label="@string/login_activity_title" >
         </activity>
         <activity
-            android:name="com.hqt.hac.view.SettingActivity"
+            android:name="com.hac.android.guitarchord.SettingActivity"
             android:label="@string/title_activity_setting" >
         </activity>
         <activity
-                android:name="com.hqt.hac.view.SecondarySettingActivity"
+                android:name="com.hac.android.guitarchord.SecondarySettingActivity"
                 android:label="@string/title_activity_setting" >
         </activity>
         <activity
-            android:name="com.hqt.hac.view.FullscreenSongActivity"
+            android:name="com.hac.android.guitarchord.FullscreenSongActivity"
             android:label="Full Screen Activity" >
         </activity>
     </application>

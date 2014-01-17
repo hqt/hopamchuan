@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="59dp"
         >
-        <com.hqt.hac.helper.widget.InfinityListView
+        <com.hac.android.helper.widget.InfinityListView
             android:layout_height="fill_parent"
             android:layout_width="fill_parent"
             android:id="@+id/list_view"

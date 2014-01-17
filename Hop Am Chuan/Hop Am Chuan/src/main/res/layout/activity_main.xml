@@ -26,7 +26,7 @@
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:name="com.hqt.hac.view.fragment.NavigationDrawerFragment" />-->
+        android:name="NavigationDrawerFragment" />-->
 
     <!-- new way : using ListView instead -->
 

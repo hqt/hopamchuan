@@ -19,14 +19,14 @@
         android:layout_below="@+id/spinnerLayout">
 
         <view
-            class="com.hqt.hac.helper.widget.BackgroundContainer"
+            class="com.hac.android.helper.widget.BackgroundContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_above="@+id/linear_layout"
             android:id="@+id/listViewBackground">
 
-            <com.hqt.hac.helper.widget.DeleteAnimListView
+            <com.hac.android.helper.widget.DeleteAnimListView
                     android:id="@+id/list_view"
                     android:divider="@null"
                     android:dividerHeight="0dp"
@@ -97,7 +97,7 @@
         android:id="@+id/spinnerLayout"
         >
 
-        <com.hqt.hac.helper.widget.TriggerSpinner
+        <com.hac.android.helper.widget.TriggerSpinner
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_alignParentLeft="true"

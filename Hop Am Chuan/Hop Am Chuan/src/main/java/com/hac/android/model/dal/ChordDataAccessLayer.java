@@ -1,0 +1,183 @@
+package com.hac.android.model.dal;
+
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+
+import com.hac.android.model.Chord;
+import com.hac.android.model.Song;
+import com.hac.android.provider.HopAmChuanDBContract;
+import com.hac.android.provider.HopAmChuanDatabase;
+import com.hac.android.provider.helper.Query;
+import com.hac.android.utils.LogUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ChordDataAccessLayer {
+
+    private static final String TAG = LogUtils.makeLogTag(ChordDataAccessLayer.class);
+
+    public static String insertChord(Context context, Chord chord) {
+        LogUtils.LOGD(TAG, "Adding a Chord");
+
+        ContentValues cv = new ContentValues();
+        cv.put(HopAmChuanDBContract.Chords.CHORD_ID, chord.chordId);
+        cv.put(HopAmChuanDBContract.Chords.CHORD_NAME, chord.name);
+
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Chords.CONTENT_URI;
+        Uri insertedUri = resolver.insert(uri, cv);
+        LogUtils.LOGD(TAG, "inserted uri: " + insertedUri);
+        return insertedUri.toString();
+    }
+
+    public static void insertListOfChords(Context context, List<Chord> chords) {
+        for (Chord chord : chords) {
+            insertChord(context, chord);
+        }
+    }
+
+    public static Chord getChordByName(Context context, String chordName) {
+        LogUtils.LOGD(TAG, "Get Chord by Name");
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Chords.CONTENT_URI;
+        Uri chordUri = Uri.withAppendedPath(uri, "name/" + chordName + "");
+
+        Cursor c = resolver.query(chordUri,
+                Query.Projections.CHORD_PROJECTION,    // projection
+                null,                             // selection string
+                null,                             // selection args of strings
+                null);                            //  sort order
+
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            int chordId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Chords.CHORD_ID));
+            String _chordName = c.getString(c.getColumnIndex(HopAmChuanDBContract.Chords.CHORD_NAME));
+            c.close();
+            return new Chord(chordId, _chordName);
+        }
+        c.close();
+        return null;
+    }
+
+    /**
+     *
+     * @param context
+     * @param chords
+     * @return
+     */
+    public static List<Song> getAllSongsByChordArrays(Context context, List<Chord> chords, int offset, int count) {
+
+        /*
+        Magic happened in this query, just don't touch. I will update a stackoverflow link later.
+
+        SELECT rs.song_id, COUNT(*) AS c FROM (SELECT s.song_id FROM   song s JOIN
+		  song_chord sc USING (song_id) WHERE  sc.chord_id IN (".implode(",", $chords).") GROUP
+		   BY 1 HAVING COUNT(*) = ".count($chords).") AS rs JOIN song_chord ssc USING (song_id)
+			GROUP BY song_id ORDER BY c LIMIT 0, 90
+         */
+
+        /** Get chord id list **/
+        StringBuilder chordIds = new StringBuilder();
+        for (Chord chord : chords) {
+            chordIds.append(getChordByName(context, chord.name).chordId + ", ");
+        }
+
+        String ids = chordIds.toString().substring(0, chordIds.length() - 2);
+        HopAmChuanDatabase db = new HopAmChuanDatabase(context);
+        try {
+            if (db.getReadableDatabase() == null) return new ArrayList<Song>();
+            Cursor c = db.getReadableDatabase().rawQuery(
+                    "SELECT rs." + HopAmChuanDBContract.Songs.SONG_ID + ", COUNT(*) AS c FROM (SELECT s."
+                            + HopAmChuanDBContract.Songs.SONG_ID + " FROM " + HopAmChuanDBContract.Tables.SONG + " s JOIN " +
+                            "  " + HopAmChuanDBContract.Tables.SONG_CHORD + " sc USING (" + HopAmChuanDBContract.Songs.SONG_ID
+                            + ") WHERE  sc." + HopAmChuanDBContract.Chords.CHORD_ID + " IN (" + ids + ") GROUP " +
+                            "  BY 1 HAVING COUNT(*) = "+chords.size()+") AS rs JOIN " + HopAmChuanDBContract.Tables.SONG_CHORD + " ssc USING ("
+                            + HopAmChuanDBContract.Songs.SONG_ID + ") " +
+                            "  GROUP BY " + HopAmChuanDBContract.Songs.SONG_ID
+                            + " ORDER BY c LIMIT " + offset + ", " + count,
+                    new String[]{});
+
+            List<Song> songs = new ArrayList<Song>();
+            for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+                int songId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID));
+                songs.add(SongDataAccessLayer.getSongById(context, songId));
+            }
+            c.close();
+            return songs;
+        } catch (Exception e) {
+            return new ArrayList<Song>();
+        } finally {
+            db.close();
+        }
+    }
+
+    public static void removeChord(Context context, int chordId) {
+        LogUtils.LOGD(TAG, "Delete Chord");
+
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = HopAmChuanDBContract.Chords.CONTENT_URI;
+        Uri deleteUri = Uri.withAppendedPath(uri, chordId + "");
+        resolver.delete(deleteUri, null, null);
+    }
+
+    /**
+     * Get random song with chords
+     *
+     * @param context
+     * @param chords
+     * @param limit
+     * @return
+     */
+    public static List<Song> getRandomSongsByChords(Context context, List<Chord> chords, int offset, int limit) {
+
+        /*
+        Magic happened in this query, just don't touch. I will update a stackoverflow link later.
+
+        SELECT rs.song_id, COUNT(*) AS c FROM (SELECT s.song_id FROM   song s JOIN
+		  song_chord sc USING (song_id) WHERE  sc.chord_id IN (".implode(",", $chords).") GROUP
+		   BY 1 HAVING COUNT(*) = ".count($chords).") AS rs JOIN song_chord ssc USING (song_id)
+			GROUP BY song_id ORDER BY c LIMIT 0, 90
+
+			ThaoHQ : I have try-catch this method. to close database. Doesn't touch somewhere else
+			         just a painful experience
+         */
+
+        /** Get chord id list **/
+        StringBuilder chordIds = new StringBuilder();
+        for (Chord chord : chords) {
+            chordIds.append(getChordByName(context, chord.name).chordId + ", ");
+        }
+
+        String ids = chordIds.toString().substring(0, chordIds.length() - 2);
+        HopAmChuanDatabase db = new HopAmChuanDatabase(context);
+        try {
+            if (db.getReadableDatabase() == null) return new ArrayList<Song>();
+            Cursor c = db.getReadableDatabase().rawQuery(
+                    "SELECT rs." + HopAmChuanDBContract.Songs.SONG_ID + ", COUNT(*) AS c FROM (SELECT s."
+                            + HopAmChuanDBContract.Songs.SONG_ID + " FROM " + HopAmChuanDBContract.Tables.SONG + " s JOIN " +
+                            "  " + HopAmChuanDBContract.Tables.SONG_CHORD + " sc USING (" + HopAmChuanDBContract.Songs.SONG_ID
+                            + ") WHERE  sc." + HopAmChuanDBContract.Chords.CHORD_ID + " IN (" + ids + ") GROUP " +
+                            "  BY 1 HAVING COUNT(*) = "+chords.size()+") AS rs JOIN " + HopAmChuanDBContract.Tables.SONG_CHORD + " ssc USING ("
+                            + HopAmChuanDBContract.Songs.SONG_ID + ") " +
+                            "  GROUP BY " + HopAmChuanDBContract.Songs.SONG_ID
+                            + " ORDER BY c LIMIT "+offset+", " + limit,
+                    new String[]{});
+
+            List<Song> songs = new ArrayList<Song>();
+            for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+                int songId = c.getInt(c.getColumnIndex(HopAmChuanDBContract.Songs.SONG_ID));
+                songs.add(SongDataAccessLayer.getSongById(context, songId));
+            }
+            c.close();
+
+            return songs;
+        } catch (Exception e) {
+            return new ArrayList<Song>();
+        } finally {
+            db.close();
+        }
+    }
+}

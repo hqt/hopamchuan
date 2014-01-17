@@ -6,4 +6,4 @@
     android:divider="@drawable/list_divider"
     android:dividerHeight="0dp"
     android:background="#586fa3"
-    tools:context="com.hqt.hac.view.fragment.NavigationDrawerFragment" />
+    tools:context="com.hac.android.guitarchord.fragment.NavigationDrawerFragment" />
