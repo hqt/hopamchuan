@@ -66,6 +66,7 @@ public class SearchResultFragment extends CustomFragment implements
     String queryStr;
 
     private List<Chord> chords;
+    private View rootView;
 
     /** empty constructor
      * must have for fragment
@@ -114,19 +115,11 @@ public class SearchResultFragment extends CustomFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_search_view, container, false);
+        rootView = inflater.inflate(R.layout.activity_search_view, container, false);
         this.inflater = inflater;
 
         mListView = (InfinityListView) rootView.findViewById(R.id.list_view);
 
-        /** config mode for this ListView.
-         *  this ListView is full rich function. See document for more detail
-         */
-        InfinityListView.ListViewProperty property = new InfinityListView.ListViewProperty();
-        property.Loader(this).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
-                .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
-        mListView.setListViewProperty(property);
-        mListView.setEmptyView(rootView.findViewById(R.id.empty));
 
         if (chords == null) {
             /** Spinner : create mAdapter for Spinner */
@@ -230,6 +223,23 @@ public class SearchResultFragment extends CustomFragment implements
         }
         // mListView.setAdapter(mAdapter);
         // TrungDQ: We NEED this for footer and stuffs when changing dropdown menu item.
+        if (position == 0) {
+            mListView.ignoreIgnoreFirstChange = true;
+        }
+        // refresh ListView
+        reloadInfListView();
+    }
+
+    private void reloadInfListView() {
+        /** config mode for this ListView.
+         *  this ListView is full rich function. See document for more detail
+         */
+        InfinityListView.ListViewProperty property = new InfinityListView.ListViewProperty();
+        property.Loader(this).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
+                .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
+        mListView.setListViewProperty(property);
+        mListView.setEmptyView(rootView.findViewById(R.id.empty));
+
         mListView.resetListView(mAdapter);
     }
 

@@ -43,7 +43,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 
     public static String TAG = makeLogTag(InfinityListView.class);
 
-    private static final int DEFAULT_FIRST_LOADING_ITEMS = 4;
+    private static final int DEFAULT_FIRST_LOADING_ITEMS = 10;
     private static final int DEFAULT_NUM_PER_LOAD = 1;
 
     //region State variable to control current state of ListView
@@ -81,6 +81,10 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     int mNumPerLoading = DEFAULT_NUM_PER_LOAD;
     /** should this ListView process first loading for adapter */
     boolean isFirstProcessLoading = false;
+
+    /** Variable to deal with spinner bug **/
+    boolean ignoreFirstChange = false;
+    public boolean ignoreIgnoreFirstChange = false;
     //endregion
 
     //region Constructor ListView
@@ -114,8 +118,16 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
      */
     public void resetListView(BaseAdapter adapter) {
         LOGE(TAG, "Reset ListView");
-        if (footer != null) removeFooterView(footer);
-        addFooterView(footer);
+        if (ignoreFirstChange && !ignoreIgnoreFirstChange) {
+            ignoreFirstChange = false;
+            return;
+        }
+        if (footer != null && getAdapter() != null && getFooterViewsCount() > 0) removeFooterView(footer);
+        if (getFooterViewsCount() == 0) {
+            addFooterView(footer);
+        }
+        isFirstProcessLoading = true;
+        isRunningBackground = true;
         isComeToEnd.set(false);
         isLoading.set(false);
         LOGE(TAG, "pre set adapter");
@@ -189,6 +201,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 
     @Override
     public void onRestoreInstanceState(Parcelable state) {
+        ignoreFirstChange = true;
         // if. currently state is not custom state
         if(!(state instanceof Bundle)) {
             LOGE(TAG, "Mal-well form");
@@ -399,7 +412,9 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         });
         // basically. when adding a view to another. MUST set the LayoutParams of the view to the LayoutParams type that parent uses
         footer.setLayoutParams(new ListView.LayoutParams(LayoutParams.MATCH_PARENT, ListView.LayoutParams.WRAP_CONTENT));
-        addFooterView(footer);
+        if (getFooterViewsCount() == 0) {
+            addFooterView(footer);
+        }
         this.mLoader = property.mLoader;
         this.mAdapter = property.mAdapter;
         this.isRunningBackground = property.isRunningBackground;
