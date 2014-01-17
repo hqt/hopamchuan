@@ -221,7 +221,7 @@ public class NavigationDrawerAdapter {
                         break;
                     case 6:
                         // Cai dat
-                        holder.imageView.setImageResource(R.drawable.setting_icon);
+                        holder.imageView.setImageResource(R.drawable.ic_action_settings);
                         type = TYPE.SETTING;
                         break;
                 }

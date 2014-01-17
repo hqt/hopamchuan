@@ -226,7 +226,7 @@
     <string name="view_full_screen">VIEW LYRICS</string>
     <string name="remove_from_playlist">Remove from playlist</string>
     <string name="press_back_again">Press Back again to exit!</string>
-    <string name="version">VERSION</string>
+    <string name="version">SYNCHRONIZE</string>
     <string name="update_songs">Download new songs</string>
     <string name="sync_playlist">Synchronize playlist/favorite</string>
     <string name="account">ACCOUNT</string>

@@ -479,7 +479,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             // get query string
             String queryStr = intent.getStringExtra(SearchManager.QUERY);
-            LOGE(TAG, "Search query: " + queryStr);
+            // LOGE(TAG, "Search query: " + queryStr);
             // should close search view
             MenuItemCompat.collapseActionView(searchItem);
             // cache data for searching
