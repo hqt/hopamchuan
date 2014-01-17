@@ -120,6 +120,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         addFooterView(footer);
         isComeToEnd.set(false);
         isLoading.set(false);
+        updateEmptyView(false);
         setAdapter(adapter);
         mAdapter.notifyDataSetChanged();
     }
@@ -311,11 +312,32 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 //            setSelection(mAdapter.getCount() - 1);
             isComeToEnd.set(true);
             isLoading.set(false);
+            updateEmptyView(true);
         } else {
             // update data for user
             mAdapter.notifyDataSetChanged();
             // restore state
             isLoading.set(false);
+        }
+    }
+
+    /**
+     * Empty view description later
+     */
+    private void updateEmptyView(boolean showMessage) {
+        try {
+            if (getEmptyView() != null) {
+                if (showMessage) {
+                    getEmptyView().findViewById(R.id.emptyMessage).setVisibility(View.VISIBLE);
+                    getEmptyView().findViewById(R.id.loadingImg).setVisibility(View.GONE);
+                } else {
+                    getEmptyView().findViewById(R.id.emptyMessage).setVisibility(View.GONE);
+                    getEmptyView().findViewById(R.id.loadingImg).setVisibility(View.VISIBLE);
+                }
+            }
+        } catch (Exception e) {
+            // Incorrect layout structure
+            e.printStackTrace();
         }
     }
 

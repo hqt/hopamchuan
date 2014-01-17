@@ -28,6 +28,7 @@ import com.hqt.hac.model.Song;
 import com.hqt.hac.utils.APIUtils;
 import com.hqt.hac.utils.DialogUtils;
 import com.hqt.hac.utils.HacUtils;
+import com.hqt.hac.utils.NetworkUtils;
 import com.hqt.hac.utils.ScreenUtils;
 import com.hqt.hac.utils.UIUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -95,7 +96,8 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
     // The text view
     private TextView songContentTextView;
 
-    private ScaleGestureDetector mScaleDetector;
+    // private ScaleGestureDetector mScaleDetector;
+
     // Scroll view for smoothie and auto scroll function
     private ScrollView scrollView;
 
@@ -176,7 +178,7 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
         setUpContent();
 
         // Set fingers zoom
-        setUpZoomByFingers();
+        // setUpZoomByFingers();
 
         // Keep the screen always on
         setScreenOn();
@@ -185,33 +187,33 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
         setUpMediaPlayer();
     }
 
-    private void setUpZoomByFingers() {
-        mScaleDetector = new ScaleGestureDetector(getApplicationContext(), new ScaleGestureDetector.OnScaleGestureListener() {
-            @Override
-            public void onScaleEnd(ScaleGestureDetector detector) {
-            }
-            @Override
-            public boolean onScaleBegin(ScaleGestureDetector detector) {
-                return true;
-            }
-            @Override
-            public boolean onScale(ScaleGestureDetector detector) {
-                LOGE(TAG, "zoom ongoing, scale: " + detector.getScaleFactor());
-                fontSizeValue = fontSizeValue * detector.getScaleFactor();
-                fontSizeTextView.setText(String.valueOf(fontSizeValue + 1));
-                songContentTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSizeValue + 1);
-                return false;
-            }
-        });
-
-        songContentTextView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                mScaleDetector.onTouchEvent(motionEvent);
-                return true;
-            }
-        });
-    }
+//    private void setUpZoomByFingers() {
+//        mScaleDetector = new ScaleGestureDetector(getApplicationContext(), new ScaleGestureDetector.OnScaleGestureListener() {
+//            @Override
+//            public void onScaleEnd(ScaleGestureDetector detector) {
+//            }
+//            @Override
+//            public boolean onScaleBegin(ScaleGestureDetector detector) {
+//                return true;
+//            }
+//            @Override
+//            public boolean onScale(ScaleGestureDetector detector) {
+//                LOGE(TAG, "zoom ongoing, scale: " + detector.getScaleFactor());
+//                fontSizeValue = fontSizeValue * detector.getScaleFactor();
+//                fontSizeTextView.setText(String.valueOf(fontSizeValue + 1));
+//                songContentTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSizeValue + 1);
+//                return false;
+//            }
+//        });
+//
+//        songContentTextView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                mScaleDetector.onTouchEvent(motionEvent);
+//                return true;
+//            }
+//        });
+//    }
 
     @Override
     protected void onPause() {
@@ -665,7 +667,11 @@ public class FullscreenSongActivity extends SlidingMenuActionBarActivity
             setMediaPlayerState(true, getString(R.string.media_buffering_file));
 
             if (song == null || song.link == null || song.link.isEmpty()) {
-                setMediaPlayerState(true, getString(R.string.media_url_fail));
+                if (NetworkUtils.isDeviceNetworkConnected()) {
+                    setMediaPlayerState(true, getString(R.string.media_url_fail));
+                } else {
+                    setMediaPlayerState(true, getString(R.string.no_connection));
+                }
             } else {
                 // start currently song (not new song)
                 Intent mp3ServiceIntent = new Intent(this, Mp3PlayerService.class);
