@@ -443,6 +443,9 @@ public class SettingActivity extends AsyncActivity {
             case STATUS_CODE.STATE_SYNC_PLAYLIST:
                 dialog.setMessage(getString(R.string.synching_playlist));
                 break;
+            case STATUS_CODE.SYNC_CANCEL:
+                // Do nothing
+                break;
             default:
                 throw new UnsupportedOperationException();
         }
@@ -585,6 +588,8 @@ public class SettingActivity extends AsyncActivity {
     /////////////////// SYNC SONG TASK /////////////////////////////
 
     private int syncSongTask() {
+        isCheckUpdateCancelled.set(false);
+
         String username = PrefStore.getLoginUsername();
         String password = PrefStore.getLoginPassword();
         boolean res;
@@ -594,6 +599,10 @@ public class SettingActivity extends AsyncActivity {
         List<Playlist> oldPlaylists = PlaylistDataAccessLayer.getAllPlayLists(mAppContext);
         List<JsonPlaylist> jsonPlaylists = JsonPlaylist.convert(oldPlaylists, mAppContext);
         List<Playlist> newPlaylists = APIUtils.syncPlaylist(username, password, jsonPlaylists);
+
+        if (isCheckUpdateCancelled.get()) {
+            return STATUS_CODE.SYNC_CANCEL;
+        }
 
         // update playlist
         publishProgress(STATUS_CODE.STATE_UPDATING);
@@ -612,10 +621,19 @@ public class SettingActivity extends AsyncActivity {
             }
         }
 
+
+        if (isCheckUpdateCancelled.get()) {
+            return STATUS_CODE.SYNC_CANCEL;
+        }
+
         // sync favorite
         publishProgress(STATUS_CODE.STATE_SYNC_FAVORITE);
         int[] favorite = FavoriteDataAccessLayer.getAllFavoriteSongIds(mAppContext);
         List<Integer> newFavorite = APIUtils.syncFavorite(username, password, favorite);
+
+        if (isCheckUpdateCancelled.get()) {
+            return STATUS_CODE.SYNC_CANCEL;
+        }
 
         // update favorite
         publishProgress(STATUS_CODE.STATE_UPDATING);
@@ -640,6 +658,7 @@ public class SettingActivity extends AsyncActivity {
         static final int STATE_SYNC_FAVORITE = 8;
         static final int STATE2_DOWNLOADING = 9;
         static final int STATE2_PROCESSING = 10;
+        static final int SYNC_CANCEL = 11;
     }
 
     private static class METHOD_CODE {

@@ -287,7 +287,7 @@ public class MainActivityTest extends SlidingMenuActionBarActivity
     //////////////// METHOD OVERRIDE USE FOR ADAPTER //////////////
 
     @Override
-    public void gotoCategoryPage(NavigationDrawerAdapter.ItemAdapter.TYPE pageType) {
+    public void gotoCategoryPage(NavigationDrawerAdapter.ItemAdapter.TYPE pageType, int position) {
         Log.e("DEBUG", "category: " + pageType);
         Fragment fragment = null;
         Bundle arguments = new Bundle();

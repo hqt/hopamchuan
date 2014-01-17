@@ -506,6 +506,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         /**
          * setCacheColorHint : color background when scroll
          */
+        mDrawerListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         mDrawerListView.setSelector(android.R.color.transparent);
         mDrawerListView.setCacheColorHint(Color.TRANSPARENT);
 
@@ -541,6 +542,8 @@ public class MainActivity extends SlidingMenuActionBarActivity
         /** assign this complex mAdapter to navigation drawer list*/
         mDrawerListView.setAdapter(mergeAdapter);
 
+        /** Highlight Home fragment **/
+        mDrawerListView.setItemChecked(headerAdapter.getCount(), true);
     }
 
     /** Set up Mp3 Service Start From MainActivity
@@ -691,7 +694,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
     //////////////// METHOD OVERRIDE USE FOR ADAPTER ///////////////
 
     @Override
-    public void gotoCategoryPage(NavigationDrawerAdapter.ItemAdapter.TYPE pageType) {
+    public void gotoCategoryPage(NavigationDrawerAdapter.ItemAdapter.TYPE pageType, int position) {
         Log.e("DEBUG", "category: " + pageType);
         Fragment fragment = null;
         Bundle arguments = new Bundle();
@@ -720,6 +723,11 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 finish();
                 break;
         }
+        // setting for Drawer List View
+        if (mDrawerListView != null) {
+            LOGE("TRUNGDQ", "Main: set category: " + position);
+            mDrawerListView.setItemChecked(position + headerAdapter.getCount(), true);
+        }
         // Open Custom Fragment
         if (fragment != null) fragment.setArguments(arguments);
         switchFragmentClearStack(fragment);
@@ -738,7 +746,12 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
         // setting for Drawer List View
         if (mDrawerListView != null) {
-            //mDrawerListView.setItemChecked(position, true);
+            mDrawerListView.setItemChecked(
+                    playlistId
+                            + headerAdapter.getCount()
+                            + itemAdapter.getCount()
+                            + playlistHeaderAdapter.getCount(),
+                    true);
         }
 
         changeTitleBar(playlist.playlistName);

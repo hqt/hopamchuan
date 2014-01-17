@@ -226,12 +226,12 @@ public class NavigationDrawerAdapter {
                         break;
                 }
             }
-
             final TYPE finalType = type;
+            final int finalPosition = position;
             row.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mDelegate.gotoCategoryPage(finalType);
+                    mDelegate.gotoCategoryPage(finalType, finalPosition);
                 }
             });
             return row;
@@ -419,7 +419,7 @@ public class NavigationDrawerAdapter {
     }
 
     public static interface IItemDelegate {
-        void gotoCategoryPage(ItemAdapter.TYPE type);
+        void gotoCategoryPage(ItemAdapter.TYPE type, int position);
 
     }
 
