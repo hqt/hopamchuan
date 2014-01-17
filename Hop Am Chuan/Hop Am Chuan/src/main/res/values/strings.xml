@@ -23,7 +23,7 @@
         <item>Favorites</item>
         <item>Search by Chords</item>
         <item>Chord Dictionary</item>
-        <item>Synchronize</item>
+        <item>Setting</item>
     </string-array>
 
     <!-- list all method to view songs -->

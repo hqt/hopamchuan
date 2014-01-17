@@ -16,6 +16,8 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
                 android:text="@string/song_detail_fontsize"
                 android:textColor="#fff"
                 android:background="@drawable/dropmenu_item"
@@ -28,6 +30,8 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
                 android:textColor="#fff"
                 android:text="@string/song_detail_scroll_label"
                 android:background="@drawable/dropmenu_item"
@@ -40,6 +44,8 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
                 android:textColor="#fff"
                 android:text="@string/song_detail_transpose"
                 android:background="@drawable/dropmenu_item"
@@ -52,6 +58,8 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
                 android:textColor="#fff"
                 android:text="@string/split_line"
                 android:background="@drawable/dropmenu_item"
@@ -64,6 +72,8 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
                 android:textColor="#fff"
                 android:text="@string/play_music"
                 android:background="@drawable/dropmenu_item"
