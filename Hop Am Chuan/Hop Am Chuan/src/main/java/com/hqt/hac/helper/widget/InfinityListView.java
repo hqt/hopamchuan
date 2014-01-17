@@ -205,7 +205,12 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         // if. currently state is not custom state
         if(!(state instanceof Bundle)) {
             LOGE(TAG, "Mal-well form");
-            super.onRestoreInstanceState(BaseSavedState.EMPTY_STATE);
+            // TODO: java.lang.ClassCastException: android.view.AbsSavedState$1 cannot be cast to android.widget.AbsListView$SavedState
+            try {
+                super.onRestoreInstanceState(BaseSavedState.EMPTY_STATE);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return;
         }
 
