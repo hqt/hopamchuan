@@ -60,6 +60,7 @@ public class SplashScreen extends AsyncActivity {
     private DBVersion version;
     private AutoUpdateHandler updateHandler;
     private AutoSyncHandler syncHandler;
+    private TextView statusTV;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,15 @@ public class SplashScreen extends AsyncActivity {
                 finish();
             }
         };
+
+
+        statusTV = (TextView) findViewById(R.id.status);
+
+        // If auto update is on, then display the text box.
+        if (PrefStore.isAutoUpdate()) {
+            statusTV.setVisibility(View.VISIBLE);
+        }
+
         // if already finish work after seconds. change to main screen
         // if not. wait until it finish work
         Thread t  = new Thread(new Runnable() {
@@ -98,11 +108,8 @@ public class SplashScreen extends AsyncActivity {
         runningLongTask();
     }
 
-    ProgressDialog dialog;
     /** loading long work before come to main screen */
     private void onLongWork() {
-        dialog.setMessage(getString(R.string.first_running));
-        dialog.setCancelable(false);
         /** Check is first use. if true. copy database */
         if (PrefStore.isFirstRun() || (!ResourceUtils.isDatabaseFileExist())) {
             LOGE(TAG, "First Running Database. Create new Database");
@@ -117,14 +124,13 @@ public class SplashScreen extends AsyncActivity {
             }
         } else {
             LOGE(TAG, "Second Running Database. Nothing Change");
-        }
 
-        // Check update
-        setUpAutoUpdate();
+            // Check update
+            setUpAutoUpdate();
+        }
 
         /** load all playlist here for performance */
         playlistList = (ArrayList)PlaylistDataAccessLayer.getAllPlayLists(getApplicationContext());
-        dialog.dismiss();
 
         // LOGE(TAG, "Alarm Service");
         // WakefulIntentService.scheduleAlarms(new SyncService.SyncServiceAlarm(), this, false);
@@ -152,7 +158,7 @@ public class SplashScreen extends AsyncActivity {
 
     @Override
     public void onPreExecute() {
-        dialog = new ProgressDialog(this);
+        statusTV.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -163,8 +169,7 @@ public class SplashScreen extends AsyncActivity {
 
     @Override
     public void onProgressUpdate(Integer... values) {
-        dialog.show();
-
+        statusTV.setText(R.string.first_running);
     }
 
     @Override
@@ -189,9 +194,6 @@ public class SplashScreen extends AsyncActivity {
 
     private void setUpAutoUpdate() {
         if (PrefStore.isAutoUpdate()) {
-            TextView statusTV = (TextView) findViewById(R.id.status);
-            statusTV.setVisibility(View.VISIBLE);
-
             version = APIUtils.getLatestDatabaseVersion(PrefStore.getLatestVersion());
             // no update need
             if (version != null && version.no != PrefStore.getLatestVersion()) {

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.graphics.Point;
 import android.os.Build;
 import android.view.Display;
+import android.view.WindowManager;
 
 public class ScreenUtils {
 
@@ -19,7 +20,10 @@ public class ScreenUtils {
             display.getSize(size);
             return size;
         } else {
-            return new Point(0, 0);
+            Display display = ((WindowManager) activity.getSystemService(activity.WINDOW_SERVICE)).getDefaultDisplay();
+            int width = display.getWidth();
+            int height = display.getHeight();
+            return new Point(width, height);
         }
     }
 }

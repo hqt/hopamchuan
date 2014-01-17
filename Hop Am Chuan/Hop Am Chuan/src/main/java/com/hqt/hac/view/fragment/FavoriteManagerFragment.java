@@ -132,15 +132,7 @@ public class FavoriteManagerFragment extends CustomFragment implements
     private void setUpComponents() {
         songs = new ArrayList<Song>();
         mAdapter = new SongListAdapter(getActivity(), songs);
-
-        /** ListView Configure */
         mListView = (InfinityListView) rootView.findViewById(R.id.list_view);
-        InfinityListView.ListViewProperty property = new InfinityListView.ListViewProperty();
-        property.Loader(this).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
-                .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
-        mListView.setListViewProperty(property);
-        mListView.setEmptyView(rootView.findViewById(R.id.empty));
-
 
         // Event for right menu click
         popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
@@ -177,25 +169,41 @@ public class FavoriteManagerFragment extends CustomFragment implements
                 case 0:
                     // sort by times
                     orderMode = HopAmChuanDBContract.Songs.SONG_ISFAVORITE + " DESC";
-                    songs = new ArrayList<Song>();
-                    mAdapter.setSongs(songs);
                     break;
                 case 1:
                     // sort by ABC
                     orderMode = HopAmChuanDBContract.Songs.SONG_TITLE_ASCII;
-                    songs = new ArrayList<Song>();
-                    mAdapter.setSongs(songs);
                     break;
                 default:
                     // do nothing
                     break;
             }
+            songs = new ArrayList<Song>();
+            mAdapter.setSongs(songs);
+            if (position == 0) {
+                mListView.ignoreIgnoreFirstChange = true;
+            }
             // refresh ListView
-            mListView.resetListView(mAdapter);
+            reloadInfListView();
             // mAdapter.notifyDataSetChanged();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void reloadInfListView() {
+        /** config mode for this ListView.
+         *  this ListView is full rich function. See document for more detail
+         */
+        /** ListView Configure */
+        InfinityListView.ListViewProperty property = new InfinityListView.ListViewProperty();
+        property.Loader(this).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
+                .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
+        mListView.setListViewProperty(property);
+        mListView.setEmptyView(rootView.findViewById(R.id.empty));
+
+
+        mListView.resetListView(mAdapter);
     }
 
     @Override
