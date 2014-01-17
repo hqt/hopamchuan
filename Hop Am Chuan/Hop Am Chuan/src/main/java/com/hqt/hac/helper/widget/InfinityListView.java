@@ -114,7 +114,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
      */
     public void resetListView(BaseAdapter adapter) {
         LOGE(TAG, "Reset ListView");
-        // if (footer != null) removeFooterView(footer);
+        if (footer != null) removeFooterView(footer);
         addFooterView(footer);
         isComeToEnd.set(false);
         isLoading.set(false);
@@ -341,8 +341,10 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
         try {
             if (getEmptyView() != null) {
                 if (showMessage) {
-                    getEmptyView().findViewById(R.id.emptyMessage).setVisibility(View.VISIBLE);
-                    getEmptyView().findViewById(R.id.loadingImg).setVisibility(View.GONE);
+                    if (mAdapter.getCount() == 0) {
+                        getEmptyView().findViewById(R.id.emptyMessage).setVisibility(View.VISIBLE);
+                        getEmptyView().findViewById(R.id.loadingImg).setVisibility(View.GONE);
+                    }
                 } else {
                     getEmptyView().findViewById(R.id.emptyMessage).setVisibility(View.GONE);
                     getEmptyView().findViewById(R.id.loadingImg).setVisibility(View.VISIBLE);
