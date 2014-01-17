@@ -31,10 +31,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c86a20-171e-468d-a200-2c04921d5076" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/FirstBloodAdapterView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Document/Release/BUGS.xlsx" afterPath="$PROJECT_DIR$/../../Document/Release/BUGS.xlsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/FavoriteManagerFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/FavoriteManagerFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ScreenUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ScreenUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchResultFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchResultFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SplashScreen.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SplashScreen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/chordsurfaceview_toast.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/chordsurfaceview_toast.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/dialog_songdetail_autoscroll.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/dialog_songdetail_autoscroll.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/dialog_songdetail_fontsize.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/dialog_songdetail_fontsize.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/dialog_songdetail_music.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/dialog_songdetail_music.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/dialog_songdetail_transpose.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/dialog_songdetail_transpose.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/popup_playlist_list_menu.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/popup_playlist_list_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/popup_profile.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/popup_profile.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/popup_song_detail_menu.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/popup_song_detail_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/popup_songlist_menu.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/popup_songlist_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/song_right_bar.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/song_right_bar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/values-vi/strings.xml" afterPath="$PROJECT_DIR$/src/main/res/values-vi/strings.xml" />
     </list>
     <ignored path="Hop Am Chuan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -122,16 +137,16 @@
       <file leaf-file-name="SongListFragment.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="150" column="76" selection-start="5311" selection-end="5311" vertical-scroll-proportion="2.932" vertical-offset="1817" max-vertical-offset="3876">
+            <state line="148" column="0" selection-start="4828" selection-end="4829" vertical-scroll-proportion="1.504" vertical-offset="2140" max-vertical-offset="4233">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1426#1468#0" expanded="true" />
                 <element signature="e#2094#2095#0" expanded="true" />
                 <element signature="e#2125#2126#0" expanded="true" />
-                <element signature="e#5044#5335#0" expanded="true" />
-                <element signature="e#5324#5325#0" expanded="true" />
-                <element signature="e#5423#5973#0" expanded="true" />
-                <element signature="e#5962#5963#0" expanded="true" />
+                <element signature="e#5119#5410#0" expanded="true" />
+                <element signature="e#5399#5400#0" expanded="true" />
+                <element signature="e#5498#6048#0" expanded="true" />
+                <element signature="e#6037#6038#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -160,13 +175,25 @@
       <file leaf-file-name="InfinityListView.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="264" column="43" selection-start="10755" selection-end="10755" vertical-scroll-proportion="-16.181818" vertical-offset="3598" max-vertical-offset="8908">
+            <state line="283" column="43" selection-start="11493" selection-end="11493" vertical-scroll-proportion="-16.181818" vertical-offset="3921" max-vertical-offset="9265">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#9959#10411#0" expanded="true" />
-                <element signature="e#10392#10393#0" expanded="true" />
-                <element signature="e#15681#15887#0" expanded="true" />
-                <element signature="e#15876#15877#0" expanded="true" />
+                <element signature="e#10697#11149#0" expanded="true" />
+                <element signature="e#11130#11131#0" expanded="true" />
+                <element signature="e#16419#16625#0" expanded="true" />
+                <element signature="e#16614#16615#0" expanded="true" />
+                <marker date="1389923831968" expanded="true" signature="2058:2119" placeholder="/**...*/" />
+                <marker date="1389923831968" expanded="true" signature="2206:2249" placeholder="/**...*/" />
+                <marker date="1389923831968" expanded="true" signature="2303:2388" placeholder="/**...*/" />
+                <marker date="1389923831968" expanded="true" signature="2402:2436" placeholder="/**...*/" />
+                <marker date="1389923831968" expanded="true" signature="2474:2540" placeholder="/**...*/" />
+                <marker date="1389923831968" expanded="true" signature="2491:2539" placeholder="/**...*/" />
+                <marker date="1389923831968" expanded="true" signature="2669:2703" placeholder="/**...*/" />
+                <marker date="1389923831968" expanded="true" signature="2755:2796" placeholder="/**...*/" />
+                <marker date="1389923831968" expanded="true" signature="2888:2940" placeholder="/**...*/" />
+                <marker date="1389923831968" expanded="true" signature="3628:3691" placeholder="/**...*/" />
+                <marker date="1389923831968" expanded="true" signature="3676:3772" placeholder="/**...*/" />
+                <marker date="1389923831968" expanded="true" signature="3729:3790" placeholder="/**...*/" />
               </folding>
             </state>
           </provider>
@@ -1610,12 +1637,12 @@
       <workItem from="1389752030682" duration="1749000" />
       <workItem from="1389756944118" duration="3231000" />
       <workItem from="1389800226900" duration="18396000" />
-      <workItem from="1389876251921" duration="12814000" />
+      <workItem from="1389876251921" duration="13713000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="319078000" />
+    <option name="totallyTimeSpent" value="319977000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -2016,13 +2043,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="264" column="43" selection-start="10755" selection-end="10755" vertical-scroll-proportion="-16.181818" vertical-offset="3598" max-vertical-offset="8908">
+        <state line="283" column="43" selection-start="11493" selection-end="11493" vertical-scroll-proportion="-16.181818" vertical-offset="3921" max-vertical-offset="9265">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#9959#10411#0" expanded="true" />
-            <element signature="e#10392#10393#0" expanded="true" />
-            <element signature="e#15681#15887#0" expanded="true" />
-            <element signature="e#15876#15877#0" expanded="true" />
+            <element signature="e#10697#11149#0" expanded="true" />
+            <element signature="e#11130#11131#0" expanded="true" />
+            <element signature="e#16419#16625#0" expanded="true" />
+            <element signature="e#16614#16615#0" expanded="true" />
+            <marker date="1389923831968" expanded="true" signature="2058:2119" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="2206:2249" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="2303:2388" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="2402:2436" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="2474:2540" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="2491:2539" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="2669:2703" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="2755:2796" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="2888:2940" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="3628:3691" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="3676:3772" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="3729:3790" placeholder="/**...*/" />
           </folding>
         </state>
       </provider>
@@ -2036,16 +2075,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="76" selection-start="5311" selection-end="5311" vertical-scroll-proportion="2.932" vertical-offset="1817" max-vertical-offset="3876">
+        <state line="148" column="0" selection-start="4828" selection-end="4829" vertical-scroll-proportion="1.504" vertical-offset="2140" max-vertical-offset="4233">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1426#1468#0" expanded="true" />
             <element signature="e#2094#2095#0" expanded="true" />
             <element signature="e#2125#2126#0" expanded="true" />
-            <element signature="e#5044#5335#0" expanded="true" />
-            <element signature="e#5324#5325#0" expanded="true" />
-            <element signature="e#5423#5973#0" expanded="true" />
-            <element signature="e#5962#5963#0" expanded="true" />
+            <element signature="e#5119#5410#0" expanded="true" />
+            <element signature="e#5399#5400#0" expanded="true" />
+            <element signature="e#5498#6048#0" expanded="true" />
+            <element signature="e#6037#6038#0" expanded="true" />
           </folding>
         </state>
       </provider>
