@@ -19,14 +19,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -44,6 +37,7 @@ import com.hac.android.guitarchord.fragment.WelcomeFragment;
 import com.hac.android.helper.adapter.MergeAdapter;
 import com.hac.android.helper.adapter.NavigationDrawerAdapter;
 import com.hac.android.helper.service.Mp3PlayerService;
+import com.hac.android.helper.widget.BunnyLayout;
 import com.hac.android.helper.widget.SlidingMenuActionBarActivity;
 import com.hac.android.helper.widget.SongListRightMenuHandler;
 import com.hac.android.model.Playlist;
@@ -57,6 +51,8 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.util.Calendar;
 import java.util.List;
+
+import static com.hac.android.utils.LogUtils.LOGE;
 
 public class MainActivity extends SlidingMenuActionBarActivity
         implements NavigationDrawerAdapter.IHeaderDelegate, NavigationDrawerAdapter.IItemDelegate,
@@ -84,6 +80,11 @@ public class MainActivity extends SlidingMenuActionBarActivity
      * Use this for Reference
      */
     View sideBarLayout;
+
+    /**
+     * Main View of App
+     */
+    BunnyLayout mainView;
 
     /**
      * All Adapter for Navigation Drawer
@@ -161,6 +162,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
         // set Main View
         setContentView(R.layout.activity_main_frame);
+        mainView = (BunnyLayout) findViewById(R.id.content_frame);
 
         // set navigation drawer View
         LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -209,6 +211,31 @@ public class MainActivity extends SlidingMenuActionBarActivity
             Fragment fragment = new WelcomeFragment();
             switchFragmentClearStack(fragment);
         }
+
+        mainView.addKeyboardStateChangedListener(new BunnyLayout.IKeyboardChanged() {
+            @Override
+            public void onKeyboardShown() {
+            }
+
+            @Override
+            public void onKeyboardHidden() {
+                LOGE(TAG, "On Keyboard Hidden");
+                if (searchItem != null) MenuItemCompat.collapseActionView(searchItem);
+            }
+        });
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.KEYCODE_FORWARD_DEL) {
+        /*Just switch out keycode if KEYCODE_FORWARD_DEL if its not the correct one*/
+            Toast.makeText(MainActivity.this, "YOU CLICKED Delete KEY",
+                    Toast.LENGTH_LONG).show();
+            return true;
+        }
+        Toast.makeText(MainActivity.this, "Didnt work", Toast.LENGTH_SHORT)
+                .show();
+        return super.dispatchKeyEvent(e);
     }
 
 
@@ -294,6 +321,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // close search view
         if (searchItem != null) {
             // should close search view
+            LOGE(TAG, "Close SearchView on BackPress");
             MenuItemCompat.collapseActionView(searchItem);
             MenuItemCompat.collapseActionView(searchItem);
         }
@@ -308,7 +336,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
                 // in Welcome Fragment. Just exit when double click back press as Zing MP3
                 long currentTime = Calendar.getInstance().getTimeInMillis();
-                LogUtils.LOGE(TAG, mTimePressBackBtn + "/" + currentTime);
+                LOGE(TAG, mTimePressBackBtn + "/" + currentTime);
                 if (currentTime < mTimePressBackBtn + Config.TOAST_LENGTH_SHORT) {
                     // in fact. exit app
                     // super.onBackPressed(); // << This will cause a blank screen (as described in BUG.txt)
@@ -412,7 +440,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     if (!hasFocus) {
-                        MenuItemCompat.collapseActionView(searchItem);
+                        LOGE(TAG, "Close SearchView on LostFocus");
                         MenuItemCompat.collapseActionView(searchItem);
                     }
 
@@ -422,7 +450,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     if (!hasFocus) {
-                        MenuItemCompat.collapseActionView(searchItem);
+                        LOGE(TAG, "Close SearchView in QueryTextFocus");
                         MenuItemCompat.collapseActionView(searchItem);
                     }
                 }
@@ -510,7 +538,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
             // LOGE(TAG, "Search query: " + queryStr);
             // should close search view
             MenuItemCompat.collapseActionView(searchItem);
-            MenuItemCompat.collapseActionView(searchItem);
             // cache data for searching
             SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
                     SearchRecentProvider.AUTHORITY, SearchRecentProvider.MODE);
@@ -585,7 +612,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 mp3Service = ((Mp3PlayerService.BackgroundAudioServiceBinder)iBinder).getService();
                 player = mp3Service.player;
                 if (player == null) {
-                    LogUtils.LOGE(TAG, "PLAYER IS NULL WHEN BIND TO SERVICE");
+                    LOGE(TAG, "PLAYER IS NULL WHEN BIND TO SERVICE");
                 }
             }
             @Override
@@ -704,7 +731,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         if(!(view instanceof SearchView)) {
             view.setOnTouchListener(new View.OnTouchListener() {
                 public boolean onTouch(View v, MotionEvent event) {
-                    MenuItemCompat.collapseActionView(searchItem);
+                    LOGE(TAG, "Close Search View in bindEvent");
                     MenuItemCompat.collapseActionView(searchItem);
                     return false;
                 }
@@ -757,7 +784,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         }
         // setting for Drawer List View
         if (mDrawerListView != null) {
-            LogUtils.LOGE("TRUNGDQ", "Main: set category: " + position);
+            LOGE("TRUNGDQ", "Main: set category: " + position);
             mDrawerListView.setItemChecked(position + headerAdapter.getCount(), true);
         }
         // Open Custom Fragment
