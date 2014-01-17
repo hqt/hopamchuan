@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -241,6 +242,21 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // outState.putParcelableArrayList("playlist", playlistList);
 
     }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        // Checks whether a hardware keyboard is available
+        if (newConfig.hardKeyboardHidden == Configuration.HARDKEYBOARDHIDDEN_NO) {
+            // Toast.makeText(this, "keyboard visible", Toast.LENGTH_SHORT).show();
+        } else if (newConfig.hardKeyboardHidden == Configuration.HARDKEYBOARDHIDDEN_YES) {
+            Toast.makeText(this, "keyboard hidden", Toast.LENGTH_SHORT).show();
+            MenuItemCompat.collapseActionView(searchItem);
+            MenuItemCompat.collapseActionView(searchItem);
+        }
+    }
+
     //endregion
 
     //region Configuration Method
@@ -280,6 +296,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         // close search view
         if (searchItem != null) {
             // should close search view
+            MenuItemCompat.collapseActionView(searchItem);
             MenuItemCompat.collapseActionView(searchItem);
         }
 
@@ -391,14 +408,27 @@ public class MainActivity extends SlidingMenuActionBarActivity
             // enable submit button
             mSearchView.setSubmitButtonEnabled(true);
             // Returns whether query refinement is enabled for all items or only specific ones.
-            mSearchView.setQueryRefinementEnabled(true);
+            //mSearchView.setQueryRefinementEnabled(true);
             // setup SearchView that lost focus after search
-           /* mSearchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            mSearchView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
-                    if (!hasFocus) MenuItemCompat.collapseActionView(searchItem);
+                    if (!hasFocus) {
+                        MenuItemCompat.collapseActionView(searchItem);
+                        MenuItemCompat.collapseActionView(searchItem);
+                    }
+
                 }
-            });*/
+            });
+            mSearchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (!hasFocus) {
+                        MenuItemCompat.collapseActionView(searchItem);
+                        MenuItemCompat.collapseActionView(searchItem);
+                    }
+                }
+       });
         }
         // use this method for convenience
         bindCLoseSearchViewEvent(getWindow().getDecorView().getRootView());
@@ -420,7 +450,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
                 return true;
         }
 
-        return super.onOptionsItemSelected(item);
+         return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -429,12 +459,12 @@ public class MainActivity extends SlidingMenuActionBarActivity
      * Unless passing search mAppContext data.
      * should end method by calling super class implementation
      */
-    @Override
+  /*  @Override
     public boolean onSearchRequested() {
         // doing some stuff before here
         LOGE(TAG, "On Search request");
         return super.onSearchRequested();
-    }
+    }*/
 
     /**
      * set up navigation drawer view
@@ -481,6 +511,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
             String queryStr = intent.getStringExtra(SearchManager.QUERY);
             LOGE(TAG, "Search query: " + queryStr);
             // should close search view
+            MenuItemCompat.collapseActionView(searchItem);
             MenuItemCompat.collapseActionView(searchItem);
             // cache data for searching
             SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
@@ -596,6 +627,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         slidingMenu.setEnabled(false);
         // should close search view
         MenuItemCompat.collapseActionView(searchItem);
+        MenuItemCompat.collapseActionView(searchItem);
         int titleRes = ((CustomFragment) fragment).getTitle();
         if (titleRes > 0) {
             changeTitleBar(getString(titleRes));
@@ -619,6 +651,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
 
         if (searchItem != null) { // << Could not run without this.
             // should close search view
+            MenuItemCompat.collapseActionView(searchItem);
             MenuItemCompat.collapseActionView(searchItem);
         }
         int titleRes = ((CustomFragment) fragment).getTitle();
@@ -670,6 +703,7 @@ public class MainActivity extends SlidingMenuActionBarActivity
         if(!(view instanceof SearchView)) {
             view.setOnTouchListener(new View.OnTouchListener() {
                 public boolean onTouch(View v, MotionEvent event) {
+                    MenuItemCompat.collapseActionView(searchItem);
                     MenuItemCompat.collapseActionView(searchItem);
                     return false;
                 }

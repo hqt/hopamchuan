@@ -31,25 +31,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c86a20-171e-468d-a200-2c04921d5076" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Document/Release/BUGS.xlsx" afterPath="$PROJECT_DIR$/../../Document/Release/BUGS.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/FavoriteManagerFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/FavoriteManagerFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ScreenUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/ScreenUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchResultFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchResultFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SplashScreen.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SplashScreen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/chordsurfaceview_toast.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/chordsurfaceview_toast.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/dialog_songdetail_autoscroll.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/dialog_songdetail_autoscroll.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/dialog_songdetail_fontsize.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/dialog_songdetail_fontsize.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/dialog_songdetail_music.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/dialog_songdetail_music.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/dialog_songdetail_transpose.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/dialog_songdetail_transpose.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/popup_playlist_list_menu.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/popup_playlist_list_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/popup_profile.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/popup_profile.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/popup_song_detail_menu.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/popup_song_detail_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/popup_songlist_menu.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/popup_songlist_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/song_right_bar.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/song_right_bar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/values-vi/strings.xml" afterPath="$PROJECT_DIR$/src/main/res/values-vi/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" />
     </list>
     <ignored path="Hop Am Chuan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -134,66 +116,65 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SongListFragment.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java">
+      <file leaf-file-name="searchable.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/xml/searchable.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="148" column="0" selection-start="4828" selection-end="4829" vertical-scroll-proportion="1.504" vertical-offset="2140" max-vertical-offset="4233">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1426#1468#0" expanded="true" />
-                <element signature="e#2094#2095#0" expanded="true" />
-                <element signature="e#2125#2126#0" expanded="true" />
-                <element signature="e#5119#5410#0" expanded="true" />
-                <element signature="e#5399#5400#0" expanded="true" />
-                <element signature="e#5498#6048#0" expanded="true" />
-                <element signature="e#6037#6038#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FirstBloodAdapterView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/FirstBloodAdapterView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="36" selection-start="364" selection-end="364" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="646">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlaylistManagerFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/PlaylistManagerFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="204" column="29" selection-start="7294" selection-end="7294" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="3519">
+            <state line="6" column="13" selection-start="304" selection-end="304" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InfinityListView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java">
+      <file leaf-file-name="search_view.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/menu/search_view.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="283" column="43" selection-start="11493" selection-end="11493" vertical-scroll-proportion="-16.181818" vertical-offset="3921" max-vertical-offset="9265">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/menu/main.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="65" selection-start="460" selection-end="496" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#10697#11149#0" expanded="true" />
-                <element signature="e#11130#11131#0" expanded="true" />
-                <element signature="e#16419#16625#0" expanded="true" />
-                <element signature="e#16614#16615#0" expanded="true" />
-                <marker date="1389923831968" expanded="true" signature="2058:2119" placeholder="/**...*/" />
-                <marker date="1389923831968" expanded="true" signature="2206:2249" placeholder="/**...*/" />
-                <marker date="1389923831968" expanded="true" signature="2303:2388" placeholder="/**...*/" />
-                <marker date="1389923831968" expanded="true" signature="2402:2436" placeholder="/**...*/" />
-                <marker date="1389923831968" expanded="true" signature="2474:2540" placeholder="/**...*/" />
-                <marker date="1389923831968" expanded="true" signature="2491:2539" placeholder="/**...*/" />
-                <marker date="1389923831968" expanded="true" signature="2669:2703" placeholder="/**...*/" />
-                <marker date="1389923831968" expanded="true" signature="2755:2796" placeholder="/**...*/" />
-                <marker date="1389923831968" expanded="true" signature="2888:2940" placeholder="/**...*/" />
-                <marker date="1389923831968" expanded="true" signature="3628:3691" placeholder="/**...*/" />
-                <marker date="1389923831968" expanded="true" signature="3676:3772" placeholder="/**...*/" />
-                <marker date="1389923831968" expanded="true" signature="3729:3790" placeholder="/**...*/" />
+                <element signature="e#269#291#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="124" column="0" selection-start="5324" selection-end="5324" vertical-scroll-proportion="0.0" vertical-offset="1544" max-vertical-offset="2431">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="513" column="58" selection-start="20126" selection-end="20172" vertical-scroll-proportion="0.33333334" vertical-offset="7330" max-vertical-offset="12325">
+              <folding>
+                <element signature="docComment;field#mSearchView#0;class#MainActivity#0" expanded="false" />
+                <element signature="docComment;field#mDrawerListView#0;class#MainActivity#0" expanded="false" />
+                <element signature="docComment;field#slidingMenu#0;class#MainActivity#0" expanded="false" />
+                <element signature="docComment;field#sideBarLayout#0;class#MainActivity#0" expanded="false" />
+                <element signature="docComment;field#mergeAdapter#0;class#MainActivity#0" expanded="false" />
+                <element signature="docComment;field#playlistList#0;class#MainActivity#0" expanded="false" />
+                <element signature="docComment;field#mTimePressBackBtn#0;class#MainActivity#0" expanded="false" />
+                <element signature="docComment;field#serviceConnection#0;class#MainActivity#0" expanded="false" />
+                <element signature="docComment;field#mp3Service#0;class#MainActivity#0" expanded="false" />
+                <element signature="docComment;field#mp3ServiceIntent#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#12339#12375#0" expanded="true" />
+                <element signature="e#12782#12833#0" expanded="true" />
+                <element signature="e#16834#17192#0" expanded="true" />
+                <element signature="e#17182#17183#0" expanded="true" />
+                <element signature="e#18991#19011#0" expanded="true" />
+                <element signature="e#19187#19218#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1021,13 +1002,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SearchChordFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/TriggerSpinner.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/provider/helper/SQLiteAssetHelper.java" />
-        <option value="$PROJECT_DIR$/src/main/res/menu/main.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/FavoriteManagerFragment.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/FirstBloodAdapterView.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/res/menu/main.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -1144,6 +1125,36 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xml" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hop Am Chuan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1171,7 +1182,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
+              <option name="myItemId" value="menu" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1637,12 +1648,12 @@
       <workItem from="1389752030682" duration="1749000" />
       <workItem from="1389756944118" duration="3231000" />
       <workItem from="1389800226900" duration="18396000" />
-      <workItem from="1389876251921" duration="13713000" />
+      <workItem from="1389876251921" duration="21753000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="319977000" />
+    <option name="totallyTimeSpent" value="328017000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1666,14 +1677,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5576923" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5576923" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2031722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1682,7 +1693,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24093656" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32673267" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4551282" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4551282" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15007657" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24924472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1698,6 +1709,37 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32838285" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2031722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24093656" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15007657" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3074018" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49519232" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2545317" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5576923" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32838285" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24093656" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32673267" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4551282" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24924472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USERS">
@@ -1720,16 +1762,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/utils/NetworkUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="13" selection-start="827" selection-end="827" vertical-scroll-proportion="-3.8093646" vertical-offset="2346" max-vertical-offset="3468" />
-      </provider>
-    </entry>
-    <entry file="jar://D:/Compiler/Android SDK/extras/android/m2repository/com/android/support/support-v4/19.0.0/support-v4-19.0.0.jar!/android/support/v4/app/FragmentActivity.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="42" selection-start="255" selection-end="255" vertical-scroll-proportion="0.18214285" vertical-offset="0" max-vertical-offset="2125" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/SettingActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="62" column="59" selection-start="2074" selection-end="2074" vertical-scroll-proportion="0.17056856" vertical-offset="0" max-vertical-offset="10880">
@@ -1875,30 +1907,6 @@
         <state line="34" column="60" selection-start="1289" selection-end="1289" vertical-scroll-proportion="0.80100334" vertical-offset="31" max-vertical-offset="884" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="72" selection-start="811" selection-end="811" vertical-scroll-proportion="-0.31270903" vertical-offset="459" max-vertical-offset="2397">
-          <folding>
-            <element signature="e#932#950#0" expanded="false" />
-            <element signature="e#1427#1445#0" expanded="false" />
-            <element signature="e#1593#1611#0" expanded="false" />
-            <element signature="e#1779#1797#0" expanded="false" />
-            <element signature="e#1902#1920#0" expanded="false" />
-            <element signature="e#2027#2045#0" expanded="false" />
-            <element signature="e#2529#2547#0" expanded="false" />
-            <element signature="e#3221#3257#0" expanded="false" />
-            <element signature="e#3560#3589#0" expanded="false" />
-            <element signature="e#3754#3793#0" expanded="false" />
-            <element signature="e#3961#4000#0" expanded="false" />
-            <element signature="e#4173#4211#0" expanded="false" />
-            <element signature="e#4344#4373#0" expanded="false" />
-            <element signature="e#5193#5223#0" expanded="false" />
-            <element signature="e#5350#5382#0" expanded="false" />
-            <element signature="e#5526#5558#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Compiler/Android SDK/sources/android-18/android/content/pm/ActivityInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="232" column="28" selection-start="9703" selection-end="9760" vertical-scroll-proportion="0.33277592" vertical-offset="3473" max-vertical-offset="10523" />
@@ -1967,15 +1975,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/provider/helper/SQLiteAssetHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="315" column="0" selection-start="12553" selection-end="12553" vertical-scroll-proportion="0.0" vertical-offset="4881" max-vertical-offset="8432" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/menu/main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="47" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
-          <folding>
-            <element signature="e#269#291#0" expanded="false" />
-          </folding>
+        <state line="315" column="0" selection-start="12553" selection-end="12553" vertical-scroll-proportion="0.0" vertical-offset="4881" max-vertical-offset="8432">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2007,9 +2008,103 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="5" selection-start="61" selection-end="61" vertical-scroll-proportion="0.072413795" vertical-offset="9" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/FirstBloodAdapterView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="36" selection-start="364" selection-end="364" vertical-scroll-proportion="0.23244147" vertical-offset="48" max-vertical-offset="646">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="283" column="43" selection-start="11493" selection-end="11493" vertical-scroll-proportion="1.6792452" vertical-offset="3921" max-vertical-offset="9265">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#10697#11149#0" expanded="true" />
+            <element signature="e#11130#11131#0" expanded="true" />
+            <element signature="e#16419#16625#0" expanded="true" />
+            <element signature="e#16614#16615#0" expanded="true" />
+            <marker date="1389923831968" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1389923831968" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/PlaylistManagerFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="204" column="29" selection-start="7294" selection-end="7294" vertical-scroll-proportion="3.7240803" vertical-offset="510" max-vertical-offset="3519">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="148" column="0" selection-start="4828" selection-end="4829" vertical-scroll-proportion="0.62876254" vertical-offset="2140" max-vertical-offset="4233">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1426#1468#0" expanded="true" />
+            <element signature="e#2094#2095#0" expanded="true" />
+            <element signature="e#2125#2126#0" expanded="true" />
+            <element signature="e#5119#5410#0" expanded="true" />
+            <element signature="e#5399#5400#0" expanded="true" />
+            <element signature="e#5498#6048#0" expanded="true" />
+            <element signature="e#6037#6038#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/xml/searchable.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="13" selection-start="304" selection-end="304" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/menu/search_view.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="598">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="124" column="0" selection-start="5324" selection-end="5324" vertical-scroll-proportion="0.0" vertical-offset="1544" max-vertical-offset="2431">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/menu/main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="65" selection-start="460" selection-end="496" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
+          <folding>
+            <element signature="e#269#291#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="246" column="56" selection-start="8409" selection-end="8409" vertical-scroll-proportion="0.029982364" vertical-offset="2924" max-vertical-offset="11815">
+        <state line="513" column="58" selection-start="20126" selection-end="20172" vertical-scroll-proportion="0.33333334" vertical-offset="7330" max-vertical-offset="12325">
           <folding>
             <element signature="docComment;field#mSearchView#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;field#mDrawerListView#0;class#MainActivity#0" expanded="false" />
@@ -2021,70 +2116,12 @@
             <element signature="docComment;field#serviceConnection#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;field#mp3Service#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;field#mp3ServiceIntent#0;class#MainActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="5" selection-start="61" selection-end="61" vertical-scroll-proportion="0.072413795" vertical-offset="9" max-vertical-offset="663">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/FirstBloodAdapterView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="36" selection-start="364" selection-end="364" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="646">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/helper/widget/InfinityListView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="283" column="43" selection-start="11493" selection-end="11493" vertical-scroll-proportion="-16.181818" vertical-offset="3921" max-vertical-offset="9265">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#10697#11149#0" expanded="true" />
-            <element signature="e#11130#11131#0" expanded="true" />
-            <element signature="e#16419#16625#0" expanded="true" />
-            <element signature="e#16614#16615#0" expanded="true" />
-            <marker date="1389923831968" expanded="true" signature="2058:2119" placeholder="/**...*/" />
-            <marker date="1389923831968" expanded="true" signature="2206:2249" placeholder="/**...*/" />
-            <marker date="1389923831968" expanded="true" signature="2303:2388" placeholder="/**...*/" />
-            <marker date="1389923831968" expanded="true" signature="2402:2436" placeholder="/**...*/" />
-            <marker date="1389923831968" expanded="true" signature="2474:2540" placeholder="/**...*/" />
-            <marker date="1389923831968" expanded="true" signature="2491:2539" placeholder="/**...*/" />
-            <marker date="1389923831968" expanded="true" signature="2669:2703" placeholder="/**...*/" />
-            <marker date="1389923831968" expanded="true" signature="2755:2796" placeholder="/**...*/" />
-            <marker date="1389923831968" expanded="true" signature="2888:2940" placeholder="/**...*/" />
-            <marker date="1389923831968" expanded="true" signature="3628:3691" placeholder="/**...*/" />
-            <marker date="1389923831968" expanded="true" signature="3676:3772" placeholder="/**...*/" />
-            <marker date="1389923831968" expanded="true" signature="3729:3790" placeholder="/**...*/" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/PlaylistManagerFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="204" column="29" selection-start="7294" selection-end="7294" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="3519">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hqt/hac/view/fragment/SongListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="148" column="0" selection-start="4828" selection-end="4829" vertical-scroll-proportion="1.504" vertical-offset="2140" max-vertical-offset="4233">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1426#1468#0" expanded="true" />
-            <element signature="e#2094#2095#0" expanded="true" />
-            <element signature="e#2125#2126#0" expanded="true" />
-            <element signature="e#5119#5410#0" expanded="true" />
-            <element signature="e#5399#5400#0" expanded="true" />
-            <element signature="e#5498#6048#0" expanded="true" />
-            <element signature="e#6037#6038#0" expanded="true" />
+            <element signature="e#12339#12375#0" expanded="true" />
+            <element signature="e#12782#12833#0" expanded="true" />
+            <element signature="e#16834#17192#0" expanded="true" />
+            <element signature="e#17182#17183#0" expanded="true" />
+            <element signature="e#18991#19011#0" expanded="true" />
+            <element signature="e#19187#19218#0" expanded="true" />
           </folding>
         </state>
       </provider>
