@@ -111,21 +111,6 @@ public class SongListFragment extends CustomFragment implements AdapterView.OnIt
         spinner.setAdapter(adapter);    // Apply the mAdapter to the spinner
         spinner.setOnItemSelectedListener(this);    // because this fragment has implemented method
 
-        // Load component with a delay to reduce lag
-//        mHandler = new ComponentLoadHandler();
-//        Thread componentLoad = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    Thread.sleep(Config.LOADING_SMOOTHING_DELAY);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                mHandler.sendMessage(mHandler.obtainMessage());
-//            }
-//        });
-//        UIUtils.setOrientationLock(getActivity());
-//        componentLoad.start();
         setUpComponents();
         return rootView;
     }
@@ -145,14 +130,14 @@ public class SongListFragment extends CustomFragment implements AdapterView.OnIt
 
         /** ListView Configure */
         mListView = (InfinityListView) rootView.findViewById(R.id.list_view);
-        /** config mode for this ListView.
+       /* *//** config mode for this ListView.
          *  this ListView is full rich function. See document for more detail
-         */
+         *//*
         InfinityListView.ListViewProperty property = new InfinityListView.ListViewProperty();
         property.Loader(this).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
                 .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
         mListView.setListViewProperty(property);
-        mListView.setEmptyView(rootView.findViewById(R.id.empty));
+        mListView.setEmptyView(rootView.findViewById(R.id.empty));*/
 
         // Event for right menu click
         popupWindow = DialogUtils.createPopup(inflater, R.layout.popup_songlist_menu);
@@ -189,6 +174,11 @@ public class SongListFragment extends CustomFragment implements AdapterView.OnIt
         // Set mode
         songListMode = position;
         // Reset the ListView
+        InfinityListView.ListViewProperty property = new InfinityListView.ListViewProperty();
+        property.Loader(this).FirstProcessLoading(true).LoadingView(R.layout.list_item_loading)
+                .NumPerLoading(Config.DEFAULT_SONG_NUM_PER_LOAD).RunningBackground(true);
+        mListView.setListViewProperty(property);
+        mListView.setEmptyView(rootView.findViewById(R.id.empty));
         mListView.resetListView(songlistAdapter);
     }
 

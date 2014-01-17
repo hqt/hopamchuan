@@ -43,12 +43,12 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 
     public static String TAG = makeLogTag(InfinityListView.class);
 
-    private static final int DEFAULT_FIRST_LOADING_ITEMS = 4;
+    private static final int DEFAULT_FIRST_LOADING_ITEMS = 1;
     private static final int DEFAULT_NUM_PER_LOAD = 1;
 
     //region State variable to control current state of ListView
     /** variable to control is in current loading state or not */
-    AtomicBoolean isLoading = new AtomicBoolean(false);
+    volatile AtomicBoolean isLoading = new AtomicBoolean(false);
     /** variable to control result of action */
     boolean isSucceed = false;
     /** boolean variable to control should list view will load more or has come to end */
@@ -114,7 +114,7 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
      */
     public void resetListView(BaseAdapter adapter) {
         LOGE(TAG, "Reset ListView");
-        if (footer != null) removeFooterView(footer);
+        if (footer != null && getAdapter() != null) removeFooterView(footer);
         addFooterView(footer);
         isComeToEnd.set(false);
         isLoading.set(false);
@@ -146,18 +146,14 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
             }
             items = null;
         } else {
-            LOGE(TAG, "Add pre songs to list");
             /** Normal case. it will loading until full of ListView */
             /** TODO should make animation here for nicer view */
             if (isFirstProcessLoading && mAdapter.getCount() > 0) {
                 throw new UnsupportedOperationException();
             }
+            LOGE(TAG, "Add pre songs to list " + mFirstLoadingItems);
             if (isFirstProcessLoading && mAdapter.getCount() == 0) {
                 scheduleWork(0, mFirstLoadingItems);
-               /* for (int i = 0; i < mFirstLoadingItems; i++) {
-                    LOGE(TAG, "Load item: " + i  + " in first processing loading ...");
-                    scheduleWork(i);
-                }*/
             }
         }
         mAdapter.notifyDataSetChanged();
@@ -224,9 +220,11 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
 
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        /**  waiting for ending session */
+        if (isLoading.get()) return;
         if (getAdapter() == null) return;
         if (isComeToEnd.get()) return;
-//        LOGI(TAG, "On Scroll : Number of Items: " + getAdapter().getCount());
+        LOGE(TAG, "On Scroll : Number of Items: " + getAdapter().getCount());
         if (getAdapter().getCount() == 0) return;
 
         // get the first Item that currently hide and need to show
@@ -240,10 +238,11 @@ public class InfinityListView extends ListView implements AbsListView.OnScrollLi
     }
 
     /** decide to work on same thread or different thread */
-    private void scheduleWork(final int index, final int numPerLoading) {
+    private synchronized void scheduleWork(final int index, final int numPerLoading) {
         try {
             /**  waiting for ending session */
             if (isLoading.get()) return;
+            LOGE(TAG, "Is not loading. doing work ...");
             isLoading.set(true);
             if (isRunningBackground) {
                 Thread t = new Thread(new Runnable() {
