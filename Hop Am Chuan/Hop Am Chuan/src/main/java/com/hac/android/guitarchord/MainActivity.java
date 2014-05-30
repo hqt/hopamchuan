@@ -68,7 +68,10 @@ public class MainActivity extends SlidingMenuActionBarActivity
     /**
      * ListView contains all item categories
      */
-    ListView mDrawerListView;
+    ListView <string name="md__drawerOpenIndicatorDesc">Close drawer</string>
+    <string name="app_name">ThaoHQ</string>
+    <string name="md__drawerClosedIndicatorDesc">Open drawer</string>
+    ;
 
     /**
      * SlidingMenu : use for slide to see like NavigationDrawer
@@ -224,20 +227,6 @@ public class MainActivity extends SlidingMenuActionBarActivity
             }
         });
     }
-
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.KEYCODE_FORWARD_DEL) {
-        /*Just switch out keycode if KEYCODE_FORWARD_DEL if its not the correct one*/
-            Toast.makeText(MainActivity.this, "YOU CLICKED Delete KEY",
-                    Toast.LENGTH_LONG).show();
-            return true;
-        }
-        Toast.makeText(MainActivity.this, "Didnt work", Toast.LENGTH_SHORT)
-                .show();
-        return super.dispatchKeyEvent(e);
-    }
-
 
     @Override
     protected void onResume() {
